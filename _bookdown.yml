@@ -1,0 +1,8 @@
+book_filename: "tech-foundations-of-informatics"
+output_dir: build
+language:
+  ui:
+    chapter_name: ["Chapter "]
+edit: https://github.com/info201/book/edit/master/%s
+rmd_files:
+  - index.Rmd

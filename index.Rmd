@@ -1,0 +1,40 @@
+---
+title: 'Technical Foundations of Informatics'
+author: "[Michael Freeman](http://mfviz.com/#/) and [Joel Ross](http://faculty.washington.edu/joelross/)"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+description: 'The course reader for INFO 201: Technical Foundations of Informatics.'
+github-repo: info201/book
+url: 'https\://info201.github.io/'
+params:
+    past.offerings:
+      value:
+        - quarter: Spring 2017
+          url: https://canvas.uw.edu/courses/1135150
+        - quarter: Winter 2017
+          url: https://canvas.uw.edu/courses/1100121
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+monofont: "Source Code Pro"
+cover-image: img/cover-img.png
+favicon: img/favicon.png
+---
+
+# About this Book {-}
+
+```{r fig.align='center', echo=FALSE, include=identical(knitr:::pandoc_to(), 'html')}
+#to include only in html (centered)
+#knitr::include_graphics('img/cover-img.png', dpi = NA)
+```
+
+<!-- ![](img/cover-img.png) -->
+
+This book covers the foundation skills necessary to start ___writing computer programs to work with data___ using modern and reproducable techniques. It requires no technical background. These materials were developed for the **INFO 201: Technical Foundations of Informatics** course taught at the [University of Washington Information School](https://ischool.uw.edu/); however they have been structured to be an online resource for anyone hoping to learn to work with information using programmatic approaches.
+
+<!-- TODO: Include previous course offerings? -->
+
+<!-- TODO: Include author contact info? -->
+
+<p class="alert alert-warning">This book is currently in **beta** status. Visit us on [GitHub](https://github.com/info201/book) to contribute improvements.</p>
+
+![Creative Commons License](img/index/by-nc-sa.png)
+This book is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
