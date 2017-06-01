@@ -128,8 +128,8 @@ Also remember that you can use a tilde **`~`** as shorthand for the home directo
 
 Once you're comfortable navigating folders in the command-line, you can start to use it to do all the same things you would do with Finder or File Explorer, simply by using the correct command:
 
-| Command | Behavior	|
-| ------- |  --------- |
+| Command | Behavior |
+| :------ | :------- |
 | **`mkdir`** | **m**a**k**e a **dir**ectory |
 | **`rm`** | **r**e**m**ove a file or folder |
 | **`cp`** | **c**o**p**y a file from one location to another |

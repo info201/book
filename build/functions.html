@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Technical Foundations of Informatics</title>
+  <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Technical Foundations of Informatics" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://info201.github.io/" />
+  <meta property="og:image" content="https://info201.github.io/img/cover-img.png" />
+  <meta property="og:description" content="The course reader for INFO 201: Technical Foundations of Informatics." />
+  <meta name="github-repo" content="info201/book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Technical Foundations of Informatics" />
+  
+  <meta name="twitter:description" content="The course reader for INFO 201: Technical Foundations of Informatics." />
+  <meta name="twitter:image" content="https://info201.github.io/img/cover-img.png" />
+
+<meta name="author" content="Michael Freeman and Joel Ross">
+
+
+<meta name="date" content="2017-06-01">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+<link rel="prev" href="r-intro.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-98444716-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Technical Foundations of Informatics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this Book</a></li>
+<li class="chapter" data-level="1" data-path="setup-machine.html"><a href="setup-machine.html"><i class="fa fa-check"></i><b>1</b> Setting up your Machine</a><ul>
+<li class="chapter" data-level="1.1" data-path="setup-machine.html"><a href="setup-machine.html#git"><i class="fa fa-check"></i><b>1.1</b> Git</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="setup-machine.html"><a href="setup-machine.html#github"><i class="fa fa-check"></i><b>1.1.1</b> GitHub</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="setup-machine.html"><a href="setup-machine.html#command-line-tools-bash"><i class="fa fa-check"></i><b>1.2</b> Command-line Tools (Bash)</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="setup-machine.html"><a href="setup-machine.html#command-line-on-a-mac"><i class="fa fa-check"></i><b>1.2.1</b> Command-line on a Mac</a></li>
+<li class="chapter" data-level="1.2.2" data-path="setup-machine.html"><a href="setup-machine.html#command-line-on-windows"><i class="fa fa-check"></i><b>1.2.2</b> Command-line on Windows</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="setup-machine.html"><a href="setup-machine.html#text-editors"><i class="fa fa-check"></i><b>1.3</b> Text Editors</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="setup-machine.html"><a href="setup-machine.html#atom"><i class="fa fa-check"></i><b>1.3.1</b> Atom</a></li>
+<li class="chapter" data-level="1.3.2" data-path="setup-machine.html"><a href="setup-machine.html#visual-studio-code"><i class="fa fa-check"></i><b>1.3.2</b> Visual Studio Code</a></li>
+<li class="chapter" data-level="1.3.3" data-path="setup-machine.html"><a href="setup-machine.html#sublimetext"><i class="fa fa-check"></i><b>1.3.3</b> SublimeText</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="setup-machine.html"><a href="setup-machine.html#rstudio"><i class="fa fa-check"></i><b>1.4</b> RStudio</a></li>
+<li class="chapter" data-level="" data-path="setup-machine.html"><a href="setup-machine.html#resources"><i class="fa fa-check"></i>Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="command-line.html"><a href="command-line.html"><i class="fa fa-check"></i><b>2</b> The Command Line</a><ul>
+<li class="chapter" data-level="2.1" data-path="command-line.html"><a href="command-line.html#accessing-the-command-line"><i class="fa fa-check"></i><b>2.1</b> Accessing the Command-Line</a></li>
+<li class="chapter" data-level="2.2" data-path="command-line.html"><a href="command-line.html#navigating-the-command-line"><i class="fa fa-check"></i><b>2.2</b> Navigating the Command Line</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="command-line.html"><a href="command-line.html#changing-directories"><i class="fa fa-check"></i><b>2.2.1</b> Changing Directories</a></li>
+<li class="chapter" data-level="2.2.2" data-path="command-line.html"><a href="command-line.html#listing-files"><i class="fa fa-check"></i><b>2.2.2</b> Listing Files</a></li>
+<li class="chapter" data-level="2.2.3" data-path="command-line.html"><a href="command-line.html#paths"><i class="fa fa-check"></i><b>2.2.3</b> Paths</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="command-line.html"><a href="command-line.html#file-commands"><i class="fa fa-check"></i><b>2.3</b> File Commands</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="command-line.html"><a href="command-line.html#learning-new-commands"><i class="fa fa-check"></i><b>2.3.1</b> Learning New Commands</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="command-line.html"><a href="command-line.html#dealing-with-errors"><i class="fa fa-check"></i><b>2.4</b> Dealing With Errors</a></li>
+<li class="chapter" data-level="" data-path="command-line.html"><a href="command-line.html#resources-1"><i class="fa fa-check"></i>Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>3</b> Markdown</a><ul>
+<li class="chapter" data-level="3.1" data-path="markdown.html"><a href="markdown.html#writing-markdown"><i class="fa fa-check"></i><b>3.1</b> Writing Markdown</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="markdown.html"><a href="markdown.html#text-formatting"><i class="fa fa-check"></i><b>3.1.1</b> Text Formatting</a></li>
+<li class="chapter" data-level="3.1.2" data-path="markdown.html"><a href="markdown.html#text-blocks"><i class="fa fa-check"></i><b>3.1.2</b> Text Blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="markdown.html"><a href="markdown.html#rendering-markdown"><i class="fa fa-check"></i><b>3.2</b> Rendering Markdown</a></li>
+<li class="chapter" data-level="" data-path="markdown.html"><a href="markdown.html#resources-2"><i class="fa fa-check"></i>Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="git-basics.html"><a href="git-basics.html"><i class="fa fa-check"></i><b>4</b> Git and GitHub</a><ul>
+<li class="chapter" data-level="4.1" data-path="git-basics.html"><a href="git-basics.html#what-is-this-git-thing-anyway"><i class="fa fa-check"></i><b>4.1</b> What is this <em>git</em> thing anyway?</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="git-basics.html"><a href="git-basics.html#git-core-concepts"><i class="fa fa-check"></i><b>4.1.1</b> Git Core Concepts</a></li>
+<li class="chapter" data-level="4.1.2" data-path="git-basics.html"><a href="git-basics.html#wait-but-what-is-github-then"><i class="fa fa-check"></i><b>4.1.2</b> Wait, but what is GitHub then?</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="git-basics.html"><a href="git-basics.html#installation-setup"><i class="fa fa-check"></i><b>4.2</b> Installation &amp; Setup</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="git-basics.html"><a href="git-basics.html#creating-a-repo"><i class="fa fa-check"></i><b>4.2.1</b> Creating a Repo</a></li>
+<li class="chapter" data-level="4.2.2" data-path="git-basics.html"><a href="git-basics.html#checking-status"><i class="fa fa-check"></i><b>4.2.2</b> Checking Status</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="git-basics.html"><a href="git-basics.html#making-changes"><i class="fa fa-check"></i><b>4.3</b> Making Changes</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="git-basics.html"><a href="git-basics.html#adding-files"><i class="fa fa-check"></i><b>4.3.1</b> Adding Files</a></li>
+<li class="chapter" data-level="4.3.2" data-path="git-basics.html"><a href="git-basics.html#committing"><i class="fa fa-check"></i><b>4.3.2</b> Committing</a></li>
+<li class="chapter" data-level="4.3.3" data-path="git-basics.html"><a href="git-basics.html#commit-history"><i class="fa fa-check"></i><b>4.3.3</b> Commit History</a></li>
+<li class="chapter" data-level="4.3.4" data-path="git-basics.html"><a href="git-basics.html#reviewing-the-process"><i class="fa fa-check"></i><b>4.3.4</b> Reviewing the Process</a></li>
+<li class="chapter" data-level="4.3.5" data-path="git-basics.html"><a href="git-basics.html#the-.gitignore-file"><i class="fa fa-check"></i><b>4.3.5</b> The <code>.gitignore</code> File</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="git-basics.html"><a href="git-basics.html#github-and-remotes"><i class="fa fa-check"></i><b>4.4</b> GitHub and Remotes</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="git-basics.html"><a href="git-basics.html#forking-and-cloning"><i class="fa fa-check"></i><b>4.4.1</b> Forking and Cloning</a></li>
+<li class="chapter" data-level="4.4.2" data-path="git-basics.html"><a href="git-basics.html#pushing-and-pulling"><i class="fa fa-check"></i><b>4.4.2</b> Pushing and Pulling</a></li>
+<li class="chapter" data-level="4.4.3" data-path="git-basics.html"><a href="git-basics.html#reviewing-the-process-1"><i class="fa fa-check"></i><b>4.4.3</b> Reviewing The Process</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="git-basics.html"><a href="git-basics.html#course-assignments-on-github"><i class="fa fa-check"></i><b>4.5</b> Course Assignments on GitHub</a></li>
+<li class="chapter" data-level="4.6" data-path="git-basics.html"><a href="git-basics.html#command-summary"><i class="fa fa-check"></i><b>4.6</b> Command Summary</a></li>
+<li class="chapter" data-level="" data-path="git-basics.html"><a href="git-basics.html#resources-3"><i class="fa fa-check"></i>Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="r-intro.html"><a href="r-intro.html"><i class="fa fa-check"></i><b>5</b> Introduction to R</a><ul>
+<li class="chapter" data-level="5.1" data-path="r-intro.html"><a href="r-intro.html#programming-with-r"><i class="fa fa-check"></i><b>5.1</b> Programming with R</a></li>
+<li class="chapter" data-level="5.2" data-path="r-intro.html"><a href="r-intro.html#running-r-scripts"><i class="fa fa-check"></i><b>5.2</b> Running R Scripts</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="command-line.html"><a href="command-line.html#command-line"><i class="fa fa-check"></i><b>5.2.1</b> Command-Line</a></li>
+<li class="chapter" data-level="5.2.2" data-path="r-intro.html"><a href="r-intro.html#rstudio-1"><i class="fa fa-check"></i><b>5.2.2</b> RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="r-intro.html"><a href="r-intro.html#comments"><i class="fa fa-check"></i><b>5.3</b> Comments</a></li>
+<li class="chapter" data-level="5.4" data-path="r-intro.html"><a href="r-intro.html#variables"><i class="fa fa-check"></i><b>5.4</b> Variables</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="r-intro.html"><a href="r-intro.html#basic-data-types"><i class="fa fa-check"></i><b>5.4.1</b> Basic Data Types</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="r-intro.html"><a href="r-intro.html#gettinghelp"><i class="fa fa-check"></i><b>5.5</b> Getting Help</a></li>
+<li class="chapter" data-level="" data-path="r-intro.html"><a href="r-intro.html#resources-4"><i class="fa fa-check"></i>Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>6</b> Functions</a><ul>
+<li class="chapter" data-level="6.1" data-path="functions.html"><a href="functions.html#what-are-functions"><i class="fa fa-check"></i><b>6.1</b> What are functions?</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="functions.html"><a href="functions.html#r-function-syntax"><i class="fa fa-check"></i><b>6.1.1</b> R Function Syntax</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="functions.html"><a href="functions.html#built-in-r-functions"><i class="fa fa-check"></i><b>6.2</b> Built-in R Functions</a></li>
+<li class="chapter" data-level="6.3" data-path="functions.html"><a href="functions.html#loading-functions"><i class="fa fa-check"></i><b>6.3</b> Loading Functions</a></li>
+<li class="chapter" data-level="6.4" data-path="functions.html"><a href="functions.html#writing-functions"><i class="fa fa-check"></i><b>6.4</b> Writing functions</a></li>
+<li class="chapter" data-level="6.5" data-path="functions.html"><a href="functions.html#conditional-statements"><i class="fa fa-check"></i><b>6.5</b> Conditional Statements</a></li>
+<li class="chapter" data-level="" data-path="functions.html"><a href="functions.html#resources-5"><i class="fa fa-check"></i>Resources</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Technical Foundations of Informatics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="functions" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Functions</h1>
+<p>This chapter will explore how to use <strong>functions</strong> in R to perform advanced capabilities and actually ask questions about data. After considering a function in an abstract sense, it will discuss using built-in R functions, accessing additional functions by loading R packages, and writing your own functions.</p>
+<div id="what-are-functions" class="section level2">
+<h2><span class="header-section-number">6.1</span> What are functions?</h2>
+<p>In a broad sense, a <strong>function</strong> is a named sequence of instructions (lines of code) that you may want to perform one or more times throughout a program. They provide a way of <em>encapsulating</em> multiple instructions into a single “unit” that can be used in a variety of different contexts. So rather than needing to repeatedly write down all the individual instructions for “make a sandwich” every time you’re hungry, you can define a <code>MakeSandwich()</code> function once and then just <strong>call</strong> (execute) that function when you want to perform those steps.</p>
+<p>In addition to grouping instructions, functions in programming languages like R also tend to follow the mathematical definition of functions, which is a set of operations (instructions!) that are performed on some <strong>inputs</strong> and lead to some <strong>outputs</strong>. Function inputs are called <strong>arguments</strong> or <strong>parameters</strong>, and we say that these arguments are <strong>passed</strong> to a function (like a football). We say that a function then <strong>returns</strong> an ouput to use.</p>
+<div id="r-function-syntax" class="section level3">
+<h3><span class="header-section-number">6.1.1</span> R Function Syntax</h3>
+<p>R functions are referred to by name (technically, they are values like any other variable). As in many programming languages, we <strong>call</strong> a function by writing the name of the function followed immediately (no space) by parentheses <code>()</code>. Inside the parentheses, we put the <strong>arguments</strong> (inputs) to the function separated by commas (<strong><code>,</code></strong>). Thus computer functions look just like multi-variable mathematical functions, but with names longer than <code>f()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># call the print() function, pass it &quot;Hello world&quot; value as an argument</span>
+<span class="kw">print</span>(<span class="st">&quot;Hello world&quot;</span>)  <span class="co"># &quot;Hello world&quot;</span>
+
+<span class="co"># call the sqrt() function, passing it 25 as an argument</span>
+<span class="kw">sqrt</span>(<span class="dv">25</span>)  <span class="co"># 5, square root of 25</span>
+
+<span class="co"># call the min() function, pass it 1, 6/8, AND 4/3 as arguments</span>
+<span class="co"># this is an example of a function that takes multiple args</span>
+<span class="kw">min</span>(<span class="dv">1</span>, <span class="dv">6</span><span class="op">/</span><span class="dv">8</span>, <span class="dv">4</span><span class="op">/</span><span class="dv">3</span>)  <span class="co"># 0.75, (6/8 is the smallest value)</span></code></pre></div>
+<ul>
+<li><em>Note:</em> To keep functions and variables distinct, we try to always include empty parentheses <code>()</code> when referring to a function by name. This does not mean that the function takes no arguments, it is just a useful shorthand for indicating that something is a function.</li>
+</ul>
+<p>If you call any of these functions interactively, R will display the <strong>returned value</strong> (the output) in the console. However, the computer is not able to “read” what is written in the console—that’s for humans to view! If you want the computer to be able to <em>use</em> a returned value, you will need to give that value a name so that the computer can refer to it. That is, you need to store the returned value in a variable:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># store min value in smallest.number variable</span>
+smallest.number &lt;-<span class="st"> </span><span class="kw">min</span>(<span class="dv">1</span>, <span class="dv">6</span><span class="op">/</span><span class="dv">8</span>, <span class="dv">4</span><span class="op">/</span><span class="dv">3</span>)
+
+<span class="co"># we can then use the variable as normal, such as for a comparison</span>
+min.is.big &lt;-<span class="st"> </span>smallest.number <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>  <span class="co"># FALSE</span>
+
+<span class="co"># we can also use functions directly when storing to variables</span>
+phi &lt;-<span class="st"> </span>.<span class="dv">5</span> <span class="op">+</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">5</span>)<span class="op">/</span><span class="dv">2</span>  <span class="co"># 1.618...</span>
+
+<span class="co"># we can even pass the result of a function as an argument to another!</span>
+<span class="co"># watch out for where the parentheses close!</span>
+<span class="kw">print</span>(<span class="kw">min</span>(<span class="fl">1.5</span>, <span class="kw">sqrt</span>(<span class="dv">3</span>)))  <span class="co"># prints 1.5</span></code></pre></div>
+<ul>
+<li>In the last example, the resulting <em>value</em> of the “inner” function (e.g., <code>sqrt()</code>) is immediately used as an argument. Because that value is used immediately, we don’t have to assign it a separate variable name. It is thus known as an <strong>anonymous variable</strong>.</li>
+</ul>
+</div>
+</div>
+<div id="built-in-r-functions" class="section level2">
+<h2><span class="header-section-number">6.2</span> Built-in R Functions</h2>
+<p>As you may have noticed, R comes with a large number of functions that are built into the language. In the above example, we used the <code>print()</code> function to print a value to the console, the <code>min()</code> function to find the smallest number among the arguments, and the <code>sqrt()</code> function to take the square root of a number. Here is a <em>very</em> limited list of functions you can experiment with (or see a few more <a href="http://www.statmethods.net/management/functions.html">here</a>).</p>
+<!-- TODO: Fix the formatting for this? -->
+<table style="width:99%;">
+<colgroup>
+<col width="20%" />
+<col width="33%" />
+<col width="44%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Function Name</th>
+<th align="left">Description</th>
+<th align="left">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>sum(a,b,...)</code></td>
+<td align="left">Calculates the sum of all input values</td>
+<td align="left"><code>sum(1, 5)</code> returns <code>6</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>round(x,digits)</code></td>
+<td align="left">Rounds the first argument to the given number of digits</td>
+<td align="left"><code>round(3.1415, 3)</code> returns <code>3.142</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>toupper(str)</code></td>
+<td align="left">Returns the characters in uppercase</td>
+<td align="left"><code>toupper(&quot;hi there&quot;)</code> returns <code>&quot;HI THERE&quot;</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>paste(a,b,...)</code></td>
+<td align="left"><em>Concatenate</em> (combine) characters into one value</td>
+<td align="left"><code>paste(&quot;hi&quot;, &quot;there&quot;)</code> returns <code>&quot;hi there&quot;</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>nchar(str)</code></td>
+<td align="left">Counts the number of characters in a string</td>
+<td align="left"><code>nchar(&quot;hi there&quot;)</code> returns <code>8</code> (space is a character!)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>c(a,b,...)</code></td>
+<td align="left"><em>Concatenate</em> (combine) multiple items into a <em>vector</em> (see <a href="#vectors">chapter 7</a>)</td>
+<td align="left"><code>c(1, 2)</code> returns <code>1, 2</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>seq(a,b)</code></td>
+<td align="left">Return a sequence of numbers from a to b</td>
+<td align="left"><code>seq(1, 5)</code> returns <code>1, 2, 3, 4, 5</code></td>
+</tr>
+</tbody>
+</table>
+<p>To learn more about any individual function, look them up in the R documentation by using <code>?FunctionName</code> account as described in the previous chapter.</p>
+<!-- TODO: Make this a link to the chapter?? Why won't it work? -->
+<p class="alert alert-info">
+“Knowing” how to program in a language is to some extent simply “knowing” what provided functions are available in that language. Thus you should look around and become familiar with these functions… but <strong>do not</strong> feel that you need to memorize them! It’s enough to simply be aware “oh yeah, there was a function that sums up numbers”, and then be able to look up the name and argument for that function.
+</p>
+</div>
+<div id="loading-functions" class="section level2">
+<h2><span class="header-section-number">6.3</span> Loading Functions</h2>
+<p>Although R comes with lots of built-in functions, you can always use more functions! <strong>Packages</strong> (or <strong>libraries</strong>) are additional sets of R functions that are written and published by the R community. Because many R users encounter the same data management/analysis challenges, programmers are able to use these libraries and thus benefit from the work of others (this is the amazing thing about the open-source community—people solve problems and then make those solutions available to others). R packages <strong>do not</strong> ship with the R software by default, and need to be downloaded (once) and then loaded into your interpreter’s environment (each time you wish to use them). While this may seem cumbersome, the R software would be huge and slow if you had to install and load <em>all</em> available packages to use it.</p>
+<p>Luckily, it is quite simple to install and load R packages from within R. To do so, you’ll need to use the <em>built-in</em> R functions <code>install.packages</code> and <code>library</code>. Below is an example of installing and loading the <code>stringr</code> package (which contains more handy functions for working with character strings):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Install the `stringr` package. Only needs to be done once on your machine</span>
+<span class="kw">install.packages</span>(<span class="st">&quot;stringr&quot;</span>)
+
+<span class="co"># Load the package (tell R functions are available for use)</span>
+<span class="kw">library</span>(<span class="st">&quot;stringr&quot;</span>) <span class="co"># quotes optional here</span></code></pre></div>
+<ul>
+<li>Note that when you load a package, you may receive a warning message about the package being built under a previous version of R. In all likelihood this shouldn’t cause a problem, but you should pay attention to the details of the messages and keep them in mind (especially if you start getting unexpected errors).</li>
+</ul>
+<p>After loading the package with the <code>library</code> function, you have access to functions that were written as part of that package (see <a href="https://cran.r-project.org/web/packages/stringr/stringr.pdf">the documentation</a> for a list of functions included with the <code>stringr</code> library).</p>
+</div>
+<div id="writing-functions" class="section level2">
+<h2><span class="header-section-number">6.4</span> Writing functions</h2>
+<p>Even more exciting than loading other peoples’ functions is writing your own. Any time that you have a task that you may repeat throughout a script—or you simply want to organize your thinking—it’s good practice to write a function to perform that task. This will limit repetition and reduce the likelihood of errors… as well as make things easier to read and understand (and thus identify flaws in your analysis).</p>
+<p>Functions are named like any other variable, so we use the <em>assignment operator</em> (<strong><code>&lt;-</code></strong>) to store a new <code>function</code> in a variable. It is <a href="https://google.github.io/styleguide/Rguide.xml#functiondefinition">best practice</a> to assign functions names in <em>CamelCase</em> without any periods (<code>.</code>) in the name. This helps distinguish functions from other variables.</p>
+<p>The best way to understand the syntax for defining a function is to look at an example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># A function named `MakeFullName` that takes two arguments</span>
+<span class="co"># and returns the &quot;full name&quot; made from them</span>
+MakeFullName &lt;-<span class="st"> </span><span class="cf">function</span>(first.name, last.name) {
+  <span class="co"># Function body: perform tasks in here</span>
+  full.name &lt;-<span class="st"> </span><span class="kw">paste</span>(first.name, last.name)
+
+  <span class="co"># Return: what you want the function to output</span>
+  <span class="kw">return</span>(full.name)
+}
+
+<span class="co"># Call the MakeFullName function with the values &quot;Alice&quot; and &quot;Kim&quot;</span>
+my.name &lt;-<span class="st"> </span><span class="kw">MakeFullName</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Kim&quot;</span>)  <span class="co"># &quot;Alice Kim&quot;</span></code></pre></div>
+<p>Functions have a couple of pieces to them:</p>
+<ul>
+<li><p><strong>Arguments</strong>: the data assigned to the function variable uses the syntax <code>function(...)</code> to indicate that you are creating a function (as opposed to a number or character string). The values put betweeen the parentheses are variables that <em>will contain</em> the values passed in as <strong>arguments</strong>. For example, when we call <code>MakeFullName(&quot;Alice&quot;, &quot;Kim&quot;)</code>, the value of the first argument (<code>&quot;Alice&quot;</code>) will be assigned to the first variable (<code>first.name</code>), and the value of the second argument (<code>&quot;Kim&quot;</code>) will be assigned to the second variable (<code>last.name</code>).</p>
+<p>Importantly, we could have made the argument names anything we wanted (<code>name.first</code>, <code>given.name</code>, etc.), just as long as we then use <em>that variable name</em> to refer to the argument while inside the function. Moreover, these argument variable names <em>only apply</em> while inside the function. You can think of them like “nicknames” for the values. The variables <code>first.name</code>, <code>last.name</code>, and <code>full.name</code> only exist within this particular function.</p></li>
+<li><p><strong>Body</strong>: The body of the function is a <strong>block</strong> of code that falls between curly braces <strong><code>{}</code></strong> (a “block” is represented by curly braces surrounding code statements). Note that cleanest style is to put the opening <code>{</code> immediately after the arguments list, and the closing <code>}</code> on its own line.</p>
+<p>The function body specifies all the instructions (lines of code) that your function will perform. A function can contain as many lines of code as you want—you’ll usually want more than 1 to make it worth while, but if you have more than 20 you might want to break it up into separate functions. You can use the argument variables in here, create new variables, call other functions… basically any code that you would write outside of a function can be written inside of one as well!</p></li>
+<li><p><strong>Return value</strong>: You can specify what output a function produces by calling the <code>return()</code> function and passing that the value that you wish <em>your function</em> to return (output). The <code>return()</code> function will execute instructions that end the current function and <em>return</em> the flow of code execution to whereever this function was called from. Note that even though we returned a variable called <code>full.name</code>, that variable was <em>local</em> to the function and so doesn’t exist outside of it; thus we have to take the returned value and assign it to a new variable (as with <code>name &lt;- MakeFullName(&quot;Alice&quot;, &quot;Kim&quot;)</code>).</p>
+<p>Because the <code>return()</code> call exits the function, it is usually the last line of code in the function.</p></li>
+</ul>
+<p>We can call (execute) a function we defined the same way we called built-in functions. When we do so, R will take the <strong>arguments</strong> we passed in (e.g., <code>&quot;Alice&quot;</code> and <code>&quot;Kim&quot;</code>) and assign them to the <em>argument variables</em>. Then it executes each line of code in the <strong>function body</strong> one at a time. When it gets to the <code>return()</code> call, it will end the function and return the given value, which can then be assigned to a different variable outside of the functions.</p>
+</div>
+<div id="conditional-statements" class="section level2">
+<h2><span class="header-section-number">6.5</span> Conditional Statements</h2>
+<p>Functions are a way to organize and control the flow of execution (e.g., what lines of code get run in what order). In R, as in other languages, we have one other way of controlling program flow, and that is by specifying different instructions that can be run based on a different set of conditions. <strong>Conditional statements</strong> allow us to specify different chunks of code to run when given different contexts, which is often valuable within functions.</p>
+<p>In an abstract sense, an conditional statement is saying:</p>
+<pre><code>IF something is true
+  do some lines of code
+OTHERWISE
+  do some other lines of code</code></pre>
+<p>In R, we write these conditional statements using the keywords <strong><code>if</code></strong> and <strong><code>else</code></strong> and the following syntax:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span>(condition){
+  <span class="co"># lines of code to run if condition is TRUE</span>
+} <span class="cf">else</span> {
+  <span class="co"># lines of code to run if condition is FALSE</span>
+}</code></pre></div>
+<p>(Note that the the <code>else</code> needs to be on the same line as the closing <code>}</code> of the <code>if</code> block. It is also possible to omit the <code>else</code> and its block).</p>
+<p>The <code>condition</code> can be any variable or expression that resolves to a logical value (<code>TRUE</code> or <code>FALSE</code>). Thus both of the below conditional statements are valid:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">porridge.temp &lt;-<span class="st"> </span><span class="dv">115</span>  <span class="co"># in degrees F</span>
+<span class="cf">if</span>(porridge.temp <span class="op">&gt;</span><span class="st"> </span><span class="dv">120</span>) {
+  <span class="kw">print</span>(<span class="st">&quot;This porridge is too hot!&quot;</span>)
+}
+
+too.cold &lt;-<span class="st"> </span>porridge.temp <span class="op">&lt;</span><span class="st"> </span><span class="dv">70</span>
+<span class="cf">if</span>(too.cold) {  <span class="co"># a logical value</span>
+  <span class="kw">print</span>(<span class="st">&quot;This porridge is too cold!&quot;</span>)
+}</code></pre></div>
+</div>
+<div id="resources-5" class="section level2 unnumbered">
+<h2>Resources</h2>
+<ul>
+<li><a href="https://cran.r-project.org/doc/contrib/Short-refcard.pdf">R Function Cheatsheet</a></li>
+<li><a href="http://www.statmethods.net/management/userfunctions.html">User Defined R Functions</a></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="r-intro.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["github", "facebook", "twitter", "google"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/info201/book/edit/master/functions.Rmd",
+"text": "Edit"
+},
+"download": ["tech-foundations-of-informatics.pdf", "tech-foundations-of-informatics.epub"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+</body>
+
+</html>

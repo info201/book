@@ -84,10 +84,14 @@ This creates a new _hidden_ folder called `.git` inside of the current directory
 
 - Note that because a repo is a single folder, you can have lots of different repos on your machine. Just make sure that they are in separate folders; folders that are _inside_ a repo are considered part of that repo, and trying to treat them as a separate repository causes unpleasantness. **Do not put one repo inside of another!**
 
+    ```{r results='asis', echo=FALSE, include=identical(knitr:::pandoc_to(), 'html')}
+    #to include only in html
+    cat('![Multiple folders, multiple repositories.](img/git-basics/repo-folders.gif "Multiple repositories")')
+    ```
+
     ```{r fig.align='left', echo=FALSE, include=identical(knitr:::pandoc_to(), 'html'), fig.cap="Multiple folders, multiple repositories."}
     #to include only in html
-    knitr::include_graphics('img/git-basics/repo-folders.gif', dpi = NA)
-    #TODO: Fix figure caption?
+    #knitr::include_graphics('img/git-basics/repo-folders.gif', dpi = NA)
     ```
 
 ### Checking Status
@@ -173,14 +177,11 @@ git log [--oneline]
 
 This will give you a list of the _sequence_ of commits you've made: you can see who made what changes and when. (The term **HEAD** refers to the most recent commit). The optional `--oneline` option gives you a nice compact version. Note that each commit is listed with its [SHA-1](https://en.wikipedia.org/wiki/SHA-1) hash (the random numbers and letters), which you can use to identify each commit.
 
-
 ### Reviewing the Process
 This cycle of "edit files", "add files", "commit changes" is the standard "development loop" when working with git.
 
-```{r fig.align='left', echo=FALSE, include=identical(knitr:::pandoc_to(), 'html'), fig.cap="The local git process."}
-#to include only in html (centered)
-knitr::include_graphics('img/git-basics/local-process.gif', dpi = NA)
-#TODO: Fix figure caption?
+```{r results='asis', echo=FALSE, include=identical(knitr:::pandoc_to(), 'html')}
+cat('![The local git process.](img/git-basics/local-process.gif "Local git process")')
 ```
 
 In general, you'll make lots of changes to your code (editing lots of files, running and testing your code, etc). Then once you're at a good "break point"&mdash;you've got a feature working, you're stuck and need some coffee, you're about to embark on some crazy changes&mdash;you will add and commit your changes to make sure you don't lose any work and you can always get back to that point.
@@ -194,6 +195,25 @@ For further practice using git, perform the following steps:
 
 Be sure and check the status at each step to make sure everything works!
 
+### The `.gitignore` File
+Sometimes you want git to always ignore particular directories or files in your project. For example, if you use a Mac and you tend to organize your files in the Finder, the operating system will create a hidden file in that folder named `.DS_Store` (the leading dot makes it "hidden") to track the positions of icons, which folders have been "expanded", etc. This file will likely be different from machine to machine. If it is added to your repository and you work from multiple machines (or as part of a team), it could lead to a lot of merge conflicts (not to mention cluttering up the folders for Windows users).
+
+You can tell git to ignore files like these by creating a special _hidden_ file in your project directory called `.gitignore` (note the leading dot). This file contains a _list_ of files or folders that git should "ignore" and pretend don't exist. The file uses a very simple format: each line contains the path to a directory or file to ignore; multiple files are placed on multiple lines. For example:
+
+```bash
+# This is an example .gitignore file
+
+# Mac system file; the leading # marks a comment
+.DS_Store
+
+# example: don't check in passwords or ssl keys!
+secret/my_password.txt
+
+# example: don't include large files or libraries
+movies/my_four_hour_epic.mov
+```
+
+Note that the easiest way to create the `.gitignore` file is to use your preferred text editor (e.g., Atom); select `File > New` from the menu and choose to make the `.gitignore` file _directly inside_ your repo.
 
 ## GitHub and Remotes
 Now that you've gotten the hang of git, let's talk about GitHub. [GitHub](https://github.com/) is an online service that stores copies of repositories in the cloud. These repositories can be _linked_ to your **local** repositories (the one on your machine, like you've been working with so far) so that you can synchronize changes between them.
@@ -269,10 +289,9 @@ Because you're merging as part of a `pull`, you'll need to keep an eye out for *
 ### Reviewing The Process
 Overall, the process of using git and GitHub together looks as follows:
 
-```{r fig.align='left', echo=FALSE, include=identical(knitr:::pandoc_to(), 'html'), fig.cap="The remote git process."}
-#to include only in html (centered)
-knitr::include_graphics('img/git-basics/remote-process.gif', dpi = NA)
-#TODO: Fix figure caption?
+```{r results='asis', echo=FALSE, include=identical(knitr:::pandoc_to(), 'html')}
+#to include only in html
+cat('![The remote git process.](img/git-basics/remote-process.gif "Remote git process")')
 ```
 
 ## Course Assignments on GitHub

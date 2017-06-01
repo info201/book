@@ -11,3 +11,6 @@ rmd_files:
   - command-line.Rmd
   - markdown.Rmd
   - git-basics.Rmd
+
+  - r-intro.Rmd
+  - functions.Rmd

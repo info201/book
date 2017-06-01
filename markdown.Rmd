@@ -13,7 +13,7 @@ At its most basic, Markdown is used to declare text formatting options. You do t
 There are a few different ways you can format text:
 
 | Syntax | Formatting	|
-| --- | --- |
+| :--- | :--- |
 | `_text_`	| _italicized_ with underscores	|
 | `**text**`	| **bolded** with two asterisks	|
 | ``` `text` ``` | inline `code` with backticks	|
@@ -26,8 +26,8 @@ But Markdown isn't just about adding **bold** and _italics_ in the middle of tex
 
 As you can see, the document (right) is produced using the following Markdown shorthand:
 
-| Syntax | Format	|
-| --- | --- |
+| Syntax | Formatting	|
+| :--- | :--- |
 | `# ` | Header (use `##` for 2nd-level, `###` for 3rd, etc.) |
 | ```` ``` ````	| Code section (3 back ticks)	|
 | `- ` | Bulleted/unordered lists (hyphens) |
