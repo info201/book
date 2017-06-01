@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-
-<link rel="next" href="setup-machine.html">
+<link rel="prev" href="command-line.html">
+<link rel="next" href="git-basics.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -195,30 +195,120 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Technical Foundations of Informatics</h1>
-<h4 class="author"><em><a href="http://mfviz.com/#/">Michael Freeman</a> and <a href="http://faculty.washington.edu/joelross/">Joel Ross</a></em></h4>
-<h4 class="date"><em>May 31, 2017</em></h4>
+<div id="markdown" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Markdown</h1>
+<p>Markdown syntax provides a simple way to describe the desired formatting of text documents. In fact, this book was written using Markdown! With only a small handful of options, Markdown allows you to format to your text (like making text <strong>bold</strong>, or <em>italics</em>), as well as provide structure to a document. There are a number of programs and service that support the <em>rendering</em> of Markdown, including GitHub, Slack, and StackOverflow (though note the syntax may vary slightly across programs). In this chapter, you’ll learn the basics of Markdown syntax, and how to leverage it to produce readable code documents.</p>
+<div id="writing-markdown" class="section level2">
+<h2><span class="header-section-number">3.1</span> Writing Markdown</h2>
+<p>Markdown is a lightweight <a href="https://en.wikipedia.org/wiki/Markup_language">markup language</a> that is used to format and structure text. It is a kind of “code” that you write in order to <em>annotate</em> plain text: it lets the computer know that “this text is bold”, “this text is a heading”, etc. Compared to other markup languages, Markdown is easy to write and easy to read without getting in the way of the text itself. And because it’s so simple to include, it’s often used for formatting in web forums and services (like Wikipedia or StackOverflow).</p>
+<div id="text-formatting" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> Text Formatting</h3>
+<p>At its most basic, Markdown is used to declare text formatting options. You do this by adding special symbols (punctuation) <em>around</em> the text you wish to “mark”. For example, if you want to make text <em>italiced</em>, you would surround that text with underscores (<strong><code>_</code></strong>) so it looks like <code>_italicized text_</code>. You can see how this looks in the below example (code on the left, rendered version on the right):</p>
+<div class="figure">
+<img src="img/markdown/markdown-text.png" title="Markdown text formatting" alt="Markdown text formatting." />
+<p class="caption">Markdown text formatting.</p>
 </div>
-<div id="about-this-book" class="section level1 unnumbered">
-<h1>About this Book</h1>
-<!-- ![](img/cover-img.png) -->
-<p>This book covers the foundation skills necessary to start <strong><em>writing computer programs to work with data</em></strong> using modern and reproducable techniques. It requires no technical background. These materials were developed for the <strong>INFO 201: Technical Foundations of Informatics</strong> course taught at the <a href="https://ischool.uw.edu/">University of Washington Information School</a>; however they have been structured to be an online resource for anyone hoping to learn to work with information using programmatic approaches.</p>
-<!-- TODO: Include previous course offerings? -->
-<!-- TODO: Include author contact info? -->
-<p class="alert alert-warning">
-This book is currently in <strong>beta</strong> status. Visit us on <a href="https://github.com/info201/book">GitHub</a> to contribute improvements.
-</p>
-<p><img src="img/index/by-nc-sa.png" alt="Creative Commons License" /> This book is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+<p>There are a few different ways you can format text:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Syntax</th>
+<th>Formatting</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>_text_</code></td>
+<td><em>italicized</em> with underscores</td>
+</tr>
+<tr class="even">
+<td><code>**text**</code></td>
+<td><strong>bolded</strong> with two asterisks</td>
+</tr>
+<tr class="odd">
+<td><code>`text`</code></td>
+<td>inline <code>code</code> with backticks</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="text-blocks" class="section level3">
+<h3><span class="header-section-number">3.1.2</span> Text Blocks</h3>
+<p>But Markdown isn’t just about adding <strong>bold</strong> and <em>italics</em> in the middle of text—it also enables you to create distinct blocks of formatted content (such as a header or a chunk of code). You do this by adding a single symbol in front of the text. Consider the below example:</p>
+<div class="figure">
+<img src="img/markdown/markdown-blocks.png" title="Markdown block formatting" alt="Markdown block formatting." />
+<p class="caption">Markdown block formatting.</p>
+</div>
+<p>As you can see, the document (right) is produced using the following Markdown shorthand:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Syntax</th>
+<th>Format</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>#</code></td>
+<td>Header (use <code>##</code> for 2nd-level, <code>###</code> for 3rd, etc.)</td>
+</tr>
+<tr class="even">
+<td><code>```</code></td>
+<td>Code section (3 back ticks)</td>
+</tr>
+<tr class="odd">
+<td><code>-</code></td>
+<td>Bulleted/unordered lists (hyphens)</td>
+</tr>
+<tr class="even">
+<td><code>&gt;</code></td>
+<td>Block quote</td>
+</tr>
+</tbody>
+</table>
+<p>And as you might have guessed from this document, Markdown can even make <a href="https://help.github.com/articles/organizing-information-with-tables/">tables</a>, create <a href="https://daringfireball.net/projects/markdown/syntax#link">hyperlinks</a>, and include <a href="https://daringfireball.net/projects/markdown/syntax#img">images</a>!</p>
+<p>For more thorough lists of Markdown options, see the <a href="setup-machine.html#resources">resources</a> linked below.</p>
+<p>Note that Slack will allow you to use Markdown as well, though it has slightly different syntax. Luckily, the client gives you hints about what it supports:</p>
+<div class="figure">
+<img src="img/markdown/markdown-slack.png" title="Markdown in Slack" alt="Markdown in Slack." />
+<p class="caption">Markdown in Slack.</p>
+</div>
+</div>
+</div>
+<div id="rendering-markdown" class="section level2">
+<h2><span class="header-section-number">3.2</span> Rendering Markdown</h2>
+<p>In order to view the <em>rendered</em> version of your Markdown-formatted syntax, you need to use a program that converts from Markdown into a formatted document. Luckily, GitHub will automatically render your Markdown files (which end with the <strong><code>.md</code></strong> extension), and Slack or StackOverflow will automatically format your messages.</p>
+<p>However, it can be helpful to preview your rendered Markdown before posting code. The best way to do this is to write your marked code in a text-editor that supports preview rendering, such as <strong>Atom</strong>.</p>
+<ul>
+<li><p>To preview what your rendered content will look like, simply open a Markdown file (<code>.md</code>) in Atom. Then use the <a href="http://flight-manual.atom.io/getting-started/sections/atom-basics/#command-palette">command palette</a> (or the shortcut <code>ctrl-shift-m</code>) to toggle the <strong>Markdown Preview</strong>. And once this preview is open, it will automatically update to reflect any changes to the text!</p></li>
+<li><p>Note that you can also use the command palette to <strong>Toggle Github Style</strong> for the Markdown preview; this will make the rendered preview look the same as it will when uploaded to GitHub!</p></li>
+</ul>
+<p>Other options for rendering Markdown include:</p>
+<ul>
+<li><p>Many editors (such as <a href="https://code.visualstudio.com/">Visual Studio Code</a>) include automatic Markdown rendering, or have extensions to provide that functionality.</p></li>
+<li><p>Stand-alone programs such as <a href="http://macdown.uranusjr.com/">Macdown</a> (Mac only) will also do the same work, often providing nicer looking editor windows.</p></li>
+<li><p>There are a variety of online Markdown editors that you can use for practice or quick tests. <a href="http://dillinger.io/">Dillinger</a> is one of the nicer ones, but there are plenty of others if you’re looking for something more specific.</p></li>
+<li><p>There are also a number of Google Chrome Extensions that will render Markdown files for you. For example, <a href="https://chrome.google.com/webstore/detail/markdown-reader/gpoigdifkoadgajcincpilkjmejcaanc?hl=en">Markdown Reader</a>, provides a simple rendering of a Markdown file (note it may differ slightly from the way GitHub would render the document). Once you’ve installed the Extension, you can drag-and-drop a <code>.md</code> file into a blank Chrome tab to view the formatted document. Double-click to view the raw code.</p></li>
+</ul>
+</div>
+<div id="resources-2" class="section level2 unnumbered">
+<h2>Resources</h2>
+<ul>
+<li><a href="https://daringfireball.net/projects/markdown/">Original Markdown Source</a></li>
+<li><a href="https://help.github.com/articles/basic-writing-and-formatting-syntax/">GitHub Markdown Basics</a></li>
+<li><a href="https://get.slack.help/hc/en-us/articles/202288908-Formatting-your-messages">Slack Markdown</a></li>
+<li><a href="http://stackoverflow.com/editing-help">StackOverflow Markdown</a></li>
+</ul>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="setup-machine.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="command-line.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="git-basics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -247,7 +337,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/info201/book/edit/master/index.Rmd",
+"link": "https://github.com/info201/book/edit/master/markdown.Rmd",
 "text": "Edit"
 },
 "download": ["tech-foundations-of-informatics.pdf", "tech-foundations-of-informatics.epub"],

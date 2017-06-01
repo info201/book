@@ -14,4 +14,6 @@ Use the included [`Makefile`](https://en.wikipedia.org/wiki/Makefile) to build t
 
 - **`make all`** to build all versions of the book.
 
+- **`make serve`** to serve a local copy of the book for development (with auto-refreshing browser).
+
 - **`make deploy`** to publish the built book to `https://info201.github.io` (untested).

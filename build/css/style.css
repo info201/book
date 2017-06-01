@@ -40,8 +40,14 @@
   margin-bottom: .5em !important;
 }
 
+/* Tables */
+thead tr.header {
+  text-align:left;
+}
+
 /* Common? */
 p.caption {
+  font-size: 90% !important;
   color: #777;
   margin-top: 10px;
 }

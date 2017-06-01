@@ -6,3 +6,8 @@ language:
 edit: https://github.com/info201/book/edit/master/%s
 rmd_files:
   - index.Rmd
+
+  - setup.Rmd
+  - command-line.Rmd
+  - markdown.Rmd
+  - git-basics.Rmd

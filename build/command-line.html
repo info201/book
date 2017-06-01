@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Technical Foundations of Informatics</title>
+  <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Technical Foundations of Informatics" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://info201.github.io/" />
+  <meta property="og:image" content="https://info201.github.io/img/cover-img.png" />
+  <meta property="og:description" content="The course reader for INFO 201: Technical Foundations of Informatics." />
+  <meta name="github-repo" content="info201/book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Technical Foundations of Informatics" />
+  
+  <meta name="twitter:description" content="The course reader for INFO 201: Technical Foundations of Informatics." />
+  <meta name="twitter:image" content="https://info201.github.io/img/cover-img.png" />
+
+<meta name="author" content="Michael Freeman and Joel Ross">
+
+
+<meta name="date" content="2017-05-31">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+<link rel="prev" href="setup-machine.html">
+<link rel="next" href="markdown.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-98444716-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Technical Foundations of Informatics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this Book</a></li>
+<li class="chapter" data-level="1" data-path="setup-machine.html"><a href="setup-machine.html"><i class="fa fa-check"></i><b>1</b> Setting up your Machine</a><ul>
+<li class="chapter" data-level="1.1" data-path="setup-machine.html"><a href="setup-machine.html#git"><i class="fa fa-check"></i><b>1.1</b> Git</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="setup-machine.html"><a href="setup-machine.html#github"><i class="fa fa-check"></i><b>1.1.1</b> GitHub</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="setup-machine.html"><a href="setup-machine.html#command-line-tools-bash"><i class="fa fa-check"></i><b>1.2</b> Command-line Tools (Bash)</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="setup-machine.html"><a href="setup-machine.html#command-line-on-a-mac"><i class="fa fa-check"></i><b>1.2.1</b> Command-line on a Mac</a></li>
+<li class="chapter" data-level="1.2.2" data-path="setup-machine.html"><a href="setup-machine.html#command-line-on-windows"><i class="fa fa-check"></i><b>1.2.2</b> Command-line on Windows</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="setup-machine.html"><a href="setup-machine.html#text-editors"><i class="fa fa-check"></i><b>1.3</b> Text Editors</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="setup-machine.html"><a href="setup-machine.html#atom"><i class="fa fa-check"></i><b>1.3.1</b> Atom</a></li>
+<li class="chapter" data-level="1.3.2" data-path="setup-machine.html"><a href="setup-machine.html#visual-studio-code"><i class="fa fa-check"></i><b>1.3.2</b> Visual Studio Code</a></li>
+<li class="chapter" data-level="1.3.3" data-path="setup-machine.html"><a href="setup-machine.html#sublimetext"><i class="fa fa-check"></i><b>1.3.3</b> SublimeText</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="setup-machine.html"><a href="setup-machine.html#rstudio"><i class="fa fa-check"></i><b>1.4</b> RStudio</a></li>
+<li class="chapter" data-level="" data-path="setup-machine.html"><a href="setup-machine.html#resources"><i class="fa fa-check"></i>Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="command-line.html"><a href="command-line.html"><i class="fa fa-check"></i><b>2</b> The Command Line</a><ul>
+<li class="chapter" data-level="2.1" data-path="command-line.html"><a href="command-line.html#accessing-the-command-line"><i class="fa fa-check"></i><b>2.1</b> Accessing the Command-Line</a></li>
+<li class="chapter" data-level="2.2" data-path="command-line.html"><a href="command-line.html#navigating-the-command-line"><i class="fa fa-check"></i><b>2.2</b> Navigating the Command Line</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="command-line.html"><a href="command-line.html#changing-directories"><i class="fa fa-check"></i><b>2.2.1</b> Changing Directories</a></li>
+<li class="chapter" data-level="2.2.2" data-path="command-line.html"><a href="command-line.html#listing-files"><i class="fa fa-check"></i><b>2.2.2</b> Listing Files</a></li>
+<li class="chapter" data-level="2.2.3" data-path="command-line.html"><a href="command-line.html#paths"><i class="fa fa-check"></i><b>2.2.3</b> Paths</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="command-line.html"><a href="command-line.html#file-commands"><i class="fa fa-check"></i><b>2.3</b> File Commands</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="command-line.html"><a href="command-line.html#learning-new-commands"><i class="fa fa-check"></i><b>2.3.1</b> Learning New Commands</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="command-line.html"><a href="command-line.html#dealing-with-errors"><i class="fa fa-check"></i><b>2.4</b> Dealing With Errors</a></li>
+<li class="chapter" data-level="" data-path="command-line.html"><a href="command-line.html#resources-1"><i class="fa fa-check"></i>Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>3</b> Markdown</a><ul>
+<li class="chapter" data-level="3.1" data-path="markdown.html"><a href="markdown.html#writing-markdown"><i class="fa fa-check"></i><b>3.1</b> Writing Markdown</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="markdown.html"><a href="markdown.html#text-formatting"><i class="fa fa-check"></i><b>3.1.1</b> Text Formatting</a></li>
+<li class="chapter" data-level="3.1.2" data-path="markdown.html"><a href="markdown.html#text-blocks"><i class="fa fa-check"></i><b>3.1.2</b> Text Blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="markdown.html"><a href="markdown.html#rendering-markdown"><i class="fa fa-check"></i><b>3.2</b> Rendering Markdown</a></li>
+<li class="chapter" data-level="" data-path="markdown.html"><a href="markdown.html#resources-2"><i class="fa fa-check"></i>Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="git-basics.html"><a href="git-basics.html"><i class="fa fa-check"></i><b>4</b> Git and GitHub</a><ul>
+<li class="chapter" data-level="4.1" data-path="git-basics.html"><a href="git-basics.html#what-is-this-git-thing-anyway"><i class="fa fa-check"></i><b>4.1</b> What is this <em>git</em> thing anyway?</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="git-basics.html"><a href="git-basics.html#git-core-concepts"><i class="fa fa-check"></i><b>4.1.1</b> Git Core Concepts</a></li>
+<li class="chapter" data-level="4.1.2" data-path="git-basics.html"><a href="git-basics.html#wait-but-what-is-github-then"><i class="fa fa-check"></i><b>4.1.2</b> Wait, but what is GitHub then?</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="git-basics.html"><a href="git-basics.html#installation-setup"><i class="fa fa-check"></i><b>4.2</b> Installation &amp; Setup</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="git-basics.html"><a href="git-basics.html#creating-a-repo"><i class="fa fa-check"></i><b>4.2.1</b> Creating a Repo</a></li>
+<li class="chapter" data-level="4.2.2" data-path="git-basics.html"><a href="git-basics.html#checking-status"><i class="fa fa-check"></i><b>4.2.2</b> Checking Status</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="git-basics.html"><a href="git-basics.html#making-changes"><i class="fa fa-check"></i><b>4.3</b> Making Changes</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="git-basics.html"><a href="git-basics.html#adding-files"><i class="fa fa-check"></i><b>4.3.1</b> Adding Files</a></li>
+<li class="chapter" data-level="4.3.2" data-path="git-basics.html"><a href="git-basics.html#committing"><i class="fa fa-check"></i><b>4.3.2</b> Committing</a></li>
+<li class="chapter" data-level="4.3.3" data-path="git-basics.html"><a href="git-basics.html#commit-history"><i class="fa fa-check"></i><b>4.3.3</b> Commit History</a></li>
+<li class="chapter" data-level="4.3.4" data-path="git-basics.html"><a href="git-basics.html#reviewing-the-process"><i class="fa fa-check"></i><b>4.3.4</b> Reviewing the Process</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="git-basics.html"><a href="git-basics.html#github-and-remotes"><i class="fa fa-check"></i><b>4.4</b> GitHub and Remotes</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="git-basics.html"><a href="git-basics.html#forking-and-cloning"><i class="fa fa-check"></i><b>4.4.1</b> Forking and Cloning</a></li>
+<li class="chapter" data-level="4.4.2" data-path="git-basics.html"><a href="git-basics.html#pushing-and-pulling"><i class="fa fa-check"></i><b>4.4.2</b> Pushing and Pulling</a></li>
+<li class="chapter" data-level="4.4.3" data-path="git-basics.html"><a href="git-basics.html#reviewing-the-process-1"><i class="fa fa-check"></i><b>4.4.3</b> Reviewing The Process</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="git-basics.html"><a href="git-basics.html#course-assignments-on-github"><i class="fa fa-check"></i><b>4.5</b> Course Assignments on GitHub</a></li>
+<li class="chapter" data-level="4.6" data-path="git-basics.html"><a href="git-basics.html#command-summary"><i class="fa fa-check"></i><b>4.6</b> Command Summary</a></li>
+<li class="chapter" data-level="" data-path="git-basics.html"><a href="git-basics.html#resources-3"><i class="fa fa-check"></i>Resources</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Technical Foundations of Informatics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="command-line" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> The Command Line</h1>
+<p>The <strong>command-line</strong> is an <em>interface</em> to a computer—a way for you (the human) to communicate with the machine. But unlike common graphical interfaces that use <a href="https://en.wikipedia.org/wiki/WIMP_(computing)">windows, icons, menus, and pointers</a>, the command-line is <em>text-based</em>: you type commands instead of clicking on icons. The command-line lets you do everything you’d normally do by clicking with a mouse, but by typing in a manner similar to programming!</p>
+<div class="figure">
+<img src="img/command-line/cli-wikipedia.png" title="example command-line" alt="An example of the command-line in action (from Wikipedia)." />
+<p class="caption">An example of the command-line in action (from Wikipedia).</p>
+</div>
+<p>The command-line is not as friendly or intuitive as a graphical interface: it’s much harder to learn and figure out. However, it has the advantage of being both more powerful and more efficient in the hands of expert users. (It’s faster to type than to move a mouse, and you can do <em>lots</em> of “clicks” with a single command). Thus all professional developers interact with the command-line, particularly when working with large amounts of data or files.</p>
+<p>This chapter will give you a brief introduction to basic tasks using the command-line: enough to get you comfortable navigating the interface and able to interpret commands.</p>
+<div id="accessing-the-command-line" class="section level2">
+<h2><span class="header-section-number">2.1</span> Accessing the Command-Line</h2>
+<p>In order to use the command-line, you will need to open a <strong>command shell</strong> (a.k.a. a <em>command prompt</em>). This is a program that provides the interface to type commands into. You should have installed a command shell (hereafter “the terminal”) as part of <a href="setup-machine.html#setup-machine">setting up your machine</a>.</p>
+<p>Once you open up the shell (Terminal or Git Bash), you should see something like this (red notes are added):</p>
+<div class="figure">
+<img src="img/command-line/cli-blank.png" title="A newly opened command-line" alt="A newly opened command-line." />
+<p class="caption">A newly opened command-line.</p>
+</div>
+<p>This is the textual equivalent of having opened up Finder or File Explorer and having it show you the user’s “Home” folder. The text shown lets you know:</p>
+<ul>
+<li>What machine you’re currently interfacing with (you can use the command-line to control different computers across a network or the Internet).</li>
+<li>What <strong>directory</strong> (folder) you are currently looking at (<code>~</code> is a shorthand for the “home directory”).</li>
+<li>What user you are logged in as.</li>
+</ul>
+<p>After that you’ll see the prompt, which is where you will type in your commands.</p>
+</div>
+<div id="navigating-the-command-line" class="section level2">
+<h2><span class="header-section-number">2.2</span> Navigating the Command Line</h2>
+<p>Although the command-prompt gives you the name of the folder we’re in, you might like more detail about where that folder is. Time to send your first command! At the prompt, type:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">pwd</span></code></pre></div>
+<p>This stands for <strong>p</strong>rint <strong>w</strong>orking <strong>d</strong>irectory (shell commands are highly abbreviated to make them faster to type), and will tell the computer to print the folder you are currently “in”.</p>
+<p class="alert alert-info">
+<em>Fun fact:</em> technically this command starts a tiny program (app) that does exactly one thing: prints the working directory. When you run a command, you’re actually executing a tiny program! And when you run programs (tiny or large) on the command-line, it looks like you’re typing in commands.
+</p>
+<p>Folders on computers are stored in a hierarchy: each folder has more folders inside it, which have more folders inside them. This produces a <a href="https://en.wikipedia.org/wiki/Tree_(data_structure)">tree</a> structure:</p>
+<div class="figure">
+<img src="img/command-line/dir-tree.png" title="directory tree" alt="A Directory Tree, from Bradnam and Korf." />
+<p class="caption">A Directory Tree, from Bradnam and Korf.</p>
+</div>
+<p>We describe what folder we are in putting a slash <code>/</code> between each folder in the tree: thus <code>/Users/iguest</code> means “the <code>iguest</code> folder, which is inside the <code>Users</code> folder”.</p>
+<p>At the very top (or bottom, depending on your point of view) is the <strong>root</strong> <code>/</code> directory‐which has no name, and so is just indicated with that single slash. So <code>/Users/iguest</code> really means “the <code>iguest</code> folder, which is inside the <code>Users</code> folder, which is inside the root folder”.</p>
+<div id="changing-directories" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Changing Directories</h3>
+<p>What if you want to change folders? In a graphical system like Finder, you would just double-click on the folder to open it. But there’s no clicking on the command-line.</p>
+<p class="alert alert-warning">
+This includes clicking to move the cursor to an earlier part of the command you typed. You’ll need to use the left and right arrow keys to move the cursor instead!
+</p>
+<p class="alert alert-info">
+<strong>Protip:</strong> The up and down arrow keys will let you cycle though your previous commands so you don’t need to re-type them!
+</p>
+<p>Since you can’t click on a folder, you’ll need to use another command:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">cd</span> folder_name</code></pre></div>
+<p>The first word is the <strong>command</strong>, or what you want the computer to do. In this case, you’re issuing the command that means <strong>c</strong>hange <strong>d</strong>irectory.</p>
+<p>The second word is an example of an <strong>argument</strong>, which is a programming term that means “more details about what to do”. In this case, you’re providing a <em>required</em> argument of what folder you want to change to! (You’ll of course need to replace <code>folder_name</code> with the name of the folder).</p>
+<ul>
+<li><p>Try changing to the <code>Desktop</code> folder, which should be inside the home folder you started in—you could see it in Finder or File Explorer!</p></li>
+<li><p>After you change folders, try printing your currently location. Can you see that it has changed?</p></li>
+</ul>
+</div>
+<div id="listing-files" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> Listing Files</h3>
+<p>In a graphical system, once you’ve double-clicked on a folder Finder will show you the contents of that folder. The command-line doesn’t do this automatically; instead you need another command:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">ls</span> [folder_name]</code></pre></div>
+<p>This command says to <strong>l</strong>i<strong>s</strong>t the folder contents. Note that the <em>argument</em> here is in brackets (<code>[]</code>) to indicate that it is <em>optional</em>. If you just issue the <strong><code>ls</code></strong> command without an argument, it will list the contents of the current folder. If you include the optional argument (leaving off the brackets), you can “peek” at the contents of a folder you are not currently in.</p>
+<div class="alert alert-danger">
+<p>
+The command-line can be not great about giving <strong>feedback</strong> for your actions. For example, if there are no files in the folder, then <code>ls</code> will simply show nothing, potentially looking like it “didn’t work”. Or when typing a <strong>password</strong>, the letters you type won’t show (not even as <code>*</code>) as a security measure.
+</p>
+<p>
+Just because you don’t see any results from your command/typing, doesn’t mean it didn’t work! Trust in yourself, and use basic commands like <code>ls</code> and <code>pwd</code> to confirm any changes if you’re unsure. Take it slow, one step at a time.
+</p>
+</div>
+</div>
+<div id="paths" class="section level3">
+<h3><span class="header-section-number">2.2.3</span> Paths</h3>
+<p>Note that both the <strong><code>cd</code></strong> and <strong><code>ls</code></strong> commands work even for folders that are not “immediately inside” the current directory! You can refer to <em>any</em> file or folder on the computer by specifying its <strong>path</strong>. A file’s path is “how you get to that file”: the list of folders you’d need to click through to get to the file, with each folder separated by a <code>/</code>:</p>
+<pre><code>/Users/iguest/Desktop/myfile.txt</code></pre>
+<p>This says to start at the root directory (that initial <code>/</code>), then go to <code>Users</code>, then go to <code>iguest</code>, then to <code>Desktop</code>, and finally to the <code>myfile.txt</code> file.</p>
+<p>Because this path starts with a specific directory (the root directory), it is referred to as an <strong>absolute path</strong>. No matter what folder you currently happen to be in, that path will refer to the correct file because it always starts on its journey from the root.</p>
+<p>Contrast that with:</p>
+<pre><code>iguest/Desktop/myfile.txt</code></pre>
+<p>Because this path doesn’t have the leading slash, it just says to “go to the Desktop folder <em>from the current location</em>”. It is known as a <strong>relative path</strong>: it gives you directions to a file <em>relative to the current folder</em>. As such, the relative path <code>iguest/Desktop/myfile.txt</code> path will only refer to the correct file if you happen to be in the <code>/Users</code> folder; if you start somewhere else, who knows where you’ll end up!</p>
+<p class="alert alert-warning">
+You should <strong>always</strong> use relative paths, particularly when programming! That way file directions are more likely to work across computers (e.g., in case the username is different, making your home folder <code>janesmith</code> instead of <code>iguest</code>; with a relative path, <code>Desktop/myfile.txt</code> will work for either person).
+</p>
+<p>You can refer to the “current folder” by using a single dot <strong><code>.</code></strong>. So the command</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">ls</span> .</code></pre></div>
+<p>means “list the contents of the current folder” (the same thing you get if you leave off the argument).</p>
+<p>If you want to go <em>up</em> a directory, you use <em>two</em> dots: <strong><code>..</code></strong> to refer to the <strong>parent</strong> folder (that is, the one that contains this one). So the command</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">ls</span> ..</code></pre></div>
+<p>means “list the contents of the folder that contains the current folder”.</p>
+<p>Note that <strong><code>.</code></strong> and <strong><code>..</code></strong> act just like folder names, so you can include them anywhere in paths: <code>../../my_folder</code> says to go up two directories, and then into <code>my_folder</code>.</p>
+<p class="alert alert-info">
+<strong>Super Protip:</strong> Most command shells like Terminal and Git Bash support <strong>tab-completion</strong>. If you type out just the first few letters of a file or folder name and then hit the <code>tab</code> key, it will automatically fill in the rest of the name! If the name is ambiguous (e.g., you type <code>Do</code> and there is both a <code>Documents</code> and a <code>Downloads</code> folder), you can hit <code>tab</code> <em>twice</em> to see the list of matching folders. Then add enough letters to distinguish them and tab to complete! This will make your life better.
+</p>
+<p>Also remember that you can use a tilde <strong><code>~</code></strong> as shorthand for the home directory of the current user. Just like <code>.</code> refers to “current folder”, <code>~</code> refers to the user’s home directory (usually <code>/Users/USERNAME</code>). And of course, you can use the tilde as part of a path as well.</p>
+</div>
+</div>
+<div id="file-commands" class="section level2">
+<h2><span class="header-section-number">2.3</span> File Commands</h2>
+<div class="figure">
+<img src="img/command-line/matrix-cli.jpg" title="Matrix command-line meme" />
+
+</div>
+<p>Once you’re comfortable navigating folders in the command-line, you can start to use it to do all the same things you would do with Finder or File Explorer, simply by using the correct command:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong><code>mkdir</code></strong></td>
+<td><strong>m</strong>a<strong>k</strong>e a <strong>dir</strong>ectory</td>
+</tr>
+<tr class="even">
+<td><strong><code>rm</code></strong></td>
+<td><strong>r</strong>e<strong>m</strong>ove a file or folder</td>
+</tr>
+<tr class="odd">
+<td><strong><code>cp</code></strong></td>
+<td><strong>c</strong>o<strong>p</strong>y a file from one location to another</td>
+</tr>
+<tr class="even">
+<td><strong><code>open</code></strong></td>
+<td>Mac: opens a file or folder</td>
+</tr>
+<tr class="odd">
+<td><strong><code>start</code></strong></td>
+<td>Windows: opens a file or folder</td>
+</tr>
+<tr class="even">
+<td><strong><code>cat</code></strong></td>
+<td>con<strong>cat</strong>enate (combine) file contents and display the results</td>
+</tr>
+<tr class="odd">
+<td><strong><code>history</code></strong></td>
+<td>show previous commands executed</td>
+</tr>
+</tbody>
+</table>
+<p>Be aware that many of these commands <strong>won’t print anything</strong> when you run them. This often means that they worked; they just did so quietly. If it <em>doesn’t</em> work, you’ll know because you’ll see a message telling you so (and why, if you read the message). So just because you didn’t get any output doesn’t mean you did something wrong—you can use another command (such as <strong><code>ls</code></strong>) to confirm that the files or folders changed the way you wanted!</p>
+<div id="learning-new-commands" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> Learning New Commands</h3>
+<p>How can you figure out what kind of arguments these commands take? You can look it up! This information is available online, but many command shells (but <em>not</em> Git Bash, unfortunately) also include their own manual you can use to look up commands!</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">man</span> mkdir</code></pre></div>
+<p>Will show the <strong>man</strong>ual for the <strong><code>mkdir</code></strong> program/command.</p>
+<p class="alert alert-info">
+Because manuals are often long, they are opened up in a command-line viewer called <a href="https://en.wikipedia.org/wiki/Less_(Unix)"><code>less</code></a>. You can “scroll” up and down by using the arrow keys. Hit the <code>q</code> key to <strong>q</strong>uit and return to the command-prompt.
+</p>
+<div class="figure">
+<img src="img/command-line/mkdir.png" title="man mkdir" alt="The mkdir man page." />
+<p class="caption">The <code>mkdir</code> man page.</p>
+</div>
+<p>If you look under “Synopsis” you can see a summary of all the different arguments this command understands. A few notes about reading this syntax:</p>
+<ul>
+<li><p>Recall that anything in brackets <code>[]</code> is optional. Arguments that are not in brackets (e.g., <code>directory_name</code>) are required.</p></li>
+<li><p><strong>“Options”</strong> (or “flags”) for command-line programs are often marked with a leading dash <strong><code>-</code></strong> to make them distinct from file or folder names. Options may change the way a command-line program behaves—like how you might set “easy” or “hard” mode in a game. You can either write out each option individually, or combine them: <strong><code>mkdir -p -v</code></strong> and <strong><code>mkdir -pv</code></strong> are equivalent.</p>
+<ul>
+<li>Some options may require an additional argument beyond just indicating a particular operation style. In this case, you can see that the <code>-m</code> option requires you to specify an additional <code>mode</code> parameter; see the details below for what this looks like.</li>
+</ul></li>
+<li><p>Underlined arguments are ones you choose: you don’t actually type the word <code>directory_name</code>, but instead your own directory name! Contrast this with the options: if you want to use the <code>-p</code> option, you need to type <code>-p</code> exactly.</p></li>
+</ul>
+<p>Command-line manuals (“man pages”) are often very difficult to read and understand: start by looking at just the required arguments (which are usually straightforward), and then search for and use a particular option if you’re looking to change a command’s behavior.</p>
+<p>For practice, try to read the man page for <code>rm</code> and figure out how to delete a folder and not just a single file. Note that you’ll want to be careful, as this is a good way to <a href="http://www.pcworld.com/article/3057235/data-center-cloud/that-man-who-deleted-his-entire-company-with-a-line-of-code-it-was-a-hoax.html">break things</a>.</p>
+</div>
+</div>
+<div id="dealing-with-errors" class="section level2">
+<h2><span class="header-section-number">2.4</span> Dealing With Errors</h2>
+<p>Note that the syntax of these commands (how you write them out) is very important. Computers aren’t good at figuring out what you meant if you aren’t really specific; you can’t forget spaces or anything.</p>
+<p>Try another command: <strong><code>echo</code></strong> lets you “echo” (print out) some text. Try echoing <code>&quot;Hello World&quot;</code> (which is the traditional first computer program):</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">echo</span> <span class="st">&quot;Hello world&quot;</span></code></pre></div>
+<p>What happens if you forget the closing quote? You keep hitting “enter” but you just get that <code>&gt;</code> over and over again! What’s going on?</p>
+<ul>
+<li>Because you didn’t “close” the quote, the shell thinks you are still typing the message you want to echo! When you hit “enter” it adds a <em>line break</em> instead of ending the command, and the <code>&gt;</code> marks that you’re still going. If you finally close the quote, you’ll see your multi-line message printed!</li>
+</ul>
+<div class="alert alert-info">
+<p>
+<strong>IMPORTANT TIP</strong> If you ever get stuck in the command-line, hit <strong><code>ctrl-c</code></strong> (The <code>control</code> and <code>c</code> keys together). This almost always means “cancel”, and will “stop” whatever program or command is currently running in the shell so that you can try again. Just remember: “<strong><code>ctrl-c</code></strong> to flee”.
+</p>
+<p>
+(If that doesn’t work, try hitting the <code>esc</code> key, or typing <code>exit</code>, <code>q</code>, or <code>quit</code>. Those commands will cover <em>most</em> command-line programs).
+</p>
+</div>
+</div>
+<div id="resources-1" class="section level2 unnumbered">
+<h2>Resources</h2>
+<ul>
+<li><a href="https://www.learnenough.com/command-line-tutorial#sec-basics">Learn Enough Command Line to be Dangerous</a></li>
+<li><a href="https://www.youtube.com/watch?v=sqYUYHn-HKg&amp;list=PLCAF7D691FFA25555">Video series: Bash commands</a></li>
+<li><a href="http://www.lagmonster.org/docs/unix/intro-137.html">List of Common Commands</a> (also <a href="http://www.math.utah.edu/lab/unix/unix-commands.html">here</a>)</li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="setup-machine.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["github", "facebook", "twitter", "google"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/info201/book/edit/master/command-line.Rmd",
+"text": "Edit"
+},
+"download": ["tech-foundations-of-informatics.pdf", "tech-foundations-of-informatics.epub"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+</body>
+
+</html>

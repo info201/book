@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-
-<link rel="next" href="setup-machine.html">
+<link rel="prev" href="index.html">
+<link rel="next" href="command-line.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -195,30 +195,109 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Technical Foundations of Informatics</h1>
-<h4 class="author"><em><a href="http://mfviz.com/#/">Michael Freeman</a> and <a href="http://faculty.washington.edu/joelross/">Joel Ross</a></em></h4>
-<h4 class="date"><em>May 31, 2017</em></h4>
-</div>
-<div id="about-this-book" class="section level1 unnumbered">
-<h1>About this Book</h1>
-<!-- ![](img/cover-img.png) -->
-<p>This book covers the foundation skills necessary to start <strong><em>writing computer programs to work with data</em></strong> using modern and reproducable techniques. It requires no technical background. These materials were developed for the <strong>INFO 201: Technical Foundations of Informatics</strong> course taught at the <a href="https://ischool.uw.edu/">University of Washington Information School</a>; however they have been structured to be an online resource for anyone hoping to learn to work with information using programmatic approaches.</p>
-<!-- TODO: Include previous course offerings? -->
-<!-- TODO: Include author contact info? -->
-<p class="alert alert-warning">
-This book is currently in <strong>beta</strong> status. Visit us on <a href="https://github.com/info201/book">GitHub</a> to contribute improvements.
+<div id="setup-machine" class="section level1">
+<h1><span class="header-section-number">Chapter 1</span> Setting up your Machine</h1>
+<p>We’ll be using a variety of different software programs to write, manage, and execute the code that we write. Unfortunately, one of the most frustrating and confusing barriers to working with code is simply getting your machine properly set up. This chapter aims to provide sufficient information for setting up your machine, and troubleshooting the process.</p>
+<p class="alert alert-info">
+Note that iSchool lab machines should have all appropriate software already installed and ready to use.
 </p>
-<p><img src="img/index/by-nc-sa.png" alt="Creative Commons License" /> This book is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+<p>In short, you’ll need to install the following programs: see below for more information / options.</p>
+<ul>
+<li><p><strong>Git</strong>: A set of tools for tracking changes to computer code (especially when collaborating with others). This program is already installed on Macs.</p>
+<ul>
+<li><strong>GitHub</strong>: A web service for hosting code online. You don’t actually need to <em>install</em> anything GitHub (it uses <code>git</code>), but you’ll need to sign up for the service.</li>
+</ul></li>
+<li><p><strong>Bash</strong>: A <em>command-line interface</em> for controlling your computer. <code>git</code> is a command-line program so you’ll need a command shell to use it. Macs already have a Bash program called <em>Terminal</em>. On Windows, installing <code>git</code> will also install a Bash shell called <em>Git Bash</em>, or you can try the (experimental) Linux subsystem for Windows 10.</p></li>
+<li><p><strong>Atom</strong>: A lightweight text editor that supports programming in lots of different languages.</p>
+<ul>
+<li>You are welcome to use another text editor if you wish; some further suggestions are included.</li>
+</ul></li>
+<li><p><strong>R</strong>: a programming language commonly used for working with data. This will be our primary language for the quarter. “Installing R” actually means installing tools that will let your computer understand and run R code.</p></li>
+<li><p><strong>RStudio</strong>: An graphical editor for writing and running R code. This will soon become our primary development application.</p></li>
+</ul>
+<p>The following sections have additional information about the purpose of each component, how to install it, and alternative configurations.</p>
+<p>If you run into any installation/configuration challenges, please let others know on the <a href="https://info201-a16.slack.com">slack channel</a> so that others can anticipate the same issues.</p>
+<div id="git" class="section level2">
+<h2><span class="header-section-number">1.1</span> Git</h2>
+<p><strong><code>git</code></strong> is a version control system that provides a set of commands that allow you to manage changes to written code, particularly when collaborating with other programmers (much more on this in <a href="git-basics.html#git-basics">chapter 4</a>). To start, you’ll need to <a href="https://git-scm.com/downloads">download</a> and install the software. If you are on a Mac, <code>git</code> should already be installed.</p>
+<p>If you are using a Windows machine, this will also install a program called Git Bash, which provides a text-based interface for executing commands on your computer. For alternative/additional Windows command-line tools, see below.</p>
+<div id="github" class="section level3">
+<h3><span class="header-section-number">1.1.1</span> GitHub</h3>
+<p>GitHub is a website that is used to store copies of computer code that are being managed with <code>git</code> (think “Imgur for code”). Students in the INFO 201 course will use GitHub to turn in programming assignments.</p>
+<p>In order to use GitHub, you’ll need to <a href="https://github.com/join">create a free GitHub account</a>, if you don’t already have one. You should register a username that is identifiable as you (e.g., based on your name or your UW NetID). This will make it easier for others to determine out who contributed what code, rather than needing to figure out who ‘LeetDesigner2099’ is. This can be the start of a professional account you may use for the rest of your career!</p>
+</div>
+</div>
+<div id="command-line-tools-bash" class="section level2">
+<h2><span class="header-section-number">1.2</span> Command-line Tools (Bash)</h2>
+<p>The command-line provides a text-based interface for giving instructions to your computer (much more on this in <a href="command-line.html#command-line">chapter 2</a>). With this book, you’ll largely use the command-line for navigating your computer’s file structure, and executing commands that allows you to keep track of changes to the code you write (i.e., version control with <code>git</code>).</p>
+<p>In order to use the command-line, you will need to use a <strong>command shell</strong> (a.k.a. a <em>command prompt</em>). This is a program that provides the interface to type commands into. In particular, we’ll be working with the <a href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)">Bash</a> shell, which provides a particular common set of commands common to Mac and Linux machines.</p>
+<div id="command-line-on-a-mac" class="section level3">
+<h3><span class="header-section-number">1.2.1</span> Command-line on a Mac</h3>
+<p>On a Mac you’ll want to use the built-in app called <strong>Terminal</strong>. You can open it by searching via Spotlight (hit Cmd (<code>⌘</code>) and Spacebar together, type in “terminal”, then select the app to open it), or by finding it in the Applications/Utilities folder.</p>
+</div>
+<div id="command-line-on-windows" class="section level3">
+<h3><span class="header-section-number">1.2.2</span> Command-line on Windows</h3>
+<p>On Windows, we recommend using <a href="https://git-scm.com/downloads"><strong>Git Bash</strong></a>, which you should have installed along with <code>git</code> (above). Open this program to open the command-shell. This works great, since you’ll primarily be using the command-line for performing version control.</p>
+<ul>
+<li>Note that Windows does come with its own command-prompt, called the <em>DOS Prompt</em>, but it has a different set of commands and features. <em>Powershell</em> is a more powerful version of the DOS prompt if you really want to get into the Windows Management Framework. But Bash is more common in open-source programming like we’ll be doing, and so we will be focusing on that set of commands.</li>
+</ul>
+<p>Alternatively, the 64-bit Windows 10 Anniversary update (August 2016) <em>does</em> include a beta version of an integrated Bash shell. You can access this by <a href="https://msdn.microsoft.com/en-us/commandline/wsl/install_guide">enabling the subsystem for Linux</a> and then running <code>bash</code> in the command prompt. This is currently (May 2017) “beta” technology, but will suffice for our purposes if you can get it running.</p>
+</div>
+</div>
+<div id="text-editors" class="section level2">
+<h2><span class="header-section-number">1.3</span> Text Editors</h2>
+<p>In order to produce computer code, you need somewhere to write it (and we don’t want to write it in MS Word!). There are a variety of available programs that provide an interface for editing code. A major advantage of these programs is that they provide automatic formatting/coloring for easier interpretation of the code, along with cool features like auto-completion and integration with version control.</p>
+<p>RStudio has a great built-in text editor, but you’ll sometimes want to use another text editor which is lighter weight (e.g., runs faster), more robust, or supports a different programming language. There are lots of different text editors out there, all of which have slightly different appearances and features. You only need to download and use one of the following programs (we recommend <strong>Atom</strong> as a default), but feel free to try out different ones to find something you like (and then evangelize about it to your friends!)</p>
+<div id="atom" class="section level3">
+<h3><span class="header-section-number">1.3.1</span> Atom</h3>
+<p><a href="https://atom.io/"><strong>Atom</strong></a> is a text editor built by the folks at GitHub and has been gaining in popularity. As an open source project, people are continually building (and making available) interesting/useful extensions. Its built-in spell-check is a great feature, especially for documents that require lots of written text. It also has excellent support for Markdown, a markup language you’ll be using regularly in this course.</p>
+<p>Click the “Download” button to download the installer <code>.exe</code> file, then double-click on that to install the application.</p>
+<p>Once you’ve installed Atom, the trick to using it effectively is to get comfortable with the <a href="http://flight-manual.atom.io/getting-started/sections/atom-basics/#command-palette">Command Palette</a>. If you hit <code>Cmd+Shift+P</code>, Atom will open a small window where you can search for whatever you want the editor to do. For example, if you type in <code>markdown</code> you can get list of commands related to Markdown files (including the ability to open up a preview).</p>
+<p>For more information about using Atom, see <a href="http://flight-manual.atom.io/">the manual</a>.</p>
+</div>
+<div id="visual-studio-code" class="section level3">
+<h3><span class="header-section-number">1.3.2</span> Visual Studio Code</h3>
+<p><a href="https://code.visualstudio.com/"><strong>Visual Studio Code</strong></a> (or VS Code; not to be confused with Visual Studio) is a free, open-source editor developed by Microsoft—yes, really. While it focuses on web programming and JavaScript, it readily supports lots of languages including Markdown and R and provides a number of extensions for adding even more features. It has a similar <em>command palette</em> to Atom, but isn’t quite as nice for editing Markdown specifically. Although fairly new, it is updated regularly and has become one of my main editors for programming.</p>
+</div>
+<div id="sublimetext" class="section level3">
+<h3><span class="header-section-number">1.3.3</span> SublimeText</h3>
+<p><a href="https://www.sublimetext.com/3"><strong>SublimeText</strong></a> is a very popular text editor with excellent defaults and a variety of available extensions (though you’ll need to manage and install extensions to achieve the functionality offered by other editors out of the box). While the software can be used for free, every 20 or so saves it will prompt you to purchase the full version. This is my application of choice for when just want to write a plain text file.</p>
+</div>
+</div>
+<div id="rstudio" class="section level2">
+<h2><span class="header-section-number">1.4</span> RStudio</h2>
+<p>The primary programming language you will use throughout the course is <code>R</code>. It’s a very powerful statistical programming language that is built to work well with large and diverse datasets. While you are able to execute <code>R</code> scripts without an interface, the <strong>RStudio</strong> application provides a wonderful way to engage with the <code>R</code> language.</p>
+<p>To install the RStudio program, select the <strong>installer</strong> for your operating system from the <a href="https://www.rstudio.com/products/rstudio/download/">downloads page</a>. Make sure to download the <strong><em>free</em></strong> version:</p>
+<div class="figure">
+<img src="img/setup/rstudio-download.png" title="RStudio download selection" alt="File to choose for downloading RStudio. Image may not show the latest version." />
+<p class="caption">File to choose for downloading RStudio. Image may not show the latest version.</p>
+</div>
+<p>Once the download completes, double-click on the <code>.exe</code> or <code>.dmg</code> file to run the installer. Simply follow the steps of the installer, and you should be prepared to use RStudio.</p>
+<p>By downloading RStudio, you will also install the R programming language, if it is not already present in your operating system. However, if there are any problems with that you can also <a href="https://cran.rstudio.com/">install R separately</a>. Click on the download page for your operating system in order to find a link to the installer. On a Mac you’re looking for the <code>.pkg</code> file, and for Windows you want to look in the <code>base</code> section (follow the link to “install R for the first time”).</p>
+</div>
+<div id="resources" class="section level2 unnumbered">
+<h2>Resources</h2>
+<p>Links to the recommended software are collected here for easy access:</p>
+<ul>
+<li><a href="https://git-scm.com/downloads">git (and Git Bash)</a>
+<ul>
+<li><a href="https://github.com/join">GitHub</a> (sign up)</li>
+<li>optional: <a href="https://msdn.microsoft.com/en-us/commandline/wsl/install_guide">Bash on Windows</a></li>
+</ul></li>
+<li><a href="https://atom.io/">Atom</a></li>
+<li><a href="https://cran.rstudio.com/">R</a></li>
+<li><a href="https://www.rstudio.com/products/rstudio/download3/">RStudio</a></li>
+</ul>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="setup-machine.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="command-line.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -247,7 +326,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/info201/book/edit/master/index.Rmd",
+"link": "https://github.com/info201/book/edit/master/setup.Rmd",
 "text": "Edit"
 },
 "download": ["tech-foundations-of-informatics.pdf", "tech-foundations-of-informatics.epub"],
