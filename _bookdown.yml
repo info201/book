@@ -14,3 +14,5 @@ rmd_files:
 
   - r-intro.Rmd
   - functions.Rmd
+  - vectors.Rmd
+  - lists.Rmd
