@@ -16,3 +16,5 @@ rmd_files:
   - functions.Rmd
   - vectors.Rmd
   - lists.Rmd
+  - dataframes.Rmd
+  - dplyr.Rmd

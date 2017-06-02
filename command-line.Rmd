@@ -124,7 +124,10 @@ Also remember that you can use a tilde **`~`** as shorthand for the home directo
 
 
 ## File Commands
-![](img/command-line/matrix-cli.jpg "Matrix command-line meme")
+```{r results='asis', echo=FALSE, include=identical(knitr:::pandoc_to(), 'html')}
+#to include only in html
+cat('![](img/command-line/matrix-cli.jpg "Matrix command-line meme")')
+```
 
 Once you're comfortable navigating folders in the command-line, you can start to use it to do all the same things you would do with Finder or File Explorer, simply by using the correct command:
 
