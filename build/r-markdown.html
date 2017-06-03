@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-<link rel="prev" href="index.html">
-<link rel="next" href="command-line.html">
+<link rel="prev" href="apis.html">
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -300,98 +300,106 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="setup-machine" class="section level1">
-<h1><span class="header-section-number">Chapter 1</span> Setting up your Machine</h1>
-<p>We’ll be using a variety of different software programs to write, manage, and execute the code that we write. Unfortunately, one of the most frustrating and confusing barriers to working with code is simply getting your machine properly set up. This chapter aims to provide sufficient information for setting up your machine, and troubleshooting the process.</p>
-<p class="alert alert-info">
-Note that iSchool lab machines should have all appropriate software already installed and ready to use.
-</p>
-<p>In short, you’ll need to install the following programs: see below for more information / options.</p>
-<ul>
-<li><p><strong>Git</strong>: A set of tools for tracking changes to computer code (especially when collaborating with others). This program is already installed on Macs.</p>
-<ul>
-<li><strong>GitHub</strong>: A web service for hosting code online. You don’t actually need to <em>install</em> anything GitHub (it uses <code>git</code>), but you’ll need to sign up for the service.</li>
-</ul></li>
-<li><p><strong>Bash</strong>: A <em>command-line interface</em> for controlling your computer. <code>git</code> is a command-line program so you’ll need a command shell to use it. Macs already have a Bash program called <em>Terminal</em>. On Windows, installing <code>git</code> will also install a Bash shell called <em>Git Bash</em>, or you can try the (experimental) Linux subsystem for Windows 10.</p></li>
-<li><p><strong>Atom</strong>: A lightweight text editor that supports programming in lots of different languages.</p>
-<ul>
-<li>You are welcome to use another text editor if you wish; some further suggestions are included.</li>
-</ul></li>
-<li><p><strong>R</strong>: a programming language commonly used for working with data. This will be our primary language for the quarter. “Installing R” actually means installing tools that will let your computer understand and run R code.</p></li>
-<li><p><strong>RStudio</strong>: An graphical editor for writing and running R code. This will soon become our primary development application.</p></li>
-</ul>
-<p>The following sections have additional information about the purpose of each component, how to install it, and alternative configurations.</p>
-<p>If you run into any installation/configuration challenges, please let others know on the <a href="https://info201-a16.slack.com">slack channel</a> so that others can anticipate the same issues.</p>
-<div id="git" class="section level2">
-<h2><span class="header-section-number">1.1</span> Git</h2>
-<p><strong><code>git</code></strong> is a version control system that provides a set of commands that allow you to manage changes to written code, particularly when collaborating with other programmers (much more on this in <a href="git-basics.html#git-basics">chapter 4</a>). To start, you’ll need to <a href="https://git-scm.com/downloads">download</a> and install the software. If you are on a Mac, <code>git</code> should already be installed.</p>
-<p>If you are using a Windows machine, this will also install a program called Git Bash, which provides a text-based interface for executing commands on your computer. For alternative/additional Windows command-line tools, see below.</p>
-<div id="github" class="section level3">
-<h3><span class="header-section-number">1.1.1</span> GitHub</h3>
-<p>GitHub is a website that is used to store copies of computer code that are being managed with <code>git</code> (think “Imgur for code”). Students in the INFO 201 course will use GitHub to turn in programming assignments.</p>
-<p>In order to use GitHub, you’ll need to <a href="https://github.com/join">create a free GitHub account</a>, if you don’t already have one. You should register a username that is identifiable as you (e.g., based on your name or your UW NetID). This will make it easier for others to determine out who contributed what code, rather than needing to figure out who ‘LeetDesigner2099’ is. This can be the start of a professional account you may use for the rest of your career!</p>
-</div>
-</div>
-<div id="command-line-tools-bash" class="section level2">
-<h2><span class="header-section-number">1.2</span> Command-line Tools (Bash)</h2>
-<p>The command-line provides a text-based interface for giving instructions to your computer (much more on this in <a href="command-line.html#command-line">chapter 2</a>). With this book, you’ll largely use the command-line for navigating your computer’s file structure, and executing commands that allows you to keep track of changes to the code you write (i.e., version control with <code>git</code>).</p>
-<p>In order to use the command-line, you will need to use a <strong>command shell</strong> (a.k.a. a <em>command prompt</em>). This is a program that provides the interface to type commands into. In particular, we’ll be working with the <a href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)">Bash</a> shell, which provides a particular common set of commands common to Mac and Linux machines.</p>
-<div id="command-line-on-a-mac" class="section level3">
-<h3><span class="header-section-number">1.2.1</span> Command-line on a Mac</h3>
-<p>On a Mac you’ll want to use the built-in app called <strong>Terminal</strong>. You can open it by searching via Spotlight (hit Cmd (<code>⌘</code>) and Spacebar together, type in “terminal”, then select the app to open it), or by finding it in the Applications/Utilities folder.</p>
-</div>
-<div id="command-line-on-windows" class="section level3">
-<h3><span class="header-section-number">1.2.2</span> Command-line on Windows</h3>
-<p>On Windows, we recommend using <a href="https://git-scm.com/downloads"><strong>Git Bash</strong></a>, which you should have installed along with <code>git</code> (above). Open this program to open the command-shell. This works great, since you’ll primarily be using the command-line for performing version control.</p>
-<ul>
-<li>Note that Windows does come with its own command-prompt, called the <em>DOS Prompt</em>, but it has a different set of commands and features. <em>Powershell</em> is a more powerful version of the DOS prompt if you really want to get into the Windows Management Framework. But Bash is more common in open-source programming like we’ll be doing, and so we will be focusing on that set of commands.</li>
-</ul>
-<p>Alternatively, the 64-bit Windows 10 Anniversary update (August 2016) <em>does</em> include a beta version of an integrated Bash shell. You can access this by <a href="https://msdn.microsoft.com/en-us/commandline/wsl/install_guide">enabling the subsystem for Linux</a> and then running <code>bash</code> in the command prompt. This is currently (May 2017) “beta” technology, but will suffice for our purposes if you can get it running.</p>
-</div>
-</div>
-<div id="text-editors" class="section level2">
-<h2><span class="header-section-number">1.3</span> Text Editors</h2>
-<p>In order to produce computer code, you need somewhere to write it (and we don’t want to write it in MS Word!). There are a variety of available programs that provide an interface for editing code. A major advantage of these programs is that they provide automatic formatting/coloring for easier interpretation of the code, along with cool features like auto-completion and integration with version control.</p>
-<p>RStudio has a great built-in text editor, but you’ll sometimes want to use another text editor which is lighter weight (e.g., runs faster), more robust, or supports a different programming language. There are lots of different text editors out there, all of which have slightly different appearances and features. You only need to download and use one of the following programs (we recommend <strong>Atom</strong> as a default), but feel free to try out different ones to find something you like (and then evangelize about it to your friends!)</p>
-<div id="atom" class="section level3">
-<h3><span class="header-section-number">1.3.1</span> Atom</h3>
-<p><a href="https://atom.io/"><strong>Atom</strong></a> is a text editor built by the folks at GitHub and has been gaining in popularity. As an open source project, people are continually building (and making available) interesting/useful extensions. Its built-in spell-check is a great feature, especially for documents that require lots of written text. It also has excellent support for Markdown, a markup language you’ll be using regularly in this course.</p>
-<p>Click the “Download” button to download the installer <code>.exe</code> file, then double-click on that to install the application.</p>
-<p>Once you’ve installed Atom, the trick to using it effectively is to get comfortable with the <a href="http://flight-manual.atom.io/getting-started/sections/atom-basics/#command-palette">Command Palette</a>. If you hit <code>Cmd+Shift+P</code>, Atom will open a small window where you can search for whatever you want the editor to do. For example, if you type in <code>markdown</code> you can get list of commands related to Markdown files (including the ability to open up a preview).</p>
-<p>For more information about using Atom, see <a href="http://flight-manual.atom.io/">the manual</a>.</p>
-</div>
-<div id="visual-studio-code" class="section level3">
-<h3><span class="header-section-number">1.3.2</span> Visual Studio Code</h3>
-<p><a href="https://code.visualstudio.com/"><strong>Visual Studio Code</strong></a> (or VS Code; not to be confused with Visual Studio) is a free, open-source editor developed by Microsoft—yes, really. While it focuses on web programming and JavaScript, it readily supports lots of languages including Markdown and R and provides a number of extensions for adding even more features. It has a similar <em>command palette</em> to Atom, but isn’t quite as nice for editing Markdown specifically. Although fairly new, it is updated regularly and has become one of my main editors for programming.</p>
-</div>
-<div id="sublimetext" class="section level3">
-<h3><span class="header-section-number">1.3.3</span> SublimeText</h3>
-<p><a href="https://www.sublimetext.com/3"><strong>SublimeText</strong></a> is a very popular text editor with excellent defaults and a variety of available extensions (though you’ll need to manage and install extensions to achieve the functionality offered by other editors out of the box). While the software can be used for free, every 20 or so saves it will prompt you to purchase the full version. This is my application of choice for when just want to write a plain text file.</p>
-</div>
-</div>
-<div id="rstudio" class="section level2">
-<h2><span class="header-section-number">1.4</span> RStudio</h2>
-<p>The primary programming language you will use throughout the course is <code>R</code>. It’s a very powerful statistical programming language that is built to work well with large and diverse datasets. While you are able to execute <code>R</code> scripts without an interface, the <strong>RStudio</strong> application provides a wonderful way to engage with the <code>R</code> language.</p>
-<p>To install the RStudio program, select the <strong>installer</strong> for your operating system from the <a href="https://www.rstudio.com/products/rstudio/download/">downloads page</a>. Make sure to download the <strong><em>free</em></strong> version:</p>
+<div id="r-markdown" class="section level1">
+<h1><span class="header-section-number">Chapter 12</span> R Markdown</h1>
+<p>R Markdown is a package that supports using <code>R</code> to dynamically creating <em>documents</em>, such as websites (<code>.html</code> files), reports (<code>.pdf</code> files), slideshows (using <code>ioslides</code> or <code>slidy</code>), and even interactive web apps (using <code>shiny</code>).</p>
+<p>As you may have guessed, R Markdown does this by providing the ability to blend Markdown syntax and <code>R</code> code so that, when executed, scripts will automatically inject your code results into a formatted document. The ability to automatically generate reports and documents from a computer script eliminates the need to manually update the <em>results</em> of a data analysis project, enabling you to more effectively share the <em>information</em> that you’ve produced from your data.</p>
+<div id="r-markdown-and-rstudio" class="section level2">
+<h2><span class="header-section-number">12.1</span> R Markdown and RStudio</h2>
+<p>R Markdown documents are created from a combination of two libraries: <code>rmarkdown</code> (which process the markdown and generates the output) and <code>knitr</code> (which runs R code and produces Markdown-like output). These packages are already included in RStudio, which provides built-in support for creating and viewing R Markdown documents.</p>
+<div id="creating-.rmd-files" class="section level3">
+<h3><span class="header-section-number">12.1.1</span> Creating <code>.Rmd</code> Files</h3>
+<p>The easiest way to begin a new R-Markdown document in RStudio is to use the <strong>File &gt; New File &gt; R Markdown</strong> menu option:</p>
 <div class="figure">
-<img src="img/setup/rstudio-download.png" title="RStudio download selection" alt="File to choose for downloading RStudio. Image may not show the latest version." />
-<p class="caption">File to choose for downloading RStudio. Image may not show the latest version.</p>
+<img src="img/r-markdown/new-file.png" title="new R-Markdown document menu" alt="Create a new R Markdown document in RStudio." />
+<p class="caption">Create a new R Markdown document in RStudio.</p>
 </div>
-<p>Once the download completes, double-click on the <code>.exe</code> or <code>.dmg</code> file to run the installer. Simply follow the steps of the installer, and you should be prepared to use RStudio.</p>
-<p>By downloading RStudio, you will also install the R programming language, if it is not already present in your operating system. However, if there are any problems with that you can also <a href="https://cran.rstudio.com/">install R separately</a>. Click on the download page for your operating system in order to find a link to the installer. On a Mac you’re looking for the <code>.pkg</code> file, and for Windows you want to look in the <code>base</code> section (follow the link to “install R for the first time”).</p>
+<p>RStudio will then prompt you to provide some additional details abour what kind of R Markdown document you want. In particular, you will need to choose a default <em>document type</em> and <em>output format</em>. You can also provide a title and author information which will be included in the document. This chapter will focus on creating HTML documents (websites; the default format)—other formats require the installation of additional software.</p>
+<div class="figure">
+<img src="img/r-markdown/document-type.png" title="specify document type prompt" alt="Specify document type." />
+<p class="caption">Specify document type.</p>
 </div>
-<div id="resources" class="section level2 unnumbered">
+<p>Once you’ve chosen <em>R Markdown</em> as your desired file type, you’ll be prompted to choose a default <em>document type</em> and <em>output format</em> that you would like to create. In this module, we’ll discuss creating HTML documents (websites).</p>
+<p>Once you’ve chosen your desired document type and output format, RStudio will open up a new script file for you. The file contains some example code for you.</p>
+</div>
+<div id="rmd-content" class="section level3">
+<h3><span class="header-section-number">12.1.2</span> <code>.Rmd</code> Content</h3>
+<p>At the top of the file is some text that has the format:</p>
+<div class="sourceCode"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="ot">---</span>
+<span class="fu">title:</span><span class="at"> </span><span class="st">&quot;Example&quot;</span>
+<span class="fu">author:</span><span class="at"> </span><span class="st">&quot;YOUR NAME HERE&quot;</span>
+<span class="fu">date:</span><span class="at"> </span><span class="st">&quot;1/30/2017&quot;</span>
+<span class="fu">output:</span><span class="at"> html_document</span>
+<span class="ot">---</span></code></pre></div>
+<p>This is the document “header” information, which tells R Markdown details about the file and how the file should be processed. For example, the <code>title</code>, <code>author</code>, and <code>date</code> will automatically be added to the top of your document. You can include additional information as well, such as <a href="http://rmarkdown.rstudio.com/html_document_format.html">whether there should be a table of contents</a> or even <a href="http://rmarkdown.rstudio.com/developer_parameterized_reports.html">variable defaults</a>.</p>
+<ul>
+<li>The header is written in <a href="https://en.wikipedia.org/wiki/YAML">YAML</a> format, which is yet another way of formatting structured data similar to <code>.csv</code> or JSON (in fact, YAML is a superset of JSON and can represent the same data structure, just using indentation and dashes instead of braces and commas).</li>
+</ul>
+<p>After this header you will find two types of contents: normal Markdown text like you learned in <a href="markdown.html#markdown">chapter 3</a> (e.g., <code>## R Markdown</code> for a second-level heading), and blocks of <code>R</code> code called <strong>chunks</strong>. R chunks loos like normal code block elements (using <code>```</code>), but with an extra <code>{r}</code> immediately after the backticks. See below for more details about this format.</p>
+<p class="alert alert-warning">
+<strong>Important</strong> This file should be saved with the extension <strong><code>.Rmd</code></strong> (for “R Markdown”), which tells the computer and RStudio that the document contains Markdown content with embedded <code>R</code> code.
+</p>
+</div>
+<div id="knitting-documents" class="section level3">
+<h3><span class="header-section-number">12.1.3</span> Knitting Documents</h3>
+<p>RStdudio provides an easy interface to compile your <code>.Rmd</code> source code into an actual document (a process called <strong>“knitting”</strong>). Simply click the <strong>Knit</strong> button at the top of the script panel:</p>
+<div class="figure">
+<img src="img/r-markdown/knit-button.png" title="knit button location" alt="RStudio’s Knit button" />
+<p class="caption">RStudio’s Knit button</p>
+</div>
+<p>This will generate the document (in the same directory as your <code>.Rmd</code> file), as well as open up a preview window in RStudio.</p>
+<p>While it is easy to generate such documents, the knitting process can make it hard to debug errors in your <code>R</code> code (whether syntax or logical), in part because the output may or may not show up in the document! We suggest that you write complex <code>R</code> code in another script and then simply copy or <code>source()</code> that script into your <code>.Rmd</code> file. Additionally, be sure and knit your document frequently, paying close atention to any errors that appear in the console.</p>
+</div>
+<div id="html" class="section level3">
+<h3><span class="header-section-number">12.1.4</span> HTML</h3>
+<p>Assuming that you’ve chosen HTML as your desired output type, RStudio will knit your <code>.Rmd</code> into a <code>.html</code> file. HTML stands for <em><strong>H</strong>yper<strong>T</strong>ext <strong>M</strong>arkup <strong>L</strong>anguage</em> and like Markdown is a syntax for describing the structure and formatting of content (mostly the structure!), though HTML is <strong>far</strong> more extensive and detailed. In particular, HTML is a is a markup language that can be automatically rendered by web browsers, and thus is the language used to create web pages. As such, the <code>.html</code> files you create can be put online as web pages for others to view—you will learn how to do this in a future chapter. For now, you can open a <code>.html</code> file in any browser (such as by double-clicking on the file) to see the content outside of RStudio!</p>
+<!-- TODO: add reference to HTML chapter -->
+</div>
+</div>
+<div id="r-markdown-syntax" class="section level2">
+<h2><span class="header-section-number">12.2</span> R Markdown Syntax</h2>
+<p>What makes R Markdown distinct from simple Markdown code is the ability to actually <em>execute your <code>R</code> code and include the output directly in the document</em>. <code>R</code> code can be executed and included in the document in blocks of code, or even inline in the document!</p>
+<div id="r-code-chunks" class="section level3">
+<h3><span class="header-section-number">12.2.1</span> R Code Chunks</h3>
+<p>Code that is to be executed (rather than simply displayed as formatted text) is called a <strong>code chunk</strong>. To specify a code chunk, you need to include <strong><code>{r}</code></strong> immediately after the backticks that start the code block (the <code>```</code>). For example</p>
+<div class="sourceCode"><pre class="sourceCode markdown"><code class="sourceCode markdown">Write normal *markdown* out here, then create a code block:
+
+```{r}
+<span class="fu"># Execute R code in here</span>
+x &lt;- 201
+```
+
+Back to writing _markdown_ out here.</code></pre></div>
+<p>It is also possible to specify additional configuration <strong>options</strong> by including a comma-separate list of named arguments (like you’ve done with lists and functions) inside the curly braces following the <code>r</code>:</p>
+<div class="sourceCode"><pre class="sourceCode markdown"><code class="sourceCode markdown">```{r options_example, echo=FALSE, message=TRUE}
+<span class="fu"># Execute R code in here</span>
+```</code></pre></div>
+<ul>
+<li>The first “argument” (<code>options_example</code>) is a “name” for the chunk, and the following are named arguments for the options.</li>
+</ul>
+<p>There are <a href="https://yihui.name/knitr/options/">many options</a> (see also the <a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">reference</a>). However the most useful ones have to do with how the code is outputted in the the document. These include:</p>
+<ul>
+<li><strong><code>echo</code></strong> indicates whether you want the <em>R code itself</em> to be displayed in the document (e.g., if you want readers to be able to see your work and reproduce your calculations and analysis). Value is either <code>TRUE</code> (do display) or <code>FALSE</code> (do not display).</li>
+<li><strong><code>message</code></strong> indicates whether you want any messages generated by the code to be displayed. This includes print statements! Value is either <code>TRUE</code> (do display) or <code>FALSE</code> (do not display).</li>
+</ul>
+</div>
+<div id="inline-code" class="section level3">
+<h3><span class="header-section-number">12.2.2</span> Inline Code</h3>
+<p>In addition to creating distinct code blocks, you may want to execute R code <em>inline</em> with the rest of your text, such as to include a variable result inside a paragraph of text. As with code blocks, you’ll follow the Markdown convention of using single backticks (<strong><code>`</code></strong>), but put the letter <strong><code>r</code></strong> imediately after the first backtick. For example:</p>
+<pre><code>If we want to calculate 3 + 4 inside some text, we can use 7 right in the _middle_.</code></pre>
+<p>When you knit the text above, the <code>`r 3 + 4`</code> would be replaced with the number <code>7</code>.</p>
+<p class="alert alert-info">
+Note you can also reference values computed in the code blocks preceding your inline code; it is <strong>best practice</strong> to do your calculations in a code block (with <code>echo=FALSE</code>), save the result in a variable, and then simply inline that variable with e.g., <code>`r my.variable`</code>.
+</p>
+</div>
+</div>
+<div id="resources-11" class="section level2 unnumbered">
 <h2>Resources</h2>
-<p>Links to the recommended software are collected here for easy access:</p>
 <ul>
-<li><a href="https://git-scm.com/downloads">git (and Git Bash)</a>
-<ul>
-<li><a href="https://github.com/join">GitHub</a> (sign up)</li>
-<li>optional: <a href="https://msdn.microsoft.com/en-us/commandline/wsl/install_guide">Bash on Windows</a></li>
-</ul></li>
-<li><a href="https://atom.io/">Atom</a></li>
-<li><a href="https://cran.rstudio.com/">R</a></li>
-<li><a href="https://www.rstudio.com/products/rstudio/download3/">RStudio</a></li>
+<li><a href="http://rmarkdown.rstudio.com/">R Markdown Homepage</a></li>
+<li><a href="https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf">R Markdown Cheatsheet</a> (really useful!)</li>
+<li><a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">R Markdown Reference</a> (really useful!)</li>
+<li><a href="https://yihui.name/knitr/"><code>knitr</code></a></li>
 </ul>
 
 </div>
@@ -401,8 +409,8 @@ Note that iSchool lab machines should have all appropriate software already inst
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="command-line.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="apis.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -431,7 +439,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/info201/book/edit/master/setup.Rmd",
+"link": "https://github.com/info201/book/edit/master/r-markdown.Rmd",
 "text": "Edit"
 },
 "download": ["tech-foundations-of-informatics.pdf", "tech-foundations-of-informatics.epub"],

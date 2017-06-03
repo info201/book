@@ -1,0 +1,112 @@
+# R Markdown {#r-markdown}
+
+R Markdown is a package that supports using `R` to dynamically creating _documents_, such as websites (`.html` files), reports (`.pdf` files), slideshows (using `ioslides` or `slidy`), and even interactive web apps (using `shiny`).
+
+As you may have guessed, R Markdown does this by providing the ability to blend Markdown syntax and `R` code so that, when executed, scripts will automatically inject your code results into a formatted document. The ability to automatically generate reports and documents from a computer script eliminates the need to manually update the _results_ of a data analysis project, enabling you to more effectively share the _information_ that you've produced from your data.
+
+## R Markdown and RStudio
+R Markdown documents are created from a combination of two libraries: `rmarkdown` (which process the markdown and generates the output) and `knitr` (which runs R code and produces Markdown-like output). These packages are already included in RStudio, which provides built-in support for creating and viewing R Markdown documents.
+
+### Creating `.Rmd` Files
+The easiest way to begin a new R-Markdown document in RStudio is to use the **File > New File > R Markdown** menu option:
+
+![Create a new R Markdown document in RStudio.](img/r-markdown/new-file.png "new R-Markdown document menu")
+
+RStudio will then prompt you to provide some additional details abour what kind of R Markdown document you want. In particular, you will need to choose a default _document type_ and _output format_. You can also provide a title and author information which will be included in the document. This chapter will focus on creating HTML documents (websites; the default format)&mdash;other formats require the installation of additional software.
+
+![Specify document type.](img/r-markdown/document-type.png "specify document type prompt")
+
+Once you've chosen _R Markdown_ as your desired file type, you'll be prompted to choose a default _document type_ and _output format_ that you would like to create. In this module, we'll discuss creating HTML documents (websites).
+
+Once you've chosen your desired document type and output format, RStudio will open up a new script file for you. The file contains some example code for you.
+
+### `.Rmd` Content
+At the top of the file is some text that has the format:
+
+```yaml
+---
+title: "Example"
+author: "YOUR NAME HERE"
+date: "1/30/2017"
+output: html_document
+---
+```
+
+This is the document "header" information, which tells R Markdown details about the file and how the file should be processed. For example, the `title`, `author`, and `date` will automatically be added to the top of your document. You can include additional information as well, such as [whether there should be a table of contents](http://rmarkdown.rstudio.com/html_document_format.html) or even [variable defaults](http://rmarkdown.rstudio.com/developer_parameterized_reports.html).
+
+- The header is written in [YAML](https://en.wikipedia.org/wiki/YAML) format, which is yet another way of formatting structured data similar to `.csv` or JSON (in fact, YAML is a superset of JSON and can represent the same data structure, just using indentation and dashes instead of braces and commas).
+
+After this header you will find two types of contents: normal Markdown text like you learned in [chapter 3](#markdown) (e.g., `## R Markdown` for a second-level heading), and blocks of `R` code called **chunks**. R chunks loos like normal code block elements (using <code>\`\`\`</code>), but with an extra `{r}` immediately after the backticks. See below for more details about this format.
+
+<p class="alert alert-warning">**Important** This file should be saved with the extension **`.Rmd`** (for "R Markdown"), which tells the computer and RStudio that the document contains Markdown content with embedded `R` code.</p>
+
+### Knitting Documents
+RStdudio provides an easy interface to compile your `.Rmd` source code into an actual document (a process called **"knitting"**). Simply click the **Knit** button at the top of the script panel:
+
+![RStudio's Knit button](img/r-markdown/knit-button.png "knit button location")
+
+This will generate the document (in the same directory as your `.Rmd` file), as well as open up a preview window in RStudio.
+
+While it is easy to generate such documents, the knitting process can make it hard to debug errors in your `R` code (whether syntax or logical), in part because the output may or may not show up in the document! We suggest that you write complex `R` code in another script and then simply copy or `source()` that script into your `.Rmd` file. Additionally, be sure and knit your document frequently, paying close atention to any errors that appear in the console.
+
+### HTML
+Assuming that you've chosen HTML as your desired output type, RStudio will knit your `.Rmd` into a `.html` file. HTML stands for _**H**yper**T**ext **M**arkup **L**anguage_ and like Markdown is a syntax for describing the structure and formatting of content (mostly the structure!), though HTML is **far** more extensive and detailed. In particular, HTML is a is a markup language that can be automatically rendered by web browsers, and thus is the language used to create web pages. As such, the `.html` files you create can be put online as web pages for others to view&mdash;you will learn how to do this in a future chapter. For now, you can open a `.html` file in any browser (such as by double-clicking on the file) to see the content outside of RStudio!
+
+<!-- TODO: add reference to HTML chapter -->
+
+## R Markdown Syntax
+What makes R Markdown distinct from simple Markdown code is the ability to actually _execute your `R` code and include the output directly in the document_. `R` code can be executed and included in the document in blocks of code, or even inline in the document!
+
+### R Code Chunks
+Code that is to be executed (rather than simply displayed as formatted text) is called a **code chunk**. To specify a code chunk, you need to include **`{r}`** immediately after the backticks that start the code block (the <code>\`\`\`</code>). For example
+
+```{r results='asis', echo=FALSE}
+# written as string to help with formatting
+cat("````markdown
+Write normal *markdown* out here, then create a code block:
+
+\`\`\`{r}
+# Execute R code in here
+x <- 201
+\`\`\`
+
+Back to writing _markdown_ out here.
+````")
+```
+
+It is also possible to specify additional configuration **options** by including a comma-separate list of named arguments (like you've done with lists and functions) inside the curly braces following the `r`:
+
+
+```{r results='asis', echo=FALSE}
+# written as string to help with formatting
+cat("````markdown
+\`\`\`{r options_example, echo=FALSE, message=TRUE}
+# Execute R code in here
+\`\`\`
+````")
+```
+
+- The first "argument" (`options_example`) is a "name" for the chunk, and the following are named arguments for the options.
+
+There are [many options](https://yihui.name/knitr/options/) (see also the [reference](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)). However the most useful ones have to do with how the code is outputted in the the document. These include:
+
+- **`echo`** indicates whether you want the _R code itself_ to be displayed in the document (e.g., if you want readers to be able to see your work and reproduce your calculations and analysis). Value is either `TRUE` (do display) or `FALSE` (do not display).
+- **`message`** indicates whether you want any messages generated by the code to be displayed. This includes print statements! Value is either `TRUE` (do display) or `FALSE` (do not display).
+
+### Inline Code
+In addition to creating distinct code blocks, you may want to execute R code _inline_ with the rest of your text, such as to include a variable result inside a paragraph of text. As with code blocks, you'll follow the Markdown convention of using single backticks (**`` ` ``**), but put the letter **`r`** imediately after the first backtick. For example:
+
+```
+If we want to calculate 3 + 4 inside some text, we can use `r 3 + 4` right in the _middle_.
+```
+
+When you knit the text above, the <code>&#96;r 3 + 4&#96;</code> would be replaced with the number `7`.
+
+<p class="alert alert-info">Note you can also reference values computed in the code blocks preceding your inline code; it is **best practice** to do your calculations in a code block (with `echo=FALSE`), save the result in a variable, and then simply inline that variable with e.g., <code>&#96;r my.variable&#96;</code>.</p>
+
+
+## Resources {-}
+- [R Markdown Homepage](http://rmarkdown.rstudio.com/)
+- [R Markdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf) (really useful!)
+- [R Markdown Reference](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) (really useful!)
+- [`knitr`](https://yihui.name/knitr/)

@@ -7,14 +7,20 @@ edit: https://github.com/info201/book/edit/master/%s
 rmd_files:
   - index.Rmd
 
+  # environment setup
   - setup.Rmd
   - command-line.Rmd
   - markdown.Rmd
   - git-basics.Rmd
 
+  # r basics
   - r-intro.Rmd
   - functions.Rmd
   - vectors.Rmd
   - lists.Rmd
   - dataframes.Rmd
   - dplyr.Rmd
+
+  # data analysis
+  - apis.Rmd
+  - r-markdown.Rmd
