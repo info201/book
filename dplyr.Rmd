@@ -33,7 +33,7 @@ For each `dplyr` function discussed here, the **first argument** to the function
 
 <p class="alert alert-warning">___IMPORTANT NOTE:___ inside the function argument list (inside the parentheses), we refer to data frame columns **without quotation marks**&mdash;that is, we just give the column names as _variable names_, rather than as _character strings_. This is refered to as [non-standard evaluation](#Non-standard Evaluation), and is described in more detail below; while it makes code easier to write and read, it can occassionally create challenges.</p>
 
-<p class="alert alert-info">The images in this section come from the [RStudio's STRATA NYC R-Day workshop](http://bit.ly/rday-nyc-strata15), which was presented by [Nathan Stephens](http://conferences.oreilly.com/strata/big-data-conference-ny-2015/public/schedule/speaker/217840).</p>
+<p class="alert alert">The images in this section come from the [RStudio's STRATA NYC R-Day workshop](http://bit.ly/rday-nyc-strata15), which was presented by [Nathan Stephens](http://conferences.oreilly.com/strata/big-data-conference-ny-2015/public/schedule/speaker/217840).</p>
 
 ### Select
 The **`select()`** operation allows you to choose and extract **columns** of interest from your data frame.

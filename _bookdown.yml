@@ -24,3 +24,6 @@ rmd_files:
   # data analysis
   - apis.Rmd
   - r-markdown.Rmd
+  - ggplot2.Rmd
+  - git-branches.Rmd
+  - shiny.Rmd

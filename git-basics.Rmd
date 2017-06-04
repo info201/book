@@ -282,7 +282,7 @@ If you want to download the changes (commits) that someone else made, you can do
 git pull
 ```
 
-Because you're merging as part of a `pull`, you'll need to keep an eye out for **merge conflicts**! These will be discussed in more detail in [chapter 14]{#git-branches}.
+Because you're merging as part of a `pull`, you'll need to keep an eye out for **merge conflicts**! These will be discussed in more detail in [chapter 14](#git-branches).
 
 <p class="alert alert-warning">**Pro Tip**: always `pull` before you `push`. Technically using `git push` causes a merge to occur on GitHub's servers, but GitHub won't let you push if that merge might potentially cause a conflict. If you `pull` first, you can make sure your local version is up to date so that no conflicts will occur when you upload.</p>
 

@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Technical Foundations of Informatics</title>
+  <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
+  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Technical Foundations of Informatics" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://info201.github.io/" />
+  <meta property="og:image" content="https://info201.github.io/img/cover-img.png" />
+  <meta property="og:description" content="The course reader for INFO 201: Technical Foundations of Informatics." />
+  <meta name="github-repo" content="info201/book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Technical Foundations of Informatics" />
+  
+  <meta name="twitter:description" content="The course reader for INFO 201: Technical Foundations of Informatics." />
+  <meta name="twitter:image" content="https://info201.github.io/img/cover-img.png" />
+
+<meta name="author" content="Michael Freeman and Joel Ross">
+
+
+<meta name="date" content="2017-06-04">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+<link rel="prev" href="git-branches.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-98444716-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Technical Foundations of Informatics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this Book</a></li>
+<li class="chapter" data-level="1" data-path="setup-machine.html"><a href="setup-machine.html"><i class="fa fa-check"></i><b>1</b> Setting up your Machine</a><ul>
+<li class="chapter" data-level="1.1" data-path="setup-machine.html"><a href="setup-machine.html#git"><i class="fa fa-check"></i><b>1.1</b> Git</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="setup-machine.html"><a href="setup-machine.html#github"><i class="fa fa-check"></i><b>1.1.1</b> GitHub</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="setup-machine.html"><a href="setup-machine.html#command-line-tools-bash"><i class="fa fa-check"></i><b>1.2</b> Command-line Tools (Bash)</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="setup-machine.html"><a href="setup-machine.html#command-line-on-a-mac"><i class="fa fa-check"></i><b>1.2.1</b> Command-line on a Mac</a></li>
+<li class="chapter" data-level="1.2.2" data-path="setup-machine.html"><a href="setup-machine.html#command-line-on-windows"><i class="fa fa-check"></i><b>1.2.2</b> Command-line on Windows</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="setup-machine.html"><a href="setup-machine.html#text-editors"><i class="fa fa-check"></i><b>1.3</b> Text Editors</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="setup-machine.html"><a href="setup-machine.html#atom"><i class="fa fa-check"></i><b>1.3.1</b> Atom</a></li>
+<li class="chapter" data-level="1.3.2" data-path="setup-machine.html"><a href="setup-machine.html#visual-studio-code"><i class="fa fa-check"></i><b>1.3.2</b> Visual Studio Code</a></li>
+<li class="chapter" data-level="1.3.3" data-path="setup-machine.html"><a href="setup-machine.html#sublimetext"><i class="fa fa-check"></i><b>1.3.3</b> SublimeText</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="setup-machine.html"><a href="setup-machine.html#rstudio"><i class="fa fa-check"></i><b>1.4</b> RStudio</a></li>
+<li class="chapter" data-level="" data-path="setup-machine.html"><a href="setup-machine.html#resources"><i class="fa fa-check"></i>Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="command-line.html"><a href="command-line.html"><i class="fa fa-check"></i><b>2</b> The Command Line</a><ul>
+<li class="chapter" data-level="2.1" data-path="command-line.html"><a href="command-line.html#accessing-the-command-line"><i class="fa fa-check"></i><b>2.1</b> Accessing the Command-Line</a></li>
+<li class="chapter" data-level="2.2" data-path="command-line.html"><a href="command-line.html#navigating-the-command-line"><i class="fa fa-check"></i><b>2.2</b> Navigating the Command Line</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="command-line.html"><a href="command-line.html#changing-directories"><i class="fa fa-check"></i><b>2.2.1</b> Changing Directories</a></li>
+<li class="chapter" data-level="2.2.2" data-path="command-line.html"><a href="command-line.html#listing-files"><i class="fa fa-check"></i><b>2.2.2</b> Listing Files</a></li>
+<li class="chapter" data-level="2.2.3" data-path="command-line.html"><a href="command-line.html#paths"><i class="fa fa-check"></i><b>2.2.3</b> Paths</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="command-line.html"><a href="command-line.html#file-commands"><i class="fa fa-check"></i><b>2.3</b> File Commands</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="command-line.html"><a href="command-line.html#learning-new-commands"><i class="fa fa-check"></i><b>2.3.1</b> Learning New Commands</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="command-line.html"><a href="command-line.html#dealing-with-errors"><i class="fa fa-check"></i><b>2.4</b> Dealing With Errors</a></li>
+<li class="chapter" data-level="" data-path="command-line.html"><a href="command-line.html#resources-1"><i class="fa fa-check"></i>Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>3</b> Markdown</a><ul>
+<li class="chapter" data-level="3.1" data-path="markdown.html"><a href="markdown.html#writing-markdown"><i class="fa fa-check"></i><b>3.1</b> Writing Markdown</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="markdown.html"><a href="markdown.html#text-formatting"><i class="fa fa-check"></i><b>3.1.1</b> Text Formatting</a></li>
+<li class="chapter" data-level="3.1.2" data-path="markdown.html"><a href="markdown.html#text-blocks"><i class="fa fa-check"></i><b>3.1.2</b> Text Blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="markdown.html"><a href="markdown.html#rendering-markdown"><i class="fa fa-check"></i><b>3.2</b> Rendering Markdown</a></li>
+<li class="chapter" data-level="" data-path="markdown.html"><a href="markdown.html#resources-2"><i class="fa fa-check"></i>Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="git-basics.html"><a href="git-basics.html"><i class="fa fa-check"></i><b>4</b> Git and GitHub</a><ul>
+<li class="chapter" data-level="4.1" data-path="git-basics.html"><a href="git-basics.html#what-is-this-git-thing-anyway"><i class="fa fa-check"></i><b>4.1</b> What is this <em>git</em> thing anyway?</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="git-basics.html"><a href="git-basics.html#git-core-concepts"><i class="fa fa-check"></i><b>4.1.1</b> Git Core Concepts</a></li>
+<li class="chapter" data-level="4.1.2" data-path="git-basics.html"><a href="git-basics.html#wait-but-what-is-github-then"><i class="fa fa-check"></i><b>4.1.2</b> Wait, but what is GitHub then?</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="git-basics.html"><a href="git-basics.html#installation-setup"><i class="fa fa-check"></i><b>4.2</b> Installation &amp; Setup</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="git-basics.html"><a href="git-basics.html#creating-a-repo"><i class="fa fa-check"></i><b>4.2.1</b> Creating a Repo</a></li>
+<li class="chapter" data-level="4.2.2" data-path="git-basics.html"><a href="git-basics.html#checking-status"><i class="fa fa-check"></i><b>4.2.2</b> Checking Status</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="git-basics.html"><a href="git-basics.html#making-changes"><i class="fa fa-check"></i><b>4.3</b> Making Changes</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="git-basics.html"><a href="git-basics.html#adding-files"><i class="fa fa-check"></i><b>4.3.1</b> Adding Files</a></li>
+<li class="chapter" data-level="4.3.2" data-path="git-basics.html"><a href="git-basics.html#committing"><i class="fa fa-check"></i><b>4.3.2</b> Committing</a></li>
+<li class="chapter" data-level="4.3.3" data-path="git-basics.html"><a href="git-basics.html#commit-history"><i class="fa fa-check"></i><b>4.3.3</b> Commit History</a></li>
+<li class="chapter" data-level="4.3.4" data-path="git-basics.html"><a href="git-basics.html#reviewing-the-process"><i class="fa fa-check"></i><b>4.3.4</b> Reviewing the Process</a></li>
+<li class="chapter" data-level="4.3.5" data-path="git-basics.html"><a href="git-basics.html#the-.gitignore-file"><i class="fa fa-check"></i><b>4.3.5</b> The <code>.gitignore</code> File</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="git-basics.html"><a href="git-basics.html#github-and-remotes"><i class="fa fa-check"></i><b>4.4</b> GitHub and Remotes</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="git-basics.html"><a href="git-basics.html#forking-and-cloning"><i class="fa fa-check"></i><b>4.4.1</b> Forking and Cloning</a></li>
+<li class="chapter" data-level="4.4.2" data-path="git-basics.html"><a href="git-basics.html#pushing-and-pulling"><i class="fa fa-check"></i><b>4.4.2</b> Pushing and Pulling</a></li>
+<li class="chapter" data-level="4.4.3" data-path="git-basics.html"><a href="git-basics.html#reviewing-the-process-1"><i class="fa fa-check"></i><b>4.4.3</b> Reviewing The Process</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="git-basics.html"><a href="git-basics.html#course-assignments-on-github"><i class="fa fa-check"></i><b>4.5</b> Course Assignments on GitHub</a></li>
+<li class="chapter" data-level="4.6" data-path="git-basics.html"><a href="git-basics.html#command-summary"><i class="fa fa-check"></i><b>4.6</b> Command Summary</a></li>
+<li class="chapter" data-level="" data-path="git-basics.html"><a href="git-basics.html#resources-3"><i class="fa fa-check"></i>Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="r-intro.html"><a href="r-intro.html"><i class="fa fa-check"></i><b>5</b> Introduction to R</a><ul>
+<li class="chapter" data-level="5.1" data-path="r-intro.html"><a href="r-intro.html#programming-with-r"><i class="fa fa-check"></i><b>5.1</b> Programming with R</a></li>
+<li class="chapter" data-level="5.2" data-path="r-intro.html"><a href="r-intro.html#running-r-scripts"><i class="fa fa-check"></i><b>5.2</b> Running R Scripts</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="command-line.html"><a href="command-line.html#command-line"><i class="fa fa-check"></i><b>5.2.1</b> Command-Line</a></li>
+<li class="chapter" data-level="5.2.2" data-path="r-intro.html"><a href="r-intro.html#rstudio-1"><i class="fa fa-check"></i><b>5.2.2</b> RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="r-intro.html"><a href="r-intro.html#comments"><i class="fa fa-check"></i><b>5.3</b> Comments</a></li>
+<li class="chapter" data-level="5.4" data-path="r-intro.html"><a href="r-intro.html#variables"><i class="fa fa-check"></i><b>5.4</b> Variables</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="r-intro.html"><a href="r-intro.html#basic-data-types"><i class="fa fa-check"></i><b>5.4.1</b> Basic Data Types</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="r-intro.html"><a href="r-intro.html#gettinghelp"><i class="fa fa-check"></i><b>5.5</b> Getting Help</a></li>
+<li class="chapter" data-level="" data-path="r-intro.html"><a href="r-intro.html#resources-4"><i class="fa fa-check"></i>Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>6</b> Functions</a><ul>
+<li class="chapter" data-level="6.1" data-path="functions.html"><a href="functions.html#what-are-functions"><i class="fa fa-check"></i><b>6.1</b> What are Functions?</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="functions.html"><a href="functions.html#r-function-syntax"><i class="fa fa-check"></i><b>6.1.1</b> R Function Syntax</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="functions.html"><a href="functions.html#built-in-r-functions"><i class="fa fa-check"></i><b>6.2</b> Built-in R Functions</a></li>
+<li class="chapter" data-level="6.3" data-path="functions.html"><a href="functions.html#loading-functions"><i class="fa fa-check"></i><b>6.3</b> Loading Functions</a></li>
+<li class="chapter" data-level="6.4" data-path="functions.html"><a href="functions.html#writing-functions"><i class="fa fa-check"></i><b>6.4</b> Writing Functions</a></li>
+<li class="chapter" data-level="6.5" data-path="functions.html"><a href="functions.html#conditional-statements"><i class="fa fa-check"></i><b>6.5</b> Conditional Statements</a></li>
+<li class="chapter" data-level="" data-path="functions.html"><a href="functions.html#resources-5"><i class="fa fa-check"></i>Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>7</b> Vectors</a><ul>
+<li class="chapter" data-level="7.1" data-path="vectors.html"><a href="vectors.html#what-is-a-vector"><i class="fa fa-check"></i><b>7.1</b> What is a Vector?</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="vectors.html"><a href="vectors.html#creating-vectors"><i class="fa fa-check"></i><b>7.1.1</b> Creating Vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="vectors.html"><a href="vectors.html#vectorized-operations"><i class="fa fa-check"></i><b>7.2</b> Vectorized Operations</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="vectors.html"><a href="vectors.html#recycling"><i class="fa fa-check"></i><b>7.2.1</b> Recycling</a></li>
+<li class="chapter" data-level="7.2.2" data-path="vectors.html"><a href="vectors.html#everything-is-a-vector"><i class="fa fa-check"></i><b>7.2.2</b> Everything is a Vector!</a></li>
+<li class="chapter" data-level="7.2.3" data-path="vectors.html"><a href="vectors.html#vectorized-functions"><i class="fa fa-check"></i><b>7.2.3</b> Vectorized Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="vectors.html"><a href="vectors.html#vector-indices"><i class="fa fa-check"></i><b>7.3</b> Vector Indices</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="vectors.html"><a href="vectors.html#multiple-indicies"><i class="fa fa-check"></i><b>7.3.1</b> Multiple Indicies</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="vectors.html"><a href="vectors.html#vector-filtering"><i class="fa fa-check"></i><b>7.4</b> Vector Filtering</a></li>
+<li class="chapter" data-level="7.5" data-path="vectors.html"><a href="vectors.html#modifying-vectors"><i class="fa fa-check"></i><b>7.5</b> Modifying Vectors</a></li>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#resources-6"><i class="fa fa-check"></i>Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="lists.html"><a href="lists.html"><i class="fa fa-check"></i><b>8</b> Lists</a><ul>
+<li class="chapter" data-level="8.1" data-path="lists.html"><a href="lists.html#what-is-a-list"><i class="fa fa-check"></i><b>8.1</b> What is a List?</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="lists.html"><a href="lists.html#creating-lists"><i class="fa fa-check"></i><b>8.1.1</b> Creating Lists</a></li>
+<li class="chapter" data-level="8.1.2" data-path="lists.html"><a href="lists.html#accessing-lists"><i class="fa fa-check"></i><b>8.1.2</b> Accessing Lists</a></li>
+<li class="chapter" data-level="8.1.3" data-path="lists.html"><a href="lists.html#list-indicies"><i class="fa fa-check"></i><b>8.1.3</b> List Indicies</a></li>
+<li class="chapter" data-level="8.1.4" data-path="lists.html"><a href="lists.html#modifying-lists"><i class="fa fa-check"></i><b>8.1.4</b> Modifying Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="lists.html"><a href="lists.html#the-lapply-function"><i class="fa fa-check"></i><b>8.2</b> The <code>lapply()</code> Function</a></li>
+<li class="chapter" data-level="" data-path="lists.html"><a href="lists.html#resources-7"><i class="fa fa-check"></i>Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="dataframes.html"><a href="dataframes.html"><i class="fa fa-check"></i><b>9</b> Data Frames</a><ul>
+<li class="chapter" data-level="9.1" data-path="dataframes.html"><a href="dataframes.html#what-is-a-data-frame"><i class="fa fa-check"></i><b>9.1</b> What is a Data Frame?</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="dataframes.html"><a href="dataframes.html#creating-data-frames"><i class="fa fa-check"></i><b>9.1.1</b> Creating Data Frames</a></li>
+<li class="chapter" data-level="9.1.2" data-path="dataframes.html"><a href="dataframes.html#describing-structure-of-data-frames"><i class="fa fa-check"></i><b>9.1.2</b> Describing Structure of Data Frames</a></li>
+<li class="chapter" data-level="9.1.3" data-path="dataframes.html"><a href="dataframes.html#accessing-data-in-data-frames"><i class="fa fa-check"></i><b>9.1.3</b> Accessing Data in Data Frames</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="dataframes.html"><a href="dataframes.html#csv-files"><i class="fa fa-check"></i><b>9.2</b> Working with CSV Data</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="dataframes.html"><a href="dataframes.html#working-directory"><i class="fa fa-check"></i><b>9.2.1</b> Working Directory</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="dataframes.html"><a href="dataframes.html#factors"><i class="fa fa-check"></i><b>9.3</b> Factor Variables</a></li>
+<li class="chapter" data-level="" data-path="dataframes.html"><a href="dataframes.html#resources-8"><i class="fa fa-check"></i>Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>10</b> The <code>dplyr</code> Library</a><ul>
+<li class="chapter" data-level="10.1" data-path="dplyr.html"><a href="dplyr.html#a-grammar-of-data-manipulation"><i class="fa fa-check"></i><b>10.1</b> A Grammar of Data Manipulation</a></li>
+<li class="chapter" data-level="10.2" data-path="dplyr.html"><a href="dplyr.html#using-dplyr-functions"><i class="fa fa-check"></i><b>10.2</b> Using <code>dplyr</code> Functions</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="dplyr.html"><a href="dplyr.html#select"><i class="fa fa-check"></i><b>10.2.1</b> Select</a></li>
+<li class="chapter" data-level="10.2.2" data-path="dplyr.html"><a href="dplyr.html#filter"><i class="fa fa-check"></i><b>10.2.2</b> Filter</a></li>
+<li class="chapter" data-level="10.2.3" data-path="dplyr.html"><a href="dplyr.html#mutate"><i class="fa fa-check"></i><b>10.2.3</b> Mutate</a></li>
+<li class="chapter" data-level="10.2.4" data-path="dplyr.html"><a href="dplyr.html#arrange"><i class="fa fa-check"></i><b>10.2.4</b> Arrange</a></li>
+<li class="chapter" data-level="10.2.5" data-path="dplyr.html"><a href="dplyr.html#summarize"><i class="fa fa-check"></i><b>10.2.5</b> Summarize</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="dplyr.html"><a href="dplyr.html#multiple-operations"><i class="fa fa-check"></i><b>10.3</b> Multiple Operations</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="dplyr.html"><a href="dplyr.html#the-pipe-operator"><i class="fa fa-check"></i><b>10.3.1</b> The Pipe Operator</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="dplyr.html"><a href="dplyr.html#grouped-operations"><i class="fa fa-check"></i><b>10.4</b> Grouped Operations</a></li>
+<li class="chapter" data-level="10.5" data-path="dplyr.html"><a href="dplyr.html#joins"><i class="fa fa-check"></i><b>10.5</b> Joins</a></li>
+<li class="chapter" data-level="10.6" data-path="dplyr.html"><a href="dplyr.html#non-standard-evaluation-vs.standard-evaluation"><i class="fa fa-check"></i><b>10.6</b> Non-Standard Evaluation vs. Standard Evaluation</a></li>
+<li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#resources-9"><i class="fa fa-check"></i>Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="apis.html"><a href="apis.html"><i class="fa fa-check"></i><b>11</b> Accessing Web APIs</a><ul>
+<li class="chapter" data-level="11.1" data-path="apis.html"><a href="apis.html#what-is-a-web-api"><i class="fa fa-check"></i><b>11.1</b> What is a Web API?</a></li>
+<li class="chapter" data-level="11.2" data-path="apis.html"><a href="apis.html#restful-requests"><i class="fa fa-check"></i><b>11.2</b> RESTful Requests</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="apis.html"><a href="apis.html#uris"><i class="fa fa-check"></i><b>11.2.1</b> URIs</a></li>
+<li class="chapter" data-level="11.2.2" data-path="apis.html"><a href="apis.html#http-verbs"><i class="fa fa-check"></i><b>11.2.2</b> HTTP Verbs</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="apis.html"><a href="apis.html#accessing-web-apis"><i class="fa fa-check"></i><b>11.3</b> Accessing Web APIs</a></li>
+<li class="chapter" data-level="11.4" data-path="apis.html"><a href="apis.html#json"><i class="fa fa-check"></i><b>11.4</b> JSON Data</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="apis.html"><a href="apis.html#parsing-json"><i class="fa fa-check"></i><b>11.4.1</b> Parsing JSON</a></li>
+<li class="chapter" data-level="11.4.2" data-path="apis.html"><a href="apis.html#flattening-data"><i class="fa fa-check"></i><b>11.4.2</b> Flattening Data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="apis.html"><a href="apis.html#resources-10"><i class="fa fa-check"></i>Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>12</b> R Markdown</a><ul>
+<li class="chapter" data-level="12.1" data-path="r-markdown.html"><a href="r-markdown.html#r-markdown-and-rstudio"><i class="fa fa-check"></i><b>12.1</b> R Markdown and RStudio</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="r-markdown.html"><a href="r-markdown.html#creating-.rmd-files"><i class="fa fa-check"></i><b>12.1.1</b> Creating <code>.Rmd</code> Files</a></li>
+<li class="chapter" data-level="12.1.2" data-path="r-markdown.html"><a href="r-markdown.html#rmd-content"><i class="fa fa-check"></i><b>12.1.2</b> <code>.Rmd</code> Content</a></li>
+<li class="chapter" data-level="12.1.3" data-path="r-markdown.html"><a href="r-markdown.html#knitting-documents"><i class="fa fa-check"></i><b>12.1.3</b> Knitting Documents</a></li>
+<li class="chapter" data-level="12.1.4" data-path="r-markdown.html"><a href="r-markdown.html#html"><i class="fa fa-check"></i><b>12.1.4</b> HTML</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="r-markdown.html"><a href="r-markdown.html#r-markdown-syntax"><i class="fa fa-check"></i><b>12.2</b> R Markdown Syntax</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="r-markdown.html"><a href="r-markdown.html#r-code-chunks"><i class="fa fa-check"></i><b>12.2.1</b> R Code Chunks</a></li>
+<li class="chapter" data-level="12.2.2" data-path="r-markdown.html"><a href="r-markdown.html#inline-code"><i class="fa fa-check"></i><b>12.2.2</b> Inline Code</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#resources-11"><i class="fa fa-check"></i>Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>13</b> The <code>gglot2</code> Library</a><ul>
+<li class="chapter" data-level="13.1" data-path="ggplot2.html"><a href="ggplot2.html#a-grammar-of-graphics"><i class="fa fa-check"></i><b>13.1</b> A Grammar of Graphics</a></li>
+<li class="chapter" data-level="13.2" data-path="ggplot2.html"><a href="ggplot2.html#basic-plotting-with-ggplot2"><i class="fa fa-check"></i><b>13.2</b> Basic Plotting with <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="13.2.1" data-path="ggplot2.html"><a href="ggplot2.html#aesthetic-mappings"><i class="fa fa-check"></i><b>13.2.1</b> Aesthetic Mappings</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="ggplot2.html"><a href="ggplot2.html#complex-plots"><i class="fa fa-check"></i><b>13.3</b> Complex Plots</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="ggplot2.html"><a href="ggplot2.html#specifying-geometry"><i class="fa fa-check"></i><b>13.3.1</b> Specifying Geometry</a></li>
+<li class="chapter" data-level="13.3.2" data-path="ggplot2.html"><a href="ggplot2.html#styling-with-scales"><i class="fa fa-check"></i><b>13.3.2</b> Styling with Scales</a></li>
+<li class="chapter" data-level="13.3.3" data-path="ggplot2.html"><a href="ggplot2.html#coordinate-systems"><i class="fa fa-check"></i><b>13.3.3</b> Coordinate Systems</a></li>
+<li class="chapter" data-level="13.3.4" data-path="ggplot2.html"><a href="ggplot2.html#facets"><i class="fa fa-check"></i><b>13.3.4</b> Facets</a></li>
+<li class="chapter" data-level="13.3.5" data-path="ggplot2.html"><a href="ggplot2.html#labels-annotations"><i class="fa fa-check"></i><b>13.3.5</b> Labels &amp; Annotations</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="ggplot2.html"><a href="ggplot2.html#other-visualization-libraries"><i class="fa fa-check"></i><b>13.4</b> Other Visualization Libraries</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#resources-12"><i class="fa fa-check"></i>Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="git-branches.html"><a href="git-branches.html"><i class="fa fa-check"></i><b>14</b> Git Branches and Collaboration</a><ul>
+<li class="chapter" data-level="14.1" data-path="git-branches.html"><a href="git-branches.html#git-branches"><i class="fa fa-check"></i><b>14.1</b> Git Branches</a></li>
+<li class="chapter" data-level="14.2" data-path="git-branches.html"><a href="git-branches.html#merging"><i class="fa fa-check"></i><b>14.2</b> Merging</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="git-branches.html"><a href="git-branches.html#merge-conflicts"><i class="fa fa-check"></i><b>14.2.1</b> Merge Conflicts</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="git-branches.html"><a href="git-branches.html#undoing-changes"><i class="fa fa-check"></i><b>14.3</b> Undoing Changes</a></li>
+<li class="chapter" data-level="14.4" data-path="git-branches.html"><a href="git-branches.html#github-and-branches"><i class="fa fa-check"></i><b>14.4</b> GitHub and Branches</a><ul>
+<li class="chapter" data-level="14.4.1" data-path="git-branches.html"><a href="git-branches.html#github-pages"><i class="fa fa-check"></i><b>14.4.1</b> GitHub Pages</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="git-branches.html"><a href="git-branches.html#collaborative-workflows"><i class="fa fa-check"></i><b>14.5</b> Collaborative Workflows</a><ul>
+<li class="chapter" data-level="14.5.1" data-path="git-branches.html"><a href="git-branches.html#repository-setup"><i class="fa fa-check"></i><b>14.5.1</b> Repository Setup</a></li>
+<li class="chapter" data-level="14.5.2" data-path="git-branches.html"><a href="git-branches.html#feature-branches"><i class="fa fa-check"></i><b>14.5.2</b> Feature Branches</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="git-branches.html"><a href="git-branches.html#resources-13"><i class="fa fa-check"></i>Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>15</b> The <code>shiny</code> Framework</a><ul>
+<li class="chapter" data-level="15.1" data-path="shiny.html"><a href="shiny.html#creating-shiny-apps"><i class="fa fa-check"></i><b>15.1</b> Creating Shiny Apps</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="shiny.html"><a href="shiny.html#application-structure"><i class="fa fa-check"></i><b>15.1.1</b> Application Structure</a></li>
+<li class="chapter" data-level="15.1.2" data-path="shiny.html"><a href="shiny.html#the-ui"><i class="fa fa-check"></i><b>15.1.2</b> The UI</a></li>
+<li class="chapter" data-level="15.1.3" data-path="shiny.html"><a href="shiny.html#the-server"><i class="fa fa-check"></i><b>15.1.3</b> The Server</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="shiny.html"><a href="shiny.html#publishing-shiny-apps"><i class="fa fa-check"></i><b>15.2</b> Publishing Shiny Apps</a></li>
+<li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#resources-14"><i class="fa fa-check"></i>Resources</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Technical Foundations of Informatics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="shiny" class="section level1">
+<h1><span class="header-section-number">Chapter 15</span> The <code>shiny</code> Framework</h1>
+<p>Adding <strong>interactivity</strong> to a data report is a highly effective way of communicating that information and enabling users to explore a data set. In this chapter you will learn about the <strong>Shiny</strong> framework for building interactive applications in R. Shiny provides a structure for communicating between a user-interface (i.e., a web-browser) and an R session, allowing users to interactively change the “code” that is run and the data that are outputted. This not only enables developers to create interactive graphics, but provides a way for users to interact directly with an R session (without writing any code!).</p>
+<div id="creating-shiny-apps" class="section level2">
+<h2><span class="header-section-number">15.1</span> Creating Shiny Apps</h2>
+<p>Shiny is a <strong>web application framework for R</strong>. As opposed to a simple (static) web page like you’ve created with R Markdown, a <em>web application</em> is an interactive, dynamic web page—the user can click on buttons, check boxes, or input text in order to change the presentation of the data. Shiny is a <em>framework</em> in it provides the “code” for producing and enabling this interaction, while you as the developer simply “fill in the blanks” by providing <em>variables</em> or <em>functions</em> that the provided code will utilize to create the interactive page.</p>
+<p><code>shiny</code> is another external package (like <code>dplyr</code> and <code>ggplot2</code>), so you will need to install and load it in order to use it:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;shiny&quot;</span>)  <span class="co"># once per machine</span>
+<span class="kw">library</span>(<span class="st">&quot;shiny&quot;</span>)</code></pre></div>
+<p>This will make all of the framework functions and variables you will need to worth with available.</p>
+<div id="application-structure" class="section level3">
+<h3><span class="header-section-number">15.1.1</span> Application Structure</h3>
+<p>Shiny applications are divided into two parts:</p>
+<ol style="list-style-type: decimal">
+<li><p>The <strong>User Interface (UI)</strong> defines how the application will be <em>displayed</em> in the browser. The UI can render R content such as text or graphics just like R Markdown, but it can also include <strong>widgets</strong>, which are interactive controls for your application (think buttons or sliders). The UI can specify a <strong>layout</strong> for these components (e.g., so you can put widgets above, below, or beside one another).</p>
+<p>The UI for a Shiny application is defined as a <strong>value</strong>, usually one returned from calling a <strong>layout function</strong>. For example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># The ui is the result of calling the `fluidPage()` layout function</span>
+my.ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
+  <span class="co"># A widget: a text input box (save input in the `username` key)</span>
+  <span class="kw">textInput</span>(<span class="st">&#39;username&#39;</span>, <span class="dt">label=</span><span class="st">&quot;What is your name?&quot;</span>),
+
+  <span class="co"># An output element: a text output (for the `message` key)</span>
+  <span class="kw">textOutput</span>(<span class="st">&#39;message&#39;</span>)
+)</code></pre></div>
+<p>This UI defines a <a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html">fluidPage</a> (where the content flows “fluidly” down the page), that contains two <em>content elements</em>: a text input box where the user can type their name, and some outputted text based on the <code>message</code> variable.</p></li>
+<li><p>The <strong>Server</strong> defines the data that will be displayed in the UI and that the user can interact with. You can think of this as an interactive R script that the user will be able to “run”: the script will take in <em>inputs</em> from the user (based on their interactions) and provide <em>outputs</em> that the UI will then display. The server users <strong>reactive expressions</strong>, which are like functions that will automatically be re-run whenever the input changes. This allows the output to be dynamic and interactive.</p>
+<p>The Server for a Shiny application is defined as a <strong>function</strong> (as opposed to the UI which is a <em>value</em>). This function takes in two <em>lists</em> as argments: an <code>input</code> and <code>output</code>. It then uses <em>render functions</em> and <em>reactive expressions</em> that assign values to the <code>output</code> list based on the <code>input</code> list. For example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># The server is a function that takes `input` and `output` args</span>
+my.server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {
+  <span class="co"># assign a value to the `message` key in `output`</span>
+  <span class="co"># argument is a reactive expression for showing text</span>
+  output<span class="op">$</span>message &lt;-<span class="st"> </span><span class="kw">renderText</span>({
+    <span class="co"># use the `username` key from input and and return new value</span>
+    <span class="co"># for the `message` key in output</span>
+    <span class="kw">return</span>(<span class="kw">paste</span>(<span class="st">&quot;Hello&quot;</span>, input<span class="op">$</span>username))
+  })
+}</code></pre></div></li>
+</ol>
+<p>Combined, this UI and server will allow the user to type their name into an input box, and will then say “hello” to whatever name is typed in.</p>
+<p>More details about the UI and server components can be found in the sections below.</p>
+<div id="combining-ui-and-server" class="section level4">
+<h4><span class="header-section-number">15.1.1.1</span> Combining UI and Server</h4>
+<p>There are two ways of combining the UI and server:</p>
+<p>The first (newer) way is to define a file called <strong><code>app.R</code></strong>. This file should call the <a href="http://shiny.rstudio.com/reference/shiny/latest/shinyApp.html"><strong><code>shinyApp()</code></strong></a> function, which takes a UI value and Server function as arguments. For example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># pass in the variables defined above</span>
+<span class="kw">shinyApp</span>(<span class="dt">ui =</span> my.ui, <span class="dt">server =</span> my.server)</code></pre></div>
+<p>Executing the <code>shinyApp()</code> function will start the App (you can also click the <strong>“Run App”</strong> button at the top of RStudio).</p>
+<ul>
+<li><p>Note: if you change the UI or the Server, you do <strong>not</strong> need to stop and start the app; you can simply refresh the browser or viewer window and it will reload with the new UI and server.</p></li>
+<li><p>If you need to stop the App, you can hit the “Stop Sign” icon on the RStudio console.</p></li>
+</ul>
+<p>Using this function allows you to define your entire application (UI and Server) in a single file (which <strong>must</strong> be named <code>app.R</code>). This approach is good for simple applications that you wish to be able to share with others, since the entire application code can be listed in a single file.</p>
+<p>However, it is also possible to define the UI and server as <em>separate</em> files. This allows you to keep the presentation (UI) separated from the logic (server) of your application, making it easier to maintain and change in the future. To do this, you define two separate files: <strong><code>ui.R</code></strong> for the UI and <strong><code>server.R</code></strong> for the Server (the files <strong>must</strong> be named <code>ui.R</code> and <code>server.R</code>). These files call the functions <code>shinyUI()</code> and <code>shinyServer()</code> respectively to create the UI and server, and then RStudio will automatically combine these files together into an application:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### In ui.R file
+my.ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
+  <span class="co"># define widgets</span>
+)
+
+<span class="kw">shinyUI</span>(my.ui)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### In server.R file
+my.server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {
+  <span class="co"># define output reactive expressions</span>
+}
+
+<span class="kw">shinyServer</span>(my.server)</code></pre></div>
+<p>You can then run the app by using the <strong>“Run App”</strong> button at the top of RStudio:</p>
+<div class="figure">
+<img src="img/shiny/run-app.png" title="Run App button" alt="Use RStudio to run a shiny app defined in separate UI and Server files." />
+<p class="caption">Use RStudio to run a shiny app defined in separate UI and Server files.</p>
+</div>
+<p>This chapter will primarily use the “single file” approach for compactness and readability, but you are encouraged to break up the UI and server into separate files for your own, larger applications.</p>
+<ul>
+<li>Note that it is also possible to simply define the (e.g.) <code>my.ui</code> and <code>my.server</code> variables in separate files, and then use <code>source()</code> to load them into the <code>app.R</code> file and pass them into <code>shinyApp()</code>.</li>
+</ul>
+</div>
+</div>
+<div id="the-ui" class="section level3">
+<h3><span class="header-section-number">15.1.2</span> The UI</h3>
+<p>The UI defines how the app will be displayed in the browser. You create a UI by calling a <strong>layout function</strong> such as <code>fluidPage()</code>, which will return a UI definition that can be used by the <code>shinyUI()</code> or <code>shinyApp()</code> functions.</p>
+<p>You specify the “content” that you want the layout to contain (and hence the app to show) by passing each <strong>content element</strong> (piece of content) as an <em>argument</em> to that function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a &quot;pseudocode&quot; example, calling a function with arguments</span>
+ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(element1, element2, element3)</code></pre></div>
+<p>Content elements are defined by calling specific <em>functions</em> that create them: for example <code>h1()</code> will create an element that has a first-level heading, <code>textInput()</code> will create an element where the user can enter text, and <code>textOutput</code> will create an element that can have dynamic (changing) content. Usually these content elements are defined as <em>nested</em> (anonymous) variables, each on its own line:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># still just calling a function with arguments!</span>
+ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
+  <span class="kw">h1</span>(<span class="st">&quot;My App&quot;</span>),  <span class="co"># first argument</span>
+  <span class="kw">textInput</span>(<span class="st">&#39;username&#39;</span>, <span class="dt">label=</span><span class="st">&quot;What is your name?&quot;</span>),  <span class="co"># second argument</span>
+  <span class="kw">textOutput</span>(<span class="st">&#39;message&#39;</span>)  <span class="co"># third argument</span>
+)</code></pre></div>
+<p>Note that layout functions <em>themselves return content elements</em>, meaning it is possible to include a layout inside another layout. This allows you to create complex layouts by combining multiple layout elements together. For example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(   <span class="co"># UI is a fluid page</span>
+  <span class="kw">titlePanel</span>(<span class="st">&quot;My Title&quot;</span>),  <span class="co"># include panel with the title (also sets browser title)</span>
+
+  <span class="kw">sidebarLayout</span>(   <span class="co"># layout the page in two columns</span>
+    <span class="kw">sidebarPanel</span>(  <span class="co"># specify content for the &quot;sidebar&quot; column</span>
+      <span class="kw">p</span>(<span class="st">&quot;sidebar panel content goes here&quot;</span>)
+    ),
+    <span class="kw">mainPanel</span>(     <span class="co"># specify content for the &quot;main&quot; column</span>
+      <span class="kw">p</span>(<span class="st">&quot;main panel content goes here&quot;</span>)
+    )
+  )
+)</code></pre></div>
+<p>See the <a href="http://shiny.rstudio.com/reference/shiny/latest/">Shiny documentation</a> and <a href="http://shiny.rstudio.com/gallery/">gallery</a> for details and examples of doing complex application layouts.</p>
+<p class="alert alert-info">
+Fun Fact: much of Shiny’s styling and layout structure is based on the <a href="http://getbootstrap.com/">Bootstrap</a> web framework.
+</p>
+<p>You can include <em>static</em> (unchanging) content in a Shiny UI layout—this is similar to the kinds of content you would write in Markdown (rather than inline R) when using R Markdown. However, you usually don’t specify this content using Markdown syntax (though it is possible to <a href="http://shiny.rstudio.com/reference/shiny/latest/include.html">include a markdown file</a>’s content). Instead, you include content functions that produce HTML, the language that Markdown is converted to when you look at it in the browser. These functions include:</p>
+<ul>
+<li><code>p()</code> for creating paragraphs, the same as plain text in Markdown</li>
+<li><code>h1()</code>, <code>h2()</code>, <code>h3()</code> etc for creating headings, the same as <code># Heading 1</code>, <code>## Heading 2</code>, <code>### Heading 3</code> in Markdown</li>
+<li><code>em()</code> for creating <em>emphasized</em> (italic) text, the same as <code>_text_</code> in Markdown</li>
+<li><code>strong()</code> for creating <strong>strong</strong> (bolded) text, the same as <code>**text**</code> in Markdown</li>
+<li><code>a(text, href='url')</code> for creating hyperlinks (anchors), the same as <code>[text](url)</code> in Markdown</li>
+<li><code>img(text, src='url')</code> for including images, the same as <code>![text](url)</code> in Markdown</li>
+</ul>
+<p>There are may other methods as well, see <a href="http://shiny.rstudio.com/tutorial/lesson2/">this tutorial lesson</a> for a list. If you are <a href="https://info343-au16.github.io/#/tutorials/html">familiar with HTML</a>, then these methods will seem familiar; you can also write content in HTML directly using the <code>tag()</code> content function.</p>
+<!-- TODO: Add HTML tutorial! -->
+<div id="control-widgets-and-reactive-outputs" class="section level4">
+<h4><span class="header-section-number">15.1.2.1</span> Control Widgets and Reactive Outputs</h4>
+<p>It is more common to include <strong>control widgets</strong> as content elements in your UI layout. Widgets are <em>dynamic</em> (changing) control elements that the user can interact with. Each stores a <strong>value</strong> that the user has entered, whether by typing into a box, moving a slider, or checking a button. When the user changes their input, the stored <em>value</em> automatically changes as well.</p>
+<div class="figure">
+<img src="img/shiny/basic-widgets.png" title="control widgets" alt="Examples of control widgets (image from shiny.rstudio.com)." />
+<p class="caption">Examples of control widgets (image from shiny.rstudio.com).</p>
+</div>
+<p>Like other content elements, widgets are created by calling an appropriate function. For example:</p>
+<ul>
+<li><code>textInput()</code> creates a box in which the user can enter text</li>
+<li><code>sliderInput()</code> creates a slider</li>
+<li><code>selectInput()</code> creates a dropdown menu the user can choose from</li>
+<li><code>checkboxInput()</code> creates a box the user can check (using <code>checkboxGroupInput()</code> to group them)</li>
+<li><code>radioButtons()</code> creates “radio” buttons (which the user can select only one of at a time)</li>
+</ul>
+<p>See <a href="http://shiny.rstudio.com/reference/shiny/latest/">the documentation</a>, and <a href="http://shiny.rstudio.com/tutorial/lesson3/">this tutorial lesson</a> for a complete list.</p>
+<p>All widget functions take at least two arguments:</p>
+<ul>
+<li>A <strong>name</strong> (as a string) for the widget’s value. This will be the <strong>“key”</strong> that will allow the server to be able to access the value the user has inputted (think: the key in the <code>input</code> <em>list</em>).</li>
+<li>A <strong>label</strong> (a string or content element described above) that will be shown alongside the widget and tell the user what the value represents. Note that this can be an empty string (<code>&quot;&quot;</code>) if you don’t want to show anything.</li>
+</ul>
+<p>Other arguments may be required by a particular widget—for example, a slider’s <code>min</code> and <code>max</code> values:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># this function would be nested in a layout function (e.g., `fluidPage()`)</span>
+<span class="kw">sliderInput</span>(<span class="st">&#39;age&#39;</span>,              <span class="co"># key this value will be assigned to</span>
+            <span class="st">&quot;Age of subjects&quot;</span>,  <span class="co"># label</span>
+            <span class="dt">min =</span> <span class="dv">18</span>,           <span class="co"># minimum slider value</span>
+            <span class="dt">max =</span> <span class="dv">80</span>,           <span class="co"># maximum slider value</span>
+            <span class="dt">value =</span> <span class="dv">42</span>          <span class="co"># starting value</span>
+           )</code></pre></div>
+<p>Widgets are used to provide <strong>inputs <em>to</em></strong> the Server; see the below section for how to use these inputs, as well as examples from <a href="http://shiny.rstudio.com/gallery/">the gallery</a>.</p>
+<p>In order to display <strong>outputs <em>from</em></strong> the Server, you include a <strong>reactive output</strong> element in your UI layout. These are elements similar to the basic content elements, but instead of just displaying <em>static</em> (unchanging) content they can display <em>dynamic</em> (changing) content produced by the Server.</p>
+<p>As with other content elements, reactive outputs are creating by calling an appropriate function. For example:</p>
+<ul>
+<li><code>textOutput()</code> displays output as plain text (note this output can be nested in a content element for formatting)</li>
+<li><code>tableOutput()</code> displays output as a data table (similar to <code>kable()</code> in R Markdown). See also <code>dataTableOutput()</code> for an interactive version!</li>
+<li><code>plotOutput()</code> displays a graphical plot, such as one created with <code>ggplot2</code></li>
+</ul>
+<p>Each of these functions takes as an argument the <strong>name</strong> (as a string) of the value that will be displayed. This is the <strong>“key”</strong> that allows it to access the value the Server is outputting. Note that the functions may take additional arguments as well (e.g., to specify the size of a plot); see <a href="http://shiny.rstudio.com/reference/shiny/latest/">the documentation</a> for details.</p>
+</div>
+</div>
+<div id="the-server" class="section level3">
+<h3><span class="header-section-number">15.1.3</span> The Server</h3>
+<p>The Server defines how the data inputted by the user will be used to create the output displayed by the app—that is, how the <em>control widgets</em> and <em>reactive outputs</em> will be connected. You create a Server by <em>defining a new function</em> (not calling a provided one):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output){
+  <span class="co"># assign values to `output` here</span>
+}</code></pre></div>
+<p>Note that this is <em>just a normal function</em> that happens two take <strong>lists</strong> as arguments. That means you can include the same kinds of code as you normally would—though that code will only be run once (when the application is first started) unless defined as part of a reactive expression.</p>
+<p>The first argument is a list of any values defined by the <em>control widgets</em>: each <strong>name</strong> in a control widget will be a <strong>key</strong> in this list. For example, using the above <code>sliderInput()</code> example would cause the list to have an <code>age</code> key (referenced as <code>input$age</code>). This allows the Server to access any data that the user has inputted, using the key names defined in the UI. Note that the values in this list <em>will change as the user interacts with the UI’s control widgets</em>.</p>
+<p>The purpose of the Server function is to assign new <em>values</em> to the <code>output</code> argument list (each with an appropriate <em>key</em>). These values will then be displayed by the <em>reactive outputs</em> defined in the UI. To make it so that the values can actually be displayed by by the UI, the values assigned to this list need to be the results of <strong>Render Functions</strong>. Similar to creating widgets or reactive outputs, different functions are associated with different types of output the server should produce. For example:</p>
+<ul>
+<li><code>renderText()</code> will produce text (character strings) that can be displayed (i.e., by <code>textOutput()</code> in the UI)</li>
+<li><code>renderTable()</code> will produce a table that can be displayed (i.e., by <code>tableOutput()</code> in the UI)</li>
+<li><code>renderPlot()</code> will produce a graphical plot that can be displayed (i.e., by <code>plotOutput()</code> in the UI)</li>
+</ul>
+<p>Render functions take as an argument a <strong>Reactive Expression</strong>. This is a lot like a function: it is a <strong>block</strong> of code (in braces <strong><code>{}</code></strong>) that <strong>returns</strong> the value which should be rendered. For example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">output<span class="op">$</span>msg &lt;-<span class="st"> </span><span class="kw">renderText</span>({
+  <span class="co"># code goes here, just like any other function</span>
+  my.greeting &lt;-<span class="st"> &quot;Hello&quot;</span>
+
+  <span class="co"># code should always draw upon a key from the `input` variable</span>
+  message &lt;-<span class="st"> </span><span class="kw">paste</span>(my.greeting, input<span class="op">$</span>username)
+
+  <span class="co"># return the variable that will be rendered</span>
+  <span class="kw">return</span>(message)
+})</code></pre></div>
+<p>The only difference between writing a <em>reactive expression</em> and a function is that you only include the <em>block</em> (the braces and the code inside of them): you don’t use the keyword <code>function</code> and don’t specify a set of arguments.</p>
+<p class="alert alert-info">
+This technically defines a <em>closure</em>, which is a programming concept used to encapsulate functions and the context for those functions.
+</p>
+<p>These <em>reactive expressions</em> will be “re-run” <strong>every time</strong> one of the <code>input</code> values that it references changes. So if the user interacts with the <code>username</code> control widget (and thereby changes the value of the <code>input</code> list), the expression in the above <code>renderText()</code> will be executed again, returning a new value that will be assigned to <code>output$msg</code>. And since <code>output$msg</code> has now changed, any <em>reactive output</em> in the UI (e.g., a <code>textOutput()</code>) will update to show the latest value. This makes the app interactive!</p>
+<div id="multiple-views" class="section level4">
+<h4><span class="header-section-number">15.1.3.1</span> Multiple Views</h4>
+<p>It is quite common in a Shiny app to produce <em>lots</em> of output variables, and thus to have multiple reactive expressions. For example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {
+  <span class="co"># render a histogram plot</span>
+  output<span class="op">$</span>hist &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({
+    uniform.nums &lt;-<span class="st"> </span><span class="kw">runif</span>(input<span class="op">$</span>num, <span class="dv">1</span>, <span class="dv">10</span>)  <span class="co"># random nums between 1 and 10</span>
+    <span class="kw">return</span>( <span class="kw">hist</span>(uniform.nums) )  <span class="co"># built-in plotting for simplicity</span>
+  })
+
+  <span class="co"># render the counts</span>
+  output<span class="op">$</span>counts &lt;-<span class="st"> </span><span class="kw">renderPrint</span>({
+    uniform.nums &lt;-<span class="st"> </span><span class="kw">runif</span>(input<span class="op">$</span>num, <span class="dv">1</span>, <span class="dv">10</span>)  <span class="co"># random nums between 1 and 10</span>
+    counts &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">cut</span>(uniform.nums, <span class="dt">breaks=</span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>))  <span class="co"># factor</span>
+    <span class="kw">return</span>( <span class="kw">summary</span>(counts) )  <span class="co"># simple vector of counts</span>
+  })
+}</code></pre></div>
+<p>If you look at the above example though, you’ll notice that each render function produces a set of random numbers… which means each will produce a <em>different</em> set of numbers! The histogram and the table won’t match!</p>
+<p>This is an example of where you want to share a single piece of data (a single <strong>model</strong>) between multiple different renditions (multiple <strong>views</strong>). Effectively, you want to define a shared variable (the <code>uniform.nums</code>) that can be referenced by both render functions. But since you need that shared variable to be able to <em>update</em> whenever the <code>input</code> changes, you need to make it be a <em>reactive expression</em> itself. You can do this by using the <strong><code>reactive()</code></strong> function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {
+  <span class="co"># define a reactive variable</span>
+  uniform.nums &lt;-<span class="st"> </span><span class="kw">reactive</span>({
+    <span class="kw">return</span>( <span class="kw">runif</span>(input<span class="op">$</span>num, <span class="dv">1</span>, <span class="dv">10</span>) )  <span class="co"># just like for a render function</span>
+  })
+
+  <span class="co"># render a histogram plot</span>
+  output<span class="op">$</span>hist &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({
+    <span class="kw">return</span>( <span class="kw">hist</span>(<span class="kw">uniform.nums</span>()) )  <span class="co"># call the reactive variable AS A FUNCTION</span>
+  })
+
+  <span class="co"># render the counts</span>
+  output<span class="op">$</span>counts &lt;-<span class="st"> </span><span class="kw">renderPrint</span>({
+    counts &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">cut</span>(<span class="kw">uniform.nums</span>(), <span class="dt">breaks=</span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>))  <span class="co"># call the reactive variable AS A FUNCTION</span>
+    <span class="kw">return</span>( <span class="kw">summary</span>(counts) )
+  })
+}</code></pre></div>
+<p>The <code>reactive()</code> function lets you define a single “variable” that is a <em>reactive function</em> which can be called from within the render functions. Importantly, the value returned by this function (the <code>uniform.nums()</code>) only changes <strong>when a referenced <code>input</code> changes</strong>. Thus as long as <code>input$num</code> stays the same, <code>uniform.nums()</code> will return the same value.</p>
+<p>This is very powerful for allowing multiple <strong>views</strong> of a single piece of data: you can have a single source of data displayed both graphically and textually, with both views linked off of the same processed data table. Additionally, it can help keep your code more organized and readable, and avoid needing to duplicate any processing.</p>
+</div>
+</div>
+</div>
+<div id="publishing-shiny-apps" class="section level2">
+<h2><span class="header-section-number">15.2</span> Publishing Shiny Apps</h2>
+<p>Sharing a Shiny App with the world is a bit more involved than simply pushing the code to GitHub. You can’t just use GitHub pages to host the code because, in addition to the HTML UI, you need an R interpreter session to run the Server that the UI can connect to (and GitHub does not provide R interpreters)!</p>
+<p>While there are a few different ways of “hosting” Shiny Apps, in this course you’ll use the simplest one: hosting through <a href="https://www.shinyapps.io"><strong>shinyapps.io</strong></a>. shinyapps.io is a platform for hosting and running Shiny Apps; while large applications cost money, anyone can deploy a simple app (like the ones you’ll create in this course) for free.</p>
+<p>In order to host your app on shinyapps.io, you’ll need to <a href="https://www.shinyapps.io/admin/#/signup">create a free account</a>. Note that you can sign up with GitHub or your Google/UW account. Follow the site’s instructions to</p>
+<ol style="list-style-type: decimal">
+<li>Select an account name (use something professional, like you used when siging up with GitHub)</li>
+<li>Install the required <code>rsconnect</code> package (may be included with RStudio)</li>
+<li><p>Set your authorization token (“password”). Just click the green “Copy to Clipboard” button, and then paste that into the <strong>Console</strong> in RStudio. You should only need to do this once.</p>
+<p class="alert alert-warning">
+Don’t worry about “Step 3 - Deploy”; you’ll do that through RStudio directly!
+</p></li>
+</ol>
+<p>After you’ve set up an account, you can <em>Run</em> your application (as above) and hit the <strong>Publish</strong> button in the upper-right corner:</p>
+<div class="figure">
+<img src="img/shiny/publish-app.png" title="shiny publish button" alt="How to publish a running Shiny App to shinyapps.io." />
+<p class="caption">How to publish a running Shiny App to shinyapps.io.</p>
+</div>
+<p>This will put your app online, available at</p>
+<pre><code>https://USERNAME.shinyapps.io/APPNAME/</code></pre>
+<p><strong>Important</strong> Publishing to shinyapps.io is one of the major “pain points” in working with Shiny. For the best experience, be sure to:</p>
+<ol style="list-style-type: decimal">
+<li><p>Always test and debug your app <em>locally</em> (e.g., on your own computer, by running the App through RStudio). Make sure it works on your machine before you try to put it online.</p></li>
+<li><p>Use correct folder structures and <em>relative paths</em>. All of your app should be in a single folder (usually named after the project). Make sure any <code>.csv</code> or <code>.R</code> files referenced are inside the app folder, and that you use relative paths to refer to them. Do not include any <code>setwd()</code> statements in your code; you should only set the working directory through RStudio (because shinyapps.io will have its own working directory).</p></li>
+<li><p>It is possible to <a href="http://docs.rstudio.com/shinyapps.io/applications.html#logging">see the logs for your deployed app</a>, which may include errors explaining any problems that arise when you deploy your app.</p></li>
+</ol>
+<p>For more options and details, see <a href="http://docs.rstudio.com/shinyapps.io/index.html">the shinyapps.io documentation</a>.</p>
+</div>
+<div id="resources-14" class="section level2 unnumbered">
+<h2>Resources</h2>
+<ul>
+<li><a href="http://shiny.rstudio.com/articles/">Shiny Documentation</a></li>
+<li><a href="http://shiny.rstudio.com/articles/basics.html">Shiny Basics Article</a></li>
+<li><a href="http://shiny.rstudio.com/tutorial/">Shiny Tutorial</a> (video; links to text at bottom)</li>
+<li><a href="https://www.rstudio.com/wp-content/uploads/2016/01/shiny-cheatsheet.pdf">Shiny Cheatsheet</a></li>
+<li><a href="http://shiny.rstudio.com/gallery/">Shiny Example Gallery</a></li>
+<li><a href="http://docs.rstudio.com/shinyapps.io/index.html">shinyapps.io User Guide</a></li>
+<li><a href="http://shiny.rstudio.com/articles/plot-interaction.html">Interactive Plots with Shiny</a> (see also <a href="https://blog.rstudio.org/2015/06/16/shiny-0-12-interactive-plots-with-ggplot2/">here</a>)</li>
+<li><a href="https://shiny.rstudio.com/articles/interactive-docs.html">Interactive Docs with Shiny</a></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="git-branches.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["github", "facebook", "twitter", "google"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/info201/book/edit/master/shiny.Rmd",
+"text": "Edit"
+},
+"download": ["tech-foundations-of-informatics.pdf", "tech-foundations-of-informatics.epub"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+</body>
+
+</html>
