@@ -15,5 +15,5 @@ all: pdf epub book
 serve:
 	Rscript -e "bookdown::serve_book(dir='.', output_dir='build', preview=TRUE, in_session=TRUE)";
 
-deploy: all
+deploy: #all
 	git subtree push --prefix build https://github.com/info201/info201.github.io master
