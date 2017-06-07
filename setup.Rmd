@@ -70,8 +70,18 @@ For more information about using Atom, see [the manual](http://flight-manual.ato
 ### SublimeText
 [**SublimeText**](https://www.sublimetext.com/3) is a very popular text editor with excellent defaults and a variety of available extensions (though you'll need to manage and install extensions to achieve the functionality offered by other editors out of the box). While the software can be used for free, every 20 or so saves it will prompt you to purchase the full version. This is my application of choice for when  just want to write a plain text file.
 
+## R Language
+The primary programming language you will use throughout the course is called [**R**](https://www.r-project.org/). It's a very powerful statistical programming language that is built to work well with large and diverse datasets. See _[Introduction to R]_ (and the rest of this text!) to learn more about the language.
+
+In order to program with R, you will need to install the ___R Interpreter___ on your machine. This is a piece of software that is able to "read" code written in R and use that code to control your computer, thereby "programming" it.
+
+The easiest way to install R is to download it from the Comprehensive R Archive Network (CRAN) at **<https://cran.rstudio.com/>**. Click on the appropriate link for your operating system in order to find a link to the installer.
+
+- On a Mac, you're looking for the `.pkg` file&mdash;get the latest version supported by your computer.
+- On Windows, following the link to the `base` subdirectory (or following the link to "_install R for the first time_"), then click the link to download the latest version of R for Windows. You will need to double-click on the `.exe` file to install the software.
+
 ## RStudio
-The primary programming language you will use throughout the course is `R`. It's a very powerful statistical programming language that is built to work well with large and diverse datasets. While you are able to execute `R` scripts without an interface, the **RStudio** application provides a wonderful way to engage with the `R` language.
+While you are able to execute R scripts without an interface, the **RStudio** application provides a wonderful way to engage with the R language. RStudio is described in more detail in _[Introduction to R]_
 
 To install the RStudio program, select the **installer** for your operating system from the [downloads page](https://www.rstudio.com/products/rstudio/download/). Make sure to download the ___free___ version:
 
@@ -79,7 +89,6 @@ To install the RStudio program, select the **installer** for your operating syst
 
 Once the download completes, double-click on the `.exe` or `.dmg` file to run the installer. Simply follow the steps of the installer, and you should be prepared to use RStudio.
 
-By downloading RStudio, you will also install the R programming language, if it is not already present in your operating system. However, if there are any problems with that you can also [install R separately](https://cran.rstudio.com/). Click on the download page for your operating system in order to find a link to the installer. On a Mac you're looking for the `.pkg` file, and for Windows you want to look in the `base` section (follow the link to "install R for the first time").
 
 ## Resources {-}
 Links to the recommended software are collected here for easy access:
