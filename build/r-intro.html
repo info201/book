@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2017-06-07">
+<meta name="date" content="2017-06-26">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -377,14 +377,23 @@ Always read the output when working on the command-line!
 <img src="img/r-intro/rscript-terminal.png" title="RScript from the terminal" alt="Using RScript from the terminal" />
 <p class="caption">Using RScript from the terminal</p>
 </div>
-<ul>
-<li><p>On Windows, you would need to find the <strong>absolute path</strong> to the <code>RScript.exe</code> program <em>on your particular machine</em> and use that.</p>
+<div id="windows-command-line" class="section level4">
+<h4><span class="header-section-number">5.2.1.1</span> Windows Command-Line</h4>
+<p>On Windows, you need to be able to the computer where to find the <code>R.exe</code> and <code>RScript.exe</code> programs to execute—that is, what is the <strong>path</strong> to these programs. You can do this by specifying the <em>absolute path</em> to the program when you execute it, for example:</p>
 <div class="figure">
 <img src="img/r-intro/rscript-terminal-windows.png" title="Rscript from windows shell" alt="Using RScript from a Windows shell" />
 <p class="caption">Using RScript from a Windows shell</p>
 </div>
-<p>This can be tricky; we recommend you just use RStudio instead.</p></li>
+<p>If you plan to run R from the command-line regularly, a better solution is to add the folder containing these programs to your computer’s <a href="https://en.wikipedia.org/wiki/PATH_(variable)"><strong><code>PATH</code> variable</strong></a>. This is a <em>system-level</em> variable that contains a list of folders that the computer searches when finding programs to execute execute. The reason the computer knows where to find the <code>git.exe</code> program when you type <code>git</code> in the command-line is because that program is “on the <code>PATH</code>”.</p>
+<p>In Windows, You can add the <code>R.exe</code> and <code>RScript.exe</code> programs to your computer’s <code>PATH</code> by editing your machine’s <strong>Environment Variables</strong> through the <em>Control Panel</em>:</p>
+<ul>
+<li><p>Open up the “Advanced” tab of the “System Properties”. In Windows 10, you can find this by searching for “environment”. Click on the “Environment Variables…” button to open the settings for the Environment Variables.</p></li>
+<li><p>In the window that pops up, select the “PATH” variable (either per user or for the whole system) and click the “Edit” button below it.</p></li>
+<li><p>In the next window that pops up, click the “Browse” button to select the <em>folder that contains</em> the <code>R.exe</code> and <code>RScript.exe</code> files. See the above screenshot for one possible path.</p></li>
+<li><p>You will need to close and re-open your command-line (Git Bash) for the <code>PATH</code> changes to take effect.</p></li>
 </ul>
+<p>Overall, using R from the command-line can be tricky; we recommend you just use RStudio instead.</p>
+</div>
 </div>
 <div id="rstudio-1" class="section level3">
 <h3><span class="header-section-number">5.2.2</span> RStudio</h3>

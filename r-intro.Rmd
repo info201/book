@@ -36,11 +36,24 @@ It is also possible to run entire scripts from the command-line by using the `RS
 
 ![Using RScript from the terminal](img/r-intro/rscript-terminal.png "RScript from the terminal")
 
-- On Windows, you would need to find the **absolute path** to the `RScript.exe` program _on your particular machine_ and use that.
+#### Windows Command-Line
+On Windows, you need to be able to the computer where to find the `R.exe` and `RScript.exe` programs to execute&mdash;that is, what is the **path** to these programs. You can do this by specifying the _absolute path_ to the program when you execute it, for example:
 
-    ![Using RScript from a Windows shell](img/r-intro/rscript-terminal-windows.png "Rscript from windows shell")
+![Using RScript from a Windows shell](img/r-intro/rscript-terminal-windows.png "Rscript from windows shell")
 
-    This can be tricky; we recommend you just use RStudio instead.
+If you plan to run R from the command-line regularly, a better solution is to add the folder containing these programs to your computer's [**`PATH` variable**](https://en.wikipedia.org/wiki/PATH_(variable)). This is a _system-level_ variable that contains a list of folders that the computer searches when finding programs to execute execute. The reason the computer knows where to find the `git.exe` program when you type `git` in the command-line is because that program is "on the `PATH`".
+
+In Windows, You can add the `R.exe` and `RScript.exe` programs to your computer's `PATH` by editing your machine's **Environment Variables** through the _Control Panel_:
+
+- Open up the "Advanced" tab of the "System Properties". In Windows 10, you can find this by searching for "environment". Click on the "Environment Variables..." button to open the settings for the Environment Variables.
+
+- In the window that pops up, select the "PATH" variable (either per user or for the whole system) and click the "Edit" button below it.
+
+- In the next window that pops up, click the "Browse" button to select the _folder that contains_ the `R.exe` and `RScript.exe` files. See the above screenshot for one possible path.
+
+- You will need to close and re-open your command-line (Git Bash) for the `PATH` changes to take effect.
+
+Overall, using R from the command-line can be tricky; we recommend you just use RStudio instead.
 
 ### RStudio
 RStudio is an open-source **integrated development environment (IDE)** that provides an informative user interface for interacting with the R interpreter. IDEs provide a platform for writing _and_ executing code, including viewing the results of the code you have run. If you haven't already, make sure to download and install [the free version of RStudio](https://www.rstudio.com/products/rstudio/download3/#download).
