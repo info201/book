@@ -216,6 +216,30 @@ git push -u origin branch_name
 Tracking will be remembered once set up, so you only need to use the `-u` option _once_.
 
 
+### Pull Requests
+All changes to code _including branch merges_ should be made on a local machine and then `pushed` to GitHub. Howver, GitHub does offer a feature called [**pull requests**](https://help.github.com/articles/creating-a-pull-request/) by which you can merge two remote branches (that is: `merge` two branches that are on GitHub). A **pull request** is a request for the changes from one branch to be pulled (merged) into another.
+
+This feature is used primarily to let teams of developers _collaborate_&mdash;one developer can send a request "hey, can you integrate my changes?" to another. The second developer can perform a **code review**: reviewing the proposed changes and making comments or asking for corrections to anything they find problematic. Once the changes are improved, the pull request can be **accepted** and the changes merged into the target branch. This process is how programmers collaborate on _open-source software_ (such as R libraries like `dplyr`): a developer can _fork_ an existing professional project, make changes to that fork, and then send a pull request back to the original developer asking them to merge in changes ("will you include my changes in your branch/version of the code?").
+
+<p class="alert alert-warning">Pull requests should only be used when doing collaboration using remote branches! Local branches should be `merged` locally using the command-line, not GitHub's pull request feature.</p>
+
+In order to issue a pull request, both branches you wish to merge will need to be `pushed` to GitHub (whether they are in the same repo or in forks). To issue the pull request, navigate to your repository on GitHub's web portal and choose the **New Pull Request** button (it is next to the drop-down that lets you view different branches).
+
+In the next page, you will need to specify which branches you wish to merge. The **base** branch is the one you want to merge _into_ (often `master`), and the **head** branch (labeled "compare") is the branch with the new changes you want to merge (often a feature branch; see below).
+
+Add a title and description for your pull request. These should follow the format for git commit messages. Finally, click the **Create pull request** button to finish creating the pull request.
+
+<p class="alert alert-info">Important! The pull request is a request to merge two branches, not to merge a specific set of commits. This means that you can _push more commits_ to the head/merge-from branch, and they will automatically be included in the pull request&mdash;the request is always "up-to-date" with whatever commits are on the (remote) branch.</p>
+
+You can view all pull requests (including those that have been accepted) through the **Pull Requests** tab at the top of the repo's web portal. This is where you can go to see comments that have been left by the reviewer.
+
+If someone sends you a pull request (e.g., another developer on your team), you can [accept that pull request](https://help.github.com/articles/merging-a-pull-request/) through GitHub's web portal. If the branches can be merged without a conflict, you can do this simply by hitting the **Merge pull request** button. However, if GitHub detects that a conflict may occur, you will need to [pull down the branches and merge them locally](https://help.github.com/articles/checking-out-pull-requests-locally).
+
+<p class="alert alert-warning">It is best practice to _never_ accept your own pull requests! If you don't need any collaboration, just merge the branches locally.</p>
+
+Note that when you merge a pull request via the GitHub web site, the merge is done entirely on the server. Your local repo will not yet have those changes, and so you will need to use `git pull` to download the updates to an appropriate branch.
+
+
 ### GitHub Pages
 GitHub's use of branches provides a number of additional features, one of which is the ability  to **host** web pages (`.html` files, which can be generated from R Markdown) <!--or Jupyter notebooks)--> on a publicly accessible web server that can "serve" the page to anyone who requests it. This feature is known as [GitHub Pages](https://help.github.com/articles/what-is-github-pages/).
 

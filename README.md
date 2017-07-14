@@ -2,7 +2,7 @@
 
 This repository contains the source code for the **INFO 201: Technical Foundations in Informatics** course book. The published book can be viewed at **https://info201.github.io/**.
 
-Note that **all** edited source files (including images and other assets) should be edited within the **`src`** folder; files in the root directory may be overwritten.
+Note that **all** edited source files (including images and other assets) should be edited within the **root** folder; files in the `build` directory may be overwritten.
 
 ## Dependencies
 You should be able to install all required R dependencies using [packrat](https://rstudio.github.io/packrat/): simply restart R (e.g., through an interactive session in the terminal) in order to automatically install the required libraries.

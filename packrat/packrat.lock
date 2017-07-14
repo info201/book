@@ -1,6 +1,6 @@
 PackratFormat: 1.4
 PackratVersion: 0.4.8.1
-RVersion: 3.4.0
+RVersion: 3.3.1
 Repos: CRAN=https://cran.rstudio.com/
 
 Package: BH
@@ -96,6 +96,12 @@ Package: formatR
 Source: CRAN
 Version: 1.5
 Hash: 258cf79a8dbeedf1c981cdb53837d2af
+
+Package: gdtools
+Source: CRAN
+Version: 0.1.4
+Hash: 82a0d1f0a706b60429940a32346a60b9
+Requires: Rcpp, withr
 
 Package: ggplot2
 Source: CRAN
@@ -239,11 +245,22 @@ Version: 1.2.0
 Hash: 25a86d7f410513ebb7c0bc6a5e16bdc3
 Requires: magrittr, stringi
 
+Package: svglite
+Source: CRAN
+Version: 1.2.0
+Hash: d55be3dfb5c1338f54b1a48e54a8d290
+Requires: BH, Rcpp, gdtools
+
 Package: tibble
 Source: CRAN
 Version: 1.3.3
 Hash: cff4362530fb71e27b84a02054bcb315
 Requires: Rcpp, rlang
+
+Package: withr
+Source: CRAN
+Version: 1.0.2
+Hash: 774eb7be9087cdc24b53b74e5359cfac
 
 Package: xtable
 Source: CRAN

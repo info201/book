@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2017-06-26">
+<meta name="date" content="2017-07-14">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -180,7 +180,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5" data-path="r-intro.html"><a href="r-intro.html"><i class="fa fa-check"></i><b>5</b> Introduction to R</a><ul>
 <li class="chapter" data-level="5.1" data-path="r-intro.html"><a href="r-intro.html#programming-with-r"><i class="fa fa-check"></i><b>5.1</b> Programming with R</a></li>
 <li class="chapter" data-level="5.2" data-path="r-intro.html"><a href="r-intro.html#running-r-scripts"><i class="fa fa-check"></i><b>5.2</b> Running R Scripts</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="command-line.html"><a href="command-line.html#command-line"><i class="fa fa-check"></i><b>5.2.1</b> Command-Line</a></li>
+<li class="chapter" data-level="5.2.1" data-path="r-intro.html"><a href="r-intro.html#rscript-cmd"><i class="fa fa-check"></i><b>5.2.1</b> Command-Line</a></li>
 <li class="chapter" data-level="5.2.2" data-path="r-intro.html"><a href="r-intro.html#rstudio-1"><i class="fa fa-check"></i><b>5.2.2</b> RStudio</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="r-intro.html"><a href="r-intro.html#comments"><i class="fa fa-check"></i><b>5.3</b> Comments</a></li>
@@ -303,7 +303,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="14.3" data-path="git-branches.html"><a href="git-branches.html#undoing-changes"><i class="fa fa-check"></i><b>14.3</b> Undoing Changes</a></li>
 <li class="chapter" data-level="14.4" data-path="git-branches.html"><a href="git-branches.html#github-and-branches"><i class="fa fa-check"></i><b>14.4</b> GitHub and Branches</a><ul>
-<li class="chapter" data-level="14.4.1" data-path="git-branches.html"><a href="git-branches.html#github-pages"><i class="fa fa-check"></i><b>14.4.1</b> GitHub Pages</a></li>
+<li class="chapter" data-level="14.4.1" data-path="git-branches.html"><a href="git-branches.html#pull-requests"><i class="fa fa-check"></i><b>14.4.1</b> Pull Requests</a></li>
+<li class="chapter" data-level="14.4.2" data-path="git-branches.html"><a href="git-branches.html#github-pages"><i class="fa fa-check"></i><b>14.4.2</b> GitHub Pages</a></li>
 </ul></li>
 <li class="chapter" data-level="14.5" data-path="git-branches.html"><a href="git-branches.html#collaborative-workflows"><i class="fa fa-check"></i><b>14.5</b> Collaborative Workflows</a><ul>
 <li class="chapter" data-level="14.5.1" data-path="git-branches.html"><a href="git-branches.html#repository-setup"><i class="fa fa-check"></i><b>14.5.1</b> Repository Setup</a></li>
@@ -488,8 +489,28 @@ Conversely, the <code>reset</code> command will destroy history. <strong>Do not 
 <p>Note that you often want to associate your local branch with the remote one (make the local branch <strong>track</strong> the remote), so that when you use <code>git status</code> you will be able to see whether they are different or not. You can establish this relationship by including the <code>-u</code> option in your push:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> push -u origin branch_name</code></pre></div>
 <p>Tracking will be remembered once set up, so you only need to use the <code>-u</code> option <em>once</em>.</p>
+<div id="pull-requests" class="section level3">
+<h3><span class="header-section-number">14.4.1</span> Pull Requests</h3>
+<p>All changes to code <em>including branch merges</em> should be made on a local machine and then <code>pushed</code> to GitHub. Howver, GitHub does offer a feature called <a href="https://help.github.com/articles/creating-a-pull-request/"><strong>pull requests</strong></a> by which you can merge two remote branches (that is: <code>merge</code> two branches that are on GitHub). A <strong>pull request</strong> is a request for the changes from one branch to be pulled (merged) into another.</p>
+<p>This feature is used primarily to let teams of developers <em>collaborate</em>—one developer can send a request “hey, can you integrate my changes?” to another. The second developer can perform a <strong>code review</strong>: reviewing the proposed changes and making comments or asking for corrections to anything they find problematic. Once the changes are improved, the pull request can be <strong>accepted</strong> and the changes merged into the target branch. This process is how programmers collaborate on <em>open-source software</em> (such as R libraries like <code>dplyr</code>): a developer can <em>fork</em> an existing professional project, make changes to that fork, and then send a pull request back to the original developer asking them to merge in changes (“will you include my changes in your branch/version of the code?”).</p>
+<p class="alert alert-warning">
+Pull requests should only be used when doing collaboration using remote branches! Local branches should be <code>merged</code> locally using the command-line, not GitHub’s pull request feature.
+</p>
+<p>In order to issue a pull request, both branches you wish to merge will need to be <code>pushed</code> to GitHub (whether they are in the same repo or in forks). To issue the pull request, navigate to your repository on GitHub’s web portal and choose the <strong>New Pull Request</strong> button (it is next to the drop-down that lets you view different branches).</p>
+<p>In the next page, you will need to specify which branches you wish to merge. The <strong>base</strong> branch is the one you want to merge <em>into</em> (often <code>master</code>), and the <strong>head</strong> branch (labeled “compare”) is the branch with the new changes you want to merge (often a feature branch; see below).</p>
+<p>Add a title and description for your pull request. These should follow the format for git commit messages. Finally, click the <strong>Create pull request</strong> button to finish creating the pull request.</p>
+<p class="alert alert-info">
+Important! The pull request is a request to merge two branches, not to merge a specific set of commits. This means that you can <em>push more commits</em> to the head/merge-from branch, and they will automatically be included in the pull request—the request is always “up-to-date” with whatever commits are on the (remote) branch.
+</p>
+<p>You can view all pull requests (including those that have been accepted) through the <strong>Pull Requests</strong> tab at the top of the repo’s web portal. This is where you can go to see comments that have been left by the reviewer.</p>
+<p>If someone sends you a pull request (e.g., another developer on your team), you can <a href="https://help.github.com/articles/merging-a-pull-request/">accept that pull request</a> through GitHub’s web portal. If the branches can be merged without a conflict, you can do this simply by hitting the <strong>Merge pull request</strong> button. However, if GitHub detects that a conflict may occur, you will need to <a href="https://help.github.com/articles/checking-out-pull-requests-locally">pull down the branches and merge them locally</a>.</p>
+<p class="alert alert-warning">
+It is best practice to <em>never</em> accept your own pull requests! If you don’t need any collaboration, just merge the branches locally.
+</p>
+<p>Note that when you merge a pull request via the GitHub web site, the merge is done entirely on the server. Your local repo will not yet have those changes, and so you will need to use <code>git pull</code> to download the updates to an appropriate branch.</p>
+</div>
 <div id="github-pages" class="section level3">
-<h3><span class="header-section-number">14.4.1</span> GitHub Pages</h3>
+<h3><span class="header-section-number">14.4.2</span> GitHub Pages</h3>
 <p>GitHub’s use of branches provides a number of additional features, one of which is the ability to <strong>host</strong> web pages (<code>.html</code> files, which can be generated from R Markdown) <!--or Jupyter notebooks)--> on a publicly accessible web server that can “serve” the page to anyone who requests it. This feature is known as <a href="https://help.github.com/articles/what-is-github-pages/">GitHub Pages</a>.</p>
 <p>With GitHub pages, GitHub will automatically serve your files to visitors as long as the files are in a branch with a magic name: <strong><code>gh-pages</code></strong>. Thus in order to <strong>publish</strong> your webpage and make it available online, all you need to do is create that branch, merge your content into it, and then push that branch to GitHub.</p>
 <p>You almost always want to create the new <code>gh-pages</code> branch off of your <code>master</code> branch. This is because you usually want to publish the “finished” version, which is traditionally represented by the <code>master</code> branch. This means you’ll need to switch over to <code>master</code>, and then create a new branch from there:</p>

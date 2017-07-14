@@ -17,7 +17,7 @@ As you begin working with data in R, you will be writing multiple instructions (
 ## Running R Scripts
 R scripts (programs) are just a sequence of instructions, and there are a couple of different ways in which we can tell the computer to execute these instructions.
 
-### Command-Line
+### Command-Line {#rscript-cmd}
 It is possible to issue R instructions (run lines of code) one-by-one at the command-line by starting an **interactive R session** within your terminal. This will allow you to type R code directly into the terminal, and your computer will interpret and execute each line of code (if you just typed R syntax directly into the terminal, your computer wouldn't understand it).
 
 With R installed, you can start an interactive R session on a Mac by typing `R` into the terminal (to run the `R` program), or on Windows by running the "R" desktop app program. This will start the session and provide you with lots of information about the R language:
@@ -232,4 +232,5 @@ As with any programming language, when working in R you will inevitably run into
 - [RStudio Keyboard Shortcuts](https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts)
 - [R Documentation](https://www.rdocumentation.org/) searchable online documentation
 - [R for Data Science](http://r4ds.had.co.nz/) online textbook
+- [aRrgh: a newcomer's (angry) guide to R](http://arrgh.tim-smith.us/) opinionated but clear introduction
 - [The Art of R Programming](https://www.nostarch.com/artofr.htm) print textbook
