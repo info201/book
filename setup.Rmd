@@ -16,7 +16,7 @@ In short, you'll need to install the following programs: see below for more info
 
     - You are welcome to use another text editor if you wish; some further suggestions are included.
 
-- **R**: a programming language commonly used for working with data. This will be our primary language for the quarter. "Installing R" actually means installing tools that will let your computer understand and run R code.
+- **R**: a programming language commonly used for working with data. This is the primary programming language used throught this book. "Installing R" actually means installing tools that will let your computer understand and run R code.
 
 - **RStudio**: An graphical editor for writing and running R code. This will soon become our primary development application.
 
@@ -40,7 +40,7 @@ The command-line provides a text-based interface for giving instructions to your
 In order to use the command-line, you will need to use a **command shell** (a.k.a. a _command prompt_). This is a program that provides the interface to type commands into. In particular, we'll be working with the <a href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)">Bash</a> shell, which provides a particular common set of commands common to Mac and Linux machines.
 
 ### Command-line on a Mac
-On a Mac you'll want to use the built-in app called **Terminal**. You can open it by searching via Spotlight (hit Cmd (`⌘`) and Spacebar together, type in "terminal", then select the app to open it), or by finding it in the Applications/Utilities folder.
+On a Mac you'll want to use the built-in app called *Terminal*. You can open it by searching via Spotlight (hit Cmd (`⌘`) and Spacebar together, type in "terminal", then select the app to open it), or by finding it in the Applications/Utilities folder.
 
 ### Command-line on Windows
 On Windows, we recommend using [**Git Bash**](https://git-scm.com/downloads), which you should have installed along with `git` (above). Open this program to open the command-shell. This works great, since you'll primarily be using the command-line for performing version control.
@@ -58,20 +58,22 @@ RStudio has a great built-in text editor, but you'll sometimes want to use anoth
 ### Atom
 [**Atom**](https://atom.io/) is a text editor built by the folks at GitHub and has been gaining in popularity. As an open source project, people are continually building (and making available) interesting/useful extensions. Its built-in spell-check is a great feature, especially for documents that require lots of written text. It also has excellent support for Markdown, a markup language you'll be using regularly in this course.
 
-Click the "Download" button to download the installer `.exe` file, then double-click on that to install the application.
+To Download Atom, visit their [**webpage**](https://atom.io/) and click the "Download" button to download the installer `.exe` file, then double-click on that icon to install the application.
 
-Once you've installed Atom, the trick to using it effectively is to get comfortable with the [Command Palette](http://flight-manual.atom.io/getting-started/sections/atom-basics/#command-palette). If you hit `Cmd+Shift+P`, Atom will open a small window where you can search for whatever you want the editor to do. For example, if you type in `markdown` you can get list of commands related to Markdown files (including the ability to open up a preview).
+Once you've installed Atom, you can open the program and create a new text file. When you save a document that is a particular file-type (i.e., `file-name.R`, or `file-name.md`), Atom (or any other modern text-editor) will apply a language specific color scheme to your text, making it easier to read. 
+
+The trick to using Atom more efficiently is to get comfortable with the [Command Palette](http://flight-manual.atom.io/getting-started/sections/atom-basics/#command-palette). If you hit `Cmd+Shift+P`, Atom will open a small window where you can search for whatever you want the editor to do. For example, if you type in `markdown` you can get list of commands related to Markdown files (including the ability to open up a preview).
 
 For more information about using Atom, see [the manual](http://flight-manual.atom.io/).
 
 ### Visual Studio Code
-[**Visual Studio Code**](https://code.visualstudio.com/) (or VS Code; not to be confused with Visual Studio) is a free, open-source editor developed by Microsoft&mdash;yes, really. While it focuses on web programming and JavaScript, it readily supports lots of languages including Markdown and R and provides a number of extensions for adding even more features. It has a similar _command palette_ to Atom, but isn't quite as nice for editing Markdown specifically. Although fairly new, it is updated regularly and has become one of my main editors for programming.
+[**Visual Studio Code**](https://code.visualstudio.com/) (or VS Code; not to be confused with Visual Studio) is a free, open-source editor developed by Microsoft&mdash;yes, really. While it focuses on web programming and JavaScript, it readily supports lots of languages including Markdown and R and provides a number of extensions for adding even more features. It has a similar _command palette_ to Atom, but isn't quite as nice for editing Markdown specifically. Although fairly new, it is updated regularly and has become one of our main editors for programming.
 
 ### SublimeText
-[**SublimeText**](https://www.sublimetext.com/3) is a very popular text editor with excellent defaults and a variety of available extensions (though you'll need to manage and install extensions to achieve the functionality offered by other editors out of the box). While the software can be used for free, every 20 or so saves it will prompt you to purchase the full version. This is my application of choice for when  just want to write a plain text file.
+[**SublimeText**](https://www.sublimetext.com/3) is a very popular text editor with excellent defaults and a variety of available extensions (though you'll need to manage and install extensions to achieve the functionality offered by other editors out of the box). While the software can be used for free, every 20 or so saves it will prompt you to purchase the full version. 
 
 ## R Language
-The primary programming language you will use throughout the course is called [**R**](https://www.r-project.org/). It's a very powerful statistical programming language that is built to work well with large and diverse datasets. See _[Introduction to R]_ (and the rest of this text!) to learn more about the language.
+The primary programming language you will use throughout this book is called [**R**](https://www.r-project.org/). It's a very powerful statistical programming language that is built to work well with large and diverse datasets. See the _[Introduction to R]_ chapter for a more in-depth introduciton to the language.
 
 In order to program with R, you will need to install the ___R Interpreter___ on your machine. This is a piece of software that is able to "read" code written in R and use that code to control your computer, thereby "programming" it.
 
