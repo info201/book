@@ -1,12 +1,12 @@
 # Markdown {#markdown}
 
-Markdown syntax provides a simple way to describe the desired formatting of text documents. In fact, this book was written using Markdown! With only a small handful of options, Markdown allows you to format to your text (like making text **bold**, or _italics_), as well as provide structure to a document. There are a number of programs and service that support the _rendering_ of Markdown, including GitHub, Slack, and StackOverflow (though note the syntax may vary slightly across programs). In this chapter, you'll learn the basics of Markdown syntax, and how to leverage it to produce readable code documents.
+Markdown syntax provides a simple way to describe the desired formatting of text documents. In fact, this book was written using Markdown! With only a small handful of options, Markdown allows you to format to your text (like making text **bold**, or _italics_), as well as provide structure to a document (such as headers or bullet-points). There are a number of programs and services that support the _rendering_ of Markdown, including GitHub, Slack, and StackOverflow (though note the syntax may vary slightly across programs). In this chapter, you'll learn the basics of Markdown syntax, and how to leverage it to produce readable code documents.
 
 ## Writing Markdown
-Markdown is a lightweight [markup language](https://en.wikipedia.org/wiki/Markup_language) that is used to format and structure text. It is a kind of "code" that you write in order to _annotate_ plain text: it lets the computer know that "this text is bold", "this text is a heading", etc. Compared to other markup languages, Markdown is easy to write and easy to read without getting in the way of the text itself. And because it's so simple to include, it's often used for formatting in web forums and services (like Wikipedia or StackOverflow).
+Markdown is a lightweight [markup language](https://en.wikipedia.org/wiki/Markup_language) that is used to format and structure text. It is a kind of "code" that you write in order to _annotate_ plain text: it lets the computer know that "this text is bold", "this text is a heading", etc. Compared to other markup languages, Markdown is easy to write and easy to read without getting in the way of the text itself. And because it's so simple to include, it's often used for formatting in web forums and services (like Wikipedia or StackOverflow). As a programmer, you'll use Markdown to create documentation and other supplementary materials that help explain your projects.
 
 ### Text Formatting
-At its most basic, Markdown is used to declare text formatting options. You do this by adding special symbols (punctuation) _around_ the text you wish to "mark". For example, if you want to make text _italiced_, you would surround that text with underscores (**`_`**) so it looks like `_italicized text_`. You can see how this looks in the below example (code on the left, rendered version on the right):
+At its most basic, Markdown is used to declare text formatting options. You do this by adding special symbols (punctuation) _around_ the text you wish to "mark". For example, if you want text to be rendered as _italiccs_, you would surround that text with underscores (**`_`**): you would type `_italics_`, and a program would know to render that text as _italics_. You can see how this looks in the below example (code on the left, rendered version on the right):
 
 ![Markdown text formatting.](img/markdown/markdown-text.png "Markdown text formatting")
 
@@ -14,9 +14,10 @@ There are a few different ways you can format text:
 
 | Syntax | Formatting	|
 | :--- | :--- |
-| `_text_`	| _italicized_ with underscores	|
-| `**text**`	| **bolded** with two asterisks	|
-| ``` `text` ``` | inline `code` with backticks	|
+| `_text_`	| _italicized_ using underscores (`_`)	|
+| `**text**`	| **bolded** using two asterisks (`*`)	|
+| ``` `text` ``` | inline `code` with backticks	(` ` `) |
+| `~~text~~` | ~~strike-through~~ using tildes (`~`) |
 
 
 ### Text Blocks
@@ -29,7 +30,7 @@ As you can see, the document (right) is produced using the following Markdown sh
 | Syntax | Formatting	|
 | :--- | :--- |
 | `# ` | Header (use `##` for 2nd-level, `###` for 3rd, etc.) |
-| ```` ``` ````	| Code section (3 back ticks)	|
+| ```` ``` ````	| Code section (3 back ticks) that encapsulate the code	|
 | `- ` | Bulleted/unordered lists (hyphens) |
 | `> ` | Block quote |
 
