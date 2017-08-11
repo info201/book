@@ -22,7 +22,6 @@ In short, you'll need to install the following programs: see below for more info
 
 The following sections have additional information about the purpose of each component, how to install it, and alternative configurations.
 
-If you run into any installation/configuration challenges, please let others know on the [slack channel](https://info201-a16.slack.com) so that others can anticipate the same issues.
 
 ## Git
 **`git`** is a version control system that provides a set of commands that allow you to manage changes to written code, particularly when collaborating with other programmers (much more on this in [chapter 4](#git-basics)). To start, you'll need to [download](https://git-scm.com/downloads) and install the software. If you are on a Mac, `git` should already be installed.
@@ -67,8 +66,8 @@ For more information about using Atom, see [the manual](http://flight-manual.ato
 ### Visual Studio Code
 [**Visual Studio Code**](https://code.visualstudio.com/) (or VS Code; not to be confused with Visual Studio) is a free, open-source editor developed by Microsoft&mdash;yes, really. While it focuses on web programming and JavaScript, it readily supports lots of languages including Markdown and R and provides a number of extensions for adding even more features. It has a similar _command palette_ to Atom, but isn't quite as nice for editing Markdown specifically. Although fairly new, it is updated regularly and has become one of my main editors for programming.
 
-### SublimeText
-[**SublimeText**](https://www.sublimetext.com/3) is a very popular text editor with excellent defaults and a variety of available extensions (though you'll need to manage and install extensions to achieve the functionality offered by other editors out of the box). While the software can be used for free, every 20 or so saves it will prompt you to purchase the full version. This is my application of choice for when  just want to write a plain text file.
+### Sublime Text
+[**Sublime Text**](https://www.sublimetext.com/3) is a very popular text editor with excellent defaults and a variety of available extensions (though you'll need to manage and install extensions to achieve the functionality offered by other editors out of the box). While the software can be used for free, every 20 or so saves it will prompt you to purchase the full version. This is my application of choice for when  just want to write a plain text file.
 
 ## R Language
 The primary programming language you will use throughout the course is called [**R**](https://www.r-project.org/). It's a very powerful statistical programming language that is built to work well with large and diverse datasets. See _[Introduction to R]_ (and the rest of this text!) to learn more about the language.
