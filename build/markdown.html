@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2017-07-14">
+<meta name="date" content="2017-08-11">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -343,13 +343,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="markdown" class="section level1">
 <h1><span class="header-section-number">Chapter 3</span> Markdown</h1>
-<p>Markdown syntax provides a simple way to describe the desired formatting of text documents. In fact, this book was written using Markdown! With only a small handful of options, Markdown allows you to format to your text (like making text <strong>bold</strong>, or <em>italics</em>), as well as provide structure to a document. There are a number of programs and service that support the <em>rendering</em> of Markdown, including GitHub, Slack, and StackOverflow (though note the syntax may vary slightly across programs). In this chapter, you’ll learn the basics of Markdown syntax, and how to leverage it to produce readable code documents.</p>
+<p>Markdown syntax provides a simple way to describe the desired formatting of text documents. In fact, this book was written using Markdown! With only a small handful of options, Markdown allows you to format to your text (like making text <strong>bold</strong>, or <em>italics</em>), as well as provide structure to a document (such as headers or bullet-points). There are a number of programs and services that support the <em>rendering</em> of Markdown, including GitHub, Slack, and StackOverflow (though note the syntax may vary slightly across programs). In this chapter, you’ll learn the basics of Markdown syntax, and how to leverage it to produce readable code documents.</p>
 <div id="writing-markdown" class="section level2">
 <h2><span class="header-section-number">3.1</span> Writing Markdown</h2>
-<p>Markdown is a lightweight <a href="https://en.wikipedia.org/wiki/Markup_language">markup language</a> that is used to format and structure text. It is a kind of “code” that you write in order to <em>annotate</em> plain text: it lets the computer know that “this text is bold”, “this text is a heading”, etc. Compared to other markup languages, Markdown is easy to write and easy to read without getting in the way of the text itself. And because it’s so simple to include, it’s often used for formatting in web forums and services (like Wikipedia or StackOverflow).</p>
+<p>Markdown is a lightweight <a href="https://en.wikipedia.org/wiki/Markup_language">markup language</a> that is used to format and structure text. It is a kind of “code” that you write in order to <em>annotate</em> plain text: it lets the computer know that “this text is bold”, “this text is a heading”, etc. Compared to other markup languages, Markdown is easy to write and easy to read without getting in the way of the text itself. And because it’s so simple to include, it’s often used for formatting in web forums and services (like Wikipedia or StackOverflow). As a programmer, you’ll use Markdown to create documentation and other supplementary materials that help explain your projects.</p>
 <div id="text-formatting" class="section level3">
 <h3><span class="header-section-number">3.1.1</span> Text Formatting</h3>
-<p>At its most basic, Markdown is used to declare text formatting options. You do this by adding special symbols (punctuation) <em>around</em> the text you wish to “mark”. For example, if you want to make text <em>italiced</em>, you would surround that text with underscores (<strong><code>_</code></strong>) so it looks like <code>_italicized text_</code>. You can see how this looks in the below example (code on the left, rendered version on the right):</p>
+<p>At its most basic, Markdown is used to declare text formatting options. You do this by adding special symbols (punctuation) <em>around</em> the text you wish to “mark”. For example, if you want text to be rendered as <em>italiccs</em>, you would surround that text with underscores (<strong><code>_</code></strong>): you would type <code>_italics_</code>, and a program would know to render that text as <em>italics</em>. You can see how this looks in the below example (code on the left, rendered version on the right):</p>
 <div class="figure">
 <img src="img/markdown/markdown-text.png" title="Markdown text formatting" alt="Markdown text formatting." />
 <p class="caption">Markdown text formatting.</p>
@@ -365,15 +365,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <tbody>
 <tr class="odd">
 <td align="left"><code>_text_</code></td>
-<td align="left"><em>italicized</em> with underscores</td>
+<td align="left"><em>italicized</em> using underscores (<code>_</code>)</td>
 </tr>
 <tr class="even">
 <td align="left"><code>**text**</code></td>
-<td align="left"><strong>bolded</strong> with two asterisks</td>
+<td align="left"><strong>bolded</strong> using two asterisks (<code>*</code>)</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>`text`</code></td>
-<td align="left">inline <code>code</code> with backticks</td>
+<td align="left">inline <code>code</code> with backticks (<code>`</code>)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>~~text~~</code></td>
+<td align="left"><del>strike-through</del> using tildes (<code>~</code>)</td>
 </tr>
 </tbody>
 </table>
@@ -400,7 +404,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </tr>
 <tr class="even">
 <td align="left"><code>```</code></td>
-<td align="left">Code section (3 back ticks)</td>
+<td align="left">Code section (3 back ticks) that encapsulate the code</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>-</code></td>
