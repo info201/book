@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1503497541 "tech-foundations-of-informatics.tex" "tech-foundations-of-informatics.pdf" "tech-foundations-of-informatics" 1503497541
+["pdflatex"] 1503499561 "tech-foundations-of-informatics.tex" "tech-foundations-of-informatics.pdf" "tech-foundations-of-informatics" 1503499561
   "/usr/local/texlive/2015/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2015/texmf-dist/tex/generic/ifxetex/ifxetex.sty" 1284331290 1458 43ab4710dc82f3edeabecd0d099626b2 ""
   "/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ifluatex.sty" 1303254447 7324 11d14f318d865f420e692d4e6c9c18c3 ""
@@ -44,7 +44,7 @@
   "/usr/local/texlive/2015/texmf-var/web2c/xetex/xelatex.fmt" 1432479679 3445950 7f6125c6eb78b33bcedbe55e49dbfd83 ""
   "/usr/local/texlive/2015/texmf.cnf" 1432479636 577 0d611272082f3cdb8e80e09a3c69cf07 ""
   "tech-foundations-of-informatics.aux" 1503497541 8 a94a2480d3289e625eea47cd1b285758 ""
-  "tech-foundations-of-informatics.tex" 1503497540 372392 28b7b4b64be649c3bc5a80abf1386f14 ""
+  "tech-foundations-of-informatics.tex" 1503499561 373060 e29ba35b0a8243dff90a13a185ed1a9b ""
   (generated)
   "tech-foundations-of-informatics.log"
   "tech-foundations-of-informatics.pdf"

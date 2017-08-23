@@ -1,7 +1,6 @@
 # Introduction to R {#r-intro}
 
-R is an extraordinarily powerful open-source software program built for working with data. It is one of the most popular tools for performing advanced data techniques, including statistical analysis, machine learning, and data visualization. R is be the primary programming language for this course, which will help you develop a strong understanding of how to leverage the power of R.
-
+R is an extraordinarily powerful open-source software program built for working with data. It is one of the most popular data science tools because of its ability to efficiently perform statistical analysis, implement machine learning algorithms, and create data visualizations. R is the primary programming language used throughout this book, and understanding its foundational operations is key to being able to perform more complex tasks.
 
 ## Programming with R
 R is a **statistical programming language** that allows you to write code to work with data. It is an **open-source** programming language, which means that it is free and continually improved upon by the R community. The R language has a number of functionalities that allow you to read, analyze, and visualize datasets.
@@ -10,7 +9,7 @@ R is a **statistical programming language** that allows you to write code to wor
 
 So far you've leveraged formal language to give instructions to your computers, such as by writing syntactically-precise instructions at the command-line. Programming in R will work in a similar manner: you will write instructions using R's special language and syntax, which the computer will **interpret** as instructions for how to work with data.
 
-However, as projects grow in complexity, it will become useful if you can write down all the instructions in a single place, and then order the computer to _execute_ all of those instructions at once. This list of instructions is called a **script**. Executing or "running" a script will cause each instruction (line of code) to be run _in order, one after the other_, just as if you had typed them in one by one. Writing scripts allows you to save, share, and re-use your work&mdash;by saving instructions in a file, you can easily check, change, and re-execute the list of instructions as you figure out how to use data to answer questions. And because R is an _interpreted_ language rather than a _compiled_ language like Java, R programming environments will also give you the ability to execute each individual line of code in your script if you desire (though this will become cumbersome as projects become large).
+However, as projects grow in complexity, it will become useful if you can write down all the instructions in a single place, and then order the computer to _execute_ all of those instructions at once. This list of instructions is called a **script**. Executing or "running" a script will cause each instruction (line of code) to be run _in order, one after the other_, just as if you had typed them in one by one. Writing scripts allows you to save, share, and re-use your work. By saving instructions in a file (or set of files), you can easily check, change, and re-execute the list of instructions as you figure out how to use data to answer questions. And, because R is an _interpreted_ language rather than a _compiled_ language like Java, R programming environments will also give you the ability to execute each individual line of code in your script if you desire (though this will become cumbersome as projects become large).
 
 As you begin working with data in R, you will be writing multiple instructions (lines of code) and saving them in files with the **`.R`** extension, representing R scripts. You can write this R code in any text editor (such as Atom), but we recommend you usually use a program called **RStudio** which is specialized for writing and running R scripts.
 
@@ -28,7 +27,7 @@ Notice that this description also include _instructions on what to do next_&mdas
 
 <p class="alert alert-warning">Always read the output when working on the command-line!</p>
 
-Once you've started running an interactive R session, you can begin entering one line of code at a time at the prompt (`>`). This is a nice way to experiment with the R language or to quickly run some code.
+Once you've started running an interactive R session, you can begin entering one line of code at a time at the prompt (`>`). This is a nice way to experiment with the R language or to quickly run some code. For example, try doing some math at the command prompt (i.e., enter `1 + 1` and see the output).
 
 - Note that RStudio also provides an interactive console that provides the exact same functionality.
 
@@ -36,12 +35,14 @@ It is also possible to run entire scripts from the command-line by using the `RS
 
 ![Using RScript from the terminal](img/r-intro/rscript-terminal.png "RScript from the terminal")
 
+Entering this command in the terminal would execute each line of R code written in the `analysis.R` file, performing all of the instructions that you had save there. This is helpful if your data has changed, and you want to reproduce the results of your analysis using the same instructions.
+
 #### Windows Command-Line
-On Windows, you need to be able to the computer where to find the `R.exe` and `RScript.exe` programs to execute&mdash;that is, what is the **path** to these programs. You can do this by specifying the _absolute path_ to the program when you execute it, for example:
+On Windows, you need to tell the computer where to find the `R.exe` and `RScript.exe` programs to execute&mdash;that is, what is the **path** to these programs. You can do this by specifying the _absolute path_ to the R program when you execute it, for example:
 
 ![Using RScript from a Windows shell](img/r-intro/rscript-terminal-windows.png "Rscript from windows shell")
 
-If you plan to run R from the command-line regularly, a better solution is to add the folder containing these programs to your computer's [**`PATH` variable**](https://en.wikipedia.org/wiki/PATH_(variable)). This is a _system-level_ variable that contains a list of folders that the computer searches when finding programs to execute execute. The reason the computer knows where to find the `git.exe` program when you type `git` in the command-line is because that program is "on the `PATH`".
+If you plan to run R from the command-line regularly (_not_ a requirement for this course), a better solution is to add the folder containing these programs to your computer's [**`PATH` variable**](https://en.wikipedia.org/wiki/PATH_(variable)). This is a _system-level_ variable that contains a list of folders that the computer searches when finding programs to execute execute. The reason the computer knows where to find the `git.exe` program when you type `git` in the command-line is because that program is "on the `PATH`".
 
 In Windows, You can add the `R.exe` and `RScript.exe` programs to your computer's `PATH` by editing your machine's **Environment Variables** through the _Control Panel_:
 
@@ -62,7 +63,7 @@ When you open the RStudio program (either by searching for it, or double-clickin
 
 ![RStudio's user interface. Annotations are in red.](img/r-intro/rstudio-interface.png "Rstudio's user interface")
 
-A RStudio session usually involves 4 sections ("panes"), though you can customize this layout if you wish:
+An RStudio session usually involves 4 sections ("panes"), though you can customize this layout if you wish:
 
 - **Script**: The top-left pane is a simple text editor for writing your R code. While it is not as robust as a text editing program like Atom, it will colorize code, "auto-complete" text, and allows you to easily execute your code. Note that this pane is hidden if there are no open scripts; select `File > New File > R Script` from the menu to create a new script file.
 
@@ -86,7 +87,7 @@ Note, you can use the small spaces between the quadrants to adjust the size of e
 
 
 ## Comments
-Before discussing how to program with R, we need to talk about a piece of syntax that lets you comment your code. In programming, **comments** are bits of text that are _not interpreted as computer instructions_&mdash;they aren't code, they're just notes about the code! Since computer code can be opaque and difficult to understand, we use comments to help write down the meaning and _purpose_ of our code. While a computer is able to understand the code, comments are there to help _people_ understand. This is particularly imporant when someone else will be looking at your work&mdash;whether that person is a collaborator, or is simple a future version of you (e.g., when you need to come back and fix something and so need to remember what you were even thinking).
+Before discussing how to program with R, we need to talk about a piece of syntax that lets you comment your code. In programming, **comments** are bits of text that are _not interpreted as computer instructions_&mdash;they aren't code, they're just notes about the code! Since computer code can be opaque and difficult to understand, we use comments to help write down the meaning and _purpose_ of our code. While a computer is able to understand the code, comments are there to help _people_ understand it. This is particularly imporant when someone else will be looking at your work&mdash;whether that person is a collaborator, or is simply a future version of you (e.g., when you need to come back and fix something and so need to remember what you were even thinking).
 
 Comments should be clear, concise, and helpful&mdash;they should provide information that is not otherwise present or "obvious" in the code itself.
 
@@ -165,10 +166,11 @@ There are a few "basic types" (or _modes_) for data in R:
     Logical values are most commonly the result of applying a **relational operator** (also called a **comparison operator**) to some other data. Comparison operators are used to compare values and include: `<` (less than), `>` (greater than), `<=` (less-than-or-equal), `>=` (greater-than-or-equal), `==` (equal), and `!=` (not-equal).
 
     ```r
+    # Store values in variables
     x <- 3
     y <- 3.15
 
-    # compare numbers
+    # Compare values in x and y
     x > y  # returns logical value FALSE (x IS NOT bigger than y)
     y != x  # returns logical value TRUE (y IS not-equal to x)
 
@@ -179,21 +181,22 @@ There are a few "basic types" (or _modes_) for data in R:
     "cat" > "dog"  # returns FALSE
     ```
 
-    Logical values have their own operators as well (called **logical operators** or **boolean operators**). These apply to logical values and produce logical values, and allow you to make more complex logical expressions. They include `&` (and), `|` (or), and `!` (not).
+    Logical values have their own operators as well (called **logical operators** or **boolean operators**). These _apply to_ logical values and _produce_ logical values, allowing you to make more complex logical expressions. These include `&` (and), `|` (or), and `!` (not).
 
     ```r
+    # Store values in variables
     x <- 3.1
     y <- 3.2
     pet <- "dog"
     weather <- "rain"
 
-    # x is less than pi AND y is greater than pi
+    # Check if x is less than pi AND y is greater than pi
     x < pi & y > pi  # TRUE
 
-    # pet is "cat" OR "dog"
+    # Check if pet is "cat" OR "dog"
     pet == "cat" | pet == "dog"  # TRUE
 
-    # pet is "dog" AND NOT weather is "rain"
+    # Check if pet is "dog" AND NOT weather is "rain"
     pet == "dog" & !(weather == "rain")  # FALSE
     ```
 
@@ -208,7 +211,7 @@ There are a few "basic types" (or _modes_) for data in R:
 ## Getting Help {#gettinghelp}
 As with any programming language, when working in R you will inevitably run into problems, confusing situations, or just general questions. Here are a few ways to start getting help.
 
-1. **Read the error messages**: If there is an issue with the way you have written or executed your code, R will often print out a red error message in your console. Do you best to decipher the message (read it carefully, and think about what is meant by each word in the message), or you can put it directly into Google to get more information. You'll soon get the hang of interpreting these messages if you don't panic when one comes up.
+1. **Read the error messages**: If there is an issue with the way you have written or executed your code, R will often print out a red error message in your console. Do you best to decipher the message (read it carefully, and think about what is meant by each word in the message), or you can put it directly into Google to get more information. You'll soon get the hang of interpreting these messages if you put the time into trying to understand them.
 
 2. **Google**: When you're trying to figure out how to do something, it should be no surprise that Google is often the best resource. Try searching for queries like `"how to <DO THING> in R"`. More frequently than not, your question will lead you to a Q/A forum called StackOverflow (see below), which is a great place to find potential answers.
 
@@ -216,7 +219,7 @@ As with any programming language, when working in R you will inevitably run into
 
     - There is a classical method of debugging called [rubber duck debugging](https://en.wikipedia.org/wiki/Rubber_duck_debugging), which involves simply trying to explain your code/problem to an inanimate object (talking to pets works too). You'll usually be able to fix the problem if you just step back and think about how you would explain it to someone else!
 
-4. **Documentation**: R's documentation is actually quite good. Functions and behaviors are all described in the same format, and often contain a helpful examples. To search the documentation within R (or in RStudio), simply type `?` followed by the function name you're using (more on functions coming soon). You can also search the documentation by typing two questions marks (`??SEARCH`).
+4. **Documentation**: R's documentation is actually quite good. Functions and behaviors are all described in the same format, and often contain helpful examples. To search the documentation within R (or in RStudio), simply type `?` followed by the function name you're using (more on functions coming soon). You can also search the documentation by typing two questions marks (`??SEARCH`).
 
     - You can also look up help by using the `help()` function (e.g., `help(print)` will look up information on the `print()` function, just like `?print` does). There is also an `example()` function you can call to see examples of a function in action (e.g., `example(print)`). This will be more important in the next module!
 

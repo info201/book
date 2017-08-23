@@ -343,7 +343,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="r-intro" class="section level1">
 <h1><span class="header-section-number">Chapter 5</span> Introduction to R</h1>
-<p>R is an extraordinarily powerful open-source software program built for working with data. It is one of the most popular tools for performing advanced data techniques, including statistical analysis, machine learning, and data visualization. R is be the primary programming language for this course, which will help you develop a strong understanding of how to leverage the power of R.</p>
+<p>R is an extraordinarily powerful open-source software program built for working with data. It is one of the most popular data science tools because of its ability to efficiently perform statistical analysis, implement machine learning algorithms, and create data visualizations. R is the primary programming language used throughout this book, and understanding its foundational operations is key to being able to perform more complex tasks.</p>
 <div id="programming-with-r" class="section level2">
 <h2><span class="header-section-number">5.1</span> Programming with R</h2>
 <p>R is a <strong>statistical programming language</strong> that allows you to write code to work with data. It is an <strong>open-source</strong> programming language, which means that it is free and continually improved upon by the R community. The R language has a number of functionalities that allow you to read, analyze, and visualize datasets.</p>
@@ -351,7 +351,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><em>Fun Fact:</em> R is called “R” because it was inspired by and comes after the language “S”, a language for <strong>S</strong>tatistics developed by AT&amp;T.</li>
 </ul>
 <p>So far you’ve leveraged formal language to give instructions to your computers, such as by writing syntactically-precise instructions at the command-line. Programming in R will work in a similar manner: you will write instructions using R’s special language and syntax, which the computer will <strong>interpret</strong> as instructions for how to work with data.</p>
-<p>However, as projects grow in complexity, it will become useful if you can write down all the instructions in a single place, and then order the computer to <em>execute</em> all of those instructions at once. This list of instructions is called a <strong>script</strong>. Executing or “running” a script will cause each instruction (line of code) to be run <em>in order, one after the other</em>, just as if you had typed them in one by one. Writing scripts allows you to save, share, and re-use your work—by saving instructions in a file, you can easily check, change, and re-execute the list of instructions as you figure out how to use data to answer questions. And because R is an <em>interpreted</em> language rather than a <em>compiled</em> language like Java, R programming environments will also give you the ability to execute each individual line of code in your script if you desire (though this will become cumbersome as projects become large).</p>
+<p>However, as projects grow in complexity, it will become useful if you can write down all the instructions in a single place, and then order the computer to <em>execute</em> all of those instructions at once. This list of instructions is called a <strong>script</strong>. Executing or “running” a script will cause each instruction (line of code) to be run <em>in order, one after the other</em>, just as if you had typed them in one by one. Writing scripts allows you to save, share, and re-use your work. By saving instructions in a file (or set of files), you can easily check, change, and re-execute the list of instructions as you figure out how to use data to answer questions. And, because R is an <em>interpreted</em> language rather than a <em>compiled</em> language like Java, R programming environments will also give you the ability to execute each individual line of code in your script if you desire (though this will become cumbersome as projects become large).</p>
 <p>As you begin working with data in R, you will be writing multiple instructions (lines of code) and saving them in files with the <strong><code>.R</code></strong> extension, representing R scripts. You can write this R code in any text editor (such as Atom), but we recommend you usually use a program called <strong>RStudio</strong> which is specialized for writing and running R scripts.</p>
 </div>
 <div id="running-r-scripts" class="section level2">
@@ -369,7 +369,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p class="alert alert-warning">
 Always read the output when working on the command-line!
 </p>
-<p>Once you’ve started running an interactive R session, you can begin entering one line of code at a time at the prompt (<code>&gt;</code>). This is a nice way to experiment with the R language or to quickly run some code.</p>
+<p>Once you’ve started running an interactive R session, you can begin entering one line of code at a time at the prompt (<code>&gt;</code>). This is a nice way to experiment with the R language or to quickly run some code. For example, try doing some math at the command prompt (i.e., enter <code>1 + 1</code> and see the output).</p>
 <ul>
 <li>Note that RStudio also provides an interactive console that provides the exact same functionality.</li>
 </ul>
@@ -378,14 +378,15 @@ Always read the output when working on the command-line!
 <img src="img/r-intro/rscript-terminal.png" title="RScript from the terminal" alt="Using RScript from the terminal" />
 <p class="caption">Using RScript from the terminal</p>
 </div>
+<p>Entering this command in the terminal would execute each line of R code written in the <code>analysis.R</code> file, performing all of the instructions that you had save there. This is helpful if your data has changed, and you want to reproduce the results of your analysis using the same instructions.</p>
 <div id="windows-command-line" class="section level4">
 <h4><span class="header-section-number">5.2.1.1</span> Windows Command-Line</h4>
-<p>On Windows, you need to be able to the computer where to find the <code>R.exe</code> and <code>RScript.exe</code> programs to execute—that is, what is the <strong>path</strong> to these programs. You can do this by specifying the <em>absolute path</em> to the program when you execute it, for example:</p>
+<p>On Windows, you need to tell the computer where to find the <code>R.exe</code> and <code>RScript.exe</code> programs to execute—that is, what is the <strong>path</strong> to these programs. You can do this by specifying the <em>absolute path</em> to the R program when you execute it, for example:</p>
 <div class="figure">
 <img src="img/r-intro/rscript-terminal-windows.png" title="Rscript from windows shell" alt="Using RScript from a Windows shell" />
 <p class="caption">Using RScript from a Windows shell</p>
 </div>
-<p>If you plan to run R from the command-line regularly, a better solution is to add the folder containing these programs to your computer’s <a href="https://en.wikipedia.org/wiki/PATH_(variable)"><strong><code>PATH</code> variable</strong></a>. This is a <em>system-level</em> variable that contains a list of folders that the computer searches when finding programs to execute execute. The reason the computer knows where to find the <code>git.exe</code> program when you type <code>git</code> in the command-line is because that program is “on the <code>PATH</code>”.</p>
+<p>If you plan to run R from the command-line regularly (<em>not</em> a requirement for this course), a better solution is to add the folder containing these programs to your computer’s <a href="https://en.wikipedia.org/wiki/PATH_(variable)"><strong><code>PATH</code> variable</strong></a>. This is a <em>system-level</em> variable that contains a list of folders that the computer searches when finding programs to execute execute. The reason the computer knows where to find the <code>git.exe</code> program when you type <code>git</code> in the command-line is because that program is “on the <code>PATH</code>”.</p>
 <p>In Windows, You can add the <code>R.exe</code> and <code>RScript.exe</code> programs to your computer’s <code>PATH</code> by editing your machine’s <strong>Environment Variables</strong> through the <em>Control Panel</em>:</p>
 <ul>
 <li><p>Open up the “Advanced” tab of the “System Properties”. In Windows 10, you can find this by searching for “environment”. Click on the “Environment Variables…” button to open the settings for the Environment Variables.</p></li>
@@ -404,7 +405,7 @@ Always read the output when working on the command-line!
 <img src="img/r-intro/rstudio-interface.png" title="Rstudio&#39;s user interface" alt="RStudio’s user interface. Annotations are in red." />
 <p class="caption">RStudio’s user interface. Annotations are in red.</p>
 </div>
-<p>A RStudio session usually involves 4 sections (“panes”), though you can customize this layout if you wish:</p>
+<p>An RStudio session usually involves 4 sections (“panes”), though you can customize this layout if you wish:</p>
 <ul>
 <li><p><strong>Script</strong>: The top-left pane is a simple text editor for writing your R code. While it is not as robust as a text editing program like Atom, it will colorize code, “auto-complete” text, and allows you to easily execute your code. Note that this pane is hidden if there are no open scripts; select <code>File &gt; New File &gt; R Script</code> from the menu to create a new script file.</p>
 <p>In order to execute (run) the code you write, you have two options:</p>
@@ -427,7 +428,7 @@ Always read the output when working on the command-line!
 </div>
 <div id="comments" class="section level2">
 <h2><span class="header-section-number">5.3</span> Comments</h2>
-<p>Before discussing how to program with R, we need to talk about a piece of syntax that lets you comment your code. In programming, <strong>comments</strong> are bits of text that are <em>not interpreted as computer instructions</em>—they aren’t code, they’re just notes about the code! Since computer code can be opaque and difficult to understand, we use comments to help write down the meaning and <em>purpose</em> of our code. While a computer is able to understand the code, comments are there to help <em>people</em> understand. This is particularly imporant when someone else will be looking at your work—whether that person is a collaborator, or is simple a future version of you (e.g., when you need to come back and fix something and so need to remember what you were even thinking).</p>
+<p>Before discussing how to program with R, we need to talk about a piece of syntax that lets you comment your code. In programming, <strong>comments</strong> are bits of text that are <em>not interpreted as computer instructions</em>—they aren’t code, they’re just notes about the code! Since computer code can be opaque and difficult to understand, we use comments to help write down the meaning and <em>purpose</em> of our code. While a computer is able to understand the code, comments are there to help <em>people</em> understand it. This is particularly imporant when someone else will be looking at your work—whether that person is a collaborator, or is simply a future version of you (e.g., when you need to come back and fix something and so need to remember what you were even thinking).</p>
 <p>Comments should be clear, concise, and helpful—they should provide information that is not otherwise present or “obvious” in the code itself.</p>
 <p>In R, we mark text as a comment by putting it after the pound/hashtag symbol (<strong><code>#</code></strong>). Everything from the <code>#</code> until the end of the line is a comment. We put descriptive comments <em>immediately above</em> the code it describes, but you can also put very short notes at the end of the line of code (preferably following two spaces):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Set how many bottles of beer are on the wall</span>
@@ -475,10 +476,11 @@ famous.poet &lt;-<span class="st"> &quot;Bill Shakespeare&quot;</span></code></p
 <li><em>Fun fact:</em> logical values are called “booleans” after mathematician and logician <a href="https://en.wikipedia.org/wiki/George_Boole">George Boole</a>.</li>
 </ul>
 <p>Logical values are most commonly the result of applying a <strong>relational operator</strong> (also called a <strong>comparison operator</strong>) to some other data. Comparison operators are used to compare values and include: <code>&lt;</code> (less than), <code>&gt;</code> (greater than), <code>&lt;=</code> (less-than-or-equal), <code>&gt;=</code> (greater-than-or-equal), <code>==</code> (equal), and <code>!=</code> (not-equal).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">3</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Store values in variables</span>
+x &lt;-<span class="st"> </span><span class="dv">3</span>
 y &lt;-<span class="st"> </span><span class="fl">3.15</span>
 
-<span class="co"># compare numbers</span>
+<span class="co"># Compare values in x and y</span>
 x <span class="op">&gt;</span><span class="st"> </span>y  <span class="co"># returns logical value FALSE (x IS NOT bigger than y)</span>
 y <span class="op">!=</span><span class="st"> </span>x  <span class="co"># returns logical value TRUE (y IS not-equal to x)</span>
 
@@ -487,19 +489,20 @@ y <span class="op">==</span><span class="st"> </span>pi  <span class="co"># retu
 
 <span class="co"># compare strings (based on alphabetical ordering)</span>
 <span class="st">&quot;cat&quot;</span> <span class="op">&gt;</span><span class="st"> &quot;dog&quot;</span>  <span class="co"># returns FALSE</span></code></pre></div>
-<p>Logical values have their own operators as well (called <strong>logical operators</strong> or <strong>boolean operators</strong>). These apply to logical values and produce logical values, and allow you to make more complex logical expressions. They include <code>&amp;</code> (and), <code>|</code> (or), and <code>!</code> (not).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="fl">3.1</span>
+<p>Logical values have their own operators as well (called <strong>logical operators</strong> or <strong>boolean operators</strong>). These <em>apply to</em> logical values and <em>produce</em> logical values, allowing you to make more complex logical expressions. These include <code>&amp;</code> (and), <code>|</code> (or), and <code>!</code> (not).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Store values in variables</span>
+x &lt;-<span class="st"> </span><span class="fl">3.1</span>
 y &lt;-<span class="st"> </span><span class="fl">3.2</span>
 pet &lt;-<span class="st"> &quot;dog&quot;</span>
 weather &lt;-<span class="st"> &quot;rain&quot;</span>
 
-<span class="co"># x is less than pi AND y is greater than pi</span>
+<span class="co"># Check if x is less than pi AND y is greater than pi</span>
 x <span class="op">&lt;</span><span class="st"> </span>pi <span class="op">&amp;</span><span class="st"> </span>y <span class="op">&gt;</span><span class="st"> </span>pi  <span class="co"># TRUE</span>
 
-<span class="co"># pet is &quot;cat&quot; OR &quot;dog&quot;</span>
+<span class="co"># Check if pet is &quot;cat&quot; OR &quot;dog&quot;</span>
 pet <span class="op">==</span><span class="st"> &quot;cat&quot;</span> <span class="op">|</span><span class="st"> </span>pet <span class="op">==</span><span class="st"> &quot;dog&quot;</span>  <span class="co"># TRUE</span>
 
-<span class="co"># pet is &quot;dog&quot; AND NOT weather is &quot;rain&quot;</span>
+<span class="co"># Check if pet is &quot;dog&quot; AND NOT weather is &quot;rain&quot;</span>
 pet <span class="op">==</span><span class="st"> &quot;dog&quot;</span> <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span>(weather <span class="op">==</span><span class="st"> &quot;rain&quot;</span>)  <span class="co"># FALSE</span></code></pre></div>
 <p>Note that it’s easy to write complex expressions with logical operators. If you find yourself getting lost, I recommend rethinking your question to see if there is a simpler way to express it!</p></li>
 <li><p><strong>Complex</strong>: Complex (imaginary) numbers have their own data storage type in R, are are created using the <code>i</code> syntax: <code>complex.variable &lt;- 2i</code>. We will not be using complex numbers in this course.</p></li>
@@ -511,13 +514,13 @@ pet <span class="op">==</span><span class="st"> &quot;dog&quot;</span> <span cla
 <h2><span class="header-section-number">5.5</span> Getting Help</h2>
 <p>As with any programming language, when working in R you will inevitably run into problems, confusing situations, or just general questions. Here are a few ways to start getting help.</p>
 <ol style="list-style-type: decimal">
-<li><p><strong>Read the error messages</strong>: If there is an issue with the way you have written or executed your code, R will often print out a red error message in your console. Do you best to decipher the message (read it carefully, and think about what is meant by each word in the message), or you can put it directly into Google to get more information. You’ll soon get the hang of interpreting these messages if you don’t panic when one comes up.</p></li>
+<li><p><strong>Read the error messages</strong>: If there is an issue with the way you have written or executed your code, R will often print out a red error message in your console. Do you best to decipher the message (read it carefully, and think about what is meant by each word in the message), or you can put it directly into Google to get more information. You’ll soon get the hang of interpreting these messages if you put the time into trying to understand them.</p></li>
 <li><p><strong>Google</strong>: When you’re trying to figure out how to do something, it should be no surprise that Google is often the best resource. Try searching for queries like <code>&quot;how to &lt;DO THING&gt; in R&quot;</code>. More frequently than not, your question will lead you to a Q/A forum called StackOverflow (see below), which is a great place to find potential answers.</p></li>
 <li><p><strong>StackOverflow</strong>: StackOverflow is an amazing Q/A forum for asking/answering programming questions. Indeed, most basic questions have already been asked/answered here. However, don’t hesitate to post your own questions to StackOverflow. Be sure to hone in on the specific question you’re trying to answer, and provide error messages and sample code. I often find that, by the time I can articulate the question clearly enough to post it, I’ve figured out my problem anyway.</p>
 <ul>
 <li>There is a classical method of debugging called <a href="https://en.wikipedia.org/wiki/Rubber_duck_debugging">rubber duck debugging</a>, which involves simply trying to explain your code/problem to an inanimate object (talking to pets works too). You’ll usually be able to fix the problem if you just step back and think about how you would explain it to someone else!</li>
 </ul></li>
-<li><p><strong>Documentation</strong>: R’s documentation is actually quite good. Functions and behaviors are all described in the same format, and often contain a helpful examples. To search the documentation within R (or in RStudio), simply type <code>?</code> followed by the function name you’re using (more on functions coming soon). You can also search the documentation by typing two questions marks (<code>??SEARCH</code>).</p>
+<li><p><strong>Documentation</strong>: R’s documentation is actually quite good. Functions and behaviors are all described in the same format, and often contain helpful examples. To search the documentation within R (or in RStudio), simply type <code>?</code> followed by the function name you’re using (more on functions coming soon). You can also search the documentation by typing two questions marks (<code>??SEARCH</code>).</p>
 <ul>
 <li><p>You can also look up help by using the <code>help()</code> function (e.g., <code>help(print)</code> will look up information on the <code>print()</code> function, just like <code>?print</code> does). There is also an <code>example()</code> function you can call to see examples of a function in action (e.g., <code>example(print)</code>). This will be more important in the next module!</p></li>
 <li><p><a href="https://www.rdocumentation.org/">rdocumentation.org</a> has a lovely searchable and readable interface to the R documentation.</p></li>

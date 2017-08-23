@@ -1833,11 +1833,12 @@ and don't hesitate to ask for help.
 \hypertarget{r-intro}{\chapter{Introduction to R}\label{r-intro}}
 
 R is an extraordinarily powerful open-source software program built for
-working with data. It is one of the most popular tools for performing
-advanced data techniques, including statistical analysis, machine
-learning, and data visualization. R is be the primary programming
-language for this course, which will help you develop a strong
-understanding of how to leverage the power of R.
+working with data. It is one of the most popular data science tools
+because of its ability to efficiently perform statistical analysis,
+implement machine learning algorithms, and create data visualizations. R
+is the primary programming language used throughout this book, and
+understanding its foundational operations is key to being able to
+perform more complex tasks.
 
 \section{Programming with R}\label{programming-with-r}
 
@@ -1869,13 +1870,13 @@ list of instructions is called a \textbf{script}. Executing or
 ``running'' a script will cause each instruction (line of code) to be
 run \emph{in order, one after the other}, just as if you had typed them
 in one by one. Writing scripts allows you to save, share, and re-use
-your work---by saving instructions in a file, you can easily check,
-change, and re-execute the list of instructions as you figure out how to
-use data to answer questions. And because R is an \emph{interpreted}
-language rather than a \emph{compiled} language like Java, R programming
-environments will also give you the ability to execute each individual
-line of code in your script if you desire (though this will become
-cumbersome as projects become large).
+your work. By saving instructions in a file (or set of files), you can
+easily check, change, and re-execute the list of instructions as you
+figure out how to use data to answer questions. And, because R is an
+\emph{interpreted} language rather than a \emph{compiled} language like
+Java, R programming environments will also give you the ability to
+execute each individual line of code in your script if you desire
+(though this will become cumbersome as projects become large).
 
 As you begin working with data in R, you will be writing multiple
 instructions (lines of code) and saving them in files with the
@@ -1919,7 +1920,8 @@ Always read the output when working on the command-line!
 Once you've started running an interactive R session, you can begin
 entering one line of code at a time at the prompt
 (\texttt{\textgreater{}}). This is a nice way to experiment with the R
-language or to quickly run some code.
+language or to quickly run some code. For example, try doing some math
+at the command prompt (i.e., enter \texttt{1\ +\ 1} and see the output).
 
 \begin{itemize}
 \tightlist
@@ -1938,13 +1940,19 @@ to execute:
 \caption{Using RScript from the terminal}
 \end{figure}
 
+Entering this command in the terminal would execute each line of R code
+written in the \texttt{analysis.R} file, performing all of the
+instructions that you had save there. This is helpful if your data has
+changed, and you want to reproduce the results of your analysis using
+the same instructions.
+
 \subsubsection{Windows Command-Line}\label{windows-command-line}
 
-On Windows, you need to be able to the computer where to find the
+On Windows, you need to tell the computer where to find the
 \texttt{R.exe} and \texttt{RScript.exe} programs to execute---that is,
 what is the \textbf{path} to these programs. You can do this by
-specifying the \emph{absolute path} to the program when you execute it,
-for example:
+specifying the \emph{absolute path} to the R program when you execute
+it, for example:
 
 \begin{figure}
 \centering
@@ -1952,8 +1960,9 @@ for example:
 \caption{Using RScript from a Windows shell}
 \end{figure}
 
-If you plan to run R from the command-line regularly, a better solution
-is to add the folder containing these programs to your computer's
+If you plan to run R from the command-line regularly (\emph{not} a
+requirement for this course), a better solution is to add the folder
+containing these programs to your computer's
 \href{https://en.wikipedia.org/wiki/PATH_(variable)}{\textbf{\texttt{PATH}
 variable}}. This is a \emph{system-level} variable that contains a list
 of folders that the computer searches when finding programs to execute
@@ -2006,7 +2015,7 @@ double-clicking on a desktop icon), you'll see the following interface:
 \caption{RStudio's user interface. Annotations are in red.}
 \end{figure}
 
-A RStudio session usually involves 4 sections (``panes''), though you
+An RStudio session usually involves 4 sections (``panes''), though you
 can customize this layout if you wish:
 
 \begin{itemize}
@@ -2089,9 +2098,9 @@ computer instructions}---they aren't code, they're just notes about the
 code! Since computer code can be opaque and difficult to understand, we
 use comments to help write down the meaning and \emph{purpose} of our
 code. While a computer is able to understand the code, comments are
-there to help \emph{people} understand. This is particularly imporant
+there to help \emph{people} understand it. This is particularly imporant
 when someone else will be looking at your work---whether that person is
-a collaborator, or is simple a future version of you (e.g., when you
+a collaborator, or is simply a future version of you (e.g., when you
 need to come back and fix something and so need to remember what you
 were even thinking).
 
@@ -2263,10 +2272,11 @@ There are a few ``basic types'' (or \emph{modes}) for data in R:
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{# Store values in variables}
 \NormalTok{x <-}\StringTok{ }\DecValTok{3}
 \NormalTok{y <-}\StringTok{ }\FloatTok{3.15}
 
-\CommentTok{# compare numbers}
+\CommentTok{# Compare values in x and y}
 \NormalTok{x }\OperatorTok{>}\StringTok{ }\NormalTok{y  }\CommentTok{# returns logical value FALSE (x IS NOT bigger than y)}
 \NormalTok{y }\OperatorTok{!=}\StringTok{ }\NormalTok{x  }\CommentTok{# returns logical value TRUE (y IS not-equal to x)}
 
@@ -2279,25 +2289,26 @@ There are a few ``basic types'' (or \emph{modes}) for data in R:
 \end{Shaded}
 
   Logical values have their own operators as well (called
-  \textbf{logical operators} or \textbf{boolean operators}). These apply
-  to logical values and produce logical values, and allow you to make
-  more complex logical expressions. They include \texttt{\&} (and),
-  \texttt{\textbar{}} (or), and \texttt{!} (not).
+  \textbf{logical operators} or \textbf{boolean operators}). These
+  \emph{apply to} logical values and \emph{produce} logical values,
+  allowing you to make more complex logical expressions. These include
+  \texttt{\&} (and), \texttt{\textbar{}} (or), and \texttt{!} (not).
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{# Store values in variables}
 \NormalTok{x <-}\StringTok{ }\FloatTok{3.1}
 \NormalTok{y <-}\StringTok{ }\FloatTok{3.2}
 \NormalTok{pet <-}\StringTok{ "dog"}
 \NormalTok{weather <-}\StringTok{ "rain"}
 
-\CommentTok{# x is less than pi AND y is greater than pi}
+\CommentTok{# Check if x is less than pi AND y is greater than pi}
 \NormalTok{x }\OperatorTok{<}\StringTok{ }\NormalTok{pi }\OperatorTok{&}\StringTok{ }\NormalTok{y }\OperatorTok{>}\StringTok{ }\NormalTok{pi  }\CommentTok{# TRUE}
 
-\CommentTok{# pet is "cat" OR "dog"}
+\CommentTok{# Check if pet is "cat" OR "dog"}
 \NormalTok{pet }\OperatorTok{==}\StringTok{ "cat"} \OperatorTok{|}\StringTok{ }\NormalTok{pet }\OperatorTok{==}\StringTok{ "dog"}  \CommentTok{# TRUE}
 
-\CommentTok{# pet is "dog" AND NOT weather is "rain"}
+\CommentTok{# Check if pet is "dog" AND NOT weather is "rain"}
 \NormalTok{pet }\OperatorTok{==}\StringTok{ "dog"} \OperatorTok{&}\StringTok{ }\OperatorTok{!}\NormalTok{(weather }\OperatorTok{==}\StringTok{ "rain"}\NormalTok{)  }\CommentTok{# FALSE}
 \end{Highlighting}
 \end{Shaded}
@@ -2335,7 +2346,7 @@ are a few ways to start getting help.
   (read it carefully, and think about what is meant by each word in the
   message), or you can put it directly into Google to get more
   information. You'll soon get the hang of interpreting these messages
-  if you don't panic when one comes up.
+  if you put the time into trying to understand them.
 \item
   \textbf{Google}: When you're trying to figure out how to do something,
   it should be no surprise that Google is often the best resource. Try
@@ -2367,7 +2378,7 @@ are a few ways to start getting help.
 \item
   \textbf{Documentation}: R's documentation is actually quite good.
   Functions and behaviors are all described in the same format, and
-  often contain a helpful examples. To search the documentation within R
+  often contain helpful examples. To search the documentation within R
   (or in RStudio), simply type \texttt{?} followed by the function name
   you're using (more on functions coming soon). You can also search the
   documentation by typing two questions marks (\texttt{??SEARCH}).
