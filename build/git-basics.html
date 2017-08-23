@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2017-08-11">
+<meta name="date" content="2017-08-23">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -365,15 +365,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">4.1.1</span> Git Core Concepts</h3>
 <p>To understand how git works, you need to understand its core concepts. Read this section carefully, and come back to it if you forget what these terms mean.</p>
 <ul>
-<li><p><strong>repository (repo)</strong> A database containing all the committed versions of all your files, along with some additional metadata, stored in a hidden subdirectory named <code>.git</code> within your project directory. If you want to sound cool and in-the-know, call this a “repo.”</p></li>
-<li><p><strong>commit</strong> A set of file versions that have been added to the repository (saved in the database), along with the name of the person who did the commit, a message describing the commit, and a timestamp. This extra tracking information allows you to see when, why, and by whom changes were made to a given file. Committing a set of changes creates a “snapshot” of what that work looks like at the time—it’s like saving the files, but more so.</p></li>
-<li><p><strong>remote</strong> A link to a copy of this same repository on a different machine. Typically this will be a central version of the repository that all local copies on your various development machines point to. You can push (upload) commits to, and pull (download) commits from, a remote repository to keep everything in sync.</p></li>
-<li><p><strong>merging</strong> Git supports having multiple different versions of your work that all live side by side (in what are called <strong>branches</strong>), whether those versions are created by one person or many collaborators. Git allows the commits saved in different versions of the code to be easily <em>merged</em> (combined) back together without you needing to manually copy and paste different pieces of the code. This makes it easy to separate and then recombine work from different developers.</p></li>
+<li><p><strong>repository (repo):</strong> A database containing all the committed versions of all your files, along with some additional metadata, stored in a hidden subdirectory named <code>.git</code> within your project directory. If you want to sound cool and in-the-know, call a project folder a “repo.”</p></li>
+<li><p><strong>commit:</strong> A set of file versions that have been added to the repository (saved in the database), along with the name of the person who did the commit, a message describing the commit, and a timestamp. This extra tracking information allows you to see when, why, and by whom changes were made to a given file. Committing a set of changes creates a “snapshot” of what that work looks like at the time—it’s like saving the files, but more so.</p></li>
+<li><p><strong>remote:</strong> A link to a copy of this same repository on a different machine. Typically this will be a central version of the repository that all local copies on your various development machines point to. You can push (upload) commits to, and pull (download) commits from, a remote repository to keep everything in sync.</p></li>
+<li><p><strong>merging:</strong> Git supports having multiple different versions of your work that all live side by side (in what are called <strong>branches</strong>), whether those versions are created by one person or many collaborators. Git allows the commits saved in different versions of the code to be easily <em>merged</em> (combined) back together without you needing to manually copy and paste different pieces of the code. This makes it easy to separate and then recombine work from different developers.</p></li>
 </ul>
 </div>
 <div id="wait-but-what-is-github-then" class="section level3">
 <h3><span class="header-section-number">4.1.2</span> Wait, but what is GitHub then?</h3>
-<p>Git was made to support completely decentralized development, where developers pull commits from each other’s machines directly. But most professional teams take the approach of creating one central repository on a server that all developers push to and pull from. This repository contains the authoritative version the source code, and all deployments to the “rest of the world” are done by downloading from this centralized repository.</p>
+<p>Git was made to support completely decentralized development, where developers pull commits (sets of changes) from each other’s machines directly. But most professional teams take the approach of creating one central repository on a server that all developers push to and pull from. This repository contains the authoritative version the source code, and all deployments to the “rest of the world” are done by downloading from this centralized repository.</p>
 <p>Teams can setup their own servers to host these centralized repositories, but many choose to use a server maintained by someone else. The most popular of these in the open-source world is <a href="https://github.com/">GitHub</a>. In addition to hosting centralized repositories, GitHub also offers other team development features, such as issue tracking, wiki pages, and notifications. Public repositories on GitHub are free, but you have to pay for private ones.</p>
 <p>In short: GitHub is a site that provides as a central authority (or clearing-house) for multiple people collaborating with git. Git is what you use to do version control; Github is one possible place where repositories of code can be stored.</p>
 </div>
@@ -382,23 +382,24 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">4.2</span> Installation &amp; Setup</h2>
 <p>This chapter will walk you through all the commands you’ll need to do version control with git. It is written as a “tutorial” to help you practice what you’re reading!</p>
 <p>If you haven’t yet, the first thing you’ll need to do is <a href="http://git-scm.com/downloads">install git</a>. You should already have done this as part of <a href="setup-machine.html#setup-machine">setting up your machine</a>.</p>
-<p>You’ll need <a href="https://help.github.com/articles/set-up-git/">configure</a> the installation, telling git who you are so you can commit changes to a repository. You can do this by using the <code>git</code> command with the <code>config</code> option (e.g., running the <code>git config</code> command):</p>
+<p>The first time you use <code>git</code> on your machine, you’ll need <a href="https://help.github.com/articles/set-up-git/">configure</a> the installation, telling git who you are so you can commit changes to a repository. You can do this by using the <code>git</code> command with the <code>config</code> option (e.g., running the <code>git config</code> command):</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># enter your full name (without the dashes)</span>
 <span class="fu">git</span> config --global user.name <span class="st">&quot;your-full-name&quot;</span>
 
 <span class="co"># enter your email address (the one associated with your GitHub account)</span>
 <span class="fu">git</span> config --global user.email <span class="st">&quot;your-email-address&quot;</span></code></pre></div>
-<p>Setting up an <a href="https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">SSH key</a> for GitHub on your own machine is also a huge time saver; just follow the instructions on that page.</p>
+<p>Setting up an <a href="https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">SSH key</a> for GitHub on your own machine is also a huge time saver. If you don’t set up the key, you’ll need to enter your GitHub password each time you want to push changes up to GitHub (which may be multiple times a day). Simply follow the instructions on <a href="https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">this page</a> to set up a key, and make sure to only do this on <em>your machine</em>.</p>
 <div id="creating-a-repo" class="section level3">
 <h3><span class="header-section-number">4.2.1</span> Creating a Repo</h3>
 <p>The first thing you’ll need in order to work with git is to create a <strong>repository</strong>. A repository acts as a “database” of changes that you make to files in a directory.</p>
-<p>In order to have a repository, you’ll need to have a directory of files. Create a new folder <code>git_practice</code> on your computer’s Desktop. Since you’ll be using the command-line for this course, you might as well practice creating a new directory with that:</p>
+<p>In order to have a repository, you’ll need to have a directory of files. Create a new folder <code>git_practice</code> on your computer’s Desktop. Since you’ll be using the command-line for this course, you might as well practice creating a new directory programmatically:</p>
 <div class="figure">
 <img src="img/git-basics/git-mkdir.png" title="mkdir example" alt="Making a folder with the command-line." />
 <p class="caption">Making a folder with the command-line.</p>
 </div>
 <p>You can turn this directory <em>into</em> a repository by telling the <code>git</code> program to run the <code>init</code> action:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># run IN the directory of project (make sure pwd is correct!)</span>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># run IN the directory of project</span>
+<span class="co"># you can easily check this with the &quot;pwd&quot; command</span>
 <span class="fu">git</span> init</code></pre></div>
 <p>This creates a new <em>hidden</em> folder called <code>.git</code> inside of the current directory (it’s hidden so you won’t see it in Finder, but if you use <code>ls -a</code> (list with the <strong>a</strong>ll option) you can see it there). This folder is the “database” of changes that you will make—git will store all changes you commit in this folder. The presence of the <code>.git</code> folder causes that directory to become a repository; we refer to the whole directory as the “repo” (an example of <a href="https://en.wikipedia.org/wiki/Synecdoche">synechdoche</a>).</p>
 <ul>
@@ -477,7 +478,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <img src="img/git-basics/local-process.gif" title="Local git process" alt="The local git process." />
 <p class="caption">The local git process.</p>
 </div>
-<p>In general, you’ll make lots of changes to your code (editing lots of files, running and testing your code, etc). Then once you’re at a good “break point”—you’ve got a feature working, you’re stuck and need some coffee, you’re about to embark on some crazy changes—you will add and commit your changes to make sure you don’t lose any work and you can always get back to that point.</p>
+<p>In general, you’ll make lots of changes to your code (editing lots of files, running and testing your code, etc). Then once you’re at a good “break point”—you’ve got a feature working, you’re stuck and need some coffee, you’re about to embark on some radical changes—you will add and commit your changes to make sure you don’t lose any work and you can always get back to that point.</p>
 <div id="practice" class="section level4">
 <h4><span class="header-section-number">4.3.4.1</span> Practice</h4>
 <p>For further practice using git, perform the following steps:</p>

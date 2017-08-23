@@ -28,21 +28,21 @@ There are a number of different version control systems in the world, but [git](
 ### Git Core Concepts
 To understand how git works, you need to understand its core concepts. Read this section carefully, and come back to it if you forget what these terms mean.
 
-- **repository (repo)**
-A database containing all the committed versions of all your files, along with some additional metadata, stored in a hidden subdirectory named `.git` within your project directory. If you want to sound cool and in-the-know, call this a "repo."
+- **repository (repo):**
+A database containing all the committed versions of all your files, along with some additional metadata, stored in a hidden subdirectory named `.git` within your project directory. If you want to sound cool and in-the-know, call a project folder a "repo."
 
-- **commit**
+- **commit:**
 A set of file versions that have been added to the repository (saved in the database), along with the name of the person who did the commit, a message describing the commit, and a timestamp. This extra tracking information allows you to see when, why, and by whom changes were made to a given file. Committing a set of changes creates a "snapshot" of what that work looks like at the time&mdash;it's like saving the files, but more so.
 
-- **remote**
+- **remote:**
 A link to a copy of this same repository on a different machine. Typically this will be a central version of the repository that all local copies on your various development machines point to. You can push (upload) commits to, and pull (download) commits from, a remote repository to keep everything in sync.
 
-- **merging**
+- **merging:**
 Git supports having multiple different versions of your work that all live side by side (in what are called **branches**), whether those versions are created by one person or many collaborators. Git allows the commits saved in different versions of the code to be easily _merged_ (combined) back together without you needing to manually copy and paste different pieces of the code. This makes it easy to separate and then recombine work from different developers.
 
 
 ### Wait, but what is GitHub then?
-Git was made to support completely decentralized development, where developers pull commits from each other's machines directly. But most professional teams take the approach of creating one central repository on a server that all developers push to and pull from. This repository contains the authoritative version the source code, and all deployments to the "rest of the world" are done by downloading from this centralized repository.
+Git was made to support completely decentralized development, where developers pull commits (sets of changes) from each other's machines directly. But most professional teams take the approach of creating one central repository on a server that all developers push to and pull from. This repository contains the authoritative version the source code, and all deployments to the "rest of the world" are done by downloading from this centralized repository.
 
 Teams can setup their own servers to host these centralized repositories, but many choose to use a server maintained by someone else. The most popular of these in the open-source world is [GitHub](https://github.com/). In addition to hosting centralized repositories, GitHub also offers other team development features, such as issue tracking, wiki pages, and notifications. Public repositories on GitHub are free, but you have to pay for private ones.
 
@@ -53,7 +53,7 @@ This chapter will walk you through all the commands you'll need to do version co
 
 If you haven't yet, the first thing you'll need to do is [install git](http://git-scm.com/downloads). You should already have done this as part of [setting up your machine](#setup-machine).
 
-You'll need [configure](https://help.github.com/articles/set-up-git/) the installation, telling git who you are so you can commit changes to a repository. You can do this by using the `git` command with the `config` option (e.g., running the `git config` command):
+The first time you use `git` on your machine, you'll need [configure](https://help.github.com/articles/set-up-git/) the installation, telling git who you are so you can commit changes to a repository. You can do this by using the `git` command with the `config` option (e.g., running the `git config` command):
 
 ```bash
 # enter your full name (without the dashes)
@@ -63,20 +63,21 @@ git config --global user.name "your-full-name"
 git config --global user.email "your-email-address"
 ```
 
-Setting up an [SSH key](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) for GitHub on your own machine is also a huge time saver; just follow the instructions on that page.
+Setting up an [SSH key](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) for GitHub on your own machine is also a huge time saver. If you don't set up the key, you'll need to enter your GitHub password each time you want to push changes up to GitHub (which may be multiple times a day). Simply follow the instructions on [this page](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) to set up a key, and make sure to only do this on _your machine_.
 
 
 ### Creating a Repo
 The first thing you'll need in order to work with git is to create a **repository**. A repository acts as a "database" of changes that you make to files in a directory.
 
-In order to have a repository, you'll need to have a directory of files. Create a new folder `git_practice` on your computer's Desktop. Since you'll be using the command-line for this course, you might as well practice creating a new directory with that:
+In order to have a repository, you'll need to have a directory of files. Create a new folder `git_practice` on your computer's Desktop. Since you'll be using the command-line for this course, you might as well practice creating a new directory programmatically:
 
 ![Making a folder with the command-line.](img/git-basics/git-mkdir.png "mkdir example")
 
 You can turn this directory _into_ a repository by telling the `git` program to run the `init` action:
 
 ```bash
-# run IN the directory of project (make sure pwd is correct!)
+# run IN the directory of project
+# you can easily check this with the "pwd" command
 git init
 ```
 
@@ -184,7 +185,7 @@ This cycle of "edit files", "add files", "commit changes" is the standard "devel
 cat('![The local git process.](img/git-basics/local-process.gif "Local git process")')
 ```
 
-In general, you'll make lots of changes to your code (editing lots of files, running and testing your code, etc). Then once you're at a good "break point"&mdash;you've got a feature working, you're stuck and need some coffee, you're about to embark on some crazy changes&mdash;you will add and commit your changes to make sure you don't lose any work and you can always get back to that point.
+In general, you'll make lots of changes to your code (editing lots of files, running and testing your code, etc). Then once you're at a good "break point"&mdash;you've got a feature working, you're stuck and need some coffee, you're about to embark on some radical changes&mdash;you will add and commit your changes to make sure you don't lose any work and you can always get back to that point.
 
 #### Practice
 For further practice using git, perform the following steps:

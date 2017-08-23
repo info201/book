@@ -1,6 +1,10 @@
 PackratFormat: 1.4
 PackratVersion: 0.4.8.1
+<<<<<<< HEAD
 RVersion: 3.4.1
+=======
+RVersion: 3.3.2
+>>>>>>> 53d635da75ef24a11db26e34057188575cb2cc91
 Repos: CRAN=https://cran.rstudio.com/
 
 Package: BH
@@ -94,6 +98,7 @@ Requires: stringr
 
 Package: formatR
 Source: CRAN
+<<<<<<< HEAD
 Version: 1.5
 Hash: 258cf79a8dbeedf1c981cdb53837d2af
 
@@ -102,6 +107,10 @@ Source: CRAN
 Version: 0.1.5
 Hash: 7465535a23179b1c475c335781d01631
 Requires: Rcpp, withr
+=======
+Version: 1.4
+Hash: b2a47a2b91737978cf50ba95825a9cd1
+>>>>>>> 53d635da75ef24a11db26e34057188575cb2cc91
 
 Package: ggplot2
 Source: CRAN
@@ -194,8 +203,8 @@ Requires: Rcpp, plyr, stringr
 
 Package: rlang
 Source: CRAN
-Version: 0.1.1
-Hash: 86c53487ce7f82f0a7cc11c816060910
+Version: 0.1.2
+Hash: c17b638e3282aa222a47112d7a60bc66
 
 Package: rmarkdown
 Source: CRAN
@@ -215,12 +224,6 @@ Source: CRAN
 Version: 0.4.1
 Hash: 6368a3249d52d20b366191e9349690b6
 Requires: RColorBrewer, Rcpp, dichromat, labeling, munsell, plyr
-
-Package: servr
-Source: CRAN
-Version: 0.6
-Hash: 83c5d4eee110a61b1062b4692a22bd91
-Requires: httpuv, jsonlite, mime
 
 Package: shiny
 Source: CRAN
@@ -245,12 +248,15 @@ Version: 1.2.0
 Hash: 25a86d7f410513ebb7c0bc6a5e16bdc3
 Requires: magrittr, stringi
 
+<<<<<<< HEAD
 Package: svglite
 Source: CRAN
 Version: 1.2.0
 Hash: a9a8b33e2eb3cc2c1d932b9c81b336ce
 Requires: BH, Rcpp, gdtools
 
+=======
+>>>>>>> 53d635da75ef24a11db26e34057188575cb2cc91
 Package: tibble
 Source: CRAN
 Version: 1.3.3
