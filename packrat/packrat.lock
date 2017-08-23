@@ -1,6 +1,6 @@
 PackratFormat: 1.4
 PackratVersion: 0.4.8.1
-RVersion: 3.3.1
+RVersion: 3.4.1
 Repos: CRAN=https://cran.rstudio.com/
 
 Package: BH
@@ -55,8 +55,8 @@ Hash: 67d0775189fd0041d95abca618c5c07e
 
 Package: bookdown
 Source: CRAN
-Version: 0.4
-Hash: b4df182b990e253bb9de6f2ba90a9841
+Version: 0.5
+Hash: 6cde091e04da40dae899d1024469c803
 Requires: htmltools, knitr, rmarkdown, yaml
 
 Package: caTools
@@ -99,8 +99,8 @@ Hash: 258cf79a8dbeedf1c981cdb53837d2af
 
 Package: gdtools
 Source: CRAN
-Version: 0.1.4
-Hash: 82a0d1f0a706b60429940a32346a60b9
+Version: 0.1.5
+Hash: 7465535a23179b1c475c335781d01631
 Requires: Rcpp, withr
 
 Package: ggplot2
@@ -248,7 +248,7 @@ Requires: magrittr, stringi
 Package: svglite
 Source: CRAN
 Version: 1.2.0
-Hash: d55be3dfb5c1338f54b1a48e54a8d290
+Hash: a9a8b33e2eb3cc2c1d932b9c81b336ce
 Requires: BH, Rcpp, gdtools
 
 Package: tibble
