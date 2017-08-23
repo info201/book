@@ -5,7 +5,7 @@ This chapter will explore how to use **functions** in R to perform advanced capa
 ## What are Functions?
 In a broad sense, a **function** is a named sequence of instructions (lines of code) that you may want to perform one or more times throughout a program. They provide a way of _encapsulating_ multiple instructions into a single "unit" that can be used in a variety of different contexts. So rather than needing to repeatedly write down all the individual instructions for "make a sandwich" every time you're hungry, you can define a `MakeSandwich()` function once and then just **call** (execute) that function when you want to perform those steps.
 
-In addition to grouping instructions, functions in programming languages like R also tend to follow the mathematical definition of functions, which is a set of operations (instructions!) that are performed on some **inputs** and lead to some **outputs**. Function inputs are called **arguments** or **parameters**, and we say that these arguments are **passed** to a function (like a football). We say that a function then **returns** an ouput to use.
+In addition to grouping instructions, functions in programming languages like R also tend to follow the mathematical definition of functions, which is a set of operations (instructions!) that are performed on some **inputs** and lead to some **outputs**. Function inputs are called **arguments** or **parameters**, and we say that these arguments are **passed** to a function (like a football). We say that a function then **returns** an ouput to use. For example, imagine a function that can determine the largest number in a set of numbers. That function’s **input** would be the set of numbers, and the **output** would be the largest number in the set. 
 
 ### R Function Syntax
 R functions are referred to by name (technically, they are values like any other variable). As in many programming languages, we **call** a function by writing the name of the function followed immediately (no space) by parentheses `()`. Inside the parentheses, we put the **arguments** (inputs) to the function separated by commas (**`,`**). Thus computer functions look just like multi-variable mathematical functions, but with names longer than `f()`.
@@ -44,7 +44,7 @@ print(min(1.5, sqrt(3)))  # prints 1.5
 - In the last example, the resulting _value_ of the "inner" function (e.g., `sqrt()`) is immediately used as an argument. Because that value is used immediately, we don't have to assign it a separate variable name. It is thus known as an **anonymous variable**.
 
 ## Built-in R Functions
-As you may have noticed, R comes with a large number of functions that are built into the language. In the above example, we used the `print()` function to print a value to the console, the `min()` function to find the smallest number among the arguments, and the `sqrt()` function to take the square root of a number. Here is a _very_ limited list of functions you can experiment with (or see a few more [here](http://www.statmethods.net/management/functions.html)).
+As you have likely noticed, R comes with a variety of functions that are built into the language. In the above example, we used the `print()` function to print a value to the console, the `min()` function to find the smallest number among the arguments, and the `sqrt()` function to take the square root of a number. Here is a _very_ limited list of functions you can experiment with (or see a few more [here](http://www.statmethods.net/management/functions.html)).
 
 <!-- TODO: Fix the formatting for this? -->
 
@@ -75,13 +75,13 @@ Luckily, it is quite simple to install and load R packages from within R. To do 
 # Install the `stringr` package. Only needs to be done once on your machine
 install.packages("stringr")
 
-# Load the package (tell R functions are available for use)
+# Load the package (make stringr() functions available in this R session/program)
 library("stringr") # quotes optional here
 ```
 
 - Note that when you load a package, you may receive a warning message about the package being built under a previous version of R. In all likelihood this shouldn't cause a problem, but you should pay attention to the details of the messages and keep them in mind (especially if you start getting unexpected errors).
 
-After loading the package with the `library` function, you have access to functions that were written as part of that package (see [the documentation](https://cran.r-project.org/web/packages/stringr/stringr.pdf) for a list of functions included with the `stringr` library).
+After loading the package with the `library()` function, you have access to functions that were written as part of that package (see [the documentation](https://cran.r-project.org/web/packages/stringr/stringr.pdf) for a list of functions included with the `stringr` library).
 
 
 ## Writing Functions
@@ -108,7 +108,7 @@ my.name <- MakeFullName("Alice", "Kim")  # "Alice Kim"
 
 Functions have a couple of pieces to them:
 
-- **Arguments**: the data assigned to the function variable uses the syntax `function(...)` to indicate that you are creating a function (as opposed to a number or character string). The values put betweeen the parentheses are variables that _will contain_ the values passed in as **arguments**. For example, when we call `MakeFullName("Alice", "Kim")`, the value of the first argument (`"Alice"`) will be assigned to the first variable (`first.name`), and the value of the second argument (`"Kim"`) will be assigned to the second variable (`last.name`).
+- **Arguments**: the value assigned to the function variable uses the syntax `function(...)` to indicate that you are creating a function (as opposed to a number or character string). The values put betweeen the parentheses are variables that _will contain_ the values passed in as **arguments**. For example, when we call `MakeFullName("Alice", "Kim")`, the value of the first argument (`"Alice"`) will be assigned to the first variable (`first.name`), and the value of the second argument (`"Kim"`) will be assigned to the second variable (`last.name`).
 
     Importantly, we could have made the argument names anything we wanted (`name.first`, `given.name`, etc.), just as long as we then use _that variable name_ to refer to the argument while inside the function. Moreover, these argument variable names _only apply_ while inside the function. You can think of them like "nicknames" for the values. The variables `first.name`, `last.name`, and `full.name` only exist within this particular function.
 
@@ -116,7 +116,7 @@ Functions have a couple of pieces to them:
 
     The function body specifies all the instructions (lines of code) that your function will perform. A function can contain as many lines of code as you want&mdash;you'll usually want more than 1 to make it worth while, but if you have more than 20 you might want to break it up into separate functions. You can use the argument variables in here, create new variables, call other functions... basically any code that you would write outside of a function can be written inside of one as well!
 
-- **Return value**: You can specify what output a function produces by calling the `return()` function and passing that the value that you wish _your function_ to return (output). The `return()` function will execute instructions that end the current function and _return_ the flow of code execution to whereever this function was called from. Note that even though we returned a variable called `full.name`, that variable was _local_ to the function and so doesn't exist outside of it; thus we have to take the returned value and assign it to a new variable (as with `name <- MakeFullName("Alice", "Kim")`).
+- **Return value**: You can specify what output a function produces by calling the `return()` function and passing that the value that you wish _your function_ to return (output). The `return()` function will execute instructions that end the current function and _return_ the flow of code execution to wherever this function was called from. Note that even though we returned a variable called `full.name`, that variable was _local_ to the function and so doesn't exist outside of it; thus we have to take the returned value and assign it to a new variable (as with `name <- MakeFullName("Alice", "Kim")`).
 
     Because the `return()` call exits the function, it is usually the last line of code in the function.
 
@@ -161,6 +161,25 @@ if(too.cold) {  # a logical value
 }
 ```
 
+Note, we can extend the set of conditions evaluated using an `else if` statement. For example:
+
+```r
+# Function to determine if you should eat porridge
+FoodTempTest <- function(temp) {
+  if(temp > 120) {
+    status <- "This porridge is too hot!"
+  } else if(temp < 70) {
+    status <- "This porridge is too cold!"
+  } else {
+    status <- "This porridge is just right!"
+  }
+  return(status)
+}
+# Use funciton on different temperatures
+FoodTempTest(119)  # "This porridge is just right!"
+FoodTempTest(60)   # "This porridge is too cold!"
+FoodTempTest(150)  # "This porridge is too hot!"
+```
 ## Resources {-}
 - [R Function Cheatsheet](https://cran.r-project.org/doc/contrib/Short-refcard.pdf)
 - [User Defined R Functions](http://www.statmethods.net/management/userfunctions.html)

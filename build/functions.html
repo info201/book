@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Technical Foundations of Informatics</title>
   <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
-  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
 
   <meta property="og:title" content="Technical Foundations of Informatics" />
   <meta property="og:type" content="book" />
@@ -347,7 +347,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="what-are-functions" class="section level2">
 <h2><span class="header-section-number">6.1</span> What are Functions?</h2>
 <p>In a broad sense, a <strong>function</strong> is a named sequence of instructions (lines of code) that you may want to perform one or more times throughout a program. They provide a way of <em>encapsulating</em> multiple instructions into a single “unit” that can be used in a variety of different contexts. So rather than needing to repeatedly write down all the individual instructions for “make a sandwich” every time you’re hungry, you can define a <code>MakeSandwich()</code> function once and then just <strong>call</strong> (execute) that function when you want to perform those steps.</p>
-<p>In addition to grouping instructions, functions in programming languages like R also tend to follow the mathematical definition of functions, which is a set of operations (instructions!) that are performed on some <strong>inputs</strong> and lead to some <strong>outputs</strong>. Function inputs are called <strong>arguments</strong> or <strong>parameters</strong>, and we say that these arguments are <strong>passed</strong> to a function (like a football). We say that a function then <strong>returns</strong> an ouput to use.</p>
+<p>In addition to grouping instructions, functions in programming languages like R also tend to follow the mathematical definition of functions, which is a set of operations (instructions!) that are performed on some <strong>inputs</strong> and lead to some <strong>outputs</strong>. Function inputs are called <strong>arguments</strong> or <strong>parameters</strong>, and we say that these arguments are <strong>passed</strong> to a function (like a football). We say that a function then <strong>returns</strong> an ouput to use. For example, imagine a function that can determine the largest number in a set of numbers. That function’s <strong>input</strong> would be the set of numbers, and the <strong>output</strong> would be the largest number in the set.</p>
 <div id="r-function-syntax" class="section level3">
 <h3><span class="header-section-number">6.1.1</span> R Function Syntax</h3>
 <p>R functions are referred to by name (technically, they are values like any other variable). As in many programming languages, we <strong>call</strong> a function by writing the name of the function followed immediately (no space) by parentheses <code>()</code>. Inside the parentheses, we put the <strong>arguments</strong> (inputs) to the function separated by commas (<strong><code>,</code></strong>). Thus computer functions look just like multi-variable mathematical functions, but with names longer than <code>f()</code>.</p>
@@ -383,7 +383,7 @@ phi &lt;-<span class="st"> </span>.<span class="dv">5</span> <span class="op">+<
 </div>
 <div id="built-in-r-functions" class="section level2">
 <h2><span class="header-section-number">6.2</span> Built-in R Functions</h2>
-<p>As you may have noticed, R comes with a large number of functions that are built into the language. In the above example, we used the <code>print()</code> function to print a value to the console, the <code>min()</code> function to find the smallest number among the arguments, and the <code>sqrt()</code> function to take the square root of a number. Here is a <em>very</em> limited list of functions you can experiment with (or see a few more <a href="http://www.statmethods.net/management/functions.html">here</a>).</p>
+<p>As you have likely noticed, R comes with a variety of functions that are built into the language. In the above example, we used the <code>print()</code> function to print a value to the console, the <code>min()</code> function to find the smallest number among the arguments, and the <code>sqrt()</code> function to take the square root of a number. Here is a <em>very</em> limited list of functions you can experiment with (or see a few more <a href="http://www.statmethods.net/management/functions.html">here</a>).</p>
 <!-- TODO: Fix the formatting for this? -->
 <table>
 <colgroup>
@@ -449,12 +449,12 @@ phi &lt;-<span class="st"> </span>.<span class="dv">5</span> <span class="op">+<
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Install the `stringr` package. Only needs to be done once on your machine</span>
 <span class="kw">install.packages</span>(<span class="st">&quot;stringr&quot;</span>)
 
-<span class="co"># Load the package (tell R functions are available for use)</span>
+<span class="co"># Load the package (make stringr() functions available in this R session/program)</span>
 <span class="kw">library</span>(<span class="st">&quot;stringr&quot;</span>) <span class="co"># quotes optional here</span></code></pre></div>
 <ul>
 <li>Note that when you load a package, you may receive a warning message about the package being built under a previous version of R. In all likelihood this shouldn’t cause a problem, but you should pay attention to the details of the messages and keep them in mind (especially if you start getting unexpected errors).</li>
 </ul>
-<p>After loading the package with the <code>library</code> function, you have access to functions that were written as part of that package (see <a href="https://cran.r-project.org/web/packages/stringr/stringr.pdf">the documentation</a> for a list of functions included with the <code>stringr</code> library).</p>
+<p>After loading the package with the <code>library()</code> function, you have access to functions that were written as part of that package (see <a href="https://cran.r-project.org/web/packages/stringr/stringr.pdf">the documentation</a> for a list of functions included with the <code>stringr</code> library).</p>
 </div>
 <div id="writing-functions" class="section level2">
 <h2><span class="header-section-number">6.4</span> Writing Functions</h2>
@@ -475,11 +475,11 @@ MakeFullName &lt;-<span class="st"> </span><span class="cf">function</span>(firs
 my.name &lt;-<span class="st"> </span><span class="kw">MakeFullName</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Kim&quot;</span>)  <span class="co"># &quot;Alice Kim&quot;</span></code></pre></div>
 <p>Functions have a couple of pieces to them:</p>
 <ul>
-<li><p><strong>Arguments</strong>: the data assigned to the function variable uses the syntax <code>function(...)</code> to indicate that you are creating a function (as opposed to a number or character string). The values put betweeen the parentheses are variables that <em>will contain</em> the values passed in as <strong>arguments</strong>. For example, when we call <code>MakeFullName(&quot;Alice&quot;, &quot;Kim&quot;)</code>, the value of the first argument (<code>&quot;Alice&quot;</code>) will be assigned to the first variable (<code>first.name</code>), and the value of the second argument (<code>&quot;Kim&quot;</code>) will be assigned to the second variable (<code>last.name</code>).</p>
+<li><p><strong>Arguments</strong>: the value assigned to the function variable uses the syntax <code>function(...)</code> to indicate that you are creating a function (as opposed to a number or character string). The values put betweeen the parentheses are variables that <em>will contain</em> the values passed in as <strong>arguments</strong>. For example, when we call <code>MakeFullName(&quot;Alice&quot;, &quot;Kim&quot;)</code>, the value of the first argument (<code>&quot;Alice&quot;</code>) will be assigned to the first variable (<code>first.name</code>), and the value of the second argument (<code>&quot;Kim&quot;</code>) will be assigned to the second variable (<code>last.name</code>).</p>
 <p>Importantly, we could have made the argument names anything we wanted (<code>name.first</code>, <code>given.name</code>, etc.), just as long as we then use <em>that variable name</em> to refer to the argument while inside the function. Moreover, these argument variable names <em>only apply</em> while inside the function. You can think of them like “nicknames” for the values. The variables <code>first.name</code>, <code>last.name</code>, and <code>full.name</code> only exist within this particular function.</p></li>
 <li><p><strong>Body</strong>: The body of the function is a <strong>block</strong> of code that falls between curly braces <strong><code>{}</code></strong> (a “block” is represented by curly braces surrounding code statements). Note that cleanest style is to put the opening <code>{</code> immediately after the arguments list, and the closing <code>}</code> on its own line.</p>
 <p>The function body specifies all the instructions (lines of code) that your function will perform. A function can contain as many lines of code as you want—you’ll usually want more than 1 to make it worth while, but if you have more than 20 you might want to break it up into separate functions. You can use the argument variables in here, create new variables, call other functions… basically any code that you would write outside of a function can be written inside of one as well!</p></li>
-<li><p><strong>Return value</strong>: You can specify what output a function produces by calling the <code>return()</code> function and passing that the value that you wish <em>your function</em> to return (output). The <code>return()</code> function will execute instructions that end the current function and <em>return</em> the flow of code execution to whereever this function was called from. Note that even though we returned a variable called <code>full.name</code>, that variable was <em>local</em> to the function and so doesn’t exist outside of it; thus we have to take the returned value and assign it to a new variable (as with <code>name &lt;- MakeFullName(&quot;Alice&quot;, &quot;Kim&quot;)</code>).</p>
+<li><p><strong>Return value</strong>: You can specify what output a function produces by calling the <code>return()</code> function and passing that the value that you wish <em>your function</em> to return (output). The <code>return()</code> function will execute instructions that end the current function and <em>return</em> the flow of code execution to wherever this function was called from. Note that even though we returned a variable called <code>full.name</code>, that variable was <em>local</em> to the function and so doesn’t exist outside of it; thus we have to take the returned value and assign it to a new variable (as with <code>name &lt;- MakeFullName(&quot;Alice&quot;, &quot;Kim&quot;)</code>).</p>
 <p>Because the <code>return()</code> call exits the function, it is usually the last line of code in the function.</p></li>
 </ul>
 <p>We can call (execute) a function we defined the same way we called built-in functions. When we do so, R will take the <strong>arguments</strong> we passed in (e.g., <code>&quot;Alice&quot;</code> and <code>&quot;Kim&quot;</code>) and assign them to the <em>argument variables</em>. Then it executes each line of code in the <strong>function body</strong> one at a time. When it gets to the <code>return()</code> call, it will end the function and return the given value, which can then be assigned to a different variable outside of the functions.</p>
@@ -509,6 +509,22 @@ too.cold &lt;-<span class="st"> </span>porridge.temp <span class="op">&lt;</span
 <span class="cf">if</span>(too.cold) {  <span class="co"># a logical value</span>
   <span class="kw">print</span>(<span class="st">&quot;This porridge is too cold!&quot;</span>)
 }</code></pre></div>
+<p>Note, we can extend the set of conditions evaluated using an <code>else if</code> statement. For example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Function to determine if you should eat porridge</span>
+FoodTempTest &lt;-<span class="st"> </span><span class="cf">function</span>(temp) {
+  <span class="cf">if</span>(temp <span class="op">&gt;</span><span class="st"> </span><span class="dv">120</span>) {
+    status &lt;-<span class="st"> &quot;This porridge is too hot!&quot;</span>
+  } <span class="cf">else</span> <span class="cf">if</span>(temp <span class="op">&lt;</span><span class="st"> </span><span class="dv">70</span>) {
+    status &lt;-<span class="st"> &quot;This porridge is too cold!&quot;</span>
+  } <span class="cf">else</span> {
+    status &lt;-<span class="st"> &quot;This porridge is just right!&quot;</span>
+  }
+  <span class="kw">return</span>(status)
+}
+<span class="co"># Use funciton on different temperatures</span>
+<span class="kw">FoodTempTest</span>(<span class="dv">119</span>)  <span class="co"># &quot;This porridge is just right!&quot;</span>
+<span class="kw">FoodTempTest</span>(<span class="dv">60</span>)   <span class="co"># &quot;This porridge is too cold!&quot;</span>
+<span class="kw">FoodTempTest</span>(<span class="dv">150</span>)  <span class="co"># &quot;This porridge is too hot!&quot;</span></code></pre></div>
 </div>
 <div id="resources-5" class="section level2 unnumbered">
 <h2>Resources</h2>
@@ -536,7 +552,7 @@ too.cold &lt;-<span class="st"> </span>porridge.temp <span class="op">&lt;</span
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
 <script>
-require(["gitbook"], function(gitbook) {
+gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": true,
