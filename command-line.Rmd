@@ -4,7 +4,7 @@ The **command-line** is an _interface_ to a computer&mdash;a way for you (the hu
 
 ![An example of the command-line in action (from Wikipedia).](img/command-line/cli-wikipedia.png "example command-line")
 
-The command-line is not as friendly or intuitive as a graphical interface: it's much harder to learn and figure out. However, it has the advantage of being both more powerful and more efficient in the hands of expert users. (It's faster to type than to move a mouse, and you can do _lots_ of "clicks" with a single command).  Command line is also extremely handy in situation where you work with a server that for some reason does not have GUI enabled.  Thus, command line is an essential tool for all professional developers, particularly when working with large amounts of data or files.
+The command-line is not as friendly or intuitive as a graphical interface: it's much harder to learn and figure out. However, it has the advantage of being both more powerful and more efficient in the hands of expert users. (It's faster to type than to move a mouse, and you can do _lots_ of "clicks" with a single command).  Command line is also extremely handy in situations where you work on servers that for some reason do not have GUI enabled.  Thus, command line is an essential tool for all professional developers, particularly when working with large amounts of data or files.
 
 This chapter will give you a brief introduction to basic tasks using the command-line: enough to get you comfortable navigating the interface and able to interpret commands.
 
