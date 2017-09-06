@@ -13,10 +13,12 @@ The second feature is the most significant, as it allows you to use lists to cre
 
 Lists are extremely useful for organizing data. They allow you to group together data like a person's name (characters), job title (characters), salary (number), and whether they are in a union (logical)&mdash;and you don't have to remember whether whether the person's name or title was the first element!
 
+<p class="alert alert-info">Note: <em>technically</em>, you can create named elements in a vector, but this is very rarely done. Compared to vectors, lists provide a simpler syntax for accessing named elements.</p>
+
 ### Creating Lists
 You create a list by using the `list()` function and passing it any number of **arguments** (separated by commas) that you want to make up that list&mdash;similar to the `c()` functon for vectors.
 
-However, you can specify the _tags_ for each element in the list by putting the name of the tag (which is like a variable name), followed by an equal symbol (**`=`**), followed by the value you want to go in the list and be associated with that tag. For example:
+However, you can (and should) specify the _tags_ for each element in the list by putting the name of the tag (which is like a variable name), followed by an equal symbol (**`=`**), followed by the value you want to go in the list and be associated with that tag. For example:
 
 ```r
 person <- list(first.name = "Ada", job = "Programmer", salary = 78000, in.union = TRUE)
@@ -55,7 +57,7 @@ $in.union
 [1] TRUE
 ```
 
-Notice that the output lists each tag name prepended with a dollar sign (**`$`**) symbol, and then on the following line the vector that is the element itself. The `$` symbol is one of the easiest ways of accessing list elements.
+Notice that the output lists each tag name prepended with a dollar sign (**`$`**) symbol, and then on the following line the vector that is the element itself. The `$` symbol is one of the easiest ways of accessing list elements (which can't be done with vectors).
 
 Because list elements are (usually) tagged, you can access them by their tag name rather than by the index number you used with vectors. You do this by using **dollar notation**: you refer to the element with a particular tag in a list by writing the name of the list, followed by a `$`, following by the element's tag:
 
@@ -154,11 +156,11 @@ my.list[1:3]
             # [1] TRUE
 ```
 
-In sum, remember that **single-brackets gives a list, double-brackets gives a vector**. You almost always want to be refering to the value itself (the vector&mdash;everything is a vector!) rather than a list, so almost always want to use ___double-brackets___ when accessing lists.
+In sum, remember that **single-brackets gives a list, double-brackets gives a list element**. You almost always want to be refering to the value itself (the vector&mdash;everything is a vector!) rather than a list, so almost always want to use ___double-brackets___ when accessing lists.
 
 
 ### Modifying Lists
-Unlike with vectors, you are also able to change the _number_ of elements that are inside a list&mdash;you can add and remove elements from a list!
+Similarly to vectors, you can add and modify list elements. However, lists also enable you to _remove_ elements.
 
 You can add elements to a list simply by assigning a value to a tag (or index) in the list that doesn't yet exist:
 
@@ -198,10 +200,10 @@ In particular, you need to use a function called **`lapply()`** (for _**l**ist a
 
 ```r
 # list, not a vector
-names <- list("Sarah", "Amit", "Zhang")
+people <- list("Sarah", "Amit", "Zhang")
 
-# apply the `toupper()` function to each element in `names`
-names.upper <- lapply(names, toupper)
+# apply the `toupper()` function to each element in `people`
+people.upper <- lapply(people, toupper)
             # [[1]]
             # [1] "SARAH"
             #
@@ -211,9 +213,9 @@ names.upper <- lapply(names, toupper)
             # [[3]]
             # [1] "ZHANG"
 
-# apply the `paste()` function to each element in `names`,
+# apply the `paste()` function to each element in `people`,
 # with an addition argument `"dances!"` to each call
-dance.party <- lapply(names, paste, "dances!")
+dance.party <- lapply(people, paste, "dances!")
 ```
 
 - Notice that the second argument to `lapply()` is just the name of the function: not a character string (it's not in `""`). You're also not actually _calling_ that function (there are no `()` after it). Just put the name of the function! After that, you can put any additional arguments you want the applied function to be called with: for example, how many digits to round to, or what value to paste to the end of a string.
@@ -228,11 +230,11 @@ Greet <- function(item) {
   return( paste("Hello", item) )
 }
 
-# a list of names
-names <- list("Sarah", "Amit", "Zhang")
+# a list of people
+people <- list("Sarah", "Amit", "Zhang")
 
 # greet each name
-greetings <- lapply(names, Greet)
+greetings <- lapply(people, Greet)
             # [[1]]
             # [1] "Hello Sarah"
             #
