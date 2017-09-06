@@ -343,7 +343,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="dataframes" class="section level1">
 <h1><span class="header-section-number">Chapter 9</span> Data Frames</h1>
-<p>This chapter will introduce data frame objects, which are the major data storage type used in R. In many ways, data frames are similar to a two-dimensional row/column layouts that you should be familiar with from spreadsheet programs like Microsoft Excel. This chapter will cover various ways of creating, describing, and accessing data frames, as well as how they are related to other data types in R.</p>
+<p>This chapter introduces <strong>data frame</strong> objects, which are the primary data storage type used in R. In many ways, data frames are similar to a two-dimensional row/column layout that you should be familiar with from spreadsheet programs like Microsoft Excel. Rather than interact with this data strcture through a UI, we’ll learn how to programmatically and reproducably perform operations on this data type. This chapter covers various ways of creating, describing, and accessing data frames, as well as how they are related to other data types in R.</p>
 <div id="what-is-a-data-frame" class="section level2">
 <h2><span class="header-section-number">9.1</span> What is a Data Frame?</h2>
 <p>At a practical level, <strong>Data Frames</strong> act like <em>tables</em>, where data is organized into rows and columns. For example, consider the following table of names, weights, and heights:</p>
@@ -352,7 +352,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p class="caption">A table of data (people weights and heights.</p>
 </div>
 <p>In this table, each <em>row</em> represents a <strong>record</strong> or <strong>observation</strong>: an instance of a single thing being measured (e.g., a person). Each <em>column</em> represents a <strong>feature</strong>: a particular property or aspect of the thing being measured (e.g., the person’s height or weight). This structure is used to organize lots of different <em>related</em> data points for easier analysis.</p>
-<p>In R, you can use <strong>data frames</strong> to represent these kinds of tables. Data frames are really just <strong>lists</strong> (see <a href="lists.html#lists">Lists</a>) in which each element is a <strong>vector of the same length</strong>. Each vector represents a <strong>column, not a row</strong>. The elements at corresponding indices in the vectors are considered part of the same record (row).</p>
+<p>In R, you can use <strong>data frames</strong> to represent these kinds of tables. Data frames are really just <strong>lists</strong> (see <a href="lists.html#lists">Lists</a>) in which each element is a <strong>vector of the same length</strong>. Each vector represents a <strong>column, <em>not</em> a row</strong>. The elements at corresponding indices in the vectors are considered part of the same record (row).</p>
 <ul>
 <li>This makes sense because each row may have a different type of data—e.g., a person’s <code>name</code> (string) and <code>height</code> (number)—and vector elements must all be of the same type.</li>
 </ul>
@@ -440,7 +440,7 @@ my.heights &lt;-<span class="st"> </span>my.data[[<span class="st">&#39;height&#
 my.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(name, height, weight)
 
 <span class="co"># A vector of new column names</span>
-new.col.names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;First.Name&#39;</span>,<span class="st">&#39;How.Tall&#39;</span>,<span class="st">&#39;How.Heavy&#39;</span>)
+new.col.names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;first.name&#39;</span>,<span class="st">&#39;how.tall&#39;</span>,<span class="st">&#39;how.heavy&#39;</span>)
 
 <span class="co"># Assign that vector to be the vector of column names</span>
 <span class="kw">colnames</span>(my.data) &lt;-<span class="st"> </span>new.col.names</code></pre></div>
@@ -537,19 +537,23 @@ my.data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span cla
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># get the absolute path to the current working directory</span>
 <span class="kw">getwd</span>()</code></pre></div>
 <p>You often will want to change the working directory to be your “project” directory (wherever your scripts and data files happen to be). It is possible to change the current working directory using the <code>setwd()</code> function. However, this function would also take an absolute path, so doesn’t fix the problem. You would not want to include this absolute path in your script (though you could use it from the console).</p>
-<p>A better solution is to use R Studio itself to change the working directory. This is reasonable because the working directory is a property of the <em>current running environment</em>, which is what R Studio makes accessible! The easiest way to do this is to use the <strong><code>Session &gt; Set Working Directory</code></strong> menu options: you can either set the working directory <code>To Source File Location</code> (the folder containing whichever <code>.R</code> script you are currently editing; this is usually what you want), or you can browse for a particular directory with <code>Choose Directory</code>.</p>
+<p>One solution is to use the tilde (<code>~</code>) shortcut to specify your directory:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Set working directory on Desktop</span>
+<span class="kw">setwd</span>(<span class="st">&quot;~/Desktop/project-name&quot;</span>)</code></pre></div>
+<p>This enables you to work across machines, as long as the project is stored in the same location on each machine.</p>
+<p>Another solution is to use R Studio itself to change the working directory. This is reasonable because the working directory is a property of the <em>current running environment</em>, which is what R Studio makes accessible! The easiest way to do this is to use the <strong><code>Session &gt; Set Working Directory</code></strong> menu options: you can either set the working directory <code>To Source File Location</code> (the folder containing whichever <code>.R</code> script you are currently editing; this is usually what you want), or you can browse for a particular directory with <code>Choose Directory</code>.</p>
 <div class="figure">
 <img src="img/dataframes/session-setwd-rstudio.png" alt="Use Session &gt; Set Working Directory to change the working directory through R Studio" />
 <p class="caption">Use <code>Session &gt; Set Working Directory</code> to change the working directory through R Studio</p>
 </div>
-<p>You should do this whenever you hit a “path” problem when loading external files. If you want to do this repeatedly by calling <code>setwd()</code> from your script to an absolute path, be sure and keep it commented out (<code># setwd(...)</code>) so it doesn’t cause problems for others who try to run your script.</p>
+<p>You should do this whenever you hit a “path” problem when loading external files. If you want to do this repeatedly by calling <code>setwd()</code> from your script to an absolute path, you may want to keep it commented out (<code># setwd(...)</code>) so it doesn’t cause problems for others who try to run your script.</p>
 </div>
 </div>
 <div id="factors" class="section level2">
 <h2><span class="header-section-number">9.3</span> Factor Variables</h2>
 <p><strong>Factors</strong> are a way of <em>optimizing</em> variables that consist of a finite set of categories (i.e., they are <strong>categorical (nominal) variables</strong>).</p>
 <p>For example, imagine that you had a vector of shirt sizes which could only take on the values <code>small</code>, <code>medium</code>, or <code>large</code>. If you were working with a large dataset (thousands of shirts!), it would end up taking up a lot of memory to store the character strings (5+ letters per word at 1 or more bytes per letter) for each one of those variables.</p>
-<p>A <strong>factor</strong> on the other hand would instead store a <em>number</em> (called a <strong>level</strong>) for each of these character strings: for example, <code>1</code> for <code>small</code>, <code>2</code> for <code>medium</code>, or <code>3</code> for large (though the order or specific numbers will vary). R will remember the relationship between the integers and their <strong>labels</strong> (the strings). Since each number only takes 4 bytes (rather than 1 per letter), factors allow R to keep much more information in memory.</p>
+<p>A <strong>factor</strong> on the other hand would instead store a <em>number</em> (called a <strong>level</strong>) for each of these character strings: for example, <code>1</code> for <code>small</code>, <code>2</code> for <code>medium</code>, or <code>3</code> for <code>large</code> (though the order or specific numbers will vary). R will remember the relationship between the integers and their <strong>labels</strong> (the strings). Since each number only takes 4 bytes (rather than 1 per letter), factors allow R to keep much more information in memory.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Start with a character vector of shirt sizes</span>
 shirt.sizes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;small&#39;</span>, <span class="st">&#39;medium&#39;</span>, <span class="st">&#39;small&#39;</span>, <span class="st">&#39;large&#39;</span>, <span class="st">&#39;medium&#39;</span>, <span class="st">&#39;large&#39;</span>)
 
