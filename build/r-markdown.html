@@ -344,8 +344,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="r-markdown" class="section level1">
 <h1><span class="header-section-number">Chapter 12</span> R Markdown</h1>
-<p>R Markdown is a package that supports using <code>R</code> to dynamically creating <em>documents</em>, such as websites (<code>.html</code> files), reports (<code>.pdf</code> files), slideshows (using <code>ioslides</code> or <code>slidy</code>), and even interactive web apps (using <code>shiny</code>).</p>
-<p>As you may have guessed, R Markdown does this by providing the ability to blend Markdown syntax and <code>R</code> code so that, when executed, scripts will automatically inject your code results into a formatted document. The ability to automatically generate reports and documents from a computer script eliminates the need to manually update the <em>results</em> of a data analysis project, enabling you to more effectively share the <em>information</em> that you’ve produced from your data.</p>
+<p>R Markdown is a package that supports using <code>R</code> to dynamically create <em>documents</em>, such as websites (<code>.html</code> files), reports (<code>.pdf</code> files), slideshows (using <code>ioslides</code> or <code>slidy</code>), and even interactive web apps (using <code>shiny</code>).</p>
+<p>As you may have guessed, R Markdown does this by providing the ability to blend Markdown syntax and <code>R</code> code so that, when executed, scripts will automatically inject your code results into a formatted document. The ability to automatically generate reports and documents from a computer script eliminates the need to manually update the <em>results</em> of a data analysis project, enabling you to more effectively share the <em>information</em> that you’ve produced from your data. In this chapter, you’ll learn the fundamentals of the RMarkdown library to create well-formatted documents that combine analysis and reporting.</p>
 <div id="r-markdown-and-rstudio" class="section level2">
 <h2><span class="header-section-number">12.1</span> R Markdown and RStudio</h2>
 <p>R Markdown documents are created from a combination of two libraries: <code>rmarkdown</code> (which process the markdown and generates the output) and <code>knitr</code> (which runs R code and produces Markdown-like output). These packages are already included in RStudio, which provides built-in support for creating and viewing R Markdown documents.</p>
@@ -377,7 +377,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li>The header is written in <a href="https://en.wikipedia.org/wiki/YAML">YAML</a> format, which is yet another way of formatting structured data similar to <code>.csv</code> or JSON (in fact, YAML is a superset of JSON and can represent the same data structure, just using indentation and dashes instead of braces and commas).</li>
 </ul>
-<p>After this header you will find two types of contents: normal Markdown text like you learned in <a href="markdown.html#markdown">chapter 3</a> (e.g., <code>## R Markdown</code> for a second-level heading), and blocks of <code>R</code> code called <strong>chunks</strong>. R chunks loos like normal code block elements (using <code>```</code>), but with an extra <code>{r}</code> immediately after the backticks. See below for more details about this format.</p>
+<p>Below the header, you will find two types of content:</p>
+<ul>
+<li><strong>Markdown</strong>: normal Markdown text like you learned in <a href="markdown.html#markdown">chapter 3</a>. For example, using two pound symbols (<code>##</code>) for a second-level heading. And</li>
+<li><strong>Code Chunks</strong>: These are segments (chunks) of R code that look like normal code block elements (using <code>```</code>), but with an extra <code>{r}</code> immediately after opening backticks. See below for more details about this format.</li>
+</ul>
+<p>In short, you’ll write Markdown throughout the document, and your R syntax in code chunks. The powerful feature is that you’ll be able to render content created in your code chunks <em>in your Markdown</em>. More on this <a href="r-markdown.html#r-markdown-syntax">below</a></p>
 <p class="alert alert-warning">
 <strong>Important</strong> This file should be saved with the extension <strong><code>.Rmd</code></strong> (for “R Markdown”), which tells the computer and RStudio that the document contains Markdown content with embedded <code>R</code> code.
 </p>
@@ -391,11 +396,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <p>This will generate the document (in the same directory as your <code>.Rmd</code> file), as well as open up a preview window in RStudio.</p>
 <p>While it is easy to generate such documents, the knitting process can make it hard to debug errors in your <code>R</code> code (whether syntax or logical), in part because the output may or may not show up in the document! We suggest that you write complex <code>R</code> code in another script and then simply copy or <code>source()</code> that script into your <code>.Rmd</code> file. Additionally, be sure and knit your document frequently, paying close atention to any errors that appear in the console.</p>
+<p class="alert alert-info">
+<em>Pro-tip</em>: If you’re having trouble finding your error, a good strategy is to systematically remove segments of your code and attempt to re-knit the document. This will help you identify the problematic syntax.
+</p>
 </div>
 <div id="html" class="section level3">
 <h3><span class="header-section-number">12.1.4</span> HTML</h3>
-<p>Assuming that you’ve chosen HTML as your desired output type, RStudio will knit your <code>.Rmd</code> into a <code>.html</code> file. HTML stands for <em><strong>H</strong>yper<strong>T</strong>ext <strong>M</strong>arkup <strong>L</strong>anguage</em> and like Markdown is a syntax for describing the structure and formatting of content (mostly the structure!), though HTML is <strong>far</strong> more extensive and detailed. In particular, HTML is a is a markup language that can be automatically rendered by web browsers, and thus is the language used to create web pages. As such, the <code>.html</code> files you create can be put online as web pages for others to view—you will learn how to do this in a future chapter. For now, you can open a <code>.html</code> file in any browser (such as by double-clicking on the file) to see the content outside of RStudio!</p>
-<!-- TODO: add reference to HTML chapter -->
+<p>Assuming that you’ve chosen HTML as your desired output type, RStudio will knit your <code>.Rmd</code> into a <code>.html</code> file. HTML stands for <em><strong>H</strong>yper<strong>T</strong>ext <strong>M</strong>arkup <strong>L</strong>anguage</em> and, like Markdown, is a syntax for describing the structure and formatting of content (though HTML is <strong>far</strong> more extensive and detailed). In particular, HTML is a is a markup language that can be automatically rendered by web browsers, and thus is the language used to create web pages. As such, the <code>.html</code> files you create can be put online as web pages for others to view—you will learn how to do this in a future chapter. For now, you can open a <code>.html</code> file in any browser (such as by double-clicking on the file) to see the content outside of RStudio!</p>
+<p>As it turns out, it’s quite simple to use GitHub to host publicly available webpages (like the <code>.html</code> files you create with RMarkdown). But, this will require learning a bit more about <code>git</code> and GitHub. For instructions on publishing your <code>.html</code> files as web-pages, see <a href="git-branches.html#git-branches">chapter 14</a>.</p>
 </div>
 </div>
 <div id="r-markdown-syntax" class="section level2">
@@ -423,11 +431,13 @@ Back to writing _markdown_ out here.</code></pre></div>
 <ul>
 <li><strong><code>echo</code></strong> indicates whether you want the <em>R code itself</em> to be displayed in the document (e.g., if you want readers to be able to see your work and reproduce your calculations and analysis). Value is either <code>TRUE</code> (do display) or <code>FALSE</code> (do not display).</li>
 <li><strong><code>message</code></strong> indicates whether you want any messages generated by the code to be displayed. This includes print statements! Value is either <code>TRUE</code> (do display) or <code>FALSE</code> (do not display).</li>
+<li><strong><code>eval</code></strong> determines whether or not you want the code to be evaluated (default=TRUE). This may be helpful if you want to show someone a code example, but don’t want to execute it.</li>
 </ul>
 </div>
 <div id="inline-code" class="section level3">
 <h3><span class="header-section-number">12.2.2</span> Inline Code</h3>
-<p>In addition to creating distinct code blocks, you may want to execute R code <em>inline</em> with the rest of your text, such as to include a variable result inside a paragraph of text. As with code blocks, you’ll follow the Markdown convention of using single backticks (<strong><code>`</code></strong>), but put the letter <strong><code>r</code></strong> imediately after the first backtick. For example:</p>
+<p>In addition to creating distinct code blocks, you may want to execute R code <em>inline</em> with the rest of your text. This empowers you to <strong>reference a variable</strong> from your code-chunk in a section of Markdown. This would allow you to easily include a specific result inside a paragraph of text. And, if the computation changes, re-knitting your document will update your text in the appropriate places.</p>
+<p>As with code blocks, you’ll follow the Markdown convention of using single backticks (<strong><code>`</code></strong>), but put the letter <strong><code>r</code></strong> imediately after the first backtick. For example:</p>
 <pre><code>If we want to calculate 3 + 4 inside some text, we can use 7 right in the _middle_.</code></pre>
 <p>When you knit the text above, the <code>`r 3 + 4`</code> would be replaced with the number <code>7</code>.</p>
 <p class="alert alert-info">
