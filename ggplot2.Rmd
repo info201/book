@@ -65,15 +65,15 @@ To walk through the above code:
 
 - Finally, you add `geom` layers to the plot by using the addition (**`+`**) operator.
 
-Thus basic simple plots can be created simply by specifying a data set, a `geom`, and a set of aesthetic mappings.
+Thus, basic simple plots can be created simply by specifying a data set, a `geom`, and a set of aesthetic mappings.
 
-- Note that `ggplot2` library does include a `qlot()` function for creating "quick plots", which acts as a convenient shortcut for making simple, "default"-like plots. However, for this course you should focus on thinking about plots in terms of the _Grammar of Graphics_ and use the `ggplot()` function instead.
+- Note that `ggplot2` library does include a `qplot()` function for creating "quick plots", which acts as a convenient shortcut for making simple, "default"-like plots. While this is a nice starting place, the strength of `ggplot2` is in it's _customizability_, so read on!
 
 
 ### Aesthetic Mappings
-The **aesthetic mappings** take properties of the data and use them to influence **visual channels**, such as _position_, _color_, _size_, or _shape_. Each visual channel can thus encode an aspect of the data and be used to convey information.
+The **aesthetic mappings** take properties of the data and use them to influence **visual channels**, such as _position_, _color_, _size_, or _shape_. These are the representations that you want to _drive with your data properties_, rather than set for all markers. Each visual channel can therefore encode an aspect of the data and be used to express underlying patterns.
 
-All aesthetics for a plot are specified in the [`aes()`](http://ggplot2.tidyverse.org/reference/index.html#section-aesthetics) function call for that `geom` layer. For example, you can add a mapping from the `class` of the cars to the _color_ channel:
+The data-driven aesthetics for a plot are specified in the [`aes()`](http://ggplot2.tidyverse.org/reference/index.html#section-aesthetics) function call for that `geom` layer. For example, you can add a mapping from the `class` of the cars to the _color_ channel:
 
 ```{r aes_color}
 # color the data by car type
@@ -102,7 +102,7 @@ The most obvious distinction between plots is what **geometric objects** (`geoms
 - **`geom_line`** for drawing lines (e.g., for a line charts)
 - **`geom_smooth`** for drawing smoothed lines (e.g., for simple trends or approximations)
 - **`geom_bar`** for drawing bars (e.g., for bar charts)
-- **`geom_polygon`** for drawing arbitrary shapes
+- **`geom_polygon`** for drawing arbitrary shapes (e.g., for drawing an area in a coordinate plane)
 - **`geom_map`** for drawing polygons in the shape of a map! (You can access the _data_ to use for these maps by using the [`map_data()`](http://ggplot2.tidyverse.org/reference/map_data.html) function).
 
 Each of these geometries will need to include a set of **aesthetic mappings** (using the `aes()` function and assigned to the `mapping` argument), though the specific _visual properties_ that the data will map to will vary. For example, you can map data to the `shape` of a `geom_point` (e.g., if they should be circles or squares), or you can map data to the `linetype` of a `geom_line` (e.g., if it is solid or dotted), but not vice versa.
@@ -133,15 +133,22 @@ Of course the aesthetics for each `geom` can be different, so you could show mul
 - If you want multiple `geoms` to utilize the same data or aesthetics, you can pass those values as arguments to the `ggplot()` function itself; any `geoms` added to that plot will use the values declared for the whole plot _unless overridden by individual specifications_.
 
 #### Statistical Transformations
-If you look at the above `bar` chart, you'll notice that the the `y` axis was defined for you as the `count` of elements that have the particular type. This `count` isn't part of the data set (it's not a column in `mpg`), but is instead a **statistical transformation** that the `geom_bar` automatically applies to the data. In particular, it applies the `stat_count` transformation.
+If you look at the above `bar` chart, you'll notice that the the `y` axis was defined for you as the `count` of elements that have the particular type. This `count` isn't part of the data set (it's not a column in `mpg`), but is instead a **statistical transformation** that the `geom_bar` automatically applies to the data. In particular, it applies the `stat_count` transformation, simply summing the number of rows each `class` appeared in the dataset.
 
 `ggplot2` supports many different statistical transformations. For example, the "identity" transformation will leave the data "as is". You can specify which statistical transformation a `geom` uses by passing it as the **`stat`** argument:
 
-```r
-# silly example: bar chart of engine power vs. milage
-# (you need the `y` mapping since it is not implied by the stat transform
-ggplot(data = mpg) +
-  geom_bar(mapping = aes(x = displ, y = hwy), stat="identity")
+```{r, bar_chart}
+# bar chart of make and model vs. milage
+
+# quickly (lazily) filter the dataset to a sample of the cars: one of each make/model
+new.cars <- mpg %>% 
+  mutate(car = paste(manufacturer, model)) %>%  # combine make + model
+  distinct(car, .keep_all=TRUE)  %>% # select one of each cars -- lazy filtering!
+  slice(1:20)  # only keep 20 cars
+
+# create the plot (you need the `y` mapping since it is not implied by the stat transform of geom_bar)
+ggplot(new.cars) + 
+  geom_bar(mapping=aes(x=car, y=hwy), stat="identity") + coord_flip()  # horizontal bar chart
 ```
 
 Additionally, `ggplot2` contains **`stat_`** functions (e.g., `stat_identity` for the "identity" transformation) that can be used to specify a layer in the same way a `geom` does:
@@ -154,7 +161,7 @@ ggplot(data = mpg) +
 
 Notice the above chart is actually a [histogram](https://en.wikipedia.org/wiki/Histogram)! Indeed, almost every `stat` transformation corresponds to a particular `geom` (and vice versa) by default. Thus they can often be used interchangeably, depending on how you want to emphasize your layer creation when writing the code.
 
-```r
+```
 # these two charts are identical
 ggplot(data = mpg) +
   geom_bar(mapping = aes(x = class))
@@ -179,7 +186,7 @@ The `geom_bar` by default uses a position adjustment of `"stack"`, which makes e
 ggplot(data = mpg) +
   geom_bar(mapping = aes(x = hwy, fill=drv), position="fill")
 
-# a dodged bar chart (values next to each other)
+# a dodged (group) bar chart -- values next to each other
 # (not great dodging demos in this data set)
 ggplot(data = mpg) +
   geom_bar(mapping = aes(x = hwy, fill=drv), position="dodge")
@@ -189,7 +196,7 @@ Check the documentation for each particular `geom` to learn more about its possi
 
 
 ### Styling with Scales
-Whenever you specify an **aesthetic mapping**, `ggplot` uses a particular **scale** to determine the _range of values_ that the data should map to. Thus when you specify
+Whenever you specify an **aesthetic mapping**, `ggplot` uses a particular **scale** to determine the _range of values_ that the data should map to. Thus, when you specify
 
 ```r
 # color the data by engine type
@@ -247,6 +254,7 @@ Notice how it is easy to compare the two data sets to each other because the axe
 
 These scales can also be used to specify the "tick" marks and labels; see the resources at the end of the chapter for details. And for further ways specifying where the data appears on the graph, see the [Coordinate Systems] section below.
 
+<!-- Add an example here -->
 
 #### Color Scales
 A more common scale to change is which set of colors to use in a plot. While you can use scale functions to specify a list of colors to use, a more common option is to use a pre-defined palette from [**colorbrewer.org**](http://colorbrewer2.org/). These color sets have been carefully designed to look good and to be viewable to people with certain forms of color blindness. This color scale is specified with the `scale_color_brewer()` function, passing the `palette` as an argument.

@@ -388,14 +388,14 @@ Examples in this chapter adapted from <a href="http://r4ds.had.co.nz/"><em>R for
 <li><p>For each <code>geom</code> you must specify the <strong>aesthetic mappings</strong>, which is how data from the data frame will be mapped to the visual aspects of the geometry. These mappings are defined using the <code>aes()</code> function. The <code>aes()</code> function takes a set of arguments (like a list), where the argument name is the visual property to map <em>to</em>, and the argument value is the data property to map <em>from</em>.</p></li>
 <li><p>Finally, you add <code>geom</code> layers to the plot by using the addition (<strong><code>+</code></strong>) operator.</p></li>
 </ul>
-<p>Thus basic simple plots can be created simply by specifying a data set, a <code>geom</code>, and a set of aesthetic mappings.</p>
+<p>Thus, basic simple plots can be created simply by specifying a data set, a <code>geom</code>, and a set of aesthetic mappings.</p>
 <ul>
-<li>Note that <code>ggplot2</code> library does include a <code>qlot()</code> function for creating “quick plots”, which acts as a convenient shortcut for making simple, “default”-like plots. However, for this course you should focus on thinking about plots in terms of the <em>Grammar of Graphics</em> and use the <code>ggplot()</code> function instead.</li>
+<li>Note that <code>ggplot2</code> library does include a <code>qplot()</code> function for creating “quick plots”, which acts as a convenient shortcut for making simple, “default”-like plots. While this is a nice starting place, the strength of <code>ggplot2</code> is in it’s <em>customizability</em>, so read on!</li>
 </ul>
 <div id="aesthetic-mappings" class="section level3">
 <h3><span class="header-section-number">13.2.1</span> Aesthetic Mappings</h3>
-<p>The <strong>aesthetic mappings</strong> take properties of the data and use them to influence <strong>visual channels</strong>, such as <em>position</em>, <em>color</em>, <em>size</em>, or <em>shape</em>. Each visual channel can thus encode an aspect of the data and be used to convey information.</p>
-<p>All aesthetics for a plot are specified in the <a href="http://ggplot2.tidyverse.org/reference/index.html#section-aesthetics"><code>aes()</code></a> function call for that <code>geom</code> layer. For example, you can add a mapping from the <code>class</code> of the cars to the <em>color</em> channel:</p>
+<p>The <strong>aesthetic mappings</strong> take properties of the data and use them to influence <strong>visual channels</strong>, such as <em>position</em>, <em>color</em>, <em>size</em>, or <em>shape</em>. These are the representations that you want to <em>drive with your data properties</em>, rather than set for all markers. Each visual channel can therefore encode an aspect of the data and be used to express underlying patterns.</p>
+<p>The data-driven aesthetics for a plot are specified in the <a href="http://ggplot2.tidyverse.org/reference/index.html#section-aesthetics"><code>aes()</code></a> function call for that <code>geom</code> layer. For example, you can add a mapping from the <code>class</code> of the cars to the <em>color</em> channel:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># color the data by car type</span>
 <span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">color =</span> class))</code></pre></div>
@@ -418,7 +418,7 @@ Examples in this chapter adapted from <a href="http://r4ds.had.co.nz/"><em>R for
 <li><strong><code>geom_line</code></strong> for drawing lines (e.g., for a line charts)</li>
 <li><strong><code>geom_smooth</code></strong> for drawing smoothed lines (e.g., for simple trends or approximations)</li>
 <li><strong><code>geom_bar</code></strong> for drawing bars (e.g., for bar charts)</li>
-<li><strong><code>geom_polygon</code></strong> for drawing arbitrary shapes</li>
+<li><strong><code>geom_polygon</code></strong> for drawing arbitrary shapes (e.g., for drawing an area in a coordinate plane)</li>
 <li><strong><code>geom_map</code></strong> for drawing polygons in the shape of a map! (You can access the <em>data</em> to use for these maps by using the <a href="http://ggplot2.tidyverse.org/reference/map_data.html"><code>map_data()</code></a> function).</li>
 </ul>
 <p>Each of these geometries will need to include a set of <strong>aesthetic mappings</strong> (using the <code>aes()</code> function and assigned to the <code>mapping</code> argument), though the specific <em>visual properties</em> that the data will map to will vary. For example, you can map data to the <code>shape</code> of a <code>geom_point</code> (e.g., if they should be circles or squares), or you can map data to the <code>linetype</code> of a <code>geom_line</code> (e.g., if it is solid or dotted), but not vice versa.</p>
@@ -445,24 +445,32 @@ Examples in this chapter adapted from <a href="http://r4ds.had.co.nz/"><em>R for
 </ul>
 <div id="statistical-transformations" class="section level4">
 <h4><span class="header-section-number">13.3.1.1</span> Statistical Transformations</h4>
-<p>If you look at the above <code>bar</code> chart, you’ll notice that the the <code>y</code> axis was defined for you as the <code>count</code> of elements that have the particular type. This <code>count</code> isn’t part of the data set (it’s not a column in <code>mpg</code>), but is instead a <strong>statistical transformation</strong> that the <code>geom_bar</code> automatically applies to the data. In particular, it applies the <code>stat_count</code> transformation.</p>
+<p>If you look at the above <code>bar</code> chart, you’ll notice that the the <code>y</code> axis was defined for you as the <code>count</code> of elements that have the particular type. This <code>count</code> isn’t part of the data set (it’s not a column in <code>mpg</code>), but is instead a <strong>statistical transformation</strong> that the <code>geom_bar</code> automatically applies to the data. In particular, it applies the <code>stat_count</code> transformation, simply summing the number of rows each <code>class</code> appeared in the dataset.</p>
 <p><code>ggplot2</code> supports many different statistical transformations. For example, the “identity” transformation will leave the data “as is”. You can specify which statistical transformation a <code>geom</code> uses by passing it as the <strong><code>stat</code></strong> argument:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># silly example: bar chart of engine power vs. milage</span>
-<span class="co"># (you need the `y` mapping since it is not implied by the stat transform</span>
-<span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy), <span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># bar chart of make and model vs. milage</span>
+
+<span class="co"># quickly (lazily) filter the dataset to a sample of the cars: one of each make/model</span>
+new.cars &lt;-<span class="st"> </span>mpg <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">car =</span> <span class="kw">paste</span>(manufacturer, model)) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># combine make + model</span>
+<span class="st">  </span><span class="kw">distinct</span>(car, <span class="dt">.keep_all=</span><span class="ot">TRUE</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># select one of each cars -- lazy filtering!</span>
+<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>)  <span class="co"># only keep 20 cars</span>
+
+<span class="co"># create the plot (you need the `y` mapping since it is not implied by the stat transform of geom_bar)</span>
+<span class="kw">ggplot</span>(new.cars) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>car, <span class="dt">y=</span>hwy), <span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>()  <span class="co"># horizontal bar chart</span></code></pre></div>
+<p><img src="img/ggplot2/bar_chart-1.png" width="576" /></p>
 <p>Additionally, <code>ggplot2</code> contains <strong><code>stat_</code></strong> functions (e.g., <code>stat_identity</code> for the “identity” transformation) that can be used to specify a layer in the same way a <code>geom</code> does:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># generate a &quot;binned&quot; (grouped) display of highway milage</span>
 <span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) <span class="op">+</span>
 <span class="st">  </span><span class="kw">stat_bin</span>(<span class="kw">aes</span>(<span class="dt">x=</span>hwy, <span class="dt">color=</span>hwy), <span class="dt">binwidth=</span><span class="dv">4</span>)  <span class="co"># binned into groups of 4 units</span></code></pre></div>
 <p><img src="img/ggplot2/stat_summary-1.png" width="576" /></p>
 <p>Notice the above chart is actually a <a href="https://en.wikipedia.org/wiki/Histogram">histogram</a>! Indeed, almost every <code>stat</code> transformation corresponds to a particular <code>geom</code> (and vice versa) by default. Thus they can often be used interchangeably, depending on how you want to emphasize your layer creation when writing the code.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># these two charts are identical</span>
-<span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> class))
+<pre><code># these two charts are identical
+ggplot(data = mpg) +
+  geom_bar(mapping = aes(x = class))
 
-<span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) <span class="op">+</span>
-<span class="st">  </span><span class="kw">stat_count</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> class))</code></pre></div>
+ggplot(data = mpg) +
+  stat_count(mapping = aes(x = class))</code></pre>
 </div>
 <div id="position-adjustments" class="section level4">
 <h4><span class="header-section-number">13.3.1.2</span> Position Adjustments</h4>
@@ -476,7 +484,7 @@ Examples in this chapter adapted from <a href="http://r4ds.had.co.nz/"><em>R for
 <span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> hwy, <span class="dt">fill=</span>drv), <span class="dt">position=</span><span class="st">&quot;fill&quot;</span>)
 
-<span class="co"># a dodged bar chart (values next to each other)</span>
+<span class="co"># a dodged (group) bar chart -- values next to each other</span>
 <span class="co"># (not great dodging demos in this data set)</span>
 <span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> hwy, <span class="dt">fill=</span>drv), <span class="dt">position=</span><span class="st">&quot;dodge&quot;</span>)</code></pre></div>
@@ -486,7 +494,7 @@ Examples in this chapter adapted from <a href="http://r4ds.had.co.nz/"><em>R for
 </div>
 <div id="styling-with-scales" class="section level3">
 <h3><span class="header-section-number">13.3.2</span> Styling with Scales</h3>
-<p>Whenever you specify an <strong>aesthetic mapping</strong>, <code>ggplot</code> uses a particular <strong>scale</strong> to determine the <em>range of values</em> that the data should map to. Thus when you specify</p>
+<p>Whenever you specify an <strong>aesthetic mapping</strong>, <code>ggplot</code> uses a particular <strong>scale</strong> to determine the <em>range of values</em> that the data should map to. Thus, when you specify</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># color the data by engine type</span>
 <span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">color =</span> class))</code></pre></div>
@@ -524,6 +532,7 @@ col_scale &lt;-<span class="st"> </span><span class="kw">scale_colour_discrete</
 <p><img src="img/ggplot2/scale_limit-1.png" width="380pt" /><img src="img/ggplot2/scale_limit-2.png" width="380pt" /></p>
 <p>Notice how it is easy to compare the two data sets to each other because the axes and colors match!</p>
 <p>These scales can also be used to specify the “tick” marks and labels; see the resources at the end of the chapter for details. And for further ways specifying where the data appears on the graph, see the <a href="ggplot2.html#coordinate-systems">Coordinate Systems</a> section below.</p>
+<!-- Add an example here -->
 <div id="color-scales" class="section level4">
 <h4><span class="header-section-number">13.3.2.1</span> Color Scales</h4>
 <p>A more common scale to change is which set of colors to use in a plot. While you can use scale functions to specify a list of colors to use, a more common option is to use a pre-defined palette from <a href="http://colorbrewer2.org/"><strong>colorbrewer.org</strong></a>. These color sets have been carefully designed to look good and to be viewable to people with certain forms of color blindness. This color scale is specified with the <code>scale_color_brewer()</code> function, passing the <code>palette</code> as an argument.</p>
