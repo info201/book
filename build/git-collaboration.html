@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-<link rel="prev" href="git-basics.html">
-<link rel="next" href="functions.html">
+<link rel="prev" href="git-branches.html">
+<link rel="next" href="shiny.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -345,205 +345,98 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="r-intro" class="section level1">
-<h1><span class="header-section-number">Chapter 5</span> Introduction to R</h1>
-<p>R is an extraordinarily powerful open-source software program built for working with data. It is one of the most popular data science tools because of its ability to efficiently perform statistical analysis, implement machine learning algorithms, and create data visualizations. R is the primary programming language used throughout this book, and understanding its foundational operations is key to being able to perform more complex tasks.</p>
-<div id="programming-with-r" class="section level2">
-<h2><span class="header-section-number">5.1</span> Programming with R</h2>
-<p>R is a <strong>statistical programming language</strong> that allows you to write code to work with data. It is an <strong>open-source</strong> programming language, which means that it is free and continually improved upon by the R community. The R language has a number of functionalities that allow you to read, analyze, and visualize datasets.</p>
-<ul>
-<li><em>Fun Fact:</em> R is called “R” because it was inspired by and comes after the language “S”, a language for <strong>S</strong>tatistics developed by AT&amp;T.</li>
-</ul>
-<p>So far you’ve leveraged formal language to give instructions to your computers, such as by writing syntactically-precise instructions at the command-line. Programming in R will work in a similar manner: you will write instructions using R’s special language and syntax, which the computer will <strong>interpret</strong> as instructions for how to work with data.</p>
-<p>However, as projects grow in complexity, it will become useful if you can write down all the instructions in a single place, and then order the computer to <em>execute</em> all of those instructions at once. This list of instructions is called a <strong>script</strong>. Executing or “running” a script will cause each instruction (line of code) to be run <em>in order, one after the other</em>, just as if you had typed them in one by one. Writing scripts allows you to save, share, and re-use your work. By saving instructions in a file (or set of files), you can easily check, change, and re-execute the list of instructions as you figure out how to use data to answer questions. And, because R is an <em>interpreted</em> language rather than a <em>compiled</em> language like Java, R programming environments will also give you the ability to execute each individual line of code in your script if you desire (though this will become cumbersome as projects become large).</p>
-<p>As you begin working with data in R, you will be writing multiple instructions (lines of code) and saving them in files with the <strong><code>.R</code></strong> extension, representing R scripts. You can write this R code in any text editor (such as Atom), but we recommend you usually use a program called <strong>RStudio</strong> which is specialized for writing and running R scripts.</p>
-</div>
-<div id="running-r-scripts" class="section level2">
-<h2><span class="header-section-number">5.2</span> Running R Scripts</h2>
-<p>R scripts (programs) are just a sequence of instructions, and there are a couple of different ways in which we can tell the computer to execute these instructions.</p>
-<div id="rscript-cmd" class="section level3">
-<h3><span class="header-section-number">5.2.1</span> Command-Line</h3>
-<p>It is possible to issue R instructions (run lines of code) one-by-one at the command-line by starting an <strong>interactive R session</strong> within your terminal. This will allow you to type R code directly into the terminal, and your computer will interpret and execute each line of code (if you just typed R syntax directly into the terminal, your computer wouldn’t understand it).</p>
-<p>With R installed, you can start an interactive R session on a Mac by typing <code>R</code> into the terminal (to run the <code>R</code> program), or on Windows by running the “R” desktop app program. This will start the session and provide you with lots of information about the R language:</p>
+<div id="git-collaboration" class="section level1">
+<h1><span class="header-section-number">Chapter 15</span> Git Collaboration</h1>
+<p>Being able to merge between branches allows you to work <strong>collaboratively</strong>, with multiple people making changes to the same repo and sharing those changes through GitHub. There a variety of approaches (or <strong>workflows</strong>) that can be used to facilitate collaboration and make sure that people are effectively able to share code. This section describes a variety of different workflows, however we suggest the branch-based workflow called the <a href="https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow"><strong>Feature Branch Workflow</strong></a> for this course.</p>
+<div id="centralized-workflow" class="section level2">
+<h2><span class="header-section-number">15.1</span> Centralized Workflow</h2>
+<p>In order to undersatnd the Feature Branch Workflow, it’s important to first understand how to collaborate on a centralized repository. The Feature Branch Workflow uses a <strong>centralized repository</strong> stored on GitHub—that is, every single member of the team will <code>push</code> and <code>pull</code> to a single GitHub repo. However, since each repository needs to be created under a particular account, this means that a <strong><em>single member</em></strong> of the team will need to create the repo (such as by accepting a GitHub Classroom assignment, or by clicking the <em>“New”</em> button on their “Repositories” tab on the GitHub web portal).</p>
+<p>In order to make sure everyone is able to <code>push</code> to the repository, whoever creates the repo will need to <a href="https://help.github.com/articles/inviting-collaborators-to-a-personal-repository/"><strong>add the other team members as collaborators</strong></a>. You can do this under the <strong>Settings</strong> tab:</p>
 <div class="figure">
-<img src="img/r-intro/r-interactive-session.png" title="interactive R session" alt="An interactive R session running in the terminal." />
-<p class="caption">An interactive R session running in the terminal.</p>
+<img src="img/git-branches/add-collaborator.png" title="add collaborator menu" alt="Adding a collaborator to a Github repo (via the web portal)." />
+<p class="caption">Adding a collaborator to a Github repo (via the web portal).</p>
 </div>
-<p>Notice that this description also include <em>instructions on what to do next</em>—most importantly <code>&quot;Type 'q()' to quit R.&quot;</code>.</p>
-<p class="alert alert-warning">
-Always read the output when working on the command-line!
-</p>
-<p>Once you’ve started running an interactive R session, you can begin entering one line of code at a time at the prompt (<code>&gt;</code>). This is a nice way to experiment with the R language or to quickly run some code. For example, try doing some math at the command prompt (i.e., enter <code>1 + 1</code> and see the output).</p>
-<ul>
-<li>Note that RStudio also provides an interactive console that provides the exact same functionality.</li>
-</ul>
-<p>It is also possible to run entire scripts from the command-line by using the <code>RScript</code> program, specifying the <code>.R</code> file you wish to execute:</p>
-<div class="figure">
-<img src="img/r-intro/rscript-terminal.png" title="RScript from the terminal" alt="Using RScript from the terminal" />
-<p class="caption">Using RScript from the terminal</p>
+<p>Once you’ve added everyone to the GitHub repository, <strong>each team member</strong> will need to <strong><code>clone</code></strong> the repository to their local machines to work on the code individually. Collaborators can then <code>push</code> any changes they make to the central repository, and <code>pull</code> and changes made by others. Because multiple members will be contributing to the <em>same repositiory</em>, it’s important to ensure that you are working on the most up-to-date version of the code. This means that you will regularly have to <strong>pull in changes</strong> from GitHub that your team members may have committed. As a result, we suggest that you have a workflow that looks like this:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># Begin your work session by pulling in changes from GitHub</span>
+<span class="fu">git</span> pull origin master
+
+<span class="co"># If necessary, resolve any merge conflicts and commit them</span>
+<span class="fu">git</span> add .
+<span class="fu">git</span> commit -m <span class="st">&quot;Merge in changes from GitHub&quot;</span>
+
+<span class="co"># Do your work, then add, commit and push</span>
+<span class="fu">git</span> add .
+<span class="fu">git</span> commit -m <span class="st">&quot;Make progress on feature X&quot;</span>
+<span class="fu">git</span> push origin master</code></pre></div>
+<p>Note, if someone pushes a commit to GitHub <em>before you push your changes</em>, you’ll need to integrate those into your code (and test them!) before pushing up to GitHub. While working on a single <code>master</code> branch in this fashion is possible, you’ll encounter fewer conflicts if you use a dedicated <strong>feature branch</strong> for each developer or feature you’re working on.</p>
 </div>
-<p>Entering this command in the terminal would execute each line of R code written in the <code>analysis.R</code> file, performing all of the instructions that you had save there. This is helpful if your data has changed, and you want to reproduce the results of your analysis using the same instructions.</p>
-<div id="windows-command-line" class="section level4">
-<h4><span class="header-section-number">5.2.1.1</span> Windows Command-Line</h4>
-<p>On Windows, you need to tell the computer where to find the <code>R.exe</code> and <code>RScript.exe</code> programs to execute—that is, what is the <strong>path</strong> to these programs. You can do this by specifying the <em>absolute path</em> to the R program when you execute it, for example:</p>
-<div class="figure">
-<img src="img/r-intro/rscript-terminal-windows.png" title="Rscript from windows shell" alt="Using RScript from a Windows shell" />
-<p class="caption">Using RScript from a Windows shell</p>
-</div>
-<p>If you plan to run R from the command-line regularly (<em>not</em> a requirement for this course), a better solution is to add the folder containing these programs to your computer’s <a href="https://en.wikipedia.org/wiki/PATH_(variable)"><strong><code>PATH</code> variable</strong></a>. This is a <em>system-level</em> variable that contains a list of folders that the computer searches when finding programs to execute execute. The reason the computer knows where to find the <code>git.exe</code> program when you type <code>git</code> in the command-line is because that program is “on the <code>PATH</code>”.</p>
-<p>In Windows, You can add the <code>R.exe</code> and <code>RScript.exe</code> programs to your computer’s <code>PATH</code> by editing your machine’s <strong>Environment Variables</strong> through the <em>Control Panel</em>:</p>
-<ul>
-<li><p>Open up the “Advanced” tab of the “System Properties”. In Windows 10, you can find this by searching for “environment”. Click on the “Environment Variables…” button to open the settings for the Environment Variables.</p></li>
-<li><p>In the window that pops up, select the “PATH” variable (either per user or for the whole system) and click the “Edit” button below it.</p></li>
-<li><p>In the next window that pops up, click the “Browse” button to select the <em>folder that contains</em> the <code>R.exe</code> and <code>RScript.exe</code> files. See the above screenshot for one possible path.</p></li>
-<li><p>You will need to close and re-open your command-line (Git Bash) for the <code>PATH</code> changes to take effect.</p></li>
-</ul>
-<p>Overall, using R from the command-line can be tricky; we recommend you just use RStudio instead.</p>
-</div>
-</div>
-<div id="rstudio-1" class="section level3">
-<h3><span class="header-section-number">5.2.2</span> RStudio</h3>
-<p>RStudio is an open-source <strong>integrated development environment (IDE)</strong> that provides an informative user interface for interacting with the R interpreter. IDEs provide a platform for writing <em>and</em> executing code, including viewing the results of the code you have run. If you haven’t already, make sure to download and install <a href="https://www.rstudio.com/products/rstudio/download3/#download">the free version of RStudio</a>.</p>
-<p>When you open the RStudio program (either by searching for it, or double-clicking on a desktop icon), you’ll see the following interface:</p>
-<div class="figure">
-<img src="img/r-intro/rstudio-interface.png" title="Rstudio&#39;s user interface" alt="RStudio’s user interface. Annotations are in red." />
-<p class="caption">RStudio’s user interface. Annotations are in red.</p>
-</div>
-<p>An RStudio session usually involves 4 sections (“panes”), though you can customize this layout if you wish:</p>
-<ul>
-<li><p><strong>Script</strong>: The top-left pane is a simple text editor for writing your R code. While it is not as robust as a text editing program like Atom, it will colorize code, “auto-complete” text, and allows you to easily execute your code. Note that this pane is hidden if there are no open scripts; select <code>File &gt; New File &gt; R Script</code> from the menu to create a new script file.</p>
-<p>In order to execute (run) the code you write, you have two options:</p>
+<div id="feature-branch-workflow" class="section level2">
+<h2><span class="header-section-number">15.2</span> Feature Branch Workflow</h2>
+<p>The Feature Branch Workflow is a natural extension of the Centralized Workflow that enhances the model by defining specific <em>branches</em> for different pieces of development (still with one centralized repository). The core idea behind the Feature Branch Workflow is that all development should take place on a dedicated <strong>feature branch</strong>, rather than on the <code>master</code> branch. This allows for different people to work on different branches without disturbing the main codebase. For example, you might have one branch <code>visualization</code> that focuses on adding a complex visualization, or another <code>experimental-analysis</code> that tries a bold new approach to processing the data. Each branch is based on a <em>feature</em> (capability or part) of the project, not a particular person: a single developer could be working on multiple feature branches.</p>
+<p>The idea is that the <code>master</code> branch <em>always</em> contains “production-level” code: valid, completely working code that you could deploy or publish (read: give to your boss or teacher) at a whim. All feature branches branch off of <code>master</code>, and are allowed to contain temporary or even broken code (since they are still in development). This way there is always a “working” (if incomplete) copy of the code (<code>master</code>), and development can be kept isolated and considered independent of the whole. This is similar to the example with the <code>experiment</code> branch above.</p>
+<p>The workflow thus works like this:</p>
 <ol style="list-style-type: decimal">
-<li><p>You can execute a section of your script by selecting (highlighting) the desired code and pressing the “Run” button (keyboard shortcut: <code>ctrl</code> and <code>enter</code>). If no lines are selected, this will run the line currently containing the cursor. This is the most common way to execute code in R.</p>
-<ul>
-<li><em>Protip:</em> use <code>cmd + a</code> to select the entire script!</li>
-</ul></li>
-<li><p>You can execute an entire script by using the <code>Source</code> command to treat the current file as the “source” of code. Press the “Source” button (hover the mouse over it for keyboard shortcuts) to do so. If you check the “Source on save” option, your entire script will be executed every time you save the file (this may or may not be appropriate, depending on the complexity of your script and its output).</p></li>
-</ol></li>
-<li><p><strong>Console</strong>: The bottom-left pane is a console for entering R commands. This is identical to an inetractive session you’d run on the command-line, in which you can type and execute one line of code at a time. The console will also show the printed results from executing the code you execute from the Script pane.</p>
-<ul>
-<li><em>Protip:</em> just like with the command-line, you can <strong>use the up arrow</strong> to easily access previously executed lines of code.</li>
-</ul></li>
-<li><p><strong>Environment</strong>: The top-right pane displays information about the current R environment—specifically, information that you have stored inside of <em>variables</em> (see below). In the above example, the value <code>201</code> is stored in a variable called <code>x</code>. You’ll often create dozens of variables within a script, and the Environment pane helps you keep track of which values you have stored in what variables. <em>This is incredibly useful for debugging!</em></p></li>
-<li><p><strong>Plots, packages, help, etc.</strong>: The bottom right pane contains multiple tabs for accessing various information about your program. When you create visualizations, those plots will render in this quadrant. You can also see what packages you’ve loaded or look up information about files. <em>Most importantly</em>, this is also where you can access the official documentation for the R language. If you ever have a question about how something in R works, this is a good place to start!</p></li>
-</ul>
-<p>Note, you can use the small spaces between the quadrants to adjust the size of each area to your liking. You can also use menu options to reorganize the panes if you wish.</p>
-</div>
-</div>
-<div id="comments" class="section level2">
-<h2><span class="header-section-number">5.3</span> Comments</h2>
-<p>Before discussing how to program with R, we need to talk about a piece of syntax that lets you comment your code. In programming, <strong>comments</strong> are bits of text that are <em>not interpreted as computer instructions</em>—they aren’t code, they’re just notes about the code! Since computer code can be opaque and difficult to understand, we use comments to help write down the meaning and <em>purpose</em> of our code. While a computer is able to understand the code, comments are there to help <em>people</em> understand it. This is particularly imporant when someone else will be looking at your work—whether that person is a collaborator, or is simply a future version of you (e.g., when you need to come back and fix something and so need to remember what you were even thinking).</p>
-<p>Comments should be clear, concise, and helpful—they should provide information that is not otherwise present or “obvious” in the code itself.</p>
-<p>In R, we mark text as a comment by putting it after the pound/hashtag symbol (<strong><code>#</code></strong>). Everything from the <code>#</code> until the end of the line is a comment. We put descriptive comments <em>immediately above</em> the code it describes, but you can also put very short notes at the end of the line of code (preferably following two spaces):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Set how many bottles of beer are on the wall</span>
-bottles &lt;-<span class="st"> </span><span class="dv">99</span> <span class="op">-</span><span class="st"> </span><span class="dv">1</span>  <span class="co"># 98 bottles</span></code></pre></div>
-<p>(You may recognize this <code>#</code> syntax and commenting behavior from the commmand-line and git chapters. That’s because the same syntax is used in a Bash shell!)</p>
-</div>
-<div id="variables" class="section level2">
-<h2><span class="header-section-number">5.4</span> Variables</h2>
-<p>Since computer programs involve working with lots of <em>information</em>, we need a way to store and refer to this information. We do this with <strong>variables</strong>. Variables are labels for information; in R, you can think of them as “boxes” or “nametags” for data. After putting data in a variable box, you can then refer to that data by the name on the box.</p>
-<p>Variable names can contain any combination of letters, numbers, periods (<code>.</code>), or underscores (<code>_</code>). Variables names must begin with a letter. Note that like everything in programming, variable names are case sensitive. It is best practice to make variable names descriptive and information about what data they contain. <code>a</code> is not a good variable name. <code>cups.of.coffee</code> is a good variable name. To comply with <a href="https://google.github.io/styleguide/Rguide.xml#identifiers">Google’s Style Guidelines</a> variables should be <strong>all lower-case letters, separated by periods (<code>.</code>)</strong>.</p>
-<p>We call putting information in a variable <strong>assigning</strong> that value to the variable. We do this using the <em>assignment operator</em> <strong><code>&lt;-</code></strong>. For example:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Stores the number 7 into a variable called shoe.size</span>
-shoe.size &lt;-<span class="st"> </span><span class="dv">7</span></code></pre></div>
-<ul>
-<li><em>Notice:</em> variable name goes on the left, value goes on the right!</li>
-</ul>
-<p>You can see what value (data) is inside a variable by either typing that variable name as a line of code, or by using R’s built-in <code>print()</code> function (more on functions later):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(shoe.size)
-<span class="co"># [1] 7</span></code></pre></div>
-<ul>
-<li>We’ll talk about the <code>[1]</code> in that output later.</li>
-</ul>
-<p>You can also use <strong>mathematical operators</strong> (e.g., <code>+</code>, <code>-</code>, <code>/</code>, <code>*</code>) when assigning values to variables. For example, you could create a variable that is the sum of two numbers as follows:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">4</span></code></pre></div>
-<p>Once a value (like a number) is <em>in</em> a variable, you can use that variable in place of any other value. So all of the following are valid:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">2</span>  <span class="co"># store 2 in x</span>
-y &lt;-<span class="st"> </span><span class="dv">9</span>  <span class="co"># store 9 in y</span>
-z &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span>y  <span class="co"># store sum of x and y in z</span>
-<span class="kw">print</span>(z)  <span class="co"># 11</span>
-z &lt;-<span class="st"> </span>z <span class="op">+</span><span class="st"> </span><span class="dv">1</span>  <span class="co"># take z, add 1, and store result back in z</span>
-<span class="kw">print</span>(z)  <span class="co"># 12</span></code></pre></div>
-<div id="basic-data-types" class="section level3">
-<h3><span class="header-section-number">5.4.1</span> Basic Data Types</h3>
-<p>In the example above, we stored <strong>numeric</strong> values in variables. R is a <strong>dynamically typed language</strong>, which means that we <em>do not</em> need to explicitly state what type of information will be stored in each variable we create. R is intelligent enough to understand that if we have code <code>x &lt;- 7</code>, then <code>x</code> will contain a numeric value (and so we can do math upon it!)</p>
-<p>There are a few “basic types” (or <em>modes</em>) for data in R:</p>
-<ul>
-<li><p><strong>Numeric</strong>: The default computational data type in R is numeric data, which consists of the set of real numbers (including decimals). We use use <strong>mathematical operators</strong> on numeric data (such as <code>+</code>, <code>-</code>, <code>*</code>, <code>-</code>, etc.). There are also numerous functions that work on numeric data (such as calculating sums or averages).</p></li>
-<li><p><strong>Character</strong>: Character data stores <em>strings</em> of characters (things you type with a keyboard) in a variable. You specify that some information is character data by surrounding it in either single quotes (<strong><code>'</code></strong>) or double quotes (<strong><code>&quot;</code></strong>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create character variable `famous.poet` with the value &quot;Bill Shakespeare&quot;</span>
-famous.poet &lt;-<span class="st"> &quot;Bill Shakespeare&quot;</span></code></pre></div>
-<p>Note that character data <em>is still data</em>, so it can be assigned to a variable just like numeric data!</p>
-<p>There are no special operators for character data, though there are a many built-in functions for working with strings.</p></li>
-<li><p><strong>Logical</strong>: Logical (a.k.a Boolean) data types store “yes-or-no” data. A logical value can be one of two values: <code>TRUE</code> or <code>FALSE</code>. Importantly, these <strong>are not</strong> the strings <code>&quot;TRUE&quot;</code> or <code>&quot;FALSE&quot;</code>; logical values are a different type! If you prefer, you can use the shorthand <code>T</code> or <code>F</code> in lieu of <code>TRUE</code> and <code>FALSE</code> in variable assignment.</p>
-<ul>
-<li><em>Fun fact:</em> logical values are called “booleans” after mathematician and logician <a href="https://en.wikipedia.org/wiki/George_Boole">George Boole</a>.</li>
-</ul>
-<p>Logical values are most commonly the result of applying a <strong>relational operator</strong> (also called a <strong>comparison operator</strong>) to some other data. Comparison operators are used to compare values and include: <code>&lt;</code> (less than), <code>&gt;</code> (greater than), <code>&lt;=</code> (less-than-or-equal), <code>&gt;=</code> (greater-than-or-equal), <code>==</code> (equal), and <code>!=</code> (not-equal).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Store values in variables</span>
-x &lt;-<span class="st"> </span><span class="dv">3</span>
-y &lt;-<span class="st"> </span><span class="fl">3.15</span>
+<li><p>Ada decides to add a new feature or part to the code. She creates a new feature branch off of <code>master</code>:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> checkout master
+<span class="fu">git</span> checkout -b adas-feature</code></pre></div></li>
+<li><p>Ada does some work on this feature</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># work is done outside of terminal</span>
 
-<span class="co"># Compare values in x and y</span>
-x <span class="op">&gt;</span><span class="st"> </span>y  <span class="co"># returns logical value FALSE (x IS NOT bigger than y)</span>
-y <span class="op">!=</span><span class="st"> </span>x  <span class="co"># returns logical value TRUE (y IS not-equal to x)</span>
+<span class="fu">git</span> add .
+<span class="fu">git</span> commit -m <span class="st">&quot;Adds progress on feature&quot;</span></code></pre></div></li>
+<li><p>Ada takes a break, pushing her changes to GitHub</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> push -u origin adas-feature</code></pre></div></li>
+<li><p>After talking to Ada, Bebe decides to help finish up the feature. She checks out the branch and makes some changes, then pushes them back to GitHub</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># fetch will &quot;download&quot; commits from GitHub, without merging them</span>
+<span class="fu">git</span> fetch origin
+<span class="fu">git</span> checkout adas-feature
 
-<span class="co"># compare x to pi (built-in variable)</span>
-y <span class="op">==</span><span class="st"> </span>pi  <span class="co"># returns logical value FALSE</span>
+<span class="co"># work is on adas-feature done outside of terminal</span>
 
-<span class="co"># compare strings (based on alphabetical ordering)</span>
-<span class="st">&quot;cat&quot;</span> <span class="op">&gt;</span><span class="st"> &quot;dog&quot;</span>  <span class="co"># returns FALSE</span></code></pre></div>
-<p>Logical values have their own operators as well (called <strong>logical operators</strong> or <strong>boolean operators</strong>). These <em>apply to</em> logical values and <em>produce</em> logical values, allowing you to make more complex logical expressions. These include <code>&amp;</code> (and), <code>|</code> (or), and <code>!</code> (not).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Store values in variables</span>
-x &lt;-<span class="st"> </span><span class="fl">3.1</span>
-y &lt;-<span class="st"> </span><span class="fl">3.2</span>
-pet &lt;-<span class="st"> &quot;dog&quot;</span>
-weather &lt;-<span class="st"> &quot;rain&quot;</span>
+<span class="fu">git</span> add .
+<span class="fu">git</span> commit -m <span class="st">&quot;Adds more progress on feature&quot;</span>
+<span class="fu">git</span> push origin adas-feature</code></pre></div></li>
+<li><p>Ada downloads Bebe’s changes</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> pull origin adas-feature</code></pre></div></li>
+<li><p>Ada decides the feature is finished, and <em>merges</em> it back into <code>master</code>. But first, she makes sure she has the latest version of the <code>master</code> code to integrate her changes with</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> checkout master  # switch to master
+<span class="fu">git</span> pull origin master  # download any changes
 
-<span class="co"># Check if x is less than pi AND y is greater than pi</span>
-x <span class="op">&lt;</span><span class="st"> </span>pi <span class="op">&amp;</span><span class="st"> </span>y <span class="op">&gt;</span><span class="st"> </span>pi  <span class="co"># TRUE</span>
+<span class="fu">git</span> merge adas-feature  # merge the feature into the master branch
+<span class="co"># fix any merge conflicts!!</span>
 
-<span class="co"># Check if pet is &quot;cat&quot; OR &quot;dog&quot;</span>
-pet <span class="op">==</span><span class="st"> &quot;cat&quot;</span> <span class="op">|</span><span class="st"> </span>pet <span class="op">==</span><span class="st"> &quot;dog&quot;</span>  <span class="co"># TRUE</span>
-
-<span class="co"># Check if pet is &quot;dog&quot; AND NOT weather is &quot;rain&quot;</span>
-pet <span class="op">==</span><span class="st"> &quot;dog&quot;</span> <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span>(weather <span class="op">==</span><span class="st"> &quot;rain&quot;</span>)  <span class="co"># FALSE</span></code></pre></div>
-<p>Note that it’s easy to write complex expressions with logical operators. If you find yourself getting lost, I recommend rethinking your question to see if there is a simpler way to express it!</p></li>
-<li><p><strong>Complex</strong>: Complex (imaginary) numbers have their own data storage type in R, are are created using the <code>i</code> syntax: <code>complex.variable &lt;- 2i</code>. We will not be using complex numbers in this course.</p></li>
-<li><p><strong>Integer</strong>: Integer values are technically a different data type than numeric values because of how they are stored and manipulated by the R interpreter. This is something that you will rarely encounter, but it’s good to know that you can specify a number is of integer type rather than general numeric type by placing a capital <code>L</code> (for “long integer”) after an value in variable assignment (<code>my.integer &lt;- 10L</code>).</p></li>
-</ul>
-</div>
-</div>
-<div id="gettinghelp" class="section level2">
-<h2><span class="header-section-number">5.5</span> Getting Help</h2>
-<p>As with any programming language, when working in R you will inevitably run into problems, confusing situations, or just general questions. Here are a few ways to start getting help.</p>
-<ol style="list-style-type: decimal">
-<li><p><strong>Read the error messages</strong>: If there is an issue with the way you have written or executed your code, R will often print out a red error message in your console. Do you best to decipher the message (read it carefully, and think about what is meant by each word in the message), or you can put it directly into Google to get more information. You’ll soon get the hang of interpreting these messages if you put the time into trying to understand them.</p></li>
-<li><p><strong>Google</strong>: When you’re trying to figure out how to do something, it should be no surprise that Google is often the best resource. Try searching for queries like <code>&quot;how to &lt;DO THING&gt; in R&quot;</code>. More frequently than not, your question will lead you to a Q/A forum called StackOverflow (see below), which is a great place to find potential answers.</p></li>
-<li><p><strong>StackOverflow</strong>: StackOverflow is an amazing Q/A forum for asking/answering programming questions. Indeed, most basic questions have already been asked/answered here. However, don’t hesitate to post your own questions to StackOverflow. Be sure to hone in on the specific question you’re trying to answer, and provide error messages and sample code. I often find that, by the time I can articulate the question clearly enough to post it, I’ve figured out my problem anyway.</p>
-<ul>
-<li>There is a classical method of debugging called <a href="https://en.wikipedia.org/wiki/Rubber_duck_debugging">rubber duck debugging</a>, which involves simply trying to explain your code/problem to an inanimate object (talking to pets works too). You’ll usually be able to fix the problem if you just step back and think about how you would explain it to someone else!</li>
-</ul></li>
-<li><p><strong>Documentation</strong>: R’s documentation is actually quite good. Functions and behaviors are all described in the same format, and often contain helpful examples. To search the documentation within R (or in RStudio), simply type <code>?</code> followed by the function name you’re using (more on functions coming soon). You can also search the documentation by typing two questions marks (<code>??SEARCH</code>).</p>
-<ul>
-<li><p>You can also look up help by using the <code>help()</code> function (e.g., <code>help(print)</code> will look up information on the <code>print()</code> function, just like <code>?print</code> does). There is also an <code>example()</code> function you can call to see examples of a function in action (e.g., <code>example(print)</code>). This will be more important in the next module!</p></li>
-<li><p><a href="https://www.rdocumentation.org/">rdocumentation.org</a> has a lovely searchable and readable interface to the R documentation.</p></li>
-</ul></li>
+<span class="fu">git</span> push origin master  # upload the updated code to master</code></pre></div></li>
+<li><p>And now that the feature has been successfully added to the project, Ada can delete the feature branch (using <code>git branch -d branch_name</code>). See also <a href="http://stackoverflow.com/questions/2003505/how-to-delete-a-git-branch-both-locally-and-remotely">here</a>.</p></li>
 </ol>
+<p>This kind of workflow is very common and effective for supporting collaboration. Note that as projects get large, you may need to start being more organized about how and when you create feature branches. For example, the <a href="http://nvie.com/posts/a-successful-git-branching-model/"><strong>Git Flow</strong></a> model organizes feature branches around product releases, and is often a starting point for large collaborative projects.</p>
 </div>
-<div id="resources-4" class="section level2 unnumbered">
+<div id="forking-workflow" class="section level2">
+<h2><span class="header-section-number">15.3</span> Forking Workflow</h2>
+<p>The Forking Workflow takes a <strong>fundamentally different approach</strong> to collaboration than the Centralized and Feature Branch workflows. Rather than having a single remote, each developer will have <strong>their own repository</strong> on GitHub that is <em>forked</em> from the original repository. As discussed in the <a href="git-basics.html#git-basics">introductory GitHub Chapter</a>, a developer can create their own remote repositry from an existing project by <em>forking</em> it on GitHub. This allows the individual to make changes (and contribute to) the project. However, we have not yet discussed how those changes can be integrated into the original code base. GitHub offers a feature called <a href="https://help.github.com/articles/creating-a-pull-request/"><strong>pull requests</strong></a> by which you can merge two remote branches (that is: <code>merge</code> two branches that are on GitHub). A <strong>pull request</strong> is a request for the changes from one branch to be pulled (merged) into another.</p>
+<div id="pull-requests" class="section level3">
+<h3><span class="header-section-number">15.3.1</span> Pull Requests</h3>
+<p>Pull requests are primarily used to let teams of developers <em>collaborate</em>—one developer can send a request “hey, can you integrate my changes?” to another. The second developer can perform a <strong>code review</strong>: reviewing the proposed changes and making comments or asking for corrections to anything they find problematic. Once the changes are improved, the pull request can be <strong>accepted</strong> and the changes merged into the target branch. This process is how programmers collaborate on <em>open-source software</em> (such as R libraries like <code>dplyr</code>): a developer can <em>fork</em> an existing professional project, make changes to that fork, and then send a pull request back to the original developer asking them to merge in changes (“will you include my changes in your branch/version of the code?”).</p>
+<p class="alert alert-warning">
+Pull requests should only be used when doing collaboration using remote branches! Local branches should be <code>merged</code> locally using the command-line, not GitHub’s pull request feature.
+</p>
+<p>In order to issue a pull request, both branches you wish to merge will need to be <code>pushed</code> to GitHub (whether they are in the same repo or in forks). To issue the pull request, navigate to your repository on GitHub’s web portal and choose the <strong>New Pull Request</strong> button (it is next to the drop-down that lets you view different branches).</p>
+<p>In the next page, you will need to specify which branches you wish to merge. The <strong>base</strong> branch is the one you want to merge <em>into</em> (often <code>master</code>), and the <strong>head</strong> branch (labeled “compare”) is the branch with the new changes you want to merge (often a feature branch; see below).</p>
+<p>Add a title and description for your pull request. These should follow the format for git commit messages. Finally, click the <strong>Create pull request</strong> button to finish creating the pull request.</p>
+<p class="alert alert-info">
+Important! The pull request is a request to merge two branches, not to merge a specific set of commits. This means that you can <em>push more commits</em> to the head/merge-from branch, and they will automatically be included in the pull request—the request is always “up-to-date” with whatever commits are on the (remote) branch.
+</p>
+<p>You can view all pull requests (including those that have been accepted) through the <strong>Pull Requests</strong> tab at the top of the repo’s web portal. This is where you can go to see comments that have been left by the reviewer.</p>
+<p>If someone sends you a pull request (e.g., another developer on your team), you can <a href="https://help.github.com/articles/merging-a-pull-request/">accept that pull request</a> through GitHub’s web portal. If the branches can be merged without a conflict, you can do this simply by hitting the <strong>Merge pull request</strong> button. However, if GitHub detects that a conflict may occur, you will need to <a href="https://help.github.com/articles/checking-out-pull-requests-locally">pull down the branches and merge them locally</a>.</p>
+<p class="alert alert-warning">
+It is best practice to <em>never</em> accept your own pull requests! If you don’t need any collaboration, just merge the branches locally.
+</p>
+<p>Note that when you merge a pull request via the GitHub web site, the merge is done entirely on the server. Your local repo will not yet have those changes, and so you will need to use <code>git pull</code> to download the updates to an appropriate branch.</p>
+</div>
+</div>
+<div id="resources-14" class="section level2 unnumbered">
 <h2>Resources</h2>
 <ul>
-<li><a href="https://google.github.io/styleguide/Rguide.xml">Google’s R Style Guide</a></li>
-<li><a href="https://www.datacamp.com/home">DataCamp</a> (awesome resource for interactive tutorials in R)</li>
-<li><a href="http://www.r-tutor.com/r-introduction">R Tutorial: Introduction</a></li>
-<li><a href="http://www.r-tutor.com/r-introduction/basic-data-types">R Tutorial: Basic Data Types</a></li>
-<li><a href="https://www.tutorialspoint.com/r/r_operators.htm">R Tutorial: Operators</a></li>
-<li><a href="https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts">RStudio Keyboard Shortcuts</a></li>
-<li><a href="https://www.rdocumentation.org/">R Documentation</a> searchable online documentation</li>
-<li><a href="http://r4ds.had.co.nz/">R for Data Science</a> online textbook</li>
-<li><a href="http://arrgh.tim-smith.us/">aRrgh: a newcomer’s (angry) guide to R</a> opinionated but clear introduction</li>
-<li><a href="https://www.nostarch.com/artofr.htm">The Art of R Programming</a> print textbook</li>
+<li><a href="https://www.atlassian.com/git/tutorials/comparing-workflows">Atlassian Git Workflows Tutorial</a></li>
 </ul>
 
 </div>
@@ -553,8 +446,8 @@ pet <span class="op">==</span><span class="st"> &quot;dog&quot;</span> <span cla
           </div>
         </div>
       </div>
-<a href="git-basics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="functions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="git-branches.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="shiny.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -583,7 +476,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/info201/book/edit/master/r-intro.Rmd",
+"link": "https://github.com/info201/book/edit/master/git-collaboration.Rmd",
 "text": "Edit"
 },
 "download": ["tech-foundations-of-informatics.pdf", "tech-foundations-of-informatics.epub"],
