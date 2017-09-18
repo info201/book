@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2017-09-13">
+<meta name="date" content="2017-09-18">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -509,6 +509,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="co"># example: don&#39;t include large files or libraries</span>
 <span class="ex">movies/my_four_hour_epic.mov</span></code></pre></div>
 <p>Note that the easiest way to create the <code>.gitignore</code> file is to use your preferred text editor (e.g., Atom); select <code>File &gt; New</code> from the menu and choose to make the <code>.gitignore</code> file <em>directly inside</em> your repo.</p>
+<p>If you are on a Mac, we <strong>strongly suggest</strong> <em>globally ignoring</em> your <code>.DS_Store</code> file. There’s no need to ever share or track this file. To always ignore this file on your machine, simply run these lines of code:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># Run these lines on your terminal to configure git to ignore .DS_Store</span>
+<span class="fu">git</span> config --global core.excludesfile ~/.gitignore
+<span class="bu">echo</span> .DS_Store <span class="op">&gt;&gt;</span> ~/.gitignore</code></pre></div>
+<p>See <a href="http://jesperrasmussen.com/2013/11/13/globally-ignore-ds-store-on-mac/">this article</a> for more information.</p>
 </div>
 </div>
 <div id="github-and-remotes" class="section level2">
@@ -613,7 +618,8 @@ Students in the INFO 201 course will be forking repos for class and lab execises
 <li><a href="https://try.github.io/levels/1/challenges/1">Try Git</a> (interactive tutorial)</li>
 <li><a href="https://help.github.com/articles/set-up-git/">GitHub Setup and Instructions</a></li>
 <li><a href="https://git-scm.com/doc">Official Git Documentation</a></li>
-<li><a href="https://education.github.com/git-cheat-sheet-education.pdf">Git Cheat Sheet</a></li>
+<li><p><a href="https://education.github.com/git-cheat-sheet-education.pdf">Git Cheat Sheet</a></p></li>
+<li><p><a href="http://jesperrasmussen.com/2013/11/13/globally-ignore-ds-store-on-mac/">Ignore DS_Store on a Mac</a></p></li>
 </ul>
 
 </div>

@@ -216,6 +216,16 @@ movies/my_four_hour_epic.mov
 
 Note that the easiest way to create the `.gitignore` file is to use your preferred text editor (e.g., Atom); select `File > New` from the menu and choose to make the `.gitignore` file _directly inside_ your repo.
 
+If you are on a Mac, we **strongly suggest** _globally ignoring_ your `.DS_Store` file. There's no need to ever share or track this file. To always ignore this file on your machine, simply run these lines of code:
+
+```bash
+# Run these lines on your terminal to configure git to ignore .DS_Store
+git config --global core.excludesfile ~/.gitignore
+echo .DS_Store >> ~/.gitignore
+```
+
+See [this article](http://jesperrasmussen.com/2013/11/13/globally-ignore-ds-store-on-mac/) for more information.
+
 ## GitHub and Remotes
 Now that you've gotten the hang of git, let's talk about GitHub. [GitHub](https://github.com/) is an online service that stores copies of repositories in the cloud. These repositories can be _linked_ to your **local** repositories (the one on your machine, like you've been working with so far) so that you can synchronize changes between them.
 
@@ -330,3 +340,5 @@ Using git and GitHub can be challenging, and you'll inevitably run into issues. 
 - [GitHub Setup and Instructions](https://help.github.com/articles/set-up-git/)
 - [Official Git Documentation](https://git-scm.com/doc)
 - [Git Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf)
+
+- [Ignore DS_Store on a Mac](http://jesperrasmussen.com/2013/11/13/globally-ignore-ds-store-on-mac/)
