@@ -26,4 +26,5 @@ rmd_files:
   - r-markdown.Rmd
   - ggplot2.Rmd
   - git-branches.Rmd
+  - git-collaboration.Rmd
   - shiny.Rmd

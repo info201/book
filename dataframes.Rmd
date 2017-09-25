@@ -1,6 +1,6 @@
 # Data Frames {#dataframes}
 
-This chapter will introduce data frame objects, which are the major data storage type used in R. In many ways, data frames are similar to a two-dimensional row/column layouts that you should be familiar with from spreadsheet programs like Microsoft Excel. This chapter will cover various ways of creating, describing, and accessing data frames, as well as how they are related to other data types in R.
+This chapter introduces **data frame** objects, which are the primary data storage type used in R. In many ways, data frames are similar to a two-dimensional row/column layout that you should be familiar with from spreadsheet programs like Microsoft Excel. Rather than interact with this data strcture through a UI, we'll learn how to programmatically and reproducably perform operations on this data type. This chapter covers various ways of creating, describing, and accessing data frames, as well as how they are related to other data types in R.
 
 
 ## What is a Data Frame?
@@ -10,7 +10,7 @@ At a practical level, **Data Frames** act like _tables_, where data is organized
 
 In this table, each _row_ represents a **record** or **observation**: an instance of a single thing being measured (e.g., a person). Each _column_ represents a **feature**: a particular property or aspect of the thing being measured (e.g., the person's height or weight). This structure is used to organize lots of different _related_ data points for easier analysis.
 
-In R, you can use **data frames** to represent these kinds of tables. Data frames are really just **lists** (see [Lists]) in which each element is a **vector of the same length**. Each vector represents a **column, not a row**. The elements at corresponding indices in the vectors are considered part of the same record (row).
+In R, you can use **data frames** to represent these kinds of tables. Data frames are really just **lists** (see [Lists]) in which each element is a **vector of the same length**. Each vector represents a **column, _not_ a row**. The elements at corresponding indices in the vectors are considered part of the same record (row).
 
 - This makes sense because each row may have a different type of data&mdash;e.g., a person's `name` (string) and `height` (number)&mdash;and vector elements must all be of the same type.
 
@@ -74,7 +74,7 @@ Note that many of these description functions can also be used to _modify_ the s
 my.data <- data.frame(name, height, weight)
 
 # A vector of new column names
-new.col.names <- c('First.Name','How.Tall','How.Heavy')
+new.col.names <- c('first.name','how.tall','how.heavy')
 
 # Assign that vector to be the vector of column names
 colnames(my.data) <- new.col.names
@@ -160,11 +160,20 @@ getwd()
 
 You often will want to change the working directory to be your "project" directory (wherever your scripts and data files happen to be). It is possible to change the current working directory using the `setwd()` function. However, this function would also take an absolute path, so doesn't fix the problem. You would not want to include this absolute path in your script (though you could use it from the console).
 
-A better solution is to use R Studio itself to change the working directory. This is reasonable because the working directory is a property of the _current running environment_, which is what R Studio makes accessible! The easiest way to do this is to use the **`Session > Set Working Directory`** menu options: you can either set the working directory `To Source File Location` (the folder containing whichever `.R` script you are currently editing; this is usually what you want), or you can browse for a particular directory with `Choose Directory`.
+One solution is to use the tilde (`~`) shortcut to specify your directory:
+
+```r
+# Set working directory on Desktop
+setwd("~/Desktop/project-name")
+```
+
+This enables you to work across machines, as long as the project is stored in the same location on each machine.
+
+Another solution is to use R Studio itself to change the working directory. This is reasonable because the working directory is a property of the _current running environment_, which is what R Studio makes accessible! The easiest way to do this is to use the **`Session > Set Working Directory`** menu options: you can either set the working directory `To Source File Location` (the folder containing whichever `.R` script you are currently editing; this is usually what you want), or you can browse for a particular directory with `Choose Directory`.
 
 ![Use `Session > Set Working Directory` to change the working directory through R Studio](img/dataframes/session-setwd-rstudio.png)
 
-You should do this whenever you hit a "path" problem when loading external files. If you want to do this repeatedly by calling `setwd()` from your script to an absolute path, be sure and keep it commented out (`# setwd(...)`) so it doesn't cause problems for others who try to run your script.
+You should do this whenever you hit a "path" problem when loading external files. If you want to do this repeatedly by calling `setwd()` from your script to an absolute path, you may want to keep it commented out (`# setwd(...)`) so it doesn't cause problems for others who try to run your script.
 
 
 ## Factor Variables {#factors}
@@ -172,7 +181,7 @@ You should do this whenever you hit a "path" problem when loading external files
 
 For example, imagine that you had a vector of shirt sizes which could only take on the values `small`, `medium`, or `large`. If you were working with a large dataset (thousands of shirts!), it would end up taking up a lot of memory to store the character strings (5+ letters per word at 1 or more bytes per letter) for each one of those variables.
 
-A **factor** on the other hand would instead store a _number_ (called a **level**) for each of these character strings: for example, `1` for `small`, `2` for `medium`, or `3` for large (though the order or specific numbers will vary). R will remember the relationship between the integers and their **labels** (the strings). Since each number only takes 4 bytes (rather than 1 per letter), factors allow R to keep much more information in memory.
+A **factor** on the other hand would instead store a _number_ (called a **level**) for each of these character strings: for example, `1` for `small`, `2` for `medium`, or `3` for `large` (though the order or specific numbers will vary). R will remember the relationship between the integers and their **labels** (the strings). Since each number only takes 4 bytes (rather than 1 per letter), factors allow R to keep much more information in memory.
 
 ```r
 # Start with a character vector of shirt sizes

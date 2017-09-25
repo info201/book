@@ -10,7 +10,7 @@ While most APIs provide an interface for utilizing _functionality_, other APIs p
 
 <!-- (Technically the interface is just the function **signature** which says how you _use_ the function: what name it has, what arguments it takes, and what value it returns. The actual library is an _implementation_ of this interface). -->
 
-With web services, the interface (the set of "functions" you can call to access the data) takes the form of **HTTP Requests**&mdash;a _request_ for data sent following the _**H**yper**T**ext **T**ransfer **P**rotocol_. This is the same protocol (way of communicating) used by your browser to view a web page! An HTTP Request represents a message that your computer sends to a web server (another computer on the internet which "serves", or provides, information). That server, upon receiving the request, will determine what data to include in the **response** it sends _back_ to the requesting computer. With a web browser the response data takes the form of HTML files that the browser can _render_ as web pages; with data APIs the response data will be structured data that you can convert into R structures such as lists or data frames.
+With web services, the interface (the set of "functions" you can call to access the data) takes the form of **HTTP Requests**&mdash;a _request_ for data sent following the _**H**yper**T**ext **T**ransfer **P**rotocol_. This is the same protocol (way of communicating) used by your browser to view a web page! An HTTP Request represents a message that your computer sends to a web server (another computer on the internet which "serves", or provides, information). That server, upon receiving the request, will determine what data to include in the **response** it sends _back_ to the requesting computer. With a web browser, the response data takes the form of HTML files that the browser can _render_ as web pages. With data APIs, the response data will be structured data that you can convert into R structures such as lists or data frames.
 
 In short, loading data from a Web API involves sending an **HTTP Request** to a server for a particular piece of data, and then receiving and parsing the **response** to that request.
 
@@ -52,16 +52,16 @@ With an API, the domain and path are often viewed as being broken up into two pa
     - `countries/show/:id` to refer to region information about a specific country (the `:` is another way to indicate a variable)
     - `stats/persons_of_concern` to refer to statistics about people seeking asylum
 
-Thus you can equivalently talk about accessing a particular **resource** and sending a request to a particular **endpoint**.
+Thus you can equivalently talk about accessing a particular **resource** and sending a request to a particular **endpoint**. The **endpoint** is appended to the end of the **Base URI**, so you could access Spotify's new releases by combining the **Base URI** (`https://api.spotify.com`) and **endpoint** (`/v1/browse/new-releases`) into a single string: `https://api.spotify.com/v1/browse/new-releases`. That URL will return a data structure of new releases, which you can request from your R program or simply view in your web-browser.
 
 #### Query Parameters
-Often in order to access only partial sets of data from a resource (e.g., to only get some users) you also include a set of **query parameters**. These are like extra arguments that are given to the request function. Query parameters are listed after a question mark **`?`** in the URI, and are formed as key-value pairs similar to how you named items in _lists_. The key (_parameter name_) is listed first, followed by an equal sign **`=`**, followed by the value (_parameter value_); note that you can't include any spaces in URIs! You can include multiple query parameters by putting an ampersand **`&`** between each key-value pair:
+Often in order to access only partial sets of data from a resource (e.g., to only get some users) you also include a set of **query parameters**. These are like extra arguments that are given to the request function. Query parameters are listed after a question mark **`?`** in the URI, and are formed as key-value pairs similar to how you named items in _lists_. The **key** (_parameter name_) is listed first, followed by an equal sign **`=`**, followed by the **value** (_parameter value_); note that you can't include any spaces in URIs! You can include multiple query parameters by putting an ampersand **`&`** between each key-value pair:
 
 ```
 ?firstParam=firstValue&secondParam=secondValue&thirdParam=thirdValue
 ```
 
-Exactly what parameter names you need to include (and what are legal values to assign to that name) depends on the particular web service. Common examples include having parameters named `q` or `query` for searching, with a value being whatever term you want to search for: in [`https://www.google.com/search?q=informatics`](https://www.google.com/search?q=informatics), the resource `/search` takes a query parameter `q` with the term you want to search for!
+Exactly what parameter names you need to include (and what are legal values to assign to that name) depends on the particular web service. Common examples include having parameters named `q` or `query` for searching, with a value being whatever term you want to search for: in [`https://www.google.com/search?q=informatics`](https://www.google.com/search?q=informatics), the **resource** at the `/search` **endpoint** takes a query parameter `q` with the term you want to search for!
 
 #### Access Tokens and API Keys
 Many web services require you to register with them in order to send them requests. This allows them to limit access to the data, as well as to keep track of who is asking for what data (usually so that if someone starts "spamming" the service, they can be blocked).
@@ -94,7 +94,7 @@ Anyone else who runs the script will simply need to provide an `api.key` variabl
 
 
 ### HTTP Verbs
-When you send a request to a particular resource, you need to indicate what you want to _do_ with that resource! This is done by specifying an **HTTP Verb** in the request. The HTTP protocol supports the following verbs:
+When you send a request to a particular resource, you need to indicate what you want to _do_ with that resource. When you load web content, you are typically sending a request to retrieve information (logically, this is a `GET` request). However, there are other actions you can perform to modify the data structure on the server. This is done by specifying an **HTTP Verb** in the request. The HTTP protocol supports the following verbs:
 
 - `GET`	Return a representation of the current state of the resource
 - `POST`	Add a new subresource (e.g., insert a record)
@@ -103,21 +103,13 @@ When you send a request to a particular resource, you need to indicate what you 
 - `DELETE`	Remove the resource
 - `OPTIONS`	Return the set of methods that can be performed on the resource
 
-By far the most common verb is `GET`, which is used to "get" (download) data from a web service.
-
-You combine the verb and the endpoint to indicate what we want to do to a particular resource. Thus you can say:
-
-```
-GET /v1/search?type=artist&q=bowie
-```
-
-in order to GET data from the `/v1/search` resource (of Spotify) where `type` is `artist` and `q` is `bowie`&mdash;that is, to download the results of a search for artists named "bowie".
+By far the most common verb is `GET`, which is used to "get" (download) data from a web service. Depending on how you connect to your API (i.e., which programming language you are using), you'll specify the verb of interest to indicate what we want to do to a particular resource. 
 
 Overall, this structure of treating each datum on the web as a **resource** which we can interact with via **HTTP Requests** is refered to as the **REST Architecture** (REST stands for _REpresentational State Transfer_). This is a standard way of structuring computer applications that allows them to be interacted with in the same way as everyday websites. Thus a web service that enabled data access through named resources and responds to HTTP requests is known as a **RESTful** service, with a _RESTful API_.
 
 
 ## Accessing Web APIs
-So to access a Web API, you just need to send an HTTP Request to a particular URI! You can easily do this with the browser: simply navigate to a particular address (base URI + endpoint), and that will cause the browser to send a GET request and display the resulting data. For example, you can send a request to search Spotify for artists named "bowie" by visiting:
+To access a Web API, you just need to send an HTTP Request to a particular URI. You can easily do this with the browser: simply navigate to a particular address (base URI + endpoint), and that will cause the browser to send a `GET` request and display the resulting data. For example, you can send a request to search Spotify for artists named "bowie" by visiting:
 
 ```
 https://api.spotify.com/v1/search?type=artist&q=bowie
@@ -174,7 +166,7 @@ Note the second argument `"text"`; this is needed to keep `httr` from doing it's
 ## JSON Data {#json}
 Most APIs will return data in **JavaScript Object Notation (JSON)** format. Like CSV, this is a format for writing down structured data&mdash;but while `.csv` files organize data into rows and columns (like a data frame), JSON allows you to organize elements into **key-value pairs** similar to an R _list_! This allows the data to have much more complex structure, which is useful for web services (but can be challenging for us).
 
-In JSON, lists of key-value pairs (called _objects_) are put inside braces (**`{ }`**), with the key and value separated by a colon (**`:`**) and each pair separated by a comma (**`,`**); key-value pairs are often written on separate lines for readability, but this isn't required. Note that keys need to be character strings (so in quotes), while values can either be character strings, numbers, booleans (written in lower-case as `true` and `false`), or even other lists! For example:
+In JSON, lists of key-value pairs (called _objects_) are put inside braces (**`{ }`**), with the key and value separated by a colon (**`:`**) and each pair separated by a comma (**`,`**). Key-value pairs are often written on separate lines for readability, but this isn't required. Note that keys need to be character strings (so in quotes), while values can either be character strings, numbers, booleans (written in lower-case as `true` and `false`), or even other lists! For example:
 
 ```json
 {
@@ -324,7 +316,8 @@ In practice, you will almost always want to flatten the data returned from a web
 6. ...
 7. Profit!
 
-<!-- To practice working with APIs and JSON data, see [exercise-1](exercise-1) and [exercise-2](exercise-2). -->
+<p class="alert alert-info">_Pro-tip_: JSON data can be quite messy when viewed in your web-browser. Installing a browser extension such as 
+<a href="https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc" target="_blank">JSONView</a> will format JSON responses in a more readable way, and even enable you to interactively explore the data structure.</p>
 
 ## Resources {-}
 - [URIs (Wikipedia)](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)

@@ -97,12 +97,6 @@ Source: CRAN
 Version: 1.5
 Hash: 258cf79a8dbeedf1c981cdb53837d2af
 
-Package: gdtools
-Source: CRAN
-Version: 0.1.5
-Hash: 7465535a23179b1c475c335781d01631
-Requires: Rcpp, withr
-
 Package: ggplot2
 Source: CRAN
 Version: 2.2.1
@@ -169,6 +163,12 @@ Source: CRAN
 Version: 0.5
 Hash: 463550cf44fb6f0a2359368f42eebe62
 
+Package: miniUI
+Source: CRAN
+Version: 0.1.1
+Hash: e85626581f80b1fe6c92a96ec348efc5
+Requires: htmltools, shiny
+
 Package: munsell
 Source: CRAN
 Version: 0.4.3
@@ -210,11 +210,22 @@ Version: 1.2
 Hash: fdcac51a7f47decd60556ceefc3c26b1
 Requires: backports
 
+Package: rstudioapi
+Source: CRAN
+Version: 0.7
+Hash: e2ebaff8160aff3e6b32e6e78a693c2d
+
 Package: scales
 Source: CRAN
 Version: 0.4.1
 Hash: 6368a3249d52d20b366191e9349690b6
 Requires: RColorBrewer, Rcpp, dichromat, labeling, munsell, plyr
+
+Package: servr
+Source: CRAN
+Version: 0.7
+Hash: 33f09a3e3d156e713d86cee9b79aff0d
+Requires: httpuv, jsonlite, mime
 
 Package: shiny
 Source: CRAN
@@ -238,12 +249,6 @@ Source: CRAN
 Version: 1.2.0
 Hash: 25a86d7f410513ebb7c0bc6a5e16bdc3
 Requires: magrittr, stringi
-
-Package: svglite
-Source: CRAN
-Version: 1.2.0
-Hash: a9a8b33e2eb3cc2c1d932b9c81b336ce
-Requires: BH, Rcpp, gdtools
 
 Package: tibble
 Source: CRAN

@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-<link rel="prev" href="functions.html">
-<link rel="next" href="lists.html">
+<link rel="prev" href="git-branches.html">
+<link rel="next" href="shiny.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -345,266 +345,98 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="vectors" class="section level1">
-<h1><span class="header-section-number">Chapter 7</span> Vectors</h1>
-<p>This chapter covers the foundational concepts for working with vectors in R. Vectors are <em>the</em> fundamental data type in R: in order to use R, you need to become comfortable with vectors. This chapter will discuss how R stores information in vectors, the way in which operations are executed in <em>vectorized</em> form, and how to extract subsets of vectors. These concepts are <strong>key to effectively programming</strong> in R.</p>
-<div id="what-is-a-vector" class="section level2">
-<h2><span class="header-section-number">7.1</span> What is a Vector?</h2>
-<p><strong>Vectors</strong> are <em>one-dimensional collections of values</em> that are all stored in a single variable. For example, you can make a vector <code>people</code> that contains the character strings “Sarah”, “Amit”, and “Zhang”. Alternatively, you could make a vector <code>one.to.hundred</code> that stores the numbers from 1 to 100. Each value in a vector is refered to as an <strong>element</strong> of that vector; thus the <code>people</code> vector would have 3 elements: <code>&quot;Sarah&quot;</code>, <code>&quot;Amit&quot;</code>, and <code>&quot;Zhang&quot;</code>.</p>
-<ul>
-<li>Importantly, all the elements in a vector need to have the same <em>type</em> (numeric, character, logical, etc.). You can’t have a vector whose elements include both numbers and character strings.</li>
-</ul>
-<div id="creating-vectors" class="section level3">
-<h3><span class="header-section-number">7.1.1</span> Creating Vectors</h3>
-<p>The easiest and most common syntax for creating vectors is to use the built in <code>c()</code> function, which is used to <strong><em>c</em></strong><em>ombine</em> values into a vector. The <code>c()</code> function takes in any number of <strong>arguments</strong> of the same type (separated by commas as usual), and <strong>returns</strong> a vector of that contains those elements:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Use the combine (`c`) function to create a vector.</span>
-people &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Sarah&quot;</span>, <span class="st">&quot;Amit&quot;</span>, <span class="st">&quot;Zhang&quot;</span>)
-<span class="kw">print</span>(people)  <span class="co"># [1] &quot;Sarah&quot; &quot;Amit&quot;  &quot;Zhang&quot;</span>
-
-numbers &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)
-<span class="kw">print</span>(numbers)  <span class="co"># [1] 1 2 3 4 5</span></code></pre></div>
-<p>You can use the <code>length()</code> function to determine how many <strong>elements</strong> are in a vector:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">people &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Sarah&quot;</span>, <span class="st">&quot;Amit&quot;</span>, <span class="st">&quot;Zhang&quot;</span>)
-people.length &lt;-<span class="st"> </span><span class="kw">length</span>(people)
-<span class="kw">print</span>(people.length)  <span class="co"># [1] 3</span>
-
-numbers &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)
-<span class="kw">print</span>( <span class="kw">length</span>(numbers) )  <span class="co"># [1] 5</span></code></pre></div>
-<p>Other functions can also help with creating vectors. For example, the <code>seq()</code> function mentioned in <a href="functions.html#functions">chapter 6</a> takes 2 arguments and produces a vector of the integers between them. An <em>optional</em> third argument specifies how many numbers to skip in each step:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Make vector of numbers 1 to 100</span>
-one.to.hundred &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">100</span>)
-<span class="kw">print</span>(one.to.hundred)
-
-<span class="co"># Make vector of numbers 1 to 10, counting by 2</span>
-odds &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">2</span>)
-<span class="kw">print</span>(odds)  <span class="co"># [1] 1 3 5 7 9</span></code></pre></div>
-<ul>
-<li>When you print out <code>one.to.hundred</code>, you’ll notice that in addition to the leading <code>[1]</code> that you’ve seen in all printed results, there are additional bracketed numbers at the start of each line. These bracketed numbers tells you from which element number (<strong>index</strong>, see below) that line is showing the elements of. Thus the <code>[1]</code> means that the printed line shows elements started at element number <code>1</code>, a <code>[20]</code> means that the printed line shows elements starting at element number <code>20</code>, and so on. This is to help make the output more readable, so you know where in the vector you are when looking at in a printed line of elements!</li>
-</ul>
-<p>As a shorthand, you can produce a sequence with the <strong>colon operator</strong> (<strong><code>a:b</code></strong>), which returns a vector <code>a</code> to <code>b</code> with the element values incrementing by <code>1</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">one.to.hundred &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">100</span></code></pre></div>
-<p>Once created, you are <strong>unable to change</strong> the number of elements in a vector (elements cannot be added or removed). However, you can create a <em>new vector</em> by <strong>c</strong>ombining a new element with an existing vector:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Use the combine (`c()`) function to create a vector.</span>
-people &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Sarah&quot;</span>, <span class="st">&quot;Amit&quot;</span>, <span class="st">&quot;Zhang&quot;</span>)
-
-<span class="co"># Use the `c()` function to combine the `people` vector and the name &#39;Josh&#39;.</span>
-more.people &lt;-<span class="st"> </span><span class="kw">c</span>(people, <span class="st">&#39;Josh&#39;</span>)
-<span class="kw">print</span>(more.people)  <span class="co"># [1] &quot;Sarah&quot; &quot;Amit&quot;  &quot;Zhang&quot; &quot;Josh&quot;</span></code></pre></div>
+<div id="git-collaboration" class="section level1">
+<h1><span class="header-section-number">Chapter 15</span> Git Collaboration</h1>
+<p>Being able to merge between branches allows you to work <strong>collaboratively</strong>, with multiple people making changes to the same repo and sharing those changes through GitHub. There a variety of approaches (or <strong>workflows</strong>) that can be used to facilitate collaboration and make sure that people are effectively able to share code. This section describes a variety of different workflows, however we suggest the branch-based workflow called the <a href="https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow"><strong>Feature Branch Workflow</strong></a> for this course.</p>
+<div id="centralized-workflow" class="section level2">
+<h2><span class="header-section-number">15.1</span> Centralized Workflow</h2>
+<p>In order to undersatnd the Feature Branch Workflow, it’s important to first understand how to collaborate on a centralized repository. The Feature Branch Workflow uses a <strong>centralized repository</strong> stored on GitHub—that is, every single member of the team will <code>push</code> and <code>pull</code> to a single GitHub repo. However, since each repository needs to be created under a particular account, this means that a <strong><em>single member</em></strong> of the team will need to create the repo (such as by accepting a GitHub Classroom assignment, or by clicking the <em>“New”</em> button on their “Repositories” tab on the GitHub web portal).</p>
+<p>In order to make sure everyone is able to <code>push</code> to the repository, whoever creates the repo will need to <a href="https://help.github.com/articles/inviting-collaborators-to-a-personal-repository/"><strong>add the other team members as collaborators</strong></a>. You can do this under the <strong>Settings</strong> tab:</p>
+<div class="figure">
+<img src="img/git-branches/add-collaborator.png" title="add collaborator menu" alt="Adding a collaborator to a Github repo (via the web portal)." />
+<p class="caption">Adding a collaborator to a Github repo (via the web portal).</p>
 </div>
+<p>Once you’ve added everyone to the GitHub repository, <strong>each team member</strong> will need to <strong><code>clone</code></strong> the repository to their local machines to work on the code individually. Collaborators can then <code>push</code> any changes they make to the central repository, and <code>pull</code> and changes made by others. Because multiple members will be contributing to the <em>same repositiory</em>, it’s important to ensure that you are working on the most up-to-date version of the code. This means that you will regularly have to <strong>pull in changes</strong> from GitHub that your team members may have committed. As a result, we suggest that you have a workflow that looks like this:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># Begin your work session by pulling in changes from GitHub</span>
+<span class="fu">git</span> pull origin master
+
+<span class="co"># If necessary, resolve any merge conflicts and commit them</span>
+<span class="fu">git</span> add .
+<span class="fu">git</span> commit -m <span class="st">&quot;Merge in changes from GitHub&quot;</span>
+
+<span class="co"># Do your work, then add, commit and push</span>
+<span class="fu">git</span> add .
+<span class="fu">git</span> commit -m <span class="st">&quot;Make progress on feature X&quot;</span>
+<span class="fu">git</span> push origin master</code></pre></div>
+<p>Note, if someone pushes a commit to GitHub <em>before you push your changes</em>, you’ll need to integrate those into your code (and test them!) before pushing up to GitHub. While working on a single <code>master</code> branch in this fashion is possible, you’ll encounter fewer conflicts if you use a dedicated <strong>feature branch</strong> for each developer or feature you’re working on.</p>
 </div>
-<div id="vector-indices" class="section level2">
-<h2><span class="header-section-number">7.2</span> Vector Indices</h2>
-<p>Vectors are the fundamental structure for storing collections of data. Yet you often want to only work with <em>some</em> of the data in a vector. This section will discuss a few ways that you can get a <strong>subset</strong> of elements in a vector.</p>
-<p>In particular, you can refer to individual elements in a vector by their <strong>index</strong>, which is the number of their position in the vector. For example, in the vector:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vowels &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;a&#39;</span>,<span class="st">&#39;e&#39;</span>,<span class="st">&#39;i&#39;</span>,<span class="st">&#39;o&#39;</span>,<span class="st">&#39;u&#39;</span>)</code></pre></div>
-<p>The <code>'a'</code> (the first element) is at <em>index</em> 1, <code>'e'</code> (the second element) is at index 2, and so on.</p>
-<ul>
-<li>Note in R vector elements are indexed starting with <code>1</code>. This is distinct from most other programming languages which are <em>zero-indexed</em> and so reference the first element at index <code>0</code>.</li>
-</ul>
-<p>You can retrieve a value from a vector using <strong>bracket notation</strong>: you refer to the element at a particular index of a vector by writing the name of the vector, followed by square brackets (<strong><code>[]</code></strong>) that contain the index of interest:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create the people vector</span>
-people &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Sarah&quot;</span>, <span class="st">&quot;Amit&quot;</span>, <span class="st">&quot;Zhang&quot;</span>)
+<div id="feature-branch-workflow" class="section level2">
+<h2><span class="header-section-number">15.2</span> Feature Branch Workflow</h2>
+<p>The Feature Branch Workflow is a natural extension of the Centralized Workflow that enhances the model by defining specific <em>branches</em> for different pieces of development (still with one centralized repository). The core idea behind the Feature Branch Workflow is that all development should take place on a dedicated <strong>feature branch</strong>, rather than on the <code>master</code> branch. This allows for different people to work on different branches without disturbing the main codebase. For example, you might have one branch <code>visualization</code> that focuses on adding a complex visualization, or another <code>experimental-analysis</code> that tries a bold new approach to processing the data. Each branch is based on a <em>feature</em> (capability or part) of the project, not a particular person: a single developer could be working on multiple feature branches.</p>
+<p>The idea is that the <code>master</code> branch <em>always</em> contains “production-level” code: valid, completely working code that you could deploy or publish (read: give to your boss or teacher) at a whim. All feature branches branch off of <code>master</code>, and are allowed to contain temporary or even broken code (since they are still in development). This way there is always a “working” (if incomplete) copy of the code (<code>master</code>), and development can be kept isolated and considered independent of the whole. This is similar to the example with the <code>experiment</code> branch above.</p>
+<p>The workflow thus works like this:</p>
+<ol style="list-style-type: decimal">
+<li><p>Ada decides to add a new feature or part to the code. She creates a new feature branch off of <code>master</code>:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> checkout master
+<span class="fu">git</span> checkout -b adas-feature</code></pre></div></li>
+<li><p>Ada does some work on this feature</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># work is done outside of terminal</span>
 
-<span class="co"># access the element at index 1</span>
-first.person &lt;-<span class="st"> </span>people[<span class="dv">1</span>]
-<span class="kw">print</span>(first.person)  <span class="co"># [1] &quot;Sarah&quot;</span>
+<span class="fu">git</span> add .
+<span class="fu">git</span> commit -m <span class="st">&quot;Adds progress on feature&quot;</span></code></pre></div></li>
+<li><p>Ada takes a break, pushing her changes to GitHub</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> push -u origin adas-feature</code></pre></div></li>
+<li><p>After talking to Ada, Bebe decides to help finish up the feature. She checks out the branch and makes some changes, then pushes them back to GitHub</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># fetch will &quot;download&quot; commits from GitHub, without merging them</span>
+<span class="fu">git</span> fetch origin
+<span class="fu">git</span> checkout adas-feature
 
-<span class="co"># access the elemnt at index 2</span>
-second.person &lt;-<span class="st"> </span>people[<span class="dv">2</span>]
-<span class="kw">print</span>(second.person)  <span class="co"># [1] &quot;Amit&quot;</span>
+<span class="co"># work is on adas-feature done outside of terminal</span>
 
-<span class="co"># You can also use variables inside the brackets</span>
-last.index &lt;-<span class="st"> </span><span class="kw">length</span>(people)  <span class="co"># last index is the length of the vector!</span>
-last.person &lt;-<span class="st"> </span>people[last.index]  <span class="co"># returns &quot;Zhang&quot;</span></code></pre></div>
-<ul>
-<li>Don’t get confused by the <code>[1]</code> in the printed output—it doesn’t refer to which index you got from <code>people</code>, but what index in the <em>extracted</em> result (e.g., stored in <code>first.person</code>) is being printed!</li>
-</ul>
-<p>If you specify an index that is <strong>out-of-bounds</strong> (e.g., greater than the number of elements in the vector) in the square brackets, you will get back the value <code>NA</code>, which stands for <strong>N</strong>ot <strong>A</strong>vailable. Note that this is <em>not</em> the <em>character string</em> <code>&quot;NA&quot;</code>, but a specific logical value.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vowels &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;a&#39;</span>,<span class="st">&#39;e&#39;</span>,<span class="st">&#39;i&#39;</span>,<span class="st">&#39;o&#39;</span>,<span class="st">&#39;u&#39;</span>)
+<span class="fu">git</span> add .
+<span class="fu">git</span> commit -m <span class="st">&quot;Adds more progress on feature&quot;</span>
+<span class="fu">git</span> push origin adas-feature</code></pre></div></li>
+<li><p>Ada downloads Bebe’s changes</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> pull origin adas-feature</code></pre></div></li>
+<li><p>Ada decides the feature is finished, and <em>merges</em> it back into <code>master</code>. But first, she makes sure she has the latest version of the <code>master</code> code to integrate her changes with</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> checkout master  # switch to master
+<span class="fu">git</span> pull origin master  # download any changes
 
-<span class="co"># Attempt to access the 10th element</span>
-vowels[<span class="dv">10</span>]  <span class="co"># returns NA</span></code></pre></div>
-<p>If you specify a <strong>negative index</strong> in the square-brackets, R will return all elements <em>except</em> the (negative) index specified:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vowels &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;a&#39;</span>,<span class="st">&#39;e&#39;</span>,<span class="st">&#39;i&#39;</span>,<span class="st">&#39;o&#39;</span>,<span class="st">&#39;u&#39;</span>)
+<span class="fu">git</span> merge adas-feature  # merge the feature into the master branch
+<span class="co"># fix any merge conflicts!!</span>
 
-<span class="co"># Return all elements EXCEPT that at index 2</span>
-all.but.e &lt;-<span class="st"> </span>vowels[<span class="op">-</span><span class="dv">2</span>]
-<span class="kw">print</span>(all.but.e)  <span class="co"># [1] &quot;a&quot; &quot;i&quot; &quot;o&quot; &quot;u&quot;</span></code></pre></div>
-<div id="multiple-indicies" class="section level3">
-<h3><span class="header-section-number">7.2.1</span> Multiple Indicies</h3>
-<p>Remember that in R, <strong>everything is a vector</strong>. This means that when you put a single number inside the square brackets, you’re actually putting a <em>vector with a single element in it</em> into the brackets So what you’re really doing is specifying a <strong>vector of indices</strong> that you want R to extract from the vector. As such, you can put a vector of any length inside the brackets, and R will extract <em>all</em> the elements with those indices from the vector (producing a <strong>subset</strong> of the vector elements):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a `colors` vector</span>
-colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;red&#39;</span>, <span class="st">&#39;green&#39;</span>, <span class="st">&#39;blue&#39;</span>, <span class="st">&#39;yellow&#39;</span>, <span class="st">&#39;purple&#39;</span>)
-
-<span class="co"># Vector of indices to extract</span>
-indices &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">4</span>)
-
-<span class="co"># Retrieve the colors at those indices</span>
-extracted &lt;-<span class="st"> </span>colors[indices]
-<span class="kw">print</span>(extracted)  <span class="co"># [1] &quot;red&quot;    &quot;blue&quot;   &quot;yellow&quot;</span>
-
-
-<span class="co"># Specify the index array anonymously</span>
-others &lt;-<span class="st"> </span>colors[<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">5</span>)]
-<span class="kw">print</span>(others)  <span class="co"># [1] &quot;green&quot;  &quot;purple&quot;</span></code></pre></div>
-<p>It’s incredibly common to use the <strong>colon operator</strong> to quickly specify a range of indices to extract:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a `colors` vector</span>
-colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;red&#39;</span>, <span class="st">&#39;green&#39;</span>, <span class="st">&#39;blue&#39;</span>, <span class="st">&#39;yellow&#39;</span>, <span class="st">&#39;purple&#39;</span>)
-
-<span class="co"># Retrieve values in positions 2 through 5</span>
-colors[<span class="dv">2</span><span class="op">:</span><span class="dv">5</span>]  <span class="co"># [1] &quot;green&quot;  &quot;blue&quot;   &quot;yellow&quot; &quot;purple&quot;</span></code></pre></div>
-<p>This easily reads as <em>“a vector of the elements in positions 2 through 5”</em>.</p>
+<span class="fu">git</span> push origin master  # upload the updated code to master</code></pre></div></li>
+<li><p>And now that the feature has been successfully added to the project, Ada can delete the feature branch (using <code>git branch -d branch_name</code>). See also <a href="http://stackoverflow.com/questions/2003505/how-to-delete-a-git-branch-both-locally-and-remotely">here</a>.</p></li>
+</ol>
+<p>This kind of workflow is very common and effective for supporting collaboration. Note that as projects get large, you may need to start being more organized about how and when you create feature branches. For example, the <a href="http://nvie.com/posts/a-successful-git-branching-model/"><strong>Git Flow</strong></a> model organizes feature branches around product releases, and is often a starting point for large collaborative projects.</p>
 </div>
-</div>
-<div id="modifying-vectors" class="section level2">
-<h2><span class="header-section-number">7.3</span> Modifying Vectors</h2>
-<p>While you are unable to change the number of elements within a vector, you <em>are</em> able to change the individual values within a vector. To achieve this, put the extracted <em>subset</em> on the <strong>left-hand side</strong> of the assignment operator, and then assign the element a new value:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a vector of school supplies</span>
-school.supplies &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Backpack&#39;</span>, <span class="st">&#39;Laptop&#39;</span>, <span class="st">&#39;Pen&#39;</span>)
-
-<span class="co"># Replace &#39;Pen&#39; (element at index 3) with &#39;Pencil&#39;</span>
-school.supplies[<span class="dv">3</span>] &lt;-<span class="st"> &#39;Pencil&#39;</span></code></pre></div>
-<p>And of course, there’s no reason that you can’t select multiple elements on the left-hand side, and assign them multiple values. The assignment operator is also <em>vectorized</em>!</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a vector of school supplies</span>
-school.supplies &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Backpack&#39;</span>, <span class="st">&#39;Laptop&#39;</span>, <span class="st">&#39;Pen&#39;</span>)
-
-<span class="co"># Replace  &#39;Laptop&#39; with &#39;Tablet&#39;, and &#39;Pen&#39; with &#39;Pencil&#39;</span>
-school.supplies[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Tablet&#39;</span>, <span class="st">&#39;Pencil&#39;</span>)</code></pre></div>
-<p>As a more useful example, imagine you had a vector of values in which you wanted to replace all numbers greater that 10 with the number 10 (to “cap” the values). Because the assignment operator is vectorized, you can leverage <em>recycling</em> to assign a single value to each element that has been <em>filtered</em> from the vector:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Element of values</span>
-v1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">55</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">11</span>, <span class="dv">4</span>, <span class="dv">27</span>)
-
-<span class="co"># Replace all values greater than 10 with 10</span>
-v1[v1<span class="op">&gt;</span><span class="dv">10</span>] &lt;-<span class="st"> </span><span class="dv">10</span>  <span class="co"># returns 1, 5, 10, 1, 3, 10, 4, 10</span></code></pre></div>
-<p>In this example, the number <code>10</code> get recycled for each element in which <code>v1</code> is greater than 10 (<code>v1[v1&gt;10]</code>). Presto!</p>
-</div>
-<div id="vector-filtering" class="section level2">
-<h2><span class="header-section-number">7.4</span> Vector Filtering</h2>
-<p>In the above section, you used a vector of indices (<em>numeric</em> values) to retrieve a subset of elements from a vector. Alternatively, you can put a <strong>vector of logical (boolean) values</strong> inside the square brackets to specify which ones you want to extract (<code>TRUE</code> in the <em>corresponding position</em> means extract, <code>FALSE</code> means don’t extract):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a vector of shoe sizes</span>
-shoe.sizes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">7</span>, <span class="fl">6.5</span>, <span class="dv">4</span>, <span class="dv">11</span>, <span class="dv">8</span>)
-
-<span class="co"># Vector of elements to extract</span>
-filter &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>)
-
-<span class="co"># Extract every element in an index that is TRUE</span>
-shoe.sizes[filter]  <span class="co"># [1]  7 11  8</span></code></pre></div>
-<p>R will go through the boolean vector and extract every item at the same position as a <code>TRUE</code>. In the example above, since <code>filter</code> is <code>TRUE</code> and indices 1, 4, and 5, then <code>shoe.sizes[filter]</code> returns a vector with the elements from indicies 1, 4, and 5.</p>
-<p>This may seem a bit strange, but it is actually incredibly powerful because it lets you select elements from a vector that <em>meet a certain criteria</em> (called <strong>filtering</strong>). You perform this <em>filtering operation</em> by first creating a vector of boolean values that correspond with the indices meeting that criteria, and then put that filter vector inside the square brackets:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a vector of shoe sizes</span>
-shoe.sizes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">7</span>, <span class="fl">6.5</span>, <span class="dv">4</span>, <span class="dv">11</span>, <span class="dv">8</span>)
-
-<span class="co"># Create a boolean vector that indicates if a shoe size is greater than 6.5</span>
-shoe.is.big &lt;-<span class="st"> </span>shoe.sizes <span class="op">&gt;</span><span class="st"> </span><span class="fl">6.5</span>  <span class="co"># T, F, F, T, T</span>
-
-<span class="co"># Use the `shoe.is.big` vector to select large shoes</span>
-big.shoes &lt;-<span class="st"> </span>shoe.sizes[shoe.is.big]  <span class="co"># returns 7, 11, 8</span></code></pre></div>
-<p>The magic here is that you are once again using <em>recycling</em>: the relational operator <code>&gt;</code> is <em>vectorized</em>, meaning that the shorter vector (the <code>6.5</code>) is recycled and applied to each element in the <code>shoe.sizes</code> vector, thus producing the boolean vector that you want!</p>
-<p>You can even combine the second and third lines of code into a single statement. You can think of the following statement as saying <em>shoe.sizes <strong>where</strong> shoe.sizes is greater than 6.5</em>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a vector of shoe sizes</span>
-shoe.sizes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">7</span>, <span class="fl">6.5</span>, <span class="dv">4</span>, <span class="dv">11</span>, <span class="dv">8</span>)
-
-<span class="co"># Select shoe sizes that are greater than 6.5</span>
-shoe.sizes[shoe.sizes <span class="op">&gt;</span><span class="st"> </span><span class="fl">6.5</span>]  <span class="co"># returns 7, 11, 8</span></code></pre></div>
-<p>This is a valid statement because the equality inside of the square-brackets (<code>shoe.sizes &gt; 6.5</code>) is evaluated first, producing the boolean vector which is then used to filter the <code>shoe.sizes</code> vector.</p>
-<p>This kind of filtering is crucial for being able to ask real world questions of datasets.</p>
-</div>
-<div id="vectorized-operations" class="section level2">
-<h2><span class="header-section-number">7.5</span> Vectorized Operations</h2>
-<p>When performing operations (such as mathematical operations <code>+</code>, <code>-</code>, etc.) on vectors, the operation is applied to vector elements <strong>member-wise</strong>. This means that each element from the first vector operand is modified by the element in the <strong>same corresponding position</strong> in the second vector operand, in order to determine the value of at <em>the corresponding position</em> of the resulting vector. E.g., if you want to add (<code>+</code>) two vectors, then the value of the first element in the result will be the sum (<code>+</code>) of the first elements in each vector, the second element in the result will be the sum of the second elements in each vector, and so on.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create two vectors to combine</span>
-v1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)
-v2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)
-
-<span class="co"># Create arithmetic combinations of the vectors</span>
-v1 <span class="op">+</span><span class="st"> </span>v2  <span class="co"># returns 2, 3, 4, 5, 6</span>
-v1 <span class="op">-</span><span class="st"> </span>v2  <span class="co"># returns 0, -1, -2, -3, -4</span>
-v1 <span class="op">*</span><span class="st"> </span>v2  <span class="co"># returns 1, 2, 3, 4, 5</span>
-v1 <span class="op">/</span><span class="st"> </span>v2  <span class="co"># returns 1, .5, .33, .25, .2</span>
-
-<span class="co"># Add a vector to itself (why not?)</span>
-v3 &lt;-<span class="st"> </span>v2 <span class="op">+</span><span class="st"> </span>v2  <span class="co"># returns 2, 4, 6, 8, 10</span>
-
-<span class="co"># Perform more advanced arithmetic!</span>
-v4 &lt;-<span class="st"> </span>(v1 <span class="op">+</span><span class="st"> </span>v2) <span class="op">/</span><span class="st"> </span>(v1 <span class="op">+</span><span class="st"> </span>v1)  <span class="co"># returns 1, 1.5, 2, 2.5, 3</span></code></pre></div>
-<p>While we can’t apply mathematical operators (namely, <code>+</code>) to combine vectors of character strings, we can use functions like <code>paste()</code> to concatenate the elements of two vectors.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Green&#39;</span>, <span class="st">&#39;Blue&#39;</span>)
-spaces &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;sky&#39;</span>, <span class="st">&#39;grass&#39;</span>)
-
-<span class="co"># Note: look up the `paste0()` function if it&#39;s not familiar!</span>
-band &lt;-<span class="st"> </span><span class="kw">paste0</span>(colors, spaces)  <span class="co"># returns &quot;Greensky&quot;, &quot;Bluegrass&quot;</span>
-<span class="co"># http://greenskybluegrass.com/</span></code></pre></div>
-<p>Notice the same <em>member-wise</em> combination is occuring: the <code>paste0()</code> function is applied to the first elements, then to the second elements, and so on.</p>
-<div id="recycling" class="section level3">
-<h3><span class="header-section-number">7.5.1</span> Recycling</h3>
-<p><strong>Recycling</strong> refers to what R does in cases when there are an unequal number of elements in two operand vectors. If R is tasked with performing a vectorized operation with two vectors of unequal length, it will reuse (<em>recycle</em>) elements from the shorter vector. For example:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create vectors to combine</span>
-v1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>)
-v2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)
-
-<span class="co"># Add vectors</span>
-v3 &lt;-<span class="st"> </span>v1 <span class="op">+</span><span class="st"> </span>v2  <span class="co"># returns (2, 5, 6)</span></code></pre></div>
-<p>In this example, R first combined the elements in the first position of each vector (<code>1+1=2</code>). Then, it combined elements from the second position (<code>3+2=5</code>). When it got to the third element (which only was present in <code>v1</code>), it went back to the <strong>beginning</strong> of <code>v2</code> to select a value, yielding <code>5+1=6</code>.</p>
-<ul>
-<li><p>Recycling will occur no matter if the longer vector is the first or second operand.</p></li>
-<li><p>R may provide a warning message, notifying you that the vectors are of different length. This warning doesn’t necessarily mean you did something wrong, but you should pay attention to it because it may be indicative of an error (i.e., you thought the vectors were of the same length, but made a mistake somewhere).</p></li>
-</ul>
-</div>
-<div id="everything-is-a-vector" class="section level3">
-<h3><span class="header-section-number">7.5.2</span> Everything is a Vector!</h3>
-<p>What happens if you try to add a vector and a “regular” single value (a <strong>scalar</strong>)?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># create vector of numbers 1 to 5</span>
-v1 &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span>
-result &lt;-<span class="st"> </span>v1 <span class="op">+</span><span class="st"> </span><span class="dv">4</span>  <span class="co">#add scalar to vector</span>
-<span class="kw">print</span>(result)  <span class="co"># [1] 5 6 7 8 9</span></code></pre></div>
-<p>As you can see (and probably expected), the operation added <code>4</code> to every element in the vector.</p>
-<p>The reason this sensible behavior occurs is because, in truth, <strong>everything in R is a vector</strong>. Even when you thought you were creating a single value (a scalar), you were actually just creating a vector with a single element (length 1). When you create a variable storing the number <code>7</code> (with <code>x &lt;- 7</code>), R creates a vector of length 1 with the number <code>7</code> as that single element.</p>
-<ul>
-<li><p>This is why R prints the <code>[1]</code> in front of all results: it’s telling you that it’s showing a vector (which happens to have 1 element) starting at element number 1.</p></li>
-<li><p>This is also why you can’t use the <code>length()</code> function to get the length of a character string; it just returns the length of the array containing that string (<code>1</code>). Instead, use the <code>nchar()</code> function to get the number of characters in a character string.</p></li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a vector of length 1 in a variable x</span>
-x &lt;-<span class="st"> </span><span class="dv">7</span>  <span class="co"># equivalent to `x &lt;- c(7)`</span>
-
-<span class="co"># Print out x: R states the vector index (1) in the console</span>
-<span class="kw">print</span>(x)  <span class="co"># [1] 7</span></code></pre></div>
-<p>Thus when you add a “scalar” such as <code>4</code> to a vector, what you’re really doing is adding a vector with a single element <code>4</code>. As such the same <em>recycling</em> principle applies, and that single element is “recycled” and applied to each element of the first operand.</p>
-</div>
-<div id="vectorized-functions" class="section level3">
-<h3><span class="header-section-number">7.5.3</span> Vectorized Functions</h3>
-<blockquote>
-<p><em>Vectors In, Vector Out</em></p>
-</blockquote>
-<p>Because <em>everything is a vector</em>, it means that pretty much every function you’ve used so far has actually applied to vectors, not just to single values. These are referred to as <strong>vectorized functions</strong>, and will run significantly faster than non-vector approaches. You’ll find that functions work the same way for vectors as they do for single values, because single values are just instances of vectors!</p>
-<ul>
-<li><p><em>Fun fact:</em> The mathematical operators (e.g., <code>+</code>) are actually functions in R that take 2 arguments (the operands). The mathematical notation we’re used to using is just a shortcut.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># these two lines of code are the same:</span>
-x &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span>  <span class="co"># add 2 and 3</span>
-x &lt;-<span class="st"> &#39;+&#39;</span>(<span class="dv">2</span>, <span class="dv">3</span>)  <span class="co"># add 2 and 3</span></code></pre></div></li>
-</ul>
-<p>This means that you can use any function on a vector, and it will act in the same <strong>vectorized</strong>, <em>member-wise</em> manner: the function will result in a new vector where the function’s transformation has been applied to each individual element in order.</p>
-<p>For example consider the <code>round()</code> function described in the previous chapter. This function rounds the given argument to the nearest whole number (or number of decimal places if specified).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># round number to 1 decimal place</span>
-<span class="kw">round</span>(<span class="fl">1.67</span>, <span class="dv">1</span>)  <span class="co"># returns 1.6</span></code></pre></div>
-<p>But recall that the <code>1.6</code> in the above example is <em>actually a vector of length 1</em>. If we instead pass a vector as an argument, the function will perform the same rounding on each element in the vector.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a vector of numbers</span>
-nums &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">3.98</span>, <span class="dv">8</span>, <span class="fl">10.8</span>, <span class="fl">3.27</span>, <span class="fl">5.21</span>)
-
-<span class="co"># Perform the vectorized operation</span>
-whole.nums &lt;-<span class="st"> </span><span class="kw">round</span>(nums, <span class="dv">1</span>)
-
-<span class="co"># Print the results (each element is rounded)</span>
-<span class="kw">print</span>(whole.nums)  <span class="co"># [1]  4.0  8.0 10.8  3.3  5.2</span></code></pre></div>
-<p>This vectorization process is <strong><em>extremely powerful</em></strong>, and is a significant factor in what makes R an efficient language for working with large data sets (particularly in comparison to languages that require explicit iteration through elements in a collection). Thus to write really effective R code, you’ll need to be comfortable applying functions to vectors of data, and getting vectors of data back as results.</p>
-<p class="alert">
-Just remember: <em>when you use a function on a vector, you’re using that function <strong>on each item</strong> in the vector</em>!
+<div id="forking-workflow" class="section level2">
+<h2><span class="header-section-number">15.3</span> Forking Workflow</h2>
+<p>The Forking Workflow takes a <strong>fundamentally different approach</strong> to collaboration than the Centralized and Feature Branch workflows. Rather than having a single remote, each developer will have <strong>their own repository</strong> on GitHub that is <em>forked</em> from the original repository. As discussed in the <a href="git-basics.html#git-basics">introductory GitHub Chapter</a>, a developer can create their own remote repositry from an existing project by <em>forking</em> it on GitHub. This allows the individual to make changes (and contribute to) the project. However, we have not yet discussed how those changes can be integrated into the original code base. GitHub offers a feature called <a href="https://help.github.com/articles/creating-a-pull-request/"><strong>pull requests</strong></a> by which you can merge two remote branches (that is: <code>merge</code> two branches that are on GitHub). A <strong>pull request</strong> is a request for the changes from one branch to be pulled (merged) into another.</p>
+<div id="pull-requests" class="section level3">
+<h3><span class="header-section-number">15.3.1</span> Pull Requests</h3>
+<p>Pull requests are primarily used to let teams of developers <em>collaborate</em>—one developer can send a request “hey, can you integrate my changes?” to another. The second developer can perform a <strong>code review</strong>: reviewing the proposed changes and making comments or asking for corrections to anything they find problematic. Once the changes are improved, the pull request can be <strong>accepted</strong> and the changes merged into the target branch. This process is how programmers collaborate on <em>open-source software</em> (such as R libraries like <code>dplyr</code>): a developer can <em>fork</em> an existing professional project, make changes to that fork, and then send a pull request back to the original developer asking them to merge in changes (“will you include my changes in your branch/version of the code?”).</p>
+<p class="alert alert-warning">
+Pull requests should only be used when doing collaboration using remote branches! Local branches should be <code>merged</code> locally using the command-line, not GitHub’s pull request feature.
 </p>
+<p>In order to issue a pull request, both branches you wish to merge will need to be <code>pushed</code> to GitHub (whether they are in the same repo or in forks). To issue the pull request, navigate to your repository on GitHub’s web portal and choose the <strong>New Pull Request</strong> button (it is next to the drop-down that lets you view different branches).</p>
+<p>In the next page, you will need to specify which branches you wish to merge. The <strong>base</strong> branch is the one you want to merge <em>into</em> (often <code>master</code>), and the <strong>head</strong> branch (labeled “compare”) is the branch with the new changes you want to merge (often a feature branch; see below).</p>
+<p>Add a title and description for your pull request. These should follow the format for git commit messages. Finally, click the <strong>Create pull request</strong> button to finish creating the pull request.</p>
+<p class="alert alert-info">
+Important! The pull request is a request to merge two branches, not to merge a specific set of commits. This means that you can <em>push more commits</em> to the head/merge-from branch, and they will automatically be included in the pull request—the request is always “up-to-date” with whatever commits are on the (remote) branch.
+</p>
+<p>You can view all pull requests (including those that have been accepted) through the <strong>Pull Requests</strong> tab at the top of the repo’s web portal. This is where you can go to see comments that have been left by the reviewer.</p>
+<p>If someone sends you a pull request (e.g., another developer on your team), you can <a href="https://help.github.com/articles/merging-a-pull-request/">accept that pull request</a> through GitHub’s web portal. If the branches can be merged without a conflict, you can do this simply by hitting the <strong>Merge pull request</strong> button. However, if GitHub detects that a conflict may occur, you will need to <a href="https://help.github.com/articles/checking-out-pull-requests-locally">pull down the branches and merge them locally</a>.</p>
+<p class="alert alert-warning">
+It is best practice to <em>never</em> accept your own pull requests! If you don’t need any collaboration, just merge the branches locally.
+</p>
+<p>Note that when you merge a pull request via the GitHub web site, the merge is done entirely on the server. Your local repo will not yet have those changes, and so you will need to use <code>git pull</code> to download the updates to an appropriate branch.</p>
 </div>
 </div>
-<div id="resources-6" class="section level2 unnumbered">
+<div id="resources-14" class="section level2 unnumbered">
 <h2>Resources</h2>
 <ul>
-<li><a href="http://www.r-tutor.com/r-introduction/vector">R Tutorial: Vectors</a></li>
+<li><a href="https://www.atlassian.com/git/tutorials/comparing-workflows">Atlassian Git Workflows Tutorial</a></li>
 </ul>
 
 </div>
@@ -614,8 +446,8 @@ Just remember: <em>when you use a function on a vector, you’re using that func
           </div>
         </div>
       </div>
-<a href="functions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="lists.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="git-branches.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="shiny.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -644,7 +476,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/info201/book/edit/master/vectors.Rmd",
+"link": "https://github.com/info201/book/edit/master/git-collaboration.Rmd",
 "text": "Edit"
 },
 "download": null,

@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2017-08-30">
+<meta name="date" content="2017-09-25">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 <link rel="prev" href="ggplot2.html">
-<link rel="next" href="shiny.html">
+<link rel="next" href="git-collaboration.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -246,8 +246,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.2.3" data-path="dplyr.html"><a href="dplyr.html#mutate"><i class="fa fa-check"></i><b>10.2.3</b> Mutate</a></li>
 <li class="chapter" data-level="10.2.4" data-path="dplyr.html"><a href="dplyr.html#arrange"><i class="fa fa-check"></i><b>10.2.4</b> Arrange</a></li>
 <li class="chapter" data-level="10.2.5" data-path="dplyr.html"><a href="dplyr.html#summarize"><i class="fa fa-check"></i><b>10.2.5</b> Summarize</a></li>
+<li class="chapter" data-level="10.2.6" data-path="dplyr.html"><a href="dplyr.html#distinct"><i class="fa fa-check"></i><b>10.2.6</b> Distinct</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="dplyr.html"><a href="dplyr.html#multiple-operations"><i class="fa fa-check"></i><b>10.3</b> Multiple Operations</a><ul>
+<li class="chapter" data-level="10.3" data-path="dplyr.html"><a href="dplyr.html#multple-operations"><i class="fa fa-check"></i><b>10.3</b> Multple Operations</a><ul>
 <li class="chapter" data-level="10.3.1" data-path="dplyr.html"><a href="dplyr.html#the-pipe-operator"><i class="fa fa-check"></i><b>10.3.1</b> The Pipe Operator</a></li>
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="dplyr.html"><a href="dplyr.html#grouped-operations"><i class="fa fa-check"></i><b>10.4</b> Grouped Operations</a></li>
@@ -296,30 +297,33 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="13.4" data-path="ggplot2.html"><a href="ggplot2.html#other-visualization-libraries"><i class="fa fa-check"></i><b>13.4</b> Other Visualization Libraries</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#resources-12"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="git-branches.html"><a href="git-branches.html"><i class="fa fa-check"></i><b>14</b> Git Branches and Collaboration</a><ul>
+<li class="chapter" data-level="14" data-path="git-branches.html"><a href="git-branches.html"><i class="fa fa-check"></i><b>14</b> Git Branches</a><ul>
 <li class="chapter" data-level="14.1" data-path="git-branches.html"><a href="git-branches.html#git-branches"><i class="fa fa-check"></i><b>14.1</b> Git Branches</a></li>
 <li class="chapter" data-level="14.2" data-path="git-branches.html"><a href="git-branches.html#merging"><i class="fa fa-check"></i><b>14.2</b> Merging</a><ul>
 <li class="chapter" data-level="14.2.1" data-path="git-branches.html"><a href="git-branches.html#merge-conflicts"><i class="fa fa-check"></i><b>14.2.1</b> Merge Conflicts</a></li>
 </ul></li>
 <li class="chapter" data-level="14.3" data-path="git-branches.html"><a href="git-branches.html#undoing-changes"><i class="fa fa-check"></i><b>14.3</b> Undoing Changes</a></li>
 <li class="chapter" data-level="14.4" data-path="git-branches.html"><a href="git-branches.html#github-and-branches"><i class="fa fa-check"></i><b>14.4</b> GitHub and Branches</a><ul>
-<li class="chapter" data-level="14.4.1" data-path="git-branches.html"><a href="git-branches.html#pull-requests"><i class="fa fa-check"></i><b>14.4.1</b> Pull Requests</a></li>
-<li class="chapter" data-level="14.4.2" data-path="git-branches.html"><a href="git-branches.html#github-pages"><i class="fa fa-check"></i><b>14.4.2</b> GitHub Pages</a></li>
-</ul></li>
-<li class="chapter" data-level="14.5" data-path="git-branches.html"><a href="git-branches.html#collaborative-workflows"><i class="fa fa-check"></i><b>14.5</b> Collaborative Workflows</a><ul>
-<li class="chapter" data-level="14.5.1" data-path="git-branches.html"><a href="git-branches.html#repository-setup"><i class="fa fa-check"></i><b>14.5.1</b> Repository Setup</a></li>
-<li class="chapter" data-level="14.5.2" data-path="git-branches.html"><a href="git-branches.html#feature-branches"><i class="fa fa-check"></i><b>14.5.2</b> Feature Branches</a></li>
+<li class="chapter" data-level="14.4.1" data-path="git-branches.html"><a href="git-branches.html#github-pages"><i class="fa fa-check"></i><b>14.4.1</b> GitHub Pages</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="git-branches.html"><a href="git-branches.html#resources-13"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>15</b> The <code>shiny</code> Framework</a><ul>
-<li class="chapter" data-level="15.1" data-path="shiny.html"><a href="shiny.html#creating-shiny-apps"><i class="fa fa-check"></i><b>15.1</b> Creating Shiny Apps</a><ul>
-<li class="chapter" data-level="15.1.1" data-path="shiny.html"><a href="shiny.html#application-structure"><i class="fa fa-check"></i><b>15.1.1</b> Application Structure</a></li>
-<li class="chapter" data-level="15.1.2" data-path="shiny.html"><a href="shiny.html#the-ui"><i class="fa fa-check"></i><b>15.1.2</b> The UI</a></li>
-<li class="chapter" data-level="15.1.3" data-path="shiny.html"><a href="shiny.html#the-server"><i class="fa fa-check"></i><b>15.1.3</b> The Server</a></li>
+<li class="chapter" data-level="15" data-path="git-collaboration.html"><a href="git-collaboration.html"><i class="fa fa-check"></i><b>15</b> Git Collaboration</a><ul>
+<li class="chapter" data-level="15.1" data-path="git-collaboration.html"><a href="git-collaboration.html#centralized-workflow"><i class="fa fa-check"></i><b>15.1</b> Centralized Workflow</a></li>
+<li class="chapter" data-level="15.2" data-path="git-collaboration.html"><a href="git-collaboration.html#feature-branch-workflow"><i class="fa fa-check"></i><b>15.2</b> Feature Branch Workflow</a></li>
+<li class="chapter" data-level="15.3" data-path="git-collaboration.html"><a href="git-collaboration.html#forking-workflow"><i class="fa fa-check"></i><b>15.3</b> Forking Workflow</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="git-collaboration.html"><a href="git-collaboration.html#pull-requests"><i class="fa fa-check"></i><b>15.3.1</b> Pull Requests</a></li>
 </ul></li>
-<li class="chapter" data-level="15.2" data-path="shiny.html"><a href="shiny.html#publishing-shiny-apps"><i class="fa fa-check"></i><b>15.2</b> Publishing Shiny Apps</a></li>
-<li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#resources-14"><i class="fa fa-check"></i>Resources</a></li>
+<li class="chapter" data-level="" data-path="git-collaboration.html"><a href="git-collaboration.html#resources-14"><i class="fa fa-check"></i>Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>16</b> The <code>shiny</code> Framework</a><ul>
+<li class="chapter" data-level="16.1" data-path="shiny.html"><a href="shiny.html#creating-shiny-apps"><i class="fa fa-check"></i><b>16.1</b> Creating Shiny Apps</a><ul>
+<li class="chapter" data-level="16.1.1" data-path="shiny.html"><a href="shiny.html#application-structure"><i class="fa fa-check"></i><b>16.1.1</b> Application Structure</a></li>
+<li class="chapter" data-level="16.1.2" data-path="shiny.html"><a href="shiny.html#the-ui"><i class="fa fa-check"></i><b>16.1.2</b> The UI</a></li>
+<li class="chapter" data-level="16.1.3" data-path="shiny.html"><a href="shiny.html#the-server"><i class="fa fa-check"></i><b>16.1.3</b> The Server</a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="shiny.html"><a href="shiny.html#publishing-shiny-apps"><i class="fa fa-check"></i><b>16.2</b> Publishing Shiny Apps</a></li>
+<li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#resources-15"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -342,7 +346,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="git-branches" class="section level1">
-<h1><span class="header-section-number">Chapter 14</span> Git Branches and Collaboration</h1>
+<h1><span class="header-section-number">Chapter 14</span> Git Branches</h1>
 <p>While <code>git</code> is great for uploading and downloading code, its true benefits are its ability to support <em>reversability</em> (e.g., undo) and <em>collaboration</em> (working with other people). In order to effectively utilize these capabilities, you need to understand git’s <strong>branching model</strong>, which is central to how the program manages different versions of code.</p>
 <p>This chapter will cover how to work with <strong>branches</strong> with git and GitHub, including using them to work on different features simultaneously and to undo previous changes. It will also discuss how to use branches to support different <em>collaborative workflows</em>, allowing multiple people to work on code in the same repository.</p>
 <div id="git-branches" class="section level2">
@@ -392,16 +396,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="merging" class="section level2">
 <h2><span class="header-section-number">14.2</span> Merging</h2>
 <p>If you have changes (commits) spread across multiple branches, eventually you’ll want to combine those changes back into a single branch. This is a process called <strong>merging</strong>: you “merge” the changes from one branch <em>into</em> another. You do this with the (surprise!) <code>merge</code> command:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> merge [other_branch] --no-edit</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> merge [other_branch]</code></pre></div>
 <p>This command will merge <code>other_branch</code> <strong>into the current branch</strong>. So if you want to end up with the “combined” version of your commits on a particular branch, you’ll need to switch to (<code>checkout</code>) that branch before you run the merge.</p>
+<pre><code>- **IMPORTANT** If something goes wrong, don&#39;t panic and try to close your command-line! Come back to this book and look up how to fix the problem you&#39;ve encounter (e.g., how to exit  _vim_). And if you&#39;re unsure why something isn&#39;t working with git, use **`git status`** to check the current status and for what steps to do next.</code></pre>
 <ul>
-<li><p>When merging, git may create a <em>new</em> “combined” commit indicating that the branches have now been merged. The <code>--no-edit</code> option will tell git to use the default commit message when creating the new “combined” commit. If you forget this, you’ll be thrown into the command-line editor. Remember, type <code>:q!</code> to escape from <em>vim</em>; if you do so, check the <code>status</code> of the repo to make sure the merge finished! If the merge has not finished, try again: you may need to commit the merged changes yourself.</p>
-<ul>
-<li><strong>IMPORTANT</strong> If something goes wrong, don’t panic and try to close your command-line! Come back to this book and look up how to fix the problem you’ve encounter (e.g., how to exit <em>vim</em>). And if you’re unsure why something isn’t working with git, use <strong><code>git status</code></strong> to check the current status and for what steps to do next.</li>
-</ul></li>
-<li><p>Note that the <code>rebase</code> command will perform a similar operation, but without creating a new “merge” commit—it simply takes the commits from one branch and attaches them to the end of the other. This effectively <strong>changes history</strong>, since it is no longer clear where the branching occurred. From an archival and academic view, you never want to “destroy history” and lose a record of changes that were made. History is important: don’t screw with it! Thus we recommend you <em>avoid</em> rebasing and stick with merging.</p></li>
+<li>Note that the <code>rebase</code> command will perform a similar operation, but without creating a new “merge” commit—it simply takes the commits from one branch and attaches them to the end of the other. This effectively <strong>changes history</strong>, since it is no longer clear where the branching occurred. From an archival and academic view, you never want to “destroy history” and lose a record of changes that were made. History is important: don’t screw with it! Thus we recommend you <em>avoid</em> rebasing and stick with merging.</li>
 </ul>
-<!-- To practice creating and merging branches, see [exercise-1](exercise-1). -->
 <div id="merge-conflicts" class="section level3">
 <h3><span class="header-section-number">14.2.1</span> Merge Conflicts</h3>
 <p>Merging is a regular occurrence when working with branches. But consider the following situation:</p>
@@ -436,7 +436,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>This will complete the merge! Use <code>git status</code> to check that everything is clean again.</p></li>
 </ol>
 <p><strong>Merge conflicts are expected</strong>. You didn’t do something wrong if one occurs! Don’t worry about getting merge conflicts or try to avoid them: just resolve the conflict, fix the “bug” that has appeared, and move on with your life.</p>
-<!-- To practice resolving merge conflicts, see [exercise-2](exercise-2). -->
 </div>
 </div>
 <div id="undoing-changes" class="section level2">
@@ -482,35 +481,15 @@ Conversely, the <code>reset</code> command will destroy history. <strong>Do not 
 <li><em>Resolve</em> any merge conflicts that occurred</li>
 <li><code>push</code> (upload) your merged set of changes</li>
 </ol>
-<p>Additionally, because GitHub repositories are repos just like the ones on your local machine, they can have branches as well! <!--(You have seen that each learning module has a `complete` branch).--> You have access to any <em>remote</em> branches when you <code>clone</code> a repo; you can see a list of them with <code>git branch -a</code> (using the “<strong>a</strong>ll” option).</p>
+<p>Additionally, because GitHub repositories are repos just like the ones on your local machine, they can have branches as well! You have access to any <em>remote</em> branches when you <code>clone</code> a repo; you can see a list of them with <code>git branch -a</code> (using the “<strong>a</strong>ll” option).</p>
 <p>If you create a new branch on your local machine, it is possible to push <em>that branch</em> to GitHub, creating a mirroring branch on the remote repo. You do this by specifying the branch in the <code>git push</code> command:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> push origin branch_name</code></pre></div>
 <p>where <code>branch_name</code> is the name of the branch you are currently on (and thus want to push to GitHub).</p>
 <p>Note that you often want to associate your local branch with the remote one (make the local branch <strong>track</strong> the remote), so that when you use <code>git status</code> you will be able to see whether they are different or not. You can establish this relationship by including the <code>-u</code> option in your push:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> push -u origin branch_name</code></pre></div>
 <p>Tracking will be remembered once set up, so you only need to use the <code>-u</code> option <em>once</em>.</p>
-<div id="pull-requests" class="section level3">
-<h3><span class="header-section-number">14.4.1</span> Pull Requests</h3>
-<p>All changes to code <em>including branch merges</em> should be made on a local machine and then <code>pushed</code> to GitHub. Howver, GitHub does offer a feature called <a href="https://help.github.com/articles/creating-a-pull-request/"><strong>pull requests</strong></a> by which you can merge two remote branches (that is: <code>merge</code> two branches that are on GitHub). A <strong>pull request</strong> is a request for the changes from one branch to be pulled (merged) into another.</p>
-<p>This feature is used primarily to let teams of developers <em>collaborate</em>—one developer can send a request “hey, can you integrate my changes?” to another. The second developer can perform a <strong>code review</strong>: reviewing the proposed changes and making comments or asking for corrections to anything they find problematic. Once the changes are improved, the pull request can be <strong>accepted</strong> and the changes merged into the target branch. This process is how programmers collaborate on <em>open-source software</em> (such as R libraries like <code>dplyr</code>): a developer can <em>fork</em> an existing professional project, make changes to that fork, and then send a pull request back to the original developer asking them to merge in changes (“will you include my changes in your branch/version of the code?”).</p>
-<p class="alert alert-warning">
-Pull requests should only be used when doing collaboration using remote branches! Local branches should be <code>merged</code> locally using the command-line, not GitHub’s pull request feature.
-</p>
-<p>In order to issue a pull request, both branches you wish to merge will need to be <code>pushed</code> to GitHub (whether they are in the same repo or in forks). To issue the pull request, navigate to your repository on GitHub’s web portal and choose the <strong>New Pull Request</strong> button (it is next to the drop-down that lets you view different branches).</p>
-<p>In the next page, you will need to specify which branches you wish to merge. The <strong>base</strong> branch is the one you want to merge <em>into</em> (often <code>master</code>), and the <strong>head</strong> branch (labeled “compare”) is the branch with the new changes you want to merge (often a feature branch; see below).</p>
-<p>Add a title and description for your pull request. These should follow the format for git commit messages. Finally, click the <strong>Create pull request</strong> button to finish creating the pull request.</p>
-<p class="alert alert-info">
-Important! The pull request is a request to merge two branches, not to merge a specific set of commits. This means that you can <em>push more commits</em> to the head/merge-from branch, and they will automatically be included in the pull request—the request is always “up-to-date” with whatever commits are on the (remote) branch.
-</p>
-<p>You can view all pull requests (including those that have been accepted) through the <strong>Pull Requests</strong> tab at the top of the repo’s web portal. This is where you can go to see comments that have been left by the reviewer.</p>
-<p>If someone sends you a pull request (e.g., another developer on your team), you can <a href="https://help.github.com/articles/merging-a-pull-request/">accept that pull request</a> through GitHub’s web portal. If the branches can be merged without a conflict, you can do this simply by hitting the <strong>Merge pull request</strong> button. However, if GitHub detects that a conflict may occur, you will need to <a href="https://help.github.com/articles/checking-out-pull-requests-locally">pull down the branches and merge them locally</a>.</p>
-<p class="alert alert-warning">
-It is best practice to <em>never</em> accept your own pull requests! If you don’t need any collaboration, just merge the branches locally.
-</p>
-<p>Note that when you merge a pull request via the GitHub web site, the merge is done entirely on the server. Your local repo will not yet have those changes, and so you will need to use <code>git pull</code> to download the updates to an appropriate branch.</p>
-</div>
 <div id="github-pages" class="section level3">
-<h3><span class="header-section-number">14.4.2</span> GitHub Pages</h3>
+<h3><span class="header-section-number">14.4.1</span> GitHub Pages</h3>
 <p>GitHub’s use of branches provides a number of additional features, one of which is the ability to <strong>host</strong> web pages (<code>.html</code> files, which can be generated from R Markdown) <!--or Jupyter notebooks)--> on a publicly accessible web server that can “serve” the page to anyone who requests it. This feature is known as <a href="https://help.github.com/articles/what-is-github-pages/">GitHub Pages</a>.</p>
 <p>With GitHub pages, GitHub will automatically serve your files to visitors as long as the files are in a branch with a magic name: <strong><code>gh-pages</code></strong>. Thus in order to <strong>publish</strong> your webpage and make it available online, all you need to do is create that branch, merge your content into it, and then push that branch to GitHub.</p>
 <p>You almost always want to create the new <code>gh-pages</code> branch off of your <code>master</code> branch. This is because you usually want to publish the “finished” version, which is traditionally represented by the <code>master</code> branch. This means you’ll need to switch over to <code>master</code>, and then create a new branch from there:</p>
@@ -554,60 +533,6 @@ It is best practice to <em>never</em> accept your own pull requests! If you don�
 <p>This procedure will keep your code synchronized between the branches, while avoiding a large number of merge conflicts.</p>
 </div>
 </div>
-<div id="collaborative-workflows" class="section level2">
-<h2><span class="header-section-number">14.5</span> Collaborative Workflows</h2>
-<p>Being able to merge between branches allows you to work <strong>collaboratively</strong>, with multiple people making changes to the same repo and sharing those changes through GitHub. There a variety of approaches (or <strong>workflows</strong>) that can be used to facilitate collaboration and make sure that people are effectively able to share code. This section describes the recommended, branch-based workflow called the <a href="https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow"><strong>Feature Branch Workflow</strong></a>.</p>
-<div id="repository-setup" class="section level3">
-<h3><span class="header-section-number">14.5.1</span> Repository Setup</h3>
-<p>The Feature Branch Workflow uses a <strong>centralized repository</strong> stored on GitHub—that is, every single member of the team will <code>push</code> and <code>pull</code> to a single GitHub repo. However, since each repository needs to be created under a particular account, this means that a <strong><em>single member</em></strong> of the team will need to create the repo (such as by accepting a GitHub Classroom assignment, or by clicking the <em>“New”</em> button on their “Repositories” tab on the GitHub web portal).</p>
-<p>In order to make sure everyone is able to <code>push</code> to the repository, whoever creates the repo will need to <a href="https://help.github.com/articles/inviting-collaborators-to-a-personal-repository/"><strong>add the other team members as collaborators</strong></a>. You can do this under the <strong>Settings</strong> tab:</p>
-<div class="figure">
-<img src="img/git-branches/add-collaborator.png" title="add collaborator menu" alt="Adding a collaborator to a Github repo (via the web portal)." />
-<p class="caption">Adding a collaborator to a Github repo (via the web portal).</p>
-</div>
-<p>Once you’ve added everyone to the GitHub repository, <strong>each team member</strong> will need to <strong><code>clone</code></strong> the repository to their local machines to work on the code individually. Collaborators can then <code>push</code> any changes they make to the central repository, and <code>pull</code> and changes made by others.</p>
-</div>
-<div id="feature-branches" class="section level3">
-<h3><span class="header-section-number">14.5.2</span> Feature Branches</h3>
-<p>The core idea behind the Feature Branch Workflow is that all development should take place on a dedicated <strong>feature branch</strong>, rather than on the <code>master</code> branch. This allows for different people to work on different branches without disturbing the main codebase. For example, you might have one branch <code>visualization</code> that focuses on adding a complex visualization, or another <code>experimental-analysis</code> that tries a bold new approach to processing the data. Each branch is based on a <em>feature</em> (capability or part) of the project, not a particular person: a single developer could be working on multiple feature branches.</p>
-<p>The idea is that the <code>master</code> branch <em>always</em> contains “production-level” code: valid, completely working code that you could deploy or publish (read: give to your boss or teacher) at a whim. All feature branches branch off of <code>master</code>, and are allowed to contain temporary or even broken code (since they are still in development). This way there is always a “working” (if incomplete) copy of the code (<code>master</code>), and development can be kept isolated and considered independent of the whole. This is similar to the example with the <code>experiment</code> branch above.</p>
-<p>The workflow thus works like this:</p>
-<ol style="list-style-type: decimal">
-<li><p>Ada decides to add a new feature or part to the code. She creates a new feature branch off of <code>master</code>:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> checkout master
-<span class="fu">git</span> checkout -b adas-feature</code></pre></div></li>
-<li><p>Ada does some work on this feature</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># work is done outside of terminal</span>
-
-<span class="fu">git</span> add .
-<span class="fu">git</span> commit -m <span class="st">&quot;Adds progress on feature&quot;</span></code></pre></div></li>
-<li><p>Ada takes a break, pushing her changes to GitHub</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> push -u origin adas-feature</code></pre></div></li>
-<li><p>After talking to Ada, Bebe decides to help finish up the feature. She checks out the branch and makes some changes, then pushes them back to GitHub</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># fetch will &quot;download&quot; commits from GitHub, without merging them</span>
-<span class="fu">git</span> fetch origin
-<span class="fu">git</span> checkout adas-feature
-
-<span class="co"># work is done outside of terminal</span>
-
-<span class="fu">git</span> add .
-<span class="fu">git</span> commit -m <span class="st">&quot;Adds more progress on feature&quot;</span>
-<span class="fu">git</span> push origin adas-feature</code></pre></div></li>
-<li><p>Ada downloads Bebe’s changes</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> pull origin adas-feature</code></pre></div></li>
-<li><p>Ada decides the feature is finished, and <em>merges</em> it back into <code>master</code>. But first, she makes sure she has the latest version of the <code>master</code> code to integrate her changes with</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> checkout master  # switch to master
-<span class="fu">git</span> pull origin master  # download any changes
-
-<span class="fu">git</span> merge adas-feature  # merge the feature
-<span class="co"># fix any merge conflicts!!</span>
-
-<span class="fu">git</span> push origin master  # upload the updated code to master</code></pre></div></li>
-<li><p>And now that the feature has been successfully added to the project, Ada can delete the feature branch (using <code>git branch -d branch_name</code>). See also <a href="http://stackoverflow.com/questions/2003505/how-to-delete-a-git-branch-both-locally-and-remotely">here</a>.</p></li>
-</ol>
-<p>This kind of workflow is very common and effective for supporting collaboration. Note that as projects get large, you may need to start being more organized about how and when you create feature branches. For example, the <a href="http://nvie.com/posts/a-successful-git-branching-model/"><strong>Git Flow</strong></a> model organizes feature branches around product releases, and is often a starting point for large collaborative projects.</p>
-</div>
-</div>
 <div id="resources-13" class="section level2 unnumbered">
 <h2>Resources</h2>
 <ul>
@@ -617,7 +542,6 @@ It is best practice to <em>never</em> accept your own pull requests! If you don�
 <li><a href="http://learngitbranching.js.org/">Learn Git Branching</a> (interactive tutorial)</li>
 <li><a href="http://www.wei-wang.com/ExplainGitWithD3/#">Visualizing Git Concepts</a> (interactive visualization)</li>
 <li><a href="https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/">Resolving a merge conflict (GitHub)</a></li>
-<li><a href="https://www.atlassian.com/git/tutorials/comparing-workflows">Atlassian Git Workflows Tutorial</a></li>
 </ul>
 
 </div>
@@ -628,7 +552,7 @@ It is best practice to <em>never</em> accept your own pull requests! If you don�
         </div>
       </div>
 <a href="ggplot2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="shiny.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="git-collaboration.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -660,7 +584,7 @@ gitbook.start({
 "link": "https://github.com/info201/book/edit/master/git-branches.Rmd",
 "text": "Edit"
 },
-"download": ["tech-foundations-of-informatics.pdf", "tech-foundations-of-informatics.epub"],
+"download": null,
 "toc": {
 "collapse": "section",
 "scroll_highlight": true
