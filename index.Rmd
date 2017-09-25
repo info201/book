@@ -14,10 +14,10 @@ params:
           url: https://canvas.uw.edu/courses/1100121
 site: bookdown::bookdown_site
 output: bookdown::gitbook
-monofont: "Source Code Pro"
 cover-image: img/cover-img.png
 favicon: img/favicon.png
 ---
+<!-- monofont: "Source Code Pro" -->
 
 # About this Book {-}
 

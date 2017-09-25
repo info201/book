@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2017-08-23">
+<meta name="date" content="2017-08-30">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -348,7 +348,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <img src="img/command-line/cli-wikipedia.png" title="example command-line" alt="An example of the command-line in action (from Wikipedia)." />
 <p class="caption">An example of the command-line in action (from Wikipedia).</p>
 </div>
-<p>The command-line is not as friendly or intuitive as a graphical interface: it’s much harder to learn and figure out. However, it has the advantage of being both more powerful and more efficient in the hands of expert users. (It’s faster to type than to move a mouse, and you can do <em>lots</em> of “clicks” with a single command). Thus, all professional developers interact with the command-line, particularly when working with large amounts of data or files.</p>
+<p>The command-line is not as friendly or intuitive as a graphical interface: it’s much harder to learn and figure out. However, it has the advantage of being both more powerful and more efficient in the hands of expert users. (It’s faster to type than to move a mouse, and you can do <em>lots</em> of “clicks” with a single command). Command line is also extremely handy in situations where you work on servers that for some reason do not have GUI enabled. Thus, command line is an essential tool for all professional developers, particularly when working with large amounts of data or files.</p>
 <p>This chapter will give you a brief introduction to basic tasks using the command-line: enough to get you comfortable navigating the interface and able to interpret commands.</p>
 <div id="accessing-the-command-line" class="section level2">
 <h2><span class="header-section-number">2.1</span> Accessing the Command-Line</h2>
@@ -372,9 +372,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">pwd</span></code></pre></div>
 <p>This stands for <strong>p</strong>rint <strong>w</strong>orking <strong>d</strong>irectory (shell commands are highly abbreviated to make them faster to type), and will tell the computer to print the folder you are currently “in”.</p>
 <p class="alert alert-info">
-<em>Fun fact:</em> technically, this command starts a tiny program (app) that does exactly one thing: prints the working directory. When you run a command, you’re actually executing a tiny program! And when you run programs (tiny or large) on the command-line, it looks like you’re typing in commands.
+<em>Fun fact:</em> technically, this command usually starts a tiny program (app) that does exactly one thing: prints the working directory. When you run a command, you’re actually executing a tiny program! And when you run programs (tiny or large) on the command-line, it looks like you’re typing in commands.
 </p>
-<p>Folders on computers are stored in a hierarchy: each folder has more folders inside it, which have more folders inside them. This produces a <a href="https://en.wikipedia.org/wiki/Tree_(data_structure)">tree</a> structure:</p>
+<p>Folders on computers are stored in a hierarchy: each folder has more folders inside it, which have more folders inside them. This produces a <a href="https://en.wikipedia.org/wiki/Tree_(data_structure)">tree</a> structure which on a Mac may like like that:</p>
 <div class="figure">
 <img src="img/command-line/dir-tree.png" title="directory tree" alt="A Directory Tree, from Bradnam and Korf." />
 <p class="caption">A Directory Tree, from Bradnam and Korf.</p>
@@ -467,11 +467,11 @@ You should <strong>always</strong> use relative paths, particularly when program
 </tr>
 <tr class="even">
 <td align="left"><strong><code>open</code></strong></td>
-<td align="left">Mac: opens a file or folder</td>
+<td align="left">opens a file or folder (Mac only)</td>
 </tr>
 <tr class="odd">
 <td align="left"><strong><code>start</code></strong></td>
-<td align="left">Windows: opens a file or folder</td>
+<td align="left">opens a file or folder (Windows only)</td>
 </tr>
 <tr class="even">
 <td align="left"><strong><code>cat</code></strong></td>
@@ -545,6 +545,12 @@ Because manuals are often long, they are opened up in a command-line viewer call
 <li><a href="https://www.youtube.com/watch?v=sqYUYHn-HKg&amp;list=PLCAF7D691FFA25555">Video series: Bash commands</a></li>
 <li><a href="http://www.lagmonster.org/docs/unix/intro-137.html">List of Common Commands</a> (also <a href="http://www.math.utah.edu/lab/unix/unix-commands.html">here</a>)</li>
 </ul>
+<!---
+Local Variables:
+eval: (visual-line-mode t)
+eval: (auto-fill-mode -1)
+End:
+-->
 
 </div>
 </div>
