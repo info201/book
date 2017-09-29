@@ -242,7 +242,7 @@ In order to use GitHub, you'll need to [**create a free GitHub account**](https:
 
 Next, you'll need to download a copy of a repo from GitHub onto your own machine. **Never make changes or commit directly to GitHub**: all development work is done locally, and changes you make are then uploaded and _merged_ into the remote.
 
-Start by visiting **https://github.com/info201/github_practice**. This is the web portal for an existing repository. You can see that it contains one file (`README.md`, a Markdown file with a description of the repo) and a folder containing a second file. You can click on the files and folder to view their source online, but again you won't change them there!
+Start by visiting [this link](https://github.com/info201/github_practice). This is the web portal for an existing repository. You can see that it contains one file (`README.md`, a Markdown file with a description of the repo) and a folder containing a second file. You can click on the files and folder to view their source online, but again you won't change them there!
 
 Just like with Imgur or Flickr or other image-hosting sites, each GitHub user has their own account under which repos are stored. The repo linked above is under the course book account (`info201`). And because it's under our user account, you won't be able to modify it&mdash;just like you can't change someone else's picture on Imgur. So the first thing you'll need to do is copy the repo over to _your **own** account on GitHub's servers_. This process is called **forking** the repo (you're creating a "fork" in the development, splitting off to your own version).
 
