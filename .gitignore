@@ -5,6 +5,8 @@ node_modules
 .Rhistory
 # Book build output
 #_book
+*.aux
+*.log
 # eBook build output
 #*.epub
 #*.mobi
@@ -14,3 +16,6 @@ node_modules
 .Rproj.user
 packrat/lib*/
 packrat/src/
+
+# editor backups
+*~
