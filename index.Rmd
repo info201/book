@@ -14,19 +14,22 @@ params:
           url: https://canvas.uw.edu/courses/1100121
 site: bookdown::bookdown_site
 output: bookdown::gitbook
-cover-image: img/cover-img.png
+monofont: "Source Code Pro"
+cover-image: "img/cover-img.png"
 favicon: img/favicon.png
 ---
-<!-- monofont: "Source Code Pro" -->
 
-# About this Book {-}
+
 
 ```{r fig.align='center', echo=FALSE, include=identical(knitr:::pandoc_to(), 'html')}
 #to include only in html (centered)
 #knitr::include_graphics('img/cover-img.png', dpi = NA)
 ```
 
-<!-- ![](img/cover-img.png) -->
+
+![](img/cover-img.png)
+# About this Book {-}
+
 
 This book covers the foundation skills necessary to start ___writing computer programs to work with data___ using modern and reproducable techniques. It requires no technical background. These materials were developed for the **INFO 201: Technical Foundations of Informatics** course taught at the [University of Washington Information School](https://ischool.uw.edu/); however they have been structured to be an online resource for anyone hoping to learn to work with information using programmatic approaches.
 
