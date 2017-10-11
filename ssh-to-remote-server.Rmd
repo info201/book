@@ -39,30 +39,30 @@ as
 ssh myserver.somewhere.com
 ```
 The remote server asks for your password and opens remote shell
-connection.  It is most likely a similar bash-shell as you are using
+connection.  It a similar bash-shell as you are using
 on your computer but most likely you see a different prompt, one that
 contains the server's name.  You may also see some login
 messages.   Now all the commands you are issuing are
-running on the remote machine.  So `pwd` shows you your working
+running on the remote machine.  So `pwd` shows your working
 directory on the server, which in general is not the same as on the
 local machine, and `ls` shows the files on the server, not on your
 laptop.  Now you can use `mkdir` to create the project folder on the
 server. 
 
-By default, ssh attempts to login with you local username.  If your
-username on the server differs, you want to add it to the ssh command:
+By default, ssh attempts to login with your local username.  If your
+username on the server differs from that on your laptop, you want to add it to the ssh command:
 ```bash
 ssh username@myserver.somewhere.com
 ```
 
-## copying files
+## Copying Files
 
 Before you can start running R scripts on the server, you have to get
 these copied over.  There are several possibilities.
 
 ### scp
 
-The most universal approach is `scp`, secure copy.  It works in many
+The most straightforward approach is `scp`, secure copy.  It works in many
 ways in the same way as `cp` for the local files, just `scp` can copy
 files between your machine and a remote computer.  Under the hood it uses ssh
 connection, just like `ssh` command itself.  It syntax is rather
@@ -74,20 +74,24 @@ This copies "file1" from the server "host1" under username "user1" to
 the other server.  It asks for passwords as needed.  the "host" part
 of the file must be understood as the full hostname including dots,
 such as "hyak.washington.edu".  "file" is the full path to file,
-relative to home folder, such as "info201/cool_script.R".  When
-accessing local files, you may omit the "user@host:" part.  So, for
-instance, in order to copy your "cool\_script.R" from folder "info201"
-on the Desktop of your laptop to the folder "scripts" on your home
-folder on the server, you may issue
-```bash
-scp Desktop/info201/cool_script.R myusername@server.ischool.edu:scripts/
-```
-Note that exactly as `cp`, you may omit the destination file name if
-the destination is a directory: it simply copies the file into that
+relative to home directory, such as "info201/cool\_script.R".  
+When accessing local files, you may omit the "user@host:" part.  So,
+for instance, in order to copy your "cool\_script.R" from folder
+"info201" on your laptop's Desktop to the folder "scripts" in
+your home folder on the server, you may issue 
+```bash 
+scp
+Desktop/info201/cool_script.R myusername@server.ischool.edu:scripts/
+``` 
+(here we assume the current directory of your laptop is the one above
+`Desktop`.) 
+Note that exactly as `cp`, you may omit the destination file name
+if the destination is a directory: it simply copies the file into that
 directory while preserving it's name.
 
-After running your script, you may want to copy your result--the file
-"figure.pdf" back to your laptop.  This can be done with
+After running your script, you may want to copy your results back to
+your laptop.  For instance, if you need to get the file
+"figure.pdf" out of the server, you can do
 ```bash
 scp myusername@server.ischool.edu:scripts/figure.pdf Desktop/info201/
 ```
@@ -97,8 +101,8 @@ into the "info201" folder on your Desktop.
 
 ### rsync
 
-`rsync` is a more modern approach to `scp`.  It works in many way
-exactly like `scp`, just is is smart enough to understand which files
+`rsync` is a more advanced approach to `scp`.  It works in many ways
+exactly like `scp`, just it is smart enough to understand which files
 are updated, and only copy the updated parts of the files.  It is the
 recommended way to go if dealing with small updates in large files.
 It's syntax is rather similar to that of `scp`.  To copy a "file" to the
@@ -110,8 +114,8 @@ and in order to copy a "file1" from server as local "file":
 ```
 rsync file user1@host1:file1 file
 ```
-(rsync cannot copy between two remote computers).  I also recommend to
-explore some of the many options, for instance `-v` (verbose) reports
+I also recommend to
+explore some of it's many options, for instance `-v` (verbose) reports
 what it's doing.
 The example above with your code and figure might now look like that:
 ```bash
@@ -120,15 +124,18 @@ rsync -v Desktop/info201/cool_script.R myusername@server.ischool.edu:scripts/
 rsync -v myusername@server.ischool.edu:scripts/figure.pdf Desktop/info201/
 ```
 
-Maybe the easiest way to copy your files is to copy the whole
+Maybe the easiest way to copy your files is to copy (or update) the whole
 directories.  For instance, instead of the code above, you can do
 ```bash
+# copy all files to server:
 rsync -v Desktop/info201/* myusername@server.ischool.edu:scripts/
 # now run the script on the remote machine
+# ... and copy the results back:
 rsync -v myusername@server.ischool.edu:scripts/* Desktop/info201/
 ```
 Here `*` means _all files in this directory_.  Hence, now, instead of
-copying the files individually between the computers, we just copy all
+copying the files individually between the computers, we just copy
+all
 of them.  Even better, we actually do not copy but just update.  Huge
 files that do not change do not take any bandwidth.
 
@@ -136,10 +143,10 @@ files that do not change do not take any bandwidth.
 ### Graphical Frontends
 
 Instead on relying on command line tools, one can also use graphical
-front-ends.  For instance, "WinSCP" is a nice Norton-Commander-Style
-frontend for copying files between local and remote machine over scp
+front-ends.  For instance, "WinSCP" is a nice Norton Commander-Style
+frontend for copying files between a local and a remote machine over scp
 for Windows.  It provides a split window representing files on the
-local and remote end, and one can move, copy-and-paste and interact
+local and the remote end, and one can move, copy-and-paste and interact
 with mouse in these areas.  On Mac you may take a look at
 "Cyberduck". 
 
@@ -170,29 +177,35 @@ You start R interactively by the command
 R
 ```
 It opens an R session, not unlike what you see inside of RStudio, just
-here is no RStudio to handrail you through the sessions.  All loading,
+here is no RStudio to handrail you through the session.  I strongly
+recommend to change to the directory where you intend to run the
+project before starting R (`cd scripts`).  Now all loading,
 saving, inspecting files, etc must be done through R commands.  For
 instance, in order to run the script, you have to _source_ it like
 ```R
 source("cool_script.R")
 ```
 This runs the script, possibly ending with an error message.  You have
-to correct the error, copy the file over to the server again, and
-re-run it.  Note that you don't have to exit from the R session when
+to correct the error either on your laptop and copy the file over to
+the server again, or directly on the server, and
+re-run it again.  Note that you don't have to exit from the R session when
 copying the script file over to the server.  Edit it, copy it (using `scp` or
 other tools) over from your laptop, and just re-source the file from
 withing the R session.
 
-Alternatively, instead of opening the interactive R session, you can
-run it entirely from the command line.
+Opening a separate R session may be useful for installing packages.
+For running your scripts, i recommend you to run it entirely from
+command line, either as
 ```bash
-R cool_script.R
+R CMD BATCH cool_script.R
 ```
 or
 ```bash
 Rscript cool_script.R
 ```
-are two different ways to run your script.
+The first version produces a little more meaningful error messages,
+the other one handles the environment in a little more consistent and
+efficient manner.
 
 
 ### graphics output
@@ -204,11 +217,13 @@ file, you may use the following code in your R program:
 pdf(file="figure1.pdf", width=12, height=8)
     # width and height in inches
 # do your plotting here
+plot(1:10, rnorm(10))
+# done plotting
 dev.off()
     # saves the image to disk and closes the file.
 ```
 afterwards you will have to copy the image file to your laptop for
-further inspection or addition in your project report.
+inspection or addition in your final project report.
 
 
 
@@ -219,9 +234,9 @@ on your own computer.  However, there is a number of differences.
 
 ### Be Social!
 
-While you laptop is yours, and you are free to grab all it's resources
-to yourself, this is not true for the server.  The server is a
-multiuser system, potentially used concurrently by many people.  So
+While you laptop is yours, and you are free to exploit all it's
+resources as you wish, this is not true for the server.  The server is a
+multiuser system, potentially doing good work concurrently for many people.  So
 the first rule is:
 > Don't take more resources than what you need!
 
@@ -231,8 +246,13 @@ close R as soon as it has finished.  Don't copy the dataset without a
 good reason, and keep your copies in a compressed form.  R can open
 gzip and bzip2 files on the fly, so usually you don't even need to
 decompress these.  Avoid costly recalculations of something you
-already calculated.  All this is specially true before the deadline
-when many people try to run their stuff on server.
+already calculated.  All this is specially true the last days before the deadline
+when many people try to run their stuff at the same time.
+
+Servers are typically well configured to tame misbehaving programs.
+You may sometimes see your script stopping with a message "killed".
+This most likely means you grabbed too much memory, and the system
+just killed your script.  Deal with it.
 
 
 ### Useful Things to Do
@@ -245,18 +265,18 @@ htop
 tells you which programs run on the server, how much memory and cpu do
 these take, and who are their owners (the corresponding users).  It
 also permits you to kill your misbehaving processes (press `k` and
-select `SIGKILL`).
+select `SIGKILL`).  Read more with `man htop`.
 
 ```bash
 w
 ```
-(who) prints the current logged-in users of the server.
+(**w**ho) prints the current logged-in users of the server.
 
 ```bash
 df -h
 ```
 (**d**isplay **f**ree in **h**uman-readable units) shows the free and
-occupied disk space.  You are mainly influenced by the file system
+occupied disk space.  You are mainly influenced by what is going on in the file system
 `/home`.
 
 ### Permissions and ownership
@@ -264,9 +284,23 @@ occupied disk space.  You are mainly influenced by the file system
 Unix systems are very strict about ownership and permissions.  You are
 a normal user with limited privileges.  In particular, you cannot
 modify or delete files that you don't own.  In a similar fashion, you
-cannot kill processes you did not start.  Feel free and attempt to
-kill these, and delete files of others.  But you can't.
+cannot kill processes you did not start.  Feel free and attempt.  It
+does not work.
 
+In case you need to do something with elevated privileges (as
+"superuser"), you contact your system administrator.  In practice,
+their responsiveness and willingness to accommodate your requests will
+vary. 
+
+### More than One Connection
+
+It perfectly possible to log onto the server multiple times at the
+same time.  You may simply open several terminals and log onto the
+server from each of these.  You can use one to look how you script is
+doing with `htop`, the other to run the script, the third to inspect
+output...  If you find such approach useful, I recommend you to
+familiarize yourself with gnu screen (command `screen` that includes
+many related goodies.)
 
 
 ## Advanced Usage
