@@ -1,11 +1,11 @@
 # Using Remote Server {#remote-server}
 
-Sooner-or-later you are in a situation where you have to work on
-a **distant networked computer**.  There may be many reasons, either your
-laptop is simply to meany for certain tasks, or certain data is not
-allowed to be taken out from there, or you are expected to use the
+Sooner-or-later you are in a situation where you have to work on a
+**distant networked computer**.  There may be many reasons, either
+your laptop is simply to weak for certain tasks, or certain data is
+not allowed to be taken out from there, or you are expected to use the
 same computer as your teammates.  The server may be a standalone box
-located somewhere in yout employers server room, but it may also be a
+located on a rack in your employers server room, or it may be a
 virtual maching in cloud, such as Amazon EC2.  You may also want to
 set up your own server.
 
@@ -18,19 +18,23 @@ graphical user interface (GUI) installed or otherwise accessible (many
 unix programs can display nice windows on your laptop while still
 running on the server).  It may or may not have RStudio made
 available over web browser.  Here we discuss the most barebone setup
-with no access to GUI and now web access to RStudio.
+with no access to GUI and no web access to RStudio.
 
 This is a fairly common setup, in particular when dealing with
-sensitive data or organizations where computer skills or sysadmin's
-time is limited.
+sensitive data, or in organizations where computer skills and
+sysadmin's time is limited.
 
 
 ## Connecting to the Remote Server
 
+Your first task is to connect to the remote server.  Here it means
+that you will enter commands on your laptop, but those command are
+actually run on the server.
+
 The most common way to connect to remote server is via _ssh_.  ssh
 stands for "secure shell" and means that both login and all
-communication with the server is encrypted.  The command to connect to
-the server is
+communication with the server is encrypted.  You connect to the server
+as 
 ```bash
 ssh myserver.somewhere.com
 ```
@@ -154,6 +158,7 @@ server to your laptop as if it were a local disk.  Again, scp and
 friends will do the hard work under the hood.
 
 
+
 ## Rscript
 
 When you code has been transferred to the server, your next task is to
@@ -204,6 +209,64 @@ dev.off()
 ```
 afterwards you will have to copy the image file to your laptop for
 further inspection or addition in your project report.
+
+
+
+## Life on Server
+
+The servers operate in many ways in a similar fashion as command line
+on your own computer.  However, there is a number of differences.
+
+### Be Social!
+
+While you laptop is yours, and you are free to grab all it's resources
+to yourself, this is not true for the server.  The server is a
+multiuser system, potentially used concurrently by many people.  So
+the first rule is:
+> Don't take more resources than what you need!
+
+This means don't let the system run, grab memory, or occupy disk space
+just for fun or laziness.  Try to keep your R workspace clean and
+close R as soon as it has finished.  Don't copy the dataset without a
+good reason, and keep your copies in a compressed form.  R can open
+gzip and bzip2 files on the fly, so usually you don't even need to
+decompress these.  Avoid costly recalculations of something you
+already calculated.  All this is specially true before the deadline
+when many people try to run their stuff on server.
+
+
+### Useful Things to Do
+
+There are several useful commands you can experiment with on the
+server.
+```bash
+htop
+```
+tells you which programs run on the server, how much memory and cpu do
+these take, and who are their owners (the corresponding users).  It
+also permits you to kill your misbehaving processes (press `k` and
+select `SIGKILL`).
+
+```bash
+w
+```
+(who) prints the current logged-in users of the server.
+
+```bash
+df -h
+```
+(**d**isplay **f**ree in **h**uman-readable units) shows the free and
+occupied disk space.  You are mainly influenced by the file system
+`/home`.
+
+### Permissions and ownership
+
+Unix systems are very strict about ownership and permissions.  You are
+a normal user with limited privileges.  In particular, you cannot
+modify or delete files that you don't own.  In a similar fashion, you
+cannot kill processes you did not start.  Feel free and attempt to
+kill these, and delete files of others.  But you can't.
+
 
 
 ## Advanced Usage
