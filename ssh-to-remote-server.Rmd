@@ -39,7 +39,9 @@ as
 ssh myserver.somewhere.com
 ```
 The remote server asks for your password and opens remote shell
-connection.  It a similar bash-shell as you are using
+connection.  (Note: when entering your password, it usually does not
+print anything in response, not even asterisks.  It feels as if your
+keyboard does not work.)  It a similar bash-shell as you are using
 on your computer but most likely you see a different prompt, one that
 contains the server's name.  You may also see some login
 messages.   Now all the commands you are issuing are
