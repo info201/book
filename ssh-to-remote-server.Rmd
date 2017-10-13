@@ -55,6 +55,15 @@ username on the server differs from that on your laptop, you want to add it to t
 ssh username@myserver.somewhere.com
 ```
 
+Finally, you have to get out of here.  The polite way to do it is with
+command
+```bash
+exit
+```
+that ensures that the connection will be safely closed.  Usually you
+can also just close the terminal.
+
+
 ## Copying Files
 
 Before you can start running R scripts on the server, you have to get
@@ -165,13 +174,23 @@ more information if you are interested.
 
 
 
-## Rscript
+## R and Rscript
 
 When you code has been transferred to the server, your next task is to
-run it.  I also strongly
-recommend to change to the directory where you intend to run the
-project before starting R (`cd scripts`).  There are two options: either start R interactively, or run
-it as a script.
+run it.  But before you can do it, you may want to install the
+packages you need.  For instance, you may want to install the whole
+"tidyverse" bundle.  This must be done from R console using
+`install.packages()`.  The first time you do it, R complains about
+non-writeable syste-wide library and proposes to install and create
+your personal libary.  You should answer "yes" to these prompts.  As
+linux systems typically compile the packages during installations, the
+process is slow and you see many messages (including warnings) in the
+process.  But it works, given that the necessary libraries are there.
+
+Now you can finally run your R code.  I strongly recommend to do it
+from the directory where you intend to run the project before starting
+R (`cd scripts`).  There are two options: either start R
+interactively, or run it as a script.
 
 You start R interactively by the command 
 ```bash
