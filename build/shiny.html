@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2017-10-11">
+<meta name="date" content="2017-10-16">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 <link rel="prev" href="git-collaboration.html">
-
+<link rel="next" href="remote-server.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -323,6 +323,30 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="16.2" data-path="shiny.html"><a href="shiny.html#publishing-shiny-apps"><i class="fa fa-check"></i><b>16.2</b> Publishing Shiny Apps</a></li>
 <li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#resources-15"><i class="fa fa-check"></i>Resources</a></li>
+</ul></li>
+<li class="appendix"><span><b>Special Topics</b></span></li>
+<li class="chapter" data-level="A" data-path="remote-server.html"><a href="remote-server.html"><i class="fa fa-check"></i><b>A</b> Using Remote Server</a><ul>
+<li class="chapter" data-level="A.1" data-path="remote-server.html"><a href="remote-server.html#server-setup"><i class="fa fa-check"></i><b>A.1</b> Server Setup</a></li>
+<li class="chapter" data-level="A.2" data-path="remote-server.html"><a href="remote-server.html#connecting-to-the-remote-server"><i class="fa fa-check"></i><b>A.2</b> Connecting to the Remote Server</a></li>
+<li class="chapter" data-level="A.3" data-path="remote-server.html"><a href="remote-server.html#copying-files"><i class="fa fa-check"></i><b>A.3</b> Copying Files</a><ul>
+<li class="chapter" data-level="A.3.1" data-path="remote-server.html"><a href="remote-server.html#scp"><i class="fa fa-check"></i><b>A.3.1</b> scp</a></li>
+<li class="chapter" data-level="A.3.2" data-path="remote-server.html"><a href="remote-server.html#rsync"><i class="fa fa-check"></i><b>A.3.2</b> rsync</a></li>
+<li class="chapter" data-level="A.3.3" data-path="remote-server.html"><a href="remote-server.html#graphical-frontends"><i class="fa fa-check"></i><b>A.3.3</b> Graphical Frontends</a></li>
+<li class="chapter" data-level="A.3.4" data-path="remote-server.html"><a href="remote-server.html#remote-editing"><i class="fa fa-check"></i><b>A.3.4</b> Remote Editing</a></li>
+</ul></li>
+<li class="chapter" data-level="A.4" data-path="remote-server.html"><a href="remote-server.html#r-and-rscript"><i class="fa fa-check"></i><b>A.4</b> R and Rscript</a><ul>
+<li class="chapter" data-level="A.4.1" data-path="remote-server.html"><a href="remote-server.html#graphics-output-with-no-gui"><i class="fa fa-check"></i><b>A.4.1</b> Graphics Output with No GUI</a></li>
+</ul></li>
+<li class="chapter" data-level="A.5" data-path="remote-server.html"><a href="remote-server.html#life-on-server"><i class="fa fa-check"></i><b>A.5</b> Life on Server</a><ul>
+<li class="chapter" data-level="A.5.1" data-path="remote-server.html"><a href="remote-server.html#be-social"><i class="fa fa-check"></i><b>A.5.1</b> Be Social!</a></li>
+<li class="chapter" data-level="A.5.2" data-path="remote-server.html"><a href="remote-server.html#useful-things-to-do"><i class="fa fa-check"></i><b>A.5.2</b> Useful Things to Do</a></li>
+<li class="chapter" data-level="A.5.3" data-path="remote-server.html"><a href="remote-server.html#permissions-and-ownership"><i class="fa fa-check"></i><b>A.5.3</b> Permissions and ownership</a></li>
+<li class="chapter" data-level="A.5.4" data-path="remote-server.html"><a href="remote-server.html#more-than-one-connection"><i class="fa fa-check"></i><b>A.5.4</b> More than One Connection</a></li>
+</ul></li>
+<li class="chapter" data-level="A.6" data-path="remote-server.html"><a href="remote-server.html#advanced-usage"><i class="fa fa-check"></i><b>A.6</b> Advanced Usage</a><ul>
+<li class="chapter" data-level="A.6.1" data-path="remote-server.html"><a href="remote-server.html#ssh-keys-.sshconfig"><i class="fa fa-check"></i><b>A.6.1</b> ssh keys, .ssh/config</a></li>
+<li class="chapter" data-level="A.6.2" data-path="remote-server.html"><a href="remote-server.html#running-rscript-in-ssh-session"><i class="fa fa-check"></i><b>A.6.2</b> Running RScript in ssh Session</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -615,13 +639,17 @@ Don’t worry about “Step 3 - Deploy”; you’ll do that through RStudio dire
 
 </div>
 </div>
+
+
+
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="git-collaboration.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="git-collaboration.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="remote-server.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
