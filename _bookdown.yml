@@ -28,3 +28,7 @@ rmd_files:
   - git-branches.Rmd
   - git-collaboration.Rmd
   - shiny.Rmd
+
+  # appendix: other topics
+  - appendix.Rmd
+  - ssh-to-remote-server.Rmd
