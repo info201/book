@@ -61,3 +61,9 @@ pre code {
 .clear {
   clear:both
 }
+
+/* Hide the "about" header from the nav menu */
+.book .book-summary ul.summary li:nth-child(3) {
+  height:0px;
+  display:none;
+}
