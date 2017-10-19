@@ -7,6 +7,9 @@ node_modules
 #_book
 *.aux
 *.log
+*.fdb
+*.fdb_latexmk
+
 # eBook build output
 #*.epub
 #*.mobi
