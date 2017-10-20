@@ -62,8 +62,7 @@ pre code {
   clear:both
 }
 
-/* Hide the "about" header from the nav menu */
-.book .book-summary ul.summary li:nth-child(3) {
-  height:0px;
+/* Hide the top header */
+#about-the-book > h1  {
   display:none;
 }
