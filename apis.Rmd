@@ -37,22 +37,16 @@ The `domain` and `path` usually specify the resource. For example, `www.domain.c
 
 With an API, the domain and path are often viewed as being broken up into two parts:
 
-- The **Base URI** is the domain and part of the path that is included on _all_ resources. It acts as the "root" for any particular resource. For example, the [Spotify API](https://developer.spotify.com/web-api/endpoint-reference/) has a base URI of `https://api.spotify.com`, while the [UNHCR API](http://data.unhcr.org/wiki/index.php/API_Documentation.html) has a base URI of `http://data.unhcr.org/api/`
+- The **Base URI** is the domain and part of the path that is included on _all_ resources. It acts as the "root" for any particular resource. For example, the [GitHub API](https://developer.github.com/v3/) has a base URI of `https://api.github.com/`.
 
 - An **Endpoint**, or which resource on that domain you want to access. Each API will have _many_ different endpoints.
 
-    For example, Spotify includes endpoints such as:
+    For example, GitHub includes endpoints such as:
 
-    - `/v1/tracks/{id}` to refer to a track with a specific `id` (the `{}` indicate a "variable", in that you can put any id in there in place of the string `"id"`)
-    - `/v1/artists/{id}/albums` to refer to a specific artist's albums
-    - `/v1/browse/new-releases` to refer to a list of new releases
+    - `/users/{user}` to get information about a specific `:user:` `id` (the `{}` indicate a "variable", in that you can put any username in there in place of the string `"{user}"`). Check out this [example](https://api.github.com/users/mkfreeman) in your browser.
+    - `/orgs/{organization}/repos` to get the repositories that are on an organization page. See an [Example](https://api.github.com/orgs/info201a-au17/repos)
 
-    The UNHCR includes enpoints such as:
-
-    - `countries/show/:id` to refer to region information about a specific country (the `:` is another way to indicate a variable)
-    - `stats/persons_of_concern` to refer to statistics about people seeking asylum
-
-Thus you can equivalently talk about accessing a particular **resource** and sending a request to a particular **endpoint**. The **endpoint** is appended to the end of the **Base URI**, so you could access Spotify's new releases by combining the **Base URI** (`https://api.spotify.com`) and **endpoint** (`/v1/browse/new-releases`) into a single string: `https://api.spotify.com/v1/browse/new-releases`. That URL will return a data structure of new releases, which you can request from your R program or simply view in your web-browser.
+Thus you can equivalently talk about accessing a particular **resource** and sending a request to a particular **endpoint**. The **endpoint** is appended to the end of the **Base URI**, so you could access a GitHub user by combining the **Base URI** (`https://api.github.com`) and **endpoint** (`/users/mkfreeman`) into a single string: `https://api.github.com/users/mkfreeman`. That URL will return a data structure of new releases, which you can request from your R program or simply view in your web-browser.
 
 #### Query Parameters
 Often in order to access only partial sets of data from a resource (e.g., to only get some users) you also include a set of **query parameters**. These are like extra arguments that are given to the request function. Query parameters are listed after a question mark **`?`** in the URI, and are formed as key-value pairs similar to how you named items in _lists_. The **key** (_parameter name_) is listed first, followed by an equal sign **`=`**, followed by the **value** (_parameter value_); note that you can't include any spaces in URIs! You can include multiple query parameters by putting an ampersand **`&`** between each key-value pair:
@@ -109,11 +103,17 @@ Overall, this structure of treating each datum on the web as a **resource** whic
 
 
 ## Accessing Web APIs
-To access a Web API, you just need to send an HTTP Request to a particular URI. You can easily do this with the browser: simply navigate to a particular address (base URI + endpoint), and that will cause the browser to send a `GET` request and display the resulting data. For example, you can send a request to search Spotify for artists named "bowie" by visiting:
+To access a Web API, you just need to send an HTTP Request to a particular URI. You can easily do this with the browser: simply navigate to a particular address (base URI + endpoint), and that will cause the browser to send a `GET` request and display the resulting data. For example, you can send a request to search GitHub for repositories named `d3` by visiting:
 
 ```
-https://api.spotify.com/v1/search?type=artist&q=bowie
+https://api.github.com/search/repositories?q=d3&sort=forks
+
 ```
+
+This query acceses the `/search/repositories/` endpoint, and also specifies 2 parameters:
+
+- `q`: The term(s) you are searching for, and
+- `sort`: The attribute of each repository that you would like to use to sort the results
 
 (Note that the data you'll get back is structued in JSON format. See [below](#json) for details).
 
@@ -128,25 +128,25 @@ This library provides a number of functions that reflect HTTP verbs. For example
 
 ```r
 # Get search results for artist
-response <- GET("https://api.spotify.com/v1/search?type=artist&q=bowie")
+response <- GET("https://api.github.com/search/repositories?q=d3&sort=forks")
 ```
 
 While it is possible to include _query parameters_ in the URI string, `httr` also allows you to include them as a _list_, making it easy to set and change variables (instead of needing to do a complex `paste0()` operation to produce the correct string):
 
 ```r
 # Equivalent to the above, but easier to read and change
-query.params <- list(type = "artist", q = "bowie")
-response <- GET("https://api.spotify.com/v1/search", query = query.params)
+query.params <- list(q = "d3", sort = "forks")
+response <- GET("https://api.github.com", query = query.params)
 ```
 
 If you try printing out the `response` variable, you'll see information about the response:
 
 ```
-Response [https://api.spotify.com/v1/search?type=artist&q=bowie]
-  Date: 2017-01-30 05:14
+Response [https://api.github.com/?q=d3&sort=forks]
+  Date: 2017-10-22 19:05
   Status: 200
   Content-Type: application/json; charset=utf-8
-  Size: 15.3 kB
+  Size: 2.16 kB
 ```
 
 This is called the **response header**. Each **response** has two parts: the **header**, and the **body**. You can think of the response as a envelope: the _header_ contains meta-data like the address and postage date, while the _body_ contains the actual contents of the letter (the data).
@@ -248,7 +248,8 @@ library("jsonlite")
 
 ```r
 # send request for albums by David Bowie
-response <- GET("https://api.spotify.com/v1/artists/0oSGxfWSnnOXhD2fKuz2Gy/albums")
+query.params <- list(q = "d3", sort = "forks")
+response <- GET("https://api.github.com", query = query.params)
 body <- content(response, "text")  # extract the body JSON
 parsed.data <- fromJSON(body)  # convert the JSON string to a list
 ```

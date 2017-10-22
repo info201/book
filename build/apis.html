@@ -6,8 +6,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Technical Foundations of Informatics</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
 
   <meta property="og:title" content="Technical Foundations of Informatics" />
   <meta property="og:type" content="book" />
@@ -25,7 +26,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2017-10-20">
+<meta name="date" content="2017-10-22">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -34,6 +35,7 @@
   <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 <link rel="prev" href="dplyr.html">
 <link rel="next" href="r-markdown.html">
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -101,7 +103,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </head>
 
 <body>
-
 
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
@@ -404,21 +405,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>The <code>domain</code> and <code>path</code> usually specify the resource. For example, <code>www.domain.com/users</code> might be an <em>identifier</em> for a resource which is a list of users. Note that web services can also have “subresources” by adding extra pieces to the path: <code>www.domain.com/users/mike</code> might refer to the specific “mike” user in that list.</p>
 <p>With an API, the domain and path are often viewed as being broken up into two parts:</p>
 <ul>
-<li><p>The <strong>Base URI</strong> is the domain and part of the path that is included on <em>all</em> resources. It acts as the “root” for any particular resource. For example, the <a href="https://developer.spotify.com/web-api/endpoint-reference/">Spotify API</a> has a base URI of <code>https://api.spotify.com</code>, while the <a href="http://data.unhcr.org/wiki/index.php/API_Documentation.html">UNHCR API</a> has a base URI of <code>http://data.unhcr.org/api/</code></p></li>
+<li><p>The <strong>Base URI</strong> is the domain and part of the path that is included on <em>all</em> resources. It acts as the “root” for any particular resource. For example, the <a href="https://developer.github.com/v3/">GitHub API</a> has a base URI of <code>https://api.github.com/</code>.</p></li>
 <li><p>An <strong>Endpoint</strong>, or which resource on that domain you want to access. Each API will have <em>many</em> different endpoints.</p>
-<p>For example, Spotify includes endpoints such as:</p>
+<p>For example, GitHub includes endpoints such as:</p>
 <ul>
-<li><code>/v1/tracks/{id}</code> to refer to a track with a specific <code>id</code> (the <code>{}</code> indicate a “variable”, in that you can put any id in there in place of the string <code>&quot;id&quot;</code>)</li>
-<li><code>/v1/artists/{id}/albums</code> to refer to a specific artist’s albums</li>
-<li><code>/v1/browse/new-releases</code> to refer to a list of new releases</li>
-</ul>
-<p>The UNHCR includes enpoints such as:</p>
-<ul>
-<li><code>countries/show/:id</code> to refer to region information about a specific country (the <code>:</code> is another way to indicate a variable)</li>
-<li><code>stats/persons_of_concern</code> to refer to statistics about people seeking asylum</li>
+<li><code>/users/{user}</code> to get information about a specific <code>:user:</code> <code>id</code> (the <code>{}</code> indicate a “variable”, in that you can put any username in there in place of the string <code>&quot;{user}&quot;</code>). Check out this <a href="https://api.github.com/users/mkfreeman">example</a> in your browser.</li>
+<li><code>/orgs/{organization}/repos</code> to get the repositories that are on an organization page. See an <a href="https://api.github.com/orgs/info201a-au17/repos">Example</a></li>
 </ul></li>
 </ul>
-<p>Thus you can equivalently talk about accessing a particular <strong>resource</strong> and sending a request to a particular <strong>endpoint</strong>. The <strong>endpoint</strong> is appended to the end of the <strong>Base URI</strong>, so you could access Spotify’s new releases by combining the <strong>Base URI</strong> (<code>https://api.spotify.com</code>) and <strong>endpoint</strong> (<code>/v1/browse/new-releases</code>) into a single string: <code>https://api.spotify.com/v1/browse/new-releases</code>. That URL will return a data structure of new releases, which you can request from your R program or simply view in your web-browser.</p>
+<p>Thus you can equivalently talk about accessing a particular <strong>resource</strong> and sending a request to a particular <strong>endpoint</strong>. The <strong>endpoint</strong> is appended to the end of the <strong>Base URI</strong>, so you could access a GitHub user by combining the <strong>Base URI</strong> (<code>https://api.github.com</code>) and <strong>endpoint</strong> (<code>/users/mkfreeman</code>) into a single string: <code>https://api.github.com/users/mkfreeman</code>. That URL will return a data structure of new releases, which you can request from your R program or simply view in your web-browser.</p>
 <div id="query-parameters" class="section level4">
 <h4><span class="header-section-number">11.2.1.1</span> Query Parameters</h4>
 <p>Often in order to access only partial sets of data from a resource (e.g., to only get some users) you also include a set of <strong>query parameters</strong>. These are like extra arguments that are given to the request function. Query parameters are listed after a question mark <strong><code>?</code></strong> in the URI, and are formed as key-value pairs similar to how you named items in <em>lists</em>. The <strong>key</strong> (<em>parameter name</em>) is listed first, followed by an equal sign <strong><code>=</code></strong>, followed by the <strong>value</strong> (<em>parameter value</em>); note that you can’t include any spaces in URIs! You can include multiple query parameters by putting an ampersand <strong><code>&amp;</code></strong> between each key-value pair:</p>
@@ -463,25 +458,31 @@ Watch out for APIs that mention using <a href="https://en.wikipedia.org/wiki/OAu
 </div>
 <div id="accessing-web-apis" class="section level2">
 <h2><span class="header-section-number">11.3</span> Accessing Web APIs</h2>
-<p>To access a Web API, you just need to send an HTTP Request to a particular URI. You can easily do this with the browser: simply navigate to a particular address (base URI + endpoint), and that will cause the browser to send a <code>GET</code> request and display the resulting data. For example, you can send a request to search Spotify for artists named “bowie” by visiting:</p>
-<pre><code>https://api.spotify.com/v1/search?type=artist&amp;q=bowie</code></pre>
+<p>To access a Web API, you just need to send an HTTP Request to a particular URI. You can easily do this with the browser: simply navigate to a particular address (base URI + endpoint), and that will cause the browser to send a <code>GET</code> request and display the resulting data. For example, you can send a request to search GitHub for repositories named <code>d3</code> by visiting:</p>
+<pre><code>https://api.github.com/search/repositories?q=d3&amp;sort=forks
+</code></pre>
+<p>This query acceses the <code>/search/repositories/</code> endpoint, and also specifies 2 parameters:</p>
+<ul>
+<li><code>q</code>: The term(s) you are searching for, and</li>
+<li><code>sort</code>: The attribute of each repository that you would like to use to sort the results</li>
+</ul>
 <p>(Note that the data you’ll get back is structued in JSON format. See <a href="apis.html#json">below</a> for details).</p>
 <p>In <code>R</code> you can send GET requests using the <a href="https://cran.r-project.org/web/packages/httr/vignettes/quickstart.html"><code>httr</code></a> library. Like <code>dplyr</code>, you will need to install and load it to use it:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;httr&quot;</span>)  <span class="co"># once per machine</span>
 <span class="kw">library</span>(<span class="st">&quot;httr&quot;</span>)</code></pre></div>
 <p>This library provides a number of functions that reflect HTTP verbs. For example, the <strong><code>GET()</code></strong> function will send an HTTP GET Request to the URI specified as an argument:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get search results for artist</span>
-response &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;https://api.spotify.com/v1/search?type=artist&amp;q=bowie&quot;</span>)</code></pre></div>
+response &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;https://api.github.com/search/repositories?q=d3&amp;sort=forks&quot;</span>)</code></pre></div>
 <p>While it is possible to include <em>query parameters</em> in the URI string, <code>httr</code> also allows you to include them as a <em>list</em>, making it easy to set and change variables (instead of needing to do a complex <code>paste0()</code> operation to produce the correct string):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Equivalent to the above, but easier to read and change</span>
-query.params &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">type =</span> <span class="st">&quot;artist&quot;</span>, <span class="dt">q =</span> <span class="st">&quot;bowie&quot;</span>)
-response &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;https://api.spotify.com/v1/search&quot;</span>, <span class="dt">query =</span> query.params)</code></pre></div>
+query.params &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">q =</span> <span class="st">&quot;d3&quot;</span>, <span class="dt">sort =</span> <span class="st">&quot;forks&quot;</span>)
+response &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;https://api.github.com&quot;</span>, <span class="dt">query =</span> query.params)</code></pre></div>
 <p>If you try printing out the <code>response</code> variable, you’ll see information about the response:</p>
-<pre><code>Response [https://api.spotify.com/v1/search?type=artist&amp;q=bowie]
-  Date: 2017-01-30 05:14
+<pre><code>Response [https://api.github.com/?q=d3&amp;sort=forks]
+  Date: 2017-10-22 19:05
   Status: 200
   Content-Type: application/json; charset=utf-8
-  Size: 15.3 kB</code></pre>
+  Size: 2.16 kB</code></pre>
 <p>This is called the <strong>response header</strong>. Each <strong>response</strong> has two parts: the <strong>header</strong>, and the <strong>body</strong>. You can think of the response as a envelope: the <em>header</em> contains meta-data like the address and postage date, while the <em>body</em> contains the actual contents of the letter (the data).</p>
 <p>Since you’re almost always interested in working with the <em>body</em>, you will need to extract that data from the response (e.g., open up the envelope and pull out the letter). You can do this with the <code>content()</code> method:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># extract content from response, as a text string (not a list!)</span>
@@ -543,7 +544,8 @@ body &lt;-<span class="st"> </span><span class="kw">content</span>(response, <sp
 <span class="kw">library</span>(<span class="st">&quot;jsonlite&quot;</span>)</code></pre></div>
 <p><code>jsonlite</code> provides a function called <strong><code>fromJSON()</code></strong> that allows you to convert a JSON string into a list—or even a data frame if the columns have the right lengths!</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># send request for albums by David Bowie</span>
-response &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;https://api.spotify.com/v1/artists/0oSGxfWSnnOXhD2fKuz2Gy/albums&quot;</span>)
+query.params &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">q =</span> <span class="st">&quot;d3&quot;</span>, <span class="dt">sort =</span> <span class="st">&quot;forks&quot;</span>)
+response &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;https://api.github.com&quot;</span>, <span class="dt">query =</span> query.params)
 body &lt;-<span class="st"> </span><span class="kw">content</span>(response, <span class="st">&quot;text&quot;</span>)  <span class="co"># extract the body JSON</span>
 parsed.data &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(body)  <span class="co"># convert the JSON string to a list</span></code></pre></div>
 <p>The <code>parsed.data</code> will contain a <em>list</em> built out of the JSON. Depending on the complexity of the JSON, this may already be a data frame you can <code>View()</code>… but more likely you’ll need to <em>explore</em> the list more to locate the “main” data you are interested in. Good strategies for this include:</p>
@@ -623,9 +625,8 @@ people<span class="op">$</span>favorites.food  <span class="co"># this just got 
         </div>
       </div>
 <a href="dplyr.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="r-markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
-    </div>
-  </div>
+<a href="r-markdown.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -634,7 +635,7 @@ people<span class="op">$</span>favorites.food  <span class="co"># this just got 
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
 <script>
-gitbook.require(["gitbook"], function(gitbook) {
+require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": true,
