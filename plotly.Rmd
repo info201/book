@@ -1,0 +1,81 @@
+# Plotly
+
+In this module, you'll start building visualizations using the Plotly API. Plotly is a visualization software that recently open-sourced it's API to JavaScript, MatLab, Python, and R, making it quite valuable to learn. Plotly graphs are fairly customizable, and (by default) have a variety of interactive methods with each chart (i.e., hover, brush to zoom, pan, etc.). Many of these events are fairly cumbersome to build programmatically, which makes a library like Plotly quite attractive.
+
+
+## Getting Started
+The Plotly API is an R package that you'll use to build interactive graphics. Like other open-source that we've used in this course, we'll load this API as a R package as follows:
+
+```bash
+# Install package
+install.packages("plotly")
+
+# Load library
+library(plotly)
+```
+
+Then, the `plot_ly` object will be accessible to you to build graphics on your page.
+
+## Basic Charts
+One of the best ways to start building charts with Plotly is to take a look at a [basic example](https://plot.ly/r/#basic-charts) of your choice, and explore the syntax. In general, to build a Plotly object (graph) you'll pass a **dataframe** into the `plot_ly` function, then **adjust the parameters** to specify what you want to visualize. For example, here is the basic example of a scatterplot from the documentation:
+
+```bash
+# Make a scatterplot of the iris data
+plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length, mode="markers", type="scatter")
+```
+
+The approach seems pretty straightforward -- in fact, if you exclude `type = "scatter"` and `mode="markers"`, Plotly will make an educated guess about what type of plot you want (and in this case, it will in fact create a scatterplot!). The only syntax that looks a bit strange is the tilde character (`~`). In R, the tilde designates a variable as a **formula**, which was a design choice of the developers of the API.
+
+## Layout
+While the `plot_ly` function controls the data that is being visualized, additional chart options such as _titles and axes_ are controlled by the `layout` function. The `layout` function accepts as a parameter **a plotly object**, and _manipulates that object_. Again, I think a great place to start is an example in the [documentation](https://plot.ly/r/line-and-scatter/):
+
+```r
+# From documentation
+
+# Create a plotly object `p`
+p <- plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length, type="scatter", mode="markers",
+        marker = list(size = 10,
+                       color = 'rgba(255, 182, 193, .9)',
+                       line = list(color = 'rgba(152, 0, 0, .8)',
+                                   width = 2))) %>%
+  # Use pipe function to pass the plotly object into the `layout` function                           
+  layout(title = 'Styled Scatter',
+         yaxis = list(zeroline = FALSE),
+         xaxis = list(zeroline = FALSE))
+
+# Show chart
+p
+```
+This example uses the pipe operator (`%>%`) to pass the plotly object _into_ the `layout` function as the first argument. We can then infer the structure of the other parameters, which you can read about more in the [API Documentation](https://plot.ly/r/reference/#Layout_and_layout_style_objects):
+
+
+## Hovers
+By default, plotly will provide information on each element when you hover over it (which is **awesome**). To manipulate the information in a hover, you can modify the `text` attribute in the `plot_ly` function, and you can **use your data** to populate the information on hover:
+
+```r
+# From documentation
+
+# Create data
+d <- diamonds[sample(nrow(diamonds), 1000), ]
+
+# Create plot, speficying hover text
+p <- plot_ly(
+  d, x = ~carat, y = ~price, mode="markers", type="scatter",
+  # Hover text:
+  text = ~paste0("Price:$", price, '<br>Cut: ', cut),
+  color = ~carat, size = ~carat
+)
+
+# Show chart
+p
+
+```
+
+Note, plotly allows you to specify HTML syntax in the text formula. In this case, it uses a line break `<br>` to improve the layout. 
+
+## Resources {-}
+- [Plotly Website](https://plot.ly/)
+- [Plotly R API](https://plot.ly/r/)
+- [Getting Started with Plotly for R](https://plot.ly/r/getting-started/)
+- [Plotly Cheatsheet](https://images.plot.ly/plotly-documentation/images/r_cheat_sheet.pdf)
+- [Plotly book (extensive documentation)](https://cpsievert.github.io/plotly_book/)
