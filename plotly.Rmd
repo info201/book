@@ -16,6 +16,11 @@ library(plotly)
 
 Then, the `plot_ly` object will be accessible to you to build graphics on your page.
 
+<div class="alert alert-danger">
+<p>Note: sometimes RStudio fails to show your plotly graph in a website preview when you use `plotly` in an `RMarkdown` documnent. However, if you click on the **Open in Browser** button, you should be able to interact with your chart as it will show in a web browser. This isn't your fault, and doesn't need to be de-bugged.</p>
+</div>
+
+
 ## Basic Charts
 One of the best ways to start building charts with Plotly is to take a look at a [basic example](https://plot.ly/r/#basic-charts) of your choice, and explore the syntax. In general, to build a Plotly object (graph) you'll pass a **dataframe** into the `plot_ly` function, then **adjust the parameters** to specify what you want to visualize. For example, here is the basic example of a scatterplot from the documentation:
 
