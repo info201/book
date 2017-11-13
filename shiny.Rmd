@@ -35,7 +35,7 @@ Shiny applications are divided into two parts:
 
     This UI defines a [fluidPage](https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html) (where the content flows "fluidly" down the page), that contains two _content elements_: a text input box where the user can type their name, and some outputted text based on the `message` variable.
 
-2. The **Server** defines the data that will be displayed through the UI. You can think of this as an interactive R script that the user will be able to "run": the script will take in _inputs_ from the user (based on their interactions) and provide _outputs_ that the UI will then display. The server user **reactive expressions**, which are like functions that will automatically be re-run whenever the input changes. This allows the output to be dynamic and interactive.
+2. The **Server** defines the data that will be displayed through the UI. You can think of this as an interactive R script that the user will be able to "run": the script will take in _inputs_ from the user (based on their interactions) and provide _outputs_ that the UI will then display. The server uses **reactive expressions**, which are like functions that will automatically be re-run whenever the input changes. This allows the output to be dynamic and interactive.
 
     The Server for a Shiny application is defined as a **function** (as opposed to the UI which is a _value_). This function takes in two _lists_ as argments: an `input` and `output`. It then uses _render functions_ and _reactive expressions_ that assign values to the `output` list based on the `input` list. For example:
 
@@ -174,7 +174,7 @@ See [the documentation](http://shiny.rstudio.com/reference/shiny/latest/), and [
 
 All widget functions take at least two arguments:
 
-- A **name** (as a string) for the widget's value. This will be the **"key"** that will allow the server to be able to access the value the user has inputted (think: the key in the `input` _list_).
+- A **name** (as a string) for the widget's value. This will be the **"key"** that will allow the server to be able to access the value the user has input (think: the key in the `input` _list_).
 - A **label** (a string or content element described above) that will be shown alongside the widget and tell the user what the value represents. Note that this can be an empty string (`""`) if you don't want to show anything.
 
 Other arguments may be required by a particular widget&mdash;for example, a slider's `min` and `max` values:
@@ -203,7 +203,7 @@ Each of these functions takes as an argument the **name** (as a string) of the v
 
 
 ### The Server
-The Server defines how the data inputted by the user will be used to create the output displayed by the app&mdash;that is, how the _control widgets_ and _reactive outputs_ will be connected. You create a Server by _defining a new function_ (not calling a provided one):
+The Server defines how the data input by the user will be used to create the output displayed by the app&mdash;that is, how the _control widgets_ and _reactive outputs_ will be connected. You create a Server by _defining a new function_ (not calling a provided one):
 
 ```r
 server <- function(input, output){
@@ -213,7 +213,7 @@ server <- function(input, output){
 
 Note that this is _just a normal function_ that happens two take **lists** as arguments. That means you can include the same kinds of code as you normally would&mdash;though that code will only be run once (when the application is first started) unless defined as part of a reactive expression.
 
-The first argument is a list of any values defined by the _control widgets_: each **name** in a control widget will be a **key** in this list. For example, using the above `sliderInput()` example would cause the list to have an `age` key (referenced as `input$age`). This allows the Server to access any data that the user has inputted, using the key names defined in the UI. Note that the values in this list _will change as the user interacts with the UI's control widgets_.
+The first argument is a list of any values defined by the _control widgets_: each **name** in a control widget will be a **key** in this list. For example, using the above `sliderInput()` example would cause the list to have an `age` key (referenced as `input$age`). This allows the Server to access any data that the user has input, using the key names defined in the UI. Note that the values in this list _will change as the user interacts with the UI's control widgets_.
 
 The purpose of the Server function is to assign new _values_ to the `output` argument list (each with an appropriate _key_). These values will then be displayed by the _reactive outputs_ defined in the UI. To make it so that the values can actually be displayed by by the UI, the values assigned to this list need to be the results of **Render Functions**. Similar to creating widgets or reactive outputs, different functions are associated with different types of output the server should produce. For example:
 

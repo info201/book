@@ -6,8 +6,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Technical Foundations of Informatics</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
 
   <meta property="og:title" content="Technical Foundations of Informatics" />
   <meta property="og:type" content="book" />
@@ -25,7 +26,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2017-11-06">
+<meta name="date" content="2017-11-13">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -34,6 +35,7 @@
   <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 <link rel="prev" href="git-collaboration.html">
 <link rel="next" href="remote-server.html">
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -101,7 +103,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </head>
 
 <body>
-
 
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
@@ -401,7 +402,7 @@ my.ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
   <span class="kw">textOutput</span>(<span class="st">&#39;message&#39;</span>)
 )</code></pre></div>
 <p>This UI defines a <a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html">fluidPage</a> (where the content flows “fluidly” down the page), that contains two <em>content elements</em>: a text input box where the user can type their name, and some outputted text based on the <code>message</code> variable.</p></li>
-<li><p>The <strong>Server</strong> defines the data that will be displayed through the UI. You can think of this as an interactive R script that the user will be able to “run”: the script will take in <em>inputs</em> from the user (based on their interactions) and provide <em>outputs</em> that the UI will then display. The server user <strong>reactive expressions</strong>, which are like functions that will automatically be re-run whenever the input changes. This allows the output to be dynamic and interactive.</p>
+<li><p>The <strong>Server</strong> defines the data that will be displayed through the UI. You can think of this as an interactive R script that the user will be able to “run”: the script will take in <em>inputs</em> from the user (based on their interactions) and provide <em>outputs</em> that the UI will then display. The server uses <strong>reactive expressions</strong>, which are like functions that will automatically be re-run whenever the input changes. This allows the output to be dynamic and interactive.</p>
 <p>The Server for a Shiny application is defined as a <strong>function</strong> (as opposed to the UI which is a <em>value</em>). This function takes in two <em>lists</em> as argments: an <code>input</code> and <code>output</code>. It then uses <em>render functions</em> and <em>reactive expressions</em> that assign values to the <code>output</code> list based on the <code>input</code> list. For example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># The server is a function that takes `input` and `output` args</span>
 my.server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {
@@ -511,7 +512,7 @@ Fun Fact: much of Shiny’s styling and layout structure is based on the <a href
 <p>See <a href="http://shiny.rstudio.com/reference/shiny/latest/">the documentation</a>, and <a href="http://shiny.rstudio.com/tutorial/lesson3/">this tutorial lesson</a> for a complete list.</p>
 <p>All widget functions take at least two arguments:</p>
 <ul>
-<li>A <strong>name</strong> (as a string) for the widget’s value. This will be the <strong>“key”</strong> that will allow the server to be able to access the value the user has inputted (think: the key in the <code>input</code> <em>list</em>).</li>
+<li>A <strong>name</strong> (as a string) for the widget’s value. This will be the <strong>“key”</strong> that will allow the server to be able to access the value the user has input (think: the key in the <code>input</code> <em>list</em>).</li>
 <li>A <strong>label</strong> (a string or content element described above) that will be shown alongside the widget and tell the user what the value represents. Note that this can be an empty string (<code>&quot;&quot;</code>) if you don’t want to show anything.</li>
 </ul>
 <p>Other arguments may be required by a particular widget—for example, a slider’s <code>min</code> and <code>max</code> values:</p>
@@ -535,12 +536,12 @@ Fun Fact: much of Shiny’s styling and layout structure is based on the <a href
 </div>
 <div id="the-server" class="section level3">
 <h3><span class="header-section-number">16.1.3</span> The Server</h3>
-<p>The Server defines how the data inputted by the user will be used to create the output displayed by the app—that is, how the <em>control widgets</em> and <em>reactive outputs</em> will be connected. You create a Server by <em>defining a new function</em> (not calling a provided one):</p>
+<p>The Server defines how the data input by the user will be used to create the output displayed by the app—that is, how the <em>control widgets</em> and <em>reactive outputs</em> will be connected. You create a Server by <em>defining a new function</em> (not calling a provided one):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output){
   <span class="co"># assign values to `output` here</span>
 }</code></pre></div>
 <p>Note that this is <em>just a normal function</em> that happens two take <strong>lists</strong> as arguments. That means you can include the same kinds of code as you normally would—though that code will only be run once (when the application is first started) unless defined as part of a reactive expression.</p>
-<p>The first argument is a list of any values defined by the <em>control widgets</em>: each <strong>name</strong> in a control widget will be a <strong>key</strong> in this list. For example, using the above <code>sliderInput()</code> example would cause the list to have an <code>age</code> key (referenced as <code>input$age</code>). This allows the Server to access any data that the user has inputted, using the key names defined in the UI. Note that the values in this list <em>will change as the user interacts with the UI’s control widgets</em>.</p>
+<p>The first argument is a list of any values defined by the <em>control widgets</em>: each <strong>name</strong> in a control widget will be a <strong>key</strong> in this list. For example, using the above <code>sliderInput()</code> example would cause the list to have an <code>age</code> key (referenced as <code>input$age</code>). This allows the Server to access any data that the user has input, using the key names defined in the UI. Note that the values in this list <em>will change as the user interacts with the UI’s control widgets</em>.</p>
 <p>The purpose of the Server function is to assign new <em>values</em> to the <code>output</code> argument list (each with an appropriate <em>key</em>). These values will then be displayed by the <em>reactive outputs</em> defined in the UI. To make it so that the values can actually be displayed by by the UI, the values assigned to this list need to be the results of <strong>Render Functions</strong>. Similar to creating widgets or reactive outputs, different functions are associated with different types of output the server should produce. For example:</p>
 <ul>
 <li><code>renderText()</code> will produce text (character strings) that can be displayed (i.e., by <code>textOutput()</code> in the UI)</li>
@@ -657,9 +658,8 @@ Don’t worry about “Step 3 - Deploy”; you’ll do that through RStudio dire
         </div>
       </div>
 <a href="git-collaboration.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="remote-server.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
-    </div>
-  </div>
+<a href="remote-server.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -668,7 +668,7 @@ Don’t worry about “Step 3 - Deploy”; you’ll do that through RStudio dire
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
 <script>
-gitbook.require(["gitbook"], function(gitbook) {
+require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": true,
