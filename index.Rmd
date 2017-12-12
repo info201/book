@@ -28,7 +28,7 @@ favicon: img/favicon.png
 
 
 ![](img/cover-img.png)
-<h3>About the Book</h3>
+<h2>About the Book</h2>
 
 
 This book covers the foundation skills necessary to start ___writing computer programs to work with data___ using modern and reproducable techniques. It requires no technical background. These materials were developed for the **INFO 201: Technical Foundations of Informatics** course taught at the [University of Washington Information School](https://ischool.uw.edu/); however they have been structured to be an online resource for anyone hoping to learn to work with information using programmatic approaches.

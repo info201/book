@@ -1,6 +1,6 @@
 # Setting up your Machine {#setup-machine}
 
-We'll be using a variety of different software programs to write, manage, and execute the code that we write. Unfortunately, one of the most frustrating and confusing barriers to working with code is simply getting your machine properly set up. This chapter aims to provide sufficient information for setting up your machine, and troubleshooting the process.
+We'll be using a variety of different software programs to write, manage, and execute the code that we write. Unfortunately, one of the most frustrating and confusing barriers to working with code is simply getting your machine properly set up. This chapter aims to provide sufficient information for setting up your machine and troubleshooting the process.
 
 <p class="alert alert-info">Note that iSchool lab machines should have all appropriate software already installed and ready to use.</p>
 
@@ -8,15 +8,15 @@ In short, you'll need to install the following programs: see below for more info
 
 - **Git**: A set of tools for tracking changes to computer code (especially when collaborating with others). This program is already installed on Macs.
 
-    - **GitHub**: A web service for hosting code online. You don't actually need to _install_ anything GitHub (it uses `git`), but you'll need to sign up for the service.
+    - **GitHub**: A web service for hosting code online. You don't actually need to _install_ anything (GitHub uses `git`), but you'll need to sign up for the service.
 
-- **Bash**: A _command-line interface_ for controlling your computer. `git` is a command-line program so you'll need a command shell to use it. Macs already have a Bash program called _Terminal_. On Windows, installing `git` will also install a Bash shell called _Git Bash_, or you can try the (experimental) Linux subsystem for Windows 10.
+- **Bash**: A _command-line interface_ for controlling your computer. `git` is a command-line program so you'll need a command shell to use it. Macs already have a Bash program called _Terminal_. On Windows, installing `git` will also install a Bash shell called _Git Bash_, or you can try the Linux subsystem for Windows 10.
 
 - **Atom**: A lightweight text editor that supports programming in lots of different languages.
 
     - You are welcome to use another text editor if you wish; some further suggestions are included.
 
-- **R**: a programming language commonly used for working with data. This is the primary programming language used throught this book. "Installing R" actually means installing tools that will let your computer understand and run R code.
+- **R**: a programming language commonly used for working with data. This is the primary programming language used throughout this book. "Installing R" actually means installing tools that will let your computer understand and run R code.
 
 - **RStudio**: An graphical editor for writing and running R code. This will soon become our primary development application.
 
@@ -24,44 +24,46 @@ The following sections have additional information about the purpose of each com
 
 
 ## Git
-**`git`** is a version control system that provides a set of commands that allow you to manage changes to written code, particularly when collaborating with other programmers (much more on this in [chapter 4](#git-basics)). To start, you'll need to [download](https://git-scm.com/downloads) and install the software. If you are on a Mac, `git` should already be installed.
+**`git`** is a version control system that provides a set of commands that allow you to manage changes to written code, particularly when collaborating with other programmers (much more on this in [Chapter 4](#git-basics)). To start, you'll need to [download](https://git-scm.com/downloads) and install the software. If you are on a Mac, `git` should already be installed.
 
-If you are using a Windows machine, this will also install a program called Git Bash, which provides a text-based interface for executing commands on your computer. For alternative/additional Windows command-line tools, see below.
+If you are using a Windows machine, this will also install a program called _Git Bash_, which provides a text-based interface for executing commands on your computer. For alternative/additional Windows command-line tools, see below.
 
 ### GitHub
 GitHub is a website that is used to store copies of computer code that are being managed with `git` (think "Imgur for code"). Students in the INFO 201 course will use GitHub to turn in programming assignments.
 
-In order to use GitHub, you'll need to [create a free GitHub account](https://github.com/join), if you don't already have one. You should register a username that is identifiable as you (e.g., based on your name or your UW NetID). This will make it easier for others to determine out who contributed what code, rather than needing to figure out who 'LeetDesigner2099' is. This can be the start of a professional account you may use for the rest of your career!
+In order to use GitHub, you'll need to [create a free GitHub account](https://github.com/join), if you don't already have one. You should register a username that is identifiable as you (e.g., based on your name or your UW NetID). This will make it easier for others to determine who contributed what code, rather than needing to figure out who 'LeetDesigner2099' is. This can be the start of a professional account you may use for the rest of your career!
 
 ## Command-line Tools (Bash)
-The command-line provides a text-based interface for giving instructions to your computer (much more on this in [chapter 2](#command-line)). With this book, you'll largely use the command-line for navigating your computer's file structure, and executing commands that allows you to keep track of changes to the code you write (i.e., version control with `git`).
+The command-line provides a text-based interface for giving instructions to your computer (much more on this in [Chapter 2](#command-line)). With this book, you'll largely use the command-line for navigating your computer's file structure, and executing commands that allows you to keep track of changes to the code you write (i.e., version control with `git`).
 
-In order to use the command-line, you will need to use a **command shell** (a.k.a. a _command prompt_). This is a program that provides the interface to type commands into. In particular, we'll be working with the <a href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)">Bash</a> shell, which provides a particular common set of commands common to Mac and Linux machines.
+In order to use the command-line, you will need to use a **command shell** (also called a _command prompt_). This is a program that provides the interface to type commands into. In particular, we'll be working with the <a href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)">Bash</a> shell, which provides a particular set of commands common to Mac and Linux machines.
 
 ### Command-line on a Mac
-On a Mac you'll want to use the built-in app called *Terminal*. You can open it by searching via Spotlight (hit Cmd (`⌘`) and Spacebar together, type in "terminal", then select the app to open it), or by finding it in the Applications/Utilities folder.
+On a Mac you'll want to use the built-in app called *Terminal*. You can open Terminal by searching via Spotlight (hit Cmd (`⌘`) and Spacebar together, type in "terminal", then select the app to open it), or by finding it in the `Applications > Utilities` folder.
 
 ### Command-line on Windows
 On Windows, we recommend using [**Git Bash**](https://git-scm.com/downloads), which you should have installed along with `git` (above). Open this program to open the command-shell. This works great, since you'll primarily be using the command-line for performing version control.
 
 - Note that Windows does come with its own command-prompt, called the _DOS Prompt_, but it has a different set of commands and features. _Powershell_ is a more powerful version of the DOS prompt if you really want to get into the Windows Management Framework. But Bash is more common in open-source programming like we'll be doing, and so we will be focusing on that set of commands.
 
-Alternatively, the 64-bit Windows 10 Anniversary update (August 2016) _does_ include a beta version of an integrated Bash shell. You can access this by [enabling the subsystem for Linux](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide) and then running `bash` in the command prompt. This is currently (May 2017) "beta" technology, but will suffice for our purposes if you can get it running.
+Alternatively, the latest updates to Windows 10 (August 2016 or later) _does_ includes a beta version of an integrated Bash shell. You can access this by [enabling the subsystem for Linux](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide) and then running `bash` in the command prompt.
 
 
 ## Text Editors
-In order to produce computer code, you need somewhere to write it (and we don't want to write it in MS Word!). There are a variety of available programs that provide an interface for editing code. A major advantage of these programs is that they provide automatic formatting/coloring for easier interpretation of the code, along with cool features like auto-completion and integration with version control.
+In order to produce computer code, you need somewhere to write it (and we don't want to write it in MS Word!) There are a variety of available programs that provide an interface for editing code. A major advantage of these programs is that they provide automatic formatting/coloring for easier interpretation of the code, along with cool features like auto-completion and integration with version control.
 
-RStudio has a great built-in text editor, but you'll sometimes want to use another text editor which is lighter weight (e.g., runs faster), more robust, or supports a different programming language. There are lots of different text editors out there, all of which have slightly different appearances and features. You only need to download and use one of the following programs (we recommend **Atom** as a default), but feel free to try out different ones to find something you like (and then evangelize about it to your friends!)
+While we will primarily use RStudio (below) which has a great built-in text editor, you'll sometimes want to use another text editor which is lighter weight (e.g., runs faster), more robust, or supports a different programming language. There are lots of different coding text editors out there, all of which have slightly different appearances and features. You only need to download and use one of the following programs (we recommend **Atom** as a default), but feel free to try out different ones to find something you like (and then evangelize about it to your friends!)
+
+<p class="alert alert-info">Programming involves working with many different file types, each detailed by their extension. It is useful to specify that your computer should show these extensions in the File Explorer or Finder; see instructions [for Windows](https://support.microsoft.com/en-us/help/865219/how-to-show-or-hide-file-name-extensions-in-windows-explorer) or [for Mac](https://support.apple.com/kb/PH25381?locale=en_US) to enable this.</p>
 
 ### Atom
-[**Atom**](https://atom.io/) is a text editor built by the folks at GitHub and has been gaining in popularity. As an open source project, people are continually building (and making available) interesting/useful extensions. Its built-in spell-check is a great feature, especially for documents that require lots of written text. It also has excellent support for Markdown, a markup language you'll be using regularly in this course.
+[**Atom**](https://atom.io/) is a text editor built by the folks at GitHub. As an open source project, people are continually building (and making available) interesting/useful extensions. Its built-in spell-check is a great feature, especially for documents that require lots of written text. It also has excellent support for _Markdown_, a markup language used regularly in this book (see [Chapter 3](#markdown)).
 
-To Download Atom, visit their [**webpage**](https://atom.io/) and click the "Download" button to download the installer `.exe` file, then double-click on that icon to install the application.
+To download Atom, visit their [**webpage**](https://atom.io/) and click the "Download" button to download the program. On Windows you will download the installer `AtomSetup.exe` file; double-click on that icon to install the application). On a Mac you will download a zip file; open that file and drag the `Atom.app` file to
 
 Once you've installed Atom, you can open the program and create a new text file. When you save a document that is a particular file-type (i.e., `file-name.R`, or `file-name.md`), Atom (or any other modern text-editor) will apply a language specific color scheme to your text, making it easier to read.
 
-The trick to using Atom more efficiently is to get comfortable with the [Command Palette](http://flight-manual.atom.io/getting-started/sections/atom-basics/#command-palette). If you hit `Cmd+Shift+P`, Atom will open a small window where you can search for whatever you want the editor to do. For example, if you type in `markdown` you can get list of commands related to Markdown files (including the ability to open up a preview).
+The trick to using Atom more efficiently is to get comfortable with the [Command Palette](http://flight-manual.atom.io/getting-started/sections/atom-basics/#command-palette). If you hit `Cmd+Shift+P`, Atom will open a small window where you can search for whatever you want the editor to do. For example, if you type in `markdown` you can get list of commands related to Markdown files (including the ability to open up a preview right in Atom).
 
 For more information about using Atom, see [the manual](http://flight-manual.atom.io/).
 
@@ -72,17 +74,17 @@ For more information about using Atom, see [the manual](http://flight-manual.ato
 [**Sublime Text**](https://www.sublimetext.com/3) is a very popular text editor with excellent defaults and a variety of available extensions (though you'll need to manage and install extensions to achieve the functionality offered by other editors out of the box). While the software can be used for free, every 20 or so saves it will prompt you to purchase the full version.
 
 ## R Language
-The primary programming language you will use throughout this book is called [**R**](https://www.r-project.org/). It's a very powerful statistical programming language that is built to work well with large and diverse datasets. See the _[Introduction to R]_ chapter for a more in-depth introduciton to the language.
+The primary programming language you will use throughout this book is called [**R**](https://www.r-project.org/). It's a very powerful statistical programming language that is built to work well with large and diverse datasets. See [Chapter 5](#r-intro) for a more in-depth introduction to the language.
 
 In order to program with R, you will need to install the ___R Interpreter___ on your machine. This is a piece of software that is able to "read" code written in R and use that code to control your computer, thereby "programming" it.
 
 The easiest way to install R is to download it from the Comprehensive R Archive Network (CRAN) at **<https://cran.rstudio.com/>**. Click on the appropriate link for your operating system in order to find a link to the installer.
 
 - On a Mac, you're looking for the `.pkg` file&mdash;get the latest version supported by your computer.
-- On Windows, following the link to the `base` subdirectory (or following the link to "_install R for the first time_"), then click the link to download the latest version of R for Windows. You will need to double-click on the `.exe` file to install the software.
+- On Windows, follow the link to the `base` subdirectory (or follow the link to "_install R for the first time_"), then click the link to download the latest version of R for Windows. You will need to double-click on the `.exe` file to install the software.
 
 ## RStudio
-While you are able to execute R scripts without an interface, the **RStudio** application provides a wonderful way to engage with the R language. RStudio is described in more detail in _[Introduction to R]_
+While you are able to execute R scripts without a dedicated application, the **RStudio** program provides a wonderful way to engage with the R language. RStudio is described in more detail in [Chapter 5](#running-r-rstudio).
 
 To install the RStudio program, select the **installer** for your operating system from the [downloads page](https://www.rstudio.com/products/rstudio/download/). Make sure to download the ___free___ version:
 
@@ -94,9 +96,11 @@ Once the download completes, double-click on the `.exe` or `.dmg` file to run th
 ## Resources {-}
 Links to the recommended software are collected here for easy access:
 
+<div class="list-condensed">
 - [git (and Git Bash)](https://git-scm.com/downloads)
     - [GitHub](https://github.com/join) (sign up)
     - optional: [Bash on Windows](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide)
 - [Atom](https://atom.io/)
 - [R](https://cran.rstudio.com/)
 - [RStudio](https://www.rstudio.com/products/rstudio/download3/)
+</div>

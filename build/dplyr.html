@@ -6,9 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Technical Foundations of Informatics</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
-  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
 
   <meta property="og:title" content="Technical Foundations of Informatics" />
   <meta property="og:type" content="book" />
@@ -26,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2017-11-13">
+<meta name="date" content="2017-12-11">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -35,7 +34,6 @@
   <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 <link rel="prev" href="dataframes.html">
 <link rel="next" href="apis.html">
-
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -103,6 +101,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </head>
 
 <body>
+
 
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
@@ -181,8 +180,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5" data-path="r-intro.html"><a href="r-intro.html"><i class="fa fa-check"></i><b>5</b> Introduction to R</a><ul>
 <li class="chapter" data-level="5.1" data-path="r-intro.html"><a href="r-intro.html#programming-with-r"><i class="fa fa-check"></i><b>5.1</b> Programming with R</a></li>
 <li class="chapter" data-level="5.2" data-path="r-intro.html"><a href="r-intro.html#running-r-scripts"><i class="fa fa-check"></i><b>5.2</b> Running R Scripts</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="r-intro.html"><a href="r-intro.html#rscript-cmd"><i class="fa fa-check"></i><b>5.2.1</b> Command-Line</a></li>
-<li class="chapter" data-level="5.2.2" data-path="r-intro.html"><a href="r-intro.html#rstudio-1"><i class="fa fa-check"></i><b>5.2.2</b> RStudio</a></li>
+<li class="chapter" data-level="5.2.1" data-path="r-intro.html"><a href="r-intro.html#running-r-cmd"><i class="fa fa-check"></i><b>5.2.1</b> Command-Line</a></li>
+<li class="chapter" data-level="5.2.2" data-path="r-intro.html"><a href="r-intro.html#running-r-rstudio"><i class="fa fa-check"></i><b>5.2.2</b> RStudio</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="r-intro.html"><a href="r-intro.html#comments"><i class="fa fa-check"></i><b>5.3</b> Comments</a></li>
 <li class="chapter" data-level="5.4" data-path="r-intro.html"><a href="r-intro.html#variables"><i class="fa fa-check"></i><b>5.4</b> Variables</a><ul>
@@ -426,7 +425,7 @@ storm.info &lt;-<span class="st"> </span>storms[, <span class="kw">c</span>(<spa
 <h3><span class="header-section-number">10.2.2</span> Filter</h3>
 <p>The <strong><code>filter()</code></strong> operation allows you to choose and extract <strong>rows</strong> of interest from your data frame (contrasted with <code>select()</code> which extracts <em>columns</em>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Select rows whose `wind` column is greater than or equal to 50</span>
-some.storms &lt;-<span class="st"> </span><span class="kw">filter</span>(storms, wind <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50</span>)</code></pre></div>
+some.storms &lt;-<span class="st"> </span><span class="kw">filter</span>(storms, wind &gt;=<span class="st"> </span><span class="dv">50</span>)</code></pre></div>
 <div class="figure">
 <img src="img/dplyr/filter.png" title="Diagram of the filter() function" alt="Diagram of the filter() function (by Nathan Stephens)." />
 <p class="caption">Diagram of the <code>filter()</code> function (by Nathan Stephens).</p>
@@ -437,14 +436,14 @@ some.storms &lt;-<span class="st"> </span><span class="kw">filter</span>(storms,
 </ul>
 <p>This function is equivalent to simply extracting the rows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Extract rows by condition</span>
-some.storms &lt;-<span class="st"> </span>storms[storms<span class="op">$</span>wind <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50</span>, ]  <span class="co"># Note the comma!</span></code></pre></div>
+some.storms &lt;-<span class="st"> </span>storms[storms$wind &gt;=<span class="st"> </span><span class="dv">50</span>, ]  <span class="co"># Note the comma!</span></code></pre></div>
 <p>As the number of conditions increases, it is <strong>far easier</strong> to read and write <code>filter()</code> functions, rather than squeeze your conditions into brackets.</p>
 </div>
 <div id="mutate" class="section level3">
 <h3><span class="header-section-number">10.2.3</span> Mutate</h3>
 <p>The <strong><code>mutate()</code></strong> operation allows you to create additional <strong>columns</strong> for your data frame.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Add `ratio` column that is ratio between pressure and wind</span>
-storms &lt;-<span class="st"> </span><span class="kw">mutate</span>(storms, <span class="dt">ratio =</span> pressure<span class="op">/</span>wind)  <span class="co"># Replace existing `stroms` frame with mutated one!</span></code></pre></div>
+storms &lt;-<span class="st"> </span><span class="kw">mutate</span>(storms, <span class="dt">ratio =</span> pressure/wind)  <span class="co"># Replace existing `stroms` frame with mutated one!</span></code></pre></div>
 <div class="figure">
 <img src="img/dplyr/mutate.png" title="Diagram of the mutate() function" alt="Diagram of the mutate() function (by Nathan Stephens)." />
 <p class="caption">Diagram of the <code>mutate()</code> function (by Nathan Stephens).</p>
@@ -456,9 +455,9 @@ storms &lt;-<span class="st"> </span><span class="kw">mutate</span>(storms, <spa
 <p>In cases where you are creating multiple columns (and therefore writing really long code instructions), you should break the single statement into multiple lines for readability. Because you haven’t closed the parentheses on the function arguments, R will not treat each line as a separate statement.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Generic mutate command</span>
 more.columns &lt;-<span class="st"> </span><span class="kw">mutate</span>(my.data.frame,
-                       <span class="dt">new.column.1 =</span> old.column <span class="op">*</span><span class="st"> </span><span class="dv">2</span>,
-                       <span class="dt">new.column.2 =</span> old.column <span class="op">*</span><span class="st"> </span><span class="dv">3</span>,
-                       <span class="dt">new.column.3 =</span> old.column <span class="op">*</span><span class="st"> </span><span class="dv">4</span>
+                       <span class="dt">new.column.1 =</span> old.column *<span class="st"> </span><span class="dv">2</span>,
+                       <span class="dt">new.column.2 =</span> old.column *<span class="st"> </span><span class="dv">3</span>,
+                       <span class="dt">new.column.3 =</span> old.column *<span class="st"> </span><span class="dv">4</span>
                       )</code></pre></div>
 </div>
 <div id="arrange" class="section level3">
@@ -501,7 +500,7 @@ summaries &lt;-<span class="st"> </span><span class="kw">summarize</span>(pollut
 <p>For example (no diagram available):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a quick data frame</span>
 x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>)  <span class="co"># duplicate x values</span>
-y &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">8</span>                        <span class="co"># unique y values</span>
+y &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">8</span>                        <span class="co"># unique y values</span>
 my.df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x, y)
 
 <span class="co"># Select distinct rows, judging by the `x` column</span>
@@ -535,10 +534,10 @@ distinct.rows &lt;-<span class="st"> </span><span class="kw">distinct</span>(my.
 mtcars.named &lt;-<span class="st"> </span><span class="kw">mutate</span>(mtcars, <span class="dt">car.name =</span> <span class="kw">row.names</span>(mtcars))
 
 <span class="co"># 1. Filter down to only four cylinder cars</span>
-four.cyl &lt;-<span class="st"> </span><span class="kw">filter</span>(mtcars.named, cyl <span class="op">==</span><span class="st"> </span><span class="dv">4</span>)
+four.cyl &lt;-<span class="st"> </span><span class="kw">filter</span>(mtcars.named, cyl ==<span class="st"> </span><span class="dv">4</span>)
 
 <span class="co"># 2. Filter down to the one with the highest mpg</span>
-best.four.cyl &lt;-<span class="st"> </span><span class="kw">filter</span>(four.cyl, mpg <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(mpg))
+best.four.cyl &lt;-<span class="st"> </span><span class="kw">filter</span>(four.cyl, mpg ==<span class="st"> </span><span class="kw">max</span>(mpg))
 
 <span class="co"># 3. Select the car name of the car</span>
 best.car.name &lt;-<span class="st"> </span><span class="kw">select</span>(best.four.cyl, car.name)</code></pre></div>
@@ -552,9 +551,9 @@ best.car.name &lt;-<span class="st"> </span><span class="kw">select</span>(  <sp
                   <span class="kw">filter</span>(  <span class="co"># 2. Filter down to the one with the highest mpg</span>
                     <span class="kw">filter</span>( <span class="co"># 1. Filter down to only four cylinder cars</span>
                       mtcars.named,  <span class="co"># arguments for the Step 1 filter</span>
-                      cyl <span class="op">==</span><span class="st"> </span><span class="dv">4</span>
+                      cyl ==<span class="st"> </span><span class="dv">4</span>
                     ),
-                    mpg <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(mpg)  <span class="co"># other arguments for the Step 2 filter</span>
+                    mpg ==<span class="st"> </span><span class="kw">max</span>(mpg)  <span class="co"># other arguments for the Step 2 filter</span>
                   ),
                   car.name  <span class="co"># other arguments for the Step 3 select</span>
                 )</code></pre></div>
@@ -568,15 +567,15 @@ best.car.name &lt;-<span class="st"> </span><span class="kw">select</span>(  <sp
 <span class="kw">print</span>( <span class="kw">max</span>( <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>) ) )
 
 <span class="co"># pipe version</span>
-<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st">   </span><span class="co"># do first function</span>
-<span class="st">  </span><span class="kw">max</span>() <span class="op">%&gt;%</span><span class="st">   </span><span class="co"># which becomes the _first_ argument to the next function</span>
+<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>) %&gt;%<span class="st">   </span><span class="co"># do first function</span>
+<span class="st">  </span><span class="kw">max</span>() %&gt;%<span class="st">   </span><span class="co"># which becomes the _first_ argument to the next function</span>
 <span class="st">  </span><span class="kw">print</span>()  <span class="co"># which becomes the _first_ argument to the next function</span></code></pre></div>
 <p>Or as another version of the above data wrangling:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Preparation: add a column that is the car name</span>
 mtcars.named &lt;-<span class="st"> </span><span class="kw">mutate</span>(mtcars, <span class="dt">car.name =</span> <span class="kw">row.names</span>(mtcars))
 
-best.car.name &lt;-<span class="st"> </span><span class="kw">filter</span>(mtcars.named, cyl <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># Step 1</span>
-<span class="st">  </span><span class="kw">filter</span>(mpg <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(mpg)) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># Step 2</span>
+best.car.name &lt;-<span class="st"> </span><span class="kw">filter</span>(mtcars.named, cyl ==<span class="st"> </span><span class="dv">4</span>) %&gt;%<span class="st">  </span><span class="co"># Step 1</span>
+<span class="st">  </span><span class="kw">filter</span>(mpg ==<span class="st"> </span><span class="kw">max</span>(mpg)) %&gt;%<span class="st">  </span><span class="co"># Step 2</span>
 <span class="st">  </span><span class="kw">select</span>(car.name)  <span class="co"># Step 3</span></code></pre></div>
 <ul>
 <li>Yes, the <code>%&gt;%</code> operator is awkward to type and takes some getting use to (especially compared to the command-line’s use of <code>|</code> to pipe). However, you can ease the typing by using the <a href="https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts">RStudio keyboard shortcut</a> <code>cmd + shift + m</code>.</li>
@@ -589,7 +588,7 @@ best.car.name &lt;-<span class="st"> </span><span class="kw">filter</span>(mtcar
 <p><code>dplyr</code> functions are powerful, but they are truly awesome when you can apply them to <strong>groups of rows</strong> within a data set. For example, the above use of <code>summarize()</code> isn’t particularly useful since it just gives a single summary for a given column (which you could have done anyway). However, a <strong>grouped</strong> operation would allow you to compute the same summary measure (<code>mean</code>, <code>median</code>, <code>sum</code>, etc.) automatically for multiple groups of rows, enabling you to ask more nuanced questions about your data set.</p>
 <p>The <strong><code>group_by()</code></strong> operation allows you to break a data frame down into <em>groups</em> of rows, which can then have the other verbs (e.g., <code>summarize</code>, <code>filter</code>, etc). applied to each one.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get summary statistics by city</span>
-city.summary &lt;-<span class="st"> </span><span class="kw">group_by</span>(pollution, city) <span class="op">%&gt;%</span>
+city.summary &lt;-<span class="st"> </span><span class="kw">group_by</span>(pollution, city) %&gt;%
 <span class="st">  </span><span class="kw">summarize</span>( <span class="co"># first argument (the data frame) is received from the pipe</span>
     <span class="dt">mean =</span> <span class="kw">mean</span>(amount),
     <span class="dt">sum =</span> <span class="kw">sum</span>(amount),
@@ -605,7 +604,7 @@ city.summary &lt;-<span class="st"> </span><span class="kw">group_by</span>(poll
 </blockquote>
 <p>This simple question requires computing the mean for different subsets of the data. Rather than explicitly breaking your data into different groups (a.k.a. <em>bins</em> or <em>chunks</em>) and running the same operations on each, you can use the <code>group_by()</code> function to accomplish this in a single command:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Group cars by gear number, then compute the mean and median mpg</span>
-gear.summary &lt;-<span class="st"> </span><span class="kw">group_by</span>(mtcars, gear) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># group by gear</span>
+gear.summary &lt;-<span class="st"> </span><span class="kw">group_by</span>(mtcars, gear) %&gt;%<span class="st">  </span><span class="co"># group by gear</span>
 <span class="st">                 </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(mpg))  <span class="co"># calculate mean</span>
 <span class="co"># Computing the difference between scores is done elsewhere (or by hand!)</span></code></pre></div>
 <p>Thus grouping can allow you to quickly and easily compare different subsets of your data!</p>
@@ -736,8 +735,9 @@ my.column &lt;-<span class="st"> </span><span class="kw">select_</span>(mtcars, 
         </div>
       </div>
 <a href="dataframes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="apis.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
-
+<a href="apis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -746,7 +746,7 @@ my.column &lt;-<span class="st"> </span><span class="kw">select_</span>(mtcars, 
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
 <script>
-require(["gitbook"], function(gitbook) {
+gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": true,
@@ -767,7 +767,7 @@ gitbook.start({
 "link": "https://github.com/info201/book/edit/master/dplyr.Rmd",
 "text": "Edit"
 },
-"download": null,
+"download": ["tech-foundations-of-informatics.pdf", "tech-foundations-of-informatics.epub"],
 "toc": {
 "collapse": "section",
 "scroll_highlight": true

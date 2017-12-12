@@ -6,9 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Technical Foundations of Informatics</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
-  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
 
   <meta property="og:title" content="Technical Foundations of Informatics" />
   <meta property="og:type" content="book" />
@@ -26,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2017-11-13">
+<meta name="date" content="2017-12-11">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -35,7 +34,6 @@
   <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 <link rel="prev" href="lists.html">
 <link rel="next" href="dplyr.html">
-
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -103,6 +101,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </head>
 
 <body>
+
 
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
@@ -181,8 +180,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5" data-path="r-intro.html"><a href="r-intro.html"><i class="fa fa-check"></i><b>5</b> Introduction to R</a><ul>
 <li class="chapter" data-level="5.1" data-path="r-intro.html"><a href="r-intro.html#programming-with-r"><i class="fa fa-check"></i><b>5.1</b> Programming with R</a></li>
 <li class="chapter" data-level="5.2" data-path="r-intro.html"><a href="r-intro.html#running-r-scripts"><i class="fa fa-check"></i><b>5.2</b> Running R Scripts</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="r-intro.html"><a href="r-intro.html#rscript-cmd"><i class="fa fa-check"></i><b>5.2.1</b> Command-Line</a></li>
-<li class="chapter" data-level="5.2.2" data-path="r-intro.html"><a href="r-intro.html#rstudio-1"><i class="fa fa-check"></i><b>5.2.2</b> RStudio</a></li>
+<li class="chapter" data-level="5.2.1" data-path="r-intro.html"><a href="r-intro.html#running-r-cmd"><i class="fa fa-check"></i><b>5.2.1</b> Command-Line</a></li>
+<li class="chapter" data-level="5.2.2" data-path="r-intro.html"><a href="r-intro.html#running-r-rstudio"><i class="fa fa-check"></i><b>5.2.2</b> RStudio</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="r-intro.html"><a href="r-intro.html#comments"><i class="fa fa-check"></i><b>5.3</b> Comments</a></li>
 <li class="chapter" data-level="5.4" data-path="r-intro.html"><a href="r-intro.html#variables"><i class="fa fa-check"></i><b>5.4</b> Variables</a><ul>
@@ -401,7 +400,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 name &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Ada&#39;</span>,<span class="st">&#39;Bob&#39;</span>,<span class="st">&#39;Chris&#39;</span>,<span class="st">&#39;Diya&#39;</span>,<span class="st">&#39;Emma&#39;</span>)
 
 <span class="co"># Vector of heights</span>
-height &lt;-<span class="st"> </span><span class="dv">58</span><span class="op">:</span><span class="dv">62</span>
+height &lt;-<span class="st"> </span><span class="dv">58</span>:<span class="dv">62</span>
 
 <span class="co"># Vector of weights</span>
 weight &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">115</span>, <span class="dv">117</span>, <span class="dv">120</span>, <span class="dv">123</span>, <span class="dv">126</span>)
@@ -417,7 +416,7 @@ my.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(name, h
 my.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(height, weight)
 
 <span class="co"># Retrieve weights (the `weight` element of the list: a vector!)</span>
-my.weights &lt;-<span class="st"> </span>my.data<span class="op">$</span>weight
+my.weights &lt;-<span class="st"> </span>my.data$weight
 
 <span class="co"># Retrieve heights (the whole column: a vector!)</span>
 my.heights &lt;-<span class="st"> </span>my.data[[<span class="st">&#39;height&#39;</span>]]</code></pre></div>
@@ -537,13 +536,13 @@ my.data[<span class="dv">2</span>]  <span class="co"># no comma</span></code></p
 <p>(Extracting from more than one column will produce a <em>sub-data frame</em>; extracting from just one column will produce a vector).</p>
 <p>And of course, because <em>everything is a vector</em>, you’re actually specifying vectors of indicies to extract. This allows you to get multiple rows or columns:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get the second through fourth rows</span>
-my.data[<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>, ]
+my.data[<span class="dv">2</span>:<span class="dv">4</span>, ]
 
 <span class="co"># Get the `height` and `weight` columns</span>
 my.data[, <span class="kw">c</span>(<span class="st">&#39;height&#39;</span>, <span class="st">&#39;weight&#39;</span>)]
 
 <span class="co"># Perform filtering</span>
-my.data[my.data<span class="op">$</span>height <span class="op">&gt;</span><span class="st"> </span><span class="dv">60</span>, ] <span class="co"># rows for which `height` is greater than 60</span></code></pre></div>
+my.data[my.data$height &gt;<span class="st"> </span><span class="dv">60</span>, ] <span class="co"># rows for which `height` is greater than 60</span></code></pre></div>
 </div>
 </div>
 <div id="csv-files" class="section level2">
@@ -610,7 +609,7 @@ num.factors &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<spa
 <span class="kw">print</span>(num.factors)
 
 <span class="co"># Multiply the numbers by 2</span>
-num.factors <span class="op">*</span><span class="st"> </span><span class="dv">2</span>  <span class="co"># Error: * not meaningful</span>
+num.factors *<span class="st"> </span><span class="dv">2</span>  <span class="co"># Error: * not meaningful</span>
                  <span class="co"># returns vector of NA instead</span>
 
 <span class="co"># Changing entry to a level is fine</span>
@@ -630,16 +629,16 @@ cost &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">15
 shirts.factor &lt;-<span class="st"> </span><span class="kw">data.frame</span>(shirt.size, cost)
 
 <span class="co"># The shirt.size column is a factor</span>
-<span class="kw">is.factor</span>(shirts.factor<span class="op">$</span>shirt.size)  <span class="co"># TRUE</span>
+<span class="kw">is.factor</span>(shirts.factor$shirt.size)  <span class="co"># TRUE</span>
 
 <span class="co"># Can treat this as a vector; but better to fix how the data is loaded</span>
-<span class="kw">as.vector</span>(shirts.factor<span class="op">$</span>shirt.size)  <span class="co"># a vector</span>
+<span class="kw">as.vector</span>(shirts.factor$shirt.size)  <span class="co"># a vector</span>
 
 <span class="co"># Data frame of orders (without factoring)</span>
 shirts &lt;-<span class="st"> </span><span class="kw">data.frame</span>(shirt.size, cost, <span class="dt">stringsAsFactors=</span><span class="ot">FALSE</span>)
 
 <span class="co"># The shirt.size column is NOT a factor</span>
-<span class="kw">is.factor</span>(shirts<span class="op">$</span>shirt.size)  <span class="co"># FALSE</span></code></pre></div>
+<span class="kw">is.factor</span>(shirts$shirt.size)  <span class="co"># FALSE</span></code></pre></div>
 <p>This is not to say that factors can’t be useful (beyond just saving memory)! They offer easy ways to group and process data using specialized functions:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">shirt.size &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;small&#39;</span>, <span class="st">&#39;medium&#39;</span>, <span class="st">&#39;small&#39;</span>, <span class="st">&#39;large&#39;</span>, <span class="st">&#39;medium&#39;</span>, <span class="st">&#39;large&#39;</span>)
 cost &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">15.5</span>, <span class="dv">17</span>, <span class="dv">17</span>, <span class="dv">14</span>, <span class="dv">12</span>, <span class="dv">23</span>)
@@ -649,13 +648,13 @@ shirts.factor &lt;-<span class="st"> </span><span class="kw">data.frame</span>(s
 
 <span class="co"># Produce a list of data frames, one for each factor level</span>
 <span class="co"># first argument is the data frame to split, second is the factor to split by</span>
-shirt.size.frames &lt;-<span class="st"> </span><span class="kw">split</span>(shirts.factor, shirts.factor<span class="op">$</span>shirt.size)
+shirt.size.frames &lt;-<span class="st"> </span><span class="kw">split</span>(shirts.factor, shirts.factor$shirt.size)
 
 <span class="co"># Apply a function (mean) to each factor level</span>
 <span class="co">#   first argument is the vector to apply the function to,</span>
 <span class="co">#   second argument is the factor to split by</span>
 <span class="co">#   third argument is the name of the function</span>
-<span class="kw">tapply</span>(shirts<span class="op">$</span>cost, shirts<span class="op">$</span>shirt.size, mean)</code></pre></div>
+<span class="kw">tapply</span>(shirts$cost, shirts$shirt.size, mean)</code></pre></div>
 <p>However, in general this course is more interested in working with data as vectors, thus you should always use <code>stringsAsFactors=FALSE</code> when creating data frames or loading <code>.csv</code> files that include strings.</p>
 </div>
 <div id="resources-8" class="section level2 unnumbered">
@@ -675,8 +674,9 @@ shirt.size.frames &lt;-<span class="st"> </span><span class="kw">split</span>(sh
         </div>
       </div>
 <a href="lists.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="dplyr.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
-
+<a href="dplyr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -685,7 +685,7 @@ shirt.size.frames &lt;-<span class="st"> </span><span class="kw">split</span>(sh
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
 <script>
-require(["gitbook"], function(gitbook) {
+gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": true,
@@ -706,7 +706,7 @@ gitbook.start({
 "link": "https://github.com/info201/book/edit/master/dataframes.Rmd",
 "text": "Edit"
 },
-"download": null,
+"download": ["tech-foundations-of-informatics.pdf", "tech-foundations-of-informatics.epub"],
 "toc": {
 "collapse": "section",
 "scroll_highlight": true

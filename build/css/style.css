@@ -10,8 +10,12 @@
 #header .author, #header .date {
   font-weight:500;
   margin-top: 0;
+}
+
+#header .author {
   margin-bottom: 0;
 }
+
 
 #header .date:before {
   font-weight: 500;
@@ -30,6 +34,18 @@
 
 .page-inner li ul {
   margin-top: .85em !important;
+}
+
+/* class to remove double-spacing in lists */
+.page-inner .list-condensed li,
+.page-inner .list-condensed ol li,
+.page-inner .list-condensed ul li  {
+    margin-bottom: 0 !important;
+}
+
+.page-inner .list-condensed ol,
+.page-inner .list-condensed ul {
+    margin-top: 0 !important;
 }
 
 .footnotes ol li {

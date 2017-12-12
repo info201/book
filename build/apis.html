@@ -6,9 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Technical Foundations of Informatics</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
-  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
 
   <meta property="og:title" content="Technical Foundations of Informatics" />
   <meta property="og:type" content="book" />
@@ -26,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2017-11-13">
+<meta name="date" content="2017-12-11">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -35,7 +34,6 @@
   <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 <link rel="prev" href="dplyr.html">
 <link rel="next" href="r-markdown.html">
-
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -103,6 +101,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </head>
 
 <body>
+
 
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
@@ -181,8 +180,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5" data-path="r-intro.html"><a href="r-intro.html"><i class="fa fa-check"></i><b>5</b> Introduction to R</a><ul>
 <li class="chapter" data-level="5.1" data-path="r-intro.html"><a href="r-intro.html#programming-with-r"><i class="fa fa-check"></i><b>5.1</b> Programming with R</a></li>
 <li class="chapter" data-level="5.2" data-path="r-intro.html"><a href="r-intro.html#running-r-scripts"><i class="fa fa-check"></i><b>5.2</b> Running R Scripts</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="r-intro.html"><a href="r-intro.html#rscript-cmd"><i class="fa fa-check"></i><b>5.2.1</b> Command-Line</a></li>
-<li class="chapter" data-level="5.2.2" data-path="r-intro.html"><a href="r-intro.html#rstudio-1"><i class="fa fa-check"></i><b>5.2.2</b> RStudio</a></li>
+<li class="chapter" data-level="5.2.1" data-path="r-intro.html"><a href="r-intro.html#running-r-cmd"><i class="fa fa-check"></i><b>5.2.1</b> Command-Line</a></li>
+<li class="chapter" data-level="5.2.2" data-path="r-intro.html"><a href="r-intro.html#running-r-rstudio"><i class="fa fa-check"></i><b>5.2.2</b> RStudio</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="r-intro.html"><a href="r-intro.html#comments"><i class="fa fa-check"></i><b>5.3</b> Comments</a></li>
 <li class="chapter" data-level="5.4" data-path="r-intro.html"><a href="r-intro.html#variables"><i class="fa fa-check"></i><b>5.4</b> Variables</a><ul>
@@ -567,7 +566,7 @@ parsed.data &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(body)
   <span class="co"># looking at the JSON data itself (e.g., in the browser), `items` is the</span>
   <span class="co"># key that contains the value we want</span>
 
-items &lt;-<span class="st"> </span>parsed.data<span class="op">$</span>items  <span class="co"># extract that element from the list</span>
+items &lt;-<span class="st"> </span>parsed.data$items  <span class="co"># extract that element from the list</span>
 <span class="kw">is.data.frame</span>(items)  <span class="co"># TRUE; you can work with that!</span></code></pre></div>
 </div>
 <div id="flattening-data" class="section level3">
@@ -581,7 +580,7 @@ favorites &lt;-<span class="st"> </span><span class="kw">data.frame</span>(  <sp
                 <span class="dt">music =</span> <span class="kw">c</span>(<span class="st">&#39;Bluegrass&#39;</span>, <span class="st">&#39;Indie&#39;</span>, <span class="st">&#39;Electronic&#39;</span>)
             )
 <span class="co"># Store second dataframe as column of first</span>
-people<span class="op">$</span>favorites &lt;-<span class="st"> </span>favorites  <span class="co"># the `favorites` column is a data frame!</span>
+people$favorites &lt;-<span class="st"> </span>favorites  <span class="co"># the `favorites` column is a data frame!</span>
 
 <span class="co"># This prints nicely...</span>
 <span class="kw">print</span>(people)
@@ -591,11 +590,11 @@ people<span class="op">$</span>favorites &lt;-<span class="st"> </span>favorites
   <span class="co"># 3  Keagan          salad      Electronic</span>
 
 <span class="co"># but doesn&#39;t actually work like you expect!</span>
-people<span class="op">$</span>favorites.food  <span class="co"># NULL</span>
-people<span class="op">$</span>favorites<span class="op">$</span>food  <span class="co"># [1] Pizza Pasta salad</span></code></pre></div>
+people$favorites.food  <span class="co"># NULL</span>
+people$favorites$food  <span class="co"># [1] Pizza Pasta salad</span></code></pre></div>
 <p>Nested data frames make it hard to work with the data using previously established techniques. Luckily, the <code>jsonlite</code> package provides a helpful function for addressing this called <strong><code>flatten()</code></strong>. This function takes the columns of each <em>nested</em> data frame and converts them into appropriately named columns in the “outer” data frame:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">people &lt;-<span class="st"> </span><span class="kw">flatten</span>(people)
-people<span class="op">$</span>favorites.food  <span class="co"># this just got created! Woo!</span></code></pre></div>
+people$favorites.food  <span class="co"># this just got created! Woo!</span></code></pre></div>
 <p>Note that <code>flatten()</code> only works on values that are <em>already data frames</em>; thus you may need to find the appropriate element inside of the list (that is, the item which is the data frame you want to flatten).</p>
 <p>In practice, you will almost always want to flatten the data returned from a web API. Thus your “algorithm” for downloading web data is as follows:</p>
 <ol style="list-style-type: decimal">
@@ -632,8 +631,9 @@ people<span class="op">$</span>favorites.food  <span class="co"># this just got 
         </div>
       </div>
 <a href="dplyr.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="r-markdown.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
-
+<a href="r-markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -642,7 +642,7 @@ people<span class="op">$</span>favorites.food  <span class="co"># this just got 
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
 <script>
-require(["gitbook"], function(gitbook) {
+gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": true,
@@ -663,7 +663,7 @@ gitbook.start({
 "link": "https://github.com/info201/book/edit/master/apis.Rmd",
 "text": "Edit"
 },
-"download": null,
+"download": ["tech-foundations-of-informatics.pdf", "tech-foundations-of-informatics.epub"],
 "toc": {
 "collapse": "section",
 "scroll_highlight": true

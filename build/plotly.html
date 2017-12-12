@@ -6,9 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Technical Foundations of Informatics</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
-  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
 
   <meta property="og:title" content="Technical Foundations of Informatics" />
   <meta property="og:type" content="book" />
@@ -26,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2017-11-13">
+<meta name="date" content="2017-12-11">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -34,7 +33,6 @@
   
   <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 <link rel="prev" href="remote-server.html">
-
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -103,6 +101,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </head>
 
 <body>
+
 
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
@@ -181,8 +180,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5" data-path="r-intro.html"><a href="r-intro.html"><i class="fa fa-check"></i><b>5</b> Introduction to R</a><ul>
 <li class="chapter" data-level="5.1" data-path="r-intro.html"><a href="r-intro.html#programming-with-r"><i class="fa fa-check"></i><b>5.1</b> Programming with R</a></li>
 <li class="chapter" data-level="5.2" data-path="r-intro.html"><a href="r-intro.html#running-r-scripts"><i class="fa fa-check"></i><b>5.2</b> Running R Scripts</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="r-intro.html"><a href="r-intro.html#rscript-cmd"><i class="fa fa-check"></i><b>5.2.1</b> Command-Line</a></li>
-<li class="chapter" data-level="5.2.2" data-path="r-intro.html"><a href="r-intro.html#rstudio-1"><i class="fa fa-check"></i><b>5.2.2</b> RStudio</a></li>
+<li class="chapter" data-level="5.2.1" data-path="r-intro.html"><a href="r-intro.html#running-r-cmd"><i class="fa fa-check"></i><b>5.2.1</b> Command-Line</a></li>
+<li class="chapter" data-level="5.2.2" data-path="r-intro.html"><a href="r-intro.html#running-r-rstudio"><i class="fa fa-check"></i><b>5.2.2</b> RStudio</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="r-intro.html"><a href="r-intro.html#comments"><i class="fa fa-check"></i><b>5.3</b> Comments</a></li>
 <li class="chapter" data-level="5.4" data-path="r-intro.html"><a href="r-intro.html#variables"><i class="fa fa-check"></i><b>5.4</b> Variables</a><ul>
@@ -384,10 +383,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">B.1</span> Getting Started</h2>
 <p>The Plotly API is an R package that you’ll use to build interactive graphics. Like other open-source that we’ve used in this course, we’ll load this API as a R package as follows:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># Install package</span>
-<span class="ex">install.packages</span>(<span class="st">&quot;plotly&quot;</span>)
+<span class="kw">install.packages</span>(<span class="st">&quot;plotly&quot;</span>)
 
 <span class="co"># Load library</span>
-<span class="ex">library</span>(plotly)</code></pre></div>
+<span class="kw">library</span>(plotly)</code></pre></div>
 <p>Then, the <code>plot_ly</code> object will be accessible to you to build graphics on your page.</p>
 <div class="alert alert-danger">
 <p>
@@ -399,7 +398,7 @@ Note: sometimes RStudio fails to show your plotly graph in a website preview whe
 <h2><span class="header-section-number">B.2</span> Basic Charts</h2>
 <p>One of the best ways to start building charts with Plotly is to take a look at a <a href="https://plot.ly/r/#basic-charts">basic example</a> of your choice, and explore the syntax. In general, to build a Plotly object (graph) you’ll pass a <strong>dataframe</strong> into the <code>plot_ly</code> function, then <strong>adjust the parameters</strong> to specify what you want to visualize. For example, here is the basic example of a scatterplot from the documentation:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># Make a scatterplot of the iris data</span>
-<span class="ex">plot_ly</span>(data = iris, x = ~Sepal.Length, y = ~Petal.Length, mode=<span class="st">&quot;markers&quot;</span>, type=<span class="st">&quot;scatter&quot;</span>)</code></pre></div>
+<span class="kw">plot_ly</span>(data = iris, x = ~Sepal.Length, y = ~Petal.Length, mode=<span class="st">&quot;markers&quot;</span>, type=<span class="st">&quot;scatter&quot;</span>)</code></pre></div>
 <p>The approach seems pretty straightforward – in fact, if you exclude <code>type = &quot;scatter&quot;</code> and <code>mode=&quot;markers&quot;</code>, Plotly will make an educated guess about what type of plot you want (and in this case, it will in fact create a scatterplot!). The only syntax that looks a bit strange is the tilde character (<code>~</code>). In R, the tilde designates a variable as a <strong>formula</strong>, which was a design choice of the developers of the API.</p>
 </div>
 <div id="layout" class="section level2">
@@ -408,11 +407,11 @@ Note: sometimes RStudio fails to show your plotly graph in a website preview whe
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># From documentation</span>
 
 <span class="co"># Create a plotly object `p`</span>
-p &lt;-<span class="st"> </span><span class="kw">plot_ly</span>(<span class="dt">data =</span> iris, <span class="dt">x =</span> <span class="op">~</span>Sepal.Length, <span class="dt">y =</span> <span class="op">~</span>Petal.Length, <span class="dt">type=</span><span class="st">&quot;scatter&quot;</span>, <span class="dt">mode=</span><span class="st">&quot;markers&quot;</span>,
+p &lt;-<span class="st"> </span><span class="kw">plot_ly</span>(<span class="dt">data =</span> iris, <span class="dt">x =</span> ~Sepal.Length, <span class="dt">y =</span> ~Petal.Length, <span class="dt">type=</span><span class="st">&quot;scatter&quot;</span>, <span class="dt">mode=</span><span class="st">&quot;markers&quot;</span>,
         <span class="dt">marker =</span> <span class="kw">list</span>(<span class="dt">size =</span> <span class="dv">10</span>,
                        <span class="dt">color =</span> <span class="st">&#39;rgba(255, 182, 193, .9)&#39;</span>,
                        <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">color =</span> <span class="st">&#39;rgba(152, 0, 0, .8)&#39;</span>,
-                                   <span class="dt">width =</span> <span class="dv">2</span>))) <span class="op">%&gt;%</span>
+                                   <span class="dt">width =</span> <span class="dv">2</span>))) %&gt;%
 <span class="st">  </span><span class="co"># Use pipe function to pass the plotly object into the `layout` function                           </span>
 <span class="st">  </span><span class="kw">layout</span>(<span class="dt">title =</span> <span class="st">&#39;Styled Scatter&#39;</span>,
          <span class="dt">yaxis =</span> <span class="kw">list</span>(<span class="dt">zeroline =</span> <span class="ot">FALSE</span>),
@@ -432,10 +431,10 @@ d &lt;-<span class="st"> </span>diamonds[<span class="kw">sample</span>(<span cl
 
 <span class="co"># Create plot, speficying hover text</span>
 p &lt;-<span class="st"> </span><span class="kw">plot_ly</span>(
-  d, <span class="dt">x =</span> <span class="op">~</span>carat, <span class="dt">y =</span> <span class="op">~</span>price, <span class="dt">mode=</span><span class="st">&quot;markers&quot;</span>, <span class="dt">type=</span><span class="st">&quot;scatter&quot;</span>,
+  d, <span class="dt">x =</span> ~carat, <span class="dt">y =</span> ~price, <span class="dt">mode=</span><span class="st">&quot;markers&quot;</span>, <span class="dt">type=</span><span class="st">&quot;scatter&quot;</span>,
   <span class="co"># Hover text:</span>
-  <span class="dt">text =</span> <span class="op">~</span><span class="kw">paste0</span>(<span class="st">&quot;Price:$&quot;</span>, price, <span class="st">&#39;&lt;br&gt;Cut: &#39;</span>, cut),
-  <span class="dt">color =</span> <span class="op">~</span>carat, <span class="dt">size =</span> <span class="op">~</span>carat
+  <span class="dt">text =</span> ~<span class="kw">paste0</span>(<span class="st">&quot;Price:$&quot;</span>, price, <span class="st">&#39;&lt;br&gt;Cut: &#39;</span>, cut),
+  <span class="dt">color =</span> ~carat, <span class="dt">size =</span> ~carat
 )
 
 <span class="co"># Show chart</span>
@@ -461,7 +460,8 @@ p</code></pre></div>
       </div>
 <a href="remote-server.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-
+    </div>
+  </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -470,7 +470,7 @@ p</code></pre></div>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
 <script>
-require(["gitbook"], function(gitbook) {
+gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": true,
@@ -491,7 +491,7 @@ gitbook.start({
 "link": "https://github.com/info201/book/edit/master/plotly.Rmd",
 "text": "Edit"
 },
-"download": null,
+"download": ["tech-foundations-of-informatics.pdf", "tech-foundations-of-informatics.epub"],
 "toc": {
 "collapse": "section",
 "scroll_highlight": true

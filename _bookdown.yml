@@ -1,5 +1,6 @@
 book_filename: "tech-foundations-of-informatics"
 output_dir: build
+delete_merged_file: true
 language:
   ui:
     chapter_name: ["Chapter "]

@@ -30,8 +30,8 @@ Hash: c0d56cd15034f395874c870141870c25
 
 Package: Rcpp
 Source: CRAN
-Version: 0.12.11
-Hash: 2ee22f3b5e75dec80b1d8eca61cd96d8
+Version: 0.12.14
+Hash: f9a2a481350397e53b0768bf488329cd
 
 Package: assertthat
 Source: CRAN
@@ -83,7 +83,7 @@ Hash: e53fb8c58673df868183697e39a6a4d6
 Package: dplyr
 Source: CRAN
 Version: 0.5.0
-Hash: 09fc57f582c74ffa20a57e0a48b27150
+Hash: 2f372d1d953a7904b5112a501bb8610d
 Requires: BH, DBI, R6, Rcpp, assertthat, lazyeval, magrittr, tibble
 
 Package: evaluate
@@ -96,6 +96,12 @@ Package: formatR
 Source: CRAN
 Version: 1.5
 Hash: 258cf79a8dbeedf1c981cdb53837d2af
+
+Package: gdtools
+Source: CRAN
+Version: 0.1.6
+Hash: 554779851f218e8f14eb3a4ee7192137
+Requires: Rcpp, withr
 
 Package: ggplot2
 Source: CRAN
@@ -117,13 +123,13 @@ Hash: aa3d5b7912b5fed4b546ed5cd2a1760b
 Package: htmltools
 Source: CRAN
 Version: 0.3.6
-Hash: eeba9fb36d4cb6cc66f060187102be41
+Hash: 10db2fe4e1ac6057e5555db165a0d870
 Requires: Rcpp, digest
 
 Package: httpuv
 Source: CRAN
 Version: 1.3.3
-Hash: 81cab0e82a62025f180863eb4ddeeb20
+Hash: 803254213f129ad4edab9a7df86e62b0
 Requires: Rcpp
 
 Package: jsonlite
@@ -183,13 +189,13 @@ Hash: 6ad605ba7b4b476d84be6632393f5765
 Package: plyr
 Source: CRAN
 Version: 1.8.4
-Hash: ec0683cf0ab5494db2eff1f31591624e
+Hash: 39dd3286b865c7b725d74c9a4c1b7931
 Requires: Rcpp
 
 Package: reshape2
 Source: CRAN
 Version: 1.4.2
-Hash: 01fa9a6b3ead377e4fac84af9f982df9
+Hash: f7149fba72d8b584862025bc4c375d6e
 Requires: Rcpp, plyr, stringr
 
 Package: rlang
@@ -218,7 +224,7 @@ Hash: e2ebaff8160aff3e6b32e6e78a693c2d
 Package: scales
 Source: CRAN
 Version: 0.4.1
-Hash: 6368a3249d52d20b366191e9349690b6
+Hash: 57d595f128897e9daf26db8f6b0f6dc1
 Requires: RColorBrewer, Rcpp, dichromat, labeling, munsell, plyr
 
 Package: servr
@@ -250,10 +256,16 @@ Version: 1.2.0
 Hash: 25a86d7f410513ebb7c0bc6a5e16bdc3
 Requires: magrittr, stringi
 
+Package: svglite
+Source: CRAN
+Version: 1.2.1
+Hash: 383279ca7f3b04c4a546b980b302f225
+Requires: BH, Rcpp, gdtools
+
 Package: tibble
 Source: CRAN
 Version: 1.3.3
-Hash: cff4362530fb71e27b84a02054bcb315
+Hash: 0b2812162dd146912d9fa92740da7e84
 Requires: Rcpp, rlang
 
 Package: withr

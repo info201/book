@@ -6,9 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Technical Foundations of Informatics</title>
-  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
-  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
 
   <meta property="og:title" content="Technical Foundations of Informatics" />
   <meta property="og:type" content="book" />
@@ -26,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2017-11-13">
+<meta name="date" content="2017-12-11">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -35,7 +34,6 @@
   <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 <link rel="prev" href="git-basics.html">
 <link rel="next" href="functions.html">
-
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -103,6 +101,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </head>
 
 <body>
+
 
 
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
@@ -181,8 +180,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5" data-path="r-intro.html"><a href="r-intro.html"><i class="fa fa-check"></i><b>5</b> Introduction to R</a><ul>
 <li class="chapter" data-level="5.1" data-path="r-intro.html"><a href="r-intro.html#programming-with-r"><i class="fa fa-check"></i><b>5.1</b> Programming with R</a></li>
 <li class="chapter" data-level="5.2" data-path="r-intro.html"><a href="r-intro.html#running-r-scripts"><i class="fa fa-check"></i><b>5.2</b> Running R Scripts</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="r-intro.html"><a href="r-intro.html#rscript-cmd"><i class="fa fa-check"></i><b>5.2.1</b> Command-Line</a></li>
-<li class="chapter" data-level="5.2.2" data-path="r-intro.html"><a href="r-intro.html#rstudio-1"><i class="fa fa-check"></i><b>5.2.2</b> RStudio</a></li>
+<li class="chapter" data-level="5.2.1" data-path="r-intro.html"><a href="r-intro.html#running-r-cmd"><i class="fa fa-check"></i><b>5.2.1</b> Command-Line</a></li>
+<li class="chapter" data-level="5.2.2" data-path="r-intro.html"><a href="r-intro.html#running-r-rstudio"><i class="fa fa-check"></i><b>5.2.2</b> RStudio</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="r-intro.html"><a href="r-intro.html#comments"><i class="fa fa-check"></i><b>5.3</b> Comments</a></li>
 <li class="chapter" data-level="5.4" data-path="r-intro.html"><a href="r-intro.html#variables"><i class="fa fa-check"></i><b>5.4</b> Variables</a><ul>
@@ -393,7 +392,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="running-r-scripts" class="section level2">
 <h2><span class="header-section-number">5.2</span> Running R Scripts</h2>
 <p>R scripts (programs) are just a sequence of instructions, and there are a couple of different ways in which we can tell the computer to execute these instructions.</p>
-<div id="rscript-cmd" class="section level3">
+<div id="running-r-cmd" class="section level3">
 <h3><span class="header-section-number">5.2.1</span> Command-Line</h3>
 <p>It is possible to issue R instructions (run lines of code) one-by-one at the command-line by starting an <strong>interactive R session</strong> within your terminal. This will allow you to type R code directly into the terminal, and your computer will interpret and execute each line of code (if you just typed R syntax directly into the terminal, your computer wouldn’t understand it).</p>
 <p>With R installed, you can start an interactive R session on a Mac by typing <code>R</code> into the terminal (to run the <code>R</code> program), or on Windows by running the “R” desktop app program. This will start the session and provide you with lots of information about the R language:</p>
@@ -433,7 +432,7 @@ Always read the output when working on the command-line!
 <p>Overall, using R from the command-line can be tricky; we recommend you just use RStudio instead.</p>
 </div>
 </div>
-<div id="rstudio-1" class="section level3">
+<div id="running-r-rstudio" class="section level3">
 <h3><span class="header-section-number">5.2.2</span> RStudio</h3>
 <p>RStudio is an open-source <strong>integrated development environment (IDE)</strong> that provides an informative user interface for interacting with the R interpreter. IDEs provide a platform for writing <em>and</em> executing code, including viewing the results of the code you have run. If you haven’t already, make sure to download and install <a href="https://www.rstudio.com/products/rstudio/download3/#download">the free version of RStudio</a>.</p>
 <p>When you open the RStudio program (either by searching for it, or double-clicking on a desktop icon), you’ll see the following interface:</p>
@@ -468,7 +467,7 @@ Always read the output when working on the command-line!
 <p>Comments should be clear, concise, and helpful—they should provide information that is not otherwise present or “obvious” in the code itself.</p>
 <p>In R, we mark text as a comment by putting it after the pound/hashtag symbol (<strong><code>#</code></strong>). Everything from the <code>#</code> until the end of the line is a comment. We put descriptive comments <em>immediately above</em> the code it describes, but you can also put very short notes at the end of the line of code (preferably following two spaces):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Set how many bottles of beer are on the wall</span>
-bottles &lt;-<span class="st"> </span><span class="dv">99</span> <span class="op">-</span><span class="st"> </span><span class="dv">1</span>  <span class="co"># 98 bottles</span></code></pre></div>
+bottles &lt;-<span class="st"> </span><span class="dv">99</span> -<span class="st"> </span><span class="dv">1</span>  <span class="co"># 98 bottles</span></code></pre></div>
 <p>(You may recognize this <code>#</code> syntax and commenting behavior from the commmand-line and git chapters. That’s because the same syntax is used in a Bash shell!)</p>
 </div>
 <div id="variables" class="section level2">
@@ -488,13 +487,13 @@ shoe.size &lt;-<span class="st"> </span><span class="dv">7</span></code></pre></
 <li>We’ll talk about the <code>[1]</code> in that output later.</li>
 </ul>
 <p>You can also use <strong>mathematical operators</strong> (e.g., <code>+</code>, <code>-</code>, <code>/</code>, <code>*</code>) when assigning values to variables. For example, you could create a variable that is the sum of two numbers as follows:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">4</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">3</span> +<span class="st"> </span><span class="dv">4</span></code></pre></div>
 <p>Once a value (like a number) is <em>in</em> a variable, you can use that variable in place of any other value. So all of the following are valid:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">2</span>  <span class="co"># store 2 in x</span>
 y &lt;-<span class="st"> </span><span class="dv">9</span>  <span class="co"># store 9 in y</span>
-z &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span>y  <span class="co"># store sum of x and y in z</span>
+z &lt;-<span class="st"> </span>x +<span class="st"> </span>y  <span class="co"># store sum of x and y in z</span>
 <span class="kw">print</span>(z)  <span class="co"># 11</span>
-z &lt;-<span class="st"> </span>z <span class="op">+</span><span class="st"> </span><span class="dv">1</span>  <span class="co"># take z, add 1, and store result back in z</span>
+z &lt;-<span class="st"> </span>z +<span class="st"> </span><span class="dv">1</span>  <span class="co"># take z, add 1, and store result back in z</span>
 <span class="kw">print</span>(z)  <span class="co"># 12</span></code></pre></div>
 <div id="basic-data-types" class="section level3">
 <h3><span class="header-section-number">5.4.1</span> Basic Data Types</h3>
@@ -517,14 +516,14 @@ x &lt;-<span class="st"> </span><span class="dv">3</span>
 y &lt;-<span class="st"> </span><span class="fl">3.15</span>
 
 <span class="co"># Compare values in x and y</span>
-x <span class="op">&gt;</span><span class="st"> </span>y  <span class="co"># returns logical value FALSE (x IS NOT bigger than y)</span>
-y <span class="op">!=</span><span class="st"> </span>x  <span class="co"># returns logical value TRUE (y IS not-equal to x)</span>
+x &gt;<span class="st"> </span>y  <span class="co"># returns logical value FALSE (x IS NOT bigger than y)</span>
+y !=<span class="st"> </span>x  <span class="co"># returns logical value TRUE (y IS not-equal to x)</span>
 
 <span class="co"># compare x to pi (built-in variable)</span>
-y <span class="op">==</span><span class="st"> </span>pi  <span class="co"># returns logical value FALSE</span>
+y ==<span class="st"> </span>pi  <span class="co"># returns logical value FALSE</span>
 
 <span class="co"># compare strings (based on alphabetical ordering)</span>
-<span class="st">&quot;cat&quot;</span> <span class="op">&gt;</span><span class="st"> &quot;dog&quot;</span>  <span class="co"># returns FALSE</span></code></pre></div>
+<span class="st">&quot;cat&quot;</span> &gt;<span class="st"> &quot;dog&quot;</span>  <span class="co"># returns FALSE</span></code></pre></div>
 <p>Logical values have their own operators as well (called <strong>logical operators</strong> or <strong>boolean operators</strong>). These <em>apply to</em> logical values and <em>produce</em> logical values, allowing you to make more complex logical expressions. These include <code>&amp;</code> (and), <code>|</code> (or), and <code>!</code> (not).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Store values in variables</span>
 x &lt;-<span class="st"> </span><span class="fl">3.1</span>
@@ -533,13 +532,13 @@ pet &lt;-<span class="st"> &quot;dog&quot;</span>
 weather &lt;-<span class="st"> &quot;rain&quot;</span>
 
 <span class="co"># Check if x is less than pi AND y is greater than pi</span>
-x <span class="op">&lt;</span><span class="st"> </span>pi <span class="op">&amp;</span><span class="st"> </span>y <span class="op">&gt;</span><span class="st"> </span>pi  <span class="co"># TRUE</span>
+x &lt;<span class="st"> </span>pi &amp;<span class="st"> </span>y &gt;<span class="st"> </span>pi  <span class="co"># TRUE</span>
 
 <span class="co"># Check if pet is &quot;cat&quot; OR &quot;dog&quot;</span>
-pet <span class="op">==</span><span class="st"> &quot;cat&quot;</span> <span class="op">|</span><span class="st"> </span>pet <span class="op">==</span><span class="st"> &quot;dog&quot;</span>  <span class="co"># TRUE</span>
+pet ==<span class="st"> &quot;cat&quot;</span> |<span class="st"> </span>pet ==<span class="st"> &quot;dog&quot;</span>  <span class="co"># TRUE</span>
 
 <span class="co"># Check if pet is &quot;dog&quot; AND NOT weather is &quot;rain&quot;</span>
-pet <span class="op">==</span><span class="st"> &quot;dog&quot;</span> <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span>(weather <span class="op">==</span><span class="st"> &quot;rain&quot;</span>)  <span class="co"># FALSE</span></code></pre></div>
+pet ==<span class="st"> &quot;dog&quot;</span> &amp;<span class="st"> </span>!(weather ==<span class="st"> &quot;rain&quot;</span>)  <span class="co"># FALSE</span></code></pre></div>
 <p>Note that it’s easy to write complex expressions with logical operators. If you find yourself getting lost, I recommend rethinking your question to see if there is a simpler way to express it!</p></li>
 <li><p><strong>Complex</strong>: Complex (imaginary) numbers have their own data storage type in R, are are created using the <code>i</code> syntax: <code>complex.variable &lt;- 2i</code>. We will not be using complex numbers in this course.</p></li>
 <li><p><strong>Integer</strong>: Integer values are technically a different data type than numeric values because of how they are stored and manipulated by the R interpreter. This is something that you will rarely encounter, but it’s good to know that you can specify a number is of integer type rather than general numeric type by placing a capital <code>L</code> (for “long integer”) after an value in variable assignment (<code>my.integer &lt;- 10L</code>).</p></li>
@@ -586,8 +585,9 @@ pet <span class="op">==</span><span class="st"> &quot;dog&quot;</span> <span cla
         </div>
       </div>
 <a href="git-basics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="functions.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
-
+<a href="functions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
@@ -596,7 +596,7 @@ pet <span class="op">==</span><span class="st"> &quot;dog&quot;</span> <span cla
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
 <script>
-require(["gitbook"], function(gitbook) {
+gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": true,
@@ -617,7 +617,7 @@ gitbook.start({
 "link": "https://github.com/info201/book/edit/master/r-intro.Rmd",
 "text": "Edit"
 },
-"download": null,
+"download": ["tech-foundations-of-informatics.pdf", "tech-foundations-of-informatics.epub"],
 "toc": {
 "collapse": "section",
 "scroll_highlight": true
