@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2017-12-11">
+<meta name="date" content="2017-12-20">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -383,7 +383,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <img src="img/command-line/cli-wikipedia.png" title="example command-line" alt="An example of the command-line in action (from Wikipedia)." />
 <p class="caption">An example of the command-line in action (from Wikipedia).</p>
 </div>
-<p>The command-line is not as friendly or intuitive as a graphical interface: it’s much harder to learn and figure out. However, it has the advantage of being both more powerful and more efficient in the hands of expert users. (It’s faster to type than to move a mouse, and you can do <em>lots</em> of “clicks” with a single command). Command line is also extremely handy in situations where you work on servers that for some reason do not have GUI enabled. Thus, command line is an essential tool for all professional developers, particularly when working with large amounts of data or files.</p>
+<p>The command-line is not as friendly or intuitive as a graphical interface: it’s much harder to learn and figure out. However, it has the advantage of being both more powerful and more efficient in the hands of expert users. (It’s faster to type than to move a mouse, and you can do <em>lots</em> of “clicks” with a single command). The command-line is also used when working on remote servers or other computers that for some reason do not have a graphical interface enabled. Thus, command line is an essential tool for all professional developers, particularly when working with large amounts of data or files.</p>
 <p>This chapter will give you a brief introduction to basic tasks using the command-line: enough to get you comfortable navigating the interface and able to interpret commands.</p>
 <div id="accessing-the-command-line" class="section level2">
 <h2><span class="header-section-number">2.1</span> Accessing the Command-Line</h2>
@@ -395,27 +395,27 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <p>This is the textual equivalent of having opened up Finder or File Explorer and having it show you the user’s “Home” folder. The text shown lets you know:</p>
 <ul>
-<li>What <strong>machine</strong> you’re currently interfacing with (you can use the command-line to control different computers across a network or the Internet).</li>
+<li>What <strong>machine</strong> you’re currently interfacing with (you can use the command-line to control different computers across a network or the internet).</li>
 <li>What <strong>directory</strong> (folder) you are currently looking at (<code>~</code> is a shorthand for the “home directory”).</li>
 <li>What <strong>user</strong> you are logged in as.</li>
 </ul>
-<p>After that you’ll see the <strong>prompt</strong> (typically deonated as the <code>$</code> symbol), which is where you will type in your commands.</p>
+<p>After that you’ll see the <strong>prompt</strong> (typically denoted as the <code>$</code> symbol), which is where you will type in your commands.</p>
 </div>
 <div id="navigating-the-command-line" class="section level2">
 <h2><span class="header-section-number">2.2</span> Navigating the Command Line</h2>
-<p>Although the command-prompt gives you the name of the folder we’re in, you might like more detail about where that folder is. Time to send your first command! At the prompt, type:</p>
+<p>Although the command-prompt gives you the name of the folder you’re in, you might like more detail about where that folder is. Time to send your first command! At the prompt, type:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">pwd</span></code></pre></div>
 <p>This stands for <strong>p</strong>rint <strong>w</strong>orking <strong>d</strong>irectory (shell commands are highly abbreviated to make them faster to type), and will tell the computer to print the folder you are currently “in”.</p>
 <p class="alert alert-info">
 <em>Fun fact:</em> technically, this command usually starts a tiny program (app) that does exactly one thing: prints the working directory. When you run a command, you’re actually executing a tiny program! And when you run programs (tiny or large) on the command-line, it looks like you’re typing in commands.
 </p>
-<p>Folders on computers are stored in a hierarchy: each folder has more folders inside it, which have more folders inside them. This produces a <a href="https://en.wikipedia.org/wiki/Tree_(data_structure)">tree</a> structure which on a Mac may like like that:</p>
+<p>Folders on computers are stored in a hierarchy: each folder has more folders inside it, which have more folders inside them. This produces a <a href="https://en.wikipedia.org/wiki/Tree_(data_structure)">tree</a> structure which on a Mac may look like:</p>
 <div class="figure">
 <img src="img/command-line/dir-tree.png" title="directory tree" alt="A Directory Tree, from Bradnam and Korf." />
 <p class="caption">A Directory Tree, from Bradnam and Korf.</p>
 </div>
-<p>We describe what folder we are in putting a slash <code>/</code> between each folder in the tree: thus <code>/Users/iguest</code> means “the <code>iguest</code> folder, which is inside the <code>Users</code> folder”.</p>
-<p>At the very top (or bottom, depending on your point of view) is the <strong>root</strong> <code>/</code> directory‐which has no name, and so is just indicated with that single slash. So <code>/Users/iguest</code> really means “the <code>iguest</code> folder, which is inside the <code>Users</code> folder, which is inside the root folder”.</p>
+<p>You describe what folder you are in putting a slash <code>/</code> between each folder in the tree: thus <code>/Users/iguest</code> means “the <code>iguest</code> folder, which is inside the <code>Users</code> folder”.</p>
+<p>At the very top (or bottom, depending on your point of view) is the <strong>root</strong> <code>/</code> directory‐which has no name, and so is just indicated with that single slash. So <code>/Users/iguest</code> really means “the <code>iguest</code> folder, which is inside the <code>Users</code> folder, which is inside the <em>root</em> folder”.</p>
 <div id="changing-directories" class="section level3">
 <h3><span class="header-section-number">2.2.1</span> Changing Directories</h3>
 <p>What if you want to change folders? In a graphical system like Finder, you would just double-click on the folder to open it. But there’s no clicking on the command-line.</p>
@@ -438,7 +438,7 @@ This includes clicking to move the cursor to an earlier part of the command you 
 <h3><span class="header-section-number">2.2.2</span> Listing Files</h3>
 <p>In a graphical system, once you’ve double-clicked on a folder, Finder will show you the contents of that folder. The command-line doesn’t do this automatically; instead you need another command:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ls</span> [folder_name]</code></pre></div>
-<p>This command says to <strong>l</strong>i<strong>s</strong>t the folder contents. Note that the <em>argument</em> here is in brackets (<code>[]</code>) to indicate that it is <em>optional</em>. If you just issue the <strong><code>ls</code></strong> command without an argument, it will list the contents of the current folder. If you include the optional argument (leaving off the brackets), you can “peek” at the contents of a folder you are not currently in.</p>
+<p>This command says to <strong>l</strong>i<strong>s</strong>t the folder contents. Note that the <em>argument</em> here is written in brackets (<code>[]</code>) to indicate that it is <em>optional</em>. If you just issue the <strong><code>ls</code></strong> command without an argument, it will list the contents of the current folder. If you include the optional argument (leaving off the brackets), you can “peek” at the contents of a folder you are not currently in.</p>
 <div class="alert alert-danger">
 <p>
 <strong>Warning</strong>: The command-line can be not great about giving <strong>feedback</strong> for your actions. For example, if there are no files in the folder, then <code>ls</code> will simply show nothing, potentially looking like it “didn’t work”. Or when typing a <strong>password</strong>, the letters you type won’t show (not even as <code>*</code>) as a security measure.
@@ -458,7 +458,7 @@ Just because you don’t see any results from your command/typing, doesn’t mea
 <pre><code>cd iguest/Desktop/</code></pre>
 <p>Because this path doesn’t have the leading slash, it just says to “go to the <code>iguest/Desktop</code> folder <em>from the current location</em>”. It is known as a <strong>relative path</strong>: it gives you directions to a file <em>relative to the current folder</em>. As such, the relative path <code>iguest/Desktop/</code> path will only refer to the correct location if you happen to be in the <code>/Users</code> folder; if you start somewhere else, who knows where you’ll end up!</p>
 <p class="alert alert-warning">
-You should <strong>always</strong> use relative paths, particularly when programming! Because you’ll almost always be managing multiples files in a project, you should refer to the files <em>relatively</em> within your project. That way, you program can easily work across computers. For example, if your code refers to <code>/Users/your-user-name/project-name/data</code>, it can only run on <code>your-user-name</code>. However, if you use a <em>relative path</em> within your code (i.e., <code>project-name/data</code>), the program will run on multiple computers (crucial for collaborative projects).
+You should <strong>always</strong> use relative paths, particularly when programming! Because you’ll almost always be managing multiples files in a project, you should refer to the files <em>relatively</em> within your project. That way, you program can easily work across computers. For example, if your code refers to <code>/Users/your-user-name/project-name/data</code>, it can only run on the <code>your-user-name</code> account. However, if you use a <em>relative path</em> within your code (i.e., <code>project-name/data</code>), the program will run on multiple computers (crucial for collaborative projects).
 </p>
 <p>You can refer to the “current folder” by using a single dot <strong><code>.</code></strong>. So the command</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ls</span> .</code></pre></div>
@@ -470,7 +470,7 @@ You should <strong>always</strong> use relative paths, particularly when program
 <p class="alert alert-info">
 <strong>Protip:</strong> Most command shells like Terminal and Git Bash support <strong>tab-completion</strong>. If you type out just the first few letters of a file or folder name and then hit the <code>tab</code> key, it will automatically fill in the rest of the name! If the name is ambiguous (e.g., you type <code>Do</code> and there is both a <code>Documents</code> and a <code>Downloads</code> folder), you can hit <code>tab</code> <em>twice</em> to see the list of matching folders. Then add enough letters to distinguish them and tab to complete! This will make your life better.
 </p>
-<p>Also remember that you can use a tilde <strong><code>~</code></strong> as shorthand for the home directory of the current user. Just like <code>.</code> refers to “current folder”, <code>~</code> refers to the user’s home directory (usually <code>/Users/USERNAME</code>). And of course, you can use the tilde as part of a path as well.</p>
+<p>Additionally, you can use a tilde <strong><code>~</code></strong> as shorthand for the home directory of the current user. Just like <code>.</code> refers to “current folder”, <code>~</code> refers to the user’s home directory (usually <code>/Users/USERNAME</code>). And of course, you can use the tilde as part of a path as well (e.g., <code>~/Desktop</code> is an <em>absolute path</em> to the desktop for the current user).</p>
 </div>
 </div>
 <div id="file-commands" class="section level2">
@@ -479,7 +479,7 @@ You should <strong>always</strong> use relative paths, particularly when program
 <img src="img/command-line/matrix-cli.jpg" title="Matrix command-line meme" />
 
 </div>
-<p>Once you’re comfortable navigating folders in the command-line, you can start to use it to do all the same things you would do with Finder or File Explorer, simply by using the correct command. Here is an short list of commands to get you started using the command prompt, though there are <a href="http://www.lagmonster.org/docs/unix/intro-137.html">many more</a>.</p>
+<p>Once you’re comfortable navigating folders in the command-line, you can start to use it to do all the same things you would do with Finder or File Explorer, simply by using the correct command. Here is an short list of commands to get you started using the command prompt, though there are <a href="http://www.lagmonster.org/docs/unix/intro-137.html">many more</a>:</p>
 <table>
 <thead>
 <tr class="header">
@@ -520,13 +520,13 @@ You should <strong>always</strong> use relative paths, particularly when program
 </table>
 <div class="alert alert-danger">
 <p>
-<strong>Warning</strong>: The command-line makes it <strong>dangerously easy</strong> to <em>permanently delete</em> multiple files or folders and <em>will not</em> ask you to confirm that you want to delete them. Be very careful when using the terminal to manage your files, as it is very powerful.
+<strong>Warning</strong>: The command-line makes it <strong>dangerously easy</strong> to <em>permanently delete</em> multiple files or folders and <em>will not</em> ask you to confirm that you want to delete them (or move them to the “recycling bin”). Be very careful when using the terminal to manage your files, as it is very powerful.
 </p>
 </div>
 <p>Be aware that many of these commands <strong>won’t print anything</strong> when you run them. This often means that they worked; they just did so quietly. If it <em>doesn’t</em> work, you’ll know because you’ll see a message telling you so (and why, if you read the message). So just because you didn’t get any output doesn’t mean you did something wrong—you can use another command (such as <strong><code>ls</code></strong>) to confirm that the files or folders changed the way you wanted!</p>
 <div id="learning-new-commands" class="section level3">
 <h3><span class="header-section-number">2.3.1</span> Learning New Commands</h3>
-<p>How can you figure out what kind of arguments these commands take? You can look it up! This information is available online, but many command shells (but <em>not</em> Git Bash, unfortunately) also include their own manual you can use to look up commands!</p>
+<p>How can you figure out what kind of arguments these commands take? You can look it up! This information is available online, but many command shells (though <em>not</em> Git Bash, unfortunately) also include their own manual you can use to look up commands!</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">man</span> mkdir</code></pre></div>
 <p>Will show the <strong>man</strong>ual for the <strong><code>mkdir</code></strong> program/command.</p>
 <p class="alert alert-info">
@@ -569,17 +569,20 @@ Because manuals are often long, they are opened up in a command-line viewer call
 <p>Throughout this book, we’ll discuss a variety of approaches to handling errors in computer programs. While it’s tempting to disregard dense error messages, many programs do provide <strong>error messages</strong> that explain what went wrong. If you enter an unrecognized command, the terminal will inform you of your mistake:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">lx</span>
 <span class="kw">&gt;</span> <span class="kw">-bash</span>: lx: command not found</code></pre></div>
-<p>However, forgetting arguments yields different results. In some cases, there will be a default behavior (see what happens if you enter <code>cd</code> without any arguments). If more information is <em>required</em> to run a command, your terminal will provide you with a brief summay of the command’s usage:</p>
+<p>However, forgetting arguments yields different results. In some cases, there will be a default behavior (see what happens if you enter <code>cd</code> without any arguments). If more information is <em>required</em> to run a command, your terminal will provide you with a brief summary of the command’s usage:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">mkdir</span>
 <span class="kw">&gt;</span> <span class="kw">usage</span>: mkdir [-pv] [-m mode] directory ...</code></pre></div>
+<p>Take the time to read the error message and think about what the problem might be before you try again.</p>
 </div>
 <div id="resources-1" class="section level2 unnumbered">
 <h2>Resources</h2>
+<div class="list-condensed">
 <ul>
 <li><a href="https://www.learnenough.com/command-line-tutorial#sec-basics">Learn Enough Command Line to be Dangerous</a></li>
 <li><a href="https://www.youtube.com/watch?v=sqYUYHn-HKg&amp;list=PLCAF7D691FFA25555">Video series: Bash commands</a></li>
 <li><a href="http://www.lagmonster.org/docs/unix/intro-137.html">List of Common Commands</a> (also <a href="http://www.math.utah.edu/lab/unix/unix-commands.html">here</a>)</li>
 </ul>
+</div>
 
 </div>
 </div>
