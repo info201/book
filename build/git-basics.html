@@ -410,14 +410,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">4.1.2</span> Wait, but what is GitHub then?</h3>
 <p>Git was made to support completely decentralized development, where developers pull commits (sets of changes) from each other’s machines directly. But most professional teams take the approach of creating one central repository on a server that all developers push to and pull from. This repository contains the authoritative version the source code, and all deployments to the “rest of the world” are done by downloading from this centralized repository.</p>
 <p>Teams can setup their own servers to host these centralized repositories, but many choose to use a server maintained by someone else. The most popular of these in the open-source world is <a href="https://github.com/">GitHub</a>. In addition to hosting centralized repositories, GitHub also offers other team development features, such as issue tracking, wiki pages, and notifications. Public repositories on GitHub are free, but you have to pay for private ones.</p>
-<p>In short: GitHub is a site that provides as a central authority (or clearing-house) for multiple people collaborating with git. Git is what you use to do version control; GithHu is one possible place where repositories of code can be stored.</p>
+<p>In short: GitHub is a site that provides as a central authority (or clearing-house) for multiple people collaborating with git. Git is what you use to do version control; GitHub is one possible place where repositories of code can be stored.</p>
 </div>
 </div>
 <div id="installation-setup" class="section level2">
 <h2><span class="header-section-number">4.2</span> Installation &amp; Setup</h2>
 <p>This chapter will walk you through all the commands you’ll need to do version control with git. It is written as a “tutorial” to help you practice what you’re reading!</p>
 <p>If you haven’t yet, the first thing you’ll need to do is <a href="http://git-scm.com/downloads">install git</a>. You should already have done this as part of <a href="setup-machine.html#setup-machine">setting up your machine</a>.</p>
-<p>The first time you use <code>git</code> on your machine, you’ll need <a href="https://help.github.com/articles/set-up-git/">to configure</a> the installation, telling git who you are so you can commit changes to a repository. You can do this by using the <code>git</code> command with the <code>config</code> option (e.e,. running the <code>git config</code> command):</p>
+<p>The first time you use <code>git</code> on your machine, you’ll need <a href="https://help.github.com/articles/set-up-git/">to configure</a> the installation, telling git who you are so you can commit changes to a repository. You can do this by using the <code>git</code> command with the <code>config</code> option (i.e., running the <code>git config</code> command):</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># enter your full name (without the dashes)</span>
 <span class="kw">git</span> config --global user.name <span class="st">&quot;your-full-name&quot;</span>
 
