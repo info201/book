@@ -28,7 +28,7 @@ people.length <- length(people)
 print(people.length)  # [1] 3
 
 numbers <- c(1,2,3,4,5)
-print( length(numbers) )  # [1] 5
+print(length(numbers))  # [1] 5
 ```
 
 Other functions can also help with creating vectors. For example, the `seq()` function mentioned in [chapter 6](#functions) takes 2 arguments and produces a vector of the integers between them. An _optional_ third argument specifies how many numbers to skip in each step:
@@ -177,10 +177,10 @@ As a more useful example, imagine you had a vector of values in which you wanted
 v1 <- c(1, 5, 55, 1, 3, 11, 4, 27)
 
 # Replace all values greater than 10 with 10
-v1[v1>10] <- 10  # returns 1, 5, 10, 1, 3, 10, 4, 10
+v1[v1 > 10] <- 10  # returns 1, 5, 10, 1, 3, 10, 4, 10
 ```
 
-In this example, the number `10` get recycled for each element in which `v1` is greater than 10 (`v1[v1>10]`). Presto!
+In this example, the number `10` get recycled for each element in which `v1` is greater than 10 (`v1[v1 > 10]`). Presto!
 
 ## Vector Filtering
 In the above section, you used a vector of indices (_numeric_ values) to retrieve a subset of elements from a vector. Alternatively, you can put a **vector of logical (boolean) values** inside the square brackets to specify which ones you want to extract (`TRUE` in the _corresponding position_ means extract, `FALSE` means don't extract):
@@ -228,7 +228,7 @@ This is a valid statement because the equality inside of the square-brackets (`s
 This kind of filtering is crucial for being able to ask real world questions of datasets.
 
 ## Vectorized Operations
-When performing operations (such as mathematical operations `+`, `-`, etc.) on vectors, the operation is applied to vector elements **member-wise**. This means that each element from the first vector operand is modified by the element in the **same corresponding position** in the second vector operand, in order to determine the value of at _the corresponding position_ of the resulting vector. E.g., if you want to add (`+`) two vectors, then the value of the first element in the result will be the sum (`+`) of the first elements in each vector, the second element in the result will be the sum of the second elements in each vector, and so on.
+When performing operations (such as mathematical operations `+`, `-`, etc.) on vectors, the operation is applied to vector elements **member-wise**. This means that each element from the first vector operand is modified by the element in the **same corresponding position** in the second vector operand, in order to determine the value _at the corresponding position_ of the resulting vector. E.g., if you want to add (`+`) two vectors, then the value of the first element in the result will be the sum (`+`) of the first elements in each vector, the second element in the result will be the sum of the second elements in each vector, and so on.
 
 ```r
 # Create two vectors to combine

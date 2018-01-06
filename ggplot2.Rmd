@@ -49,7 +49,7 @@ This will make all of the plotting functions you'll need available.
 In order to create a plot, you call the `ggplot()` function, specifying the **data** that you wish to plot. You then add new _layers_ that are **geometric objects** which will show up on the plot:
 
 ```{r basic_mpg}
-# plot the `mpg` data set, with highway milage on the x axis and
+# plot the `mpg` data set, with highway mileage on the x axis and
 # engine displacement (power) on the y axis:
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy))
@@ -59,7 +59,7 @@ To walk through the above code:
 
 - The `ggplot()` function is passed the data frame to plot as the `data` argument.
 
-- You specify a geometric object (`geom`) by calling one of the many`geom` [functions](http://ggplot2.tidyverse.org/reference/index.html#section-layer-geoms), which are all named `geom_` followed by the name of the kind of geometry you wish to create. For example, `geom_point()` will create a layer with "point" (dot) elements as the geometry. There are large number of these functions; see below for more details.
+- You specify a geometric object (`geom`) by calling one of the many`geom` [functions](http://ggplot2.tidyverse.org/reference/index.html#section-layer-geoms), which are all named `geom_` followed by the name of the kind of geometry you wish to create. For example, `geom_point()` will create a layer with "point" (dot) elements as the geometry. There are a large number of these functions; see below for more details.
 
 - For each `geom` you must specify the **aesthetic mappings**, which is how data from the data frame will be mapped to the visual aspects of the geometry. These mappings are defined using the `aes()` function. The `aes()` function takes a set of arguments (like a list), where the argument name is the visual property to map _to_, and the argument value is the data property to map _from_.
 
@@ -110,7 +110,7 @@ Each of these geometries will need to include a set of **aesthetic mappings** (u
 - Almost all `geoms` **require** an `x` and `y` mapping at the bare minimum.
 
 ```{r geom_examples, fig.show='hold', out.width=c('380pt', '380pt')}
-# line chart of milage by engine power
+# line chart of mileage by engine power
 ggplot(data = mpg) +
   geom_line(mapping = aes(x = displ, y = hwy))
 
@@ -138,7 +138,7 @@ If you look at the above `bar` chart, you'll notice that the the `y` axis was de
 `ggplot2` supports many different statistical transformations. For example, the "identity" transformation will leave the data "as is". You can specify which statistical transformation a `geom` uses by passing it as the **`stat`** argument:
 
 ```{r, bar_chart}
-# bar chart of make and model vs. milage
+# bar chart of make and model vs. mileage
 
 # quickly (lazily) filter the dataset to a sample of the cars: one of each make/model
 new.cars <- mpg %>% 
@@ -154,14 +154,14 @@ ggplot(new.cars) +
 Additionally, `ggplot2` contains **`stat_`** functions (e.g., `stat_identity` for the "identity" transformation) that can be used to specify a layer in the same way a `geom` does:
 
 ```{r stat_summary}
-# generate a "binned" (grouped) display of highway milage
+# generate a "binned" (grouped) display of highway mileage
 ggplot(data = mpg) +
   stat_bin(aes(x=hwy, color=hwy), binwidth=4)  # binned into groups of 4 units
 ```
 
 Notice the above chart is actually a [histogram](https://en.wikipedia.org/wiki/Histogram)! Indeed, almost every `stat` transformation corresponds to a particular `geom` (and vice versa) by default. Thus they can often be used interchangeably, depending on how you want to emphasize your layer creation when writing the code.
 
-```
+```r
 # these two charts are identical
 ggplot(data = mpg) +
   geom_bar(mapping = aes(x = class))
@@ -174,9 +174,9 @@ ggplot(data = mpg) +
 In addition to a default statistical transformation, each `geom` also has a default **position adjustment** which specifies a set of "rules" as to how different components should be positioned relative to each other. This position is noticeable in a `geom_bar` if you map a different variable to the color visual channel:
 
 ```{r, stacked_bar}
-# bar chart of milage, colored by engine type
+# bar chart of mileage, colored by engine type
 ggplot(data = mpg) +
-  geom_bar(mapping = aes(x = hwy, fill=class))  # fill color, not outline color
+  geom_bar(mapping = aes(x = hwy, fill = class))  # fill color, not outline color
 ```
 
 The `geom_bar` by default uses a position adjustment of `"stack"`, which makes each "bar" a height appropriate to its value and _stacks_ them on top of each other. You can use the **`position`** argument to specify what position adjustment rules to follow:
@@ -184,12 +184,12 @@ The `geom_bar` by default uses a position adjustment of `"stack"`, which makes e
 ```{r position_examples, fig.show='hold', out.width=c('380pt', '380pt')}
 # a filled bar chart (fill the vertical height)
 ggplot(data = mpg) +
-  geom_bar(mapping = aes(x = hwy, fill=drv), position="fill")
+  geom_bar(mapping = aes(x = hwy, fill = drv), position = "fill")
 
 # a dodged (group) bar chart -- values next to each other
 # (not great dodging demos in this data set)
 ggplot(data = mpg) +
-  geom_bar(mapping = aes(x = hwy, fill=drv), position="dodge")
+  geom_bar(mapping = aes(x = hwy, fill = drv), position = "dodge")
 ```
 
 Check the documentation for each particular `geom` to learn more about its possible position adjustments.
@@ -198,7 +198,7 @@ Check the documentation for each particular `geom` to learn more about its possi
 ### Styling with Scales
 Whenever you specify an **aesthetic mapping**, `ggplot` uses a particular **scale** to determine the _range of values_ that the data should map to. Thus, when you specify
 
-```r
+```{r}
 # color the data by engine type
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, color = class))
@@ -221,7 +221,7 @@ While the default scales will work fine, it is possible to explicitly add differ
 
 
 ```r
-# milage relationship, ordered in reverse
+# mileage relationship, ordered in reverse
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = cty, y = hwy)) +
   scale_x_reverse()

@@ -41,7 +41,7 @@ Below the header, you will find two types of content:
 - **Markdown**: normal Markdown text like you learned in [chapter 3](#markdown). For example, using two pound symbols (`##`) for a second-level heading. And
 - **Code Chunks**: These are segments (chunks) of R code that look like normal code block elements (using <code>\`\`\`</code>), but with an extra `{r}` immediately after opening  backticks. See below for more details about this format.
 
-In short, you'll write Markdown throughout the document, and your R syntax in code chunks. The powerful feature is that you'll be able to render content created in your code chunks _in your Markdown_. More on this [below](#r-markdown-syntax)
+In short, you'll write Markdown throughout the document, and your R syntax in code chunks. The powerful feature is that you'll be able to render content created in your code chunks _in your Markdown_. More on this [below](#r-markdown-syntax).
 
 <p class="alert alert-warning">**Important** This file should be saved with the extension **`.Rmd`** (for "R Markdown"), which tells the computer and RStudio that the document contains Markdown content with embedded `R` code.</p>
 
@@ -58,7 +58,7 @@ While it is easy to generate such documents, the knitting process can make it ha
 
 
 ### HTML
-Assuming that you've chosen HTML as your desired output type, RStudio will knit your `.Rmd` into a `.html` file. HTML stands for _**H**yper**T**ext **M**arkup **L**anguage_ and, like Markdown, is a syntax for describing the structure and formatting of content (though HTML is **far** more extensive and detailed). In particular, HTML is a is a markup language that can be automatically rendered by web browsers, and thus is the language used to create web pages. As such, the `.html` files you create can be put online as web pages for others to view&mdash;you will learn how to do this in a future chapter. For now, you can open a `.html` file in any browser (such as by double-clicking on the file) to see the content outside of RStudio! 
+Assuming that you've chosen HTML as your desired output type, RStudio will knit your `.Rmd` into a `.html` file. HTML stands for _**H**yper**T**ext **M**arkup **L**anguage_ and, like Markdown, is a syntax for describing the structure and formatting of content (though HTML is **far** more extensive and detailed). In particular, HTML is a markup language that can be automatically rendered by web browsers, and thus is the language used to create web pages. As such, the `.html` files you create can be put online as web pages for others to view&mdash;you will learn how to do this in a future chapter. For now, you can open a `.html` file in any browser (such as by double-clicking on the file) to see the content outside of RStudio! 
 
 As it turns out, it's quite simple to use GitHub to host publicly available webpages (like the `.html` files you create with RMarkdown). But, this will require learning a bit more about `git` and GitHub. For instructions on publishing your `.html` files as web-pages, see [chapter 14](#git-branches).
 
@@ -108,8 +108,10 @@ In addition to creating distinct code blocks, you may want to execute R code _in
 
 As with code blocks, you'll follow the Markdown convention of using single backticks (**`` ` ``**), but put the letter **`r`** imediately after the first backtick. For example:
 
+<!-- RMarkdown doesn't provide built-in escaping. See https://stackoverflow.com/q/20409172 for
+     details on the workaround. -->
 ```
-If we want to calculate 3 + 4 inside some text, we can use `r 3 + 4` right in the _middle_.
+If we want to calculate 3 + 4 inside some text, we can use `r '\x60r 3 + 4\x60'` right in the _middle_.
 ```
 
 When you knit the text above, the <code>&#96;r 3 + 4&#96;</code> would be replaced with the number `7`.

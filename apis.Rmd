@@ -44,7 +44,7 @@ With an API, the domain and path are often viewed as being broken up into two pa
     For example, GitHub includes endpoints such as:
 
     - `/users/{user}` to get information about a specific `:user:` `id` (the `{}` indicate a "variable", in that you can put any username in there in place of the string `"{user}"`). Check out this [example](https://api.github.com/users/mkfreeman) in your browser.
-    - `/orgs/{organization}/repos` to get the repositories that are on an organization page. See an [Example](https://api.github.com/orgs/info201a-au17/repos)
+    - `/orgs/{organization}/repos` to get the repositories that are on an organization page. See an [example](https://api.github.com/orgs/info201a-au17/repos).
 
 Thus you can equivalently talk about accessing a particular **resource** and sending a request to a particular **endpoint**. The **endpoint** is appended to the end of the **Base URI**, so you could access a GitHub user by combining the **Base URI** (`https://api.github.com`) and **endpoint** (`/users/mkfreeman`) into a single string: `https://api.github.com/users/mkfreeman`. That URL will return a data structure of new releases, which you can request from your R program or simply view in your web-browser.
 
@@ -230,7 +230,7 @@ JSON can also be structured as _arrays_ of _objects_ (unkeyed lists of keyed lis
 ]
 ```
 
-The later format is incredibly common in web API data: as long as each _object_ in the _array_ has the same set of keys, then you can easily consider this as a data table where each _object_ (keyed list) represents an **observation** (row), and each key represents a **feature** (column) of that observation.
+The latter format is incredibly common in web API data: as long as each _object_ in the _array_ has the same set of keys, then you can easily consider this as a data table where each _object_ (keyed list) represents an **observation** (row), and each key represents a **feature** (column) of that observation.
 
 ### Parsing JSON
 When working with a web API, the usual goal is to take the JSON data contained in the _response_ and convert it into an `R` data structure you can use, such as _list_ or _data frame_. While the `httr` package is able to parse the JSON body of a response into a _list_, it doesn't do a very clean job of it (particularly for complex data structures).

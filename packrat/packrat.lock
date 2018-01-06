@@ -1,6 +1,6 @@
 PackratFormat: 1.4
 PackratVersion: 0.4.8.1
-RVersion: 3.4.1
+RVersion: 3.4.3
 Repos: CRAN=https://cran.rstudio.com/
 
 Package: BH
@@ -88,8 +88,8 @@ Requires: BH, DBI, R6, Rcpp, assertthat, lazyeval, magrittr, tibble
 
 Package: evaluate
 Source: CRAN
-Version: 0.10
-Hash: c3601a10c987d439e0c63ec635234a76
+Version: 0.10.1
+Hash: 54d95f4ec6d0300100413ed0127d89ae
 Requires: stringr
 
 Package: formatR
@@ -139,8 +139,8 @@ Hash: 9c51936d8dd00b2f1d4fe9d10499694c
 
 Package: knitr
 Source: CRAN
-Version: 1.16
-Hash: 3b8dc00d51027c6d041d56bc92136452
+Version: 1.18
+Hash: 5be8a90c6aac24e7e0a4f18b829cc6e2
 Requires: digest, evaluate, highr, markdown, stringr, yaml
 
 Package: labeling
@@ -205,10 +205,10 @@ Hash: c17b638e3282aa222a47112d7a60bc66
 
 Package: rmarkdown
 Source: CRAN
-Version: 1.5
-Hash: b37fc27c2604de97b4981eeae7a00879
-Requires: base64enc, caTools, evaluate, htmltools, jsonlite, knitr,
-    rprojroot, yaml
+Version: 1.8
+Hash: 2a7842e3cee62a79dd737d17e9e9d86b
+Requires: base64enc, evaluate, htmltools, jsonlite, knitr, mime,
+    rprojroot, stringr, yaml
 
 Package: rprojroot
 Source: CRAN

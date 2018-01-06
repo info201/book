@@ -138,7 +138,7 @@ OTHERWISE
 In R, we write these conditional statements using the keywords **`if`** and **`else`** and the following syntax:
 
 ```r
-if(condition){
+if (condition) {
   # lines of code to run if condition is TRUE
 } else {
   # lines of code to run if condition is FALSE
@@ -151,12 +151,12 @@ The `condition` can be any variable or expression that resolves to a logical val
 
 ```r
 porridge.temp <- 115  # in degrees F
-if(porridge.temp > 120) {
+if (porridge.temp > 120) {
   print("This porridge is too hot!")
 }
 
 too.cold <- porridge.temp < 70
-if(too.cold) {  # a logical value
+if (too.cold) {  # a logical value
   print("This porridge is too cold!")
 }
 ```
@@ -166,16 +166,16 @@ Note, we can extend the set of conditions evaluated using an `else if` statement
 ```r
 # Function to determine if you should eat porridge
 FoodTempTest <- function(temp) {
-  if(temp > 120) {
+  if (temp > 120) {
     status <- "This porridge is too hot!"
-  } else if(temp < 70) {
+  } else if (temp < 70) {
     status <- "This porridge is too cold!"
   } else {
     status <- "This porridge is just right!"
   }
   return(status)
 }
-# Use funciton on different temperatures
+# Use function on different temperatures
 FoodTempTest(119)  # "This porridge is just right!"
 FoodTempTest(60)   # "This porridge is too cold!"
 FoodTempTest(150)  # "This porridge is too hot!"

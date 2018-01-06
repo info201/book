@@ -1,9 +1,9 @@
 # Git Collaboration {#git-collaboration}
 
-Being able to merge between branches allows you to work **collaboratively**, with multiple people making changes to the same repo and sharing those changes through GitHub. There a variety of approaches (or **workflows**) that can be used to facilitate collaboration and make sure that people are effectively able to share code. This section describes a variety of different workflows, however we suggest the branch-based workflow called the [**Feature Branch Workflow**](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) for this course.
+Being able to merge between branches allows you to work **collaboratively**, with multiple people making changes to the same repo and sharing those changes through GitHub. There are a variety of approaches (or **workflows**) that can be used to facilitate collaboration and make sure that people are effectively able to share code. This section describes a variety of different workflows, however we suggest the branch-based workflow called the [**Feature Branch Workflow**](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) for this course.
 
 ## Centralized Workflow
-In order to undersatnd the Feature Branch Workflow, it's important to first understand how to collaborate on a centralized repository. The Feature Branch Workflow uses a **centralized repository** stored on GitHub&mdash;that is, every single member of the team will `push` and `pull` to a single GitHub repo. However, since each repository needs to be created under a particular account, this means that a ___single member___ of the team will need to create the repo (such as by accepting a GitHub Classroom assignment, or by clicking the _"New"_ button on their "Repositories" tab on the GitHub web portal).
+In order to understand the Feature Branch Workflow, it's important to first understand how to collaborate on a centralized repository. The Feature Branch Workflow uses a **centralized repository** stored on GitHub&mdash;that is, every single member of the team will `push` and `pull` to a single GitHub repo. However, since each repository needs to be created under a particular account, this means that a ___single member___ of the team will need to create the repo (such as by accepting a GitHub Classroom assignment, or by clicking the _"New"_ button on their "Repositories" tab on the GitHub web portal).
 
 In order to make sure everyone is able to `push` to the repository, whoever creates the repo will need to [**add the other team members as collaborators**](https://help.github.com/articles/inviting-collaborators-to-a-personal-repository/). You can do this under the **Settings** tab:
 
@@ -47,7 +47,7 @@ The workflow thus works like this:
     # work is done outside of terminal
 
     git add .
-    git commit -m "Adds progress on feature"
+    git commit -m "Add progress on feature"
     ```
 
 3. Ada takes a break, pushing her changes to GitHub
@@ -66,7 +66,7 @@ The workflow thus works like this:
     # work is on adas-feature done outside of terminal
 
     git add .
-    git commit -m "Adds more progress on feature"
+    git commit -m "Add more progress on feature"
     git push origin adas-feature
     ```
 
@@ -93,12 +93,12 @@ The workflow thus works like this:
 This kind of workflow is very common and effective for supporting collaboration. Note that as projects get large, you may need to start being more organized about how and when you create feature branches. For example, the [**Git Flow**](http://nvie.com/posts/a-successful-git-branching-model/) model organizes feature branches around product releases, and is often a starting point for large collaborative projects.
 
 ## Forking Workflow
-The Forking Workflow takes a **fundamentally different approach** to collaboration than the Centralized and Feature Branch workflows. Rather than having a single remote, each developer will have **their own repository** on GitHub that is _forked_ from the original repository. As discussed in the [introductory GitHub Chapter](#git-basics), a developer can create their own remote repositry from an existing project by _forking_ it on GitHub. This allows the individual to make changes (and contribute to) the project. However, we have not yet discussed how those changes can be integrated into the original code base. GitHub offers a feature called [**pull requests**](https://help.github.com/articles/creating-a-pull-request/) by which you can merge two remote branches (that is: `merge` two branches that are on GitHub). A **pull request** is a request for the changes from one branch to be pulled (merged) into another.
+The Forking Workflow takes a **fundamentally different approach** to collaboration than the Centralized and Feature Branch workflows. Rather than having a single remote, each developer will have **their own repository** on GitHub that is _forked_ from the original repository. As discussed in the [introductory GitHub Chapter](#git-basics), a developer can create their own remote repository from an existing project by _forking_ it on GitHub. This allows the individual to make changes (and contribute to) the project. However, we have not yet discussed how those changes can be integrated into the original code base. GitHub offers a feature called [**pull requests**](https://help.github.com/articles/creating-a-pull-request/) by which you can merge two remote branches (that is: `merge` two branches that are on GitHub). A **pull request** is a request for the changes from one branch to be pulled (merged) into another.
 
 ### Pull Requests
 Pull requests are primarily used to let teams of developers _collaborate_&mdash;one developer can send a request "hey, can you integrate my changes?" to another. The second developer can perform a **code review**: reviewing the proposed changes and making comments or asking for corrections to anything they find problematic. Once the changes are improved, the pull request can be **accepted** and the changes merged into the target branch. This process is how programmers collaborate on _open-source software_ (such as R libraries like `dplyr`): a developer can _fork_ an existing professional project, make changes to that fork, and then send a pull request back to the original developer asking them to merge in changes ("will you include my changes in your branch/version of the code?").
 
-<p class="alert alert-warning">Pull requests should only be used when doing collaboration using remote branches! Local branches should be `merged` locally using the command-line, not GitHub's pull request feature.</p>
+<p class="alert alert-warning">Pull requests should only be used when doing collaboration using remote branches! Local branches should be `merge`'d locally using the command-line, not GitHub's pull request feature.</p>
 
 In order to issue a pull request, both branches you wish to merge will need to be `pushed` to GitHub (whether they are in the same repo or in forks). To issue the pull request, navigate to your repository on GitHub's web portal and choose the **New Pull Request** button (it is next to the drop-down that lets you view different branches).
 

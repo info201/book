@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2017-12-20">
+<meta name="date" content="2018-01-06">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -220,7 +220,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.1" data-path="lists.html"><a href="lists.html#what-is-a-list"><i class="fa fa-check"></i><b>8.1</b> What is a List?</a><ul>
 <li class="chapter" data-level="8.1.1" data-path="lists.html"><a href="lists.html#creating-lists"><i class="fa fa-check"></i><b>8.1.1</b> Creating Lists</a></li>
 <li class="chapter" data-level="8.1.2" data-path="lists.html"><a href="lists.html#accessing-lists"><i class="fa fa-check"></i><b>8.1.2</b> Accessing Lists</a></li>
-<li class="chapter" data-level="8.1.3" data-path="lists.html"><a href="lists.html#list-indicies"><i class="fa fa-check"></i><b>8.1.3</b> List Indicies</a></li>
+<li class="chapter" data-level="8.1.3" data-path="lists.html"><a href="lists.html#list-indices"><i class="fa fa-check"></i><b>8.1.3</b> List Indices</a></li>
 <li class="chapter" data-level="8.1.4" data-path="lists.html"><a href="lists.html#modifying-lists"><i class="fa fa-check"></i><b>8.1.4</b> Modifying Lists</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="lists.html"><a href="lists.html#the-lapply-function"><i class="fa fa-check"></i><b>8.2</b> The <code>lapply()</code> Function</a></li>
@@ -248,7 +248,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.2.5" data-path="dplyr.html"><a href="dplyr.html#summarize"><i class="fa fa-check"></i><b>10.2.5</b> Summarize</a></li>
 <li class="chapter" data-level="10.2.6" data-path="dplyr.html"><a href="dplyr.html#distinct"><i class="fa fa-check"></i><b>10.2.6</b> Distinct</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="dplyr.html"><a href="dplyr.html#multple-operations"><i class="fa fa-check"></i><b>10.3</b> Multple Operations</a><ul>
+<li class="chapter" data-level="10.3" data-path="dplyr.html"><a href="dplyr.html#multiple-operations"><i class="fa fa-check"></i><b>10.3</b> Multiple Operations</a><ul>
 <li class="chapter" data-level="10.3.1" data-path="dplyr.html"><a href="dplyr.html#the-pipe-operator"><i class="fa fa-check"></i><b>10.3.1</b> The Pipe Operator</a></li>
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="dplyr.html"><a href="dplyr.html#grouped-operations"><i class="fa fa-check"></i><b>10.4</b> Grouped Operations</a></li>
@@ -410,7 +410,7 @@ Examples in this chapter adapted from <a href="http://r4ds.had.co.nz/"><em>R for
 <li>Note that the library also comes with a number of built-in data sets. This chapter will use the provided <code>mpg</code> data set as an example, which is a data frame containing information about fuel economy for different cars.</li>
 </ul>
 <p>In order to create a plot, you call the <code>ggplot()</code> function, specifying the <strong>data</strong> that you wish to plot. You then add new <em>layers</em> that are <strong>geometric objects</strong> which will show up on the plot:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot the `mpg` data set, with highway milage on the x axis and</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot the `mpg` data set, with highway mileage on the x axis and</span>
 <span class="co"># engine displacement (power) on the y axis:</span>
 <span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) +
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy))</code></pre></div>
@@ -418,7 +418,7 @@ Examples in this chapter adapted from <a href="http://r4ds.had.co.nz/"><em>R for
 <p>To walk through the above code:</p>
 <ul>
 <li><p>The <code>ggplot()</code> function is passed the data frame to plot as the <code>data</code> argument.</p></li>
-<li><p>You specify a geometric object (<code>geom</code>) by calling one of the many<code>geom</code> <a href="http://ggplot2.tidyverse.org/reference/index.html#section-layer-geoms">functions</a>, which are all named <code>geom_</code> followed by the name of the kind of geometry you wish to create. For example, <code>geom_point()</code> will create a layer with “point” (dot) elements as the geometry. There are large number of these functions; see below for more details.</p></li>
+<li><p>You specify a geometric object (<code>geom</code>) by calling one of the many<code>geom</code> <a href="http://ggplot2.tidyverse.org/reference/index.html#section-layer-geoms">functions</a>, which are all named <code>geom_</code> followed by the name of the kind of geometry you wish to create. For example, <code>geom_point()</code> will create a layer with “point” (dot) elements as the geometry. There are a large number of these functions; see below for more details.</p></li>
 <li><p>For each <code>geom</code> you must specify the <strong>aesthetic mappings</strong>, which is how data from the data frame will be mapped to the visual aspects of the geometry. These mappings are defined using the <code>aes()</code> function. The <code>aes()</code> function takes a set of arguments (like a list), where the argument name is the visual property to map <em>to</em>, and the argument value is the data property to map <em>from</em>.</p></li>
 <li><p>Finally, you add <code>geom</code> layers to the plot by using the addition (<strong><code>+</code></strong>) operator.</p></li>
 </ul>
@@ -459,7 +459,7 @@ Examples in this chapter adapted from <a href="http://r4ds.had.co.nz/"><em>R for
 <ul>
 <li>Almost all <code>geoms</code> <strong>require</strong> an <code>x</code> and <code>y</code> mapping at the bare minimum.</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># line chart of milage by engine power</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># line chart of mileage by engine power</span>
 <span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) +
 <span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy))
 
@@ -481,7 +481,7 @@ Examples in this chapter adapted from <a href="http://r4ds.had.co.nz/"><em>R for
 <h4><span class="header-section-number">13.3.1.1</span> Statistical Transformations</h4>
 <p>If you look at the above <code>bar</code> chart, you’ll notice that the the <code>y</code> axis was defined for you as the <code>count</code> of elements that have the particular type. This <code>count</code> isn’t part of the data set (it’s not a column in <code>mpg</code>), but is instead a <strong>statistical transformation</strong> that the <code>geom_bar</code> automatically applies to the data. In particular, it applies the <code>stat_count</code> transformation, simply summing the number of rows each <code>class</code> appeared in the dataset.</p>
 <p><code>ggplot2</code> supports many different statistical transformations. For example, the “identity” transformation will leave the data “as is”. You can specify which statistical transformation a <code>geom</code> uses by passing it as the <strong><code>stat</code></strong> argument:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># bar chart of make and model vs. milage</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># bar chart of make and model vs. mileage</span>
 
 <span class="co"># quickly (lazily) filter the dataset to a sample of the cars: one of each make/model</span>
 new.cars &lt;-<span class="st"> </span>mpg %&gt;%<span class="st"> </span>
@@ -494,34 +494,34 @@ new.cars &lt;-<span class="st"> </span>mpg %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>car, <span class="dt">y=</span>hwy), <span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) +<span class="st"> </span><span class="kw">coord_flip</span>()  <span class="co"># horizontal bar chart</span></code></pre></div>
 <p><img src="img/ggplot2/bar_chart-1.png" width="576" /></p>
 <p>Additionally, <code>ggplot2</code> contains <strong><code>stat_</code></strong> functions (e.g., <code>stat_identity</code> for the “identity” transformation) that can be used to specify a layer in the same way a <code>geom</code> does:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># generate a &quot;binned&quot; (grouped) display of highway milage</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># generate a &quot;binned&quot; (grouped) display of highway mileage</span>
 <span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) +
 <span class="st">  </span><span class="kw">stat_bin</span>(<span class="kw">aes</span>(<span class="dt">x=</span>hwy, <span class="dt">color=</span>hwy), <span class="dt">binwidth=</span><span class="dv">4</span>)  <span class="co"># binned into groups of 4 units</span></code></pre></div>
 <p><img src="img/ggplot2/stat_summary-1.png" width="576" /></p>
 <p>Notice the above chart is actually a <a href="https://en.wikipedia.org/wiki/Histogram">histogram</a>! Indeed, almost every <code>stat</code> transformation corresponds to a particular <code>geom</code> (and vice versa) by default. Thus they can often be used interchangeably, depending on how you want to emphasize your layer creation when writing the code.</p>
-<pre><code># these two charts are identical
-ggplot(data = mpg) +
-  geom_bar(mapping = aes(x = class))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># these two charts are identical</span>
+<span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) +
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> class))
 
-ggplot(data = mpg) +
-  stat_count(mapping = aes(x = class))</code></pre>
+<span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) +
+<span class="st">  </span><span class="kw">stat_count</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> class))</code></pre></div>
 </div>
 <div id="position-adjustments" class="section level4">
 <h4><span class="header-section-number">13.3.1.2</span> Position Adjustments</h4>
 <p>In addition to a default statistical transformation, each <code>geom</code> also has a default <strong>position adjustment</strong> which specifies a set of “rules” as to how different components should be positioned relative to each other. This position is noticeable in a <code>geom_bar</code> if you map a different variable to the color visual channel:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># bar chart of milage, colored by engine type</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># bar chart of mileage, colored by engine type</span>
 <span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) +
-<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> hwy, <span class="dt">fill=</span>class))  <span class="co"># fill color, not outline color</span></code></pre></div>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> hwy, <span class="dt">fill =</span> class))  <span class="co"># fill color, not outline color</span></code></pre></div>
 <p><img src="img/ggplot2/stacked_bar-1.png" width="576" /></p>
 <p>The <code>geom_bar</code> by default uses a position adjustment of <code>&quot;stack&quot;</code>, which makes each “bar” a height appropriate to its value and <em>stacks</em> them on top of each other. You can use the <strong><code>position</code></strong> argument to specify what position adjustment rules to follow:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a filled bar chart (fill the vertical height)</span>
 <span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) +
-<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> hwy, <span class="dt">fill=</span>drv), <span class="dt">position=</span><span class="st">&quot;fill&quot;</span>)
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> hwy, <span class="dt">fill =</span> drv), <span class="dt">position =</span> <span class="st">&quot;fill&quot;</span>)
 
 <span class="co"># a dodged (group) bar chart -- values next to each other</span>
 <span class="co"># (not great dodging demos in this data set)</span>
 <span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) +
-<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> hwy, <span class="dt">fill=</span>drv), <span class="dt">position=</span><span class="st">&quot;dodge&quot;</span>)</code></pre></div>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> hwy, <span class="dt">fill =</span> drv), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</code></pre></div>
 <p><img src="img/ggplot2/position_examples-1.png" width="380pt" /><img src="img/ggplot2/position_examples-2.png" width="380pt" /></p>
 <p>Check the documentation for each particular <code>geom</code> to learn more about its possible position adjustments.</p>
 </div>
@@ -532,6 +532,7 @@ ggplot(data = mpg) +
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># color the data by engine type</span>
 <span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) +
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">color =</span> class))</code></pre></div>
+<p><img src="img/ggplot2/unnamed-chunk-9-1.png" width="576" /></p>
 <p><code>ggplot</code> automatically adds a <strong>scale</strong> for each mapping to the plot:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># same as above, with explicit scales</span>
 <span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) +
@@ -541,7 +542,7 @@ ggplot(data = mpg) +
 <span class="st">  </span><span class="kw">scale_colour_discrete</span>()</code></pre></div>
 <p>Each scale can be represented by a function with the following name: <code>scale_</code>, followed by the name of the aesthetic property, followed by an <code>_</code> and the name of the scale. A <code>continuous</code> scale will handle things like numeric data (where there is a <em>continuous set</em> of numbers), whereas a <code>discrete</code> scale will handle things like colors (since there is a small list of <em>distinct</em> colors).</p>
 <p>While the default scales will work fine, it is possible to explicitly add different scales to replace the defaults. For example, you can use a scale to change the direction of an axis:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># milage relationship, ordered in reverse</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># mileage relationship, ordered in reverse</span>
 <span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) +
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> cty, <span class="dt">y =</span> hwy)) +
 <span class="st">  </span><span class="kw">scale_x_reverse</span>()</code></pre></div>

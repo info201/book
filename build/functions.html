@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2017-12-20">
+<meta name="date" content="2018-01-06">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -220,7 +220,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.1" data-path="lists.html"><a href="lists.html#what-is-a-list"><i class="fa fa-check"></i><b>8.1</b> What is a List?</a><ul>
 <li class="chapter" data-level="8.1.1" data-path="lists.html"><a href="lists.html#creating-lists"><i class="fa fa-check"></i><b>8.1.1</b> Creating Lists</a></li>
 <li class="chapter" data-level="8.1.2" data-path="lists.html"><a href="lists.html#accessing-lists"><i class="fa fa-check"></i><b>8.1.2</b> Accessing Lists</a></li>
-<li class="chapter" data-level="8.1.3" data-path="lists.html"><a href="lists.html#list-indicies"><i class="fa fa-check"></i><b>8.1.3</b> List Indicies</a></li>
+<li class="chapter" data-level="8.1.3" data-path="lists.html"><a href="lists.html#list-indices"><i class="fa fa-check"></i><b>8.1.3</b> List Indices</a></li>
 <li class="chapter" data-level="8.1.4" data-path="lists.html"><a href="lists.html#modifying-lists"><i class="fa fa-check"></i><b>8.1.4</b> Modifying Lists</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="lists.html"><a href="lists.html#the-lapply-function"><i class="fa fa-check"></i><b>8.2</b> The <code>lapply()</code> Function</a></li>
@@ -248,7 +248,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.2.5" data-path="dplyr.html"><a href="dplyr.html#summarize"><i class="fa fa-check"></i><b>10.2.5</b> Summarize</a></li>
 <li class="chapter" data-level="10.2.6" data-path="dplyr.html"><a href="dplyr.html#distinct"><i class="fa fa-check"></i><b>10.2.6</b> Distinct</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="dplyr.html"><a href="dplyr.html#multple-operations"><i class="fa fa-check"></i><b>10.3</b> Multple Operations</a><ul>
+<li class="chapter" data-level="10.3" data-path="dplyr.html"><a href="dplyr.html#multiple-operations"><i class="fa fa-check"></i><b>10.3</b> Multiple Operations</a><ul>
 <li class="chapter" data-level="10.3.1" data-path="dplyr.html"><a href="dplyr.html#the-pipe-operator"><i class="fa fa-check"></i><b>10.3.1</b> The Pipe Operator</a></li>
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="dplyr.html"><a href="dplyr.html#grouped-operations"><i class="fa fa-check"></i><b>10.4</b> Grouped Operations</a></li>
@@ -528,7 +528,7 @@ my.name &lt;-<span class="st"> </span><span class="kw">MakeFullName</span>(<span
 OTHERWISE
   do some other lines of code</code></pre>
 <p>In R, we write these conditional statements using the keywords <strong><code>if</code></strong> and <strong><code>else</code></strong> and the following syntax:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if(condition){
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if (condition) {
   <span class="co"># lines of code to run if condition is TRUE</span>
 } else {
   <span class="co"># lines of code to run if condition is FALSE</span>
@@ -536,27 +536,27 @@ OTHERWISE
 <p>(Note that the the <code>else</code> needs to be on the same line as the closing <code>}</code> of the <code>if</code> block. It is also possible to omit the <code>else</code> and its block).</p>
 <p>The <code>condition</code> can be any variable or expression that resolves to a logical value (<code>TRUE</code> or <code>FALSE</code>). Thus both of the below conditional statements are valid:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">porridge.temp &lt;-<span class="st"> </span><span class="dv">115</span>  <span class="co"># in degrees F</span>
-if(porridge.temp &gt;<span class="st"> </span><span class="dv">120</span>) {
+if (porridge.temp &gt;<span class="st"> </span><span class="dv">120</span>) {
   <span class="kw">print</span>(<span class="st">&quot;This porridge is too hot!&quot;</span>)
 }
 
 too.cold &lt;-<span class="st"> </span>porridge.temp &lt;<span class="st"> </span><span class="dv">70</span>
-if(too.cold) {  <span class="co"># a logical value</span>
+if (too.cold) {  <span class="co"># a logical value</span>
   <span class="kw">print</span>(<span class="st">&quot;This porridge is too cold!&quot;</span>)
 }</code></pre></div>
 <p>Note, we can extend the set of conditions evaluated using an <code>else if</code> statement. For example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Function to determine if you should eat porridge</span>
 FoodTempTest &lt;-<span class="st"> </span>function(temp) {
-  if(temp &gt;<span class="st"> </span><span class="dv">120</span>) {
+  if (temp &gt;<span class="st"> </span><span class="dv">120</span>) {
     status &lt;-<span class="st"> &quot;This porridge is too hot!&quot;</span>
-  } else if(temp &lt;<span class="st"> </span><span class="dv">70</span>) {
+  } else if (temp &lt;<span class="st"> </span><span class="dv">70</span>) {
     status &lt;-<span class="st"> &quot;This porridge is too cold!&quot;</span>
   } else {
     status &lt;-<span class="st"> &quot;This porridge is just right!&quot;</span>
   }
   <span class="kw">return</span>(status)
 }
-<span class="co"># Use funciton on different temperatures</span>
+<span class="co"># Use function on different temperatures</span>
 <span class="kw">FoodTempTest</span>(<span class="dv">119</span>)  <span class="co"># &quot;This porridge is just right!&quot;</span>
 <span class="kw">FoodTempTest</span>(<span class="dv">60</span>)   <span class="co"># &quot;This porridge is too cold!&quot;</span>
 <span class="kw">FoodTempTest</span>(<span class="dv">150</span>)  <span class="co"># &quot;This porridge is too hot!&quot;</span></code></pre></div>

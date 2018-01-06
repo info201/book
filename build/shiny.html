@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2017-12-20">
+<meta name="date" content="2018-01-06">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -220,7 +220,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.1" data-path="lists.html"><a href="lists.html#what-is-a-list"><i class="fa fa-check"></i><b>8.1</b> What is a List?</a><ul>
 <li class="chapter" data-level="8.1.1" data-path="lists.html"><a href="lists.html#creating-lists"><i class="fa fa-check"></i><b>8.1.1</b> Creating Lists</a></li>
 <li class="chapter" data-level="8.1.2" data-path="lists.html"><a href="lists.html#accessing-lists"><i class="fa fa-check"></i><b>8.1.2</b> Accessing Lists</a></li>
-<li class="chapter" data-level="8.1.3" data-path="lists.html"><a href="lists.html#list-indicies"><i class="fa fa-check"></i><b>8.1.3</b> List Indicies</a></li>
+<li class="chapter" data-level="8.1.3" data-path="lists.html"><a href="lists.html#list-indices"><i class="fa fa-check"></i><b>8.1.3</b> List Indices</a></li>
 <li class="chapter" data-level="8.1.4" data-path="lists.html"><a href="lists.html#modifying-lists"><i class="fa fa-check"></i><b>8.1.4</b> Modifying Lists</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="lists.html"><a href="lists.html#the-lapply-function"><i class="fa fa-check"></i><b>8.2</b> The <code>lapply()</code> Function</a></li>
@@ -248,7 +248,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.2.5" data-path="dplyr.html"><a href="dplyr.html#summarize"><i class="fa fa-check"></i><b>10.2.5</b> Summarize</a></li>
 <li class="chapter" data-level="10.2.6" data-path="dplyr.html"><a href="dplyr.html#distinct"><i class="fa fa-check"></i><b>10.2.6</b> Distinct</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="dplyr.html"><a href="dplyr.html#multple-operations"><i class="fa fa-check"></i><b>10.3</b> Multple Operations</a><ul>
+<li class="chapter" data-level="10.3" data-path="dplyr.html"><a href="dplyr.html#multiple-operations"><i class="fa fa-check"></i><b>10.3</b> Multiple Operations</a><ul>
 <li class="chapter" data-level="10.3.1" data-path="dplyr.html"><a href="dplyr.html#the-pipe-operator"><i class="fa fa-check"></i><b>10.3.1</b> The Pipe Operator</a></li>
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="dplyr.html"><a href="dplyr.html#grouped-operations"><i class="fa fa-check"></i><b>10.4</b> Grouped Operations</a></li>
@@ -381,11 +381,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Adding <strong>interactivity</strong> to a data report is a highly effective way of communicating that information and enabling users to explore a data set. In this chapter, you will learn about the <strong>Shiny</strong> framework for building interactive applications in R. Shiny provides a structure for communicating between a user-interface (i.e., a web-browser) and an R session, allowing users to interactively change the “code” that is run and the data that are output. This not only enables developers to create <strong>interactive graphics</strong>, but provides a way for users to interact directly with an R session (without writing any code!).</p>
 <div id="creating-shiny-apps" class="section level2">
 <h2><span class="header-section-number">16.1</span> Creating Shiny Apps</h2>
-<p>Shiny is a <strong>web application framework for R</strong>. As opposed to a simple (static) web page like you’ve created with R Markdown, a <em>web application</em> is an interactive, dynamic web page—the user can click on buttons, check boxes, or input text in order to change the presentation of the data. Shiny is a <em>framework</em> in it provides the “code” for producing and enabling this interaction, while you as the developer simply “fill in the blanks” by providing <em>variables</em> or <em>functions</em> that the provided code will utilize to create the interactive page.</p>
+<p>Shiny is a <strong>web application framework for R</strong>. As opposed to a simple (static) web page like you’ve created with R Markdown, a <em>web application</em> is an interactive, dynamic web page—the user can click on buttons, check boxes, or input text in order to change the presentation of the data. Shiny is a <em>framework</em> in that it provides the “code” for producing and enabling this interaction, while you as the developer simply “fill in the blanks” by providing <em>variables</em> or <em>functions</em> that the provided code will utilize to create the interactive page.</p>
 <p><code>shiny</code> is another external package (like <code>dplyr</code> and <code>ggplot2</code>), so you will need to install and load it in order to use it:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;shiny&quot;</span>)  <span class="co"># once per machine</span>
 <span class="kw">library</span>(<span class="st">&quot;shiny&quot;</span>)</code></pre></div>
-<p>This will make all of the framework functions and variables you will need to worth with available.</p>
+<p>This will make all of the framework functions and variables you will need to work with available.</p>
 <div id="application-structure" class="section level3">
 <h3><span class="header-section-number">16.1.1</span> Application Structure</h3>
 <p>Shiny applications are divided into two parts:</p>
@@ -491,7 +491,7 @@ Fun Fact: much of Shiny’s styling and layout structure is based on the <a href
 <li><code>a(text, href='url')</code> for creating hyperlinks (anchors), the same as <code>[text](url)</code> in Markdown</li>
 <li><code>img(text, src='url')</code> for including images, the same as <code>![text](url)</code> in Markdown</li>
 </ul>
-<p>There are may other methods as well, see <a href="http://shiny.rstudio.com/tutorial/lesson2/">this tutorial lesson</a> for a list. If you are <a href="https://info343-au16.github.io/#/tutorials/html">familiar with HTML</a>, then these methods will seem familiar; you can also write content in HTML directly using the <code>tag()</code> content function.</p>
+<p>There are many other methods as well, see <a href="http://shiny.rstudio.com/tutorial/lesson2/">this tutorial lesson</a> for a list. If you are <a href="https://info343-au16.github.io/#/tutorials/html">familiar with HTML</a>, then these methods will seem familiar; you can also write content in HTML directly using the <code>tag()</code> content function.</p>
 <!-- TODO: Add HTML tutorial! -->
 <div id="control-widgets-and-reactive-outputs" class="section level4">
 <h4><span class="header-section-number">16.1.2.1</span> Control Widgets and Reactive Outputs</h4>
@@ -536,7 +536,7 @@ Fun Fact: much of Shiny’s styling and layout structure is based on the <a href
 <div id="the-server" class="section level3">
 <h3><span class="header-section-number">16.1.3</span> The Server</h3>
 <p>The Server defines how the data input by the user will be used to create the output displayed by the app—that is, how the <em>control widgets</em> and <em>reactive outputs</em> will be connected. You create a Server by <em>defining a new function</em> (not calling a provided one):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">server &lt;-<span class="st"> </span>function(input, output){
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">server &lt;-<span class="st"> </span>function(input, output) {
   <span class="co"># assign values to `output` here</span>
 }</code></pre></div>
 <p>Note that this is <em>just a normal function</em> that happens two take <strong>lists</strong> as arguments. That means you can include the same kinds of code as you normally would—though that code will only be run once (when the application is first started) unless defined as part of a reactive expression.</p>
@@ -570,14 +570,14 @@ This technically defines a <em>closure</em>, which is a programming concept used
   <span class="co"># render a histogram plot</span>
   output$hist &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({
     uniform.nums &lt;-<span class="st"> </span><span class="kw">runif</span>(input$num, <span class="dv">1</span>, <span class="dv">10</span>)  <span class="co"># random nums between 1 and 10</span>
-    <span class="kw">return</span>( <span class="kw">hist</span>(uniform.nums) )  <span class="co"># built-in plotting for simplicity</span>
+    <span class="kw">return</span>(<span class="kw">hist</span>(uniform.nums))  <span class="co"># built-in plotting for simplicity</span>
   })
 
   <span class="co"># render the counts</span>
   output$counts &lt;-<span class="st"> </span><span class="kw">renderPrint</span>({
     uniform.nums &lt;-<span class="st"> </span><span class="kw">runif</span>(input$num, <span class="dv">1</span>, <span class="dv">10</span>)  <span class="co"># random nums between 1 and 10</span>
     counts &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">cut</span>(uniform.nums, <span class="dt">breaks=</span><span class="dv">1</span>:<span class="dv">10</span>))  <span class="co"># factor</span>
-    <span class="kw">return</span>( <span class="kw">summary</span>(counts) )  <span class="co"># simple vector of counts</span>
+    <span class="kw">return</span>(<span class="kw">summary</span>(counts))  <span class="co"># simple vector of counts</span>
   })
 }</code></pre></div>
 <p>If you look at the above example though, you’ll notice that each render function produces a set of random numbers… which means each will produce a <em>different</em> set of numbers! The histogram and the table won’t match!</p>
@@ -585,18 +585,18 @@ This technically defines a <em>closure</em>, which is a programming concept used
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">server &lt;-<span class="st"> </span>function(input, output) {
   <span class="co"># define a reactive variable</span>
   uniform.nums &lt;-<span class="st"> </span><span class="kw">reactive</span>({
-    <span class="kw">return</span>( <span class="kw">runif</span>(input$num, <span class="dv">1</span>, <span class="dv">10</span>) )  <span class="co"># just like for a render function</span>
+    <span class="kw">return</span>(<span class="kw">runif</span>(input$num, <span class="dv">1</span>, <span class="dv">10</span>))  <span class="co"># just like for a render function</span>
   })
 
   <span class="co"># render a histogram plot</span>
   output$hist &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({
-    <span class="kw">return</span>( <span class="kw">hist</span>(<span class="kw">uniform.nums</span>()) )  <span class="co"># call the reactive variable AS A FUNCTION</span>
+    <span class="kw">return</span>(<span class="kw">hist</span>(<span class="kw">uniform.nums</span>()))  <span class="co"># call the reactive variable AS A FUNCTION</span>
   })
 
   <span class="co"># render the counts</span>
   output$counts &lt;-<span class="st"> </span><span class="kw">renderPrint</span>({
     counts &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">cut</span>(<span class="kw">uniform.nums</span>(), <span class="dt">breaks=</span><span class="dv">1</span>:<span class="dv">10</span>))  <span class="co"># call the reactive variable AS A FUNCTION</span>
-    <span class="kw">return</span>( <span class="kw">summary</span>(counts) )
+    <span class="kw">return</span>(<span class="kw">summary</span>(counts))
   })
 }</code></pre></div>
 <p>The <code>reactive()</code> function lets you define a single “variable” that is a <em>reactive function</em> which can be called from within the render functions. Importantly, the value returned by this function (the <code>uniform.nums()</code>) only changes <strong>when a referenced <code>input</code> changes</strong>. Thus as long as <code>input$num</code> stays the same, <code>uniform.nums()</code> will return the same value.</p>
@@ -610,7 +610,7 @@ This technically defines a <em>closure</em>, which is a programming concept used
 <p>While there are a few different ways of “hosting” Shiny Apps, in this course you’ll use the simplest one: hosting through <a href="https://www.shinyapps.io"><strong>shinyapps.io</strong></a>. shinyapps.io is a platform for hosting and running Shiny Apps; while large applications cost money, anyone can deploy a simple app (like the ones you’ll create in this course) for free.</p>
 <p>In order to host your app on shinyapps.io, you’ll need to <a href="https://www.shinyapps.io/admin/#/signup">create a free account</a>. Note that you can sign up with GitHub or your Google/UW account. Follow the site’s instructions to</p>
 <ol style="list-style-type: decimal">
-<li>Select an account name (use something professional, like you used when siging up with GitHub)</li>
+<li>Select an account name (use something professional, like you used when signing up with GitHub)</li>
 <li>Install the required <code>rsconnect</code> package (may be included with RStudio)</li>
 <li><p>Set your authorization token (“password”). Just click the green “Copy to Clipboard” button, and then paste that into the <strong>Console</strong> in RStudio. You should only need to do this once.</p>
 <p class="alert alert-warning">

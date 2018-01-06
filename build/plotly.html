@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2017-12-20">
+<meta name="date" content="2018-01-06">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -220,7 +220,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.1" data-path="lists.html"><a href="lists.html#what-is-a-list"><i class="fa fa-check"></i><b>8.1</b> What is a List?</a><ul>
 <li class="chapter" data-level="8.1.1" data-path="lists.html"><a href="lists.html#creating-lists"><i class="fa fa-check"></i><b>8.1.1</b> Creating Lists</a></li>
 <li class="chapter" data-level="8.1.2" data-path="lists.html"><a href="lists.html#accessing-lists"><i class="fa fa-check"></i><b>8.1.2</b> Accessing Lists</a></li>
-<li class="chapter" data-level="8.1.3" data-path="lists.html"><a href="lists.html#list-indicies"><i class="fa fa-check"></i><b>8.1.3</b> List Indicies</a></li>
+<li class="chapter" data-level="8.1.3" data-path="lists.html"><a href="lists.html#list-indices"><i class="fa fa-check"></i><b>8.1.3</b> List Indices</a></li>
 <li class="chapter" data-level="8.1.4" data-path="lists.html"><a href="lists.html#modifying-lists"><i class="fa fa-check"></i><b>8.1.4</b> Modifying Lists</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="lists.html"><a href="lists.html#the-lapply-function"><i class="fa fa-check"></i><b>8.2</b> The <code>lapply()</code> Function</a></li>
@@ -248,7 +248,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.2.5" data-path="dplyr.html"><a href="dplyr.html#summarize"><i class="fa fa-check"></i><b>10.2.5</b> Summarize</a></li>
 <li class="chapter" data-level="10.2.6" data-path="dplyr.html"><a href="dplyr.html#distinct"><i class="fa fa-check"></i><b>10.2.6</b> Distinct</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="dplyr.html"><a href="dplyr.html#multple-operations"><i class="fa fa-check"></i><b>10.3</b> Multple Operations</a><ul>
+<li class="chapter" data-level="10.3" data-path="dplyr.html"><a href="dplyr.html#multiple-operations"><i class="fa fa-check"></i><b>10.3</b> Multiple Operations</a><ul>
 <li class="chapter" data-level="10.3.1" data-path="dplyr.html"><a href="dplyr.html#the-pipe-operator"><i class="fa fa-check"></i><b>10.3.1</b> The Pipe Operator</a></li>
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="dplyr.html"><a href="dplyr.html#grouped-operations"><i class="fa fa-check"></i><b>10.4</b> Grouped Operations</a></li>
@@ -398,8 +398,8 @@ Note: sometimes RStudio fails to show your plotly graph in a website preview whe
 <h2><span class="header-section-number">B.2</span> Basic Charts</h2>
 <p>One of the best ways to start building charts with Plotly is to take a look at a <a href="https://plot.ly/r/#basic-charts">basic example</a> of your choice, and explore the syntax. In general, to build a Plotly object (graph) you’ll pass a <strong>dataframe</strong> into the <code>plot_ly</code> function, then <strong>adjust the parameters</strong> to specify what you want to visualize. For example, here is the basic example of a scatterplot from the documentation:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># Make a scatterplot of the iris data</span>
-<span class="kw">plot_ly</span>(data = iris, x = ~Sepal.Length, y = ~Petal.Length, mode=<span class="st">&quot;markers&quot;</span>, type=<span class="st">&quot;scatter&quot;</span>)</code></pre></div>
-<p>The approach seems pretty straightforward – in fact, if you exclude <code>type = &quot;scatter&quot;</code> and <code>mode=&quot;markers&quot;</code>, Plotly will make an educated guess about what type of plot you want (and in this case, it will in fact create a scatterplot!). The only syntax that looks a bit strange is the tilde character (<code>~</code>). In R, the tilde designates a variable as a <strong>formula</strong>, which was a design choice of the developers of the API.</p>
+<span class="kw">plot_ly</span>(data = iris, x = ~Sepal.Length, y = ~Petal.Length, mode = <span class="st">&quot;markers&quot;</span>, type = <span class="st">&quot;scatter&quot;</span>)</code></pre></div>
+<p>The approach seems pretty straightforward – in fact, if you exclude <code>type = &quot;scatter&quot;</code> and <code>mode = &quot;markers&quot;</code>, Plotly will make an educated guess about what type of plot you want (and in this case, it will in fact create a scatterplot!). The only syntax that looks a bit strange is the tilde character (<code>~</code>). In R, the tilde designates a variable as a <strong>formula</strong>, which was a design choice of the developers of the API.</p>
 </div>
 <div id="layout" class="section level2">
 <h2><span class="header-section-number">B.3</span> Layout</h2>
@@ -407,7 +407,7 @@ Note: sometimes RStudio fails to show your plotly graph in a website preview whe
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># From documentation</span>
 
 <span class="co"># Create a plotly object `p`</span>
-p &lt;-<span class="st"> </span><span class="kw">plot_ly</span>(<span class="dt">data =</span> iris, <span class="dt">x =</span> ~Sepal.Length, <span class="dt">y =</span> ~Petal.Length, <span class="dt">type=</span><span class="st">&quot;scatter&quot;</span>, <span class="dt">mode=</span><span class="st">&quot;markers&quot;</span>,
+p &lt;-<span class="st"> </span><span class="kw">plot_ly</span>(<span class="dt">data =</span> iris, <span class="dt">x =</span> ~Sepal.Length, <span class="dt">y =</span> ~Petal.Length, <span class="dt">type =</span> <span class="st">&quot;scatter&quot;</span>, <span class="dt">mode =</span> <span class="st">&quot;markers&quot;</span>,
         <span class="dt">marker =</span> <span class="kw">list</span>(<span class="dt">size =</span> <span class="dv">10</span>,
                        <span class="dt">color =</span> <span class="st">&#39;rgba(255, 182, 193, .9)&#39;</span>,
                        <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">color =</span> <span class="st">&#39;rgba(152, 0, 0, .8)&#39;</span>,
@@ -429,9 +429,9 @@ p</code></pre></div>
 <span class="co"># Create data</span>
 d &lt;-<span class="st"> </span>diamonds[<span class="kw">sample</span>(<span class="kw">nrow</span>(diamonds), <span class="dv">1000</span>), ]
 
-<span class="co"># Create plot, speficying hover text</span>
+<span class="co"># Create plot, specifying hover text</span>
 p &lt;-<span class="st"> </span><span class="kw">plot_ly</span>(
-  d, <span class="dt">x =</span> ~carat, <span class="dt">y =</span> ~price, <span class="dt">mode=</span><span class="st">&quot;markers&quot;</span>, <span class="dt">type=</span><span class="st">&quot;scatter&quot;</span>,
+  d, <span class="dt">x =</span> ~carat, <span class="dt">y =</span> ~price, <span class="dt">mode =</span> <span class="st">&quot;markers&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;scatter&quot;</span>,
   <span class="co"># Hover text:</span>
   <span class="dt">text =</span> ~<span class="kw">paste0</span>(<span class="st">&quot;Price:$&quot;</span>, price, <span class="st">&#39;&lt;br&gt;Cut: &#39;</span>, cut),
   <span class="dt">color =</span> ~carat, <span class="dt">size =</span> ~carat

@@ -13,7 +13,7 @@ also want to set up your own server.
 ## Server Setup
 
 There are many ways one can set up a distant machine.  It may be
-windows or linux (or any of the other unixes).  It may or may not have
+Windows or linux (or any of the other unixes).  It may or may not have
 graphical user interface (GUI) installed or otherwise accessible (many
 unix programs can display nice windows on your laptop while still
 running on the server).  It may or may not have RStudio made
@@ -21,7 +21,7 @@ available over web browser.  Here we discuss the most barebone setup
 with no access to GUI and no web access to RStudio.
 
 This is a fairly common setup, for instance when dealing with
-sensitive data, with in organizations where computer skills and
+sensitive data, in organizations where computer skills and
 sysadmin's time is limited, or when you rent your own tiny but cheap
 server. 
 
@@ -84,7 +84,7 @@ similar to that of `cp`:
 scp user1@host1:file1 user2@host2:file2
 ```
 This copies "file1" from the server "host1" under username "user1" to
-the other server.  Passwords are asked as as needed.  the "host" part
+the other server.  Passwords are asked for as needed.  The "host" part
 of the file must be understood as the full hostname including dots,
 such as "hyak.washington.edu".  "file" is the full path to file,
 relative to home directory, such as `Desktop/info201/myscript.R`.
@@ -97,9 +97,9 @@ scp Desktop/info201/myscript.R myusername@server.ischool.edu:scripts/
 ``` 
 (here we assume that the working directory of your laptop is the one above
 `Desktop`.) 
-Note that exactly as `cp`, you may omit the destination file name
+Note that exactly as with `cp`, you may omit the destination file name
 if the destination is a directory: it simply copies the file into that
-directory while preserving it's name.
+directory while preserving its name.
 
 After running your script, you may want to copy your results back to
 your laptop.  For instance, if you need to get the file
@@ -117,7 +117,7 @@ into the `info201` folder on your Desktop.
 like `scp`, just it is smart enough to understand which files
 are updated, and copy the updated parts of the files only.  It is the
 recommended way for working with small updates in large files.
-It's syntax is rather similar to that of `scp`.  To copy `file` to the
+Its syntax is rather similar to that of `scp`.  To copy `file` to the
 remote server as `file2` (in the home directory), we do
 ```
 rsync file user2@host2:file2
@@ -128,7 +128,7 @@ current working directory):
 rsync file user1@host1:file1 file
 ```
 I also recommend to
-explore some of it's many options, for instance `-v` (verbose) reports
+explore some of its many options, for instance `-v` (verbose) reports
 what it's doing.
 The example above with your code and figure might now look like that:
 ```bash
@@ -160,13 +160,13 @@ front-ends.  For instance, "WinSCP" is a nice Norton Commander-Style
 frontend for copying files between the local and a remote machine over scp
 for Windows.  It provides a split window representing files on the
 local and the remote end, and one can move, copy-and-paste and interact
-with mouse on these panes.  On Mac you may take a look at
+with the mouse on these panes.  On Mac you may take a look at
 "Cyberduck". 
 
 
 ### Remote Editing
 
-Besides copying your files, many text editors also offer "remote
+Besides copying your files, many text editors also offer a "remote
 editing" option.  From the user perspective this looks as if directly
 working on the remote server's hard disk.  Under the hood, the files
 are copied back and forth with scp, rsync or one of their friends.
@@ -194,16 +194,16 @@ here you have no RStudio to handrail you through the session.  Now all loading,
 saving, inspecting files, etc must be done through R commands.
 
 The first time you do it, R complains about
-non-writeable syste-wide library and proposes to install and create
+non-writeable system-wide library and proposes to install and create
 your personal libary.  You should answer "yes" to these prompts.  As
-linux systems typically compile the packages during installations, installation is slow and you see many messages (including warnings) in the
+Linux systems typically compile the packages during installations, installation is slow and you see many messages (including warnings) in the
 process.  But it works, given that the necessary system libraries are available.
 
 Now you can finally run your R code.  I strongly recommend to do it
 from the directory where you intend to run the project before starting
 R (`cd scripts` if you follow the example directory setup above).  There are two options: either start R
 interactively, or run it as a script.
-If do it from an interactive R session, you have to _source_ your script:
+If you do it from an interactive R session, you have to _source_ your script:
 ```R
 source("myscript.R")
 ```
@@ -214,10 +214,10 @@ re-run it again.  Note that you don't have to exit from the R session when
 copying the files between your laptop and the server.  Edit it, copy it over
 from your laptop (using `scp` or
 other tools), and just re-source the file from
-withing the R session.
+within the R session.
 
 Opening a separate R session may be useful for installing packages.
-For running your scripts, i recommend you to run it entirely from
+For running your scripts, I recommend you to run it entirely from
 command line, either as
 ```bash
 R CMD BATCH myscript.R
@@ -246,19 +246,19 @@ plot(1:10, rnorm(10))
 dev.off()
     # saves the image to disk and closes the file.
 ```
-afterwards you will have to copy the image file to your laptop for
+Afterwards you will have to copy the image file to your laptop for
 inspection, or addition in your final project report.
 
 
 
 ## Life on Server
 
-The servers operate in many ways as the command line
-on your own computer.  However, there is a number of differences.
+The servers operate the same in many ways as the command line
+on your own computer.  However, there are a number of differences.
 
 ### Be Social!
 
-While you laptop is yours, and you are free to exploit all it's
+While you laptop is yours, and you are free to exploit all its
 resources for your own good, this is not true for the server.  The server is a
 multiuser system, potentially doing good work for many people at the
 same time.  So

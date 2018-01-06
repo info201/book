@@ -12,7 +12,7 @@ So far, you've been using git to create a _linear sequence_ of commits: they are
 cat('![A linear sequence of commits, each with an SHA1 identifier.](img/git-branches/commit-sequence.gif "a commit sequence")')
 ```
 
-Each commit has a message associated with it (that you can see with `git log --online`), as well as a unique [SHA-1](https://en.wikipedia.org/wiki/SHA-1) hash (the random numbers and letters), which can be used to identify that commit as an "id number".
+Each commit has a message associated with it (that you can see with `git log --oneline`), as well as a unique [SHA-1](https://en.wikipedia.org/wiki/SHA-1) hash (the random numbers and letters), which can be used to identify that commit as an "id number".
 
 But you can also save commits in a _non-linear_ sequence. Perhaps you want to try something new and crazy without breaking code that you've already written. Or you want to work on two different features simultaneously (having separate commits for each). Or you want multiple people to work on the same code without stepping on each other's toes.
 
@@ -82,7 +82,7 @@ git merge [other_branch]
 
 This command will merge `other_branch` **into the current branch**. So if you want to end up with the "combined" version of your commits on a particular branch, you'll need to switch to (`checkout`) that branch before you run the merge.
 
-    - **IMPORTANT** If something goes wrong, don't panic and try to close your command-line! Come back to this book and look up how to fix the problem you've encounter (e.g., how to exit  _vim_). And if you're unsure why something isn't working with git, use **`git status`** to check the current status and for what steps to do next.
+- **IMPORTANT** If something goes wrong, don't panic and try to close your command-line! Come back to this book and look up how to fix the problem you've encountered (e.g., how to exit  _vim_). And if you're unsure why something isn't working with git, use **`git status`** to check the current status and for what steps to do next.
 
 - Note that the `rebase` command will perform a similar operation, but without creating a new "merge" commit&mdash;it simply takes the commits from one branch and attaches them to the end of the other. This effectively **changes history**, since it is no longer clear where the branching occurred. From an archival and academic view, you never want to "destroy history" and lose a record of changes that were made. History is important: don't screw with it! Thus we recommend you _avoid_ rebasing and stick with merging.
 

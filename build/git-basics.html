@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2017-12-20">
+<meta name="date" content="2018-01-06">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -220,7 +220,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.1" data-path="lists.html"><a href="lists.html#what-is-a-list"><i class="fa fa-check"></i><b>8.1</b> What is a List?</a><ul>
 <li class="chapter" data-level="8.1.1" data-path="lists.html"><a href="lists.html#creating-lists"><i class="fa fa-check"></i><b>8.1.1</b> Creating Lists</a></li>
 <li class="chapter" data-level="8.1.2" data-path="lists.html"><a href="lists.html#accessing-lists"><i class="fa fa-check"></i><b>8.1.2</b> Accessing Lists</a></li>
-<li class="chapter" data-level="8.1.3" data-path="lists.html"><a href="lists.html#list-indicies"><i class="fa fa-check"></i><b>8.1.3</b> List Indicies</a></li>
+<li class="chapter" data-level="8.1.3" data-path="lists.html"><a href="lists.html#list-indices"><i class="fa fa-check"></i><b>8.1.3</b> List Indices</a></li>
 <li class="chapter" data-level="8.1.4" data-path="lists.html"><a href="lists.html#modifying-lists"><i class="fa fa-check"></i><b>8.1.4</b> Modifying Lists</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="lists.html"><a href="lists.html#the-lapply-function"><i class="fa fa-check"></i><b>8.2</b> The <code>lapply()</code> Function</a></li>
@@ -248,7 +248,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.2.5" data-path="dplyr.html"><a href="dplyr.html#summarize"><i class="fa fa-check"></i><b>10.2.5</b> Summarize</a></li>
 <li class="chapter" data-level="10.2.6" data-path="dplyr.html"><a href="dplyr.html#distinct"><i class="fa fa-check"></i><b>10.2.6</b> Distinct</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="dplyr.html"><a href="dplyr.html#multple-operations"><i class="fa fa-check"></i><b>10.3</b> Multple Operations</a><ul>
+<li class="chapter" data-level="10.3" data-path="dplyr.html"><a href="dplyr.html#multiple-operations"><i class="fa fa-check"></i><b>10.3</b> Multiple Operations</a><ul>
 <li class="chapter" data-level="10.3.1" data-path="dplyr.html"><a href="dplyr.html#the-pipe-operator"><i class="fa fa-check"></i><b>10.3.1</b> The Pipe Operator</a></li>
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="dplyr.html"><a href="dplyr.html#grouped-operations"><i class="fa fa-check"></i><b>10.4</b> Grouped Operations</a></li>
@@ -391,7 +391,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Version control systems work a lot like Dropbox or Google Docs: they allow multiple people to work on the same files at the same time, to view and “roll back” to previous versions. However, systems like git different from Dropbox in a couple of key ways:</p>
 <ol style="list-style-type: decimal">
 <li><p>New versions of your files must be explicitly “committed” when they are ready. Git doesn’t save a new version every time you save a file to disk. That approach works fine for word-processing documents, but not for programming files. You typically need to write some code, save it, test it, debug, make some fixes, and test again before you’re ready to save a new version.</p></li>
-<li><p>For text files (which most all programming files are), git tracks changes <em>line-by-line</em>. This means it can easily and automatically combine changes from multiple people, and gives you very precise information what what lines of code changes.</p></li>
+<li><p>For text files (which almost all programming files are), git tracks changes <em>line-by-line</em>. This means it can easily and automatically combine changes from multiple people, and gives you very precise information what what lines of code changes.</p></li>
 </ol>
 <p>Like Dropbox and Google Docs, git can show you all previous versions of a file and can quickly rollback to one of those previous versions. This is often helpful in programming, especially if you embark on making a massive set of changes, only to discover part way through that those changes were a bad idea (we speak from experience here 😱 ).</p>
 <p>But where git really comes in handy is in team development. Almost all professional development work is done in teams, which involves multiple people working on the same set of files at the same time. Git helps the team coordinate all these changes, and provides a record so that anyone can see how a given file ended up the way it did.</p>
@@ -410,14 +410,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">4.1.2</span> Wait, but what is GitHub then?</h3>
 <p>Git was made to support completely decentralized development, where developers pull commits (sets of changes) from each other’s machines directly. But most professional teams take the approach of creating one central repository on a server that all developers push to and pull from. This repository contains the authoritative version the source code, and all deployments to the “rest of the world” are done by downloading from this centralized repository.</p>
 <p>Teams can setup their own servers to host these centralized repositories, but many choose to use a server maintained by someone else. The most popular of these in the open-source world is <a href="https://github.com/">GitHub</a>. In addition to hosting centralized repositories, GitHub also offers other team development features, such as issue tracking, wiki pages, and notifications. Public repositories on GitHub are free, but you have to pay for private ones.</p>
-<p>In short: GitHub is a site that provides as a central authority (or clearing-house) for multiple people collaborating with git. Git is what you use to do version control; Github is one possible place where repositories of code can be stored.</p>
+<p>In short: GitHub is a site that provides as a central authority (or clearing-house) for multiple people collaborating with git. Git is what you use to do version control; GithHb is one possible place where repositories of code can be stored.</p>
 </div>
 </div>
 <div id="installation-setup" class="section level2">
 <h2><span class="header-section-number">4.2</span> Installation &amp; Setup</h2>
 <p>This chapter will walk you through all the commands you’ll need to do version control with git. It is written as a “tutorial” to help you practice what you’re reading!</p>
 <p>If you haven’t yet, the first thing you’ll need to do is <a href="http://git-scm.com/downloads">install git</a>. You should already have done this as part of <a href="setup-machine.html#setup-machine">setting up your machine</a>.</p>
-<p>The first time you use <code>git</code> on your machine, you’ll need <a href="https://help.github.com/articles/set-up-git/">configure</a> the installation, telling git who you are so you can commit changes to a repository. You can do this by using the <code>git</code> command with the <code>config</code> option (e.g., running the <code>git config</code> command):</p>
+<p>The first time you use <code>git</code> on your machine, you’ll need <a href="https://help.github.com/articles/set-up-git/">to configure</a> the installation, telling git who you are so you can commit changes to a repository. You can do this by using the <code>git</code> command with the <code>config</code> option (ei.e, running the <code>git config</code> command):</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># enter your full name (without the dashes)</span>
 <span class="kw">git</span> config --global user.name <span class="st">&quot;your-full-name&quot;</span>
 
@@ -436,7 +436,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># run IN the directory of project</span>
 <span class="co"># you can easily check this with the &quot;pwd&quot; command</span>
 <span class="kw">git</span> init</code></pre></div>
-<p>This creates a new <em>hidden</em> folder called <code>.git</code> inside of the current directory (it’s hidden so you won’t see it in Finder, but if you use <code>ls -a</code> (list with the <strong>a</strong>ll option) you can see it there). This folder is the “database” of changes that you will make—git will store all changes you commit in this folder. The presence of the <code>.git</code> folder causes that directory to become a repository; we refer to the whole directory as the “repo” (an example of <a href="https://en.wikipedia.org/wiki/Synecdoche">synechdoche</a>).</p>
+<p>This creates a new <em>hidden</em> folder called <code>.git</code> inside of the current directory (it’s hidden so you won’t see it in Finder, but if you use <code>ls -a</code> (list with the <strong>a</strong>ll option) you can see it there). This folder is the “database” of changes that you will make—git will store all changes you commit in this folder. The presence of the <code>.git</code> folder causes that directory to become a repository; we refer to the whole directory as the “repo” (an example of <a href="https://en.wikipedia.org/wiki/Synecdoche">synechoche</a>).</p>
 <ul>
 <li><p>Note that because a repo is a single folder, you can have lots of different repos on your machine. Just make sure that they are in separate folders; folders that are <em>inside</em> a repo are considered part of that repo, and trying to treat them as a separate repository causes unpleasantness. <strong>Do not put one repo inside of another!</strong></p>
 <div class="figure">

@@ -59,7 +59,7 @@ $in.union
 
 Notice that the output lists each tag name prepended with a dollar sign (**`$`**) symbol, and then on the following line the vector that is the element itself. The `$` symbol is one of the easiest ways of accessing list elements (which can't be done with vectors).
 
-Because list elements are (usually) tagged, you can access them by their tag name rather than by the index number you used with vectors. You do this by using **dollar notation**: you refer to the element with a particular tag in a list by writing the name of the list, followed by a `$`, following by the element's tag:
+Because list elements are (usually) tagged, you can access them by their tag name rather than by the index number you used with vectors. You do this by using **dollar notation**: you refer to the element with a particular tag in a list by writing the name of the list, followed by a `$`, followed by the element's tag:
 
 ```r
 person <- list(first.name = "Ada", job = "Programmer", salary = 78000, in.union = TRUE)
@@ -98,7 +98,7 @@ names(person)  # [1] "first.name" "job"  "salary"  "in.union"
 
 - This is useful for understanding the structure of variables that may have come from other data sources.
 
-### List Indicies
+### List Indices
 Whether or not a list element has a tag, you can also access it by its numeric index (i.e., if it is the 1st, 2nd, etc. item in the list). You do this by using **double-bracket notation**: you refer to the element at a particular index of a list by writing the name of the list, followed by double square brackets (**`[[]]`**) that contain the index of interest:
 
 ```r
@@ -129,9 +129,9 @@ person[[4]]  # [1] TRUE
 ```
 
 #### Single vs. Double Brackets
-<p class="alert alert-warning">**Wach out!**: vectors use ___single___-bracket notation for accessing by index, but lists use ___double___-bracket notation for accessing by index!</p>
+<p class="alert alert-warning">**Watch out!**: vectors use ___single___-bracket notation for accessing by index, but lists use ___double___-bracket notation for accessing by index!</p>
 
-This is because the single-bracket syntax for vectors isn't actually selecting by index: rather it is **filtering** by whatever vector is inside the brackets (which may be just a single element: the index number to extract). In R, single brackets _always_ mean to filter the collection. So if you put single-brackets after a list, what you're actually doing is getting a filtered **sub-list** of the elements that have those indicies, just as single brackets on a vector return a subset of elements in that vector:
+This is because the single-bracket syntax for vectors isn't actually selecting by index: rather it is **filtering** by whatever vector is inside the brackets (which may be just a single element: the index number to extract). In R, single brackets _always_ mean to filter the collection. So if you put single-brackets after a list, what you're actually doing is getting a filtered **sub-list** of the elements that have those indices, just as single brackets on a vector return a subset of elements in that vector:
 
 ```r
 my.list <- list('A', 201, TRUE, 'rhinoceros')
@@ -227,7 +227,7 @@ You commonly use `lapply()` with your own custom functions which define what you
 ```r
 # A function that prepends "Hello" to any item
 Greet <- function(item) {
-  return( paste("Hello", item) )
+  return(paste("Hello", item))
 }
 
 # a list of people
