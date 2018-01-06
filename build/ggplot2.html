@@ -532,7 +532,6 @@ new.cars &lt;-<span class="st"> </span>mpg %&gt;%<span class="st"> </span>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># color the data by engine type</span>
 <span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) +
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">color =</span> class))</code></pre></div>
-<p><img src="img/ggplot2/unnamed-chunk-9-1.png" width="576" /></p>
 <p><code>ggplot</code> automatically adds a <strong>scale</strong> for each mapping to the plot:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># same as above, with explicit scales</span>
 <span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) +

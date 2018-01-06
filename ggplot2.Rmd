@@ -198,7 +198,7 @@ Check the documentation for each particular `geom` to learn more about its possi
 ### Styling with Scales
 Whenever you specify an **aesthetic mapping**, `ggplot` uses a particular **scale** to determine the _range of values_ that the data should map to. Thus, when you specify
 
-```{r}
+```r
 # color the data by engine type
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, color = class))
