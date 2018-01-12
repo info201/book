@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2018-01-06">
+<meta name="date" content="2018-01-12">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -209,11 +209,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="vectors.html"><a href="vectors.html#modifying-vectors"><i class="fa fa-check"></i><b>7.3</b> Modifying Vectors</a></li>
 <li class="chapter" data-level="7.4" data-path="vectors.html"><a href="vectors.html#vector-filtering"><i class="fa fa-check"></i><b>7.4</b> Vector Filtering</a></li>
-<li class="chapter" data-level="7.5" data-path="vectors.html"><a href="vectors.html#vectorized-operations"><i class="fa fa-check"></i><b>7.5</b> Vectorized Operations</a><ul>
-<li class="chapter" data-level="7.5.1" data-path="vectors.html"><a href="vectors.html#recycling"><i class="fa fa-check"></i><b>7.5.1</b> Recycling</a></li>
-<li class="chapter" data-level="7.5.2" data-path="vectors.html"><a href="vectors.html#everything-is-a-vector"><i class="fa fa-check"></i><b>7.5.2</b> Everything is a Vector!</a></li>
-<li class="chapter" data-level="7.5.3" data-path="vectors.html"><a href="vectors.html#vectorized-functions"><i class="fa fa-check"></i><b>7.5.3</b> Vectorized Functions</a></li>
-</ul></li>
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#resources-6"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="lists.html"><a href="lists.html"><i class="fa fa-check"></i><b>8</b> Lists</a><ul>
@@ -440,7 +435,7 @@ people &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">
 first.person &lt;-<span class="st"> </span>people[<span class="dv">1</span>]
 <span class="kw">print</span>(first.person)  <span class="co"># [1] &quot;Sarah&quot;</span>
 
-<span class="co"># access the elemnt at index 2</span>
+<span class="co"># access the element at index 2</span>
 second.person &lt;-<span class="st"> </span>people[<span class="dv">2</span>]
 <span class="kw">print</span>(second.person)  <span class="co"># [1] &quot;Amit&quot;</span>
 
@@ -539,98 +534,6 @@ shoe.sizes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="
 shoe.sizes[shoe.sizes &gt;<span class="st"> </span><span class="fl">6.5</span>]  <span class="co"># returns 7, 11, 8</span></code></pre></div>
 <p>This is a valid statement because the equality inside of the square-brackets (<code>shoe.sizes &gt; 6.5</code>) is evaluated first, producing the boolean vector which is then used to filter the <code>shoe.sizes</code> vector.</p>
 <p>This kind of filtering is crucial for being able to ask real world questions of datasets.</p>
-</div>
-<div id="vectorized-operations" class="section level2">
-<h2><span class="header-section-number">7.5</span> Vectorized Operations</h2>
-<p>When performing operations (such as mathematical operations <code>+</code>, <code>-</code>, etc.) on vectors, the operation is applied to vector elements <strong>member-wise</strong>. This means that each element from the first vector operand is modified by the element in the <strong>same corresponding position</strong> in the second vector operand, in order to determine the value <em>at the corresponding position</em> of the resulting vector. E.g., if you want to add (<code>+</code>) two vectors, then the value of the first element in the result will be the sum (<code>+</code>) of the first elements in each vector, the second element in the result will be the sum of the second elements in each vector, and so on.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create two vectors to combine</span>
-v1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)
-v2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)
-
-<span class="co"># Create arithmetic combinations of the vectors</span>
-v1 +<span class="st"> </span>v2  <span class="co"># returns 2, 3, 4, 5, 6</span>
-v1 -<span class="st"> </span>v2  <span class="co"># returns 0, -1, -2, -3, -4</span>
-v1 *<span class="st"> </span>v2  <span class="co"># returns 1, 2, 3, 4, 5</span>
-v1 /<span class="st"> </span>v2  <span class="co"># returns 1, .5, .33, .25, .2</span>
-
-<span class="co"># Add a vector to itself (why not?)</span>
-v3 &lt;-<span class="st"> </span>v2 +<span class="st"> </span>v2  <span class="co"># returns 2, 4, 6, 8, 10</span>
-
-<span class="co"># Perform more advanced arithmetic!</span>
-v4 &lt;-<span class="st"> </span>(v1 +<span class="st"> </span>v2) /<span class="st"> </span>(v1 +<span class="st"> </span>v1)  <span class="co"># returns 1, 1.5, 2, 2.5, 3</span></code></pre></div>
-<p>While we can’t apply mathematical operators (namely, <code>+</code>) to combine vectors of character strings, we can use functions like <code>paste()</code> to concatenate the elements of two vectors.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Green&#39;</span>, <span class="st">&#39;Blue&#39;</span>)
-spaces &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;sky&#39;</span>, <span class="st">&#39;grass&#39;</span>)
-
-<span class="co"># Note: look up the `paste0()` function if it&#39;s not familiar!</span>
-band &lt;-<span class="st"> </span><span class="kw">paste0</span>(colors, spaces)  <span class="co"># returns &quot;Greensky&quot;, &quot;Bluegrass&quot;</span>
-<span class="co"># http://greenskybluegrass.com/</span></code></pre></div>
-<p>Notice the same <em>member-wise</em> combination is occuring: the <code>paste0()</code> function is applied to the first elements, then to the second elements, and so on.</p>
-<div id="recycling" class="section level3">
-<h3><span class="header-section-number">7.5.1</span> Recycling</h3>
-<p><strong>Recycling</strong> refers to what R does in cases when there are an unequal number of elements in two operand vectors. If R is tasked with performing a vectorized operation with two vectors of unequal length, it will reuse (<em>recycle</em>) elements from the shorter vector. For example:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create vectors to combine</span>
-v1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>)
-v2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)
-
-<span class="co"># Add vectors</span>
-v3 &lt;-<span class="st"> </span>v1 +<span class="st"> </span>v2  <span class="co"># returns (2, 5, 6)</span></code></pre></div>
-<p>In this example, R first combined the elements in the first position of each vector (<code>1+1=2</code>). Then, it combined elements from the second position (<code>3+2=5</code>). When it got to the third element (which only was present in <code>v1</code>), it went back to the <strong>beginning</strong> of <code>v2</code> to select a value, yielding <code>5+1=6</code>.</p>
-<ul>
-<li><p>Recycling will occur no matter if the longer vector is the first or second operand.</p></li>
-<li><p>R may provide a warning message, notifying you that the vectors are of different length. This warning doesn’t necessarily mean you did something wrong, but you should pay attention to it because it may be indicative of an error (i.e., you thought the vectors were of the same length, but made a mistake somewhere).</p></li>
-</ul>
-</div>
-<div id="everything-is-a-vector" class="section level3">
-<h3><span class="header-section-number">7.5.2</span> Everything is a Vector!</h3>
-<p>What happens if you try to add a vector and a “regular” single value (a <strong>scalar</strong>)?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># create vector of numbers 1 to 5</span>
-v1 &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">5</span>
-result &lt;-<span class="st"> </span>v1 +<span class="st"> </span><span class="dv">4</span>  <span class="co">#add scalar to vector</span>
-<span class="kw">print</span>(result)  <span class="co"># [1] 5 6 7 8 9</span></code></pre></div>
-<p>As you can see (and probably expected), the operation added <code>4</code> to every element in the vector.</p>
-<p>The reason this sensible behavior occurs is because, in truth, <strong>everything in R is a vector</strong>. Even when you thought you were creating a single value (a scalar), you were actually just creating a vector with a single element (length 1). When you create a variable storing the number <code>7</code> (with <code>x &lt;- 7</code>), R creates a vector of length 1 with the number <code>7</code> as that single element.</p>
-<ul>
-<li><p>This is why R prints the <code>[1]</code> in front of all results: it’s telling you that it’s showing a vector (which happens to have 1 element) starting at element number 1.</p></li>
-<li><p>This is also why you can’t use the <code>length()</code> function to get the length of a character string; it just returns the length of the array containing that string (<code>1</code>). Instead, use the <code>nchar()</code> function to get the number of characters in a character string.</p></li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a vector of length 1 in a variable x</span>
-x &lt;-<span class="st"> </span><span class="dv">7</span>  <span class="co"># equivalent to `x &lt;- c(7)`</span>
-
-<span class="co"># Print out x: R states the vector index (1) in the console</span>
-<span class="kw">print</span>(x)  <span class="co"># [1] 7</span></code></pre></div>
-<p>Thus when you add a “scalar” such as <code>4</code> to a vector, what you’re really doing is adding a vector with a single element <code>4</code>. As such the same <em>recycling</em> principle applies, and that single element is “recycled” and applied to each element of the first operand.</p>
-</div>
-<div id="vectorized-functions" class="section level3">
-<h3><span class="header-section-number">7.5.3</span> Vectorized Functions</h3>
-<blockquote>
-<p><em>Vectors In, Vector Out</em></p>
-</blockquote>
-<p>Because <em>everything is a vector</em>, it means that pretty much every function you’ve used so far has actually applied to vectors, not just to single values. These are referred to as <strong>vectorized functions</strong>, and will run significantly faster than non-vector approaches. You’ll find that functions work the same way for vectors as they do for single values, because single values are just instances of vectors!</p>
-<ul>
-<li><p><em>Fun fact:</em> The mathematical operators (e.g., <code>+</code>) are actually functions in R that take 2 arguments (the operands). The mathematical notation we’re used to using is just a shortcut.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># these two lines of code are the same:</span>
-x &lt;-<span class="st"> </span><span class="dv">2</span> +<span class="st"> </span><span class="dv">3</span>  <span class="co"># add 2 and 3</span>
-x &lt;-<span class="st"> &#39;+&#39;</span>(<span class="dv">2</span>, <span class="dv">3</span>)  <span class="co"># add 2 and 3</span></code></pre></div></li>
-</ul>
-<p>This means that you can use any function on a vector, and it will act in the same <strong>vectorized</strong>, <em>member-wise</em> manner: the function will result in a new vector where the function’s transformation has been applied to each individual element in order.</p>
-<p>For example consider the <code>round()</code> function described in the previous chapter. This function rounds the given argument to the nearest whole number (or number of decimal places if specified).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># round number to 1 decimal place</span>
-<span class="kw">round</span>(<span class="fl">1.67</span>, <span class="dv">1</span>)  <span class="co"># returns 1.6</span></code></pre></div>
-<p>But recall that the <code>1.6</code> in the above example is <em>actually a vector of length 1</em>. If we instead pass a vector as an argument, the function will perform the same rounding on each element in the vector.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a vector of numbers</span>
-nums &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">3.98</span>, <span class="dv">8</span>, <span class="fl">10.8</span>, <span class="fl">3.27</span>, <span class="fl">5.21</span>)
-
-<span class="co"># Perform the vectorized operation</span>
-whole.nums &lt;-<span class="st"> </span><span class="kw">round</span>(nums, <span class="dv">1</span>)
-
-<span class="co"># Print the results (each element is rounded)</span>
-<span class="kw">print</span>(whole.nums)  <span class="co"># [1]  4.0  8.0 10.8  3.3  5.2</span></code></pre></div>
-<p>This vectorization process is <strong><em>extremely powerful</em></strong>, and is a significant factor in what makes R an efficient language for working with large data sets (particularly in comparison to languages that require explicit iteration through elements in a collection). Thus to write really effective R code, you’ll need to be comfortable applying functions to vectors of data, and getting vectors of data back as results.</p>
-<p class="alert">
-Just remember: <em>when you use a function on a vector, you’re using that function <strong>on each item</strong> in the vector</em>!
-</p>
-</div>
 </div>
 <div id="resources-6" class="section level2 unnumbered">
 <h2>Resources</h2>
