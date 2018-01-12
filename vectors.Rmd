@@ -227,6 +227,128 @@ This is a valid statement because the equality inside of the square-brackets (`s
 
 This kind of filtering is crucial for being able to ask real world questions of datasets.
 
+## Vectorized Operations
+When performing operations (such as mathematical operations `+`, `-`, etc.) on vectors, the operation is applied to vector elements **member-wise**. This means that each element from the first vector operand is modified by the element in the **same corresponding position** in the second vector operand, in order to determine the value _at the corresponding position_ of the resulting vector. E.g., if you want to add (`+`) two vectors, then the value of the first element in the result will be the sum (`+`) of the first elements in each vector, the second element in the result will be the sum of the second elements in each vector, and so on.
+
+```r
+# Create two vectors to combine
+v1 <- c(1, 1, 1, 1, 1)
+v2 <- c(1, 2, 3, 4, 5)
+
+# Create arithmetic combinations of the vectors
+v1 + v2  # returns 2, 3, 4, 5, 6
+v1 - v2  # returns 0, -1, -2, -3, -4
+v1 * v2  # returns 1, 2, 3, 4, 5
+v1 / v2  # returns 1, .5, .33, .25, .2
+
+# Add a vector to itself (why not?)
+v3 <- v2 + v2  # returns 2, 4, 6, 8, 10
+
+# Perform more advanced arithmetic!
+v4 <- (v1 + v2) / (v1 + v1)  # returns 1, 1.5, 2, 2.5, 3
+```
+
+While we can't apply mathematical operators (namely, `+`) to combine vectors of character strings, we can use functions like `paste()` to concatenate the elements of two vectors.
+
+```r
+colors <- c('Green', 'Blue')
+spaces <- c('sky', 'grass')
+
+# Note: look up the `paste0()` function if it's not familiar!
+band <- paste0(colors, spaces)  # returns "Greensky", "Bluegrass"
+# http://greenskybluegrass.com/
+```
+
+Notice the same _member-wise_ combination is occurring: the `paste0()` function is applied to the first elements, then to the second elements, and so on.
+
+
+### Recycling
+**Recycling** refers to what R does in cases when there are an unequal number of elements in two operand vectors. If R is tasked with performing a vectorized operation with two vectors of unequal length, it will reuse (_recycle_) elements from the shorter vector. For example:
+
+```r
+# Create vectors to combine
+v1 <- c(1, 3, 5)
+v2 <- c(1, 2)
+
+# Add vectors
+v3 <- v1 + v2  # returns (2, 5, 6)
+```
+
+In this example, R first combined the elements in the first position of each vector (`1+1=2`). Then, it combined elements from the second position (`3+2=5`). When it got to the third element (which only was present in `v1`), it went back to the **beginning** of `v2` to select a value, yielding `5+1=6`.
+
+- Recycling will occur no matter if the longer vector is the first or second operand.
+
+- R may provide a warning message, notifying you that the vectors are of different length. This warning doesn't necessarily mean you did something wrong, but you should pay attention to it because it may be indicative of an error (i.e., you thought the vectors were of the same length, but made a mistake somewhere).
+
+
+### Everything is a Vector!
+What happens if you try to add a vector and a "regular" single value (a **scalar**)?
+
+```r
+# create vector of numbers 1 to 5
+v1 <- 1:5
+result <- v1 + 4  #add scalar to vector
+print(result)  # [1] 5 6 7 8 9
+```
+
+As you can see (and probably expected), the operation added `4` to every element in the vector.
+
+The reason this sensible behavior occurs is because, in truth, **everything in R is a vector**. Even when you thought you were creating a single value (a scalar), you were actually just creating a vector with a single element (length 1). When you create a variable storing the number `7` (with `x <- 7`), R creates a vector of length 1 with the number `7` as that single element.
+
+- This is why R prints the `[1]` in front of all results: it's telling you that it's showing a vector (which happens to have 1 element) starting at element number 1.
+
+- This is also why you can't use the `length()` function to get the length of a character string; it just returns the length of the array containing that string (`1`). Instead, use the `nchar()` function to get the number of characters in a character string.
+
+```r
+# Create a vector of length 1 in a variable x
+x <- 7  # equivalent to `x <- c(7)`
+
+# Print out x: R states the vector index (1) in the console
+print(x)  # [1] 7
+```
+
+Thus when you add a "scalar" such as `4` to a vector, what you're really doing is adding a vector with a single element `4`. As such the same _recycling_ principle applies, and that single element is "recycled" and applied to each element of the first operand.
+
+
+### Vectorized Functions
+
+> _Vectors In, Vector Out_
+
+Because _everything is a vector_, it means that pretty much every function you've used so far has actually applied to vectors, not just to single values. These are referred to as **vectorized functions**, and will run significantly faster than non-vector approaches. You'll find that functions work the same way for vectors as they do for single values, because single values are just instances of vectors!
+
+- _Fun fact:_ The mathematical operators (e.g., `+`) are actually functions in R that take 2 arguments (the operands). The mathematical notation we're used to using is just a shortcut.
+
+    ```r
+    # these two lines of code are the same:
+    x <- 2 + 3  # add 2 and 3
+    x <- '+'(2, 3)  # add 2 and 3
+    ```
+
+This means that you can use any function on a vector, and it will act in the same **vectorized**, _member-wise_ manner: the function will result in a new vector where the function's transformation has been applied to each individual element in order.
+
+For example consider the `round()` function described in the previous chapter. This function rounds the given argument to the nearest whole number (or number of decimal places if specified).
+
+```r
+# round number to 1 decimal place
+round(1.67, 1)  # returns 1.6
+```
+
+But recall that the `1.6` in the above example is _actually a vector of length 1_. If we instead pass a vector as an argument, the function will perform the same rounding on each element in the vector.
+
+```r
+# Create a vector of numbers
+nums <- c(3.98, 8, 10.8, 3.27, 5.21)
+
+# Perform the vectorized operation
+whole.nums <- round(nums, 1)
+
+# Print the results (each element is rounded)
+print(whole.nums)  # [1]  4.0  8.0 10.8  3.3  5.2
+```
+
+This vectorization process is ___extremely powerful___, and is a significant factor in what makes R an efficient language for working with large data sets (particularly in comparison to languages that require explicit iteration through elements in a collection). Thus to write really effective R code, you'll need to be comfortable applying functions to vectors of data, and getting vectors of data back as results.
+
+<p class="alert">Just remember: _when you use a function on a vector, you're using that function **on each item** in the vector_!</p>
 
 ## Resources {-}
 - [R Tutorial: Vectors](http://www.r-tutor.com/r-introduction/vector)
