@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2017-12-20">
+<meta name="date" content="2018-01-06">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -220,7 +220,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.1" data-path="lists.html"><a href="lists.html#what-is-a-list"><i class="fa fa-check"></i><b>8.1</b> What is a List?</a><ul>
 <li class="chapter" data-level="8.1.1" data-path="lists.html"><a href="lists.html#creating-lists"><i class="fa fa-check"></i><b>8.1.1</b> Creating Lists</a></li>
 <li class="chapter" data-level="8.1.2" data-path="lists.html"><a href="lists.html#accessing-lists"><i class="fa fa-check"></i><b>8.1.2</b> Accessing Lists</a></li>
-<li class="chapter" data-level="8.1.3" data-path="lists.html"><a href="lists.html#list-indicies"><i class="fa fa-check"></i><b>8.1.3</b> List Indicies</a></li>
+<li class="chapter" data-level="8.1.3" data-path="lists.html"><a href="lists.html#list-indices"><i class="fa fa-check"></i><b>8.1.3</b> List Indices</a></li>
 <li class="chapter" data-level="8.1.4" data-path="lists.html"><a href="lists.html#modifying-lists"><i class="fa fa-check"></i><b>8.1.4</b> Modifying Lists</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="lists.html"><a href="lists.html#the-lapply-function"><i class="fa fa-check"></i><b>8.2</b> The <code>lapply()</code> Function</a></li>
@@ -248,7 +248,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.2.5" data-path="dplyr.html"><a href="dplyr.html#summarize"><i class="fa fa-check"></i><b>10.2.5</b> Summarize</a></li>
 <li class="chapter" data-level="10.2.6" data-path="dplyr.html"><a href="dplyr.html#distinct"><i class="fa fa-check"></i><b>10.2.6</b> Distinct</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="dplyr.html"><a href="dplyr.html#multple-operations"><i class="fa fa-check"></i><b>10.3</b> Multple Operations</a><ul>
+<li class="chapter" data-level="10.3" data-path="dplyr.html"><a href="dplyr.html#multiple-operations"><i class="fa fa-check"></i><b>10.3</b> Multiple Operations</a><ul>
 <li class="chapter" data-level="10.3.1" data-path="dplyr.html"><a href="dplyr.html#the-pipe-operator"><i class="fa fa-check"></i><b>10.3.1</b> The Pipe Operator</a></li>
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="dplyr.html"><a href="dplyr.html#grouped-operations"><i class="fa fa-check"></i><b>10.4</b> Grouped Operations</a></li>
@@ -378,13 +378,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="dataframes" class="section level1">
 <h1><span class="header-section-number">Chapter 9</span> Data Frames</h1>
-<p>This chapter introduces <strong>data frame</strong> objects, which are the primary data storage type used in R. In many ways, data frames are similar to a two-dimensional row/column layout that you should be familiar with from spreadsheet programs like Microsoft Excel. Rather than interact with this data strcture through a UI, we’ll learn how to programmatically and reproducably perform operations on this data type. This chapter covers various ways of creating, describing, and accessing data frames, as well as how they are related to other data types in R.</p>
+<p>This chapter introduces <strong>data frame</strong> objects, which are the primary data storage type used in R. In many ways, data frames are similar to a two-dimensional row/column layout that you should be familiar with from spreadsheet programs like Microsoft Excel. Rather than interact with this data structure through a UI, we’ll learn how to programmatically and reproducibly perform operations on this data type. This chapter covers various ways of creating, describing, and accessing data frames, as well as how they are related to other data types in R.</p>
 <div id="what-is-a-data-frame" class="section level2">
 <h2><span class="header-section-number">9.1</span> What is a Data Frame?</h2>
 <p>At a practical level, <strong>Data Frames</strong> act like <em>tables</em>, where data is organized into rows and columns. For example, consider the following table of names, weights, and heights:</p>
 <div class="figure">
-<img src="img/dataframes/table-example.png" title="table of weights and heights" alt="A table of data (people weights and heights." />
-<p class="caption">A table of data (people weights and heights.</p>
+<img src="img/dataframes/table-example.png" title="table of weights and heights" alt="A table of data (people’s weights and heights)." />
+<p class="caption">A table of data (people’s weights and heights).</p>
 </div>
 <p>In this table, each <em>row</em> represents a <strong>record</strong> or <strong>observation</strong>: an instance of a single thing being measured (e.g., a person). Each <em>column</em> represents a <strong>feature</strong>: a particular property or aspect of the thing being measured (e.g., the person’s height or weight). This structure is used to organize lots of different <em>related</em> data points for easier analysis.</p>
 <p>In R, you can use <strong>data frames</strong> to represent these kinds of tables. Data frames are really just <strong>lists</strong> (see <a href="lists.html#lists">Lists</a>) in which each element is a <strong>vector of the same length</strong>. Each vector represents a <strong>column, <em>not</em> a row</strong>. The elements at corresponding indices in the vectors are considered part of the same record (row).</p>
@@ -482,7 +482,7 @@ new.col.names &lt;-<span class="st"> </span><span class="kw">c</span>(<span clas
 </div>
 <div id="accessing-data-in-data-frames" class="section level3">
 <h3><span class="header-section-number">9.1.3</span> Accessing Data in Data Frames</h3>
-<p>As stated above, since data frames <em>are</em> lists, it’s possible to use <strong>dollar notation</strong> (<code>my.data.frame$column.name</code>) or <strong>double-bracket notation</strong> (<code>my.data.frame[['column.name']]</code>) to access entire columns. However, R also uses a variation of <strong>single-bracket notation</strong> which allows you to access individual data elements (cells) in the table. In this synax, you put <em>two</em> values separated by a comma (<strong><code>,</code></strong>) inside the brackets—the first for which row and the second for which column you wish you extract:</p>
+<p>As stated above, since data frames <em>are</em> lists, it’s possible to use <strong>dollar notation</strong> (<code>my.data.frame$column.name</code>) or <strong>double-bracket notation</strong> (<code>my.data.frame[['column.name']]</code>) to access entire columns. However, R also uses a variation of <strong>single-bracket notation</strong> which allows you to access individual data elements (cells) in the table. In this syntax, you put <em>two</em> values separated by a comma (<strong><code>,</code></strong>) inside the brackets—the first for which row and the second for which column you wish you extract:</p>
 <table>
 <colgroup>
 <col width="30%" />
@@ -534,7 +534,7 @@ my.data[, <span class="dv">2</span>]  <span class="co"># comma</span>
 <span class="co"># Extract the second column AS A DATA FRAME (filtering)</span>
 my.data[<span class="dv">2</span>]  <span class="co"># no comma</span></code></pre></div>
 <p>(Extracting from more than one column will produce a <em>sub-data frame</em>; extracting from just one column will produce a vector).</p>
-<p>And of course, because <em>everything is a vector</em>, you’re actually specifying vectors of indicies to extract. This allows you to get multiple rows or columns:</p>
+<p>And of course, because <em>everything is a vector</em>, you’re actually specifying vectors of indices to extract. This allows you to get multiple rows or columns:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get the second through fourth rows</span>
 my.data[<span class="dv">2</span>:<span class="dv">4</span>, ]
 
@@ -564,7 +564,7 @@ my.data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span cla
 <div id="working-directory" class="section level3">
 <h3><span class="header-section-number">9.2.1</span> Working Directory</h3>
 <p>The biggest complication when loading <code>.csv</code> files is that the <code>read.csv()</code> function takes as an argument a <strong>path</strong> to the file. Because you want this script to work on any computer (to support collaboration, as well as things like assignment grading), you need to be sure to use a <strong>relative path</strong> to the file. The question is: <em>relative to what</em>?</p>
-<p>Like the command-line, the R interpreter (running inside R Studio) has a <strong>current working directory</strong> from which all file paths are relative. The trick is that <strong><em>the working directory is not the directory of the current script file!</em></strong>.</p>
+<p>Like the command-line, the R interpreter (running inside R Studio) has a <strong>current working directory</strong> from which all file paths are relative. The trick is that <strong><em>the working directory is not the directory of the current script file!</em></strong></p>
 <ul>
 <li>This makes sense if you think about it: you can run R commands through the console without having a script, and you can have open multiple script files from separate folders that are all interacting with the same execution environment.</li>
 </ul>

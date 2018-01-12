@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2017-12-20">
+<meta name="date" content="2018-01-06">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -220,7 +220,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.1" data-path="lists.html"><a href="lists.html#what-is-a-list"><i class="fa fa-check"></i><b>8.1</b> What is a List?</a><ul>
 <li class="chapter" data-level="8.1.1" data-path="lists.html"><a href="lists.html#creating-lists"><i class="fa fa-check"></i><b>8.1.1</b> Creating Lists</a></li>
 <li class="chapter" data-level="8.1.2" data-path="lists.html"><a href="lists.html#accessing-lists"><i class="fa fa-check"></i><b>8.1.2</b> Accessing Lists</a></li>
-<li class="chapter" data-level="8.1.3" data-path="lists.html"><a href="lists.html#list-indicies"><i class="fa fa-check"></i><b>8.1.3</b> List Indicies</a></li>
+<li class="chapter" data-level="8.1.3" data-path="lists.html"><a href="lists.html#list-indices"><i class="fa fa-check"></i><b>8.1.3</b> List Indices</a></li>
 <li class="chapter" data-level="8.1.4" data-path="lists.html"><a href="lists.html#modifying-lists"><i class="fa fa-check"></i><b>8.1.4</b> Modifying Lists</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="lists.html"><a href="lists.html#the-lapply-function"><i class="fa fa-check"></i><b>8.2</b> The <code>lapply()</code> Function</a></li>
@@ -248,7 +248,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.2.5" data-path="dplyr.html"><a href="dplyr.html#summarize"><i class="fa fa-check"></i><b>10.2.5</b> Summarize</a></li>
 <li class="chapter" data-level="10.2.6" data-path="dplyr.html"><a href="dplyr.html#distinct"><i class="fa fa-check"></i><b>10.2.6</b> Distinct</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="dplyr.html"><a href="dplyr.html#multple-operations"><i class="fa fa-check"></i><b>10.3</b> Multple Operations</a><ul>
+<li class="chapter" data-level="10.3" data-path="dplyr.html"><a href="dplyr.html#multiple-operations"><i class="fa fa-check"></i><b>10.3</b> Multiple Operations</a><ul>
 <li class="chapter" data-level="10.3.1" data-path="dplyr.html"><a href="dplyr.html#the-pipe-operator"><i class="fa fa-check"></i><b>10.3.1</b> The Pipe Operator</a></li>
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="dplyr.html"><a href="dplyr.html#grouped-operations"><i class="fa fa-check"></i><b>10.4</b> Grouped Operations</a></li>
@@ -381,8 +381,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Sooner-or-later you are in a situation where you have to work on a <strong>distant networked computer</strong>. There are many reasons for this, either your laptop is to weak for certain tasks, or certain data is not allowed to be taken out from where it is, or you are expected to use the same computer as your teammates. The server may be a standalone box located in a rack in your employer’s server room, or it may be a virtual machine in a cloud like Amazon EC2. You may also want to set up your own server.</p>
 <div id="server-setup" class="section level2">
 <h2><span class="header-section-number">A.1</span> Server Setup</h2>
-<p>There are many ways one can set up a distant machine. It may be windows or linux (or any of the other unixes). It may or may not have graphical user interface (GUI) installed or otherwise accessible (many unix programs can display nice windows on your laptop while still running on the server). It may or may not have RStudio made available over web browser. Here we discuss the most barebone setup with no access to GUI and no web access to RStudio.</p>
-<p>This is a fairly common setup, for instance when dealing with sensitive data, with in organizations where computer skills and sysadmin’s time is limited, or when you rent your own tiny but cheap server.</p>
+<p>There are many ways one can set up a distant machine. It may be Windows or linux (or any of the other unixes). It may or may not have graphical user interface (GUI) installed or otherwise accessible (many unix programs can display nice windows on your laptop while still running on the server). It may or may not have RStudio made available over web browser. Here we discuss the most barebone setup with no access to GUI and no web access to RStudio.</p>
+<p>This is a fairly common setup, for instance when dealing with sensitive data, in organizations where computer skills and sysadmin’s time is limited, or when you rent your own tiny but cheap server.</p>
 </div>
 <div id="connecting-to-the-remote-server" class="section level2">
 <h2><span class="header-section-number">A.2</span> Connecting to the Remote Server</h2>
@@ -403,20 +403,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">A.3.1</span> scp</h3>
 <p>The most straightforward approach is <code>scp</code>, <strong>s</strong>ecure <strong>c</strong>o<strong>p</strong>y. It works in many ways in the same way as <code>cp</code> for the local files, just <code>scp</code> can copy files between your machine and a remote computer. Under the hood it uses ssh connection, just like <code>ssh</code> command itself. It syntax is rather similar to that of <code>cp</code>:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">scp</span> user1@host1:file1 user2@host2:file2</code></pre></div>
-<p>This copies “file1” from the server “host1” under username “user1” to the other server. Passwords are asked as as needed. the “host” part of the file must be understood as the full hostname including dots, such as “hyak.washington.edu”. “file” is the full path to file, relative to home directory, such as <code>Desktop/info201/myscript.R</code>. When accessing local files, you may omit the <a href="mailto:%22user@host">&quot;user@host</a>:&quot; part. So, for instance, in order to copy your <code>myscript.R</code> from folder <code>info201</code> on your laptop’s Desktop to the folder <code>scripts</code> in your home folder on the server, you may issue</p>
+<p>This copies “file1” from the server “host1” under username “user1” to the other server. Passwords are asked for as needed. The “host” part of the file must be understood as the full hostname including dots, such as “hyak.washington.edu”. “file” is the full path to file, relative to home directory, such as <code>Desktop/info201/myscript.R</code>. When accessing local files, you may omit the <a href="mailto:%22user@host">&quot;user@host</a>:&quot; part. So, for instance, in order to copy your <code>myscript.R</code> from folder <code>info201</code> on your laptop’s Desktop to the folder <code>scripts</code> in your home folder on the server, you may issue</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">scp</span> Desktop/info201/myscript.R myusername@server.ischool.edu:scripts/</code></pre></div>
-<p>(here we assume that the working directory of your laptop is the one above <code>Desktop</code>.) Note that exactly as <code>cp</code>, you may omit the destination file name if the destination is a directory: it simply copies the file into that directory while preserving it’s name.</p>
+<p>(here we assume that the working directory of your laptop is the one above <code>Desktop</code>.) Note that exactly as with <code>cp</code>, you may omit the destination file name if the destination is a directory: it simply copies the file into that directory while preserving its name.</p>
 <p>After running your script, you may want to copy your results back to your laptop. For instance, if you need to get the file <code>figure.png</code> out of the server, you can do</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">scp</span> myusername@server.ischool.edu:scripts/figure.png Desktop/info201/</code></pre></div>
 <p>As above, this copies a file from the given directory, and drops it into the <code>info201</code> folder on your Desktop.</p>
 </div>
 <div id="rsync" class="section level3">
 <h3><span class="header-section-number">A.3.2</span> rsync</h3>
-<p><code>rsync</code> is a more advanced approach to <code>scp</code>. It works in many ways like <code>scp</code>, just it is smart enough to understand which files are updated, and copy the updated parts of the files only. It is the recommended way for working with small updates in large files. It’s syntax is rather similar to that of <code>scp</code>. To copy <code>file</code> to the remote server as <code>file2</code> (in the home directory), we do</p>
+<p><code>rsync</code> is a more advanced approach to <code>scp</code>. It works in many ways like <code>scp</code>, just it is smart enough to understand which files are updated, and copy the updated parts of the files only. It is the recommended way for working with small updates in large files. Its syntax is rather similar to that of <code>scp</code>. To copy <code>file</code> to the remote server as <code>file2</code> (in the home directory), we do</p>
 <pre><code>rsync file user2@host2:file2</code></pre>
 <p>and in order to copy a <code>file1</code> from server as local <code>file</code> (in the current working directory):</p>
 <pre><code>rsync file user1@host1:file1 file</code></pre>
-<p>I also recommend to explore some of it’s many options, for instance <code>-v</code> (verbose) reports what it’s doing. The example above with your code and figure might now look like that:</p>
+<p>I also recommend to explore some of its many options, for instance <code>-v</code> (verbose) reports what it’s doing. The example above with your code and figure might now look like that:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">rsync</span> -v Desktop/info201/myscript.R myusername@server.ischool.edu:scripts/
 <span class="co"># now run the script on the remote machine</span>
 <span class="kw">rsync</span> -v myusername@server.ischool.edu:scripts/figure.pdf Desktop/info201/</code></pre></div>
@@ -430,11 +430,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="graphical-frontends" class="section level3">
 <h3><span class="header-section-number">A.3.3</span> Graphical Frontends</h3>
-<p>Instead on relying on command line tools, one can also use graphical front-ends. For instance, “WinSCP” is a nice Norton Commander-Style frontend for copying files between the local and a remote machine over scp for Windows. It provides a split window representing files on the local and the remote end, and one can move, copy-and-paste and interact with mouse on these panes. On Mac you may take a look at “Cyberduck”.</p>
+<p>Instead on relying on command line tools, one can also use graphical front-ends. For instance, “WinSCP” is a nice Norton Commander-Style frontend for copying files between the local and a remote machine over scp for Windows. It provides a split window representing files on the local and the remote end, and one can move, copy-and-paste and interact with the mouse on these panes. On Mac you may take a look at “Cyberduck”.</p>
 </div>
 <div id="remote-editing" class="section level3">
 <h3><span class="header-section-number">A.3.4</span> Remote Editing</h3>
-<p>Besides copying your files, many text editors also offer “remote editing” option. From the user perspective this looks as if directly working on the remote server’s hard disk. Under the hood, the files are copied back and forth with scp, rsync or one of their friends. Emacs and vi do it out-of-the box, VSCode, Atom and sublime require a plugin. AFAIK it is not possible with RStudio.</p>
+<p>Besides copying your files, many text editors also offer a “remote editing” option. From the user perspective this looks as if directly working on the remote server’s hard disk. Under the hood, the files are copied back and forth with scp, rsync or one of their friends. Emacs and vi do it out-of-the box, VSCode, Atom and sublime require a plugin. AFAIK it is not possible with RStudio.</p>
 <p>It is also possible to mount (attach) the harddisk of the remote server to your laptop as if it were a local disk. Look yourself for more information if you are interested.</p>
 </div>
 </div>
@@ -443,11 +443,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>When your code has been transferred to the server, your next task is to run it. But before you can do it, you may want to install the packages you need. For instance, you may want to install the whole “tidyverse” bundle. This must be done from R console using <code>install.packages()</code>. You start R interactively by the command</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">R</span></code></pre></div>
 <p>It opens an R session, not unlike what you see inside of RStudio, just here you have no RStudio to handrail you through the session. Now all loading, saving, inspecting files, etc must be done through R commands.</p>
-<p>The first time you do it, R complains about non-writeable syste-wide library and proposes to install and create your personal libary. You should answer “yes” to these prompts. As linux systems typically compile the packages during installations, installation is slow and you see many messages (including warnings) in the process. But it works, given that the necessary system libraries are available.</p>
-<p>Now you can finally run your R code. I strongly recommend to do it from the directory where you intend to run the project before starting R (<code>cd scripts</code> if you follow the example directory setup above). There are two options: either start R interactively, or run it as a script. If do it from an interactive R session, you have to <em>source</em> your script:</p>
+<p>The first time you do it, R complains about non-writeable system-wide library and proposes to install and create your personal libary. You should answer “yes” to these prompts. As Linux systems typically compile the packages during installations, installation is slow and you see many messages (including warnings) in the process. But it works, given that the necessary system libraries are available.</p>
+<p>Now you can finally run your R code. I strongly recommend to do it from the directory where you intend to run the project before starting R (<code>cd scripts</code> if you follow the example directory setup above). There are two options: either start R interactively, or run it as a script. If you do it from an interactive R session, you have to <em>source</em> your script:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;myscript.R&quot;</span>)</code></pre></div>
-<p>The script will run, and the first attempt most likely ends with an error message. You have to correct the error either on your laptop and copy the file over to the server again, or directly on the server, and re-run it again. Note that you don’t have to exit from the R session when copying the files between your laptop and the server. Edit it, copy it over from your laptop (using <code>scp</code> or other tools), and just re-source the file from withing the R session.</p>
-<p>Opening a separate R session may be useful for installing packages. For running your scripts, i recommend you to run it entirely from command line, either as</p>
+<p>The script will run, and the first attempt most likely ends with an error message. You have to correct the error either on your laptop and copy the file over to the server again, or directly on the server, and re-run it again. Note that you don’t have to exit from the R session when copying the files between your laptop and the server. Edit it, copy it over from your laptop (using <code>scp</code> or other tools), and just re-source the file from within the R session.</p>
+<p>Opening a separate R session may be useful for installing packages. For running your scripts, I recommend you to run it entirely from command line, either as</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">R</span> CMD BATCH myscript.R</code></pre></div>
 <p>or</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Rscript</span> myscript.R</code></pre></div>
@@ -463,15 +463,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="co"># done plotting</span>
 <span class="kw">dev.off</span>()
     <span class="co"># saves the image to disk and closes the file.</span></code></pre></div>
-<p>afterwards you will have to copy the image file to your laptop for inspection, or addition in your final project report.</p>
+<p>Afterwards you will have to copy the image file to your laptop for inspection, or addition in your final project report.</p>
 </div>
 </div>
 <div id="life-on-server" class="section level2">
 <h2><span class="header-section-number">A.5</span> Life on Server</h2>
-<p>The servers operate in many ways as the command line on your own computer. However, there is a number of differences.</p>
+<p>The servers operate the same in many ways as the command line on your own computer. However, there are a number of differences.</p>
 <div id="be-social" class="section level3">
 <h3><span class="header-section-number">A.5.1</span> Be Social!</h3>
-<p>While you laptop is yours, and you are free to exploit all it’s resources for your own good, this is not true for the server. The server is a multiuser system, potentially doing good work for many people at the same time. So the first rule is: <strong>Don’t take more resources than what you need!</strong></p>
+<p>While you laptop is yours, and you are free to exploit all its resources for your own good, this is not true for the server. The server is a multiuser system, potentially doing good work for many people at the same time. So the first rule is: <strong>Don’t take more resources than what you need!</strong></p>
 <p>This that means don’t let the system run, grab memory, or occupy disk space just for fun. Try to keep your R workspace clean (check out <code>rm()</code> function) and close R as soon as it has finished (this happens automatically if you run your script through <code>Rscript</code> from command line). Don’t copy the dataset without a good reason, and keep your copies in a compressed form. R can open gzip and bzip2 files on the fly, so usually you don’t even need to decompress these. Avoid costly recalculations of something you already calculated. All this is even more important the last days before the deadline when many people are running using the server.</p>
 <p>Servers are typically well configured to tame misbehaving programs. You may sometimes see your script stopping with a message “killed”. This most likely means that it occupied too much memory, and the system just killed it. Deal with this.</p>
 </div>

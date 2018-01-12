@@ -62,7 +62,7 @@ The second word is an example of an **argument**, which is a programming term th
 
 - Try changing to the `Desktop` folder, which should be inside the home folder you started in&mdash;you could see it in Finder or File Explorer!
 
-- After you change folders, try printing your currently location. Can you see that it has changed?
+- After you change folders, try printing your current location. Can you see that it has changed?
 
 
 ### Listing Files

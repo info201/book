@@ -29,7 +29,7 @@ After loading the library, you can call any of the functions just as if they wer
 
 For each `dplyr` function discussed here, the **first argument** to the function is a data frame to manipulate, with the rest of the arguments providing more details about the manipulation.
 
-<p class="alert alert-warning">___IMPORTANT NOTE:___ inside the function argument list (inside the parentheses), we refer to data frame columns **without quotation marks**&mdash;that is, we just give the column names as _variable names_, rather than as _character strings_. This is refered to as [non-standard evaluation](#Non-standard Evaluation), and is described in more detail below; while it makes code easier to write and read, it can occassionally create challenges.</p>
+<p class="alert alert-warning">___IMPORTANT NOTE:___ inside the function argument list (inside the parentheses), we refer to data frame columns **without quotation marks**&mdash;that is, we just give the column names as _variable names_, rather than as _character strings_. This is refered to as [non-standard evaluation](#Non-standard Evaluation), and is described in more detail below; while it makes code easier to write and read, it can occasionally create challenges.</p>
 
 <p class="alert alert">The images in this section come from the [RStudio's STRATA NYC R-Day workshop](http://bit.ly/rday-nyc-strata15), which was presented by [Nathan Stephens](http://conferences.oreilly.com/strata/big-data-conference-ny-2015/public/schedule/speaker/217840).</p>
 
@@ -64,7 +64,7 @@ some.storms <- filter(storms, wind >= 50)
 
 ![Diagram of the `filter()` function (by Nathan Stephens).](img/dplyr/filter.png "Diagram of the filter() function")
 
-The `filter()` function takes in the data frame to filter, followed by a comma-separated list of conditions that each _row_ returned row must satisfy. Note again that columns are provided without quotation marks!
+The `filter()` function takes in the data frame to filter, followed by a comma-separated list of conditions that each returned _row_ must satisfy. Note again that columns are provided without quotation marks!
 
 -  R will extract the rows that match **all** conditions. Thus you are specifying that you want to filter down a data frame to contain only the rows that meet Condition 1 **and** Condition 2.
 
@@ -82,7 +82,7 @@ The **`mutate()`** operation allows you to create additional **columns** for you
 
 ```r
 # Add `ratio` column that is ratio between pressure and wind
-storms <- mutate(storms, ratio = pressure/wind)  # Replace existing `stroms` frame with mutated one!
+storms <- mutate(storms, ratio = pressure/wind)  # Replace existing `storms` frame with mutated one!
 ```
 
 ![Diagram of the `mutate()` function (by Nathan Stephens).](img/dplyr/mutate.png "Diagram of the mutate() function")
@@ -168,7 +168,7 @@ distinct.rows <- distinct(my.df, x, y)  # returns whole table, since no duplicat
 
 While this is a simple way to get a unique set of rows, **be careful** not to lazily remove rows of your data which may be important.
 
-## Multple Operations
+## Multiple Operations
 <!-- This discussion may be better for lecture than module, but leave in for now -->
 You've likely encountered a number of instances in which you want to take the results from one function and pass them into another function. Your approach thus far has often been to create _temporary variables_ for use in your analysis. For example, if you're using the `mtcars` dataset, you may want to ask a simple question like,
 
@@ -176,8 +176,8 @@ You've likely encountered a number of instances in which you want to take the re
 
 This simple question actually requires a few steps:
 
-1. _Filter_ down the dataset to only 4 cylinder cars
-2. Of the 4 cylinder cars, _filter_ down to the one with the highest mpg
+1. _Filter_ down the dataset to only 4-cylinder cars
+2. Of the 4-cylinder cars, _filter_ down to the one with the highest mpg
 3. _Select_ the car name of the car
 
 You could then implement each step as follows:
@@ -222,13 +222,13 @@ This version uses _anonymous variables_&mdash;result values which are not assign
 This _nested_ version performs the same results as the _temporary variable_ version without creating the extra variables, but even with only 3 steps it can get quite complicated to read&mdash;in a large part because you have to think about it "inside out", with the stuff in the middle evaluating first. This will obviously become undecipherable for more involved operations.
 
 ### The Pipe Operator
-Luckily, `dplyr` provides a cleaner and more effective way of achieving the same task (that is, using the result of one function as an argument to the next). The **pipe operator** (**`>%>`**) indicates that the result from the first function operand should be passed in as **the first argument** to the next function operand!
+Luckily, `dplyr` provides a cleaner and more effective way of achieving the same task (that is, using the result of one function as an argument to the next). The **pipe operator** (**`%>%`**) indicates that the result from the first function operand should be passed in as **the first argument** to the next function operand!
 
 As a simple example:
 
 ```r
 # nested version: evaluate c(), then max(), then print()
-print( max( c(2, 0, 1) ) )
+print(max(c(2, 0, 1)))
 
 # pipe version
 c(1,2,3) %>%   # do first function
@@ -249,7 +249,7 @@ best.car.name <- filter(mtcars.named, cyl == 4) %>%  # Step 1
 
 - Yes, the `%>%` operator is awkward to type and takes some getting use to (especially compared to the command-line's use of `|` to pipe). However, you can ease the typing by using the [RStudio keyboard shortcut](https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts) `cmd + shift + m`.
 
-The pipe operator is part of the `dplyr` package (it is only available if you load that package), but it will work with _any_ function, not just `dplyr` ones! This syntax, while slightly odd, can completely change and simply the way you write code to ask questions about your data!
+The pipe operator is part of the `dplyr` package (it is only available if you load that package), but it will work with _any_ function, not just `dplyr` ones! This syntax, while slightly odd, can completely change and simplify the way you write code to ask questions about your data!
 
 
 ## Grouped Operations
@@ -278,7 +278,7 @@ This simple question requires computing the mean for different subsets of the da
 ```r
 # Group cars by gear number, then compute the mean and median mpg
 gear.summary <- group_by(mtcars, gear) %>%  # group by gear
-                 summarise(mean = mean(mpg))  # calculate mean
+                 summarize(mean = mean(mpg))  # calculate mean
 # Computing the difference between scores is done elsewhere (or by hand!)
 ```
 
@@ -309,7 +309,7 @@ To understand how this works, consider a specific example where you have a table
 # Table of contact information
 student.contact <- data.frame(
     student.id = c(1, 2, 3, 4),  # id numbers
-    email = c("id1@school.edu", "id2@school.edu", "id3@school.edu", "id4@school.ed")
+    email = c("id1@school.edu", "id2@school.edu", "id3@school.edu", "id4@school.edu")
 )
 
 # Table of information about majors
@@ -328,10 +328,10 @@ merged.student.info <- left_join(student.contact, student.majors)
                         # 1          1 id1@school.edu sociology
                         # 2          2 id2@school.edu      math
                         # 3          3 id3@school.edu   biology
-                        # 4          4  id4@school.ed      <NA>
+                        # 4          4  id4@school.edu      <NA>
 ```
 
-When you perform this **left join**, R goes through each row in the table on the "left" (the first argument), looking at the shared column(s) (`student.id`). For each row, it looks for a corresponding value in `student.majors$student.id`, and if it fines one then it adds any data from columns that are in `student.majors` but _not_ in `student.contact` (e.g., `major`) to new columns in the resulting table, with values from whatever the matching row was. Thus student \#1 is given a `major` of "sociology", student \#2 is given a `major` of "math", and student \#4 is given a `major` of `NA` (because that student had no corresponding row in `student.majors`!)
+When you perform this **left join**, R goes through each row in the table on the "left" (the first argument), looking at the shared column(s) (`student.id`). For each row, it looks for a corresponding value in `student.majors$student.id`, and if it finds one then it adds any data from columns that are in `student.majors` but _not_ in `student.contact` (e.g., `major`) to new columns in the resulting table, with values from whatever the matching row was. Thus student \#1 is given a `major` of "sociology", student \#2 is given a `major` of "math", and student \#4 is given a `major` of `NA` (because that student had no corresponding row in `student.majors`!)
 
 - In short, a **left join** returns all of the rows from the _first_ table, with all of the columns from _both_ tables.
 

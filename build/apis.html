@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2017-12-20">
+<meta name="date" content="2018-01-06">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -220,7 +220,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.1" data-path="lists.html"><a href="lists.html#what-is-a-list"><i class="fa fa-check"></i><b>8.1</b> What is a List?</a><ul>
 <li class="chapter" data-level="8.1.1" data-path="lists.html"><a href="lists.html#creating-lists"><i class="fa fa-check"></i><b>8.1.1</b> Creating Lists</a></li>
 <li class="chapter" data-level="8.1.2" data-path="lists.html"><a href="lists.html#accessing-lists"><i class="fa fa-check"></i><b>8.1.2</b> Accessing Lists</a></li>
-<li class="chapter" data-level="8.1.3" data-path="lists.html"><a href="lists.html#list-indicies"><i class="fa fa-check"></i><b>8.1.3</b> List Indicies</a></li>
+<li class="chapter" data-level="8.1.3" data-path="lists.html"><a href="lists.html#list-indices"><i class="fa fa-check"></i><b>8.1.3</b> List Indices</a></li>
 <li class="chapter" data-level="8.1.4" data-path="lists.html"><a href="lists.html#modifying-lists"><i class="fa fa-check"></i><b>8.1.4</b> Modifying Lists</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="lists.html"><a href="lists.html#the-lapply-function"><i class="fa fa-check"></i><b>8.2</b> The <code>lapply()</code> Function</a></li>
@@ -248,7 +248,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.2.5" data-path="dplyr.html"><a href="dplyr.html#summarize"><i class="fa fa-check"></i><b>10.2.5</b> Summarize</a></li>
 <li class="chapter" data-level="10.2.6" data-path="dplyr.html"><a href="dplyr.html#distinct"><i class="fa fa-check"></i><b>10.2.6</b> Distinct</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="dplyr.html"><a href="dplyr.html#multple-operations"><i class="fa fa-check"></i><b>10.3</b> Multple Operations</a><ul>
+<li class="chapter" data-level="10.3" data-path="dplyr.html"><a href="dplyr.html#multiple-operations"><i class="fa fa-check"></i><b>10.3</b> Multiple Operations</a><ul>
 <li class="chapter" data-level="10.3.1" data-path="dplyr.html"><a href="dplyr.html#the-pipe-operator"><i class="fa fa-check"></i><b>10.3.1</b> The Pipe Operator</a></li>
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="dplyr.html"><a href="dplyr.html#grouped-operations"><i class="fa fa-check"></i><b>10.4</b> Grouped Operations</a></li>
@@ -416,7 +416,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>For example, GitHub includes endpoints such as:</p>
 <ul>
 <li><code>/users/{user}</code> to get information about a specific <code>:user:</code> <code>id</code> (the <code>{}</code> indicate a “variable”, in that you can put any username in there in place of the string <code>&quot;{user}&quot;</code>). Check out this <a href="https://api.github.com/users/mkfreeman">example</a> in your browser.</li>
-<li><code>/orgs/{organization}/repos</code> to get the repositories that are on an organization page. See an <a href="https://api.github.com/orgs/info201a-au17/repos">Example</a></li>
+<li><code>/orgs/{organization}/repos</code> to get the repositories that are on an organization page. See an <a href="https://api.github.com/orgs/info201a-au17/repos">example</a>.</li>
 </ul></li>
 </ul>
 <p>Thus you can equivalently talk about accessing a particular <strong>resource</strong> and sending a request to a particular <strong>endpoint</strong>. The <strong>endpoint</strong> is appended to the end of the <strong>Base URI</strong>, so you could access a GitHub user by combining the <strong>Base URI</strong> (<code>https://api.github.com</code>) and <strong>endpoint</strong> (<code>/users/mkfreeman</code>) into a single string: <code>https://api.github.com/users/mkfreeman</code>. That URL will return a data structure of new releases, which you can request from your R program or simply view in your web-browser.</p>
@@ -540,7 +540,7 @@ body &lt;-<span class="st"> </span><span class="kw">content</span>(response, <sp
   <span class="fu">{</span> <span class="dt">&quot;opponent&quot;</span><span class="fu">:</span> <span class="st">&quot;Jets&quot;</span><span class="fu">,</span> <span class="dt">&quot;sea_score&quot;</span><span class="fu">:</span> <span class="dv">27</span><span class="fu">,</span> <span class="dt">&quot;opp_score&quot;</span><span class="fu">:</span> <span class="dv">17</span> <span class="fu">}</span><span class="ot">,</span>
   <span class="fu">{</span> <span class="dt">&quot;opponent&quot;</span><span class="fu">:</span> <span class="st">&quot;Falcons&quot;</span><span class="fu">,</span> <span class="dt">&quot;sea_score&quot;</span><span class="fu">:</span> <span class="dv">26</span><span class="fu">,</span> <span class="dt">&quot;opp_score&quot;</span><span class="fu">:</span> <span class="dv">24</span> <span class="fu">}</span>
 <span class="ot">]</span></code></pre></div>
-<p>The later format is incredibly common in web API data: as long as each <em>object</em> in the <em>array</em> has the same set of keys, then you can easily consider this as a data table where each <em>object</em> (keyed list) represents an <strong>observation</strong> (row), and each key represents a <strong>feature</strong> (column) of that observation.</p>
+<p>The latter format is incredibly common in web API data: as long as each <em>object</em> in the <em>array</em> has the same set of keys, then you can easily consider this as a data table where each <em>object</em> (keyed list) represents an <strong>observation</strong> (row), and each key represents a <strong>feature</strong> (column) of that observation.</p>
 <div id="parsing-json" class="section level3">
 <h3><span class="header-section-number">11.4.1</span> Parsing JSON</h3>
 <p>When working with a web API, the usual goal is to take the JSON data contained in the <em>response</em> and convert it into an <code>R</code> data structure you can use, such as <em>list</em> or <em>data frame</em>. While the <code>httr</code> package is able to parse the JSON body of a response into a <em>list</em>, it doesn’t do a very clean job of it (particularly for complex data structures).</p>

@@ -4,7 +4,7 @@ Adding **interactivity** to a data report is a highly effective way of communica
 
 
 ## Creating Shiny Apps
-Shiny is a **web application framework for R**. As opposed to a simple (static) web page like you've created with R Markdown, a _web application_ is an interactive, dynamic web page&mdash;the user can click on buttons, check boxes, or input text in order to change the presentation of the data. Shiny is a _framework_ in it provides the "code" for producing and enabling this interaction, while you as the developer simply "fill in the blanks" by providing _variables_ or _functions_ that the provided code will utilize to create the interactive page.
+Shiny is a **web application framework for R**. As opposed to a simple (static) web page like you've created with R Markdown, a _web application_ is an interactive, dynamic web page&mdash;the user can click on buttons, check boxes, or input text in order to change the presentation of the data. Shiny is a _framework_ in that it provides the "code" for producing and enabling this interaction, while you as the developer simply "fill in the blanks" by providing _variables_ or _functions_ that the provided code will utilize to create the interactive page.
 
 `shiny` is another external package (like `dplyr` and `ggplot2`), so you will need to install and load it in order to use it:
 
@@ -13,7 +13,7 @@ install.packages("shiny")  # once per machine
 library("shiny")
 ```
 
-This will make all of the framework functions and variables you will need to worth with available.
+This will make all of the framework functions and variables you will need to work with available.
 
 ### Application Structure
 Shiny applications are divided into two parts:
@@ -153,7 +153,7 @@ You can include _static_ (unchanging) content in a Shiny UI layout&mdash;this is
 - `a(text, href='url')` for creating hyperlinks (anchors), the same as `[text](url)` in Markdown
 - `img(text, src='url')` for including images, the same as `![text](url)` in Markdown
 
-There are may other methods as well, see [this tutorial lesson](http://shiny.rstudio.com/tutorial/lesson2/) for a list. If you are [familiar with HTML](https://info343-au16.github.io/#/tutorials/html), then these methods will seem familiar; you can also write content in HTML directly using the `tag()` content function.
+There are many other methods as well, see [this tutorial lesson](http://shiny.rstudio.com/tutorial/lesson2/) for a list. If you are [familiar with HTML](https://info343-au16.github.io/#/tutorials/html), then these methods will seem familiar; you can also write content in HTML directly using the `tag()` content function.
 
 <!-- TODO: Add HTML tutorial! -->
 
@@ -206,7 +206,7 @@ Each of these functions takes as an argument the **name** (as a string) of the v
 The Server defines how the data input by the user will be used to create the output displayed by the app&mdash;that is, how the _control widgets_ and _reactive outputs_ will be connected. You create a Server by _defining a new function_ (not calling a provided one):
 
 ```r
-server <- function(input, output){
+server <- function(input, output) {
   # assign values to `output` here
 }
 ```
@@ -250,14 +250,14 @@ server <- function(input, output) {
   # render a histogram plot
   output$hist <- renderPlot({
     uniform.nums <- runif(input$num, 1, 10)  # random nums between 1 and 10
-    return( hist(uniform.nums) )  # built-in plotting for simplicity
+    return(hist(uniform.nums))  # built-in plotting for simplicity
   })
 
   # render the counts
   output$counts <- renderPrint({
     uniform.nums <- runif(input$num, 1, 10)  # random nums between 1 and 10
     counts <- factor(cut(uniform.nums, breaks=1:10))  # factor
-    return( summary(counts) )  # simple vector of counts
+    return(summary(counts))  # simple vector of counts
   })
 }
 ```
@@ -270,18 +270,18 @@ This is an example of where you want to share a single piece of data (a single *
 server <- function(input, output) {
   # define a reactive variable
   uniform.nums <- reactive({
-    return( runif(input$num, 1, 10) )  # just like for a render function
+    return(runif(input$num, 1, 10))  # just like for a render function
   })
 
   # render a histogram plot
   output$hist <- renderPlot({
-    return( hist(uniform.nums()) )  # call the reactive variable AS A FUNCTION
+    return(hist(uniform.nums()))  # call the reactive variable AS A FUNCTION
   })
 
   # render the counts
   output$counts <- renderPrint({
     counts <- factor(cut(uniform.nums(), breaks=1:10))  # call the reactive variable AS A FUNCTION
-    return( summary(counts) )
+    return(summary(counts))
   })
 }
 ```
@@ -298,7 +298,7 @@ While there are a few different ways of "hosting" Shiny Apps, in this course you
 
 In order to host your app on shinyapps.io, you'll need to [create a free account](https://www.shinyapps.io/admin/#/signup). Note that you can sign up with GitHub or your Google/UW account. Follow the site's instructions to
 
-1. Select an account name (use something professional, like you used when siging up with GitHub)
+1. Select an account name (use something professional, like you used when signing up with GitHub)
 2. Install the required `rsconnect` package (may be included with RStudio)
 3. Set your authorization token ("password"). Just click the green "Copy to Clipboard" button, and then paste that into the **Console** in RStudio. You should only need to do this once.
 

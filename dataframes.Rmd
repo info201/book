@@ -1,12 +1,12 @@
 # Data Frames {#dataframes}
 
-This chapter introduces **data frame** objects, which are the primary data storage type used in R. In many ways, data frames are similar to a two-dimensional row/column layout that you should be familiar with from spreadsheet programs like Microsoft Excel. Rather than interact with this data strcture through a UI, we'll learn how to programmatically and reproducably perform operations on this data type. This chapter covers various ways of creating, describing, and accessing data frames, as well as how they are related to other data types in R.
+This chapter introduces **data frame** objects, which are the primary data storage type used in R. In many ways, data frames are similar to a two-dimensional row/column layout that you should be familiar with from spreadsheet programs like Microsoft Excel. Rather than interact with this data structure through a UI, we'll learn how to programmatically and reproducibly perform operations on this data type. This chapter covers various ways of creating, describing, and accessing data frames, as well as how they are related to other data types in R.
 
 
 ## What is a Data Frame?
 At a practical level, **Data Frames** act like _tables_, where data is organized into rows and columns. For example, consider the following table of names, weights, and heights:
 
-![A table of data (people weights and heights.](img/dataframes/table-example.png "table of weights and heights")
+![A table of data (people's weights and heights).](img/dataframes/table-example.png "table of weights and heights")
 
 In this table, each _row_ represents a **record** or **observation**: an instance of a single thing being measured (e.g., a person). Each _column_ represents a **feature**: a particular property or aspect of the thing being measured (e.g., the person's height or weight). This structure is used to organize lots of different _related_ data points for easier analysis.
 
@@ -81,7 +81,7 @@ colnames(my.data) <- new.col.names
 ```
 
 ### Accessing Data in Data Frames
-As stated above, since data frames _are_ lists, it's possible to use **dollar notation** (`my.data.frame$column.name`) or **double-bracket notation** (`my.data.frame[['column.name']]`) to access entire columns. However, R also uses a variation of **single-bracket notation** which allows you to access individual data elements (cells) in the table. In this synax, you put _two_ values separated by a comma (**`,`**) inside the brackets&mdash;the first for which row and the second for which column you wish you extract:
+As stated above, since data frames _are_ lists, it's possible to use **dollar notation** (`my.data.frame$column.name`) or **double-bracket notation** (`my.data.frame[['column.name']]`) to access entire columns. However, R also uses a variation of **single-bracket notation** which allows you to access individual data elements (cells) in the table. In this syntax, you put _two_ values separated by a comma (**`,`**) inside the brackets&mdash;the first for which row and the second for which column you wish you extract:
 
 | Syntax | Description | Example |
 | :-------------------- | :------------------- | :--------------------------- |
@@ -106,7 +106,7 @@ my.data[2]  # no comma
 
 (Extracting from more than one column will produce a _sub-data frame_; extracting from just one column will produce a vector).
 
-And of course, because _everything is a vector_, you're actually specifying vectors of indicies to extract. This allows you to get multiple rows or columns:
+And of course, because _everything is a vector_, you're actually specifying vectors of indices to extract. This allows you to get multiple rows or columns:
 
 ```r
 # Get the second through fourth rows
@@ -147,7 +147,7 @@ Again, use the `stringsAsFactors` argument to make sure string data is stored as
 ### Working Directory
 The biggest complication when loading `.csv` files is that the `read.csv()` function takes as an argument a **path** to the file. Because you want this script to work on any computer (to support collaboration, as well as things like assignment grading), you need to be sure to use a **relative path** to the file. The question is: _relative to what_?
 
-Like the command-line, the R interpreter (running inside R Studio) has a **current working directory** from which all file paths are relative. The trick is that ___the working directory is not the directory of the current script file!___.
+Like the command-line, the R interpreter (running inside R Studio) has a **current working directory** from which all file paths are relative. The trick is that ___the working directory is not the directory of the current script file!___
 
 - This makes sense if you think about it: you can run R commands through the console without having a script, and you can have open multiple script files from separate folders that are all interacting with the same execution environment.
 

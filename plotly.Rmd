@@ -26,10 +26,10 @@ One of the best ways to start building charts with Plotly is to take a look at a
 
 ```bash
 # Make a scatterplot of the iris data
-plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length, mode="markers", type="scatter")
+plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length, mode = "markers", type = "scatter")
 ```
 
-The approach seems pretty straightforward -- in fact, if you exclude `type = "scatter"` and `mode="markers"`, Plotly will make an educated guess about what type of plot you want (and in this case, it will in fact create a scatterplot!). The only syntax that looks a bit strange is the tilde character (`~`). In R, the tilde designates a variable as a **formula**, which was a design choice of the developers of the API.
+The approach seems pretty straightforward -- in fact, if you exclude `type = "scatter"` and `mode = "markers"`, Plotly will make an educated guess about what type of plot you want (and in this case, it will in fact create a scatterplot!). The only syntax that looks a bit strange is the tilde character (`~`). In R, the tilde designates a variable as a **formula**, which was a design choice of the developers of the API.
 
 ## Layout
 While the `plot_ly` function controls the data that is being visualized, additional chart options such as _titles and axes_ are controlled by the `layout` function. The `layout` function accepts as a parameter **a plotly object**, and _manipulates that object_. Again, I think a great place to start is an example in the [documentation](https://plot.ly/r/line-and-scatter/):
@@ -38,7 +38,7 @@ While the `plot_ly` function controls the data that is being visualized, additio
 # From documentation
 
 # Create a plotly object `p`
-p <- plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length, type="scatter", mode="markers",
+p <- plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length, type = "scatter", mode = "markers",
         marker = list(size = 10,
                        color = 'rgba(255, 182, 193, .9)',
                        line = list(color = 'rgba(152, 0, 0, .8)',
@@ -63,9 +63,9 @@ By default, plotly will provide information on each element when you hover over 
 # Create data
 d <- diamonds[sample(nrow(diamonds), 1000), ]
 
-# Create plot, speficying hover text
+# Create plot, specifying hover text
 p <- plot_ly(
-  d, x = ~carat, y = ~price, mode="markers", type="scatter",
+  d, x = ~carat, y = ~price, mode = "markers", type = "scatter",
   # Hover text:
   text = ~paste0("Price:$", price, '<br>Cut: ', cut),
   color = ~carat, size = ~carat

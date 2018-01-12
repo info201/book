@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2017-12-20">
+<meta name="date" content="2018-01-06">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -220,7 +220,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.1" data-path="lists.html"><a href="lists.html#what-is-a-list"><i class="fa fa-check"></i><b>8.1</b> What is a List?</a><ul>
 <li class="chapter" data-level="8.1.1" data-path="lists.html"><a href="lists.html#creating-lists"><i class="fa fa-check"></i><b>8.1.1</b> Creating Lists</a></li>
 <li class="chapter" data-level="8.1.2" data-path="lists.html"><a href="lists.html#accessing-lists"><i class="fa fa-check"></i><b>8.1.2</b> Accessing Lists</a></li>
-<li class="chapter" data-level="8.1.3" data-path="lists.html"><a href="lists.html#list-indicies"><i class="fa fa-check"></i><b>8.1.3</b> List Indicies</a></li>
+<li class="chapter" data-level="8.1.3" data-path="lists.html"><a href="lists.html#list-indices"><i class="fa fa-check"></i><b>8.1.3</b> List Indices</a></li>
 <li class="chapter" data-level="8.1.4" data-path="lists.html"><a href="lists.html#modifying-lists"><i class="fa fa-check"></i><b>8.1.4</b> Modifying Lists</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="lists.html"><a href="lists.html#the-lapply-function"><i class="fa fa-check"></i><b>8.2</b> The <code>lapply()</code> Function</a></li>
@@ -248,7 +248,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.2.5" data-path="dplyr.html"><a href="dplyr.html#summarize"><i class="fa fa-check"></i><b>10.2.5</b> Summarize</a></li>
 <li class="chapter" data-level="10.2.6" data-path="dplyr.html"><a href="dplyr.html#distinct"><i class="fa fa-check"></i><b>10.2.6</b> Distinct</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="dplyr.html"><a href="dplyr.html#multple-operations"><i class="fa fa-check"></i><b>10.3</b> Multple Operations</a><ul>
+<li class="chapter" data-level="10.3" data-path="dplyr.html"><a href="dplyr.html#multiple-operations"><i class="fa fa-check"></i><b>10.3</b> Multiple Operations</a><ul>
 <li class="chapter" data-level="10.3.1" data-path="dplyr.html"><a href="dplyr.html#the-pipe-operator"><i class="fa fa-check"></i><b>10.3.1</b> The Pipe Operator</a></li>
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="dplyr.html"><a href="dplyr.html#grouped-operations"><i class="fa fa-check"></i><b>10.4</b> Grouped Operations</a></li>
@@ -401,7 +401,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>After loading the library, you can call any of the functions just as if they were the built-in functions you’ve come to know and love.</p>
 <p>For each <code>dplyr</code> function discussed here, the <strong>first argument</strong> to the function is a data frame to manipulate, with the rest of the arguments providing more details about the manipulation.</p>
 <p class="alert alert-warning">
-<strong><em>IMPORTANT NOTE:</em></strong> inside the function argument list (inside the parentheses), we refer to data frame columns <strong>without quotation marks</strong>—that is, we just give the column names as <em>variable names</em>, rather than as <em>character strings</em>. This is refered to as <a href="#Non-standard%20Evaluation">non-standard evaluation</a>, and is described in more detail below; while it makes code easier to write and read, it can occassionally create challenges.
+<strong><em>IMPORTANT NOTE:</em></strong> inside the function argument list (inside the parentheses), we refer to data frame columns <strong>without quotation marks</strong>—that is, we just give the column names as <em>variable names</em>, rather than as <em>character strings</em>. This is refered to as <a href="#Non-standard%20Evaluation">non-standard evaluation</a>, and is described in more detail below; while it makes code easier to write and read, it can occasionally create challenges.
 </p>
 <p class="alert alert">
 The images in this section come from the <a href="http://bit.ly/rday-nyc-strata15">RStudio’s STRATA NYC R-Day workshop</a>, which was presented by <a href="http://conferences.oreilly.com/strata/big-data-conference-ny-2015/public/schedule/speaker/217840">Nathan Stephens</a>.
@@ -430,7 +430,7 @@ some.storms &lt;-<span class="st"> </span><span class="kw">filter</span>(storms,
 <img src="img/dplyr/filter.png" title="Diagram of the filter() function" alt="Diagram of the filter() function (by Nathan Stephens)." />
 <p class="caption">Diagram of the <code>filter()</code> function (by Nathan Stephens).</p>
 </div>
-<p>The <code>filter()</code> function takes in the data frame to filter, followed by a comma-separated list of conditions that each <em>row</em> returned row must satisfy. Note again that columns are provided without quotation marks!</p>
+<p>The <code>filter()</code> function takes in the data frame to filter, followed by a comma-separated list of conditions that each returned <em>row</em> must satisfy. Note again that columns are provided without quotation marks!</p>
 <ul>
 <li>R will extract the rows that match <strong>all</strong> conditions. Thus you are specifying that you want to filter down a data frame to contain only the rows that meet Condition 1 <strong>and</strong> Condition 2.</li>
 </ul>
@@ -443,7 +443,7 @@ some.storms &lt;-<span class="st"> </span>storms[storms$wind &gt;=<span class="s
 <h3><span class="header-section-number">10.2.3</span> Mutate</h3>
 <p>The <strong><code>mutate()</code></strong> operation allows you to create additional <strong>columns</strong> for your data frame.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Add `ratio` column that is ratio between pressure and wind</span>
-storms &lt;-<span class="st"> </span><span class="kw">mutate</span>(storms, <span class="dt">ratio =</span> pressure/wind)  <span class="co"># Replace existing `stroms` frame with mutated one!</span></code></pre></div>
+storms &lt;-<span class="st"> </span><span class="kw">mutate</span>(storms, <span class="dt">ratio =</span> pressure/wind)  <span class="co"># Replace existing `storms` frame with mutated one!</span></code></pre></div>
 <div class="figure">
 <img src="img/dplyr/mutate.png" title="Diagram of the mutate() function" alt="Diagram of the mutate() function (by Nathan Stephens)." />
 <p class="caption">Diagram of the <code>mutate()</code> function (by Nathan Stephens).</p>
@@ -516,8 +516,8 @@ distinct.rows &lt;-<span class="st"> </span><span class="kw">distinct</span>(my.
 <p>While this is a simple way to get a unique set of rows, <strong>be careful</strong> not to lazily remove rows of your data which may be important.</p>
 </div>
 </div>
-<div id="multple-operations" class="section level2">
-<h2><span class="header-section-number">10.3</span> Multple Operations</h2>
+<div id="multiple-operations" class="section level2">
+<h2><span class="header-section-number">10.3</span> Multiple Operations</h2>
 <!-- This discussion may be better for lecture than module, but leave in for now -->
 <p>You’ve likely encountered a number of instances in which you want to take the results from one function and pass them into another function. Your approach thus far has often been to create <em>temporary variables</em> for use in your analysis. For example, if you’re using the <code>mtcars</code> dataset, you may want to ask a simple question like,</p>
 <blockquote>
@@ -525,8 +525,8 @@ distinct.rows &lt;-<span class="st"> </span><span class="kw">distinct</span>(my.
 </blockquote>
 <p>This simple question actually requires a few steps:</p>
 <ol style="list-style-type: decimal">
-<li><em>Filter</em> down the dataset to only 4 cylinder cars</li>
-<li>Of the 4 cylinder cars, <em>filter</em> down to the one with the highest mpg</li>
+<li><em>Filter</em> down the dataset to only 4-cylinder cars</li>
+<li>Of the 4-cylinder cars, <em>filter</em> down to the one with the highest mpg</li>
 <li><em>Select</em> the car name of the car</li>
 </ol>
 <p>You could then implement each step as follows:</p>
@@ -561,10 +561,10 @@ best.car.name &lt;-<span class="st"> </span><span class="kw">select</span>(  <sp
 <p>This <em>nested</em> version performs the same results as the <em>temporary variable</em> version without creating the extra variables, but even with only 3 steps it can get quite complicated to read—in a large part because you have to think about it “inside out”, with the stuff in the middle evaluating first. This will obviously become undecipherable for more involved operations.</p>
 <div id="the-pipe-operator" class="section level3">
 <h3><span class="header-section-number">10.3.1</span> The Pipe Operator</h3>
-<p>Luckily, <code>dplyr</code> provides a cleaner and more effective way of achieving the same task (that is, using the result of one function as an argument to the next). The <strong>pipe operator</strong> (<strong><code>&gt;%&gt;</code></strong>) indicates that the result from the first function operand should be passed in as <strong>the first argument</strong> to the next function operand!</p>
+<p>Luckily, <code>dplyr</code> provides a cleaner and more effective way of achieving the same task (that is, using the result of one function as an argument to the next). The <strong>pipe operator</strong> (<strong><code>%&gt;%</code></strong>) indicates that the result from the first function operand should be passed in as <strong>the first argument</strong> to the next function operand!</p>
 <p>As a simple example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># nested version: evaluate c(), then max(), then print()</span>
-<span class="kw">print</span>( <span class="kw">max</span>( <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>) ) )
+<span class="kw">print</span>(<span class="kw">max</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>)))
 
 <span class="co"># pipe version</span>
 <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>) %&gt;%<span class="st">   </span><span class="co"># do first function</span>
@@ -580,7 +580,7 @@ best.car.name &lt;-<span class="st"> </span><span class="kw">filter</span>(mtcar
 <ul>
 <li>Yes, the <code>%&gt;%</code> operator is awkward to type and takes some getting use to (especially compared to the command-line’s use of <code>|</code> to pipe). However, you can ease the typing by using the <a href="https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts">RStudio keyboard shortcut</a> <code>cmd + shift + m</code>.</li>
 </ul>
-<p>The pipe operator is part of the <code>dplyr</code> package (it is only available if you load that package), but it will work with <em>any</em> function, not just <code>dplyr</code> ones! This syntax, while slightly odd, can completely change and simply the way you write code to ask questions about your data!</p>
+<p>The pipe operator is part of the <code>dplyr</code> package (it is only available if you load that package), but it will work with <em>any</em> function, not just <code>dplyr</code> ones! This syntax, while slightly odd, can completely change and simplify the way you write code to ask questions about your data!</p>
 </div>
 </div>
 <div id="grouped-operations" class="section level2">
@@ -605,7 +605,7 @@ city.summary &lt;-<span class="st"> </span><span class="kw">group_by</span>(poll
 <p>This simple question requires computing the mean for different subsets of the data. Rather than explicitly breaking your data into different groups (a.k.a. <em>bins</em> or <em>chunks</em>) and running the same operations on each, you can use the <code>group_by()</code> function to accomplish this in a single command:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Group cars by gear number, then compute the mean and median mpg</span>
 gear.summary &lt;-<span class="st"> </span><span class="kw">group_by</span>(mtcars, gear) %&gt;%<span class="st">  </span><span class="co"># group by gear</span>
-<span class="st">                 </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(mpg))  <span class="co"># calculate mean</span>
+<span class="st">                 </span><span class="kw">summarize</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(mpg))  <span class="co"># calculate mean</span>
 <span class="co"># Computing the difference between scores is done elsewhere (or by hand!)</span></code></pre></div>
 <p>Thus grouping can allow you to quickly and easily compare different subsets of your data!</p>
 <!-- For an introduction to and practice working with grouped operations, see [exercise-5](exercise-5). -->
@@ -628,7 +628,7 @@ gear.summary &lt;-<span class="st"> </span><span class="kw">group_by</span>(mtca
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Table of contact information</span>
 student.contact &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
     <span class="dt">student.id =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>),  <span class="co"># id numbers</span>
-    <span class="dt">email =</span> <span class="kw">c</span>(<span class="st">&quot;id1@school.edu&quot;</span>, <span class="st">&quot;id2@school.edu&quot;</span>, <span class="st">&quot;id3@school.edu&quot;</span>, <span class="st">&quot;id4@school.ed&quot;</span>)
+    <span class="dt">email =</span> <span class="kw">c</span>(<span class="st">&quot;id1@school.edu&quot;</span>, <span class="st">&quot;id2@school.edu&quot;</span>, <span class="st">&quot;id3@school.edu&quot;</span>, <span class="st">&quot;id4@school.edu&quot;</span>)
 )
 
 <span class="co"># Table of information about majors</span>
@@ -643,8 +643,8 @@ merged.student.info &lt;-<span class="st"> </span><span class="kw">left_join</sp
                         <span class="co"># 1          1 id1@school.edu sociology</span>
                         <span class="co"># 2          2 id2@school.edu      math</span>
                         <span class="co"># 3          3 id3@school.edu   biology</span>
-                        <span class="co"># 4          4  id4@school.ed      &lt;NA&gt;</span></code></pre></div>
-<p>When you perform this <strong>left join</strong>, R goes through each row in the table on the “left” (the first argument), looking at the shared column(s) (<code>student.id</code>). For each row, it looks for a corresponding value in <code>student.majors$student.id</code>, and if it fines one then it adds any data from columns that are in <code>student.majors</code> but <em>not</em> in <code>student.contact</code> (e.g., <code>major</code>) to new columns in the resulting table, with values from whatever the matching row was. Thus student #1 is given a <code>major</code> of “sociology”, student #2 is given a <code>major</code> of “math”, and student #4 is given a <code>major</code> of <code>NA</code> (because that student had no corresponding row in <code>student.majors</code>!)</p>
+                        <span class="co"># 4          4  id4@school.edu      &lt;NA&gt;</span></code></pre></div>
+<p>When you perform this <strong>left join</strong>, R goes through each row in the table on the “left” (the first argument), looking at the shared column(s) (<code>student.id</code>). For each row, it looks for a corresponding value in <code>student.majors$student.id</code>, and if it finds one then it adds any data from columns that are in <code>student.majors</code> but <em>not</em> in <code>student.contact</code> (e.g., <code>major</code>) to new columns in the resulting table, with values from whatever the matching row was. Thus student #1 is given a <code>major</code> of “sociology”, student #2 is given a <code>major</code> of “math”, and student #4 is given a <code>major</code> of <code>NA</code> (because that student had no corresponding row in <code>student.majors</code>!)</p>
 <ul>
 <li>In short, a <strong>left join</strong> returns all of the rows from the <em>first</em> table, with all of the columns from <em>both</em> tables.</li>
 </ul>
@@ -701,12 +701,12 @@ my.column &lt;-<span class="st"> </span><span class="kw">select_</span>(mtcars, 
 <table>
 <tbody>
 <tr class="odd">
-<td>Non-Standard Evaluation</td>
+<td align="left">Non-Standard Evaluation</td>
 <td align="left"><code>select(my.df, col.name)</code></td>
 <td align="left"><code>my.df[['col.name']]</code></td>
 </tr>
 <tr class="even">
-<td>Standard Evaluation</td>
+<td align="left">Standard Evaluation</td>
 <td align="left"><code>select_(my.df, col.name.var)</code></td>
 <td align="left"><code>my.df[[col.var.name]]</code></td>
 </tr>

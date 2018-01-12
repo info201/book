@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2017-12-20">
+<meta name="date" content="2018-01-06">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -220,7 +220,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.1" data-path="lists.html"><a href="lists.html#what-is-a-list"><i class="fa fa-check"></i><b>8.1</b> What is a List?</a><ul>
 <li class="chapter" data-level="8.1.1" data-path="lists.html"><a href="lists.html#creating-lists"><i class="fa fa-check"></i><b>8.1.1</b> Creating Lists</a></li>
 <li class="chapter" data-level="8.1.2" data-path="lists.html"><a href="lists.html#accessing-lists"><i class="fa fa-check"></i><b>8.1.2</b> Accessing Lists</a></li>
-<li class="chapter" data-level="8.1.3" data-path="lists.html"><a href="lists.html#list-indicies"><i class="fa fa-check"></i><b>8.1.3</b> List Indicies</a></li>
+<li class="chapter" data-level="8.1.3" data-path="lists.html"><a href="lists.html#list-indices"><i class="fa fa-check"></i><b>8.1.3</b> List Indices</a></li>
 <li class="chapter" data-level="8.1.4" data-path="lists.html"><a href="lists.html#modifying-lists"><i class="fa fa-check"></i><b>8.1.4</b> Modifying Lists</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="lists.html"><a href="lists.html#the-lapply-function"><i class="fa fa-check"></i><b>8.2</b> The <code>lapply()</code> Function</a></li>
@@ -248,7 +248,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.2.5" data-path="dplyr.html"><a href="dplyr.html#summarize"><i class="fa fa-check"></i><b>10.2.5</b> Summarize</a></li>
 <li class="chapter" data-level="10.2.6" data-path="dplyr.html"><a href="dplyr.html#distinct"><i class="fa fa-check"></i><b>10.2.6</b> Distinct</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="dplyr.html"><a href="dplyr.html#multple-operations"><i class="fa fa-check"></i><b>10.3</b> Multple Operations</a><ul>
+<li class="chapter" data-level="10.3" data-path="dplyr.html"><a href="dplyr.html#multiple-operations"><i class="fa fa-check"></i><b>10.3</b> Multiple Operations</a><ul>
 <li class="chapter" data-level="10.3.1" data-path="dplyr.html"><a href="dplyr.html#the-pipe-operator"><i class="fa fa-check"></i><b>10.3.1</b> The Pipe Operator</a></li>
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="dplyr.html"><a href="dplyr.html#grouped-operations"><i class="fa fa-check"></i><b>10.4</b> Grouped Operations</a></li>
@@ -421,7 +421,7 @@ $salary
 $in.union
 [1] TRUE</code></pre>
 <p>Notice that the output lists each tag name prepended with a dollar sign (<strong><code>$</code></strong>) symbol, and then on the following line the vector that is the element itself. The <code>$</code> symbol is one of the easiest ways of accessing list elements (which can’t be done with vectors).</p>
-<p>Because list elements are (usually) tagged, you can access them by their tag name rather than by the index number you used with vectors. You do this by using <strong>dollar notation</strong>: you refer to the element with a particular tag in a list by writing the name of the list, followed by a <code>$</code>, following by the element’s tag:</p>
+<p>Because list elements are (usually) tagged, you can access them by their tag name rather than by the index number you used with vectors. You do this by using <strong>dollar notation</strong>: you refer to the element with a particular tag in a list by writing the name of the list, followed by a <code>$</code>, followed by the element’s tag:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first.name =</span> <span class="st">&quot;Ada&quot;</span>, <span class="dt">job =</span> <span class="st">&quot;Programmer&quot;</span>, <span class="dt">salary =</span> <span class="dv">78000</span>, <span class="dt">in.union =</span> <span class="ot">TRUE</span>)
 
 person$first.name  <span class="co"># [1] &quot;Ada&quot;</span>
@@ -448,8 +448,8 @@ person$salary &lt;-<span class="st"> </span>person$salary *<span class="st"> </s
 <li>This is useful for understanding the structure of variables that may have come from other data sources.</li>
 </ul>
 </div>
-<div id="list-indicies" class="section level3">
-<h3><span class="header-section-number">8.1.3</span> List Indicies</h3>
+<div id="list-indices" class="section level3">
+<h3><span class="header-section-number">8.1.3</span> List Indices</h3>
 <p>Whether or not a list element has a tag, you can also access it by its numeric index (i.e., if it is the 1st, 2nd, etc. item in the list). You do this by using <strong>double-bracket notation</strong>: you refer to the element at a particular index of a list by writing the name of the list, followed by double square brackets (<strong><code>[[]]</code></strong>) that contain the index of interest:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># note: a list and not a vector, even though elements have the same types</span>
 animals &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;Aardvark&quot;</span>, <span class="st">&quot;Baboon&quot;</span>, <span class="st">&quot;Camel&quot;</span>)
@@ -474,9 +474,9 @@ person[[<span class="dv">4</span>]]  <span class="co"># [1] TRUE</span></code></
 <div id="single-vs.double-brackets" class="section level4">
 <h4><span class="header-section-number">8.1.3.1</span> Single vs. Double Brackets</h4>
 <p class="alert alert-warning">
-<strong>Wach out!</strong>: vectors use <strong><em>single</em></strong>-bracket notation for accessing by index, but lists use <strong><em>double</em></strong>-bracket notation for accessing by index!
+<strong>Watch out!</strong>: vectors use <strong><em>single</em></strong>-bracket notation for accessing by index, but lists use <strong><em>double</em></strong>-bracket notation for accessing by index!
 </p>
-<p>This is because the single-bracket syntax for vectors isn’t actually selecting by index: rather it is <strong>filtering</strong> by whatever vector is inside the brackets (which may be just a single element: the index number to extract). In R, single brackets <em>always</em> mean to filter the collection. So if you put single-brackets after a list, what you’re actually doing is getting a filtered <strong>sub-list</strong> of the elements that have those indicies, just as single brackets on a vector return a subset of elements in that vector:</p>
+<p>This is because the single-bracket syntax for vectors isn’t actually selecting by index: rather it is <strong>filtering</strong> by whatever vector is inside the brackets (which may be just a single element: the index number to extract). In R, single brackets <em>always</em> mean to filter the collection. So if you put single-brackets after a list, what you’re actually doing is getting a filtered <strong>sub-list</strong> of the elements that have those indices, just as single brackets on a vector return a subset of elements in that vector:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&#39;A&#39;</span>, <span class="dv">201</span>, <span class="ot">TRUE</span>, <span class="st">&#39;rhinoceros&#39;</span>)
 
 <span class="co"># SINGLE brackets returns a list</span>
@@ -555,7 +555,7 @@ dance.party &lt;-<span class="st"> </span><span class="kw">lapply</span>(people,
 <p>You commonly use <code>lapply()</code> with your own custom functions which define what you want to do to a single element in that list:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># A function that prepends &quot;Hello&quot; to any item</span>
 Greet &lt;-<span class="st"> </span>function(item) {
-  <span class="kw">return</span>( <span class="kw">paste</span>(<span class="st">&quot;Hello&quot;</span>, item) )
+  <span class="kw">return</span>(<span class="kw">paste</span>(<span class="st">&quot;Hello&quot;</span>, item))
 }
 
 <span class="co"># a list of people</span>

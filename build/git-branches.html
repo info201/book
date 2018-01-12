@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2017-12-20">
+<meta name="date" content="2018-01-06">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -220,7 +220,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.1" data-path="lists.html"><a href="lists.html#what-is-a-list"><i class="fa fa-check"></i><b>8.1</b> What is a List?</a><ul>
 <li class="chapter" data-level="8.1.1" data-path="lists.html"><a href="lists.html#creating-lists"><i class="fa fa-check"></i><b>8.1.1</b> Creating Lists</a></li>
 <li class="chapter" data-level="8.1.2" data-path="lists.html"><a href="lists.html#accessing-lists"><i class="fa fa-check"></i><b>8.1.2</b> Accessing Lists</a></li>
-<li class="chapter" data-level="8.1.3" data-path="lists.html"><a href="lists.html#list-indicies"><i class="fa fa-check"></i><b>8.1.3</b> List Indicies</a></li>
+<li class="chapter" data-level="8.1.3" data-path="lists.html"><a href="lists.html#list-indices"><i class="fa fa-check"></i><b>8.1.3</b> List Indices</a></li>
 <li class="chapter" data-level="8.1.4" data-path="lists.html"><a href="lists.html#modifying-lists"><i class="fa fa-check"></i><b>8.1.4</b> Modifying Lists</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="lists.html"><a href="lists.html#the-lapply-function"><i class="fa fa-check"></i><b>8.2</b> The <code>lapply()</code> Function</a></li>
@@ -248,7 +248,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.2.5" data-path="dplyr.html"><a href="dplyr.html#summarize"><i class="fa fa-check"></i><b>10.2.5</b> Summarize</a></li>
 <li class="chapter" data-level="10.2.6" data-path="dplyr.html"><a href="dplyr.html#distinct"><i class="fa fa-check"></i><b>10.2.6</b> Distinct</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="dplyr.html"><a href="dplyr.html#multple-operations"><i class="fa fa-check"></i><b>10.3</b> Multple Operations</a><ul>
+<li class="chapter" data-level="10.3" data-path="dplyr.html"><a href="dplyr.html#multiple-operations"><i class="fa fa-check"></i><b>10.3</b> Multiple Operations</a><ul>
 <li class="chapter" data-level="10.3.1" data-path="dplyr.html"><a href="dplyr.html#the-pipe-operator"><i class="fa fa-check"></i><b>10.3.1</b> The Pipe Operator</a></li>
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="dplyr.html"><a href="dplyr.html#grouped-operations"><i class="fa fa-check"></i><b>10.4</b> Grouped Operations</a></li>
@@ -387,7 +387,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <img src="img/git-branches/commit-sequence.gif" title="a commit sequence" alt="A linear sequence of commits, each with an SHA1 identifier." />
 <p class="caption">A linear sequence of commits, each with an SHA1 identifier.</p>
 </div>
-<p>Each commit has a message associated with it (that you can see with <code>git log --online</code>), as well as a unique <a href="https://en.wikipedia.org/wiki/SHA-1">SHA-1</a> hash (the random numbers and letters), which can be used to identify that commit as an “id number”.</p>
+<p>Each commit has a message associated with it (that you can see with <code>git log --oneline</code>), as well as a unique <a href="https://en.wikipedia.org/wiki/SHA-1">SHA-1</a> hash (the random numbers and letters), which can be used to identify that commit as an “id number”.</p>
 <p>But you can also save commits in a <em>non-linear</em> sequence. Perhaps you want to try something new and crazy without breaking code that you’ve already written. Or you want to work on two different features simultaneously (having separate commits for each). Or you want multiple people to work on the same code without stepping on each other’s toes.</p>
 <p>To do this, you use a feature of git called <strong>branching</strong> (because you can have commits that “branch off” from a line of development):</p>
 <div class="figure">
@@ -429,9 +429,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>If you have changes (commits) spread across multiple branches, eventually you’ll want to combine those changes back into a single branch. This is a process called <strong>merging</strong>: you “merge” the changes from one branch <em>into</em> another. You do this with the (surprise!) <code>merge</code> command:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> merge [other_branch]</code></pre></div>
 <p>This command will merge <code>other_branch</code> <strong>into the current branch</strong>. So if you want to end up with the “combined” version of your commits on a particular branch, you’ll need to switch to (<code>checkout</code>) that branch before you run the merge.</p>
-<pre><code>- **IMPORTANT** If something goes wrong, don&#39;t panic and try to close your command-line! Come back to this book and look up how to fix the problem you&#39;ve encounter (e.g., how to exit  _vim_). And if you&#39;re unsure why something isn&#39;t working with git, use **`git status`** to check the current status and for what steps to do next.</code></pre>
 <ul>
-<li>Note that the <code>rebase</code> command will perform a similar operation, but without creating a new “merge” commit—it simply takes the commits from one branch and attaches them to the end of the other. This effectively <strong>changes history</strong>, since it is no longer clear where the branching occurred. From an archival and academic view, you never want to “destroy history” and lose a record of changes that were made. History is important: don’t screw with it! Thus we recommend you <em>avoid</em> rebasing and stick with merging.</li>
+<li><p><strong>IMPORTANT</strong> If something goes wrong, don’t panic and try to close your command-line! Come back to this book and look up how to fix the problem you’ve encountered (e.g., how to exit <em>vim</em>). And if you’re unsure why something isn’t working with git, use <strong><code>git status</code></strong> to check the current status and for what steps to do next.</p></li>
+<li><p>Note that the <code>rebase</code> command will perform a similar operation, but without creating a new “merge” commit—it simply takes the commits from one branch and attaches them to the end of the other. This effectively <strong>changes history</strong>, since it is no longer clear where the branching occurred. From an archival and academic view, you never want to “destroy history” and lose a record of changes that were made. History is important: don’t screw with it! Thus we recommend you <em>avoid</em> rebasing and stick with merging.</p></li>
 </ul>
 <div id="merge-conflicts" class="section level3">
 <h3><span class="header-section-number">14.2.1</span> Merge Conflicts</h3>
