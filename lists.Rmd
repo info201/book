@@ -220,7 +220,7 @@ dance.party <- lapply(people, paste, "dances!")
 
 - Notice that the second argument to `lapply()` is just the name of the function: not a character string (it's not in `""`). You're also not actually _calling_ that function (there are no `()` after it). Just put the name of the function! After that, you can put any additional arguments you want the applied function to be called with: for example, how many digits to round to, or what value to paste to the end of a string.
 
-Note that the `lapply()` function returns a _new_ list; the original one is unmodified (though if the list contains vectors or other lists as elements, it's possible for those values to be changed).
+Note that the `lapply()` function returns a _new_ list; the original one is unmodified (though if the list contains vectors or other lists as elements, it's possible for those values to be changed). This makes it a **mapping** operation (applied to the maps that are lists).
 
 You commonly use `lapply()` with your own custom functions which define what you want to do to a single element in that list:
 

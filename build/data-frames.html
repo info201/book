@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-<link rel="prev" href="git-basics.html">
-<link rel="next" href="functions.html">
+<link rel="prev" href="lists.html">
+<link rel="next" href="dplyr.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -376,205 +376,294 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="r-intro" class="section level1">
-<h1><span class="header-section-number">Chapter 5</span> Introduction to R</h1>
-<p>R is an extraordinarily powerful open-source software program built for working with data. It is one of the most popular data science tools because of its ability to efficiently perform statistical analysis, implement machine learning algorithms, and create data visualizations. R is the primary programming language used throughout this book, and understanding its foundational operations is key to being able to perform more complex tasks.</p>
-<div id="programming-with-r" class="section level2">
-<h2><span class="header-section-number">5.1</span> Programming with R</h2>
-<p>R is a <strong>statistical programming language</strong> that allows you to write code to work with data. It is an <strong>open-source</strong> programming language, which means that it is free and continually improved upon by the R community. The R language has a number of functionalities that allow you to read, analyze, and visualize datasets.</p>
-<ul>
-<li><em>Fun Fact:</em> R is called “R” because it was inspired by and comes after the language “S”, a language for <strong>S</strong>tatistics developed by AT&amp;T.</li>
-</ul>
-<p>So far you’ve leveraged formal language to give instructions to your computers, such as by writing syntactically-precise instructions at the command-line. Programming in R will work in a similar manner: you will write instructions using R’s special language and syntax, which the computer will <strong>interpret</strong> as instructions for how to work with data.</p>
-<p>However, as projects grow in complexity, it will become useful if you can write down all the instructions in a single place, and then order the computer to <em>execute</em> all of those instructions at once. This list of instructions is called a <strong>script</strong>. Executing or “running” a script will cause each instruction (line of code) to be run <em>in order, one after the other</em>, just as if you had typed them in one by one. Writing scripts allows you to save, share, and re-use your work. By saving instructions in a file (or set of files), you can easily check, change, and re-execute the list of instructions as you figure out how to use data to answer questions. And, because R is an <em>interpreted</em> language rather than a <em>compiled</em> language like Java, R programming environments will also give you the ability to execute each individual line of code in your script if you desire (though this will become cumbersome as projects become large).</p>
-<p>As you begin working with data in R, you will be writing multiple instructions (lines of code) and saving them in files with the <strong><code>.R</code></strong> extension, representing R scripts. You can write this R code in any text editor (such as Atom), but we recommend you usually use a program called <strong>RStudio</strong> which is specialized for writing and running R scripts.</p>
-</div>
-<div id="running-r-scripts" class="section level2">
-<h2><span class="header-section-number">5.2</span> Running R Scripts</h2>
-<p>R scripts (programs) are just a sequence of instructions, and there are a couple of different ways in which we can tell the computer to execute these instructions.</p>
-<div id="running-r-cmd" class="section level3">
-<h3><span class="header-section-number">5.2.1</span> Command-Line</h3>
-<p>It is possible to issue R instructions (run lines of code) one-by-one at the command-line by starting an <strong>interactive R session</strong> within your terminal. This will allow you to type R code directly into the terminal, and your computer will interpret and execute each line of code (if you just typed R syntax directly into the terminal, your computer wouldn’t understand it).</p>
-<p>With R installed, you can start an interactive R session on a Mac by typing <code>R</code> into the terminal (to run the <code>R</code> program), or on Windows by running the “R” desktop app program. This will start the session and provide you with lots of information about the R language:</p>
+<div id="data-frames" class="section level1">
+<h1><span class="header-section-number">Chapter 9</span> Data Frames</h1>
+<p>This chapter introduces <strong>data frame</strong> objects, which are the primary data storage type used in R. In many ways, data frames are similar to a two-dimensional row/column layout that you should be familiar with from spreadsheet programs like Microsoft Excel. Rather than interact with this data structure through a UI, we’ll learn how to programmatically and reproducibly perform operations on this data type. This chapter covers various ways of creating, describing, and accessing data frames, as well as how they are related to other data types in R.</p>
+<div id="what-is-a-data-frame" class="section level2">
+<h2><span class="header-section-number">9.1</span> What is a Data Frame?</h2>
+<p>At a practical level, <strong>Data Frames</strong> act like <em>tables</em>, where data is organized into rows and columns. For example, consider the following table of names, weights, and heights:</p>
 <div class="figure">
-<img src="img/r-intro/r-interactive-session.png" title="interactive R session" alt="An interactive R session running in the terminal." />
-<p class="caption">An interactive R session running in the terminal.</p>
+<img src="img/dataframes/table-example.png" title="table of weights and heights" alt="A table of data (people’s weights and heights)." />
+<p class="caption">A table of data (people’s weights and heights).</p>
 </div>
-<p>Notice that this description also include <em>instructions on what to do next</em>—most importantly <code>&quot;Type 'q()' to quit R.&quot;</code>.</p>
+<p>In this table, each <em>row</em> represents a <strong>record</strong> or <strong>observation</strong>: an instance of a single thing being measured (e.g., a person). Each <em>column</em> represents a <strong>feature</strong>: a particular property or aspect of the thing being measured (e.g., the person’s height or weight). This structure is used to organize lots of different <em>related</em> data points for easier analysis.</p>
+<p>In R, you can use <strong>data frames</strong> to represent these kinds of tables. Data frames are really just <strong>lists</strong> (see <a href="lists.html#lists">Lists</a>) in which each element is a <strong>vector of the same length</strong>. Each vector represents a <strong>column, <em>not</em> a row</strong>. The elements at corresponding indices in the vectors are considered part of the same record (row).</p>
+<ul>
+<li>This makes sense because each row may have a different type of data—e.g., a person’s <code>name</code> (string) and <code>height</code> (number)—and vector elements must all be of the same type.</li>
+</ul>
+<p>For example, you can think of the above table as a <em>list</em> of three <em>vectors</em>: <code>name</code>, <code>height</code> and <code>weight</code>. The name, height, and weight of the first person measured are represented by the first elements of the <code>name</code>, <code>height</code> and <code>weight</code> vectors respectively.</p>
+<p>You can work with data frames as if they were lists, but data frames include additional properties as well that make them particularly well suited for handling tables of data.</p>
+<div id="creating-data-frames" class="section level3">
+<h3><span class="header-section-number">9.1.1</span> Creating Data Frames</h3>
+<p>Typically you will <em>load</em> data sets from some external source (see <a href="data-frames.html#csv-files">below</a>), rather than writing out the data by hand. However, it is important to understand that you can construct a data frame by combining multiple vectors. To accomplish this, you can use the <code>data.frame()</code> function, which accepts <strong>vectors</strong> as <em>arguments</em>, and creates a table with a column for each vector. For example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vector of names</span>
+name &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Ada&#39;</span>,<span class="st">&#39;Bob&#39;</span>,<span class="st">&#39;Chris&#39;</span>,<span class="st">&#39;Diya&#39;</span>,<span class="st">&#39;Emma&#39;</span>)
+
+<span class="co"># Vector of heights</span>
+height &lt;-<span class="st"> </span><span class="dv">58</span>:<span class="dv">62</span>
+
+<span class="co"># Vector of weights</span>
+weight &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">115</span>, <span class="dv">117</span>, <span class="dv">120</span>, <span class="dv">123</span>, <span class="dv">126</span>)
+
+<span class="co"># Combine the vectors into a data.frame</span>
+<span class="co"># Note the names of the variables become the names of the columns!</span>
+my.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(name, height, weight, <span class="dt">stringsAsFactors=</span><span class="ot">FALSE</span>)</code></pre></div>
+<ul>
+<li>(The last argument to the <code>data.frame()</code> function is included because one of the vectors contains strings; it tells R to treat that vector as a <em>vector</em> not as a <strong>factor</strong>. This is usually what you’ll want to do. See below for details about <a href="data-frames.html#factors">factors</a>).</li>
+</ul>
+<p>Because data frame elements are lists, you can access the values from <code>my.data</code> using the same <strong>dollar notation</strong> and <strong>double-bracket notation</strong> as lists:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Using the same weights/heights as above:</span>
+my.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(height, weight)
+
+<span class="co"># Retrieve weights (the `weight` element of the list: a vector!)</span>
+my.weights &lt;-<span class="st"> </span>my.data$weight
+
+<span class="co"># Retrieve heights (the whole column: a vector!)</span>
+my.heights &lt;-<span class="st"> </span>my.data[[<span class="st">&#39;height&#39;</span>]]</code></pre></div>
+</div>
+<div id="describing-structure-of-data-frames" class="section level3">
+<h3><span class="header-section-number">9.1.2</span> Describing Structure of Data Frames</h3>
+<p>While you can interact with data frames as lists, they also offer a number of additional capabilities and functions. For example, here are a few ways you can <em>inspect</em> the structure of a data frame:</p>
+<table>
+<colgroup>
+<col width="6%" />
+<col width="93%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Function</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>nrow(my.data.frame)</code></td>
+<td align="left">Number of rows in the data frame</td>
+</tr>
+<tr class="even">
+<td align="left"><code>ncol(my.data.frame)</code></td>
+<td align="left">Number of columns in the data frame</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>dim(my.data.frame)</code></td>
+<td align="left">Dimensions (rows, columns) in the data frame</td>
+</tr>
+<tr class="even">
+<td align="left"><code>colnames(my.data.frame)</code></td>
+<td align="left">Names of the columns of the data frame</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>rownames(my.data.frame)</code></td>
+<td align="left">Names of the row of the data frame</td>
+</tr>
+<tr class="even">
+<td align="left"><code>head(my.data.frame)</code></td>
+<td align="left">Extracts the first few rows of the data frame (as a new data frame)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>tail(my.data.frame)</code></td>
+<td align="left">Extracts the last few rows of the data frame (as a new data frame)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>View(my.data.frame)</code></td>
+<td align="left">Opens the data frame in as spreadsheet-like viewer (only in RStudio)</td>
+</tr>
+</tbody>
+</table>
+<p>Note that many of these description functions can also be used to <em>modify</em> the structure of a data frame. For example, you can use the <code>colnames</code> functions to assign a new set of column names to a data frame:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Using the same weights/heights as above:</span>
+my.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(name, height, weight)
+
+<span class="co"># A vector of new column names</span>
+new.col.names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;first.name&#39;</span>,<span class="st">&#39;how.tall&#39;</span>,<span class="st">&#39;how.heavy&#39;</span>)
+
+<span class="co"># Assign that vector to be the vector of column names</span>
+<span class="kw">colnames</span>(my.data) &lt;-<span class="st"> </span>new.col.names</code></pre></div>
+</div>
+<div id="accessing-data-in-data-frames" class="section level3">
+<h3><span class="header-section-number">9.1.3</span> Accessing Data in Data Frames</h3>
+<p>As stated above, since data frames <em>are</em> lists, it’s possible to use <strong>dollar notation</strong> (<code>my.data.frame$column.name</code>) or <strong>double-bracket notation</strong> (<code>my.data.frame[['column.name']]</code>) to access entire columns. However, R also uses a variation of <strong>single-bracket notation</strong> which allows you to access individual data elements (cells) in the table. In this syntax, you put <em>two</em> values separated by a comma (<strong><code>,</code></strong>) inside the brackets—the first for which row and the second for which column you wish you extract:</p>
+<table>
+<colgroup>
+<col width="30%" />
+<col width="29%" />
+<col width="40%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Syntax</th>
+<th align="left">Description</th>
+<th align="left">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>my.df[row.num, col.num]</code></td>
+<td align="left">Element by row and column indices</td>
+<td align="left"><code>my.frame[2,3]</code> (element in the second row, third column)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>my.df[row.name, col.name]</code></td>
+<td align="left">Element by row and column names</td>
+<td align="left"><code>my.frame['Ada','height']</code> (element in row <em>named</em> <code>Ada</code> and column <em>named</em> <code>height</code>; the <code>height</code> of <code>Ada</code>)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>my.df[row, col]</code></td>
+<td align="left">Element by row and col; can mix indices and names</td>
+<td align="left"><code>my.frame[2,'height']</code> (second element in the <code>height</code> column)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>my.df[row, ]</code></td>
+<td align="left">All elements (columns) in row index or name</td>
+<td align="left"><code>my.frame[2,]</code> (all columns in the second row)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>my.df[, col]</code></td>
+<td align="left">All elements (rows) in a col index or name</td>
+<td align="left"><code>my.frame[,'height']</code> (all rows in the <code>height</code> column; equivalent to list notations)</td>
+</tr>
+</tbody>
+</table>
+<p>Take special note of the 4th option’s syntax (for retrieving rows): you still include the comma (<code>,</code>), but because you leave <em>which column</em> blank, you get all of the columns!</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Extract the second row</span>
+my.data[<span class="dv">2</span>, ]  <span class="co"># comma</span>
+
+<span class="co"># Extract the second column AS A VECTOR</span>
+my.data[, <span class="dv">2</span>]  <span class="co"># comma</span>
+
+<span class="co"># Extract the second column AS A DATA FRAME (filtering)</span>
+my.data[<span class="dv">2</span>]  <span class="co"># no comma</span></code></pre></div>
+<p>(Extracting from more than one column will produce a <em>sub-data frame</em>; extracting from just one column will produce a vector).</p>
+<p>And of course, because <em>everything is a vector</em>, you’re actually specifying vectors of indices to extract. This allows you to get multiple rows or columns:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get the second through fourth rows</span>
+my.data[<span class="dv">2</span>:<span class="dv">4</span>, ]
+
+<span class="co"># Get the `height` and `weight` columns</span>
+my.data[, <span class="kw">c</span>(<span class="st">&#39;height&#39;</span>, <span class="st">&#39;weight&#39;</span>)]
+
+<span class="co"># Perform filtering</span>
+my.data[my.data$height &gt;<span class="st"> </span><span class="dv">60</span>, ] <span class="co"># rows for which `height` is greater than 60</span></code></pre></div>
+</div>
+</div>
+<div id="csv-files" class="section level2">
+<h2><span class="header-section-number">9.2</span> Working with CSV Data</h2>
+<p>So far you’ve been constructing your own data frames by “hard-coding” the data values. But it’s much more common to load that data from somewhere else, such as a separate file on your computer or by downloading it off the internet. While R is able to ingest data from a variety of sources, this chapter will focus on reading tabular data in <strong>comma separated value</strong> (CSV) format, usually stored in a <code>.csv</code> file. In this format, each line of the file represents a record (<em>row</em>) of data, while each feature (<em>column</em>) of that record is separated by a comma:</p>
+<pre><code>Ada, 58, 115
+Bob, 59, 117
+Chris, 60, 120
+Diya, 61, 123
+Emma, 62, 126</code></pre>
+<p>Most spreadsheet programs like Microsoft Excel, Numbers, or Google Sheets are simply interfaces for formatting and interacting with data that is saved in this format. These programs easily import and export <code>.csv</code> files; however <code>.csv</code> files are unable to save the formatting done in those programs—the files only store the data!</p>
+<p>You can load the data from a <code>.csv</code> file into R by using the <code>read.csv()</code> function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Read data from the file `my_file.csv` into a data frame `my.data`</span>
+my.data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;my_file.csv&#39;</span>, <span class="dt">stringsAsFactors=</span><span class="ot">FALSE</span>)</code></pre></div>
+<p>Again, use the <code>stringsAsFactors</code> argument to make sure string data is stored as a <em>vector</em> rather than as a <em>factor</em> (see <a href="data-frames.html#factors">below</a>). This function will return a data frame, just like those described above!</p>
 <p class="alert alert-warning">
-Always read the output when working on the command-line!
+<strong>Important Note</strong>: If for whatever reason an element is missing from a data frame (which is very common with real world data!), R will fill that cell with the logical value <code>NA</code> (distinct from the string <code>&quot;NA&quot;</code>), meaning “<strong>N</strong>ot <strong>A</strong>vailable”. There are multiple ways to handle this in an analysis; see <a href="http://www.statmethods.net/input/missingdata.html">this link</a> among others for details.
 </p>
-<p>Once you’ve started running an interactive R session, you can begin entering one line of code at a time at the prompt (<code>&gt;</code>). This is a nice way to experiment with the R language or to quickly run some code. For example, try doing some math at the command prompt (i.e., enter <code>1 + 1</code> and see the output).</p>
+<div id="working-directory" class="section level3">
+<h3><span class="header-section-number">9.2.1</span> Working Directory</h3>
+<p>The biggest complication when loading <code>.csv</code> files is that the <code>read.csv()</code> function takes as an argument a <strong>path</strong> to the file. Because you want this script to work on any computer (to support collaboration, as well as things like assignment grading), you need to be sure to use a <strong>relative path</strong> to the file. The question is: <em>relative to what</em>?</p>
+<p>Like the command-line, the R interpreter (running inside R Studio) has a <strong>current working directory</strong> from which all file paths are relative. The trick is that <strong><em>the working directory is not the directory of the current script file!</em></strong></p>
 <ul>
-<li>Note that RStudio also provides an interactive console that provides the exact same functionality.</li>
+<li>This makes sense if you think about it: you can run R commands through the console without having a script, and you can have open multiple script files from separate folders that are all interacting with the same execution environment.</li>
 </ul>
-<p>It is also possible to run entire scripts from the command-line by using the <code>RScript</code> program, specifying the <code>.R</code> file you wish to execute:</p>
+<p>Just as you can view the current working directory when on the commandline (using <code>pwd</code>), you can use an R function to view the current working directory when in R:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># get the absolute path to the current working directory</span>
+<span class="kw">getwd</span>()</code></pre></div>
+<p>You often will want to change the working directory to be your “project” directory (wherever your scripts and data files happen to be). It is possible to change the current working directory using the <code>setwd()</code> function. However, this function would also take an absolute path, so doesn’t fix the problem. You would not want to include this absolute path in your script (though you could use it from the console).</p>
+<p>One solution is to use the tilde (<code>~</code>) shortcut to specify your directory:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Set working directory on Desktop</span>
+<span class="kw">setwd</span>(<span class="st">&quot;~/Desktop/project-name&quot;</span>)</code></pre></div>
+<p>This enables you to work across machines, as long as the project is stored in the same location on each machine.</p>
+<p>Another solution is to use R Studio itself to change the working directory. This is reasonable because the working directory is a property of the <em>current running environment</em>, which is what R Studio makes accessible! The easiest way to do this is to use the <strong><code>Session &gt; Set Working Directory</code></strong> menu options: you can either set the working directory <code>To Source File Location</code> (the folder containing whichever <code>.R</code> script you are currently editing; this is usually what you want), or you can browse for a particular directory with <code>Choose Directory</code>.</p>
 <div class="figure">
-<img src="img/r-intro/rscript-terminal.png" title="RScript from the terminal" alt="Using RScript from the terminal" />
-<p class="caption">Using RScript from the terminal</p>
+<img src="img/dataframes/session-setwd-rstudio.png" alt="Use Session &gt; Set Working Directory to change the working directory through R Studio" />
+<p class="caption">Use <code>Session &gt; Set Working Directory</code> to change the working directory through R Studio</p>
 </div>
-<p>Entering this command in the terminal would execute each line of R code written in the <code>analysis.R</code> file, performing all of the instructions that you had save there. This is helpful if your data has changed, and you want to reproduce the results of your analysis using the same instructions.</p>
-<div id="windows-command-line" class="section level4">
-<h4><span class="header-section-number">5.2.1.1</span> Windows Command-Line</h4>
-<p>On Windows, you need to tell the computer where to find the <code>R.exe</code> and <code>RScript.exe</code> programs to execute—that is, what is the <strong>path</strong> to these programs. You can do this by specifying the <em>absolute path</em> to the R program when you execute it, for example:</p>
-<div class="figure">
-<img src="img/r-intro/rscript-terminal-windows.png" title="Rscript from windows shell" alt="Using RScript from a Windows shell" />
-<p class="caption">Using RScript from a Windows shell</p>
-</div>
-<p>If you plan to run R from the command-line regularly (<em>not</em> a requirement for this course), a better solution is to add the folder containing these programs to your computer’s <a href="https://en.wikipedia.org/wiki/PATH_(variable)"><strong><code>PATH</code> variable</strong></a>. This is a <em>system-level</em> variable that contains a list of folders that the computer searches when finding programs to execute execute. The reason the computer knows where to find the <code>git.exe</code> program when you type <code>git</code> in the command-line is because that program is “on the <code>PATH</code>”.</p>
-<p>In Windows, You can add the <code>R.exe</code> and <code>RScript.exe</code> programs to your computer’s <code>PATH</code> by editing your machine’s <strong>Environment Variables</strong> through the <em>Control Panel</em>:</p>
-<ul>
-<li><p>Open up the “Advanced” tab of the “System Properties”. In Windows 10, you can find this by searching for “environment”. Click on the “Environment Variables…” button to open the settings for the Environment Variables.</p></li>
-<li><p>In the window that pops up, select the “PATH” variable (either per user or for the whole system) and click the “Edit” button below it.</p></li>
-<li><p>In the next window that pops up, click the “Browse” button to select the <em>folder that contains</em> the <code>R.exe</code> and <code>RScript.exe</code> files. See the above screenshot for one possible path.</p></li>
-<li><p>You will need to close and re-open your command-line (Git Bash) for the <code>PATH</code> changes to take effect.</p></li>
-</ul>
-<p>Overall, using R from the command-line can be tricky; we recommend you just use RStudio instead.</p>
+<p>You should do this whenever you hit a “path” problem when loading external files. If you want to do this repeatedly by calling <code>setwd()</code> from your script to an absolute path, you may want to keep it commented out (<code># setwd(...)</code>) so it doesn’t cause problems for others who try to run your script.</p>
 </div>
 </div>
-<div id="running-r-rstudio" class="section level3">
-<h3><span class="header-section-number">5.2.2</span> RStudio</h3>
-<p>RStudio is an open-source <strong>integrated development environment (IDE)</strong> that provides an informative user interface for interacting with the R interpreter. IDEs provide a platform for writing <em>and</em> executing code, including viewing the results of the code you have run. If you haven’t already, make sure to download and install <a href="https://www.rstudio.com/products/rstudio/download3/#download">the free version of RStudio</a>.</p>
-<p>When you open the RStudio program (either by searching for it, or double-clicking on a desktop icon), you’ll see the following interface:</p>
-<div class="figure">
-<img src="img/r-intro/rstudio-interface.png" title="Rstudio&#39;s user interface" alt="RStudio’s user interface. Annotations are in red." />
-<p class="caption">RStudio’s user interface. Annotations are in red.</p>
-</div>
-<p>An RStudio session usually involves 4 sections (“panes”), though you can customize this layout if you wish:</p>
-<ul>
-<li><p><strong>Script</strong>: The top-left pane is a simple text editor for writing your R code. While it is not as robust as a text editing program like Atom, it will colorize code, “auto-complete” text, and allows you to easily execute your code. Note that this pane is hidden if there are no open scripts; select <code>File &gt; New File &gt; R Script</code> from the menu to create a new script file.</p>
-<p>In order to execute (run) the code you write, you have two options:</p>
-<ol style="list-style-type: decimal">
-<li><p>You can execute a section of your script by selecting (highlighting) the desired code and pressing the “Run” button (keyboard shortcut: <code>ctrl</code> and <code>enter</code>). If no lines are selected, this will run the line currently containing the cursor. This is the most common way to execute code in R.</p>
-<ul>
-<li><em>Protip:</em> use <code>cmd + a</code> to select the entire script!</li>
-</ul></li>
-<li><p>You can execute an entire script by using the <code>Source</code> command to treat the current file as the “source” of code. Press the “Source” button (hover the mouse over it for keyboard shortcuts) to do so. If you check the “Source on save” option, your entire script will be executed every time you save the file (this may or may not be appropriate, depending on the complexity of your script and its output).</p></li>
-</ol></li>
-<li><p><strong>Console</strong>: The bottom-left pane is a console for entering R commands. This is identical to an inetractive session you’d run on the command-line, in which you can type and execute one line of code at a time. The console will also show the printed results from executing the code you execute from the Script pane.</p>
-<ul>
-<li><em>Protip:</em> just like with the command-line, you can <strong>use the up arrow</strong> to easily access previously executed lines of code.</li>
-</ul></li>
-<li><p><strong>Environment</strong>: The top-right pane displays information about the current R environment—specifically, information that you have stored inside of <em>variables</em> (see below). In the above example, the value <code>201</code> is stored in a variable called <code>x</code>. You’ll often create dozens of variables within a script, and the Environment pane helps you keep track of which values you have stored in what variables. <em>This is incredibly useful for debugging!</em></p></li>
-<li><p><strong>Plots, packages, help, etc.</strong>: The bottom right pane contains multiple tabs for accessing various information about your program. When you create visualizations, those plots will render in this quadrant. You can also see what packages you’ve loaded or look up information about files. <em>Most importantly</em>, this is also where you can access the official documentation for the R language. If you ever have a question about how something in R works, this is a good place to start!</p></li>
-</ul>
-<p>Note, you can use the small spaces between the quadrants to adjust the size of each area to your liking. You can also use menu options to reorganize the panes if you wish.</p>
-</div>
-</div>
-<div id="comments" class="section level2">
-<h2><span class="header-section-number">5.3</span> Comments</h2>
-<p>Before discussing how to program with R, we need to talk about a piece of syntax that lets you comment your code. In programming, <strong>comments</strong> are bits of text that are <em>not interpreted as computer instructions</em>—they aren’t code, they’re just notes about the code! Since computer code can be opaque and difficult to understand, we use comments to help write down the meaning and <em>purpose</em> of our code. While a computer is able to understand the code, comments are there to help <em>people</em> understand it. This is particularly imporant when someone else will be looking at your work—whether that person is a collaborator, or is simply a future version of you (e.g., when you need to come back and fix something and so need to remember what you were even thinking).</p>
-<p>Comments should be clear, concise, and helpful—they should provide information that is not otherwise present or “obvious” in the code itself.</p>
-<p>In R, we mark text as a comment by putting it after the pound/hashtag symbol (<strong><code>#</code></strong>). Everything from the <code>#</code> until the end of the line is a comment. We put descriptive comments <em>immediately above</em> the code it describes, but you can also put very short notes at the end of the line of code (preferably following two spaces):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Set how many bottles of beer are on the wall</span>
-bottles &lt;-<span class="st"> </span><span class="dv">99</span> -<span class="st"> </span><span class="dv">1</span>  <span class="co"># 98 bottles</span></code></pre></div>
-<p>(You may recognize this <code>#</code> syntax and commenting behavior from the commmand-line and git chapters. That’s because the same syntax is used in a Bash shell!)</p>
-</div>
-<div id="variables" class="section level2">
-<h2><span class="header-section-number">5.4</span> Variables</h2>
-<p>Since computer programs involve working with lots of <em>information</em>, we need a way to store and refer to this information. We do this with <strong>variables</strong>. Variables are labels for information; in R, you can think of them as “boxes” or “nametags” for data. After putting data in a variable box, you can then refer to that data by the name on the box.</p>
-<p>Variable names can contain any combination of letters, numbers, periods (<code>.</code>), or underscores (<code>_</code>). Variables names must begin with a letter. Note that like everything in programming, variable names are case sensitive. It is best practice to make variable names descriptive and information about what data they contain. <code>a</code> is not a good variable name. <code>cups.of.coffee</code> is a good variable name. To comply with <a href="https://google.github.io/styleguide/Rguide.xml#identifiers">Google’s Style Guidelines</a> variables should be <strong>all lower-case letters, separated by periods (<code>.</code>)</strong>.</p>
-<p>We call putting information in a variable <strong>assigning</strong> that value to the variable. We do this using the <em>assignment operator</em> <strong><code>&lt;-</code></strong>. For example:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Stores the number 7 into a variable called shoe.size</span>
-shoe.size &lt;-<span class="st"> </span><span class="dv">7</span></code></pre></div>
-<ul>
-<li><em>Notice:</em> variable name goes on the left, value goes on the right!</li>
-</ul>
-<p>You can see what value (data) is inside a variable by either typing that variable name as a line of code, or by using R’s built-in <code>print()</code> function (more on functions later):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(shoe.size)
-<span class="co"># [1] 7</span></code></pre></div>
-<ul>
-<li>We’ll talk about the <code>[1]</code> in that output later.</li>
-</ul>
-<p>You can also use <strong>mathematical operators</strong> (e.g., <code>+</code>, <code>-</code>, <code>/</code>, <code>*</code>) when assigning values to variables. For example, you could create a variable that is the sum of two numbers as follows:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">3</span> +<span class="st"> </span><span class="dv">4</span></code></pre></div>
-<p>Once a value (like a number) is <em>in</em> a variable, you can use that variable in place of any other value. So all of the following are valid:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">2</span>  <span class="co"># store 2 in x</span>
-y &lt;-<span class="st"> </span><span class="dv">9</span>  <span class="co"># store 9 in y</span>
-z &lt;-<span class="st"> </span>x +<span class="st"> </span>y  <span class="co"># store sum of x and y in z</span>
-<span class="kw">print</span>(z)  <span class="co"># 11</span>
-z &lt;-<span class="st"> </span>z +<span class="st"> </span><span class="dv">1</span>  <span class="co"># take z, add 1, and store result back in z</span>
-<span class="kw">print</span>(z)  <span class="co"># 12</span></code></pre></div>
-<div id="basic-data-types" class="section level3">
-<h3><span class="header-section-number">5.4.1</span> Basic Data Types</h3>
-<p>In the example above, we stored <strong>numeric</strong> values in variables. R is a <strong>dynamically typed language</strong>, which means that we <em>do not</em> need to explicitly state what type of information will be stored in each variable we create. R is intelligent enough to understand that if we have code <code>x &lt;- 7</code>, then <code>x</code> will contain a numeric value (and so we can do math upon it!)</p>
-<p>There are a few “basic types” (or <em>modes</em>) for data in R:</p>
-<ul>
-<li><p><strong>Numeric</strong>: The default computational data type in R is numeric data, which consists of the set of real numbers (including decimals). We use use <strong>mathematical operators</strong> on numeric data (such as <code>+</code>, <code>-</code>, <code>*</code>, <code>-</code>, etc.). There are also numerous functions that work on numeric data (such as calculating sums or averages).</p></li>
-<li><p><strong>Character</strong>: Character data stores <em>strings</em> of characters (things you type with a keyboard) in a variable. You specify that some information is character data by surrounding it in either single quotes (<strong><code>'</code></strong>) or double quotes (<strong><code>&quot;</code></strong>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create character variable `famous.poet` with the value &quot;Bill Shakespeare&quot;</span>
-famous.poet &lt;-<span class="st"> &quot;Bill Shakespeare&quot;</span></code></pre></div>
-<p>Note that character data <em>is still data</em>, so it can be assigned to a variable just like numeric data!</p>
-<p>There are no special operators for character data, though there are a many built-in functions for working with strings.</p></li>
-<li><p><strong>Logical</strong>: Logical (a.k.a Boolean) data types store “yes-or-no” data. A logical value can be one of two values: <code>TRUE</code> or <code>FALSE</code>. Importantly, these <strong>are not</strong> the strings <code>&quot;TRUE&quot;</code> or <code>&quot;FALSE&quot;</code>; logical values are a different type! If you prefer, you can use the shorthand <code>T</code> or <code>F</code> in lieu of <code>TRUE</code> and <code>FALSE</code> in variable assignment.</p>
-<ul>
-<li><em>Fun fact:</em> logical values are called “booleans” after mathematician and logician <a href="https://en.wikipedia.org/wiki/George_Boole">George Boole</a>.</li>
-</ul>
-<p>Logical values are most commonly the result of applying a <strong>relational operator</strong> (also called a <strong>comparison operator</strong>) to some other data. Comparison operators are used to compare values and include: <code>&lt;</code> (less than), <code>&gt;</code> (greater than), <code>&lt;=</code> (less-than-or-equal), <code>&gt;=</code> (greater-than-or-equal), <code>==</code> (equal), and <code>!=</code> (not-equal).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Store values in variables</span>
-x &lt;-<span class="st"> </span><span class="dv">3</span>
-y &lt;-<span class="st"> </span><span class="fl">3.15</span>
+<div id="factors" class="section level2">
+<h2><span class="header-section-number">9.3</span> Factor Variables</h2>
+<p><strong>Factors</strong> are a way of <em>optimizing</em> variables that consist of a finite set of categories (i.e., they are <strong>categorical (nominal) variables</strong>).</p>
+<p>For example, imagine that you had a vector of shirt sizes which could only take on the values <code>small</code>, <code>medium</code>, or <code>large</code>. If you were working with a large dataset (thousands of shirts!), it would end up taking up a lot of memory to store the character strings (5+ letters per word at 1 or more bytes per letter) for each one of those variables.</p>
+<p>A <strong>factor</strong> on the other hand would instead store a <em>number</em> (called a <strong>level</strong>) for each of these character strings: for example, <code>1</code> for <code>small</code>, <code>2</code> for <code>medium</code>, or <code>3</code> for <code>large</code> (though the order or specific numbers will vary). R will remember the relationship between the integers and their <strong>labels</strong> (the strings). Since each number only takes 4 bytes (rather than 1 per letter), factors allow R to keep much more information in memory.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Start with a character vector of shirt sizes</span>
+shirt.sizes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;small&#39;</span>, <span class="st">&#39;medium&#39;</span>, <span class="st">&#39;small&#39;</span>, <span class="st">&#39;large&#39;</span>, <span class="st">&#39;medium&#39;</span>, <span class="st">&#39;large&#39;</span>)
 
-<span class="co"># Compare values in x and y</span>
-x &gt;<span class="st"> </span>y  <span class="co"># returns logical value FALSE (x IS NOT bigger than y)</span>
-y !=<span class="st"> </span>x  <span class="co"># returns logical value TRUE (y IS not-equal to x)</span>
+<span class="co"># Convert to a vector of factor data</span>
+shirt.sizes.factor &lt;-<span class="st"> </span><span class="kw">as.factor</span>(shirt.sizes)
 
-<span class="co"># compare x to pi (built-in variable)</span>
-y ==<span class="st"> </span>pi  <span class="co"># returns logical value FALSE</span>
+<span class="co"># View the factor and its levels</span>
+<span class="kw">print</span>(shirt.sizes.factor)
 
-<span class="co"># compare strings (based on alphabetical ordering)</span>
-<span class="st">&quot;cat&quot;</span> &gt;<span class="st"> &quot;dog&quot;</span>  <span class="co"># returns FALSE</span></code></pre></div>
-<p>Logical values have their own operators as well (called <strong>logical operators</strong> or <strong>boolean operators</strong>). These <em>apply to</em> logical values and <em>produce</em> logical values, allowing you to make more complex logical expressions. These include <code>&amp;</code> (and), <code>|</code> (or), and <code>!</code> (not).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Store values in variables</span>
-x &lt;-<span class="st"> </span><span class="fl">3.1</span>
-y &lt;-<span class="st"> </span><span class="fl">3.2</span>
-pet &lt;-<span class="st"> &quot;dog&quot;</span>
-weather &lt;-<span class="st"> &quot;rain&quot;</span>
+<span class="co"># The length of the factor is still the length of the vector, not the number of levels</span>
+<span class="kw">length</span>(shirt.sizes.factor)  <span class="co"># 6</span></code></pre></div>
+<p>When you print out the <code>shirt.sizes.factor</code> variable, R still (intelligently) prints out the <strong>labels</strong> that you are presumably interested in. It also indicates the <strong>levels</strong>, which are the <em>only</em> possible values that elements can take on.</p>
+<p>It is worth re-stating: <strong>factors are not vectors</strong>. This means that most all the operations and functions you want to use on vectors <em>will not work</em>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a factor of numbers (factors need not be strings)</span>
+num.factors &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">40</span>))
 
-<span class="co"># Check if x is less than pi AND y is greater than pi</span>
-x &lt;<span class="st"> </span>pi &amp;<span class="st"> </span>y &gt;<span class="st"> </span>pi  <span class="co"># TRUE</span>
+<span class="co"># Print the factor to see its levels</span>
+<span class="kw">print</span>(num.factors)
 
-<span class="co"># Check if pet is &quot;cat&quot; OR &quot;dog&quot;</span>
-pet ==<span class="st"> &quot;cat&quot;</span> |<span class="st"> </span>pet ==<span class="st"> &quot;dog&quot;</span>  <span class="co"># TRUE</span>
+<span class="co"># Multiply the numbers by 2</span>
+num.factors *<span class="st"> </span><span class="dv">2</span>  <span class="co"># Error: * not meaningful</span>
+                 <span class="co"># returns vector of NA instead</span>
 
-<span class="co"># Check if pet is &quot;dog&quot; AND NOT weather is &quot;rain&quot;</span>
-pet ==<span class="st"> &quot;dog&quot;</span> &amp;<span class="st"> </span>!(weather ==<span class="st"> &quot;rain&quot;</span>)  <span class="co"># FALSE</span></code></pre></div>
-<p>Note that it’s easy to write complex expressions with logical operators. If you find yourself getting lost, I recommend rethinking your question to see if there is a simpler way to express it!</p></li>
-<li><p><strong>Complex</strong>: Complex (imaginary) numbers have their own data storage type in R, are are created using the <code>i</code> syntax: <code>complex.variable &lt;- 2i</code>. We will not be using complex numbers in this course.</p></li>
-<li><p><strong>Integer</strong>: Integer values are technically a different data type than numeric values because of how they are stored and manipulated by the R interpreter. This is something that you will rarely encounter, but it’s good to know that you can specify a number is of integer type rather than general numeric type by placing a capital <code>L</code> (for “long integer”) after an value in variable assignment (<code>my.integer &lt;- 10L</code>).</p></li>
-</ul>
+<span class="co"># Changing entry to a level is fine</span>
+num.factors[<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">40</span>
+
+<span class="co"># Change entry to a value that ISN&#39;T a level fails</span>
+num.factors[<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">50</span>  <span class="co"># Error: invalid factor level</span>
+                      <span class="co"># num.factors[1] is now NA</span></code></pre></div>
+<p>If you create a data frame with a string vector as a column (as what happens with <code>read.csv()</code>), it will automatically be treated as a factor <em>unless you explicitly tell it not to</em>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Vector of shirt sizes</span>
+shirt.size &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;small&#39;</span>, <span class="st">&#39;medium&#39;</span>, <span class="st">&#39;small&#39;</span>, <span class="st">&#39;large&#39;</span>, <span class="st">&#39;medium&#39;</span>, <span class="st">&#39;large&#39;</span>)
+
+<span class="co"># Vector of costs (in dollars)</span>
+cost &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">15.5</span>, <span class="dv">17</span>, <span class="dv">17</span>, <span class="dv">14</span>, <span class="dv">12</span>, <span class="dv">23</span>)
+
+<span class="co"># Data frame of inventory (with factors, since didn&#39;t say otherwise)</span>
+shirts.factor &lt;-<span class="st"> </span><span class="kw">data.frame</span>(shirt.size, cost)
+
+<span class="co"># The shirt.size column is a factor</span>
+<span class="kw">is.factor</span>(shirts.factor$shirt.size)  <span class="co"># TRUE</span>
+
+<span class="co"># Can treat this as a vector; but better to fix how the data is loaded</span>
+<span class="kw">as.vector</span>(shirts.factor$shirt.size)  <span class="co"># a vector</span>
+
+<span class="co"># Data frame of orders (without factoring)</span>
+shirts &lt;-<span class="st"> </span><span class="kw">data.frame</span>(shirt.size, cost, <span class="dt">stringsAsFactors=</span><span class="ot">FALSE</span>)
+
+<span class="co"># The shirt.size column is NOT a factor</span>
+<span class="kw">is.factor</span>(shirts$shirt.size)  <span class="co"># FALSE</span></code></pre></div>
+<p>This is not to say that factors can’t be useful (beyond just saving memory)! They offer easy ways to group and process data using specialized functions:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">shirt.size &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;small&#39;</span>, <span class="st">&#39;medium&#39;</span>, <span class="st">&#39;small&#39;</span>, <span class="st">&#39;large&#39;</span>, <span class="st">&#39;medium&#39;</span>, <span class="st">&#39;large&#39;</span>)
+cost &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">15.5</span>, <span class="dv">17</span>, <span class="dv">17</span>, <span class="dv">14</span>, <span class="dv">12</span>, <span class="dv">23</span>)
+
+<span class="co"># Data frame of inventory (with factors)</span>
+shirts.factor &lt;-<span class="st"> </span><span class="kw">data.frame</span>(shirt.size, cost)
+
+<span class="co"># Produce a list of data frames, one for each factor level</span>
+<span class="co"># first argument is the data frame to split, second is the factor to split by</span>
+shirt.size.frames &lt;-<span class="st"> </span><span class="kw">split</span>(shirts.factor, shirts.factor$shirt.size)
+
+<span class="co"># Apply a function (mean) to each factor level</span>
+<span class="co">#   first argument is the vector to apply the function to,</span>
+<span class="co">#   second argument is the factor to split by</span>
+<span class="co">#   third argument is the name of the function</span>
+<span class="kw">tapply</span>(shirts$cost, shirts$shirt.size, mean)</code></pre></div>
+<p>However, in general this course is more interested in working with data as vectors, thus you should always use <code>stringsAsFactors=FALSE</code> when creating data frames or loading <code>.csv</code> files that include strings.</p>
 </div>
-</div>
-<div id="gettinghelp" class="section level2">
-<h2><span class="header-section-number">5.5</span> Getting Help</h2>
-<p>As with any programming language, when working in R you will inevitably run into problems, confusing situations, or just general questions. Here are a few ways to start getting help.</p>
-<ol style="list-style-type: decimal">
-<li><p><strong>Read the error messages</strong>: If there is an issue with the way you have written or executed your code, R will often print out a red error message in your console. Do you best to decipher the message (read it carefully, and think about what is meant by each word in the message), or you can put it directly into Google to get more information. You’ll soon get the hang of interpreting these messages if you put the time into trying to understand them.</p></li>
-<li><p><strong>Google</strong>: When you’re trying to figure out how to do something, it should be no surprise that Google is often the best resource. Try searching for queries like <code>&quot;how to &lt;DO THING&gt; in R&quot;</code>. More frequently than not, your question will lead you to a Q/A forum called StackOverflow (see below), which is a great place to find potential answers.</p></li>
-<li><p><strong>StackOverflow</strong>: StackOverflow is an amazing Q/A forum for asking/answering programming questions. Indeed, most basic questions have already been asked/answered here. However, don’t hesitate to post your own questions to StackOverflow. Be sure to hone in on the specific question you’re trying to answer, and provide error messages and sample code. I often find that, by the time I can articulate the question clearly enough to post it, I’ve figured out my problem anyway.</p>
-<ul>
-<li>There is a classical method of debugging called <a href="https://en.wikipedia.org/wiki/Rubber_duck_debugging">rubber duck debugging</a>, which involves simply trying to explain your code/problem to an inanimate object (talking to pets works too). You’ll usually be able to fix the problem if you just step back and think about how you would explain it to someone else!</li>
-</ul></li>
-<li><p><strong>Documentation</strong>: R’s documentation is actually quite good. Functions and behaviors are all described in the same format, and often contain helpful examples. To search the documentation within R (or in RStudio), simply type <code>?</code> followed by the function name you’re using (more on functions coming soon). You can also search the documentation by typing two questions marks (<code>??SEARCH</code>).</p>
-<ul>
-<li><p>You can also look up help by using the <code>help()</code> function (e.g., <code>help(print)</code> will look up information on the <code>print()</code> function, just like <code>?print</code> does). There is also an <code>example()</code> function you can call to see examples of a function in action (e.g., <code>example(print)</code>). This will be more important in the next module!</p></li>
-<li><p><a href="https://www.rdocumentation.org/">rdocumentation.org</a> has a lovely searchable and readable interface to the R documentation.</p></li>
-</ul></li>
-</ol>
-</div>
-<div id="resources-4" class="section level2 unnumbered">
+<div id="resources-8" class="section level2 unnumbered">
 <h2>Resources</h2>
 <ul>
-<li><a href="https://google.github.io/styleguide/Rguide.xml">Google’s R Style Guide</a></li>
-<li><a href="https://www.datacamp.com/home">DataCamp</a> (awesome resource for interactive tutorials in R)</li>
-<li><a href="http://www.r-tutor.com/r-introduction">R Tutorial: Introduction</a></li>
-<li><a href="http://www.r-tutor.com/r-introduction/basic-data-types">R Tutorial: Basic Data Types</a></li>
-<li><a href="https://www.tutorialspoint.com/r/r_operators.htm">R Tutorial: Operators</a></li>
-<li><a href="https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts">RStudio Keyboard Shortcuts</a></li>
-<li><a href="https://www.rdocumentation.org/">R Documentation</a> searchable online documentation</li>
-<li><a href="http://r4ds.had.co.nz/">R for Data Science</a> online textbook</li>
-<li><a href="http://arrgh.tim-smith.us/">aRrgh: a newcomer’s (angry) guide to R</a> opinionated but clear introduction</li>
-<li><a href="https://www.nostarch.com/artofr.htm">The Art of R Programming</a> print textbook</li>
+<li><a href="http://www.r-tutor.com/r-introduction/data-frame">R Tutorial: Data Frames</a></li>
+<li><a href="http://www.r-tutor.com/r-introduction/data-frame/data-frame-row-slice">R Tutorial: Data Frame Indexing</a></li>
+<li><a href="http://www.statmethods.net/input/missingdata.html">Quick-R: Missing Values</a></li>
+<li><a href="http://www.ats.ucla.edu/stat/r/modules/factor_variables.htm">Factor Variables (UCLA)</a></li>
 </ul>
 
 </div>
@@ -584,8 +673,8 @@ pet ==<span class="st"> &quot;dog&quot;</span> &amp;<span class="st"> </span>!(w
           </div>
         </div>
       </div>
-<a href="git-basics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="functions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="lists.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dplyr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -614,7 +703,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/info201/book/edit/master/r-intro.Rmd",
+"link": "https://github.com/info201/book/edit/master/dataframes.Rmd",
 "text": "Edit"
 },
 "download": ["tech-foundations-of-informatics.pdf", "tech-foundations-of-informatics.epub"],
