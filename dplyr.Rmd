@@ -1,6 +1,6 @@
 # The `dplyr` Library {#dplyr}
 
-The **`dplyr`** ("dee-ply-er") package is the preeminent tool for data wrangling in R (and perhaps, in data science more generally). It provides programmers with an intuitive vocabulary for executing data management and analysis tasks. Learning and utilizing this package will make your data preparation and management process faster and easier to understand. This chapter introduces the philosophy behind the library and an overview of how to use the library to work with dataframes using its expressive and efficient syntax. 
+The **`dplyr`** ("dee-ply-er") package is the preeminent tool for data wrangling in R (and perhaps, in data science more generally). It provides programmers with an intuitive vocabulary for executing data management and analysis tasks. Learning and utilizing this package will make your data preparation and management process faster and easier to understand. This chapter introduces the philosophy behind the library and an overview of how to use the library to work with dataframes using its expressive and efficient syntax.
 
 ## A Grammar of Data Manipulation
 [Hadley Wickham](http://hadley.nz/), the creator of the [`dplyr`](https://github.com/hadley/dplyr) package, fittingly refers to it as a ___Grammar of Data Manipulation___. This is because the package provides a set of **verbs** (functions) to describe and perform common data preparation tasks. One of the core challenge in programming is mapping from questions about a dataset to specific programming operations. The presence of a data manipulation grammar makes this process smoother, as it enables you to use the same vocabulary to both _ask_ questions and _write_ your program. Specifically, the `dplyr` grammar lets you easily talk about and perform tasks such as:
@@ -43,7 +43,7 @@ storm.info <- select(storms, storm, pressure)
 
 ![Diagram of the `select()` function (by Nathan Stephens).](img/dplyr/select.png "Diagram of the select() function")
 
-The `select()` function takes in the data frame to select from, followed by the names of the columns you wish to select (without quotation marks!)
+The `select()` function takes in the data frame to select from, followed by the names of the columns you wish to select (quotation marks are optional!)
 
 This function is equivalent to simply extracting the columns:
 
@@ -144,7 +144,7 @@ Note that the `summarize()` function is particularly useful for grouped operatio
 
 
 ### Distinct
-The **`distinct()`** operation allows you to extract distinct values (rows) from your data frame&mdash;that is, you'll get one row for each different value in the dataframe (or set of selected **columns**). This is a useful tool to confirm that you don't have **duplicate observations**, which often occurs in messy datasets. 
+The **`distinct()`** operation allows you to extract distinct values (rows) from your data frame&mdash;that is, you'll get one row for each different value in the dataframe (or set of selected **columns**). This is a useful tool to confirm that you don't have **duplicate observations**, which often occurs in messy datasets.
 
 For example (no diagram available):
 
@@ -290,7 +290,7 @@ Thus grouping can allow you to quickly and easily compare different subsets of y
 ## Joins
 When working with real-world data, you'll often find that that data is stored across _multiple_ files or data frames. This can be done for a number of reasons. For one, it can help to reduce memory usage (in the same manner as **factors**). For example, if you had a data frame containing information on students enrolled in university courses, you might store information about each course (the instructor, meeting time, and classroom) in a separate data frame rather than duplicating that information for every student that takes the same course. You also may simply want to keep your information organized: e.g., have student information in one file, and course information in another.
 
-- This separation and organization of data is a core concern in the design of [relational databases](https://en.wikipedia.org/wiki/Relational_database), a common topic of study within Information Schools. 
+- This separation and organization of data is a core concern in the design of [relational databases](https://en.wikipedia.org/wiki/Relational_database), a common topic of study within Information Schools.
 
 But at some point, you'll want to access information from both data sets (e.g., you need to figure out a student's schedule), and thus need a way to combine the data frames. This process is called a **join** (because you are "joining" the data frames together). When you perform a join, you identify **columns** which are present in both tables. Those column values are then used as **identifiers** to determine which rows in each table correspond to one another, and thus will be combined into a row in the resulting joined table.
 
@@ -375,9 +375,51 @@ Note that these are all _mutating joins_, which add columns from one table to an
 
 
 ## Non-Standard Evaluation vs. Standard Evaluation
-One of the features that makes `dplyr` such a clean and attractive way to write code is that inside of each function, you've been able to write column variable names **without quotes**. This is called [**non-standard evaluation (NSE)**](https://cran.r-project.org/web/packages/dplyr/vignettes/nse.html) (it is _not_ the _standard_ way that code is _evaluated_, or interpreted), and is useful primarily because of how it reduces typing (along with some other benefits when working with databases).
+One of the features that makes `dplyr` such a clean and attractive way to write code is that inside of each function, you've been able to write column variable names **without quotes**. This is called **non-standard evaluation (NSE)** (it is _not_ the _standard_ way that code is _evaluated_, or interpreted), and is useful primarily because of how it reduces typing (along with some other benefits when working with databases). In particular, `dplyr` will ["quote"](http://dplyr.tidyverse.org/articles/programming.html) expressions for you, ex
 
-However, there are times when you want to use `dplyr` with **standard evaluation (SE)**: that is, you want to be able to specify column names as normal _values_ (in quotes). Luckily, `dplyr` supplies a set of functions that support standard evaluation. These have the exact same names as the normal verb functions, except are followed by an underscore (**`_`**):
+Most of the time this won't cause you any problems&mdash;you can either use NSE to refer to column names without quotes, or provide the quotes yourself. You can even use variables to store the name of a column of interest!
+
+```r
+# Normal, non-standard evaluation version
+mpg <- select(mtcars, mpg)
+
+# "Standard-evaluation" version (same result)
+mpg <- select(mtcars, 'mpg')  # with quotes! 'mpg' is a normal value!
+
+# Make the column name a variable
+which.col <- 'mpg'
+my.column <- select(mtcars, which.col)
+```
+
+However, this NSE can sometimes trip you up when using more complex functions such as `arrange()` or `group_by()`, or when you want to create your own functions that use NSE.
+
+```r
+which.col <- 'mpg'
+arrange(mtcars, which.col)  # Error in arrange_impl(.data, dots) :
+                            #   incorrect size (1) at position 1, expecting : 32
+```
+
+In this case, the `arrange()` function is trying to "quote" what we typed in (the `which.col` variable name&dmash;not it's `mpg` value), and then hitting a problem because there is no column of that name (it can't resolve that column name to a column index).
+
+To fix this problem, there are two parts: first, you need to explicitly tell R that the _value_ of `which.col` (`mpg`) is actually the value that needs to be automatically "quoted"&mdash;that is, that `mpg` is really a variable! Variable names in R are referred to as [**symbols**](https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Symbol-objects)&mdash;a symbol refers to the variable label itself. You can explicitly change a value into a symbol by using the [`rlang::sym()`](https://www.rdocumentation.org/packages/rlang/versions/0.1.6/topics/sym) function (the `sym()` function found in the `rlang` library; the `::` indicates that the function belongs to a library).
+
+```r
+which.col.sym <- rlang::sym(which.col)  # convert to a symbol
+print(which.col.sym)  # => mpg (but not in quotes, because it's not a string!)
+```
+
+Second, you will need to tell the `arrange()` function that it should _not_ quote this symbol (because you've already converted it into a variable)&mdash;what is called **unquoting**. In `dplyr`, you "unquote" a parameter to a method by including two exclamation points in front of it:
+
+```r
+arrange(mtcars, !!which.col.sym)  # arranges by the specified column
+```
+
+There are many more details involved in this "quoting/unquoting" process, which are described in [this tutorial](http://dplyr.tidyverse.org/articles/programming.html) (though that is currently [being updated with better examples](http://rpubs.com/lionel-/programming-draft)).
+
+
+### Explicit Standard Evaluation
+
+Alternatively, older versions of `dplyr` supplied functions that _explicitly_ performed **standard evaluation (SE)**&mdash;that is, they provide no quoting and expected you to do that work yourself. While now considered deprecated, they can still be useful if you are having problems with the new quoting system. These functions have the exact same names as the normal verb functions, except are followed by an underscore (**`_`**):
 
 ```r
 # Normal, non-standard evaluation version
@@ -391,26 +433,18 @@ mean.mpg <- summarize(mtcars, mean(mpg))
 
 # Standard-evaluation version of equations (same result)
 mean.mpg <- summarize_(mtcars, 'mean(mpg)')
-```
 
-<p class="alert alert-warning">Yes, it does feel a bit off that the "normal" way of using `dplyr` is the "non-standard" way. Remember that using SE is the "different" approach</p>
-
-The most common use-case for this system is when you're storing the _name of a column of interest_ in a variable:
-
-```r
 # Which column you're interested in
 which.column <- 'mpg'
 
 # Use standard evaluation to execute function:
-my.column <- select_(mtcars, which.column)
+my.column <- arrange_(mtcars, which.column)
 ```
 
-Because you are using standard evaluation, `which.column` isn't treated as the _name_ of the column (it's _not_ refering to `mtcars$which.column`, a.k.a. `mtcars[['which.column']]`), but is instead a normal variable which contains the name of the column in it (it _is_ referring to `mtcars[[which.column]]`)
+<p class="alert alert-warning">Yes, it does feel a bit off that the "normal" way of using `dplyr` is the "non-standard" way. Remember that using SE is the "different" approach</p>
 
------------------------   ------------------------------    -----------------------
-Non-Standard Evaluation   `select(my.df, col.name)`         `my.df[['col.name']]`
-Standard Evaluation       `select_(my.df, col.name.var)`    `my.df[[col.var.name]]`
------------------------   ------------------------------    -----------------------
+The non-standard evaluation offered by `dplyr` can make it quick and easy to work with data when you know its structure and variable names, but can be a challenge when trying to work with variables. Often in that case, you may want to instead use the standard data frame syntax (e.g., bracket notation) described in Chapter 9.
+
 
 <!-- TODO: Add note about using `desc()` in the string -->
 

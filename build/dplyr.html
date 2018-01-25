@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2018-01-15">
+<meta name="date" content="2018-01-25">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -253,7 +253,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="dplyr.html"><a href="dplyr.html#grouped-operations"><i class="fa fa-check"></i><b>10.4</b> Grouped Operations</a></li>
 <li class="chapter" data-level="10.5" data-path="dplyr.html"><a href="dplyr.html#joins"><i class="fa fa-check"></i><b>10.5</b> Joins</a></li>
-<li class="chapter" data-level="10.6" data-path="dplyr.html"><a href="dplyr.html#non-standard-evaluation-vs.standard-evaluation"><i class="fa fa-check"></i><b>10.6</b> Non-Standard Evaluation vs. Standard Evaluation</a></li>
+<li class="chapter" data-level="10.6" data-path="dplyr.html"><a href="dplyr.html#non-standard-evaluation-vs.standard-evaluation"><i class="fa fa-check"></i><b>10.6</b> Non-Standard Evaluation vs. Standard Evaluation</a><ul>
+<li class="chapter" data-level="10.6.1" data-path="dplyr.html"><a href="dplyr.html#explicit-standard-evaluation"><i class="fa fa-check"></i><b>10.6.1</b> Explicit Standard Evaluation</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#resources-9"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="apis.html"><a href="apis.html"><i class="fa fa-check"></i><b>11</b> Accessing Web APIs</a><ul>
@@ -415,7 +417,7 @@ storm.info &lt;-<span class="st"> </span><span class="kw">select</span>(storms, 
 <img src="img/dplyr/select.png" title="Diagram of the select() function" alt="Diagram of the select() function (by Nathan Stephens)." />
 <p class="caption">Diagram of the <code>select()</code> function (by Nathan Stephens).</p>
 </div>
-<p>The <code>select()</code> function takes in the data frame to select from, followed by the names of the columns you wish to select (without quotation marks!)</p>
+<p>The <code>select()</code> function takes in the data frame to select from, followed by the names of the columns you wish to select (quotation marks are optional!)</p>
 <p>This function is equivalent to simply extracting the columns:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Extract columns by name</span>
 storm.info &lt;-<span class="st"> </span>storms[, <span class="kw">c</span>(<span class="st">&quot;storm&quot;</span>, <span class="st">&quot;pressure&quot;</span>)]  <span class="co"># Note the comma!</span></code></pre></div>
@@ -675,8 +677,31 @@ merged.student.info &lt;-<span class="st"> </span><span class="kw">left_join</sp
 </div>
 <div id="non-standard-evaluation-vs.standard-evaluation" class="section level2">
 <h2><span class="header-section-number">10.6</span> Non-Standard Evaluation vs. Standard Evaluation</h2>
-<p>One of the features that makes <code>dplyr</code> such a clean and attractive way to write code is that inside of each function, you’ve been able to write column variable names <strong>without quotes</strong>. This is called <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/nse.html"><strong>non-standard evaluation (NSE)</strong></a> (it is <em>not</em> the <em>standard</em> way that code is <em>evaluated</em>, or interpreted), and is useful primarily because of how it reduces typing (along with some other benefits when working with databases).</p>
-<p>However, there are times when you want to use <code>dplyr</code> with <strong>standard evaluation (SE)</strong>: that is, you want to be able to specify column names as normal <em>values</em> (in quotes). Luckily, <code>dplyr</code> supplies a set of functions that support standard evaluation. These have the exact same names as the normal verb functions, except are followed by an underscore (<strong><code>_</code></strong>):</p>
+<p>One of the features that makes <code>dplyr</code> such a clean and attractive way to write code is that inside of each function, you’ve been able to write column variable names <strong>without quotes</strong>. This is called <strong>non-standard evaluation (NSE)</strong> (it is <em>not</em> the <em>standard</em> way that code is <em>evaluated</em>, or interpreted), and is useful primarily because of how it reduces typing (along with some other benefits when working with databases). In particular, <code>dplyr</code> will <a href="http://dplyr.tidyverse.org/articles/programming.html">“quote”</a> expressions for you, ex</p>
+<p>Most of the time this won’t cause you any problems—you can either use NSE to refer to column names without quotes, or provide the quotes yourself. You can even use variables to store the name of a column of interest!</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Normal, non-standard evaluation version</span>
+mpg &lt;-<span class="st"> </span><span class="kw">select</span>(mtcars, mpg)
+
+<span class="co"># &quot;Standard-evaluation&quot; version (same result)</span>
+mpg &lt;-<span class="st"> </span><span class="kw">select</span>(mtcars, <span class="st">&#39;mpg&#39;</span>)  <span class="co"># with quotes! &#39;mpg&#39; is a normal value!</span>
+
+<span class="co"># Make the column name a variable</span>
+which.col &lt;-<span class="st"> &#39;mpg&#39;</span>
+my.column &lt;-<span class="st"> </span><span class="kw">select</span>(mtcars, which.col)</code></pre></div>
+<p>However, this NSE can sometimes trip you up when using more complex functions such as <code>arrange()</code> or <code>group_by()</code>, or when you want to create your own functions that use NSE.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">which.col &lt;-<span class="st"> &#39;mpg&#39;</span>
+<span class="kw">arrange</span>(mtcars, which.col)  <span class="co"># Error in arrange_impl(.data, dots) :</span>
+                            <span class="co">#   incorrect size (1) at position 1, expecting : 32</span></code></pre></div>
+<p>In this case, the <code>arrange()</code> function is trying to “quote” what we typed in (the <code>which.col</code> variable name&amp;dmash;not it’s <code>mpg</code> value), and then hitting a problem because there is no column of that name (it can’t resolve that column name to a column index).</p>
+<p>To fix this problem, there are two parts: first, you need to explicitly tell R that the <em>value</em> of <code>which.col</code> (<code>mpg</code>) is actually the value that needs to be automatically “quoted”—that is, that <code>mpg</code> is really a variable! Variable names in R are referred to as <a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Symbol-objects"><strong>symbols</strong></a>—a symbol refers to the variable label itself. You can explicitly change a value into a symbol by using the <a href="https://www.rdocumentation.org/packages/rlang/versions/0.1.6/topics/sym"><code>rlang::sym()</code></a> function (the <code>sym()</code> function found in the <code>rlang</code> library; the <code>::</code> indicates that the function belongs to a library).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">which.col.sym &lt;-<span class="st"> </span>rlang::<span class="kw">sym</span>(which.col)  <span class="co"># convert to a symbol</span>
+<span class="kw">print</span>(which.col.sym)  <span class="co"># =&gt; mpg (but not in quotes, because it&#39;s not a string!)</span></code></pre></div>
+<p>Second, you will need to tell the <code>arrange()</code> function that it should <em>not</em> quote this symbol (because you’ve already converted it into a variable)—what is called <strong>unquoting</strong>. In <code>dplyr</code>, you “unquote” a parameter to a method by including two exclamation points in front of it:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">arrange</span>(mtcars, !!which.col.sym)  <span class="co"># arranges by the specified column</span></code></pre></div>
+<p>There are many more details involved in this “quoting/unquoting” process, which are described in <a href="http://dplyr.tidyverse.org/articles/programming.html">this tutorial</a> (though that is currently <a href="http://rpubs.com/lionel-/programming-draft">being updated with better examples</a>).</p>
+<div id="explicit-standard-evaluation" class="section level3">
+<h3><span class="header-section-number">10.6.1</span> Explicit Standard Evaluation</h3>
+<p>Alternatively, older versions of <code>dplyr</code> supplied functions that <em>explicitly</em> performed <strong>standard evaluation (SE)</strong>—that is, they provide no quoting and expected you to do that work yourself. While now considered deprecated, they can still be useful if you are having problems with the new quoting system. These functions have the exact same names as the normal verb functions, except are followed by an underscore (<strong><code>_</code></strong>):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Normal, non-standard evaluation version</span>
 mpg &lt;-<span class="st"> </span><span class="kw">select</span>(mtcars, mpg)
 
@@ -687,33 +712,20 @@ mpg &lt;-<span class="st"> </span><span class="kw">select_</span>(mtcars, <span 
 mean.mpg &lt;-<span class="st"> </span><span class="kw">summarize</span>(mtcars, <span class="kw">mean</span>(mpg))
 
 <span class="co"># Standard-evaluation version of equations (same result)</span>
-mean.mpg &lt;-<span class="st"> </span><span class="kw">summarize_</span>(mtcars, <span class="st">&#39;mean(mpg)&#39;</span>)</code></pre></div>
-<p class="alert alert-warning">
-Yes, it does feel a bit off that the “normal” way of using <code>dplyr</code> is the “non-standard” way. Remember that using SE is the “different” approach
-</p>
-<p>The most common use-case for this system is when you’re storing the <em>name of a column of interest</em> in a variable:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Which column you&#39;re interested in</span>
+mean.mpg &lt;-<span class="st"> </span><span class="kw">summarize_</span>(mtcars, <span class="st">&#39;mean(mpg)&#39;</span>)
+
+<span class="co"># Which column you&#39;re interested in</span>
 which.column &lt;-<span class="st"> &#39;mpg&#39;</span>
 
 <span class="co"># Use standard evaluation to execute function:</span>
-my.column &lt;-<span class="st"> </span><span class="kw">select_</span>(mtcars, which.column)</code></pre></div>
-<p>Because you are using standard evaluation, <code>which.column</code> isn’t treated as the <em>name</em> of the column (it’s <em>not</em> refering to <code>mtcars$which.column</code>, a.k.a. <code>mtcars[['which.column']]</code>), but is instead a normal variable which contains the name of the column in it (it <em>is</em> referring to <code>mtcars[[which.column]]</code>)</p>
-<table>
-<tbody>
-<tr class="odd">
-<td>Non-Standard Evaluation</td>
-<td align="left"><code>select(my.df, col.name)</code></td>
-<td align="left"><code>my.df[['col.name']]</code></td>
-</tr>
-<tr class="even">
-<td>Standard Evaluation</td>
-<td align="left"><code>select_(my.df, col.name.var)</code></td>
-<td align="left"><code>my.df[[col.var.name]]</code></td>
-</tr>
-</tbody>
-</table>
+my.column &lt;-<span class="st"> </span><span class="kw">arrange_</span>(mtcars, which.column)</code></pre></div>
+<p class="alert alert-warning">
+Yes, it does feel a bit off that the “normal” way of using <code>dplyr</code> is the “non-standard” way. Remember that using SE is the “different” approach
+</p>
+<p>The non-standard evaluation offered by <code>dplyr</code> can make it quick and easy to work with data when you know its structure and variable names, but can be a challenge when trying to work with variables. Often in that case, you may want to instead use the standard data frame syntax (e.g., bracket notation) described in Chapter 9.</p>
 <!-- TODO: Add note about using `desc()` in the string -->
 <!-- TODO: Formulas probably go here -->
+</div>
 </div>
 <div id="resources-9" class="section level2 unnumbered">
 <h2>Resources</h2>
