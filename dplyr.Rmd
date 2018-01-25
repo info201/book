@@ -375,7 +375,7 @@ Note that these are all _mutating joins_, which add columns from one table to an
 
 
 ## Non-Standard Evaluation vs. Standard Evaluation
-One of the features that makes `dplyr` such a clean and attractive way to write code is that inside of each function, you've been able to write column variable names **without quotes**. This is called **non-standard evaluation (NSE)** (it is _not_ the _standard_ way that code is _evaluated_, or interpreted), and is useful primarily because of how it reduces typing (along with some other benefits when working with databases). In particular, `dplyr` will ["quote"](http://dplyr.tidyverse.org/articles/programming.html) expressions for you, ex
+One of the features that makes `dplyr` such a clean and attractive way to write code is that inside of each function, you've been able to write column variable names **without quotes**. This is called **non-standard evaluation (NSE)** (it is _not_ the _standard_ way that code is _evaluated_, or interpreted), and is useful primarily because of how it reduces typing (along with some other benefits when working with databases). In particular, `dplyr` will ["quote"](http://dplyr.tidyverse.org/articles/programming.html) expressions for you, converting those variables (symbols) into values that can be used to refer to column names.
 
 Most of the time this won't cause you any problems&mdash;you can either use NSE to refer to column names without quotes, or provide the quotes yourself. You can even use variables to store the name of a column of interest!
 
@@ -391,15 +391,15 @@ which.col <- 'mpg'
 my.column <- select(mtcars, which.col)
 ```
 
-However, this NSE can sometimes trip you up when using more complex functions such as `arrange()` or `group_by()`, or when you want to create your own functions that use NSE.
+However, this NSE can sometimes trip you up when using more complex functions such as `summarize()` or `group_by()`, or when you want to create your own functions that use NSE.
 
 ```r
 which.col <- 'mpg'
-arrange(mtcars, which.col)  # Error in arrange_impl(.data, dots) :
-                            #   incorrect size (1) at position 1, expecting : 32
+summarize(mtcars, avg = mean(which.col))  # In mean.default(which.col) :
+                            # argument is not numeric or logical: returning NA
 ```
 
-In this case, the `arrange()` function is trying to "quote" what we typed in (the `which.col` variable name&dmash;not it's `mpg` value), and then hitting a problem because there is no column of that name (it can't resolve that column name to a column index).
+In this case, the `summarize()` function is trying to "quote" what we typed in (the `which.col` variable name&dmash;not it's `mpg` value), and then hitting a problem because there is no column of that name (it can't resolve that column name to a column index).
 
 To fix this problem, there are two parts: first, you need to explicitly tell R that the _value_ of `which.col` (`mpg`) is actually the value that needs to be automatically "quoted"&mdash;that is, that `mpg` is really a variable! Variable names in R are referred to as [**symbols**](https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Symbol-objects)&mdash;a symbol refers to the variable label itself. You can explicitly change a value into a symbol by using the [`rlang::sym()`](https://www.rdocumentation.org/packages/rlang/versions/0.1.6/topics/sym) function (the `sym()` function found in the `rlang` library; the `::` indicates that the function belongs to a library).
 
@@ -408,10 +408,10 @@ which.col.sym <- rlang::sym(which.col)  # convert to a symbol
 print(which.col.sym)  # => mpg (but not in quotes, because it's not a string!)
 ```
 
-Second, you will need to tell the `arrange()` function that it should _not_ quote this symbol (because you've already converted it into a variable)&mdash;what is called **unquoting**. In `dplyr`, you "unquote" a parameter to a method by including two exclamation points in front of it:
+Second, you will need to tell the `summarize()` function that it should _not_ quote this symbol (because you've already converted it into a variable)&mdash;what is called **unquoting**. In `dplyr`, you "unquote" a parameter to a method by including two exclamation points in front of it:
 
 ```r
-arrange(mtcars, !!which.col.sym)  # arranges by the specified column
+summarize(mtcars, avg = mean(!!which.col.sym))  # arranges by the specified column
 ```
 
 There are many more details involved in this "quoting/unquoting" process, which are described in [this tutorial](http://dplyr.tidyverse.org/articles/programming.html) (though that is currently [being updated with better examples](http://rpubs.com/lionel-/programming-draft)).
