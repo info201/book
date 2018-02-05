@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2018-01-25">
+<meta name="date" content="2018-02-05">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -282,6 +282,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="12.2.1" data-path="r-markdown.html"><a href="r-markdown.html#r-code-chunks"><i class="fa fa-check"></i><b>12.2.1</b> R Code Chunks</a></li>
 <li class="chapter" data-level="12.2.2" data-path="r-markdown.html"><a href="r-markdown.html#inline-code"><i class="fa fa-check"></i><b>12.2.2</b> Inline Code</a></li>
 </ul></li>
+<li class="chapter" data-level="12.3" data-path="r-markdown.html"><a href="r-markdown.html#rendering-data"><i class="fa fa-check"></i><b>12.3</b> Rendering Data</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="r-markdown.html"><a href="r-markdown.html#rendering-strings"><i class="fa fa-check"></i><b>12.3.1</b> Rendering Strings</a></li>
+<li class="chapter" data-level="12.3.2" data-path="r-markdown.html"><a href="r-markdown.html#rendering-lists"><i class="fa fa-check"></i><b>12.3.2</b> Rendering Lists</a></li>
+<li class="chapter" data-level="12.3.3" data-path="r-markdown.html"><a href="r-markdown.html#rendering-tables"><i class="fa fa-check"></i><b>12.3.3</b> Rendering Tables</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#resources-11"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>13</b> The <code>gglot2</code> Library</a><ul>
@@ -435,7 +440,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p><em>Access tokens</em> act a lot like passwords; you will want to keep them secret and not share them with others. This means that you <strong>should not include them in your committed files</strong>, so that the passwords don’t get pushed to GitHub and shared with the world. The best way to get around this in R is to create a separate script file in your repo (e.g., <code>apikeys.R</code>) which includes exactly one line: assigning the key to a variable:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># in `apikeys.R`</span>
 api.key &lt;-<span class="st"> &quot;123456789abcdefg&quot;</span></code></pre></div>
-<p>You can then add this file to a <strong><code>.gitignore</code></strong> file in your repo; that will keep it from even possibly being committed with your code!</p>
+<p>You can then include this file_name_ in a <strong><code>.gitignore</code></strong> file in your repo; that will keep it from even possibly being committed with your code!</p>
 <p>In order to access this variable in your “main” script, you can use the <code>source()</code> function to load and run your <code>apikeys.R</code> script. This will execute the line of code that assigns the <code>api.key</code> variable, making it available in your environment for your use:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># in `myScript.R`</span>
 

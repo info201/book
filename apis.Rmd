@@ -69,7 +69,7 @@ _Access tokens_ act a lot like passwords; you will want to keep them secret and 
 api.key <- "123456789abcdefg"
 ```
 
-You can then add this file to a **`.gitignore`** file in your repo; that will keep it from even possibly being committed with your code!
+You can then include this file_name_ in a **`.gitignore`** file in your repo; that will keep it from even possibly being committed with your code!
 
 In order to access this variable in your "main" script, you can use the `source()` function to load and run your `apikeys.R` script. This will execute the line of code that assigns the `api.key` variable, making it available in your environment for your use:
 
@@ -97,7 +97,7 @@ When you send a request to a particular resource, you need to indicate what you 
 - `DELETE`	Remove the resource
 - `OPTIONS`	Return the set of methods that can be performed on the resource
 
-By far the most common verb is `GET`, which is used to "get" (download) data from a web service. Depending on how you connect to your API (i.e., which programming language you are using), you'll specify the verb of interest to indicate what we want to do to a particular resource. 
+By far the most common verb is `GET`, which is used to "get" (download) data from a web service. Depending on how you connect to your API (i.e., which programming language you are using), you'll specify the verb of interest to indicate what we want to do to a particular resource.
 
 Overall, this structure of treating each datum on the web as a **resource** which we can interact with via **HTTP Requests** is refered to as the **REST Architecture** (REST stands for _REpresentational State Transfer_). This is a standard way of structuring computer applications that allows them to be interacted with in the same way as everyday websites. Thus a web service that enabled data access through named resources and responds to HTTP requests is known as a **RESTful** service, with a _RESTful API_.
 
@@ -317,7 +317,7 @@ In practice, you will almost always want to flatten the data returned from a web
 6. ...
 7. Profit!
 
-<p class="alert alert-info">_Pro-tip_: JSON data can be quite messy when viewed in your web-browser. Installing a browser extension such as 
+<p class="alert alert-info">_Pro-tip_: JSON data can be quite messy when viewed in your web-browser. Installing a browser extension such as
 <a href="https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc" target="_blank">JSONView</a> will format JSON responses in a more readable way, and even enable you to interactively explore the data structure.</p>
 
 ## Resources {-}

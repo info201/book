@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2018-01-25">
+<meta name="date" content="2018-02-05">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -282,6 +282,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="12.2.1" data-path="r-markdown.html"><a href="r-markdown.html#r-code-chunks"><i class="fa fa-check"></i><b>12.2.1</b> R Code Chunks</a></li>
 <li class="chapter" data-level="12.2.2" data-path="r-markdown.html"><a href="r-markdown.html#inline-code"><i class="fa fa-check"></i><b>12.2.2</b> Inline Code</a></li>
 </ul></li>
+<li class="chapter" data-level="12.3" data-path="r-markdown.html"><a href="r-markdown.html#rendering-data"><i class="fa fa-check"></i><b>12.3</b> Rendering Data</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="r-markdown.html"><a href="r-markdown.html#rendering-strings"><i class="fa fa-check"></i><b>12.3.1</b> Rendering Strings</a></li>
+<li class="chapter" data-level="12.3.2" data-path="r-markdown.html"><a href="r-markdown.html#rendering-lists"><i class="fa fa-check"></i><b>12.3.2</b> Rendering Lists</a></li>
+<li class="chapter" data-level="12.3.3" data-path="r-markdown.html"><a href="r-markdown.html#rendering-tables"><i class="fa fa-check"></i><b>12.3.3</b> Rendering Tables</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="r-markdown.html"><a href="r-markdown.html#resources-11"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>13</b> The <code>gglot2</code> Library</a><ul>
@@ -415,23 +420,24 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <p>Below the header, you will find two types of content:</p>
 <ul>
-<li><strong>Markdown</strong>: normal Markdown text like you learned in <a href="markdown.html#markdown">chapter 3</a>. For example, using two pound symbols (<code>##</code>) for a second-level heading. And</li>
-<li><strong>Code Chunks</strong>: These are segments (chunks) of R code that look like normal code block elements (using <code>```</code>), but with an extra <code>{r}</code> immediately after opening backticks. See below for more details about this format.</li>
+<li><strong>Markdown</strong>: normal Markdown text like you learned in <a href="markdown.html#markdown">Chapter 3</a>. For example, you can use two pound symbols (<code>##</code>) for a second-level heading.</li>
+<li><strong>Code Chunks</strong>: These are segments (chunks) of R code that look like normal code block elements (using <code>```</code>), but with an extra <code>{r}</code> immediately after the opening backticks.</li>
 </ul>
-<p>In short, you’ll write Markdown throughout the document, and your R syntax in code chunks. The powerful feature is that you’ll be able to render content created in your code chunks <em>in your Markdown</em>. More on this <a href="r-markdown.html#r-markdown-syntax">below</a>.</p>
+<p>R Markdown will be able to execute the R code you include in code chunks, and render that output <em>in your Markdown</em>. More on this <a href="r-markdown.html#r-markdown-syntax">below</a>.</p>
 <p class="alert alert-warning">
 <strong>Important</strong> This file should be saved with the extension <strong><code>.Rmd</code></strong> (for “R Markdown”), which tells the computer and RStudio that the document contains Markdown content with embedded <code>R</code> code.
 </p>
 </div>
 <div id="knitting-documents" class="section level3">
 <h3><span class="header-section-number">12.1.3</span> Knitting Documents</h3>
-<p>RStdudio provides an easy interface to compile your <code>.Rmd</code> source code into an actual document (a process called <strong>“knitting”</strong>). Simply click the <strong>Knit</strong> button at the top of the script panel:</p>
+<p>RStudio provides an easy interface to compile your <code>.Rmd</code> source code into an actual document (a process called <strong>“knitting”</strong>). Simply click the <strong>Knit</strong> button at the top of the script panel:</p>
 <div class="figure">
 <img src="img/r-markdown/knit-button.png" title="knit button location" alt="RStudio’s Knit button" />
 <p class="caption">RStudio’s Knit button</p>
 </div>
 <p>This will generate the document (in the same directory as your <code>.Rmd</code> file), as well as open up a preview window in RStudio.</p>
-<p>While it is easy to generate such documents, the knitting process can make it hard to debug errors in your <code>R</code> code (whether syntax or logical), in part because the output may or may not show up in the document! We suggest that you write complex <code>R</code> code in another script and then simply copy or <code>source()</code> that script into your <code>.Rmd</code> file. Additionally, be sure and knit your document frequently, paying close atention to any errors that appear in the console.</p>
+<p>While it is easy to generate such documents, the knitting process can make it hard to debug errors in your <code>R</code> code (whether syntax or logical), in part because the output may or may not show up in the document! We suggest that you write complex <code>R</code> code in another script and then <code>source()</code> that script into your <code>.Rmd</code> file for use the the output. This makes it possible to test your data processing work outside of the knit application, as well as <em>separates the concerns</em> of the data and its representation—which is good programming practice.</p>
+<p>Nevertheless, you should still be sure and knit your document frequently, paying close attention to any errors that appear in the console.</p>
 <p class="alert alert-info">
 <em>Pro-tip</em>: If you’re having trouble finding your error, a good strategy is to systematically remove segments of your code and attempt to re-knit the document. This will help you identify the problematic syntax.
 </p>
@@ -439,7 +445,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="html" class="section level3">
 <h3><span class="header-section-number">12.1.4</span> HTML</h3>
 <p>Assuming that you’ve chosen HTML as your desired output type, RStudio will knit your <code>.Rmd</code> into a <code>.html</code> file. HTML stands for <em><strong>H</strong>yper<strong>T</strong>ext <strong>M</strong>arkup <strong>L</strong>anguage</em> and, like Markdown, is a syntax for describing the structure and formatting of content (though HTML is <strong>far</strong> more extensive and detailed). In particular, HTML is a markup language that can be automatically rendered by web browsers, and thus is the language used to create web pages. As such, the <code>.html</code> files you create can be put online as web pages for others to view—you will learn how to do this in a future chapter. For now, you can open a <code>.html</code> file in any browser (such as by double-clicking on the file) to see the content outside of RStudio!</p>
-<p>As it turns out, it’s quite simple to use GitHub to host publicly available webpages (like the <code>.html</code> files you create with RMarkdown). But, this will require learning a bit more about <code>git</code> and GitHub. For instructions on publishing your <code>.html</code> files as web-pages, see <a href="git-branches.html#git-branches">chapter 14</a>.</p>
+<ul>
+<li>As it turns out, it’s quite simple to use GitHub to host publicly available webpages (like the <code>.html</code> files you create with RMarkdown). But, this will require learning a bit more about <code>git</code> and GitHub. For instructions on publishing your <code>.html</code> files as web-pages, see <a href="git-branches.html#git-branches">chapter 14</a>.</li>
+</ul>
 </div>
 </div>
 <div id="r-markdown-syntax" class="section level2">
@@ -447,40 +455,122 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>What makes R Markdown distinct from simple Markdown code is the ability to actually <em>execute your <code>R</code> code and include the output directly in the document</em>. <code>R</code> code can be executed and included in the document in blocks of code, or even inline in the document!</p>
 <div id="r-code-chunks" class="section level3">
 <h3><span class="header-section-number">12.2.1</span> R Code Chunks</h3>
-<p>Code that is to be executed (rather than simply displayed as formatted text) is called a <strong>code chunk</strong>. To specify a code chunk, you need to include <strong><code>{r}</code></strong> immediately after the backticks that start the code block (the <code>```</code>). For example</p>
-<div class="sourceCode"><pre class="sourceCode markdown"><code class="sourceCode markdown">Write normal *markdown* out here, then create a code block:
+<p>Code that is to be executed (rather than simply displayed as formatted text) is called a <strong>code chunk</strong>. To specify a code chunk, you need to include <strong><code>{r}</code></strong> immediately after the backticks that start the code block (the <code>```</code>). For example:</p>
+<pre class="rmd"><code>Write normal **markdown** out here, then create a code block:
 
 ```{r}
-<span class="fu"># Execute R code in here</span>
+# Execute R code in here
 x &lt;- 201
 ```
 
-Back to writing _markdown_ out here.</code></pre></div>
+Back to writing _markdown_ out here.</code></pre>
+<p>Note that by default, the code chunk will <em>render</em> any raw expressions (e.g., <code>x</code>)—just like you would see in the console if you selected all the code in the chunk and used <code>ctrl-enter</code> to execute it.</p>
 <p>It is also possible to specify additional configuration <strong>options</strong> by including a comma-separate list of named arguments (like you’ve done with lists and functions) inside the curly braces following the <code>r</code>:</p>
-<div class="sourceCode"><pre class="sourceCode markdown"><code class="sourceCode markdown">```{r options_example, echo=FALSE, message=TRUE}
-<span class="fu"># Execute R code in here</span>
-```</code></pre></div>
+<pre class="rmd"><code>```{r options_example, echo=FALSE, message=TRUE}
+# a code chunk named &quot;options_example&quot;, with parameter `echo` assigned FALSE
+# and parameter `message` assigned TRUE
+
+# Would execute R code in here
+```</code></pre>
 <ul>
-<li>The first “argument” (<code>options_example</code>) is a “name” for the chunk, and the following are named arguments for the options.</li>
+<li>The first “argument” (<code>options_example</code>) is a “name” for the chunk, and the following are named arguments for the options. Chunks should be named as a variable or function, based on what code is being executed and/or rendered by the chunk. It’s always a good idea to name individual code chunks as a form of documentation.</li>
 </ul>
-<p>There are <a href="https://yihui.name/knitr/options/">many options</a> (see also the <a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">reference</a>). However the most useful ones have to do with how the code is outputted in the the document. These include:</p>
+<p>There are <a href="https://yihui.name/knitr/options/">many options</a> for creating code chunks (see also the <a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">reference</a>). However some of the most useful ones have to do with how the code is outputted in the the document. These include:</p>
 <ul>
-<li><strong><code>echo</code></strong> indicates whether you want the <em>R code itself</em> to be displayed in the document (e.g., if you want readers to be able to see your work and reproduce your calculations and analysis). Value is either <code>TRUE</code> (do display) or <code>FALSE</code> (do not display).</li>
-<li><strong><code>message</code></strong> indicates whether you want any messages generated by the code to be displayed. This includes print statements! Value is either <code>TRUE</code> (do display) or <code>FALSE</code> (do not display).</li>
+<li><strong><code>echo</code></strong> indicates whether you want the <em>R code itself</em> to be displayed in the document (e.g., if you want readers to be able to see your work and reproduce your calculations and analysis). Value is either <code>TRUE</code> (do display; the default) or <code>FALSE</code> (do not display).</li>
+<li><strong><code>message</code></strong> indicates whether you want any messages generated by the code to be displayed. This includes print statements! Value is either <code>TRUE</code> (do display; the default) or <code>FALSE</code> (do not display).</li>
 </ul>
-<p>If you only want to <em>show</em> your <code>R</code> code (and not <em>evaluate</em> it), you can use a standard Markdown codeblock that indicates the <code>r</code> language (<code>```r</code>, <em>not</em> <code>```{r}</code>), or set the <code>eval</code> option to <code>FALSE</code>.</p>
+<p>If you only want to <em>show</em> your <code>R</code> code (and not <em>evaluate</em> it), you can alternatively use a standard Markdown codeblock that indicates the <code>r</code> language (<code>```r</code>, <em>not</em> <code>```{r}</code>), or set the <code>eval</code> option to <code>FALSE</code>.</p>
 </div>
 <div id="inline-code" class="section level3">
 <h3><span class="header-section-number">12.2.2</span> Inline Code</h3>
-<p>In addition to creating distinct code blocks, you may want to execute R code <em>inline</em> with the rest of your text. This empowers you to <strong>reference a variable</strong> from your code-chunk in a section of Markdown. This would allow you to easily include a specific result inside a paragraph of text. And, if the computation changes, re-knitting your document will update your text in the appropriate places.</p>
-<p>As with code blocks, you’ll follow the Markdown convention of using single backticks (<strong><code>`</code></strong>), but put the letter <strong><code>r</code></strong> imediately after the first backtick. For example:</p>
+<p>In addition to creating distinct code blocks, you may want to execute R code <em>inline</em> with the rest of your text. This empowers you to <strong>reference a variable</strong> from your code-chunk in a section of Markdown—injected that variable into the text you have written. This allows you to easily include a specific result inside a paragraph of text. So if the computation changes, re-knitting your document will update the values inside the text without any further work needed.</p>
+<p>As with code blocks, you’ll follow the Markdown convention of using single backticks (<strong><code>`</code></strong>), but put the letter <strong><code>r</code></strong> immediately after the first backtick. For example:</p>
 <!-- RMarkdown doesn't provide built-in escaping. See https://stackoverflow.com/q/20409172 for
      details on the workaround. -->
-<pre><code>If we want to calculate 3 + 4 inside some text, we can use `r 3 + 4` right in the _middle_.</code></pre>
+<div class="sourceCode"><pre class="sourceCode markdown"><code class="sourceCode markdown">To calculate 3 + 4 inside some text, we can use <span class="bn">`r 3 + 4`</span> right in the _middle_.</code></pre></div>
 <p>When you knit the text above, the <code>`r 3 + 4`</code> would be replaced with the number <code>7</code>.</p>
 <p class="alert alert-info">
 Note you can also reference values computed in the code blocks preceding your inline code; it is <strong>best practice</strong> to do your calculations in a code block (with <code>echo=FALSE</code>), save the result in a variable, and then simply inline that variable with e.g., <code>`r my.variable`</code>.
 </p>
+</div>
+</div>
+<div id="rendering-data" class="section level2">
+<h2><span class="header-section-number">12.3</span> Rendering Data</h2>
+<p>R Markdown’s code chunks let you perform data analysis directly in your document, but often you will want to include more complex data output. This section discusses a few tips for specifying dynamic, complex output to render using R Markdown.</p>
+<div id="rendering-strings" class="section level3">
+<h3><span class="header-section-number">12.3.1</span> Rendering Strings</h3>
+<p>If you experiment with knitting R Markdown, you will quickly notice that using <code>print()</code> will generate a code block with content that looks like a printed vector:</p>
+<pre class="rmd"><code>```{r echo=FALSE}
+print(&quot;Hello world&quot;)
+```</code></pre>
+<pre><code>## [1] &quot;Hello world&quot;</code></pre>
+<p>For this reason, you usually want to have the code block generate a string that you save in a variable, which you can then display with an inline expression (e.g., on its own line):</p>
+<pre class="rmd"><code>```{r echo=FALSE}
+msg &lt;- &quot;Hello world&quot;
+```
+
+Below is the message to see:
+`r msg`</code></pre>
+<p>Note that any Markdown syntax included in the variable (e.g., if you had <code>msg &lt;- &quot;**Hello** world&quot;</code>) will be rendered as well—the <code>`r msg `</code>is replaced by the value of the expression just as if you had typed that Markdown in directly. This allows you to even include dynamic styling if you construct a “Markdown string” out of your data.</p>
+<p>Alternatively, you can use as <a href="https://yihui.name/knitr/options/#text-results"><code>results</code></a> option of <code>'asis'</code>, which will cause the “output” to be rendered directly into the markdown. When combined with the <a href="https://www.rdocumentation.org/packages/base/versions/3.4.3/topics/cat"><code>cat()</code></a> function (which con<strong>cat</strong>enates content without specifying additional information like vector position), you can make a code chunk effectively render a specific string:</p>
+<pre class="rmd"><code>```{r results=&#39;asis&#39;, echo=FALSE}
+cat(&quot;Hello world&quot;)
+```</code></pre>
+</div>
+<div id="rendering-lists" class="section level3">
+<h3><span class="header-section-number">12.3.2</span> Rendering Lists</h3>
+<p>Because outputted strings render any Markdown they contain, it’s possible to specify complex Markdown such as <em>lists</em> by constructing these strings to contain the <code>-</code> symbols utilized (note that each item will need to be separated by a line break or a <code>\n</code> character):</p>
+<pre class="rmd"><code>```{r echo=FALSE}
+markdown.list &lt;- &quot;
+- Lions
+- Tigers
+- Bears
+&quot;
+```
+
+`r markdown.list`</code></pre>
+<p>Would output a list that looks like:</p>
+<div class="list-condensed">
+<ul>
+<li>Lions</li>
+<li>Tigers</li>
+<li>Bears</li>
+</ul>
+</div>
+<p>Combined with the vectorized <code>paste()</code> function, it’s to easily convert vectors into Markdown lists that can be rendered</p>
+<pre class="rmd"><code>```{r echo=FALSE}
+animals &lt;- c(&quot;Lions&quot;, &quot;Tigers&quot;, &quot;Bears&quot;)
+
+# paste a `-` in front of each, then cat the items with newlines between
+markdown.list &lt;- cat(paste(&#39;-&#39;,animals), sep=&#39;\n&#39;)
+```
+
+`r markdown.list`</code></pre>
+<p>And of course, the contents of the vector (e.g., the text <code>&quot;Lions&quot;</code>) could easily have additional Markdown syntax syntax to include bold, italic, or hyperlinked text.</p>
+<ul>
+<li>Creating a “helper function” to do this conversion is perfectly reasonable; or see libraries such as <a href="http://rapporter.github.io/pander/"><code>pander</code></a> which defines a number of such functions.</li>
+</ul>
+</div>
+<div id="rendering-tables" class="section level3">
+<h3><span class="header-section-number">12.3.3</span> Rendering Tables</h3>
+<p>Because data frames are so central to programming with R, R Markdown includes capabilities to easily render data frames as Markdown <em>tables</em> via the <a href="https://www.rdocumentation.org/packages/knitr/versions/1.19/topics/kable"><strong><code>knitr::kable()</code></strong></a> function. This function takes as an argument the data frame you wish to render, and it will automatically convert that value into a Markdown table:</p>
+<pre class="rmd"><code>```{r echo=FALSE}
+library(knitr)  # make sure you load this library (once per doc)
+
+# make a data frame
+letters &lt;- c(&#39;a&#39;,&#39;b&#39;,&#39;c&#39;)
+numbers &lt;- 1:3
+df &lt;- data.frame(letters = letters, numbers = numbers)
+
+# render the table
+kable(df)
+```</code></pre>
+<ul>
+<li><code>kable()</code> supports a number of other arguments that can be used to customize how it outputs a table.</li>
+<li>And of courrse, if the values in the dataframe are strings that contain Markdown syntax (e.g., bold, itaic, or hyperlinks), they will be rendered as such in the table!</li>
+</ul>
+<p>So while you may need to do a little bit of work to manually generate the Markdown syntax, it is possible to dynamically produce complex documents based on dynamic data sources</p>
 </div>
 </div>
 <div id="resources-11" class="section level2 unnumbered">
