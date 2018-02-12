@@ -1,0 +1,417 @@
+# R Language Control Structures {#control-structures}
+
+In chapter [Functions] we briefly described conditional execution
+using the `if`/`else`
+construct.  Here we introduce the other main control structures, and
+cover the if/else statement in more detail.
+
+
+## Loops
+
+One of the common problems that computers are good at is to execute
+similar tasks repeatedly many times.  This can be achieved through
+_loops_.  R implements three loops: for-loop, while-loop, and
+repeat-loop, these are amont the most popular loops in many modern
+programming languages.  Loops are often advised agains in case of R.  While it
+is true that loops in R are more demanding than in several other
+languages, and can often be replaced by more efficient constructs,
+they nevertheless have a very important role in R.  Good usage of loops is
+easy, fast, and improves the readability of your code.
+
+
+### For Loop
+
+For-loop is a good choice if you want to run some statements
+repeatedly, each time picking a different value for a variable from a
+sequence;
+or just repeat some
+statements a given number of times.  The syntax of for-loop is the
+following:
+```r
+for(variable in sequence) {
+                           # do something many times.  Each time 'variable' has
+                           # a different value, taken from 'sequence'
+}
+```
+The statement block inside of the curly braces {} is
+are repeated through the sequence.
+
+Despite the curly braces, the loop body is still evaluated in the same
+environment as the rest of the code.  This means the variables
+generated before entering the loop are visible from inside, and the
+variables created inside will be visible after the loop ends.
+
+A simple and perhaps the most common usage of for loop is just to run
+some code a given number of times:
+```{r}
+for(i in 1:5)
+   print(i)
+```
+Through the loop the variable `i` takes all the values from the
+sequence `1:5`.  Note: we do not need curly braces if the loop block
+only contains a single statement.
+
+But the sequence does not have to be a simple sequence of numbers.  It
+may as well be a list:
+```{r}
+data <- list("Xiaotian", 25, c(2061234567, 2069876543))
+for(field in data) {
+   cat("field length:", length(field), "\n")
+}
+```
+
+As another less common example, we may run different functions over
+the same data:
+```{r}
+data <- 1:4
+for(fun in c(sqrt, exp, sin)) {
+   print(fun(data))
+}
+```
+
+### While loop
+
+While loop let's the programmer to decide explicitly if we want to execute the
+statements one more time:
+```r
+while(condition) {
+                           # do something if the 'condition' is true
+}
+```
+
+For instance, we can repeat something a given number of times
+(although this is more of a task for for-loop):
+```{r}
+i <- 0
+while(i < 5) {
+   print(i)
+   i <- i + 1
+}
+```
+
+Note that in case the condition is not true to begin with, the loop never
+executes and control is immediately passed to the code after the loop:
+```{r}
+i <- 10
+while(i < 5) {
+   print(i)
+   i <- i + 1
+}
+cat("done\n")
+```
+
+While loop is great for handling repeated attempts to get input in
+shape.  One can write something like this:
+```r
+data <- getData()
+while(!dataIsGood(data)) {
+   data <- getData(tryReallyHard = TRUE)
+}
+```
+
+This will run `getData()` until data is good.  If it is not good at
+the first try, the code tries really hard next time(s).  
+
+While can
+also easily do infinite loops with:
+```r
+while(TRUE) { ... }
+```
+will execute until something breaks the loop.  Another somewhat
+interesting usage of `while` is to disable execution of part of your
+code:
+```r
+while(FALSE) {
+   ## code you don't want to be executed
+}
+```
+
+
+### repeat-loop
+
+The R way of implementing repeat-loop does not include any condition
+and hence it just keeps running infdefinitely, or until something breaks
+the execution (see below):
+```r
+repeat {
+   ## just do something indefinitely many times.
+   ## if you want to stop, use `break` statement.
+}
+```
+
+Repeat is useful in many similar situations as while.  For instance,
+we can write a modified version of getting data using `repeat`:
+```r
+repeat {
+   data <- getData()
+   if(dataIsGood())
+      break
+}
+```
+
+The main difference between this, and the previous `while`-version is
+that we a) don't have to write `getData` function twice, and b) on
+each try we attempt to get data in the same way.
+
+Exactly as in the case of _for_ and _while_ loop, enclosing the loop body in curly braces
+is only necessary if it contains more than one statement.  For instance, if you want to close all the graphics
+devices left open by buggy code, you can use the following one-liner
+from console:
+```r
+repeat dev.off()
+```
+The loop will be broken by error when attempting to
+close the last null device.
+
+It should also be noted that the loop does not create a separate
+environment (scope).  All the variables from outside of the loop are
+visible inside, and variables created inside of the loop remain
+accessible after the loop terminates.
+
+
+### Leaving Early: `break` and `next`
+
+A straightforward way to leave a loop is the `break` statement.  It just leaves
+the loop and transfers control to the code immediately after the loop
+body.  It breaks all three loops discussed here (_for_, _while_, and _repeat_-loops)
+but not some of the other types of loops implemented outside of base R.  For instance:
+```{r}
+for(i in 1:10) {
+   cat(i, "\n")
+   if(i > 4)
+      break
+}
+cat("done\n")
+```
+
+As the loop body will use the same environment (the same variable
+values) as the rest of the code, the loop variables can be used right
+afterwards.  For instance, we can see that `i = 5`:
+```{r}
+print(i)
+```
+
+Opposite to `break`, `next` will throw the execution flow back to the
+head of the loop without running the commands following `next`.  In
+case of for-loop, this means a new value is picked from the sequence,
+in case of while-loop the condition is evaluated again; the head of
+repeat loop does not do any calculations.  For instance, we can print
+only even numbers:
+```{r}
+for(i in 1:10) {
+   if(i %% 2 != 0)
+      next
+   print(i)
+}
+```
+`next` jumps over printing where modulo of division by 2 is not 0.
+
+
+### When (Not) To Use Loops In R?
+
+In general, use loops if it improves code readability, makes it easier
+to extend the code, and does not cause too big inefficiencies.  In practice, it
+means use loops for repeating something slow.
+Don't use loops if you can use vectorized operators instead.
+
+For instance, look at the examples above where we were reading data
+until it was good.  There is probably very little you can achieve by
+avoiding loops--except making your code messy.  First, the
+input will probably attempted a few times only (otherwise re-consider
+how you get your data), and second, data input is probably a far
+slower process than the loop overhead.  Just use the loop.
+
+Similar arguments hold if you consider to loop over input files to read, output
+files to create, figures to plot, webpage to scrape...  In all these cases
+the loop overheads are negligible compared to the task performed
+inside the loops.  And there are no real vectorized alternatives
+anyway.
+
+The opposite is the case where good alternatives exist.  Never do this
+kind of computations in R:
+```r
+res <- numeric()
+for(i in 1:1000) {
+   res <- c(res, sqrt(i))
+}
+```
+This loop introduces three inefficiencies.  First, and most
+importantly, you are growing your when adding new values to it.  This involves
+creating new and longer vectors again and again when the old one is
+filled up.  This is very slow.  Second, as the true vectorized
+alternatives exist here, one can easily speed up the code by a
+magnitude or more by just switching to the vectorized code.  Third, and perhaps most importantly, this code is much harder
+to read than the pure vectorized expression:
+```r
+res <- sqrt(1:1000)
+```
+
+We can easily demonstrate how much faster the vectorized expressions work.
+Let's do this using _microbenchmark_ library (it provides nanosecond
+timings).  Let's wrap these expressions in functions for easier
+handling by _microbenchmark_.  We also include
+a middle version where we use a loop but avoid the terribly slow
+vector re-allocation by creating the right-sized result in
+advance:
+```{r}
+seq <- 1:1000 # global variables are easier to handle with microbenchmark
+baad <- function() {
+   r <- numeric()
+   for(i in seq)
+      r <- c(r, sqrt(i))
+}
+soso <- function() {
+   r <- numeric(length(seq))
+   for(i in seq)
+      r[i] <- sqrt(i)
+}
+good <- function()
+   sqrt(seq)
+microbenchmark::microbenchmark(baad(), soso(), good())
+```
+When comparing the median values, we can see that the middle example
+is 10x slower than the vectorized example, and the first version is
+almost 300x slower!
+
+The above holds for "true" vectorized operations.  R provides many
+pseudo-vectorizers (the lapply family) that may be handy in many
+circumstances, but not in case you need speed.  Under the hood these
+functions just use a loop.  We can demonstrate this by adding one more function to our family:
+```{r}
+soso2 <- function() {
+   sapply(seq, sqrt)
+}
+microbenchmark::microbenchmark(baad(), soso(), soso2(), good())
+```
+As it turns out, `sapply` is much slower than plain for-loop.
+Lapply-family is not a substitute for true vectorization.  However,
+one may argue that `soso2` function is easier to understand than
+explicit loop in `soso`.  In any case, it is easier to type when
+working on the interactive console.
+
+Finally, it should be noted that when performing truly vectorized
+operations on long vectors, the overhead of R interpreter becomes
+negligible and the resulting speed is almost equalt to that of the
+corresponding C code.  And optimized R code can easily beat
+non-optimized C.
+
+
+
+## More about `if` and `else`
+
+The basics of if-else blocks were covered in Chapter [Functions].
+Here we discuss some more advanced aspects.
+
+### Where To Put Else
+
+Normally R wants to understand if a line of code belongs to an earlier
+statement, or is it beginning of a fresh one.  For
+instance, 
+```r
+if(condition) {
+   ## do something
+}
+else {
+   ## do something else
+}
+```
+may fail.  R finishes the if-block on line 3 and thinks line 4 is
+beginning of a new statement.  And gets confused by the unaccompanied
+`else` as it has already forgotten
+about the `if` above.  However, this code works if used inside a function, or
+more generally, inside a {...} block.
+
+But else may always stay on the same line as the the statement of the
+if-block.  You are already familiar with the form
+```r
+if(condition) {
+   ## do something
+} else {
+   ## do something else
+}
+```
+but this applies more generally.  For instance:
+```r
+if(condition) 
+   x <- 1 else {
+             ## do something else
+          }
+```
+or
+```r
+if(condition) { ... } else {
+             ## do something else
+          }
+```
+or
+```r
+if(condition) { x <- 1; y <- 2 } else z <- 3
+```
+the last one-liner uses the fact that we can write several statements on a
+single line with `;`.  Arguably, such style is often a bad idea, but
+it has it's place, for instance when creating anonymous functions
+for `lapply` and friends.
+
+
+### Return Value
+
+As most commands in R, if-else block has a return value.  This is the
+last value evaluated by the block, and it can be assigned to
+variables.  If the condition is false, and there is no else block, `if` returns `NULL`.
+
+Using return values of if-else statement is often a recipe for hard-to-read code but may be a good
+choice in other circumstances, for instance where the multy-line form will take
+too much attention away from more crucial parts of the code.  The line
+```{r}
+n <- 3
+parity <- if(n %% 2 == 0) "even" else "odd"
+parity
+```
+is rather easy to read.  This is the closest general construct in R corresponding to C conditional shortcuts
+`parity = n % 2 ? "even" : "odd"`.
+
+Another good place for such compressed if-else statements is 
+inside anonymous functions in `lapply` and friends.  For instance, the following code
+replaces `NULL`-s and `NA`-s in a list of  characters:
+```{r}
+emails <- list("ott@example.com", "xi@abc.net", NULL, "li@whitehouse.gov", NA)
+n <- 0
+sapply(emails, function(x) if(is.null(x) || is.na(x)) "-" else x)
+```
+
+
+## `switch`: Choosing Between Multiple Conditions
+
+If-else is appropriate if we have a small number of
+conditions, potentially only one.  Switch is a related construct that
+tests a large number of equality conditions.  The best way to explain
+it's syntax is through an example:
+```{r}
+stock <- "AMZN"
+switch(stock,
+       "AAPL" = "Apple Inc",
+       "AMZN" = "Amazon.com Inc",
+       "INTC" = "Intel Corp",
+       "unknown")
+```
+Switch expression attempts to match the expression, here `stock = "AMZN"`, to a
+list of alternatives.  If one of the alternative matches the name of
+the argument, that argument is returned.  If none matches, the
+nameless default argument (here "unknown") is returned.  In case there
+is not default argument, `switch` returns `NULL`.
+
+Switch allows to specify the same return value for multiple cases:
+```{r}
+switch(stock,
+       "AAPL" = "Apple Inc",
+       "AMZN" =, "INTC" = "something else",
+       "unknown")
+```
+If the matching named argument is empty, the first non-empty named
+argument is evaluated.  In this case this is "something else",
+corresponding to the name "INTC".
+
+As in case of `if`, `switch` only accepts length-1 expressions.
+Switch also allows to use integers instead of character expressions,
+in that case the return value list should be without names.
+

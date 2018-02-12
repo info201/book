@@ -180,6 +180,9 @@ FoodTempTest(119)  # "This porridge is just right!"
 FoodTempTest(60)   # "This porridge is too cold!"
 FoodTempTest(150)  # "This porridge is too hot!"
 ```
+
+See more about `if` and `else` in [Appendix C](#control-structures).
+
 ## Resources {-}
 - [R Function Cheatsheet](https://cran.r-project.org/doc/contrib/Short-refcard.pdf)
 - [User Defined R Functions](http://www.statmethods.net/management/userfunctions.html)
