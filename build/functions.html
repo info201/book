@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Technical Foundations of Informatics</title>
   <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
-  <meta name="generator" content="bookdown 0.6 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
 
   <meta property="og:title" content="Technical Foundations of Informatics" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2018-02-11">
+<meta name="date" content="2018-02-21">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -415,19 +415,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <span class="co"># call the min() function, pass it 1, 6/8, AND 4/3 as arguments</span>
 <span class="co"># this is an example of a function that takes multiple args</span>
-<span class="kw">min</span>(<span class="dv">1</span>, <span class="dv">6</span>/<span class="dv">8</span>, <span class="dv">4</span>/<span class="dv">3</span>)  <span class="co"># 0.75, (6/8 is the smallest value)</span></code></pre></div>
+<span class="kw">min</span>(<span class="dv">1</span>, <span class="dv">6</span><span class="op">/</span><span class="dv">8</span>, <span class="dv">4</span><span class="op">/</span><span class="dv">3</span>)  <span class="co"># 0.75, (6/8 is the smallest value)</span></code></pre></div>
 <ul>
 <li><em>Note:</em> To keep functions and variables distinct, we try to always include empty parentheses <code>()</code> when referring to a function by name. This does not mean that the function takes no arguments, it is just a useful shorthand for indicating that something is a function.</li>
 </ul>
 <p>If you call any of these functions interactively, R will display the <strong>returned value</strong> (the output) in the console. However, the computer is not able to “read” what is written in the console—that’s for humans to view! If you want the computer to be able to <em>use</em> a returned value, you will need to give that value a name so that the computer can refer to it. That is, you need to store the returned value in a variable:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># store min value in smallest.number variable</span>
-smallest.number &lt;-<span class="st"> </span><span class="kw">min</span>(<span class="dv">1</span>, <span class="dv">6</span>/<span class="dv">8</span>, <span class="dv">4</span>/<span class="dv">3</span>)
+smallest.number &lt;-<span class="st"> </span><span class="kw">min</span>(<span class="dv">1</span>, <span class="dv">6</span><span class="op">/</span><span class="dv">8</span>, <span class="dv">4</span><span class="op">/</span><span class="dv">3</span>)
 
 <span class="co"># we can then use the variable as normal, such as for a comparison</span>
-min.is.big &lt;-<span class="st"> </span>smallest.number &gt;<span class="st"> </span><span class="dv">1</span>  <span class="co"># FALSE</span>
+min.is.big &lt;-<span class="st"> </span>smallest.number <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>  <span class="co"># FALSE</span>
 
 <span class="co"># we can also use functions directly when storing to variables</span>
-phi &lt;-<span class="st"> </span>.<span class="dv">5</span> +<span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">5</span>)/<span class="dv">2</span>  <span class="co"># 1.618...</span>
+phi &lt;-<span class="st"> </span>.<span class="dv">5</span> <span class="op">+</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">5</span>)<span class="op">/</span><span class="dv">2</span>  <span class="co"># 1.618...</span>
 
 <span class="co"># we can even pass the result of a function as an argument to another!</span>
 <span class="co"># watch out for where the parentheses close!</span>
@@ -519,7 +519,7 @@ phi &lt;-<span class="st"> </span>.<span class="dv">5</span> +<span class="st"> 
 <p>The best way to understand the syntax for defining a function is to look at an example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># A function named `MakeFullName` that takes two arguments</span>
 <span class="co"># and returns the &quot;full name&quot; made from them</span>
-MakeFullName &lt;-<span class="st"> </span>function(first.name, last.name) {
+MakeFullName &lt;-<span class="st"> </span><span class="cf">function</span>(first.name, last.name) {
   <span class="co"># Function body: perform tasks in here</span>
   full.name &lt;-<span class="st"> </span><span class="kw">paste</span>(first.name, last.name)
 
@@ -549,30 +549,30 @@ my.name &lt;-<span class="st"> </span><span class="kw">MakeFullName</span>(<span
 OTHERWISE
   do some other lines of code</code></pre>
 <p>In R, we write these conditional statements using the keywords <strong><code>if</code></strong> and <strong><code>else</code></strong> and the following syntax:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if (condition) {
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (condition) {
   <span class="co"># lines of code to run if condition is TRUE</span>
-} else {
+} <span class="cf">else</span> {
   <span class="co"># lines of code to run if condition is FALSE</span>
 }</code></pre></div>
 <p>(Note that the the <code>else</code> needs to be on the same line as the closing <code>}</code> of the <code>if</code> block. It is also possible to omit the <code>else</code> and its block).</p>
 <p>The <code>condition</code> can be any variable or expression that resolves to a logical value (<code>TRUE</code> or <code>FALSE</code>). Thus both of the below conditional statements are valid:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">porridge.temp &lt;-<span class="st"> </span><span class="dv">115</span>  <span class="co"># in degrees F</span>
-if (porridge.temp &gt;<span class="st"> </span><span class="dv">120</span>) {
+<span class="cf">if</span> (porridge.temp <span class="op">&gt;</span><span class="st"> </span><span class="dv">120</span>) {
   <span class="kw">print</span>(<span class="st">&quot;This porridge is too hot!&quot;</span>)
 }
 
-too.cold &lt;-<span class="st"> </span>porridge.temp &lt;<span class="st"> </span><span class="dv">70</span>
-if (too.cold) {  <span class="co"># a logical value</span>
+too.cold &lt;-<span class="st"> </span>porridge.temp <span class="op">&lt;</span><span class="st"> </span><span class="dv">70</span>
+<span class="cf">if</span> (too.cold) {  <span class="co"># a logical value</span>
   <span class="kw">print</span>(<span class="st">&quot;This porridge is too cold!&quot;</span>)
 }</code></pre></div>
 <p>Note, we can extend the set of conditions evaluated using an <code>else if</code> statement. For example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Function to determine if you should eat porridge</span>
-FoodTempTest &lt;-<span class="st"> </span>function(temp) {
-  if (temp &gt;<span class="st"> </span><span class="dv">120</span>) {
+FoodTempTest &lt;-<span class="st"> </span><span class="cf">function</span>(temp) {
+  <span class="cf">if</span> (temp <span class="op">&gt;</span><span class="st"> </span><span class="dv">120</span>) {
     status &lt;-<span class="st"> &quot;This porridge is too hot!&quot;</span>
-  } else if (temp &lt;<span class="st"> </span><span class="dv">70</span>) {
+  } <span class="cf">else</span> <span class="cf">if</span> (temp <span class="op">&lt;</span><span class="st"> </span><span class="dv">70</span>) {
     status &lt;-<span class="st"> &quot;This porridge is too cold!&quot;</span>
-  } else {
+  } <span class="cf">else</span> {
     status &lt;-<span class="st"> &quot;This porridge is just right!&quot;</span>
   }
   <span class="kw">return</span>(status)

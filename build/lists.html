@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Technical Foundations of Informatics</title>
   <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
-  <meta name="generator" content="bookdown 0.6 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
 
   <meta property="og:title" content="Technical Foundations of Informatics" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2018-02-11">
+<meta name="date" content="2018-02-21">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -445,23 +445,23 @@ $in.union
 <p>Because list elements are (usually) tagged, you can access them by their tag name rather than by the index number you used with vectors. You do this by using <strong>dollar notation</strong>: you refer to the element with a particular tag in a list by writing the name of the list, followed by a <code>$</code>, followed by the element’s tag:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first.name =</span> <span class="st">&quot;Ada&quot;</span>, <span class="dt">job =</span> <span class="st">&quot;Programmer&quot;</span>, <span class="dt">salary =</span> <span class="dv">78000</span>, <span class="dt">in.union =</span> <span class="ot">TRUE</span>)
 
-person$first.name  <span class="co"># [1] &quot;Ada&quot;</span>
-person$salary  <span class="co"># [1] 78000</span></code></pre></div>
+person<span class="op">$</span>first.name  <span class="co"># [1] &quot;Ada&quot;</span>
+person<span class="op">$</span>salary  <span class="co"># [1] 78000</span></code></pre></div>
 <p>(See below for other options for accessing list elements).</p>
 <p>You can almost read the dollar sign as like an “apostrophe s” (possessive) in English: so <code>person$salary</code> would mean “the <code>person</code> list<strong>’s</strong> <code>salary</code> value”.</p>
 <p>Dollar notation allows list elements to almost be treated as variables in their own right—for example, you specify that you’re talking about the <code>salary</code> variable in the <code>person</code> list, rather than the <code>salary</code> variable in some other list (or not in a list at all).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first.name =</span> <span class="st">&quot;Ada&quot;</span>, <span class="dt">job =</span> <span class="st">&quot;Programmer&quot;</span>, <span class="dt">salary =</span> <span class="dv">78000</span>, <span class="dt">in.union =</span> <span class="ot">TRUE</span>)
 
 <span class="co"># use elements as function or operation arguments</span>
-<span class="kw">paste</span>(person$job, person$first.name)   <span class="co"># [1] &quot;Programmer Ada&quot;</span>
+<span class="kw">paste</span>(person<span class="op">$</span>job, person<span class="op">$</span>first.name)   <span class="co"># [1] &quot;Programmer Ada&quot;</span>
 
 <span class="co"># assign values to list element</span>
-person$job &lt;-<span class="st"> &quot;Senior Programmer&quot;</span>  <span class="co"># a promotion!</span>
-<span class="kw">print</span>(person$job)  <span class="co"># [1] &quot;Senior Programmer&quot;</span>
+person<span class="op">$</span>job &lt;-<span class="st"> &quot;Senior Programmer&quot;</span>  <span class="co"># a promotion!</span>
+<span class="kw">print</span>(person<span class="op">$</span>job)  <span class="co"># [1] &quot;Senior Programmer&quot;</span>
 
 <span class="co"># assign value to list element from itself</span>
-person$salary &lt;-<span class="st"> </span>person$salary *<span class="st"> </span><span class="fl">1.15</span>  <span class="co"># a 15% raise!</span>
-<span class="kw">print</span>(person$salary)  <span class="co"># [1] 89700</span></code></pre></div>
+person<span class="op">$</span>salary &lt;-<span class="st"> </span>person<span class="op">$</span>salary <span class="op">*</span><span class="st"> </span><span class="fl">1.15</span>  <span class="co"># a 15% raise!</span>
+<span class="kw">print</span>(person<span class="op">$</span>salary)  <span class="co"># [1] 89700</span></code></pre></div>
 <p>Note that if you need to, you can get a <em>vector</em> of element tags using the <code>names()</code> function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first.name =</span> <span class="st">&quot;Ada&quot;</span>, <span class="dt">job =</span> <span class="st">&quot;Programmer&quot;</span>, <span class="dt">salary =</span> <span class="dv">78000</span>, <span class="dt">in.union =</span> <span class="ot">TRUE</span>)
 <span class="kw">names</span>(person)  <span class="co"># [1] &quot;first.name&quot; &quot;job&quot;  &quot;salary&quot;  &quot;in.union&quot;</span></code></pre></div>
@@ -509,7 +509,7 @@ my.list[<span class="dv">1</span>]
 my.list[[<span class="dv">1</span>]]  <span class="co"># [1] &quot;A&quot;</span>
 
 <span class="co"># can use any vector as the argument to single brackets, just like with vectors</span>
-my.list[<span class="dv">1</span>:<span class="dv">3</span>]
+my.list[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]
             <span class="co"># [[1]]</span>
             <span class="co"># [1] &quot;A&quot;</span>
             <span class="co">#</span>
@@ -528,11 +528,11 @@ my.list[<span class="dv">1</span>:<span class="dv">3</span>]
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first.name =</span> <span class="st">&quot;Ada&quot;</span>, <span class="dt">job =</span> <span class="st">&quot;Programmer&quot;</span>, <span class="dt">salary =</span> <span class="dv">78000</span>, <span class="dt">in.union =</span> <span class="ot">TRUE</span>)
 
 <span class="co"># has no `age` element</span>
-person$age  <span class="co"># NULL</span>
+person<span class="op">$</span>age  <span class="co"># NULL</span>
 
 <span class="co"># assign a value to the `age` tag to add it</span>
-person$age &lt;-<span class="st"> </span><span class="dv">40</span>
-person$age  <span class="co"># [1] 40</span>
+person<span class="op">$</span>age &lt;-<span class="st"> </span><span class="dv">40</span>
+person<span class="op">$</span>age  <span class="co"># [1] 40</span>
 
 <span class="co"># assign using index</span>
 person[[<span class="dv">10</span>]] &lt;-<span class="st"> &quot;Tenth field&quot;</span>
@@ -575,7 +575,7 @@ dance.party &lt;-<span class="st"> </span><span class="kw">lapply</span>(people,
 <p>Note that the <code>lapply()</code> function returns a <em>new</em> list; the original one is unmodified (though if the list contains vectors or other lists as elements, it’s possible for those values to be changed). This makes it a <strong>mapping</strong> operation (applied to the maps that are lists).</p>
 <p>You commonly use <code>lapply()</code> with your own custom functions which define what you want to do to a single element in that list:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># A function that prepends &quot;Hello&quot; to any item</span>
-Greet &lt;-<span class="st"> </span>function(item) {
+Greet &lt;-<span class="st"> </span><span class="cf">function</span>(item) {
   <span class="kw">return</span>(<span class="kw">paste</span>(<span class="st">&quot;Hello&quot;</span>, item))
 }
 

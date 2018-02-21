@@ -238,7 +238,7 @@ https://GITHUB-USERNAME.github.io/REPO-NAME
 
 - This means that if you're making your homework reports available, the `GITHUB-USERNAME` will be the name of the course organization.
 
-Three important notes:
+Some important notes:
 
 1. The `gh-pages` branch must be named _exactly_ that. If you misspell the name, or use an underscore instead of a dash, it won't work.
 
@@ -247,6 +247,8 @@ Three important notes:
 3. Any content in the `gh-pages` branch will be publicly accessible, even if your repo is private. You can remove specific files from the `gh-pages` branch that you don't want to be visible on the web, while still keeping them in the `master` branch: use the `git rm` to remove the file and then add, commit, and push the deletion.
 
     - Be careful not push [any passwords or anything](http://www.itnews.com.au/news/aws-urges-developers-to-scrub-github-of-secret-keys-375785) to GitHub!
+
+4. The web page will only be initially built when a **repo administrator** pushes a change to the `gh-pages` branch; if someone just as "write access" to the repo (e.g., they are a contributor, but not an "owner"), then the page won't be created. But once an administrator (such as the person who created the repo) pushes that branch and causes the initial page to be created, then any further updates will appear as well.
 
 After you've created your initial `gh-pages` branch, any changes you want to appear online will need to be saved as new commits to that branch and then pushed back up to GitHub. **HOWEVER**, it is best practice to ___not___ make any changes directly to the `gh-pages` branch! Instead, you should switch back to the `master` branch, make your changes there, comit them, then `merge` them back into `gh-pages` before pushing to GitHub:
 
