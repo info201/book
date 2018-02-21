@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2018-02-17">
+<meta name="date" content="2018-02-21">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 <link rel="prev" href="remote-server.html">
-
+<link rel="next" href="control-structures.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -363,6 +363,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="B.4" data-path="plotly.html"><a href="plotly.html#hovers"><i class="fa fa-check"></i><b>B.4</b> Hovers</a></li>
 <li class="chapter" data-level="" data-path="plotly.html"><a href="plotly.html#resources-16"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
+<li class="chapter" data-level="C" data-path="control-structures.html"><a href="control-structures.html"><i class="fa fa-check"></i><b>C</b> R Language Control Structures</a><ul>
+<li class="chapter" data-level="C.1" data-path="control-structures.html"><a href="control-structures.html#loops"><i class="fa fa-check"></i><b>C.1</b> Loops</a><ul>
+<li class="chapter" data-level="C.1.1" data-path="control-structures.html"><a href="control-structures.html#for-loop"><i class="fa fa-check"></i><b>C.1.1</b> For Loop</a></li>
+<li class="chapter" data-level="C.1.2" data-path="control-structures.html"><a href="control-structures.html#while-loop"><i class="fa fa-check"></i><b>C.1.2</b> While loop</a></li>
+<li class="chapter" data-level="C.1.3" data-path="control-structures.html"><a href="control-structures.html#repeat-loop"><i class="fa fa-check"></i><b>C.1.3</b> repeat-loop</a></li>
+<li class="chapter" data-level="C.1.4" data-path="control-structures.html"><a href="control-structures.html#leaving-early-break-and-next"><i class="fa fa-check"></i><b>C.1.4</b> Leaving Early: <code>break</code> and <code>next</code></a></li>
+<li class="chapter" data-level="C.1.5" data-path="control-structures.html"><a href="control-structures.html#when-not-to-use-loops-in-r"><i class="fa fa-check"></i><b>C.1.5</b> When (Not) To Use Loops In R?</a></li>
+</ul></li>
+<li class="chapter" data-level="C.2" data-path="control-structures.html"><a href="control-structures.html#more-about-if-and-else"><i class="fa fa-check"></i><b>C.2</b> More about <code>if</code> and <code>else</code></a><ul>
+<li class="chapter" data-level="C.2.1" data-path="control-structures.html"><a href="control-structures.html#where-to-put-else"><i class="fa fa-check"></i><b>C.2.1</b> Where To Put Else</a></li>
+<li class="chapter" data-level="C.2.2" data-path="control-structures.html"><a href="control-structures.html#return-value"><i class="fa fa-check"></i><b>C.2.2</b> Return Value</a></li>
+</ul></li>
+<li class="chapter" data-level="C.3" data-path="control-structures.html"><a href="control-structures.html#switch-choosing-between-multiple-conditions"><i class="fa fa-check"></i><b>C.3</b> <code>switch</code>: Choosing Between Multiple Conditions</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -390,10 +404,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">B.1</span> Getting Started</h2>
 <p>The Plotly API is an R package that you’ll use to build interactive graphics. Like other open-source that we’ve used in this course, we’ll load this API as a R package as follows:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># Install package</span>
-<span class="kw">install.packages</span>(<span class="st">&quot;plotly&quot;</span>)
+<span class="ex">install.packages</span>(<span class="st">&quot;plotly&quot;</span>)
 
 <span class="co"># Load library</span>
-<span class="kw">library</span>(plotly)</code></pre></div>
+<span class="ex">library</span>(plotly)</code></pre></div>
 <p>Then, the <code>plot_ly</code> object will be accessible to you to build graphics on your page.</p>
 <div class="alert alert-danger">
 <p>
@@ -405,7 +419,7 @@ Note: sometimes RStudio fails to show your plotly graph in a website preview whe
 <h2><span class="header-section-number">B.2</span> Basic Charts</h2>
 <p>One of the best ways to start building charts with Plotly is to take a look at a <a href="https://plot.ly/r/#basic-charts">basic example</a> of your choice, and explore the syntax. In general, to build a Plotly object (graph) you’ll pass a <strong>dataframe</strong> into the <code>plot_ly</code> function, then <strong>adjust the parameters</strong> to specify what you want to visualize. For example, here is the basic example of a scatterplot from the documentation:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># Make a scatterplot of the iris data</span>
-<span class="kw">plot_ly</span>(data = iris, x = ~Sepal.Length, y = ~Petal.Length, mode = <span class="st">&quot;markers&quot;</span>, type = <span class="st">&quot;scatter&quot;</span>)</code></pre></div>
+<span class="ex">plot_ly</span>(data = iris, x = ~Sepal.Length, y = ~Petal.Length, mode = <span class="st">&quot;markers&quot;</span>, type = <span class="st">&quot;scatter&quot;</span>)</code></pre></div>
 <p>The approach seems pretty straightforward – in fact, if you exclude <code>type = &quot;scatter&quot;</code> and <code>mode = &quot;markers&quot;</code>, Plotly will make an educated guess about what type of plot you want (and in this case, it will in fact create a scatterplot!). The only syntax that looks a bit strange is the tilde character (<code>~</code>). In R, the tilde designates a variable as a <strong>formula</strong>, which was a design choice of the developers of the API.</p>
 </div>
 <div id="layout" class="section level2">
@@ -414,11 +428,11 @@ Note: sometimes RStudio fails to show your plotly graph in a website preview whe
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># From documentation</span>
 
 <span class="co"># Create a plotly object `p`</span>
-p &lt;-<span class="st"> </span><span class="kw">plot_ly</span>(<span class="dt">data =</span> iris, <span class="dt">x =</span> ~Sepal.Length, <span class="dt">y =</span> ~Petal.Length, <span class="dt">type =</span> <span class="st">&quot;scatter&quot;</span>, <span class="dt">mode =</span> <span class="st">&quot;markers&quot;</span>,
+p &lt;-<span class="st"> </span><span class="kw">plot_ly</span>(<span class="dt">data =</span> iris, <span class="dt">x =</span> <span class="op">~</span>Sepal.Length, <span class="dt">y =</span> <span class="op">~</span>Petal.Length, <span class="dt">type =</span> <span class="st">&quot;scatter&quot;</span>, <span class="dt">mode =</span> <span class="st">&quot;markers&quot;</span>,
         <span class="dt">marker =</span> <span class="kw">list</span>(<span class="dt">size =</span> <span class="dv">10</span>,
                        <span class="dt">color =</span> <span class="st">&#39;rgba(255, 182, 193, .9)&#39;</span>,
                        <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">color =</span> <span class="st">&#39;rgba(152, 0, 0, .8)&#39;</span>,
-                                   <span class="dt">width =</span> <span class="dv">2</span>))) %&gt;%
+                                   <span class="dt">width =</span> <span class="dv">2</span>))) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="co"># Use pipe function to pass the plotly object into the `layout` function                           </span>
 <span class="st">  </span><span class="kw">layout</span>(<span class="dt">title =</span> <span class="st">&#39;Styled Scatter&#39;</span>,
          <span class="dt">yaxis =</span> <span class="kw">list</span>(<span class="dt">zeroline =</span> <span class="ot">FALSE</span>),
@@ -438,10 +452,10 @@ d &lt;-<span class="st"> </span>diamonds[<span class="kw">sample</span>(<span cl
 
 <span class="co"># Create plot, specifying hover text</span>
 p &lt;-<span class="st"> </span><span class="kw">plot_ly</span>(
-  d, <span class="dt">x =</span> ~carat, <span class="dt">y =</span> ~price, <span class="dt">mode =</span> <span class="st">&quot;markers&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;scatter&quot;</span>,
+  d, <span class="dt">x =</span> <span class="op">~</span>carat, <span class="dt">y =</span> <span class="op">~</span>price, <span class="dt">mode =</span> <span class="st">&quot;markers&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;scatter&quot;</span>,
   <span class="co"># Hover text:</span>
-  <span class="dt">text =</span> ~<span class="kw">paste0</span>(<span class="st">&quot;Price:$&quot;</span>, price, <span class="st">&#39;&lt;br&gt;Cut: &#39;</span>, cut),
-  <span class="dt">color =</span> ~carat, <span class="dt">size =</span> ~carat
+  <span class="dt">text =</span> <span class="op">~</span><span class="kw">paste0</span>(<span class="st">&quot;Price:$&quot;</span>, price, <span class="st">&#39;&lt;br&gt;Cut: &#39;</span>, cut),
+  <span class="dt">color =</span> <span class="op">~</span>carat, <span class="dt">size =</span> <span class="op">~</span>carat
 )
 
 <span class="co"># Show chart</span>
@@ -465,8 +479,8 @@ p</code></pre></div>
           </div>
         </div>
       </div>
-<a href="remote-server.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="remote-server.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="control-structures.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

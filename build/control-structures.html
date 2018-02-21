@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-<link rel="prev" href="apis.html">
-<link rel="next" href="ggplot2.html">
+<link rel="prev" href="plotly.html">
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -397,204 +397,251 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="r-markdown" class="section level1">
-<h1><span class="header-section-number">Chapter 12</span> R Markdown</h1>
-<p>R Markdown is a package that supports using <code>R</code> to dynamically create <em>documents</em>, such as websites (<code>.html</code> files), reports (<code>.pdf</code> files), slideshows (using <code>ioslides</code> or <code>slidy</code>), and even interactive web apps (using <code>shiny</code>).</p>
-<p>As you may have guessed, R Markdown does this by providing the ability to blend Markdown syntax and <code>R</code> code so that, when executed, scripts will automatically inject your code results into a formatted document. The ability to automatically generate reports and documents from a computer script eliminates the need to manually update the <em>results</em> of a data analysis project, enabling you to more effectively share the <em>information</em> that you’ve produced from your data. In this chapter, you’ll learn the fundamentals of the RMarkdown library to create well-formatted documents that combine analysis and reporting.</p>
-<div id="r-markdown-and-rstudio" class="section level2">
-<h2><span class="header-section-number">12.1</span> R Markdown and RStudio</h2>
-<p>R Markdown documents are created from a combination of two libraries: <code>rmarkdown</code> (which process the markdown and generates the output) and <code>knitr</code> (which runs R code and produces Markdown-like output). These packages are already included in RStudio, which provides built-in support for creating and viewing R Markdown documents.</p>
-<div id="creating-.rmd-files" class="section level3">
-<h3><span class="header-section-number">12.1.1</span> Creating <code>.Rmd</code> Files</h3>
-<p>The easiest way to begin a new R-Markdown document in RStudio is to use the <strong>File &gt; New File &gt; R Markdown</strong> menu option:</p>
-<div class="figure">
-<img src="img/r-markdown/new-file.png" title="new R-Markdown document menu" alt="Create a new R Markdown document in RStudio." />
-<p class="caption">Create a new R Markdown document in RStudio.</p>
+<div id="control-structures" class="section level1">
+<h1><span class="header-section-number">C</span> R Language Control Structures</h1>
+<p>In chapter <a href="functions.html#functions">Functions</a> we briefly described conditional execution using the <code>if</code>/<code>else</code> construct. Here we introduce the other main control structures, and cover the if/else statement in more detail.</p>
+<div id="loops" class="section level2">
+<h2><span class="header-section-number">C.1</span> Loops</h2>
+<p>One of the common problems that computers are good at is to execute similar tasks repeatedly many times. This can be achieved through <em>loops</em>. R implements three loops: for-loop, while-loop, and repeat-loop, these are amont the most popular loops in many modern programming languages. Loops are often advised agains in case of R. While it is true that loops in R are more demanding than in several other languages, and can often be replaced by more efficient constructs, they nevertheless have a very important role in R. Good usage of loops is easy, fast, and improves the readability of your code.</p>
+<div id="for-loop" class="section level3">
+<h3><span class="header-section-number">C.1.1</span> For Loop</h3>
+<p>For-loop is a good choice if you want to run some statements repeatedly, each time picking a different value for a variable from a sequence; or just repeat some statements a given number of times. The syntax of for-loop is the following:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(variable <span class="cf">in</span> sequence) {
+                           <span class="co"># do something many times.  Each time &#39;variable&#39; has</span>
+                           <span class="co"># a different value, taken from &#39;sequence&#39;</span>
+}</code></pre></div>
+<p>The statement block inside of the curly braces {} is are repeated through the sequence.</p>
+<p>Despite the curly braces, the loop body is still evaluated in the same environment as the rest of the code. This means the variables generated before entering the loop are visible from inside, and the variables created inside will be visible after the loop ends.</p>
+<p>A simple and perhaps the most common usage of for loop is just to run some code a given number of times:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)
+   <span class="kw">print</span>(i)</code></pre></div>
+<pre><code>## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5</code></pre>
+<p>Through the loop the variable <code>i</code> takes all the values from the sequence <code>1:5</code>. Note: we do not need curly braces if the loop block only contains a single statement.</p>
+<p>But the sequence does not have to be a simple sequence of numbers. It may as well be a list:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;Xiaotian&quot;</span>, <span class="dv">25</span>, <span class="kw">c</span>(<span class="dv">2061234567</span>, <span class="dv">2069876543</span>))
+<span class="cf">for</span>(field <span class="cf">in</span> data) {
+   <span class="kw">cat</span>(<span class="st">&quot;field length:&quot;</span>, <span class="kw">length</span>(field), <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)
+}</code></pre></div>
+<pre><code>## field length: 1 
+## field length: 1 
+## field length: 2</code></pre>
+<p>As another less common example, we may run different functions over the same data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">4</span>
+<span class="cf">for</span>(fun <span class="cf">in</span> <span class="kw">c</span>(sqrt, exp, sin)) {
+   <span class="kw">print</span>(<span class="kw">fun</span>(data))
+}</code></pre></div>
+<pre><code>## [1] 1.000000 1.414214 1.732051 2.000000
+## [1]  2.718282  7.389056 20.085537 54.598150
+## [1]  0.8414710  0.9092974  0.1411200 -0.7568025</code></pre>
 </div>
-<p>RStudio will then prompt you to provide some additional details abour what kind of R Markdown document you want. In particular, you will need to choose a default <em>document type</em> and <em>output format</em>. You can also provide a title and author information which will be included in the document. This chapter will focus on creating HTML documents (websites; the default format)—other formats require the installation of additional software.</p>
-<div class="figure">
-<img src="img/r-markdown/document-type.png" title="specify document type prompt" alt="Specify document type." />
-<p class="caption">Specify document type.</p>
+<div id="while-loop" class="section level3">
+<h3><span class="header-section-number">C.1.2</span> While loop</h3>
+<p>While loop let’s the programmer to decide explicitly if we want to execute the statements one more time:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">while</span>(condition) {
+                           <span class="co"># do something if the &#39;condition&#39; is true</span>
+}</code></pre></div>
+<p>For instance, we can repeat something a given number of times (although this is more of a task for for-loop):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">i &lt;-<span class="st"> </span><span class="dv">0</span>
+<span class="cf">while</span>(i <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span>) {
+   <span class="kw">print</span>(i)
+   i &lt;-<span class="st"> </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
+}</code></pre></div>
+<pre><code>## [1] 0
+## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4</code></pre>
+<p>Note that in case the condition is not true to begin with, the loop never executes and control is immediately passed to the code after the loop:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">i &lt;-<span class="st"> </span><span class="dv">10</span>
+<span class="cf">while</span>(i <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span>) {
+   <span class="kw">print</span>(i)
+   i &lt;-<span class="st"> </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
+}
+<span class="kw">cat</span>(<span class="st">&quot;done</span><span class="ch">\n</span><span class="st">&quot;</span>)</code></pre></div>
+<pre><code>## done</code></pre>
+<p>While loop is great for handling repeated attempts to get input in shape. One can write something like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">getData</span>()
+<span class="cf">while</span>(<span class="op">!</span><span class="kw">dataIsGood</span>(data)) {
+   data &lt;-<span class="st"> </span><span class="kw">getData</span>(<span class="dt">tryReallyHard =</span> <span class="ot">TRUE</span>)
+}</code></pre></div>
+<p>This will run <code>getData()</code> until data is good. If it is not good at the first try, the code tries really hard next time(s).</p>
+<p>While can also easily do infinite loops with:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">while</span>(<span class="ot">TRUE</span>) { ... }</code></pre></div>
+<p>will execute until something breaks the loop. Another somewhat interesting usage of <code>while</code> is to disable execution of part of your code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">while</span>(<span class="ot">FALSE</span>) {
+   ## code you don&#39;t want to be executed
+}</code></pre></div>
 </div>
-<p>Once you’ve chosen <em>R Markdown</em> as your desired file type, you’ll be prompted to choose a default <em>document type</em> and <em>output format</em> that you would like to create. In this module, we’ll discuss creating HTML documents (websites).</p>
-<p>Once you’ve chosen your desired document type and output format, RStudio will open up a new script file for you. The file contains some example code for you.</p>
+<div id="repeat-loop" class="section level3">
+<h3><span class="header-section-number">C.1.3</span> repeat-loop</h3>
+<p>The R way of implementing repeat-loop does not include any condition and hence it just keeps running infdefinitely, or until something breaks the execution (see below):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">repeat</span> {
+   ## just do something indefinitely many times.
+   ## if you want to stop, use `break` statement.
+}</code></pre></div>
+<p>Repeat is useful in many similar situations as while. For instance, we can write a modified version of getting data using <code>repeat</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">repeat</span> {
+   data &lt;-<span class="st"> </span><span class="kw">getData</span>()
+   <span class="cf">if</span>(<span class="kw">dataIsGood</span>())
+      <span class="cf">break</span>
+}</code></pre></div>
+<p>The main difference between this, and the previous <code>while</code>-version is that we a) don’t have to write <code>getData</code> function twice, and b) on each try we attempt to get data in the same way.</p>
+<p>Exactly as in the case of <em>for</em> and <em>while</em> loop, enclosing the loop body in curly braces is only necessary if it contains more than one statement. For instance, if you want to close all the graphics devices left open by buggy code, you can use the following one-liner from console:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">repeat</span> <span class="kw">dev.off</span>()</code></pre></div>
+<p>The loop will be broken by error when attempting to close the last null device.</p>
+<p>It should also be noted that the loop does not create a separate environment (scope). All the variables from outside of the loop are visible inside, and variables created inside of the loop remain accessible after the loop terminates.</p>
 </div>
-<div id="rmd-content" class="section level3">
-<h3><span class="header-section-number">12.1.2</span> <code>.Rmd</code> Content</h3>
-<p>At the top of the file is some text that has the format:</p>
-<div class="sourceCode"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="ot">---</span>
-<span class="fu">title:</span><span class="at"> </span><span class="st">&quot;Example&quot;</span>
-<span class="fu">author:</span><span class="at"> </span><span class="st">&quot;YOUR NAME HERE&quot;</span>
-<span class="fu">date:</span><span class="at"> </span><span class="st">&quot;1/30/2017&quot;</span>
-<span class="fu">output:</span><span class="at"> html_document</span>
-<span class="ot">---</span></code></pre></div>
-<p>This is the document “header” information, which tells R Markdown details about the file and how the file should be processed. For example, the <code>title</code>, <code>author</code>, and <code>date</code> will automatically be added to the top of your document. You can include additional information as well, such as <a href="http://rmarkdown.rstudio.com/html_document_format.html">whether there should be a table of contents</a> or even <a href="http://rmarkdown.rstudio.com/developer_parameterized_reports.html">variable defaults</a>.</p>
-<ul>
-<li>The header is written in <a href="https://en.wikipedia.org/wiki/YAML">YAML</a> format, which is yet another way of formatting structured data similar to <code>.csv</code> or JSON (in fact, YAML is a superset of JSON and can represent the same data structure, just using indentation and dashes instead of braces and commas).</li>
-</ul>
-<p>Below the header, you will find two types of content:</p>
-<ul>
-<li><strong>Markdown</strong>: normal Markdown text like you learned in <a href="markdown.html#markdown">Chapter 3</a>. For example, you can use two pound symbols (<code>##</code>) for a second-level heading.</li>
-<li><strong>Code Chunks</strong>: These are segments (chunks) of R code that look like normal code block elements (using <code>```</code>), but with an extra <code>{r}</code> immediately after the opening backticks.</li>
-</ul>
-<p>R Markdown will be able to execute the R code you include in code chunks, and render that output <em>in your Markdown</em>. More on this <a href="r-markdown.html#r-markdown-syntax">below</a>.</p>
-<p class="alert alert-warning">
-<strong>Important</strong> This file should be saved with the extension <strong><code>.Rmd</code></strong> (for “R Markdown”), which tells the computer and RStudio that the document contains Markdown content with embedded <code>R</code> code.
-</p>
+<div id="leaving-early-break-and-next" class="section level3">
+<h3><span class="header-section-number">C.1.4</span> Leaving Early: <code>break</code> and <code>next</code></h3>
+<p>A straightforward way to leave a loop is the <code>break</code> statement. It just leaves the loop and transfers control to the code immediately after the loop body. It breaks all three loops discussed here (<em>for</em>, <em>while</em>, and <em>repeat</em>-loops) but not some of the other types of loops implemented outside of base R. For instance:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) {
+   <span class="kw">cat</span>(i, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)
+   <span class="cf">if</span>(i <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span>)
+      <span class="cf">break</span>
+}</code></pre></div>
+<pre><code>## 1 
+## 2 
+## 3 
+## 4 
+## 5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="st">&quot;done</span><span class="ch">\n</span><span class="st">&quot;</span>)</code></pre></div>
+<pre><code>## done</code></pre>
+<p>As the loop body will use the same environment (the same variable values) as the rest of the code, the loop variables can be used right afterwards. For instance, we can see that <code>i = 5</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(i)</code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<p>Opposite to <code>break</code>, <code>next</code> will throw the execution flow back to the head of the loop without running the commands following <code>next</code>. In case of for-loop, this means a new value is picked from the sequence, in case of while-loop the condition is evaluated again; the head of repeat loop does not do any calculations. For instance, we can print only even numbers:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) {
+   <span class="cf">if</span>(i <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>)
+      <span class="cf">next</span>
+   <span class="kw">print</span>(i)
+}</code></pre></div>
+<pre><code>## [1] 2
+## [1] 4
+## [1] 6
+## [1] 8
+## [1] 10</code></pre>
+<p><code>next</code> jumps over printing where modulo of division by 2 is not 0.</p>
 </div>
-<div id="knitting-documents" class="section level3">
-<h3><span class="header-section-number">12.1.3</span> Knitting Documents</h3>
-<p>RStudio provides an easy interface to compile your <code>.Rmd</code> source code into an actual document (a process called <strong>“knitting”</strong>). Simply click the <strong>Knit</strong> button at the top of the script panel:</p>
-<div class="figure">
-<img src="img/r-markdown/knit-button.png" title="knit button location" alt="RStudio’s Knit button" />
-<p class="caption">RStudio’s Knit button</p>
-</div>
-<p>This will generate the document (in the same directory as your <code>.Rmd</code> file), as well as open up a preview window in RStudio.</p>
-<p>While it is easy to generate such documents, the knitting process can make it hard to debug errors in your <code>R</code> code (whether syntax or logical), in part because the output may or may not show up in the document! We suggest that you write complex <code>R</code> code in another script and then <code>source()</code> that script into your <code>.Rmd</code> file for use the the output. This makes it possible to test your data processing work outside of the knit application, as well as <em>separates the concerns</em> of the data and its representation—which is good programming practice.</p>
-<p>Nevertheless, you should still be sure and knit your document frequently, paying close attention to any errors that appear in the console.</p>
-<p class="alert alert-info">
-<em>Pro-tip</em>: If you’re having trouble finding your error, a good strategy is to systematically remove segments of your code and attempt to re-knit the document. This will help you identify the problematic syntax.
-</p>
-</div>
-<div id="html" class="section level3">
-<h3><span class="header-section-number">12.1.4</span> HTML</h3>
-<p>Assuming that you’ve chosen HTML as your desired output type, RStudio will knit your <code>.Rmd</code> into a <code>.html</code> file. HTML stands for <em><strong>H</strong>yper<strong>T</strong>ext <strong>M</strong>arkup <strong>L</strong>anguage</em> and, like Markdown, is a syntax for describing the structure and formatting of content (though HTML is <strong>far</strong> more extensive and detailed). In particular, HTML is a markup language that can be automatically rendered by web browsers, and thus is the language used to create web pages. As such, the <code>.html</code> files you create can be put online as web pages for others to view—you will learn how to do this in a future chapter. For now, you can open a <code>.html</code> file in any browser (such as by double-clicking on the file) to see the content outside of RStudio!</p>
-<ul>
-<li>As it turns out, it’s quite simple to use GitHub to host publicly available webpages (like the <code>.html</code> files you create with RMarkdown). But, this will require learning a bit more about <code>git</code> and GitHub. For instructions on publishing your <code>.html</code> files as web-pages, see <a href="git-branches.html#git-branches">chapter 14</a>.</li>
-</ul>
-</div>
-</div>
-<div id="r-markdown-syntax" class="section level2">
-<h2><span class="header-section-number">12.2</span> R Markdown Syntax</h2>
-<p>What makes R Markdown distinct from simple Markdown code is the ability to actually <em>execute your <code>R</code> code and include the output directly in the document</em>. <code>R</code> code can be executed and included in the document in blocks of code, or even inline in the document!</p>
-<div id="r-code-chunks" class="section level3">
-<h3><span class="header-section-number">12.2.1</span> R Code Chunks</h3>
-<p>Code that is to be executed (rather than simply displayed as formatted text) is called a <strong>code chunk</strong>. To specify a code chunk, you need to include <strong><code>{r}</code></strong> immediately after the backticks that start the code block (the <code>```</code>). For example:</p>
-<pre class="rmd"><code>Write normal **markdown** out here, then create a code block:
-
-```{r}
-# Execute R code in here
-x &lt;- 201
-```
-
-Back to writing _markdown_ out here.</code></pre>
-<p>Note that by default, the code chunk will <em>render</em> any raw expressions (e.g., <code>x</code>)—just like you would see in the console if you selected all the code in the chunk and used <code>ctrl-enter</code> to execute it.</p>
-<p>It is also possible to specify additional configuration <strong>options</strong> by including a comma-separate list of named arguments (like you’ve done with lists and functions) inside the curly braces following the <code>r</code>:</p>
-<pre class="rmd"><code>```{r options_example, echo=FALSE, message=TRUE}
-# a code chunk named &quot;options_example&quot;, with parameter `echo` assigned FALSE
-# and parameter `message` assigned TRUE
-
-# Would execute R code in here
-```</code></pre>
-<ul>
-<li>The first “argument” (<code>options_example</code>) is a “name” for the chunk, and the following are named arguments for the options. Chunks should be named as a variable or function, based on what code is being executed and/or rendered by the chunk. It’s always a good idea to name individual code chunks as a form of documentation.</li>
-</ul>
-<p>There are <a href="https://yihui.name/knitr/options/">many options</a> for creating code chunks (see also the <a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">reference</a>). However some of the most useful ones have to do with how the code is outputted in the the document. These include:</p>
-<ul>
-<li><strong><code>echo</code></strong> indicates whether you want the <em>R code itself</em> to be displayed in the document (e.g., if you want readers to be able to see your work and reproduce your calculations and analysis). Value is either <code>TRUE</code> (do display; the default) or <code>FALSE</code> (do not display).</li>
-<li><strong><code>message</code></strong> indicates whether you want any messages generated by the code to be displayed. This includes print statements! Value is either <code>TRUE</code> (do display; the default) or <code>FALSE</code> (do not display).</li>
-</ul>
-<p>If you only want to <em>show</em> your <code>R</code> code (and not <em>evaluate</em> it), you can alternatively use a standard Markdown codeblock that indicates the <code>r</code> language (<code>```r</code>, <em>not</em> <code>```{r}</code>), or set the <code>eval</code> option to <code>FALSE</code>.</p>
-</div>
-<div id="inline-code" class="section level3">
-<h3><span class="header-section-number">12.2.2</span> Inline Code</h3>
-<p>In addition to creating distinct code blocks, you may want to execute R code <em>inline</em> with the rest of your text. This empowers you to <strong>reference a variable</strong> from your code-chunk in a section of Markdown—injected that variable into the text you have written. This allows you to easily include a specific result inside a paragraph of text. So if the computation changes, re-knitting your document will update the values inside the text without any further work needed.</p>
-<p>As with code blocks, you’ll follow the Markdown convention of using single backticks (<strong><code>`</code></strong>), but put the letter <strong><code>r</code></strong> immediately after the first backtick. For example:</p>
-<!-- RMarkdown doesn't provide built-in escaping. See https://stackoverflow.com/q/20409172 for
-     details on the workaround. -->
-<div class="sourceCode"><pre class="sourceCode markdown"><code class="sourceCode markdown">To calculate 3 + 4 inside some text, we can use <span class="bn">`r 3 + 4`</span> right in the _middle_.</code></pre></div>
-<p>When you knit the text above, the <code>`r 3 + 4`</code> would be replaced with the number <code>7</code>.</p>
-<p class="alert alert-info">
-Note you can also reference values computed in the code blocks preceding your inline code; it is <strong>best practice</strong> to do your calculations in a code block (with <code>echo=FALSE</code>), save the result in a variable, and then simply inline that variable with e.g., <code>`r my.variable`</code>.
-</p>
-</div>
-</div>
-<div id="rendering-data" class="section level2">
-<h2><span class="header-section-number">12.3</span> Rendering Data</h2>
-<p>R Markdown’s code chunks let you perform data analysis directly in your document, but often you will want to include more complex data output. This section discusses a few tips for specifying dynamic, complex output to render using R Markdown.</p>
-<div id="rendering-strings" class="section level3">
-<h3><span class="header-section-number">12.3.1</span> Rendering Strings</h3>
-<p>If you experiment with knitting R Markdown, you will quickly notice that using <code>print()</code> will generate a code block with content that looks like a printed vector:</p>
-<pre class="rmd"><code>```{r echo=FALSE}
-print(&quot;Hello world&quot;)
-```</code></pre>
-<pre><code>## [1] &quot;Hello world&quot;</code></pre>
-<p>For this reason, you usually want to have the code block generate a string that you save in a variable, which you can then display with an inline expression (e.g., on its own line):</p>
-<pre class="rmd"><code>```{r echo=FALSE}
-msg &lt;- &quot;Hello world&quot;
-```
-
-Below is the message to see:
-`r msg`</code></pre>
-<p>Note that any Markdown syntax included in the variable (e.g., if you had <code>msg &lt;- &quot;**Hello** world&quot;</code>) will be rendered as well—the <code>`r msg `</code>is replaced by the value of the expression just as if you had typed that Markdown in directly. This allows you to even include dynamic styling if you construct a “Markdown string” out of your data.</p>
-<p>Alternatively, you can use as <a href="https://yihui.name/knitr/options/#text-results"><code>results</code></a> option of <code>'asis'</code>, which will cause the “output” to be rendered directly into the markdown. When combined with the <a href="https://www.rdocumentation.org/packages/base/versions/3.4.3/topics/cat"><code>cat()</code></a> function (which con<strong>cat</strong>enates content without specifying additional information like vector position), you can make a code chunk effectively render a specific string:</p>
-<pre class="rmd"><code>```{r results=&#39;asis&#39;, echo=FALSE}
-cat(&quot;Hello world&quot;)
-```</code></pre>
-</div>
-<div id="rendering-lists" class="section level3">
-<h3><span class="header-section-number">12.3.2</span> Rendering Lists</h3>
-<p>Because outputted strings render any Markdown they contain, it’s possible to specify complex Markdown such as <em>lists</em> by constructing these strings to contain the <code>-</code> symbols utilized (note that each item will need to be separated by a line break or a <code>\n</code> character):</p>
-<pre class="rmd"><code>```{r echo=FALSE}
-markdown.list &lt;- &quot;
-- Lions
-- Tigers
-- Bears
-&quot;
-```
-
-`r markdown.list`</code></pre>
-<p>Would output a list that looks like:</p>
-<div class="list-condensed">
-<ul>
-<li>Lions</li>
-<li>Tigers</li>
-<li>Bears</li>
-</ul>
-</div>
-<p>Combined with the vectorized <code>paste()</code> function, it’s to easily convert vectors into Markdown lists that can be rendered</p>
-<pre class="rmd"><code>```{r echo=FALSE}
-animals &lt;- c(&quot;Lions&quot;, &quot;Tigers&quot;, &quot;Bears&quot;)
-
-# paste a `-` in front of each, then cat the items with newlines between
-markdown.list &lt;- cat(paste(&#39;-&#39;,animals), sep=&#39;\n&#39;)
-```
-
-`r markdown.list`</code></pre>
-<p>And of course, the contents of the vector (e.g., the text <code>&quot;Lions&quot;</code>) could easily have additional Markdown syntax syntax to include bold, italic, or hyperlinked text.</p>
-<ul>
-<li>Creating a “helper function” to do this conversion is perfectly reasonable; or see libraries such as <a href="http://rapporter.github.io/pander/"><code>pander</code></a> which defines a number of such functions.</li>
-</ul>
-</div>
-<div id="rendering-tables" class="section level3">
-<h3><span class="header-section-number">12.3.3</span> Rendering Tables</h3>
-<p>Because data frames are so central to programming with R, R Markdown includes capabilities to easily render data frames as Markdown <em>tables</em> via the <a href="https://www.rdocumentation.org/packages/knitr/versions/1.19/topics/kable"><strong><code>knitr::kable()</code></strong></a> function. This function takes as an argument the data frame you wish to render, and it will automatically convert that value into a Markdown table:</p>
-<pre class="rmd"><code>```{r echo=FALSE}
-library(knitr)  # make sure you load this library (once per doc)
-
-# make a data frame
-letters &lt;- c(&#39;a&#39;,&#39;b&#39;,&#39;c&#39;)
-numbers &lt;- 1:3
-df &lt;- data.frame(letters = letters, numbers = numbers)
-
-# render the table
-kable(df)
-```</code></pre>
-<ul>
-<li><code>kable()</code> supports a number of other arguments that can be used to customize how it outputs a table.</li>
-<li>And of courrse, if the values in the dataframe are strings that contain Markdown syntax (e.g., bold, itaic, or hyperlinks), they will be rendered as such in the table!</li>
-</ul>
-<p>So while you may need to do a little bit of work to manually generate the Markdown syntax, it is possible to dynamically produce complex documents based on dynamic data sources</p>
+<div id="when-not-to-use-loops-in-r" class="section level3">
+<h3><span class="header-section-number">C.1.5</span> When (Not) To Use Loops In R?</h3>
+<p>In general, use loops if it improves code readability, makes it easier to extend the code, and does not cause too big inefficiencies. In practice, it means use loops for repeating something slow. Don’t use loops if you can use vectorized operators instead.</p>
+<p>For instance, look at the examples above where we were reading data until it was good. There is probably very little you can achieve by avoiding loops–except making your code messy. First, the input will probably attempted a few times only (otherwise re-consider how you get your data), and second, data input is probably a far slower process than the loop overhead. Just use the loop.</p>
+<p>Similar arguments hold if you consider to loop over input files to read, output files to create, figures to plot, webpage to scrape… In all these cases the loop overheads are negligible compared to the task performed inside the loops. And there are no real vectorized alternatives anyway.</p>
+<p>The opposite is the case where good alternatives exist. Never do this kind of computations in R:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res &lt;-<span class="st"> </span><span class="kw">numeric</span>()
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>) {
+   res &lt;-<span class="st"> </span><span class="kw">c</span>(res, <span class="kw">sqrt</span>(i))
+}</code></pre></div>
+<p>This loop introduces three inefficiencies. First, and most importantly, you are growing your when adding new values to it. This involves creating new and longer vectors again and again when the old one is filled up. This is very slow. Second, as the true vectorized alternatives exist here, one can easily speed up the code by a magnitude or more by just switching to the vectorized code. Third, and perhaps most importantly, this code is much harder to read than the pure vectorized expression:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>)</code></pre></div>
+<p>We can easily demonstrate how much faster the vectorized expressions work. Let’s do this using <em>microbenchmark</em> library (it provides nanosecond timings). Let’s wrap these expressions in functions for easier handling by <em>microbenchmark</em>. We also include a middle version where we use a loop but avoid the terribly slow vector re-allocation by creating the right-sized result in advance:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">seq &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">1000</span> <span class="co"># global variables are easier to handle with microbenchmark</span>
+baad &lt;-<span class="st"> </span><span class="cf">function</span>() {
+   r &lt;-<span class="st"> </span><span class="kw">numeric</span>()
+   <span class="cf">for</span>(i <span class="cf">in</span> seq)
+      r &lt;-<span class="st"> </span><span class="kw">c</span>(r, <span class="kw">sqrt</span>(i))
+}
+soso &lt;-<span class="st"> </span><span class="cf">function</span>() {
+   r &lt;-<span class="st"> </span><span class="kw">numeric</span>(<span class="kw">length</span>(seq))
+   <span class="cf">for</span>(i <span class="cf">in</span> seq)
+      r[i] &lt;-<span class="st"> </span><span class="kw">sqrt</span>(i)
+}
+good &lt;-<span class="st"> </span><span class="cf">function</span>()
+   <span class="kw">sqrt</span>(seq)
+microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<span class="kw">baad</span>(), <span class="kw">soso</span>(), <span class="kw">good</span>())</code></pre></div>
+<pre><code>## Unit: microseconds
+##    expr     min        lq       mean    median        uq       max neval
+##  baad() 987.941 1019.3605 2055.34326 1242.9325 2229.8120 44731.754   100
+##  soso()  47.647   48.6765   70.47735   50.7075   52.3035  1919.627   100
+##  good()   2.661    2.8280    9.96810    3.6945    4.8255   586.778   100</code></pre>
+<p>When comparing the median values, we can see that the middle example is 10x slower than the vectorized example, and the first version is almost 300x slower!</p>
+<p>The above holds for “true” vectorized operations. R provides many pseudo-vectorizers (the lapply family) that may be handy in many circumstances, but not in case you need speed. Under the hood these functions just use a loop. We can demonstrate this by adding one more function to our family:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">soso2 &lt;-<span class="st"> </span><span class="cf">function</span>() {
+   <span class="kw">sapply</span>(seq, sqrt)
+}
+microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<span class="kw">baad</span>(), <span class="kw">soso</span>(), <span class="kw">soso2</span>(), <span class="kw">good</span>())</code></pre></div>
+<pre><code>## Unit: microseconds
+##     expr     min        lq       mean    median        uq      max neval
+##   baad() 996.472 1041.8095 1596.99062 1120.1585 2172.1045 2363.041   100
+##   soso()  47.806   49.6905   51.56632   51.0190   52.3075   64.269   100
+##  soso2() 256.738  268.4920  290.64812  277.5105  291.8880 1204.053   100
+##   good()   2.704    2.9485    3.83675    3.3795    4.2990   16.133   100</code></pre>
+<p>As it turns out, <code>sapply</code> is much slower than plain for-loop. Lapply-family is not a substitute for true vectorization. However, one may argue that <code>soso2</code> function is easier to understand than explicit loop in <code>soso</code>. In any case, it is easier to type when working on the interactive console.</p>
+<p>Finally, it should be noted that when performing truly vectorized operations on long vectors, the overhead of R interpreter becomes negligible and the resulting speed is almost equalt to that of the corresponding C code. And optimized R code can easily beat non-optimized C.</p>
 </div>
 </div>
-<div id="resources-11" class="section level2 unnumbered">
-<h2>Resources</h2>
-<ul>
-<li><a href="http://rmarkdown.rstudio.com/">R Markdown Homepage</a></li>
-<li><a href="https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf">R Markdown Cheatsheet</a> (really useful!)</li>
-<li><a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">R Markdown Reference</a> (really useful!)</li>
-<li><a href="https://yihui.name/knitr/"><code>knitr</code></a></li>
-</ul>
+<div id="more-about-if-and-else" class="section level2">
+<h2><span class="header-section-number">C.2</span> More about <code>if</code> and <code>else</code></h2>
+<p>The basics of if-else blocks were covered in Chapter <a href="functions.html#functions">Functions</a>. Here we discuss some more advanced aspects.</p>
+<div id="where-to-put-else" class="section level3">
+<h3><span class="header-section-number">C.2.1</span> Where To Put Else</h3>
+<p>Normally R wants to understand if a line of code belongs to an earlier statement, or is it beginning of a fresh one. For instance,</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span>(condition) {
+   ## do something
+}
+<span class="cf">else</span> {
+   ## do something else
+}</code></pre></div>
+<p>may fail. R finishes the if-block on line 3 and thinks line 4 is beginning of a new statement. And gets confused by the unaccompanied <code>else</code> as it has already forgotten about the <code>if</code> above. However, this code works if used inside a function, or more generally, inside a {…} block.</p>
+<p>But else may always stay on the same line as the the statement of the if-block. You are already familiar with the form</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span>(condition) {
+   ## do something
+} <span class="cf">else</span> {
+   ## do something else
+}</code></pre></div>
+<p>but this applies more generally. For instance:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span>(condition) 
+   x &lt;-<span class="st"> </span><span class="dv">1</span> <span class="cf">else</span> {
+             ## do something else
+          }</code></pre></div>
+<p>or</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span>(condition) { ... } <span class="cf">else</span> {
+             ## do something else
+          }</code></pre></div>
+<p>or</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span>(condition) { x &lt;-<span class="st"> </span><span class="dv">1</span>; y &lt;-<span class="st"> </span><span class="dv">2</span> } <span class="cf">else</span> z &lt;-<span class="st"> </span><span class="dv">3</span></code></pre></div>
+<p>the last one-liner uses the fact that we can write several statements on a single line with <code>;</code>. Arguably, such style is often a bad idea, but it has it’s place, for instance when creating anonymous functions for <code>lapply</code> and friends.</p>
+</div>
+<div id="return-value" class="section level3">
+<h3><span class="header-section-number">C.2.2</span> Return Value</h3>
+<p>As most commands in R, if-else block has a return value. This is the last value evaluated by the block, and it can be assigned to variables. If the condition is false, and there is no else block, <code>if</code> returns <code>NULL</code>.</p>
+<p>Using return values of if-else statement is often a recipe for hard-to-read code but may be a good choice in other circumstances, for instance where the multy-line form will take too much attention away from more crucial parts of the code. The line</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="dv">3</span>
+parity &lt;-<span class="st"> </span><span class="cf">if</span>(n <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="st">&quot;even&quot;</span> <span class="cf">else</span> <span class="st">&quot;odd&quot;</span>
+parity</code></pre></div>
+<pre><code>## [1] &quot;odd&quot;</code></pre>
+<p>is rather easy to read. This is the closest general construct in R corresponding to C conditional shortcuts <code>parity = n % 2 ? &quot;even&quot; : &quot;odd&quot;</code>.</p>
+<p>Another good place for such compressed if-else statements is inside anonymous functions in <code>lapply</code> and friends. For instance, the following code replaces <code>NULL</code>-s and <code>NA</code>-s in a list of characters:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">emails &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;ott@example.com&quot;</span>, <span class="st">&quot;xi@abc.net&quot;</span>, <span class="ot">NULL</span>, <span class="st">&quot;li@whitehouse.gov&quot;</span>, <span class="ot">NA</span>)
+n &lt;-<span class="st"> </span><span class="dv">0</span>
+<span class="kw">sapply</span>(emails, <span class="cf">function</span>(x) <span class="cf">if</span>(<span class="kw">is.null</span>(x) <span class="op">||</span><span class="st"> </span><span class="kw">is.na</span>(x)) <span class="st">&quot;-&quot;</span> <span class="cf">else</span> x)</code></pre></div>
+<pre><code>## [1] &quot;ott@example.com&quot;   &quot;xi@abc.net&quot;        &quot;-&quot;                
+## [4] &quot;li@whitehouse.gov&quot; &quot;-&quot;</code></pre>
+</div>
+</div>
+<div id="switch-choosing-between-multiple-conditions" class="section level2">
+<h2><span class="header-section-number">C.3</span> <code>switch</code>: Choosing Between Multiple Conditions</h2>
+<p>If-else is appropriate if we have a small number of conditions, potentially only one. Switch is a related construct that tests a large number of equality conditions. The best way to explain it’s syntax is through an example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stock &lt;-<span class="st"> &quot;AMZN&quot;</span>
+<span class="cf">switch</span>(stock,
+       <span class="st">&quot;AAPL&quot;</span> =<span class="st"> &quot;Apple Inc&quot;</span>,
+       <span class="st">&quot;AMZN&quot;</span> =<span class="st"> &quot;Amazon.com Inc&quot;</span>,
+       <span class="st">&quot;INTC&quot;</span> =<span class="st"> &quot;Intel Corp&quot;</span>,
+       <span class="st">&quot;unknown&quot;</span>)</code></pre></div>
+<pre><code>## [1] &quot;Amazon.com Inc&quot;</code></pre>
+<p>Switch expression attempts to match the expression, here <code>stock = &quot;AMZN&quot;</code>, to a list of alternatives. If one of the alternative matches the name of the argument, that argument is returned. If none matches, the nameless default argument (here “unknown”) is returned. In case there is not default argument, <code>switch</code> returns <code>NULL</code>.</p>
+<p>Switch allows to specify the same return value for multiple cases:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">switch</span>(stock,
+       <span class="st">&quot;AAPL&quot;</span> =<span class="st"> &quot;Apple Inc&quot;</span>,
+       <span class="st">&quot;AMZN&quot;</span> =, <span class="st">&quot;INTC&quot;</span> =<span class="st"> &quot;something else&quot;</span>,
+       <span class="st">&quot;unknown&quot;</span>)</code></pre></div>
+<pre><code>## [1] &quot;something else&quot;</code></pre>
+<p>If the matching named argument is empty, the first non-empty named argument is evaluated. In this case this is “something else”, corresponding to the name “INTC”.</p>
+<p>As in case of <code>if</code>, <code>switch</code> only accepts length-1 expressions. Switch also allows to use integers instead of character expressions, in that case the return value list should be without names.</p>
 
 </div>
 </div>
@@ -603,8 +650,8 @@ kable(df)
           </div>
         </div>
       </div>
-<a href="apis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ggplot2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="plotly.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -633,7 +680,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/info201/book/edit/master/r-markdown.Rmd",
+"link": "https://github.com/info201/book/edit/master/control_structures.Rmd",
 "text": "Edit"
 },
 "download": ["tech-foundations-of-informatics.pdf", "tech-foundations-of-informatics.epub"],
