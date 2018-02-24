@@ -1,0 +1,28 @@
+# Thinking Big: Data Tables {#data-tables}
+
+## Background: Passing By Value And Passing By Reference
+
+## Data Tables: intro
+
+look like data frames
+
+
+## Indexing:
+
+[i, j, by]
+
+compare with dplyr
+
+
+## Create variables by reference
+
+:=
+
+## keys
+
+Sort in advance
+
+fast lookups
+
+
+## joins, melt

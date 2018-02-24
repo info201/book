@@ -32,6 +32,7 @@ rmd_files:
 
   # appendix: other topics
   - appendix.Rmd
-  - ssh-to-remote-server.Rmd
   - plotly.Rmd
   - control_structures.Rmd
+  - data-tables.Rmd
+  - ssh-to-remote-server.Rmd
