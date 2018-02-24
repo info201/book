@@ -1,6 +1,24 @@
 # Thinking Big: Data Tables {#data-tables}
 
+Data frames are core elements for data handling in R.  However, the
+suffer from several limitations.  One of the major issue with data
+frames is that they are memory hungry and slow.  This is not an issue
+when working with relatively small datasets (say, up to 100,000
+rows).  However, when your dataset size exceed gigabytes, dataframes
+may be infeasibly slow and too memory hungry.
+
+
 ## Background: Passing By Value And Passing By Reference
+
+R is (mostly) a pass-by-value language.  This means that when you
+modify the data, at every step a new copy of the modified object is
+created, stored in memory, and the former object is freed
+(carbage-collected) if not in use any more.
+
+The main advantage of this approach is consistency: we have a
+guarantee that functions do not modify their inputs.
+
+
 
 ## Data Tables: intro
 
