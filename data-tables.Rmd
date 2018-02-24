@@ -11,13 +11,26 @@ may be infeasibly slow and too memory hungry.
 ## Background: Passing By Value And Passing By Reference
 
 R is (mostly) a pass-by-value language.  This means that when you
-modify the data, at every step a new copy of the modified object is
-created, stored in memory, and the former object is freed
+modify the data, at every step a new copy of the complete modified
+object is created, stored in memory, and the former object is freed
 (carbage-collected) if not in use any more.
 
-The main advantage of this approach is consistency: we have a
-guarantee that functions do not modify their inputs.
+The main advantage of this approach is consistency: we have the
+guarantee that functions do not modify their inputs.  However, in case
+of large objects, copying may be slow, and even more, it requires
+at least twice as much memory before the old object is freed.  In case
+of more complex process pipelines, the memory consumption may be even more
+than twice of the size of the original object.
 
+Data tables implement a number of pass-by-reference functions.  In
+pass-by-reference, the function is not given a fresh copy of the
+inputs, but is instead told where is the object in memory.  Instead of
+copying gigabytes of data, only a single tiny memory pointer is
+passed.  But this also means the function now is accessing and
+modifying the original object, not a copy of it.  This may sometimes
+lead to bugs and unexpected behavior, but professional use of
+pass-by-reference approach may improve the speed and lower the memory
+footprint substantially.
 
 
 ## Data Tables: intro
