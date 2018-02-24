@@ -35,6 +35,25 @@ footprint substantially.
 
 ## Data Tables: intro
 
+Data tables and most of the related goodies live in _data.table_
+library.
+
+Data tables as designed to be largely a replacement to data frames.
+The syntax is similar and they are largely replaceable.  For instance,
+we can create and play with a data table as
+```{r}
+library(data.table)
+dt <- data.table(id=1:5, x=rnorm(5), y=runif(5))
+dt
+```
+The result looks almost identical to a similar data frame (the only
+difference are the colons after the row numbers).  Behind the scenes
+these objects are almost identical too--both objects are lists of
+vectors.  This structural similarity largely allows to use data tables
+as drop-in replacements for dataframes.
+
+
+
 look like data frames
 
 
