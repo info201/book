@@ -334,25 +334,34 @@ many related goodies.)
 ### ssh keys, .ssh/config
 
 Without further configuration, every time you open a ssh connection,
-you have to insert your password again.  Instead of re-entering it
-over and over again (this may not even be secure), you can configure
+you have to type your password.  Instead of re-entering it
+over and over again (this may not be particularly secure), you can configure
 your ssh keys and copy it to the server.  Next time, you will be
-automatically authenticated with the key and no password is
-necessary.  Note: this is the same ssh key that is used by GitHub if
+automatically authenticated with the key and you don't have to type
+the password any more.  Note: this is the same ssh key that is used by GitHub if
 you use ssh connection to GitHub.
 
-It is possible to configure ssh connection to use your public key
-instead of password.  (Note: this is the same public key that permits
-passwordless connection to GitHub.)  You first have to create the key
+As the first step, you have to create the key
 with `ssh-keygen` (you may choose an empty passphrase) unless you
 already have created one.  Thereafter copy
 your public key to the server with `ssh-copy-id`.  Next time you log
-onto the server, no password is needed.  Look yourself for more
-information if interested.
+onto the server, no password is needed.  A good source for creating
+and managing ssh keys is
+[GitHub help](https://help.github.com/articles/connecting-to-github-with-ssh/). 
 
-Finally, you can also configure your ssh to recognize abbreviated
-server names and your corresponding user names.  Check out how to create
-`~/.ssh/config` file.
+You can also configure your ssh to recognize abbreviated
+server names and your corresponding user names.  This allows you to
+connect to server with a simple command like `ssh info201`.  This
+information is stored in the file
+`~/.ssh/config`, and should contain lines like
+```
+Host info201
+	User <your username>
+	Hostname info201.ischool.uw.edu
+```
+The `Host` keyword is followed by the abbreviated name of the server,
+the following lines contain your username and the publicly visible
+hostname for the server.  Seek out more information if you are interested.
 
 
 ### Running RScript in ssh Session
