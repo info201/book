@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2018-02-21">
+<meta name="date" content="2018-02-28">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 <link rel="prev" href="plotly.html">
-
+<link rel="next" href="data-tables.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -333,49 +333,64 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="shiny.html"><a href="shiny.html#resources-15"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
 <li class="appendix"><span><b>Special Topics</b></span></li>
-<li class="chapter" data-level="A" data-path="remote-server.html"><a href="remote-server.html"><i class="fa fa-check"></i><b>A</b> Using Remote Server</a><ul>
-<li class="chapter" data-level="A.1" data-path="remote-server.html"><a href="remote-server.html#server-setup"><i class="fa fa-check"></i><b>A.1</b> Server Setup</a></li>
-<li class="chapter" data-level="A.2" data-path="remote-server.html"><a href="remote-server.html#connecting-to-the-remote-server"><i class="fa fa-check"></i><b>A.2</b> Connecting to the Remote Server</a></li>
-<li class="chapter" data-level="A.3" data-path="remote-server.html"><a href="remote-server.html#copying-files"><i class="fa fa-check"></i><b>A.3</b> Copying Files</a><ul>
-<li class="chapter" data-level="A.3.1" data-path="remote-server.html"><a href="remote-server.html#scp"><i class="fa fa-check"></i><b>A.3.1</b> scp</a></li>
-<li class="chapter" data-level="A.3.2" data-path="remote-server.html"><a href="remote-server.html#rsync"><i class="fa fa-check"></i><b>A.3.2</b> rsync</a></li>
-<li class="chapter" data-level="A.3.3" data-path="remote-server.html"><a href="remote-server.html#graphical-frontends"><i class="fa fa-check"></i><b>A.3.3</b> Graphical Frontends</a></li>
-<li class="chapter" data-level="A.3.4" data-path="remote-server.html"><a href="remote-server.html#remote-editing"><i class="fa fa-check"></i><b>A.3.4</b> Remote Editing</a></li>
-</ul></li>
-<li class="chapter" data-level="A.4" data-path="remote-server.html"><a href="remote-server.html#r-and-rscript"><i class="fa fa-check"></i><b>A.4</b> R and Rscript</a><ul>
-<li class="chapter" data-level="A.4.1" data-path="remote-server.html"><a href="remote-server.html#graphics-output-with-no-gui"><i class="fa fa-check"></i><b>A.4.1</b> Graphics Output with No GUI</a></li>
-</ul></li>
-<li class="chapter" data-level="A.5" data-path="remote-server.html"><a href="remote-server.html#life-on-server"><i class="fa fa-check"></i><b>A.5</b> Life on Server</a><ul>
-<li class="chapter" data-level="A.5.1" data-path="remote-server.html"><a href="remote-server.html#be-social"><i class="fa fa-check"></i><b>A.5.1</b> Be Social!</a></li>
-<li class="chapter" data-level="A.5.2" data-path="remote-server.html"><a href="remote-server.html#useful-things-to-do"><i class="fa fa-check"></i><b>A.5.2</b> Useful Things to Do</a></li>
-<li class="chapter" data-level="A.5.3" data-path="remote-server.html"><a href="remote-server.html#permissions-and-ownership"><i class="fa fa-check"></i><b>A.5.3</b> Permissions and ownership</a></li>
-<li class="chapter" data-level="A.5.4" data-path="remote-server.html"><a href="remote-server.html#more-than-one-connection"><i class="fa fa-check"></i><b>A.5.4</b> More than One Connection</a></li>
-</ul></li>
-<li class="chapter" data-level="A.6" data-path="remote-server.html"><a href="remote-server.html#advanced-usage"><i class="fa fa-check"></i><b>A.6</b> Advanced Usage</a><ul>
-<li class="chapter" data-level="A.6.1" data-path="remote-server.html"><a href="remote-server.html#ssh-keys-.sshconfig"><i class="fa fa-check"></i><b>A.6.1</b> ssh keys, .ssh/config</a></li>
-<li class="chapter" data-level="A.6.2" data-path="remote-server.html"><a href="remote-server.html#running-rscript-in-ssh-session"><i class="fa fa-check"></i><b>A.6.2</b> Running RScript in ssh Session</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="B" data-path="plotly.html"><a href="plotly.html"><i class="fa fa-check"></i><b>B</b> Plotly</a><ul>
-<li class="chapter" data-level="B.1" data-path="plotly.html"><a href="plotly.html#getting-started"><i class="fa fa-check"></i><b>B.1</b> Getting Started</a></li>
-<li class="chapter" data-level="B.2" data-path="plotly.html"><a href="plotly.html#basic-charts"><i class="fa fa-check"></i><b>B.2</b> Basic Charts</a></li>
-<li class="chapter" data-level="B.3" data-path="plotly.html"><a href="plotly.html#layout"><i class="fa fa-check"></i><b>B.3</b> Layout</a></li>
-<li class="chapter" data-level="B.4" data-path="plotly.html"><a href="plotly.html#hovers"><i class="fa fa-check"></i><b>B.4</b> Hovers</a></li>
+<li class="chapter" data-level="A" data-path="plotly.html"><a href="plotly.html"><i class="fa fa-check"></i><b>A</b> Plotly</a><ul>
+<li class="chapter" data-level="A.1" data-path="plotly.html"><a href="plotly.html#getting-started"><i class="fa fa-check"></i><b>A.1</b> Getting Started</a></li>
+<li class="chapter" data-level="A.2" data-path="plotly.html"><a href="plotly.html#basic-charts"><i class="fa fa-check"></i><b>A.2</b> Basic Charts</a></li>
+<li class="chapter" data-level="A.3" data-path="plotly.html"><a href="plotly.html#layout"><i class="fa fa-check"></i><b>A.3</b> Layout</a></li>
+<li class="chapter" data-level="A.4" data-path="plotly.html"><a href="plotly.html#hovers"><i class="fa fa-check"></i><b>A.4</b> Hovers</a></li>
 <li class="chapter" data-level="" data-path="plotly.html"><a href="plotly.html#resources-16"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
-<li class="chapter" data-level="C" data-path="control-structures.html"><a href="control-structures.html"><i class="fa fa-check"></i><b>C</b> R Language Control Structures</a><ul>
-<li class="chapter" data-level="C.1" data-path="control-structures.html"><a href="control-structures.html#loops"><i class="fa fa-check"></i><b>C.1</b> Loops</a><ul>
-<li class="chapter" data-level="C.1.1" data-path="control-structures.html"><a href="control-structures.html#for-loop"><i class="fa fa-check"></i><b>C.1.1</b> For Loop</a></li>
-<li class="chapter" data-level="C.1.2" data-path="control-structures.html"><a href="control-structures.html#while-loop"><i class="fa fa-check"></i><b>C.1.2</b> While loop</a></li>
-<li class="chapter" data-level="C.1.3" data-path="control-structures.html"><a href="control-structures.html#repeat-loop"><i class="fa fa-check"></i><b>C.1.3</b> repeat-loop</a></li>
-<li class="chapter" data-level="C.1.4" data-path="control-structures.html"><a href="control-structures.html#leaving-early-break-and-next"><i class="fa fa-check"></i><b>C.1.4</b> Leaving Early: <code>break</code> and <code>next</code></a></li>
-<li class="chapter" data-level="C.1.5" data-path="control-structures.html"><a href="control-structures.html#when-not-to-use-loops-in-r"><i class="fa fa-check"></i><b>C.1.5</b> When (Not) To Use Loops In R?</a></li>
+<li class="chapter" data-level="B" data-path="control-structures.html"><a href="control-structures.html"><i class="fa fa-check"></i><b>B</b> R Language Control Structures</a><ul>
+<li class="chapter" data-level="B.1" data-path="control-structures.html"><a href="control-structures.html#loops"><i class="fa fa-check"></i><b>B.1</b> Loops</a><ul>
+<li class="chapter" data-level="B.1.1" data-path="control-structures.html"><a href="control-structures.html#for-loop"><i class="fa fa-check"></i><b>B.1.1</b> For Loop</a></li>
+<li class="chapter" data-level="B.1.2" data-path="control-structures.html"><a href="control-structures.html#while-loop"><i class="fa fa-check"></i><b>B.1.2</b> While loop</a></li>
+<li class="chapter" data-level="B.1.3" data-path="control-structures.html"><a href="control-structures.html#repeat-loop"><i class="fa fa-check"></i><b>B.1.3</b> repeat-loop</a></li>
+<li class="chapter" data-level="B.1.4" data-path="control-structures.html"><a href="control-structures.html#leaving-early-break-and-next"><i class="fa fa-check"></i><b>B.1.4</b> Leaving Early: <code>break</code> and <code>next</code></a></li>
+<li class="chapter" data-level="B.1.5" data-path="control-structures.html"><a href="control-structures.html#when-not-to-use-loops-in-r"><i class="fa fa-check"></i><b>B.1.5</b> When (Not) To Use Loops In R?</a></li>
 </ul></li>
-<li class="chapter" data-level="C.2" data-path="control-structures.html"><a href="control-structures.html#more-about-if-and-else"><i class="fa fa-check"></i><b>C.2</b> More about <code>if</code> and <code>else</code></a><ul>
-<li class="chapter" data-level="C.2.1" data-path="control-structures.html"><a href="control-structures.html#where-to-put-else"><i class="fa fa-check"></i><b>C.2.1</b> Where To Put Else</a></li>
-<li class="chapter" data-level="C.2.2" data-path="control-structures.html"><a href="control-structures.html#return-value"><i class="fa fa-check"></i><b>C.2.2</b> Return Value</a></li>
+<li class="chapter" data-level="B.2" data-path="control-structures.html"><a href="control-structures.html#more-about-if-and-else"><i class="fa fa-check"></i><b>B.2</b> More about <code>if</code> and <code>else</code></a><ul>
+<li class="chapter" data-level="B.2.1" data-path="control-structures.html"><a href="control-structures.html#where-to-put-else"><i class="fa fa-check"></i><b>B.2.1</b> Where To Put Else</a></li>
+<li class="chapter" data-level="B.2.2" data-path="control-structures.html"><a href="control-structures.html#return-value"><i class="fa fa-check"></i><b>B.2.2</b> Return Value</a></li>
 </ul></li>
-<li class="chapter" data-level="C.3" data-path="control-structures.html"><a href="control-structures.html#switch-choosing-between-multiple-conditions"><i class="fa fa-check"></i><b>C.3</b> <code>switch</code>: Choosing Between Multiple Conditions</a></li>
+<li class="chapter" data-level="B.3" data-path="control-structures.html"><a href="control-structures.html#switch-choosing-between-multiple-conditions"><i class="fa fa-check"></i><b>B.3</b> <code>switch</code>: Choosing Between Multiple Conditions</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="data-tables.html"><a href="data-tables.html"><i class="fa fa-check"></i><b>C</b> Thinking Big: Data Tables</a><ul>
+<li class="chapter" data-level="C.1" data-path="data-tables.html"><a href="data-tables.html#background-passing-by-value-and-passing-by-reference"><i class="fa fa-check"></i><b>C.1</b> Background: Passing By Value And Passing By Reference</a></li>
+<li class="chapter" data-level="C.2" data-path="data-tables.html"><a href="data-tables.html#data-tables-introduction"><i class="fa fa-check"></i><b>C.2</b> Data Tables: Introduction</a><ul>
+<li class="chapter" data-level="C.2.1" data-path="data-tables.html"><a href="data-tables.html#replacement-for-data-frames-sort-of"><i class="fa fa-check"></i><b>C.2.1</b> Replacement for Data Frames (Sort of)</a></li>
+<li class="chapter" data-level="C.2.2" data-path="data-tables.html"><a href="data-tables.html#fast-reading-and-writing"><i class="fa fa-check"></i><b>C.2.2</b> Fast Reading and Writing</a></li>
+</ul></li>
+<li class="chapter" data-level="C.3" data-path="data-tables.html"><a href="data-tables.html#indexing-the-major-powerhorse-of-data-tables"><i class="fa fa-check"></i><b>C.3</b> Indexing: The Major Powerhorse of Data Tables</a><ul>
+<li class="chapter" data-level="C.3.1" data-path="data-tables.html"><a href="data-tables.html#i-select-observations"><i class="fa fa-check"></i><b>C.3.1</b> i: Select Observations</a></li>
+<li class="chapter" data-level="C.3.2" data-path="data-tables.html"><a href="data-tables.html#j-work-with-columns"><i class="fa fa-check"></i><b>C.3.2</b> j: Work with Columns</a></li>
+<li class="chapter" data-level="C.3.3" data-path="data-tables.html"><a href="data-tables.html#group-in-by"><i class="fa fa-check"></i><b>C.3.3</b> Group in <code>by</code></a></li>
+</ul></li>
+<li class="chapter" data-level="C.4" data-path="data-tables.html"><a href="data-tables.html#create-variables-by-reference"><i class="fa fa-check"></i><b>C.4</b> <code>:=</code>–Create variables by reference</a></li>
+<li class="chapter" data-level="C.5" data-path="data-tables.html"><a href="data-tables.html#keys"><i class="fa fa-check"></i><b>C.5</b> keys</a></li>
+<li class="chapter" data-level="C.6" data-path="data-tables.html"><a href="data-tables.html#resources-17"><i class="fa fa-check"></i><b>C.6</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="remote-server.html"><a href="remote-server.html"><i class="fa fa-check"></i><b>D</b> Using Remote Server</a><ul>
+<li class="chapter" data-level="D.1" data-path="remote-server.html"><a href="remote-server.html#server-setup"><i class="fa fa-check"></i><b>D.1</b> Server Setup</a></li>
+<li class="chapter" data-level="D.2" data-path="remote-server.html"><a href="remote-server.html#connecting-to-the-remote-server"><i class="fa fa-check"></i><b>D.2</b> Connecting to the Remote Server</a></li>
+<li class="chapter" data-level="D.3" data-path="remote-server.html"><a href="remote-server.html#copying-files"><i class="fa fa-check"></i><b>D.3</b> Copying Files</a><ul>
+<li class="chapter" data-level="D.3.1" data-path="remote-server.html"><a href="remote-server.html#scp"><i class="fa fa-check"></i><b>D.3.1</b> scp</a></li>
+<li class="chapter" data-level="D.3.2" data-path="remote-server.html"><a href="remote-server.html#rsync"><i class="fa fa-check"></i><b>D.3.2</b> rsync</a></li>
+<li class="chapter" data-level="D.3.3" data-path="remote-server.html"><a href="remote-server.html#graphical-frontends"><i class="fa fa-check"></i><b>D.3.3</b> Graphical Frontends</a></li>
+<li class="chapter" data-level="D.3.4" data-path="remote-server.html"><a href="remote-server.html#remote-editing"><i class="fa fa-check"></i><b>D.3.4</b> Remote Editing</a></li>
+</ul></li>
+<li class="chapter" data-level="D.4" data-path="remote-server.html"><a href="remote-server.html#r-and-rscript"><i class="fa fa-check"></i><b>D.4</b> R and Rscript</a><ul>
+<li class="chapter" data-level="D.4.1" data-path="remote-server.html"><a href="remote-server.html#graphics-output-with-no-gui"><i class="fa fa-check"></i><b>D.4.1</b> Graphics Output with No GUI</a></li>
+</ul></li>
+<li class="chapter" data-level="D.5" data-path="remote-server.html"><a href="remote-server.html#life-on-server"><i class="fa fa-check"></i><b>D.5</b> Life on Server</a><ul>
+<li class="chapter" data-level="D.5.1" data-path="remote-server.html"><a href="remote-server.html#be-social"><i class="fa fa-check"></i><b>D.5.1</b> Be Social!</a></li>
+<li class="chapter" data-level="D.5.2" data-path="remote-server.html"><a href="remote-server.html#useful-things-to-do"><i class="fa fa-check"></i><b>D.5.2</b> Useful Things to Do</a></li>
+<li class="chapter" data-level="D.5.3" data-path="remote-server.html"><a href="remote-server.html#permissions-and-ownership"><i class="fa fa-check"></i><b>D.5.3</b> Permissions and ownership</a></li>
+<li class="chapter" data-level="D.5.4" data-path="remote-server.html"><a href="remote-server.html#more-than-one-connection"><i class="fa fa-check"></i><b>D.5.4</b> More than One Connection</a></li>
+</ul></li>
+<li class="chapter" data-level="D.6" data-path="remote-server.html"><a href="remote-server.html#advanced-usage"><i class="fa fa-check"></i><b>D.6</b> Advanced Usage</a><ul>
+<li class="chapter" data-level="D.6.1" data-path="remote-server.html"><a href="remote-server.html#ssh-keys-.sshconfig"><i class="fa fa-check"></i><b>D.6.1</b> ssh keys, .ssh/config</a></li>
+<li class="chapter" data-level="D.6.2" data-path="remote-server.html"><a href="remote-server.html#running-rscript-in-ssh-session"><i class="fa fa-check"></i><b>D.6.2</b> Running RScript in ssh Session</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -398,13 +413,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="control-structures" class="section level1">
-<h1><span class="header-section-number">C</span> R Language Control Structures</h1>
+<h1><span class="header-section-number">B</span> R Language Control Structures</h1>
 <p>In chapter <a href="functions.html#functions">Functions</a> we briefly described conditional execution using the <code>if</code>/<code>else</code> construct. Here we introduce the other main control structures, and cover the if/else statement in more detail.</p>
 <div id="loops" class="section level2">
-<h2><span class="header-section-number">C.1</span> Loops</h2>
+<h2><span class="header-section-number">B.1</span> Loops</h2>
 <p>One of the common problems that computers are good at is to execute similar tasks repeatedly many times. This can be achieved through <em>loops</em>. R implements three loops: for-loop, while-loop, and repeat-loop, these are amont the most popular loops in many modern programming languages. Loops are often advised agains in case of R. While it is true that loops in R are more demanding than in several other languages, and can often be replaced by more efficient constructs, they nevertheless have a very important role in R. Good usage of loops is easy, fast, and improves the readability of your code.</p>
 <div id="for-loop" class="section level3">
-<h3><span class="header-section-number">C.1.1</span> For Loop</h3>
+<h3><span class="header-section-number">B.1.1</span> For Loop</h3>
 <p>For-loop is a good choice if you want to run some statements repeatedly, each time picking a different value for a variable from a sequence; or just repeat some statements a given number of times. The syntax of for-loop is the following:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(variable <span class="cf">in</span> sequence) {
                            <span class="co"># do something many times.  Each time &#39;variable&#39; has</span>
@@ -439,7 +454,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## [1]  0.8414710  0.9092974  0.1411200 -0.7568025</code></pre>
 </div>
 <div id="while-loop" class="section level3">
-<h3><span class="header-section-number">C.1.2</span> While loop</h3>
+<h3><span class="header-section-number">B.1.2</span> While loop</h3>
 <p>While loop let’s the programmer to decide explicitly if we want to execute the statements one more time:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">while</span>(condition) {
                            <span class="co"># do something if the &#39;condition&#39; is true</span>
@@ -477,7 +492,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 }</code></pre></div>
 </div>
 <div id="repeat-loop" class="section level3">
-<h3><span class="header-section-number">C.1.3</span> repeat-loop</h3>
+<h3><span class="header-section-number">B.1.3</span> repeat-loop</h3>
 <p>The R way of implementing repeat-loop does not include any condition and hence it just keeps running infdefinitely, or until something breaks the execution (see below):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">repeat</span> {
    ## just do something indefinitely many times.
@@ -496,7 +511,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>It should also be noted that the loop does not create a separate environment (scope). All the variables from outside of the loop are visible inside, and variables created inside of the loop remain accessible after the loop terminates.</p>
 </div>
 <div id="leaving-early-break-and-next" class="section level3">
-<h3><span class="header-section-number">C.1.4</span> Leaving Early: <code>break</code> and <code>next</code></h3>
+<h3><span class="header-section-number">B.1.4</span> Leaving Early: <code>break</code> and <code>next</code></h3>
 <p>A straightforward way to leave a loop is the <code>break</code> statement. It just leaves the loop and transfers control to the code immediately after the loop body. It breaks all three loops discussed here (<em>for</em>, <em>while</em>, and <em>repeat</em>-loops) but not some of the other types of loops implemented outside of base R. For instance:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) {
    <span class="kw">cat</span>(i, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)
@@ -527,7 +542,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p><code>next</code> jumps over printing where modulo of division by 2 is not 0.</p>
 </div>
 <div id="when-not-to-use-loops-in-r" class="section level3">
-<h3><span class="header-section-number">C.1.5</span> When (Not) To Use Loops In R?</h3>
+<h3><span class="header-section-number">B.1.5</span> When (Not) To Use Loops In R?</h3>
 <p>In general, use loops if it improves code readability, makes it easier to extend the code, and does not cause too big inefficiencies. In practice, it means use loops for repeating something slow. Don’t use loops if you can use vectorized operators instead.</p>
 <p>For instance, look at the examples above where we were reading data until it was good. There is probably very little you can achieve by avoiding loops–except making your code messy. First, the input will probably attempted a few times only (otherwise re-consider how you get your data), and second, data input is probably a far slower process than the loop overhead. Just use the loop.</p>
 <p>Similar arguments hold if you consider to loop over input files to read, output files to create, figures to plot, webpage to scrape… In all these cases the loop overheads are negligible compared to the task performed inside the loops. And there are no real vectorized alternatives anyway.</p>
@@ -554,10 +569,10 @@ good &lt;-<span class="st"> </span><span class="cf">function</span>()
    <span class="kw">sqrt</span>(seq)
 microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<span class="kw">baad</span>(), <span class="kw">soso</span>(), <span class="kw">good</span>())</code></pre></div>
 <pre><code>## Unit: microseconds
-##    expr      min        lq       mean   median       uq       max neval
-##  baad() 1014.810 1367.2240 2731.31033 1798.707 2876.528 16841.133   100
-##  soso()   47.353   49.5340   98.31217   52.409   68.788  3015.981   100
-##  good()    2.898    3.3295   17.46044    4.675    6.968  1213.084   100</code></pre>
+##    expr      min       lq       mean    median        uq      max neval
+##  baad() 1017.562 1034.218 1655.09842 1054.7140 2303.9950 2665.342   100
+##  soso()   47.785   48.137   82.55902   50.1760   51.3940 2038.617   100
+##  good()    2.658    2.832    9.35014    3.6605    4.4825  558.584   100</code></pre>
 <p>When comparing the median values, we can see that the middle example is 10x slower than the vectorized example, and the first version is almost 300x slower!</p>
 <p>The above holds for “true” vectorized operations. R provides many pseudo-vectorizers (the lapply family) that may be handy in many circumstances, but not in case you need speed. Under the hood these functions just use a loop. We can demonstrate this by adding one more function to our family:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">soso2 &lt;-<span class="st"> </span><span class="cf">function</span>() {
@@ -565,20 +580,20 @@ microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<
 }
 microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<span class="kw">baad</span>(), <span class="kw">soso</span>(), <span class="kw">soso2</span>(), <span class="kw">good</span>())</code></pre></div>
 <pre><code>## Unit: microseconds
-##     expr     min        lq       mean    median        uq      max neval
-##   baad() 983.054 1206.6770 2342.85870 1654.4360 2129.2335 7798.831   100
-##   soso()  46.703   49.5075   57.68555   51.3555   54.4615  186.960   100
-##  soso2() 277.310  296.9535  359.06501  312.9880  370.9215 1402.721   100
-##   good()   2.876    3.3990    9.39531    4.0055    5.2080  485.943   100</code></pre>
+##     expr      min        lq       mean    median        uq       max neval
+##   baad() 1014.702 1028.8300 2027.24080 1219.7920 2160.6910 45191.171   100
+##   soso()   47.779   48.3720   61.49871   49.7325   51.3015  1137.869   100
+##  soso2()  257.312  265.8825  289.66740  278.0430  288.7460  1225.355   100
+##   good()    2.706    2.9175    3.73946    3.5685    4.2290    11.805   100</code></pre>
 <p>As it turns out, <code>sapply</code> is much slower than plain for-loop. Lapply-family is not a substitute for true vectorization. However, one may argue that <code>soso2</code> function is easier to understand than explicit loop in <code>soso</code>. In any case, it is easier to type when working on the interactive console.</p>
 <p>Finally, it should be noted that when performing truly vectorized operations on long vectors, the overhead of R interpreter becomes negligible and the resulting speed is almost equalt to that of the corresponding C code. And optimized R code can easily beat non-optimized C.</p>
 </div>
 </div>
 <div id="more-about-if-and-else" class="section level2">
-<h2><span class="header-section-number">C.2</span> More about <code>if</code> and <code>else</code></h2>
+<h2><span class="header-section-number">B.2</span> More about <code>if</code> and <code>else</code></h2>
 <p>The basics of if-else blocks were covered in Chapter <a href="functions.html#functions">Functions</a>. Here we discuss some more advanced aspects.</p>
 <div id="where-to-put-else" class="section level3">
-<h3><span class="header-section-number">C.2.1</span> Where To Put Else</h3>
+<h3><span class="header-section-number">B.2.1</span> Where To Put Else</h3>
 <p>Normally R wants to understand if a line of code belongs to an earlier statement, or is it beginning of a fresh one. For instance,</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span>(condition) {
    ## do something
@@ -607,7 +622,7 @@ microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<
 <p>the last one-liner uses the fact that we can write several statements on a single line with <code>;</code>. Arguably, such style is often a bad idea, but it has it’s place, for instance when creating anonymous functions for <code>lapply</code> and friends.</p>
 </div>
 <div id="return-value" class="section level3">
-<h3><span class="header-section-number">C.2.2</span> Return Value</h3>
+<h3><span class="header-section-number">B.2.2</span> Return Value</h3>
 <p>As most commands in R, if-else block has a return value. This is the last value evaluated by the block, and it can be assigned to variables. If the condition is false, and there is no else block, <code>if</code> returns <code>NULL</code>.</p>
 <p>Using return values of if-else statement is often a recipe for hard-to-read code but may be a good choice in other circumstances, for instance where the multy-line form will take too much attention away from more crucial parts of the code. The line</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="dv">3</span>
@@ -624,7 +639,7 @@ n &lt;-<span class="st"> </span><span class="dv">0</span>
 </div>
 </div>
 <div id="switch-choosing-between-multiple-conditions" class="section level2">
-<h2><span class="header-section-number">C.3</span> <code>switch</code>: Choosing Between Multiple Conditions</h2>
+<h2><span class="header-section-number">B.3</span> <code>switch</code>: Choosing Between Multiple Conditions</h2>
 <p>If-else is appropriate if we have a small number of conditions, potentially only one. Switch is a related construct that tests a large number of equality conditions. The best way to explain it’s syntax is through an example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stock &lt;-<span class="st"> &quot;AMZN&quot;</span>
 <span class="cf">switch</span>(stock,
@@ -650,8 +665,8 @@ n &lt;-<span class="st"> </span><span class="dv">0</span>
           </div>
         </div>
       </div>
-<a href="plotly.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="plotly.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-tables.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
