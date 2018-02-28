@@ -33,12 +33,16 @@ pass-by-reference approach may improve the speed and lower the memory
 footprint substantially.
 
 
-## Data Tables: intro
+## Data Tables: Introduction
 
 Data tables and most of the related goodies live in _data.table_
-library.
+library, so you either have to load the library or specify the
+namespace when using the functions.
 
-Data tables as designed to be largely a replacement to data frames.
+
+### Replacement for Data Frames (Sort of)
+
+Data tables are designed to be largely a replacement to data frames.
 The syntax is similar and they are largely replaceable.  For instance,
 we can create and play with a data table as
 ```{r}
@@ -49,19 +53,212 @@ dt
 The result looks almost identical to a similar data frame (the only
 difference are the colons after the row numbers).  Behind the scenes
 these objects are almost identical too--both objects are lists of
-vectors.  This structural similarity largely allows to use data tables
-as drop-in replacements for dataframes.
+vectors.  This structural similarity allows to use data tables
+as drop-in replacements for dataframes, at least in some
+circumstances.  For instance, we can extract variables with `$`:
+```{r}
+dt$x
+```
+or rows with row indices:
+```{r}
+dt[c(2,4),]
+```
+
+However, data tables use unquoted variables names (like _dplyr_) by
+default:
+```{r}
+dt[,x]
+```
+In case we need to store the variable name into another variable, with
+have to use the additional argument `with`:
+```{r}
+var <- "x"
+dt[, var, with=FALSE]
+```
+Note also that instead of getting a vector, now we get a data.table
+with a single column "x" in the first.  This behavior is the main culprit that when
+replacing data frames with data tables one may need to change quite a
+bit of code.
+
+
+### Fast Reading and Writing
+
+Many data frame users may appreciate the fact that the data
+input-output function `fread` and `fwrite` run at least a magnitude
+faster on large files.  These are largely replacement for `read.table`
+and `write.table`, however they syntax differs noticeably in places.
+In particular, `fread` accepts either a file name, http-url, or a _shell command
+that prints output_; it automatically detects the column separator,
+but it
+does not automatically open compressed files.  The latter is not a big
+deal when using unix where one can just issue
+```r
+data <- fread("bzcat data.csv.bz2")
+```
+However, the decompression is not that simple on windows and hence it
+is hard to write platform-independent code that opens compressed
+files.^[Automatic decompression is a feature request for data tables]
+
+If your computer has enough memory and speed is not an issue, your
+interest for data tables may end here.  You can just transform data
+table into a data frame with `setDF` (and the other way around with `setDT`).  Let's transform our data table to data
+frame:
+```{r}
+setDF(dt)
+dt
+```
+Do you see that the colons after row names are gone?  This means `dt`
+now is a data frame.
+
+Note that this function behaves very differently from what we have
+learned earlier: it modifies the object _in place_ (by reference).  We
+do not have to assign the result into a new variable using a construct
+like `df <- setDF(dt)` (but we still can write like this, handy when
+using magrittr pipes).  This is a manifestation of the power of
+data.tables: the object is not copied but the same object is modified
+in memory instead.  `setDF` and `setDT` are very efficient, even huge
+tables are converted instantly with virtually no need for any
+additional memory.
+
+However, big powers come hand-in-hand with big responsibility:
+it is easy to forget that `setDF` modifies the function argument.
+
+
+## Indexing: The Major Powerhorse of Data Tables
+
+Data tables' indexing is much more powerful than that of data frames.
+The single-bracket indexing is a powerful (albeit confusing) set of
+functions.  It's general syntax is as follows:
+```r
+dt[i, j, by]
+```
+where `i` specifies what to do with rows (for instance, select certain
+rows), `j` tells what to do with columns (such as select columns,
+compute new columns, aggregate columns), and `by` contains the
+grouping variables. 
+
+Let's demonstrate this with the _flights_ data from _nycflights13_
+package.  We load the data and transform it into data.table:
+```{r}
+data(flights, package="nycflights13")
+setDT(flights)
+head(flights)
+```
+
+### i: Select Observations
+
+Obviously, we can always just tell which observations we want:
+```{r}
+flights[c(1:3),]
+```
+picks the first three lines from the data.
+
+We can select observations with logical index vector in the same way as in data frames:
+```{r}
+head(flights[origin == "EWR" & dest == "SEA",], 3)
+```
+will create a new data table including only flights from Newark to
+Seattle.  However, note that we just use `origin`, and not
+`flights$origin` as were the case with data frames.  Data tables
+evaluate the arguments as if inside `with`-function.
+
+The first, integer indexing corresponds to dplyr's `slice` function
+while the other one is equivalent to `filter`.
+
+
+### j: Work with Columns
+
+`j` is perhaps the most powerful (and most confusing) of all arguments
+for data table indexing.  It allows both to select and do more complex
+tasks.  Lets start with selection:
+```{r}
+head(flights[, dest], 3)
+```
+selects only the `dest` variable from the data.  Note this results in
+a vector, not in a single-variable data table.  If you want to get
+that, you can do
+```{r}
+head(flights[, .(dest)], 3)
+```
+`.()` is just an alias for `list()`, encoded differently in data
+tables to improve readability and make it easier to type.  If we want to select
+more that one variable, we can use the latter syntax:
+```{r}
+head(flights[, .(origin, dest)], 3)
+```
+Selection supports a number of goodies, such as ranges of variables
+with `:` (for instance, `dep_time:arr_delay`) and excluding variables
+with `!` or `-` (for instance, `-year`).
+
+Obviously we can combine both `i` and `j`: let's select origin and
+departure delay for flights to Seattle:
+```{r}
+head(flights[dest == "SEA", .(origin, dep_delay)], 3)
+```
+The example so far broadly correspond to dplyr's `select`.
+
+But `j` is not just for selecting.  It is also for computing.  Let's
+find the mean arrival delay for flights to Seattle:
+```{r}
+flights[dest == "SEA", mean(arr_delay, na.rm=TRUE)]
+```
+Several variables can be returned by wrapping, and optionally named,
+these in `.()`.  For instance, find the average departure and arrival
+delay for all flights to Seattle, given the flight was delayed on
+arrival, and name these `dep` and `arr`:
+```{r}
+flights[dest == "SEA" & arr_delay > 0,
+        .(dep = mean(dep_delay, na.rm=TRUE), arr = mean(arr_delay, na.rm=TRUE))]
+```
+The result is a data table with two variables.
+
+As in dplyr, there is a special variable `.N` that counts the number
+of rows:
+```{r}
+flights[dest == "SEA" & arr_delay > 0, .N]
+```
+will tell us how many flights to Seattle were delayed at arrival.
+
+Handling the case where the variable names are stored in other
+variables is not that hard, but still adds a layer of complexity.  We
+can specify the variables in `.SDcols` parameter.  This
+parameter determines which columns go into `.SD` (=Subset Data)
+special variable.  Afterwards we make an `lapply` expression in `j`:
+```{r}
+flights[dest == "SEA" & arr_delay > 0,
+        lapply(.SD, function(x) mean(x, na.rm=TRUE)),
+        .SDcols = c("arr_delay", "dep_delay")]
+```
+Let's repeat: `.SDcols` determines which variables will go into the
+special `.SD` list (default: all).  `lapply` in `j` computes mean
+values of each of the variables in the `.SD` list.  This procedure
+feels complex, although it is internally optimized.
+
+These examples correspond to dplyr's `aggregate` function.  One can
+argue, however, that data tables' syntax is more confusing and harder
+to read.  Note also that the functionality data tables offer here is
+optimized for speed and memory efficiency but still return a new
+object.  Aggregation does not work by reference.
+
+
+### Group in `by`
+
+Finally, all of the above can by computed by groups using `by`.  Let's
+compute the average delays above by carrier and origin:
+
+```{r}
+flights[dest == "SEA" & arr_delay > 0,
+        .(dep = mean(dep_delay, na.rm=TRUE), arr = mean(arr_delay, na.rm=TRUE)),
+        by = .(carrier, origin)]
+```
+We just had to specify the `by` argument that lists the grouping
+variables.  If more than one, these should be wrapped in a list with
+`.()` function.
 
 
 
-look like data frames
 
-
-## Indexing:
-
-[i, j, by]
-
-compare with dplyr
+Read more in the vignette [Data analysis using data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html).
 
 
 ## Create variables by reference
