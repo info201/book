@@ -151,7 +151,12 @@ Obviously, we can always just tell which observations we want:
 ```{r}
 flights[c(1:3),]
 ```
-picks the first three lines from the data.
+picks the first three lines from the data.  Maybe more interestingly,
+we can use the special variable `.N` (the number of rows), to get the
+penultimate row:
+```{r}
+flights[.N-1,]
+```
 
 We can select observations with logical index vector in the same way as in data frames:
 ```{r}
@@ -212,8 +217,7 @@ flights[dest == "SEA" & arr_delay > 0,
 ```
 The result is a data table with two variables.
 
-As in dplyr, there is a special variable `.N` that counts the number
-of rows:
+We can use the special variable `.N` to count the rows:
 ```{r}
 flights[dest == "SEA" & arr_delay > 0, .N]
 ```
@@ -255,21 +259,148 @@ We just had to specify the `by` argument that lists the grouping
 variables.  If more than one, these should be wrapped in a list with
 `.()` function.
 
+We can use the `.N` variable to get the group size.  How many flights
+did each carrier from each origin?
+```{r}
+flights[, .N, by=.(carrier, origin)] %>%
+   head(3)
+```
+Finally, we can also use quoted variables for grouping too just be
+replacing `.()` with `c()`:
+```{r}
+flights[, .N, by=c("carrier", "origin")] %>%
+   head(3)
+```
+
+In dplyr context, the examples here include `group_by` and `summarize` verbs.
+
+Read more about the basic usage in data.table the vignette [Data analysis using data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html).
 
 
+## `:=`--Create variables by reference
 
-Read more in the vignette [Data analysis using data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html).
+While summarizing we compute values in `j`, these will always create a
+new data.table.  Reducing operations are not possible to do in-place.
+But computing new variables can be done in-place.
+
+In place variable computations (without summarizing) can be done with
+`:=` assignment operator in `j`.  Let's compute a new
+variable--speed--for each flight.  We can do this as follows:
+```{r}
+flights[, speed := distance/(air_time/60)]
+flights %>% head(3)
+```
+We see the new variable, speed, included as the last variable in the
+data.  Note we did this operation _by reference_, i.e. we did not
+assign the result to a new data table.  The existing table was
+modified in place.
+
+The same assignment operator also permits us to remove variables by
+setting these to `NULL`.  Let's remove speed:
+```{r}
+flights[, speed := NULL]
+flights %>% head(3)
+```
+Indeed, there is not speed any more.
+
+Assigning more that one variable by reference may feel somewhat more
+intimidating:
+```{r}
+flights[, c("speed", "meanDelay") := .(distance/(air_time/60), (arr_delay + dep_delay)/2)]
+flights %>% head(3)
+```
+
+Assignment works together with both selection and grouping.  For
+instance, we may want to replace negative delay by zeros:
+```{r}
+flights[ arr_delay < 0, arr_delay := 0][, arr_delay] %>%
+   head(20)
+```
+Indeed, we only see positive numbers and zeros.  But be careful: now
+we have overwritten the `arr_delay` in the original data.  We cannot
+restore the previous state any more without re-loading the dataset.
+
+As an example of
+groupings, let's compute the maximum departure delay by origin:
+```{r}
+flights[, maxDelay := max(dep_delay, na.rm=TRUE), by=origin] %>%
+   head(4)
+```
+We can see that `by` caused the delay to be computed for each group,
+however, the data is not summarized, just the max delay is added to
+every single row.
+
+Finally, if you _do not_ want to modify the original data, you should
+use `copy` function.  This makes a deep copy of the data, and you can
+modify the copy afterwards:
+```{r}
+fl <- copy(flights)
+fl <- fl[, .(origin, dest)]
+head(fl, 3)
+head(flights, 3)
+```
+As you see, the `flights` data has not changed.
+
+These operations correspond to the dplyr's `mutate` verb.  However,
+`mutate` always makes a copy of the original dataset, something that
+may well make your analysis slow and sluggish with large data.
 
 
-## Create variables by reference
+Read more in vignette [Data.table reference semantics](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-reference-semantics.html)
 
-:=
 
 ## keys
 
-Sort in advance
+Data tables allow fast lookup based on _key_.  In it's simplest
+version, a key is a column (or several columns) which is used to
+pre-sort the data table.  Pre-sorting makes it much faster to look up
+certain values, perform grouping operations and merges.  As data can
+only be sorted according to one rule at a time, there can only be one
+key on data.table (but a key may include several variables).
 
-fast lookups
+Let's set origin and destination as keys for the data table:
+```{r}
+data(flights, pkg="nycflights13")
+setDT(flights, key=c("origin", "dest"))
+fl <- flights[,.(origin, dest, arr_delay)]
+                           # focus on a few variables only
+head(fl, 3)
+```
+We see that both origin and destination are alphabetically ordered.
+Note that when selecting variables, the resulting data table `fl` will
+have the same keys as the original one.
+
+When set, we can easily subset by key by just feeding the key values
+in `i`:
+```{r}
+fl["LGA"] %>%
+   head(5)
+```
+will extract all LaGuardia-originating flights.  In terms of output,
+this is equivalent to `fl[origin == "LGA"]`, just much more
+efficient.  When you want to
+extract flights based on origin-destination pair, you can just add
+both key columns:
+```{r}
+fl[.("EWR", "SEA")] %>%
+   head(4)
+```
+Again, this can be achieved in other ways, just keys are more
+efficient.  Finally, if we want to extract based on the second key,
+the syntax is more confusing:
+```{r}
+fl[.(unique(origin), "SEA")] %>%
+   head(4)
+```
+We have to tell the `[` that we want to extract all observations
+where the first key is everything, and the second one is "SEA". 
+
+Read more in the vignette [Keys and fast binary search based subset](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-keys-fast-subset.html).
 
 
-## joins, melt
+
+## Resources
+
+* [Data Table Cheatsheet](https://s3.amazonaws.com/assets.datacamp.com/blog_assets/datatable_Cheat_Sheet_R.pdf)
+* [Data Table CRAN page](https://cran.r-project.org/web/packages/data.table/index.html).
+  Vignettes are a very valuable source of information.
