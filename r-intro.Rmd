@@ -104,13 +104,15 @@ bottles <- 99 - 1  # 98 bottles
 ## Variables
 Since computer programs involve working with lots of _information_, we need a way to store and refer to this information. We do this with **variables**. Variables are labels for information; in R, you can think of them as "boxes" or "nametags" for data. After putting data in a variable box, you can then refer to that data by the name on the box.
 
-Variable names can contain any combination of letters, numbers, periods (`.`), or underscores (`_`). Variables names must begin with a letter. Note that like everything in programming, variable names are case sensitive. It is best practice to make variable names descriptive and information about what data they contain. `a` is not a good variable name. `cups.of.coffee` is a good variable name. To comply with [Google's Style Guidelines](https://google.github.io/styleguide/Rguide.xml#identifiers) variables should be **all lower-case letters, separated by periods (`.`)**.
+Variable names can contain any combination of letters, numbers, periods (`.`), or underscores (`_`). Variables names must begin with a letter. Note that like everything in programming, variable names are case sensitive. It is best practice to make variable names descriptive and information about what data they contain. `a` is not a good variable name. `cups_of_coffee` is a good variable name. In this course, we will use the [Tidyverse Style Guide](http://style.tidyverse.org/) as a foundation of _how we should style our code_. To comply with this style guide, variables should be **all lower-case letters, separated by underscore (`_`)**. This is also known as **snake_case**.
+
+<p class="alert alert-info">**Note:** There is an important distinction between _syntax_ and _style_. You need to use the proper _syntax_ such that your _machine_ understands your code. This requires that you follow a set of rigid rules for what code can be procesed. _Style_ is what helps make your code understandable for other _humans_. Good style is not required to get your code to run, but it's imperative for writing clear, (human) readable code.</p>
 
 We call putting information in a variable **assigning** that value to the variable. We do this using the _assignment operator_ **`<-`**. For example:
 
 ```r
-# Stores the number 7 into a variable called shoe.size
-shoe.size <- 7
+# Stores the number 7 into a variable called `shoe_size`
+shoe_size <- 7
 ```
 
 - _Notice:_ variable name goes on the left, value goes on the right!
@@ -118,7 +120,7 @@ shoe.size <- 7
 You can see what value (data) is inside a variable by either typing that variable name as a line of code, or by using R's built-in `print()` function (more on functions later):
 
 ```r
-print(shoe.size)
+print(shoe_size)
 # [1] 7
 ```
 
@@ -227,7 +229,7 @@ As with any programming language, when working in R you will inevitably run into
 
 
 ## Resources {-}
-- [Google's R Style Guide](https://google.github.io/styleguide/Rguide.xml)
+- [Tidyverse Style Guide](http://style.tidyverse.org/)
 - [DataCamp](https://www.datacamp.com/home) (awesome resource for interactive tutorials in R)
 - [R Tutorial: Introduction](http://www.r-tutor.com/r-introduction)
 - [R Tutorial: Basic Data Types](http://www.r-tutor.com/r-introduction/basic-data-types)

@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2018-02-28">
+<meta name="date" content="2018-03-07">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -509,15 +509,18 @@ bottles &lt;-<span class="st"> </span><span class="dv">99</span> <span class="op
 <div id="variables" class="section level2">
 <h2><span class="header-section-number">5.4</span> Variables</h2>
 <p>Since computer programs involve working with lots of <em>information</em>, we need a way to store and refer to this information. We do this with <strong>variables</strong>. Variables are labels for information; in R, you can think of them as “boxes” or “nametags” for data. After putting data in a variable box, you can then refer to that data by the name on the box.</p>
-<p>Variable names can contain any combination of letters, numbers, periods (<code>.</code>), or underscores (<code>_</code>). Variables names must begin with a letter. Note that like everything in programming, variable names are case sensitive. It is best practice to make variable names descriptive and information about what data they contain. <code>a</code> is not a good variable name. <code>cups.of.coffee</code> is a good variable name. To comply with <a href="https://google.github.io/styleguide/Rguide.xml#identifiers">Google’s Style Guidelines</a> variables should be <strong>all lower-case letters, separated by periods (<code>.</code>)</strong>.</p>
+<p>Variable names can contain any combination of letters, numbers, periods (<code>.</code>), or underscores (<code>_</code>). Variables names must begin with a letter. Note that like everything in programming, variable names are case sensitive. It is best practice to make variable names descriptive and information about what data they contain. <code>a</code> is not a good variable name. <code>cups_of_coffee</code> is a good variable name. In this course, we will use the <a href="http://style.tidyverse.org/">Tidyverse Style Guide</a> as a foundation of <em>how we should style our code</em>. To comply with this style guide, variables should be <strong>all lower-case letters, separated by underscore (<code>_</code>)</strong>. This is also known as <strong>snake_case</strong>.</p>
+<p class="alert alert-info">
+<strong>Note:</strong> There is an important distinction between <em>syntax</em> and <em>style</em>. You need to use the proper <em>syntax</em> such that your <em>machine</em> understands your code. This requires that you follow a set of rigid rules for what code can be procesed. <em>Style</em> is what helps make your code understandable for other <em>humans</em>. Good style is not required to get your code to run, but it’s imperative for writing clear, (human) readable code.
+</p>
 <p>We call putting information in a variable <strong>assigning</strong> that value to the variable. We do this using the <em>assignment operator</em> <strong><code>&lt;-</code></strong>. For example:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Stores the number 7 into a variable called shoe.size</span>
-shoe.size &lt;-<span class="st"> </span><span class="dv">7</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Stores the number 7 into a variable called `shoe_size`</span>
+shoe_size &lt;-<span class="st"> </span><span class="dv">7</span></code></pre></div>
 <ul>
 <li><em>Notice:</em> variable name goes on the left, value goes on the right!</li>
 </ul>
 <p>You can see what value (data) is inside a variable by either typing that variable name as a line of code, or by using R’s built-in <code>print()</code> function (more on functions later):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(shoe.size)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(shoe_size)
 <span class="co"># [1] 7</span></code></pre></div>
 <ul>
 <li>We’ll talk about the <code>[1]</code> in that output later.</li>
@@ -601,7 +604,7 @@ pet <span class="op">==</span><span class="st"> &quot;dog&quot;</span> <span cla
 <div id="resources-4" class="section level2 unnumbered">
 <h2>Resources</h2>
 <ul>
-<li><a href="https://google.github.io/styleguide/Rguide.xml">Google’s R Style Guide</a></li>
+<li><a href="http://style.tidyverse.org/">Tidyverse Style Guide</a></li>
 <li><a href="https://www.datacamp.com/home">DataCamp</a> (awesome resource for interactive tutorials in R)</li>
 <li><a href="http://www.r-tutor.com/r-introduction">R Tutorial: Introduction</a></li>
 <li><a href="http://www.r-tutor.com/r-introduction/basic-data-types">R Tutorial: Basic Data Types</a></li>

@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2018-02-28">
+<meta name="date" content="2018-03-07">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -569,10 +569,10 @@ good &lt;-<span class="st"> </span><span class="cf">function</span>()
    <span class="kw">sqrt</span>(seq)
 microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<span class="kw">baad</span>(), <span class="kw">soso</span>(), <span class="kw">good</span>())</code></pre></div>
 <pre><code>## Unit: microseconds
-##    expr      min       lq       mean    median        uq      max neval
-##  baad() 1014.787 1025.990 1675.79265 1104.2535 2319.6415 2918.333   100
-##  soso()   47.765   48.123   68.19449   49.3495   51.7555 1860.563   100
-##  good()    2.687    2.837    9.50820    3.3875    4.5765  569.839   100</code></pre>
+##    expr     min       lq       mean    median       uq       max neval
+##  baad() 947.070 1103.877 2395.46449 1329.5755 2135.334 19148.914   100
+##  soso()  46.151   48.126   80.94418   51.0435   57.019  2615.175   100
+##  good()   2.824    3.337   12.51002    4.6975    7.382   732.074   100</code></pre>
 <p>When comparing the median values, we can see that the middle example is 10x slower than the vectorized example, and the first version is almost 300x slower!</p>
 <p>The above holds for “true” vectorized operations. R provides many pseudo-vectorizers (the lapply family) that may be handy in many circumstances, but not in case you need speed. Under the hood these functions just use a loop. We can demonstrate this by adding one more function to our family:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">soso2 &lt;-<span class="st"> </span><span class="cf">function</span>() {
@@ -580,11 +580,11 @@ microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<
 }
 microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<span class="kw">baad</span>(), <span class="kw">soso</span>(), <span class="kw">soso2</span>(), <span class="kw">good</span>())</code></pre></div>
 <pre><code>## Unit: microseconds
-##     expr      min        lq       mean    median        uq       max neval
-##   baad() 1010.167 1033.7095 2055.70970 1238.3795 2213.7695 45512.349   100
-##   soso()   47.732   48.7645   51.60314   50.2165   51.6550    97.806   100
-##  soso2()  255.673  264.6665  289.05078  274.7325  289.3165  1231.455   100
-##   good()    2.689    2.9505   14.87714    3.6940    4.1295  1106.865   100</code></pre>
+##     expr     min        lq       mean    median        uq       max neval
+##   baad() 949.111 1132.8015 2151.36102 1394.8470 1870.1160 13735.817   100
+##   soso()  46.177   49.0155   52.69837   50.7180   53.4130    93.309   100
+##  soso2() 270.845  282.6495  328.24266  303.8495  326.3865  1460.288   100
+##   good()   2.749    3.3550    4.45856    4.0930    5.0255    10.174   100</code></pre>
 <p>As it turns out, <code>sapply</code> is much slower than plain for-loop. Lapply-family is not a substitute for true vectorization. However, one may argue that <code>soso2</code> function is easier to understand than explicit loop in <code>soso</code>. In any case, it is easier to type when working on the interactive console.</p>
 <p>Finally, it should be noted that when performing truly vectorized operations on long vectors, the overhead of R interpreter becomes negligible and the resulting speed is almost equalt to that of the corresponding C code. And optimized R code can easily beat non-optimized C.</p>
 </div>
