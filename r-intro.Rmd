@@ -150,7 +150,7 @@ There are a few "basic types" (or _modes_) for data in R:
 
 - **Numeric**: The default computational data type in R is numeric data, which consists of the set of real numbers (including decimals). We use use **mathematical operators** on numeric data (such as `+`, `-`, `*`, `-`, etc.). There are also numerous functions that work on numeric data (such as calculating sums or averages).
 
-- **Character**: Character data stores _strings_ of characters (things you type with a keyboard) in a variable. You specify that some information is character data by surrounding it in either single quotes (**`'`**) or double quotes (**`"`**).
+- **Character**: Character data stores _strings_ of characters (things you type with a keyboard) in a variable. You specify that some information is character data by surrounding it in either single quotes (**`'`**) or double quotes (**`"`**). To comply with the [style guide](http://style.tidyverse.org/syntax.html#quotes), we'll consider it best practice to use **double quotes**.
 
     ```r
     # Create character variable `famous.poet` with the value "Bill Shakespeare"

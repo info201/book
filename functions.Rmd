@@ -3,9 +3,9 @@
 This chapter will explore how to use **functions** in R to perform advanced capabilities and actually ask questions about data. After considering a function in an abstract sense, it will discuss using built-in R functions, accessing additional functions by loading R packages, and writing your own functions.
 
 ## What are Functions?
-In a broad sense, a **function** is a named sequence of instructions (lines of code) that you may want to perform one or more times throughout a program. They provide a way of _encapsulating_ multiple instructions into a single "unit" that can be used in a variety of different contexts. So rather than needing to repeatedly write down all the individual instructions for "make a sandwich" every time you're hungry, you can define a `MakeSandwich()` function once and then just **call** (execute) that function when you want to perform those steps.
+In a broad sense, a **function** is a named sequence of instructions (lines of code) that you may want to perform one or more times throughout a program. They provide a way of _encapsulating_ multiple instructions into a single "unit" that can be used in a variety of different contexts. So rather than needing to repeatedly write down all the individual instructions for "make a sandwich" every time you're hungry, you can define a `make_sandwich()` function once and then just **call** (execute) that function when you want to perform those steps.
 
-In addition to grouping instructions, functions in programming languages like R also tend to follow the mathematical definition of functions, which is a set of operations (instructions!) that are performed on some **inputs** and lead to some **outputs**. Function inputs are called **arguments** or **parameters**, and we say that these arguments are **passed** to a function (like a football). We say that a function then **returns** an ouput to use. For example, imagine a function that can determine the largest number in a set of numbers. That function’s **input** would be the set of numbers, and the **output** would be the largest number in the set. 
+In addition to grouping instructions, functions in programming languages like R also tend to follow the mathematical definition of functions, which is a set of operations (instructions!) that are performed on some **inputs** and lead to some **outputs**. Function inputs are called **arguments** or **parameters**, and we say that these arguments are **passed** to a function (like a football). We say that a function then **returns** an output to use. For example, imagine a function that can determine the largest number in a set of numbers. That function’s **input** would be the set of numbers, and the **output** would be the largest number in the set.
 
 ### R Function Syntax
 R functions are referred to by name (technically, they are values like any other variable). As in many programming languages, we **call** a function by writing the name of the function followed immediately (no space) by parentheses `()`. Inside the parentheses, we put the **arguments** (inputs) to the function separated by commas (**`,`**). Thus computer functions look just like multi-variable mathematical functions, but with names longer than `f()`.
@@ -87,28 +87,27 @@ After loading the package with the `library()` function, you have access to func
 ## Writing Functions
 Even more exciting than loading other peoples' functions is writing your own. Any time that you have a task that you may repeat throughout a script&mdash;or you simply want to organize your thinking&mdash;it's good practice to write a function to perform that task. This will limit repetition and reduce the likelihood of errors... as well as make things easier to read and understand (and thus identify flaws in your analysis).
 
-Functions are named like any other variable, so we use the _assignment operator_ (**`<-`**) to store a new `function` in a variable. It is [best practice ](https://google.github.io/styleguide/Rguide.xml#functiondefinition) to assign functions names in _CamelCase_ without any periods (`.`) in the name. This helps distinguish functions from other variables.
-
+Functions are named like any other variable, so we use the _assignment operator_ (**`<-`**) to store a new `function` in a variable. It is [best practice ](http://style.tidyverse.org/functions.html) to assign functions names as verbs, also written in **snake_case** (just like other variables).
 The best way to understand the syntax for defining a function is to look at an example:
 
 ```r
-# A function named `MakeFullName` that takes two arguments
+# A function named `make_full_name` that takes two arguments
 # and returns the "full name" made from them
-MakeFullName <- function(first.name, last.name) {
+make_full_name <- function(first_name, last_name) {
   # Function body: perform tasks in here
-  full.name <- paste(first.name, last.name)
+  full_name <- paste(first_name, last_name)
 
   # Return: what you want the function to output
-  return(full.name)
+  return(full_name)
 }
 
-# Call the MakeFullName function with the values "Alice" and "Kim"
-my.name <- MakeFullName("Alice", "Kim")  # "Alice Kim"
+# Call the `make_full_name` function with the values "Alice" and "Kim"
+my.name <- make_full_name("Alice", "Kim")  # "Alice Kim"
 ```
 
 Functions have a couple of pieces to them:
 
-- **Arguments**: the value assigned to the function variable uses the syntax `function(...)` to indicate that you are creating a function (as opposed to a number or character string). The values put betweeen the parentheses are variables that _will contain_ the values passed in as **arguments**. For example, when we call `MakeFullName("Alice", "Kim")`, the value of the first argument (`"Alice"`) will be assigned to the first variable (`first.name`), and the value of the second argument (`"Kim"`) will be assigned to the second variable (`last.name`).
+- **Arguments**: the value assigned to the function variable uses the syntax `function(...)` to indicate that you are creating a function (as opposed to a number or character string). The values put between the parentheses are variables that _will contain_ the values passed in as **arguments**. For example, when we call `make_full_name("Alice", "Kim")`, the value of the first argument (`"Alice"`) will be assigned to the first variable (`first.name`), and the value of the second argument (`"Kim"`) will be assigned to the second variable (`last.name`).
 
     Importantly, we could have made the argument names anything we wanted (`name.first`, `given.name`, etc.), just as long as we then use _that variable name_ to refer to the argument while inside the function. Moreover, these argument variable names _only apply_ while inside the function. You can think of them like "nicknames" for the values. The variables `first.name`, `last.name`, and `full.name` only exist within this particular function.
 
@@ -116,9 +115,9 @@ Functions have a couple of pieces to them:
 
     The function body specifies all the instructions (lines of code) that your function will perform. A function can contain as many lines of code as you want&mdash;you'll usually want more than 1 to make it worth while, but if you have more than 20 you might want to break it up into separate functions. You can use the argument variables in here, create new variables, call other functions... basically any code that you would write outside of a function can be written inside of one as well!
 
-- **Return value**: You can specify what output a function produces by calling the `return()` function and passing that the value that you wish _your function_ to return (output). The `return()` function will execute instructions that end the current function and _return_ the flow of code execution to wherever this function was called from. Note that even though we returned a variable called `full.name`, that variable was _local_ to the function and so doesn't exist outside of it; thus we have to take the returned value and assign it to a new variable (as with `name <- MakeFullName("Alice", "Kim")`).
+- **Return value**: You can specify what output a function produces by calling the `return()` function and passing that the value that you wish _your function_ to return (output). The `return()` function will execute instructions that end the current function and _return_ the flow of code execution to wherever this function was called from. Note that even though we returned a variable called `full_name`, that variable was _local_ to the function and so doesn't exist outside of it; thus we have to take the returned value and assign it to a new variable (as with `name <- make_full_name("Alice", "Kim")`).
 
-    Because the `return()` call exits the function, it is usually the last line of code in the function.
+    Because the `return()` call exits the function, it is usually the last line of code in the function. Technically, the function will return the last element defined in your function, so it is unnecessary to write a _return_ statement.
 
 We can call (execute) a function we defined the same way we called built-in functions. When we do so, R will take the **arguments** we passed in (e.g., `"Alice"` and `"Kim"`) and assign them to the _argument variables_. Then it executes each line of code in the **function body** one at a time. When it gets to the `return()` call, it will end the function and return the given value, which can then be assigned to a different variable outside of the functions.
 
@@ -150,13 +149,14 @@ if (condition) {
 The `condition` can be any variable or expression that resolves to a logical value (`TRUE` or `FALSE`). Thus both of the below conditional statements are valid:
 
 ```r
-porridge.temp <- 115  # in degrees F
-if (porridge.temp > 120) {
+porridge_temp <- 115 # in degrees F
+if (porridge_temp > 120) {
   print("This porridge is too hot!")
 }
 
-too.cold <- porridge.temp < 70
-if (too.cold) {  # a logical value
+too_cold <- porridge_temp < 70
+# a logical value
+if (too_cold) {
   print("This porridge is too cold!")
 }
 ```
@@ -165,7 +165,7 @@ Note, we can extend the set of conditions evaluated using an `else if` statement
 
 ```r
 # Function to determine if you should eat porridge
-FoodTempTest <- function(temp) {
+test_food_temp <- function(temp) {
   if (temp > 120) {
     status <- "This porridge is too hot!"
   } else if (temp < 70) {
@@ -176,9 +176,9 @@ FoodTempTest <- function(temp) {
   return(status)
 }
 # Use function on different temperatures
-FoodTempTest(119)  # "This porridge is just right!"
-FoodTempTest(60)   # "This porridge is too cold!"
-FoodTempTest(150)  # "This porridge is too hot!"
+test_food_temp(119)  # "This porridge is just right!"
+test_food_temp(60)   # "This porridge is too cold!"
+test_food_temp(150)  # "This porridge is too hot!"
 ```
 
 See more about `if` and `else` in [Appendix C](#control-structures).
