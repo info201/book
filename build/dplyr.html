@@ -446,7 +446,7 @@ The images in this section come from the <a href="http://bit.ly/rday-nyc-strata1
 <h3><span class="header-section-number">10.2.1</span> Select</h3>
 <p>The <strong><code>select()</code></strong> operation allows you to choose and extract <strong>columns</strong> of interest from your data frame.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Select `storm` and `pressure` columns from `storms` data frame</span>
-storm.info &lt;-<span class="st"> </span><span class="kw">select</span>(storms, storm, pressure)</code></pre></div>
+storm_info &lt;-<span class="st"> </span><span class="kw">select</span>(storms, storm, pressure)</code></pre></div>
 <div class="figure">
 <img src="img/dplyr/select.png" title="Diagram of the select() function" alt="Diagram of the select() function (by Nathan Stephens)." />
 <p class="caption">Diagram of the <code>select()</code> function (by Nathan Stephens).</p>
@@ -454,14 +454,14 @@ storm.info &lt;-<span class="st"> </span><span class="kw">select</span>(storms, 
 <p>The <code>select()</code> function takes in the data frame to select from, followed by the names of the columns you wish to select (quotation marks are optional!)</p>
 <p>This function is equivalent to simply extracting the columns:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Extract columns by name</span>
-storm.info &lt;-<span class="st"> </span>storms[, <span class="kw">c</span>(<span class="st">&quot;storm&quot;</span>, <span class="st">&quot;pressure&quot;</span>)]  <span class="co"># Note the comma!</span></code></pre></div>
+storm_info &lt;-<span class="st"> </span>storms[, <span class="kw">c</span>(<span class="st">&quot;storm&quot;</span>, <span class="st">&quot;pressure&quot;</span>)]  <span class="co"># Note the comma!</span></code></pre></div>
 <p>But easier to read and write!</p>
 </div>
 <div id="filter" class="section level3">
 <h3><span class="header-section-number">10.2.2</span> Filter</h3>
 <p>The <strong><code>filter()</code></strong> operation allows you to choose and extract <strong>rows</strong> of interest from your data frame (contrasted with <code>select()</code> which extracts <em>columns</em>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Select rows whose `wind` column is greater than or equal to 50</span>
-some.storms &lt;-<span class="st"> </span><span class="kw">filter</span>(storms, wind <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50</span>)</code></pre></div>
+some_storms &lt;-<span class="st"> </span><span class="kw">filter</span>(storms, wind <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50</span>)</code></pre></div>
 <div class="figure">
 <img src="img/dplyr/filter.png" title="Diagram of the filter() function" alt="Diagram of the filter() function (by Nathan Stephens)." />
 <p class="caption">Diagram of the <code>filter()</code> function (by Nathan Stephens).</p>
@@ -472,7 +472,7 @@ some.storms &lt;-<span class="st"> </span><span class="kw">filter</span>(storms,
 </ul>
 <p>This function is equivalent to simply extracting the rows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Extract rows by condition</span>
-some.storms &lt;-<span class="st"> </span>storms[storms<span class="op">$</span>wind <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50</span>, ]  <span class="co"># Note the comma!</span></code></pre></div>
+some_storms &lt;-<span class="st"> </span>storms[storms<span class="op">$</span>wind <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50</span>, ]  <span class="co"># Note the comma!</span></code></pre></div>
 <p>As the number of conditions increases, it is <strong>far easier</strong> to read and write <code>filter()</code> functions, rather than squeeze your conditions into brackets.</p>
 </div>
 <div id="mutate" class="section level3">
@@ -490,24 +490,25 @@ storms &lt;-<span class="st"> </span><span class="kw">mutate</span>(storms, <spa
 </ul>
 <p>In cases where you are creating multiple columns (and therefore writing really long code instructions), you should break the single statement into multiple lines for readability. Because you haven’t closed the parentheses on the function arguments, R will not treat each line as a separate statement.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Generic mutate command</span>
-more.columns &lt;-<span class="st"> </span><span class="kw">mutate</span>(my.data.frame,
-                       <span class="dt">new.column.1 =</span> old.column <span class="op">*</span><span class="st"> </span><span class="dv">2</span>,
-                       <span class="dt">new.column.2 =</span> old.column <span class="op">*</span><span class="st"> </span><span class="dv">3</span>,
-                       <span class="dt">new.column.3 =</span> old.column <span class="op">*</span><span class="st"> </span><span class="dv">4</span>
-                      )</code></pre></div>
+more_columns &lt;-<span class="st"> </span><span class="kw">mutate</span>(
+  my_data_frame,
+  <span class="dt">new_column_1 =</span> old_column <span class="op">*</span><span class="st"> </span><span class="dv">2</span>,
+  <span class="dt">new_column_2 =</span> old_column <span class="op">*</span><span class="st"> </span><span class="dv">3</span>,
+  <span class="dt">new_column_3 =</span> old_column <span class="op">*</span><span class="st"> </span><span class="dv">4</span>
+)</code></pre></div>
 </div>
 <div id="arrange" class="section level3">
 <h3><span class="header-section-number">10.2.4</span> Arrange</h3>
 <p>The <strong><code>arrange()</code></strong> operation allows you to <strong>sort the rows</strong> of your data frame by some feature (column value).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Arrange storms by INCREASING order of the `wind` column</span>
-sorted.storms &lt;-<span class="st"> </span><span class="kw">arrange</span>(storms, wind)</code></pre></div>
+sorted_storms &lt;-<span class="st"> </span><span class="kw">arrange</span>(storms, wind)</code></pre></div>
 <div class="figure">
 <img src="img/dplyr/arrange.png" title="Diagram of the arrange() function" alt="Diagram of the arrange() function (by Nathan Stephens)." />
 <p class="caption">Diagram of the <code>arrange()</code> function (by Nathan Stephens).</p>
 </div>
 <p>By default, the <code>arrange()</code> function will sort rows in <strong>increasing</strong> order. To sort in <strong>reverse</strong> (decreasing) order, place a minus sign (<strong><code>-</code></strong>) in front of the column name (e.g., <code>-wind</code>). You can also use the <code>desc()</code> helper function (e.g, <code>desc(wind)</code>).</p>
 <ul>
-<li><p>You can pass multiple arguments into the <code>arrange()</code> function in order to sort first by <code>argument.1</code>, then by <code>argument.2</code>, and so on.</p></li>
+<li><p>You can pass multiple arguments into the <code>arrange()</code> function in order to sort first by <code>argument_1</code>, then by <code>argument_2</code>, and so on.</p></li>
 <li><p>Again, this doesn’t actually modify the argument data frame—instead returning a new data frame you’ll need to store.</p></li>
 </ul>
 </div>
@@ -522,12 +523,13 @@ summary &lt;-<span class="st"> </span><span class="kw">summarize</span>(pollutio
 </div>
 <p>The <code>summarize()</code> function takes in the data frame to mutate, followed by the values that will be included in the resulting summary table. You can use multiple arguments to include multiple summaries in the same statement:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Compute statistics for the `amount` column</span>
-summaries &lt;-<span class="st"> </span><span class="kw">summarize</span>(pollution,
-                       <span class="dt">median =</span> <span class="kw">median</span>(amount),  <span class="co"># median value</span>
-                       <span class="dt">mean =</span> <span class="kw">mean</span>(amount),      <span class="co"># &quot;average&quot; value</span>
-                       <span class="dt">sum =</span> <span class="kw">sum</span>(amount),        <span class="co"># total value</span>
-                       <span class="dt">count =</span> <span class="kw">n</span>()               <span class="co"># number of values (neat trick!)</span>
-                       )</code></pre></div>
+summaries &lt;-<span class="st"> </span><span class="kw">summarize</span>(
+  pollution,
+  <span class="dt">median =</span> <span class="kw">median</span>(amount), <span class="co"># median value</span>
+  <span class="dt">mean =</span> <span class="kw">mean</span>(amount), <span class="co"># &quot;average&quot; value</span>
+  <span class="dt">sum =</span> <span class="kw">sum</span>(amount), <span class="co"># total value</span>
+  <span class="dt">count =</span> <span class="kw">n</span>() <span class="co"># number of values (neat trick!)</span>
+)</code></pre></div>
 <p>Note that the <code>summarize()</code> function is particularly useful for grouped operations (see <a href="dplyr.html#grouped-operations">below</a>), as you can produce summaries of different groups of data.</p>
 </div>
 <div id="distinct" class="section level3">
@@ -537,10 +539,10 @@ summaries &lt;-<span class="st"> </span><span class="kw">summarize</span>(pollut
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a quick data frame</span>
 x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>)  <span class="co"># duplicate x values</span>
 y &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">8</span>                        <span class="co"># unique y values</span>
-my.df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x, y)
+my_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x, y)
 
 <span class="co"># Select distinct rows, judging by the `x` column</span>
-distinct.rows &lt;-<span class="st"> </span><span class="kw">distinct</span>(my.df, x)
+distinct_rows &lt;-<span class="st"> </span><span class="kw">distinct</span>(my_df, x)
                                     <span class="co">#   x</span>
                                     <span class="co"># 1 1</span>
                                     <span class="co"># 2 2</span>
@@ -548,7 +550,7 @@ distinct.rows &lt;-<span class="st"> </span><span class="kw">distinct</span>(my.
                                     <span class="co"># 4 4</span>
 
 <span class="co"># Select distinct rows, judging by the `x` and `y`columns</span>
-distinct.rows &lt;-<span class="st"> </span><span class="kw">distinct</span>(my.df, x, y)  <span class="co"># returns whole table, since no duplicate rows</span></code></pre></div>
+distinct_rows &lt;-<span class="st"> </span><span class="kw">distinct</span>(my_df, x, y)  <span class="co"># returns whole table, since no duplicate rows</span></code></pre></div>
 <p>While this is a simple way to get a unique set of rows, <strong>be careful</strong> not to lazily remove rows of your data which may be important.</p>
 </div>
 </div>
@@ -567,32 +569,32 @@ distinct.rows &lt;-<span class="st"> </span><span class="kw">distinct</span>(my.
 </ol>
 <p>You could then implement each step as follows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Preparation: add a column that is the car name</span>
-mtcars.named &lt;-<span class="st"> </span><span class="kw">mutate</span>(mtcars, <span class="dt">car.name =</span> <span class="kw">row.names</span>(mtcars))
+mtcars_named &lt;-<span class="st"> </span><span class="kw">mutate</span>(mtcars, <span class="dt">car_name =</span> <span class="kw">row.names</span>(mtcars))
 
 <span class="co"># 1. Filter down to only four cylinder cars</span>
-four.cyl &lt;-<span class="st"> </span><span class="kw">filter</span>(mtcars.named, cyl <span class="op">==</span><span class="st"> </span><span class="dv">4</span>)
+four_cyl &lt;-<span class="st"> </span><span class="kw">filter</span>(mtcars_named, cyl <span class="op">==</span><span class="st"> </span><span class="dv">4</span>)
 
 <span class="co"># 2. Filter down to the one with the highest mpg</span>
-best.four.cyl &lt;-<span class="st"> </span><span class="kw">filter</span>(four.cyl, mpg <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(mpg))
+best_four_cyl &lt;-<span class="st"> </span><span class="kw">filter</span>(four_cyl, mpg <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(mpg))
 
 <span class="co"># 3. Select the car name of the car</span>
-best.car.name &lt;-<span class="st"> </span><span class="kw">select</span>(best.four.cyl, car.name)</code></pre></div>
-<p>While this works fine, it clutters the work environment with variables you won’t need to use again, and which can potentially step on one anothers toes. It can help with readability (the results of each step is explicit), but those extra variables make it harder to modify and change the algorithm later (you have to change them in two places).</p>
+best_car_name &lt;-<span class="st"> </span><span class="kw">select</span>(best_four_cyl, car_name)</code></pre></div>
+<p>While this works fine, it clutters the work environment with variables you won’t need to use again, and which can potentially step on one another’s toes. It can help with readability (the results of each step is explicit), but those extra variables make it harder to modify and change the algorithm later (you have to change them in two places).</p>
 <p>An alternative to saving each step as a distinct, named variable would be to utilize <strong>anonymous variables</strong> and write the desired statements <strong>nested</strong> within other functions. For example, you could write the algorithm above as follows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Preparation: add a column that is the car name</span>
-mtcars.named &lt;-<span class="st"> </span><span class="kw">mutate</span>(mtcars, <span class="dt">car.name =</span> <span class="kw">row.names</span>(mtcars))
+mtcars_named &lt;-<span class="st"> </span><span class="kw">mutate</span>(mtcars, <span class="dt">car_name =</span> <span class="kw">row.names</span>(mtcars))
 
 <span class="co"># Write a nested operation to return the best car name</span>
-best.car.name &lt;-<span class="st"> </span><span class="kw">select</span>(  <span class="co"># 3. Select car name of the car</span>
-                  <span class="kw">filter</span>(  <span class="co"># 2. Filter down to the one with the highest mpg</span>
-                    <span class="kw">filter</span>( <span class="co"># 1. Filter down to only four cylinder cars</span>
-                      mtcars.named,  <span class="co"># arguments for the Step 1 filter</span>
-                      cyl <span class="op">==</span><span class="st"> </span><span class="dv">4</span>
-                    ),
-                    mpg <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(mpg)  <span class="co"># other arguments for the Step 2 filter</span>
-                  ),
-                  car.name  <span class="co"># other arguments for the Step 3 select</span>
-                )</code></pre></div>
+best_car_name &lt;-<span class="st"> </span><span class="kw">select</span>( <span class="co"># 3. Select car name of the car</span>
+  <span class="kw">filter</span>( <span class="co"># 2. Filter down to the one with the highest mpg</span>
+    <span class="kw">filter</span>( <span class="co"># 1. Filter down to only four cylinder cars</span>
+      mtcars_named, <span class="co"># arguments for the Step 1 filter</span>
+      cyl <span class="op">==</span><span class="st"> </span><span class="dv">4</span>
+    ),
+    mpg <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(mpg) <span class="co"># other arguments for the Step 2 filter</span>
+  ),
+  car_name <span class="co"># other arguments for the Step 3 select</span>
+)</code></pre></div>
 <p>This version uses <em>anonymous variables</em>—result values which are not assigned to names (so are anonymous), but instead are immediately used as the arguments to another function. You’ve used these frequently with the <code>print()</code> function and with filters (those vectors of <code>TRUE</code> and <code>FALSE</code> values)—and even the <code>max(mpg)</code> in the Step 2 filter is an anonymous variable!</p>
 <p>This <em>nested</em> version performs the same results as the <em>temporary variable</em> version without creating the extra variables, but even with only 3 steps it can get quite complicated to read—in a large part because you have to think about it “inside out”, with the stuff in the middle evaluating first. This will obviously become undecipherable for more involved operations.</p>
 <div id="the-pipe-operator" class="section level3">
@@ -608,11 +610,11 @@ best.car.name &lt;-<span class="st"> </span><span class="kw">select</span>(  <sp
 <span class="st">  </span><span class="kw">print</span>()  <span class="co"># which becomes the _first_ argument to the next function</span></code></pre></div>
 <p>Or as another version of the above data wrangling:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Preparation: add a column that is the car name</span>
-mtcars.named &lt;-<span class="st"> </span><span class="kw">mutate</span>(mtcars, <span class="dt">car.name =</span> <span class="kw">row.names</span>(mtcars))
+mtcars_named &lt;-<span class="st"> </span><span class="kw">mutate</span>(mtcars, <span class="dt">car_name =</span> <span class="kw">row.names</span>(mtcars))
 
-best.car.name &lt;-<span class="st"> </span><span class="kw">filter</span>(mtcars.named, cyl <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># Step 1</span>
-<span class="st">  </span><span class="kw">filter</span>(mpg <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(mpg)) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># Step 2</span>
-<span class="st">  </span><span class="kw">select</span>(car.name)  <span class="co"># Step 3</span></code></pre></div>
+best_car_name &lt;-<span class="st"> </span><span class="kw">filter</span>(mtcars_named, cyl <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Step 1</span>
+<span class="st">  </span><span class="kw">filter</span>(mpg <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(mpg)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Step 2</span>
+<span class="st">  </span><span class="kw">select</span>(car_name) <span class="co"># Step 3</span></code></pre></div>
 <ul>
 <li>Yes, the <code>%&gt;%</code> operator is awkward to type and takes some getting use to (especially compared to the command-line’s use of <code>|</code> to pipe). However, you can ease the typing by using the <a href="https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts">RStudio keyboard shortcut</a> <code>cmd + shift + m</code>.</li>
 </ul>
@@ -624,7 +626,7 @@ best.car.name &lt;-<span class="st"> </span><span class="kw">filter</span>(mtcar
 <p><code>dplyr</code> functions are powerful, but they are truly awesome when you can apply them to <strong>groups of rows</strong> within a data set. For example, the above use of <code>summarize()</code> isn’t particularly useful since it just gives a single summary for a given column (which you could have done anyway). However, a <strong>grouped</strong> operation would allow you to compute the same summary measure (<code>mean</code>, <code>median</code>, <code>sum</code>, etc.) automatically for multiple groups of rows, enabling you to ask more nuanced questions about your data set.</p>
 <p>The <strong><code>group_by()</code></strong> operation allows you to break a data frame down into <em>groups</em> of rows, which can then have the other verbs (e.g., <code>summarize</code>, <code>filter</code>, etc). applied to each one.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get summary statistics by city</span>
-city.summary &lt;-<span class="st"> </span><span class="kw">group_by</span>(pollution, city) <span class="op">%&gt;%</span>
+city_summary &lt;-<span class="st"> </span><span class="kw">group_by</span>(pollution, city) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarize</span>( <span class="co"># first argument (the data frame) is received from the pipe</span>
     <span class="dt">mean =</span> <span class="kw">mean</span>(amount),
     <span class="dt">sum =</span> <span class="kw">sum</span>(amount),
@@ -640,7 +642,7 @@ city.summary &lt;-<span class="st"> </span><span class="kw">group_by</span>(poll
 </blockquote>
 <p>This simple question requires computing the mean for different subsets of the data. Rather than explicitly breaking your data into different groups (a.k.a. <em>bins</em> or <em>chunks</em>) and running the same operations on each, you can use the <code>group_by()</code> function to accomplish this in a single command:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Group cars by gear number, then compute the mean and median mpg</span>
-gear.summary &lt;-<span class="st"> </span><span class="kw">group_by</span>(mtcars, gear) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># group by gear</span>
+gear_summary &lt;-<span class="st"> </span><span class="kw">group_by</span>(mtcars, gear) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># group by gear</span>
 <span class="st">                 </span><span class="kw">summarize</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(mpg))  <span class="co"># calculate mean</span>
 <span class="co"># Computing the difference between scores is done elsewhere (or by hand!)</span></code></pre></div>
 <p>Thus grouping can allow you to quickly and easily compare different subsets of your data!</p>
@@ -660,40 +662,40 @@ gear.summary &lt;-<span class="st"> </span><span class="kw">group_by</span>(mtca
 <img src="img/dplyr/left_join.png" title="Diagram of the left_join() function" alt="Diagram of the left_join() function (by Nathan Stephens)." />
 <p class="caption">Diagram of the <code>left_join()</code> function (by Nathan Stephens).</p>
 </div>
-<p>To understand how this works, consider a specific example where you have a table of student ids and the students’ contact information. You also have a separate table of student ids and the students’ majors (your institution very well may store this information in separate tables for privacy or organizational reasons).</p>
+<p>To understand how this works, consider a specific example where you have a table of student_ids and the students’ contact information. You also have a separate table of student_ids and the students’ majors (your institution very well may store this information in separate tables for privacy or organizational reasons).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Table of contact information</span>
-student.contact &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
-    <span class="dt">student.id =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>),  <span class="co"># id numbers</span>
-    <span class="dt">email =</span> <span class="kw">c</span>(<span class="st">&quot;id1@school.edu&quot;</span>, <span class="st">&quot;id2@school.edu&quot;</span>, <span class="st">&quot;id3@school.edu&quot;</span>, <span class="st">&quot;id4@school.edu&quot;</span>)
+student_contact &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+  <span class="dt">student_id =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="co"># id numbers</span>
+  <span class="dt">email =</span> <span class="kw">c</span>(<span class="st">&quot;id1@school.edu&quot;</span>, <span class="st">&quot;id2@school.edu&quot;</span>, <span class="st">&quot;id3@school.edu&quot;</span>, <span class="st">&quot;id4@school.edu&quot;</span>)
 )
 
 <span class="co"># Table of information about majors</span>
-student.majors &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
-  <span class="dt">student.id =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),  <span class="co"># id numbers</span>
-  <span class="dt">major =</span> <span class="kw">c</span>(<span class="st">&#39;sociology&#39;</span>, <span class="st">&#39;math&#39;</span>, <span class="st">&#39;biology&#39;</span>)
+student_majors &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+  <span class="dt">student_id =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="co"># id numbers</span>
+  <span class="dt">major =</span> <span class="kw">c</span>(<span class="st">&quot;sociology&quot;</span>, <span class="st">&quot;math&quot;</span>, <span class="st">&quot;biology&quot;</span>)
 )</code></pre></div>
-<p>Notice that both tables have a <code>student.id</code> column, allowing you to “match” the rows from the <code>student.contact</code> table to the <code>student.majors</code> table and merge them together:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Join tables by the student.id column</span>
-merged.student.info &lt;-<span class="st"> </span><span class="kw">left_join</span>(student.contact, student.majors)
-                        <span class="co">#    student.id          email     major</span>
+<p>Notice that both tables have a <code>student_id</code> column, allowing you to “match” the rows from the <code>student_contact</code> table to the <code>student_majors</code> table and merge them together:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Join tables by the student_id column</span>
+merged_student_info &lt;-<span class="st"> </span><span class="kw">left_join</span>(student_contact, student_majors)
+                        <span class="co">#    student_id          email     major</span>
                         <span class="co"># 1          1 id1@school.edu sociology</span>
                         <span class="co"># 2          2 id2@school.edu      math</span>
                         <span class="co"># 3          3 id3@school.edu   biology</span>
                         <span class="co"># 4          4  id4@school.edu      &lt;NA&gt;</span></code></pre></div>
-<p>When you perform this <strong>left join</strong>, R goes through each row in the table on the “left” (the first argument), looking at the shared column(s) (<code>student.id</code>). For each row, it looks for a corresponding value in <code>student.majors$student.id</code>, and if it finds one then it adds any data from columns that are in <code>student.majors</code> but <em>not</em> in <code>student.contact</code> (e.g., <code>major</code>) to new columns in the resulting table, with values from whatever the matching row was. Thus student #1 is given a <code>major</code> of “sociology”, student #2 is given a <code>major</code> of “math”, and student #4 is given a <code>major</code> of <code>NA</code> (because that student had no corresponding row in <code>student.majors</code>!)</p>
+<p>When you perform this <strong>left join</strong>, R goes through each row in the table on the “left” (the first argument), looking at the shared column(s) (<code>student_id</code>). For each row, it looks for a corresponding value in <code>student_majors$student_id</code>, and if it finds one then it adds any data from columns that are in <code>student_majors</code> but <em>not</em> in <code>student_contact</code> (e.g., <code>major</code>) to new columns in the resulting table, with values from whatever the matching row was. Thus student #1 is given a <code>major</code> of “sociology”, student #2 is given a <code>major</code> of “math”, and student #4 is given a <code>major</code> of <code>NA</code> (because that student had no corresponding row in <code>student_majors</code>!)</p>
 <ul>
 <li>In short, a <strong>left join</strong> returns all of the rows from the <em>first</em> table, with all of the columns from <em>both</em> tables.</li>
 </ul>
 <p>R will join tables by any and all shared columns. However, if the names of your columns don’t match specifically, you can also specify a <code>by</code> argument indicating which columns should be used for the matching:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Use the named `by` argument to specify (a vector of) columns to match on</span>
-<span class="kw">left_join</span>(student.contact, student.majors, <span class="dt">by=</span><span class="st">&quot;student.id&quot;</span>)</code></pre></div>
+<span class="kw">left_join</span>(student_contact, student_majors, <span class="dt">by=</span><span class="st">&quot;student_id&quot;</span>)</code></pre></div>
 <ul>
 <li>With the <code>by</code> argument, column name <em>is</em> a string (in quotes) because you’re specifying a vector of column names (the string literal is a vector length 1).</li>
 </ul>
 <p>Notice that because of how a left join is defined, <strong>the argument order matters!</strong> The resulting table only has rows for elements in the <em>left</em> (first) table; any unmatched elements in the second table are lost. If you switch the order of the operands, you would only have information for students with majors:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Join tables by the student.id column</span>
-merged.student.info &lt;-<span class="st"> </span><span class="kw">left_join</span>(student.majors, student.contact)  <span class="co"># switched order!</span>
-                        <span class="co">#   student.id     major          email</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Join tables by the student_id column</span>
+merged_student_info &lt;-<span class="st"> </span><span class="kw">left_join</span>(student_majors, student_contact)  <span class="co"># switched order!</span>
+                        <span class="co">#   student_id     major          email</span>
                         <span class="co"># 1          1 sociology id1@school.edu</span>
                         <span class="co"># 2          2      math id2@school.edu</span>
                         <span class="co"># 3          3   biology id3@school.edu</span></code></pre></div>
@@ -717,21 +719,21 @@ merged.student.info &lt;-<span class="st"> </span><span class="kw">left_join</sp
 mpg &lt;-<span class="st"> </span><span class="kw">select</span>(mtcars, mpg)
 
 <span class="co"># &quot;Standard-evaluation&quot; version (same result)</span>
-mpg &lt;-<span class="st"> </span><span class="kw">select</span>(mtcars, <span class="st">&#39;mpg&#39;</span>)  <span class="co"># with quotes! &#39;mpg&#39; is a normal value!</span>
+mpg &lt;-<span class="st"> </span><span class="kw">select</span>(mtcars, <span class="st">&quot;mpg&quot;</span>) <span class="co"># with quotes! &quot;mpg&quot; is a normal value!</span>
 
 <span class="co"># Make the column name a variable</span>
-which.col &lt;-<span class="st"> &#39;mpg&#39;</span>
-my.column &lt;-<span class="st"> </span><span class="kw">select</span>(mtcars, which.col)</code></pre></div>
+which_col &lt;-<span class="st"> &quot;mpg&quot;</span>
+my_column &lt;-<span class="st"> </span><span class="kw">select</span>(mtcars, which_col)</code></pre></div>
 <p>However, this NSE can sometimes trip you up when using more complex functions such as <code>summarize()</code> or <code>group_by()</code>, or when you want to create your own functions that use NSE.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">which.col &lt;-<span class="st"> &#39;mpg&#39;</span>
-<span class="kw">summarize</span>(mtcars, <span class="dt">avg =</span> <span class="kw">mean</span>(which.col))  <span class="co"># In mean.default(which.col) :</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">which_col &lt;-<span class="st"> &quot;mpg&quot;</span>
+<span class="kw">summarize</span>(mtcars, <span class="dt">avg =</span> <span class="kw">mean</span>(which_col))  <span class="co"># In mean.default(which_col) :</span>
                             <span class="co"># argument is not numeric or logical: returning NA</span></code></pre></div>
-<p>In this case, the <code>summarize()</code> function is trying to “quote” what we typed in (the <code>which.col</code> variable name&amp;dmash;not it’s <code>mpg</code> value), and then hitting a problem because there is no column of that name (it can’t resolve that column name to a column index).</p>
-<p>To fix this problem, there are two parts: first, you need to explicitly tell R that the <em>value</em> of <code>which.col</code> (<code>mpg</code>) is actually the value that needs to be automatically “quoted”—that is, that <code>mpg</code> is really a variable! Variable names in R are referred to as <a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Symbol-objects"><strong>symbols</strong></a>—a symbol refers to the variable label itself. You can explicitly change a value into a symbol by using the <a href="https://www.rdocumentation.org/packages/rlang/versions/0.1.6/topics/sym"><code>rlang::sym()</code></a> function (the <code>sym()</code> function found in the <code>rlang</code> library; the <code>::</code> indicates that the function belongs to a library).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">which.col.sym &lt;-<span class="st"> </span>rlang<span class="op">::</span><span class="kw">sym</span>(which.col)  <span class="co"># convert to a symbol</span>
-<span class="kw">print</span>(which.col.sym)  <span class="co"># =&gt; mpg (but not in quotes, because it&#39;s not a string!)</span></code></pre></div>
+<p>In this case, the <code>summarize()</code> function is trying to “quote” what we typed in (the <code>which_col</code> variable name&amp;dmash;not it’s <code>mpg</code> value), and then hitting a problem because there is no column of that name (it can’t resolve that column name to a column index).</p>
+<p>To fix this problem, there are two parts: first, you need to explicitly tell R that the <em>value</em> of <code>which_col</code> (<code>mpg</code>) is actually the value that needs to be automatically “quoted”—that is, that <code>mpg</code> is really a variable! Variable names in R are referred to as <a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Symbol-objects"><strong>symbols</strong></a>—a symbol refers to the variable label itself. You can explicitly change a value into a symbol by using the <a href="https://www.rdocumentation.org/packages/rlang/versions/0.1.6/topics/sym"><code>rlang::sym()</code></a> function (the <code>sym()</code> function found in the <code>rlang</code> library; the <code>::</code> indicates that the function belongs to a library).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">which_col_sym &lt;-<span class="st"> </span>rlang<span class="op">::</span><span class="kw">sym</span>(which_col)  <span class="co"># convert to a symbol</span>
+<span class="kw">print</span>(which_col_sym)  <span class="co"># =&gt; mpg (but not in quotes, because it&#39;s not a string!)</span></code></pre></div>
 <p>Second, you will need to tell the <code>summarize()</code> function that it should <em>not</em> quote this symbol (because you’ve already converted it into a variable)—what is called <strong>unquoting</strong>. In <code>dplyr</code>, you “unquote” a parameter to a method by including two exclamation points in front of it:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarize</span>(mtcars, <span class="dt">avg =</span> <span class="kw">mean</span>(<span class="op">!!</span>which.col.sym))  <span class="co"># arranges by the specified column</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarize</span>(mtcars, <span class="dt">avg =</span> <span class="kw">mean</span>(<span class="op">!!</span>which_col_sym))  <span class="co"># arranges by the specified column</span></code></pre></div>
 <p>There are many more details involved in this “quoting/unquoting” process, which are described in <a href="http://dplyr.tidyverse.org/articles/programming.html">this tutorial</a> (though that is currently <a href="http://rpubs.com/lionel-/programming-draft">being updated with better examples</a>).</p>
 <div id="explicit-standard-evaluation" class="section level3">
 <h3><span class="header-section-number">10.6.1</span> Explicit Standard Evaluation</h3>
@@ -743,16 +745,16 @@ mpg &lt;-<span class="st"> </span><span class="kw">select</span>(mtcars, mpg)
 mpg &lt;-<span class="st"> </span><span class="kw">select_</span>(mtcars, <span class="st">&#39;mpg&#39;</span>)  <span class="co"># with quotes! &#39;mpg&#39; is a normal value!</span>
 
 <span class="co"># Normal, non-standard evaluation version of equations</span>
-mean.mpg &lt;-<span class="st"> </span><span class="kw">summarize</span>(mtcars, <span class="kw">mean</span>(mpg))
+mean_mpg &lt;-<span class="st"> </span><span class="kw">summarize</span>(mtcars, <span class="kw">mean</span>(mpg))
 
 <span class="co"># Standard-evaluation version of equations (same result)</span>
-mean.mpg &lt;-<span class="st"> </span><span class="kw">summarize_</span>(mtcars, <span class="st">&#39;mean(mpg)&#39;</span>)
+mean_mpg &lt;-<span class="st"> </span><span class="kw">summarize_</span>(mtcars, <span class="st">&#39;mean(mpg)&#39;</span>)
 
 <span class="co"># Which column you&#39;re interested in</span>
-which.column &lt;-<span class="st"> &#39;mpg&#39;</span>
+which_column &lt;-<span class="st"> &#39;mpg&#39;</span>
 
 <span class="co"># Use standard evaluation to execute function:</span>
-my.column &lt;-<span class="st"> </span><span class="kw">arrange_</span>(mtcars, which.column)</code></pre></div>
+my_column &lt;-<span class="st"> </span><span class="kw">arrange_</span>(mtcars, which_column)</code></pre></div>
 <p class="alert alert-warning">
 Yes, it does feel a bit off that the “normal” way of using <code>dplyr</code> is the “non-standard” way. Remember that using SE is the “different” approach
 </p>
