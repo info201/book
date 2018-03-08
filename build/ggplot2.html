@@ -520,19 +520,20 @@ Examples in this chapter adapted from <a href="http://r4ds.had.co.nz/"><em>R for
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># bar chart of make and model vs. mileage</span>
 
 <span class="co"># quickly (lazily) filter the dataset to a sample of the cars: one of each make/model</span>
-new.cars &lt;-<span class="st"> </span>mpg <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">car =</span> <span class="kw">paste</span>(manufacturer, model)) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># combine make + model</span>
-<span class="st">  </span><span class="kw">distinct</span>(car, <span class="dt">.keep_all=</span><span class="ot">TRUE</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># select one of each cars -- lazy filtering!</span>
-<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>)  <span class="co"># only keep 20 cars</span>
+new_cars &lt;-<span class="st"> </span>mpg <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">car =</span> <span class="kw">paste</span>(manufacturer, model)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># combine make + model</span>
+<span class="st">  </span><span class="kw">distinct</span>(car, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># select one of each cars -- lazy filtering!</span>
+<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>) <span class="co"># only keep 20 cars</span>
 
 <span class="co"># create the plot (you need the `y` mapping since it is not implied by the stat transform of geom_bar)</span>
-<span class="kw">ggplot</span>(new.cars) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>car, <span class="dt">y=</span>hwy), <span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>()  <span class="co"># horizontal bar chart</span></code></pre></div>
+<span class="kw">ggplot</span>(new_cars) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> car, <span class="dt">y =</span> hwy), <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">coord_flip</span>() <span class="co"># horizontal bar chart</span></code></pre></div>
 <p><img src="img/ggplot2/bar_chart-1.png" width="576" /></p>
 <p>Additionally, <code>ggplot2</code> contains <strong><code>stat_</code></strong> functions (e.g., <code>stat_identity</code> for the “identity” transformation) that can be used to specify a layer in the same way a <code>geom</code> does:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># generate a &quot;binned&quot; (grouped) display of highway mileage</span>
 <span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) <span class="op">+</span>
-<span class="st">  </span><span class="kw">stat_bin</span>(<span class="kw">aes</span>(<span class="dt">x=</span>hwy, <span class="dt">color=</span>hwy), <span class="dt">binwidth=</span><span class="dv">4</span>)  <span class="co"># binned into groups of 4 units</span></code></pre></div>
+<span class="st">  </span><span class="kw">stat_bin</span>(<span class="kw">aes</span>(<span class="dt">x =</span> hwy, <span class="dt">color =</span> hwy), <span class="dt">binwidth =</span> <span class="dv">4</span>) <span class="co"># binned into groups of 4 units</span></code></pre></div>
 <p><img src="img/ggplot2/stat_summary-1.png" width="576" /></p>
 <p>Notice the above chart is actually a <a href="https://en.wikipedia.org/wiki/Histogram">histogram</a>! Indeed, almost every <code>stat</code> transformation corresponds to a particular <code>geom</code> (and vice versa) by default. Thus they can often be used interchangeably, depending on how you want to emphasize your layer creation when writing the code.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># these two charts are identical</span>
@@ -584,8 +585,8 @@ new.cars &lt;-<span class="st"> </span>mpg <span class="op">%&gt;%</span><span c
 <p>Similarly, you can use <code>scale_x_log10()</code> to plot on a <a href="https://en.wikipedia.org/wiki/Logarithmic_scale">logarithmic scale</a>.</p>
 <p>You can also use scales to specify the <em>range</em> of values on a axis by passing in a <code>limits</code> argument. This is useful for making sure that multiple graphs share scales or formats.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># subset data by class</span>
-suv =<span class="st"> </span>mpg <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(class <span class="op">==</span><span class="st"> &quot;suv&quot;</span>)  <span class="co"># suvs</span>
-compact =<span class="st"> </span>mpg <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(class <span class="op">==</span><span class="st"> &quot;compact&quot;</span>)  <span class="co"># compact cars</span>
+suv &lt;-<span class="st"> </span>mpg <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(class <span class="op">==</span><span class="st"> &quot;suv&quot;</span>) <span class="co"># suvs</span>
+compact &lt;-<span class="st"> </span>mpg <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(class <span class="op">==</span><span class="st"> &quot;compact&quot;</span>) <span class="co"># compact cars</span>
 
 <span class="co"># scales</span>
 x_scale &lt;-<span class="st"> </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">range</span>(mpg<span class="op">$</span>displ))
@@ -607,7 +608,7 @@ col_scale &lt;-<span class="st"> </span><span class="kw">scale_colour_discrete</
 <h4><span class="header-section-number">13.3.2.1</span> Color Scales</h4>
 <p>A more common scale to change is which set of colors to use in a plot. While you can use scale functions to specify a list of colors to use, a more common option is to use a pre-defined palette from <a href="http://colorbrewer2.org/"><strong>colorbrewer.org</strong></a>. These color sets have been carefully designed to look good and to be viewable to people with certain forms of color blindness. This color scale is specified with the <code>scale_color_brewer()</code> function, passing the <code>palette</code> as an argument.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">color =</span> class), <span class="dt">size=</span><span class="dv">4</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">color =</span> class), <span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_color_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Set3&quot;</span>)</code></pre></div>
 <p><img src="img/ggplot2/brewer_point-1.png" width="576" /></p>
 <p>You can get the palette name from the <em>colorbrewer</em> website by looking at the <code>scheme</code> query parameter in the URL. Or see the diagram <a href="https://bl.ocks.org/mbostock/5577023">here</a> and hover the mouse over each palette for its name.</p>
@@ -647,10 +648,12 @@ col_scale &lt;-<span class="st"> </span><span class="kw">scale_colour_discrete</
 <p>You can add titles and axis labels to a chart using the <strong><code>labs()</code></strong> function (<em>not</em> <code>labels</code>, which is a different R function!):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">color =</span> class)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Fuel Efficiency by Engine Power, 1999-2008&quot;</span>,  <span class="co"># plot title</span>
-       <span class="dt">x =</span> <span class="st">&quot;Engine power (litres displacement)&quot;</span>,  <span class="co"># x-axis label (with units!)</span>
-       <span class="dt">y =</span> <span class="st">&quot;Fuel Efficiency (miles per gallon)&quot;</span>,  <span class="co"># y-axis label (with units!)</span>
-       <span class="dt">color =</span> <span class="st">&quot;Car Type&quot;</span>)  <span class="co"># legend label for the &quot;color&quot; property</span></code></pre></div>
+<span class="st">  </span><span class="kw">labs</span>(
+    <span class="dt">title =</span> <span class="st">&quot;Fuel Efficiency by Engine Power, 1999-2008&quot;</span>, <span class="co"># plot title</span>
+    <span class="dt">x =</span> <span class="st">&quot;Engine power (litres displacement)&quot;</span>, <span class="co"># x-axis label (with units!)</span>
+    <span class="dt">y =</span> <span class="st">&quot;Fuel Efficiency (miles per gallon)&quot;</span>, <span class="co"># y-axis label (with units!)</span>
+    <span class="dt">color =</span> <span class="st">&quot;Car Type&quot;</span>
+  ) <span class="co"># legend label for the &quot;color&quot; property</span></code></pre></div>
 <p><img src="img/ggplot2/labels-1.png" width="576" /></p>
 <p>It is possible to add labels into the plot itself (e.g., to label each point or line) by adding a new <code>geom_text</code> or <code>geom_label</code> to the plot; effectively, you’re plotting an extra set of data which happen to be the variable names:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a data table of each car that has best efficiency of its type</span>

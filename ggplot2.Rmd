@@ -141,14 +141,15 @@ If you look at the above `bar` chart, you'll notice that the the `y` axis was de
 # bar chart of make and model vs. mileage
 
 # quickly (lazily) filter the dataset to a sample of the cars: one of each make/model
-new.cars <- mpg %>% 
-  mutate(car = paste(manufacturer, model)) %>%  # combine make + model
-  distinct(car, .keep_all=TRUE)  %>% # select one of each cars -- lazy filtering!
-  slice(1:20)  # only keep 20 cars
+new_cars <- mpg %>%
+  mutate(car = paste(manufacturer, model)) %>% # combine make + model
+  distinct(car, .keep_all = TRUE) %>% # select one of each cars -- lazy filtering!
+  slice(1:20) # only keep 20 cars
 
 # create the plot (you need the `y` mapping since it is not implied by the stat transform of geom_bar)
-ggplot(new.cars) + 
-  geom_bar(mapping=aes(x=car, y=hwy), stat="identity") + coord_flip()  # horizontal bar chart
+ggplot(new_cars) +
+  geom_bar(mapping = aes(x = car, y = hwy), stat = "identity") +
+  coord_flip() # horizontal bar chart
 ```
 
 Additionally, `ggplot2` contains **`stat_`** functions (e.g., `stat_identity` for the "identity" transformation) that can be used to specify a layer in the same way a `geom` does:
@@ -156,7 +157,7 @@ Additionally, `ggplot2` contains **`stat_`** functions (e.g., `stat_identity` fo
 ```{r stat_summary}
 # generate a "binned" (grouped) display of highway mileage
 ggplot(data = mpg) +
-  stat_bin(aes(x=hwy, color=hwy), binwidth=4)  # binned into groups of 4 units
+  stat_bin(aes(x = hwy, color = hwy), binwidth = 4) # binned into groups of 4 units
 ```
 
 Notice the above chart is actually a [histogram](https://en.wikipedia.org/wiki/Histogram)! Indeed, almost every `stat` transformation corresponds to a particular `geom` (and vice versa) by default. Thus they can often be used interchangeably, depending on how you want to emphasize your layer creation when writing the code.
@@ -233,8 +234,8 @@ You can also use scales to specify the _range_ of values on a axis by passing in
 
 ```{r scale_limit, fig.show='hold', out.width=c('380pt', '380pt')}
 # subset data by class
-suv = mpg %>% filter(class == "suv")  # suvs
-compact = mpg %>% filter(class == "compact")  # compact cars
+suv <- mpg %>% filter(class == "suv") # suvs
+compact <- mpg %>% filter(class == "compact") # compact cars
 
 # scales
 x_scale <- scale_x_continuous(limits = range(mpg$displ))
@@ -261,7 +262,7 @@ A more common scale to change is which set of colors to use in a plot. While you
 
 ```{r brewer_point}
 ggplot(data = mpg) +
-  geom_point(mapping = aes(x = displ, y = hwy, color = class), size=4) +
+  geom_point(mapping = aes(x = displ, y = hwy, color = class), size = 4) +
   scale_color_brewer(palette = "Set3")
 ```
 
@@ -308,10 +309,12 @@ You can add titles and axis labels to a chart using the **`labs()`** function (_
 ```{r labels}
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, color = class)) +
-  labs(title = "Fuel Efficiency by Engine Power, 1999-2008",  # plot title
-       x = "Engine power (litres displacement)",  # x-axis label (with units!)
-       y = "Fuel Efficiency (miles per gallon)",  # y-axis label (with units!)
-       color = "Car Type")  # legend label for the "color" property
+  labs(
+    title = "Fuel Efficiency by Engine Power, 1999-2008", # plot title
+    x = "Engine power (litres displacement)", # x-axis label (with units!)
+    y = "Fuel Efficiency (miles per gallon)", # y-axis label (with units!)
+    color = "Car Type"
+  ) # legend label for the "color" property
 ```
 
 It is possible to add labels into the plot itself (e.g., to label each point or line) by adding a new `geom_text` or `geom_label` to the plot; effectively, you're plotting an extra set of data which happen to be the variable names:
