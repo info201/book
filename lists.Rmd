@@ -7,7 +7,7 @@ A **List** is a lot like a vector, in that it is a _one-dimensional collection o
 
 1. Unlike a vector, you can store elements of _different types_ in a list: e.g., a list can contain numeric data _and_ character string data.
 
-2. Elements in a list can be **tagged** with with names which you can use to easily refer to them&mdash;rather than talking about the list's "element \#1", we can talk about the list's "`first.name` element".
+2. Elements in a list can be **tagged** with with names which you can use to easily refer to them&mdash;rather than talking about the list's "element \#1", we can talk about the list's "`first_name` element".
 
 The second feature is the most significant, as it allows you to use lists to create a type of **map**. In computer programming, a map (or "mapping") is a way of associating one value with another. The most common real-world example is a _dictionary_ or _encyclopedia_: a dictionary associates each word with it's definition&mdash;you can "look up" a definition by using the word itself, rather than needing to look up the 3891st definition in the book. In fact, this same data structure is called a `dictionary` in the Python programming language!
 
@@ -21,10 +21,10 @@ You create a list by using the `list()` function and passing it any number of **
 However, you can (and should) specify the _tags_ for each element in the list by putting the name of the tag (which is like a variable name), followed by an equal symbol (**`=`**), followed by the value you want to go in the list and be associated with that tag. For example:
 
 ```r
-person <- list(first.name = "Ada", job = "Programmer", salary = 78000, in.union = TRUE)
+person <- list(first_name = "Ada", job = "Programmer", salary = 78000, in_union = TRUE)
 ```
 
-This creates a list of 4 elements: `"Ada"` which is tagged with `first.name`, `"Programmer"` which is tagged with `job`, `78000` which is tagged with `salary`, and `TRUE` which is tagged with `in.union`.
+This creates a list of 4 elements: `"Ada"` which is tagged with `first_name`, `"Programmer"` which is tagged with `job`, `78000` which is tagged with `salary`, and `TRUE` which is tagged with `in_union`.
 
 - Note that you can have _vectors_ as elements of a list. In fact, each of these scalar values are really vectors (of length 1)!
 
@@ -33,7 +33,7 @@ This creates a list of 4 elements: `"Ada"` which is tagged with `first.name`, `"
 It is possible to create a list without tagging the elements:
 
 ```r
-person.alt <- list("Ada", "Programmer", 78000, TRUE)
+person_alt <- list("Ada", "Programmer", 78000, TRUE)
 ```
 
 But it will make code harder to read and more error-prone, so isn't as common.
@@ -44,7 +44,7 @@ If you printed out the above `person` list, you would see the following:
 
 ```
 > print(person)
-$first.name
+$first_name
 [1] "Ada"
 
 $job
@@ -53,7 +53,7 @@ $job
 $salary
 [1] 78000
 
-$in.union
+$in_union
 [1] TRUE
 ```
 
@@ -62,9 +62,9 @@ Notice that the output lists each tag name prepended with a dollar sign (**`$`**
 Because list elements are (usually) tagged, you can access them by their tag name rather than by the index number you used with vectors. You do this by using **dollar notation**: you refer to the element with a particular tag in a list by writing the name of the list, followed by a `$`, followed by the element's tag:
 
 ```r
-person <- list(first.name = "Ada", job = "Programmer", salary = 78000, in.union = TRUE)
+person <- list(first_name = "Ada", job = "Programmer", salary = 78000, in_union = TRUE)
 
-person$first.name  # [1] "Ada"
+person$first_name  # [1] "Ada"
 person$salary  # [1] 78000
 ```
 
@@ -75,10 +75,10 @@ You can almost read the dollar sign as like an "apostrophe s" (possessive) in En
 Dollar notation allows list elements to almost be treated as variables in their own right&mdash;for example, you specify that you're talking about the `salary` variable in the `person` list, rather than the `salary` variable in some other list (or not in a list at all).
 
 ```r
-person <- list(first.name = "Ada", job = "Programmer", salary = 78000, in.union = TRUE)
+person <- list(first_name = "Ada", job = "Programmer", salary = 78000, in_union = TRUE)
 
 # use elements as function or operation arguments
-paste(person$job, person$first.name)   # [1] "Programmer Ada"
+paste(person$job, person$first_name)   # [1] "Programmer Ada"
 
 # assign values to list element
 person$job <- "Senior Programmer"  # a promotion!
@@ -92,8 +92,8 @@ print(person$salary)  # [1] 89700
 Note that if you need to, you can get a _vector_ of element tags using the `names()` function:
 
 ```r
-person <- list(first.name = "Ada", job = "Programmer", salary = 78000, in.union = TRUE)
-names(person)  # [1] "first.name" "job"  "salary"  "in.union"
+person <- list(first_name = "Ada", job = "Programmer", salary = 78000, in_union = TRUE)
+names(person)  # [1] "first_name" "job"  "salary"  "in_union"
 ```
 
 - This is useful for understanding the structure of variables that may have come from other data sources.
@@ -113,15 +113,15 @@ animals[[4]]  # Error: subscript out of bounds!
 You can also use double-bracket notation to access an element by its tag if you put a character string (in `""`) of the tag name inside the brackets. This is particularly useful if you want the tag itself to be a variable!
 
 ```r
-person <- list(first.name = "Bob", last.name = "Wong", salary = 77000, in.union = TRUE)
+person <- list(first_name = "Bob", last_name = "Wong", salary = 77000, in_union = TRUE)
 
-person[["first.name"]]  # [1] "Bob"
+person[["first_name"]]  # [1] "Bob"
 person[["salary"]]  # [1] 77000
 
-name.to.use <- "last.name"  # choose name (i.e., based on formality)
-person[[name.to.use]]  # [1] "Wong"
-name.to.use <- "first.name"  # change name to use
-person[[name.to.use]]  # [1] "Bob"
+name_to_use <- "last_name"  # choose name (i.e., based on formality)
+person[[name_to_use]]  # [1] "Wong"
+name_to_use <- "first_name"  # change name to use
+person[[name_to_use]]  # [1] "Bob"
 
 # Can use indices for tagged elements as well!
 person[[1]]  # [1] "Bob"
@@ -134,18 +134,18 @@ person[[4]]  # [1] TRUE
 This is because the single-bracket syntax for vectors isn't actually selecting by index: rather it is **filtering** by whatever vector is inside the brackets (which may be just a single element: the index number to extract). In R, single brackets _always_ mean to filter the collection. So if you put single-brackets after a list, what you're actually doing is getting a filtered **sub-list** of the elements that have those indices, just as single brackets on a vector return a subset of elements in that vector:
 
 ```r
-my.list <- list('A', 201, TRUE, 'rhinoceros')
+my_list <- list('A', 201, TRUE, 'rhinoceros')
 
 # SINGLE brackets returns a list
-my.list[1]
+my_list[1]
             # [[1]]
             # [1] "A"
 
 # DOUBLE brackets returns a vector
-my.list[[1]]  # [1] "A"
+my_list[[1]]  # [1] "A"
 
 # can use any vector as the argument to single brackets, just like with vectors
-my.list[1:3]
+my_list[1:3]
             # [[1]]
             # [1] "A"
             #
@@ -165,7 +165,7 @@ Similarly to vectors, you can add and modify list elements. However, lists also 
 You can add elements to a list simply by assigning a value to a tag (or index) in the list that doesn't yet exist:
 
 ```r
-person <- list(first.name = "Ada", job = "Programmer", salary = 78000, in.union = TRUE)
+person <- list(first_name = "Ada", job = "Programmer", salary = 78000, in_union = TRUE)
 
 # has no `age` element
 person$age  # NULL
@@ -182,9 +182,9 @@ person[[10]] <- "Tenth field"
 You can also remove elements by assiging the special value `NULL` to their tag or index:
 
 ```r
-a.list <- list('A', 201, True)
-a.list[[2]] <- NULL  # remove element #2
-print(a.list)
+a_list <- list('A', 201, True)
+a_list[[2]] <- NULL  # remove element #2
+print(a_list)
             # [[1]]
             # [1] "A"
             #
@@ -203,7 +203,7 @@ In particular, you need to use a function called **`lapply()`** (for _**l**ist a
 people <- list("Sarah", "Amit", "Zhang")
 
 # apply the `toupper()` function to each element in `people`
-people.upper <- lapply(people, toupper)
+people_upper <- lapply(people, toupper)
             # [[1]]
             # [1] "SARAH"
             #
@@ -215,7 +215,7 @@ people.upper <- lapply(people, toupper)
 
 # apply the `paste()` function to each element in `people`,
 # with an addition argument `"dances!"` to each call
-dance.party <- lapply(people, paste, "dances!")
+dance_party <- lapply(people, paste, "dances!")
 ```
 
 - Notice that the second argument to `lapply()` is just the name of the function: not a character string (it's not in `""`). You're also not actually _calling_ that function (there are no `()` after it). Just put the name of the function! After that, you can put any additional arguments you want the applied function to be called with: for example, how many digits to round to, or what value to paste to the end of a string.
@@ -226,7 +226,7 @@ You commonly use `lapply()` with your own custom functions which define what you
 
 ```r
 # A function that prepends "Hello" to any item
-Greet <- function(item) {
+greet <- function(item) {
   return(paste("Hello", item))
 }
 
@@ -234,7 +234,7 @@ Greet <- function(item) {
 people <- list("Sarah", "Amit", "Zhang")
 
 # greet each name
-greetings <- lapply(people, Greet)
+greetings <- lapply(people, greet)
             # [[1]]
             # [1] "Hello Sarah"
             #

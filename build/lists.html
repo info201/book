@@ -420,7 +420,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>A <strong>List</strong> is a lot like a vector, in that it is a <em>one-dimensional collection of data</em>. However, lists have two main differences from vectors:</p>
 <ol style="list-style-type: decimal">
 <li><p>Unlike a vector, you can store elements of <em>different types</em> in a list: e.g., a list can contain numeric data <em>and</em> character string data.</p></li>
-<li><p>Elements in a list can be <strong>tagged</strong> with with names which you can use to easily refer to them—rather than talking about the list’s “element #1”, we can talk about the list’s “<code>first.name</code> element”.</p></li>
+<li><p>Elements in a list can be <strong>tagged</strong> with with names which you can use to easily refer to them—rather than talking about the list’s “element #1”, we can talk about the list’s “<code>first_name</code> element”.</p></li>
 </ol>
 <p>The second feature is the most significant, as it allows you to use lists to create a type of <strong>map</strong>. In computer programming, a map (or “mapping”) is a way of associating one value with another. The most common real-world example is a <em>dictionary</em> or <em>encyclopedia</em>: a dictionary associates each word with it’s definition—you can “look up” a definition by using the word itself, rather than needing to look up the 3891st definition in the book. In fact, this same data structure is called a <code>dictionary</code> in the Python programming language!</p>
 <p>Lists are extremely useful for organizing data. They allow you to group together data like a person’s name (characters), job title (characters), salary (number), and whether they are in a union (logical)—and you don’t have to remember whether whether the person’s name or title was the first element!</p>
@@ -431,21 +431,21 @@ Note: <em>technically</em>, you can create named elements in a vector, but this 
 <h3><span class="header-section-number">8.1.1</span> Creating Lists</h3>
 <p>You create a list by using the <code>list()</code> function and passing it any number of <strong>arguments</strong> (separated by commas) that you want to make up that list—similar to the <code>c()</code> functon for vectors.</p>
 <p>However, you can (and should) specify the <em>tags</em> for each element in the list by putting the name of the tag (which is like a variable name), followed by an equal symbol (<strong><code>=</code></strong>), followed by the value you want to go in the list and be associated with that tag. For example:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first.name =</span> <span class="st">&quot;Ada&quot;</span>, <span class="dt">job =</span> <span class="st">&quot;Programmer&quot;</span>, <span class="dt">salary =</span> <span class="dv">78000</span>, <span class="dt">in.union =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<p>This creates a list of 4 elements: <code>&quot;Ada&quot;</code> which is tagged with <code>first.name</code>, <code>&quot;Programmer&quot;</code> which is tagged with <code>job</code>, <code>78000</code> which is tagged with <code>salary</code>, and <code>TRUE</code> which is tagged with <code>in.union</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first_name =</span> <span class="st">&quot;Ada&quot;</span>, <span class="dt">job =</span> <span class="st">&quot;Programmer&quot;</span>, <span class="dt">salary =</span> <span class="dv">78000</span>, <span class="dt">in_union =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p>This creates a list of 4 elements: <code>&quot;Ada&quot;</code> which is tagged with <code>first_name</code>, <code>&quot;Programmer&quot;</code> which is tagged with <code>job</code>, <code>78000</code> which is tagged with <code>salary</code>, and <code>TRUE</code> which is tagged with <code>in_union</code>.</p>
 <ul>
 <li><p>Note that you can have <em>vectors</em> as elements of a list. In fact, each of these scalar values are really vectors (of length 1)!</p></li>
 <li><p>The use of the <code>=</code> symbol here is an example of assigning a value to a specific named argument. You can actually use this syntax for <em>any</em> function (e.g., rather than listing arguments in order, you can explicit “assign” a value to each argument), but it is more common to just use the normal order of the arguments if there aren’t very many.</p></li>
 </ul>
 <p>It is possible to create a list without tagging the elements:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">person.alt &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;Ada&quot;</span>, <span class="st">&quot;Programmer&quot;</span>, <span class="dv">78000</span>, <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">person_alt &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;Ada&quot;</span>, <span class="st">&quot;Programmer&quot;</span>, <span class="dv">78000</span>, <span class="ot">TRUE</span>)</code></pre></div>
 <p>But it will make code harder to read and more error-prone, so isn’t as common.</p>
 </div>
 <div id="accessing-lists" class="section level3">
 <h3><span class="header-section-number">8.1.2</span> Accessing Lists</h3>
 <p>If you printed out the above <code>person</code> list, you would see the following:</p>
 <pre><code>&gt; print(person)
-$first.name
+$first_name
 [1] &quot;Ada&quot;
 
 $job
@@ -454,21 +454,21 @@ $job
 $salary
 [1] 78000
 
-$in.union
+$in_union
 [1] TRUE</code></pre>
 <p>Notice that the output lists each tag name prepended with a dollar sign (<strong><code>$</code></strong>) symbol, and then on the following line the vector that is the element itself. The <code>$</code> symbol is one of the easiest ways of accessing list elements (which can’t be done with vectors).</p>
 <p>Because list elements are (usually) tagged, you can access them by their tag name rather than by the index number you used with vectors. You do this by using <strong>dollar notation</strong>: you refer to the element with a particular tag in a list by writing the name of the list, followed by a <code>$</code>, followed by the element’s tag:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first.name =</span> <span class="st">&quot;Ada&quot;</span>, <span class="dt">job =</span> <span class="st">&quot;Programmer&quot;</span>, <span class="dt">salary =</span> <span class="dv">78000</span>, <span class="dt">in.union =</span> <span class="ot">TRUE</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first_name =</span> <span class="st">&quot;Ada&quot;</span>, <span class="dt">job =</span> <span class="st">&quot;Programmer&quot;</span>, <span class="dt">salary =</span> <span class="dv">78000</span>, <span class="dt">in_union =</span> <span class="ot">TRUE</span>)
 
-person<span class="op">$</span>first.name  <span class="co"># [1] &quot;Ada&quot;</span>
+person<span class="op">$</span>first_name  <span class="co"># [1] &quot;Ada&quot;</span>
 person<span class="op">$</span>salary  <span class="co"># [1] 78000</span></code></pre></div>
 <p>(See below for other options for accessing list elements).</p>
 <p>You can almost read the dollar sign as like an “apostrophe s” (possessive) in English: so <code>person$salary</code> would mean “the <code>person</code> list<strong>’s</strong> <code>salary</code> value”.</p>
 <p>Dollar notation allows list elements to almost be treated as variables in their own right—for example, you specify that you’re talking about the <code>salary</code> variable in the <code>person</code> list, rather than the <code>salary</code> variable in some other list (or not in a list at all).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first.name =</span> <span class="st">&quot;Ada&quot;</span>, <span class="dt">job =</span> <span class="st">&quot;Programmer&quot;</span>, <span class="dt">salary =</span> <span class="dv">78000</span>, <span class="dt">in.union =</span> <span class="ot">TRUE</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first_name =</span> <span class="st">&quot;Ada&quot;</span>, <span class="dt">job =</span> <span class="st">&quot;Programmer&quot;</span>, <span class="dt">salary =</span> <span class="dv">78000</span>, <span class="dt">in_union =</span> <span class="ot">TRUE</span>)
 
 <span class="co"># use elements as function or operation arguments</span>
-<span class="kw">paste</span>(person<span class="op">$</span>job, person<span class="op">$</span>first.name)   <span class="co"># [1] &quot;Programmer Ada&quot;</span>
+<span class="kw">paste</span>(person<span class="op">$</span>job, person<span class="op">$</span>first_name)   <span class="co"># [1] &quot;Programmer Ada&quot;</span>
 
 <span class="co"># assign values to list element</span>
 person<span class="op">$</span>job &lt;-<span class="st"> &quot;Senior Programmer&quot;</span>  <span class="co"># a promotion!</span>
@@ -478,8 +478,8 @@ person<span class="op">$</span>job &lt;-<span class="st"> &quot;Senior Programme
 person<span class="op">$</span>salary &lt;-<span class="st"> </span>person<span class="op">$</span>salary <span class="op">*</span><span class="st"> </span><span class="fl">1.15</span>  <span class="co"># a 15% raise!</span>
 <span class="kw">print</span>(person<span class="op">$</span>salary)  <span class="co"># [1] 89700</span></code></pre></div>
 <p>Note that if you need to, you can get a <em>vector</em> of element tags using the <code>names()</code> function:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first.name =</span> <span class="st">&quot;Ada&quot;</span>, <span class="dt">job =</span> <span class="st">&quot;Programmer&quot;</span>, <span class="dt">salary =</span> <span class="dv">78000</span>, <span class="dt">in.union =</span> <span class="ot">TRUE</span>)
-<span class="kw">names</span>(person)  <span class="co"># [1] &quot;first.name&quot; &quot;job&quot;  &quot;salary&quot;  &quot;in.union&quot;</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first_name =</span> <span class="st">&quot;Ada&quot;</span>, <span class="dt">job =</span> <span class="st">&quot;Programmer&quot;</span>, <span class="dt">salary =</span> <span class="dv">78000</span>, <span class="dt">in_union =</span> <span class="ot">TRUE</span>)
+<span class="kw">names</span>(person)  <span class="co"># [1] &quot;first_name&quot; &quot;job&quot;  &quot;salary&quot;  &quot;in_union&quot;</span></code></pre></div>
 <ul>
 <li>This is useful for understanding the structure of variables that may have come from other data sources.</li>
 </ul>
@@ -494,15 +494,15 @@ animals[[<span class="dv">1</span>]]  <span class="co"># [1] &quot;Aardvark&quot
 animals[[<span class="dv">3</span>]]  <span class="co"># [1] &quot;Camel&quot;</span>
 animals[[<span class="dv">4</span>]]  <span class="co"># Error: subscript out of bounds!</span></code></pre></div>
 <p>You can also use double-bracket notation to access an element by its tag if you put a character string (in <code>&quot;&quot;</code>) of the tag name inside the brackets. This is particularly useful if you want the tag itself to be a variable!</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first.name =</span> <span class="st">&quot;Bob&quot;</span>, <span class="dt">last.name =</span> <span class="st">&quot;Wong&quot;</span>, <span class="dt">salary =</span> <span class="dv">77000</span>, <span class="dt">in.union =</span> <span class="ot">TRUE</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first_name =</span> <span class="st">&quot;Bob&quot;</span>, <span class="dt">last_name =</span> <span class="st">&quot;Wong&quot;</span>, <span class="dt">salary =</span> <span class="dv">77000</span>, <span class="dt">in_union =</span> <span class="ot">TRUE</span>)
 
-person[[<span class="st">&quot;first.name&quot;</span>]]  <span class="co"># [1] &quot;Bob&quot;</span>
+person[[<span class="st">&quot;first_name&quot;</span>]]  <span class="co"># [1] &quot;Bob&quot;</span>
 person[[<span class="st">&quot;salary&quot;</span>]]  <span class="co"># [1] 77000</span>
 
-name.to.use &lt;-<span class="st"> &quot;last.name&quot;</span>  <span class="co"># choose name (i.e., based on formality)</span>
-person[[name.to.use]]  <span class="co"># [1] &quot;Wong&quot;</span>
-name.to.use &lt;-<span class="st"> &quot;first.name&quot;</span>  <span class="co"># change name to use</span>
-person[[name.to.use]]  <span class="co"># [1] &quot;Bob&quot;</span>
+name_to_use &lt;-<span class="st"> &quot;last_name&quot;</span>  <span class="co"># choose name (i.e., based on formality)</span>
+person[[name_to_use]]  <span class="co"># [1] &quot;Wong&quot;</span>
+name_to_use &lt;-<span class="st"> &quot;first_name&quot;</span>  <span class="co"># change name to use</span>
+person[[name_to_use]]  <span class="co"># [1] &quot;Bob&quot;</span>
 
 <span class="co"># Can use indices for tagged elements as well!</span>
 person[[<span class="dv">1</span>]]  <span class="co"># [1] &quot;Bob&quot;</span>
@@ -513,18 +513,18 @@ person[[<span class="dv">4</span>]]  <span class="co"># [1] TRUE</span></code></
 <strong>Watch out!</strong>: vectors use <strong><em>single</em></strong>-bracket notation for accessing by index, but lists use <strong><em>double</em></strong>-bracket notation for accessing by index!
 </p>
 <p>This is because the single-bracket syntax for vectors isn’t actually selecting by index: rather it is <strong>filtering</strong> by whatever vector is inside the brackets (which may be just a single element: the index number to extract). In R, single brackets <em>always</em> mean to filter the collection. So if you put single-brackets after a list, what you’re actually doing is getting a filtered <strong>sub-list</strong> of the elements that have those indices, just as single brackets on a vector return a subset of elements in that vector:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&#39;A&#39;</span>, <span class="dv">201</span>, <span class="ot">TRUE</span>, <span class="st">&#39;rhinoceros&#39;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&#39;A&#39;</span>, <span class="dv">201</span>, <span class="ot">TRUE</span>, <span class="st">&#39;rhinoceros&#39;</span>)
 
 <span class="co"># SINGLE brackets returns a list</span>
-my.list[<span class="dv">1</span>]
+my_list[<span class="dv">1</span>]
             <span class="co"># [[1]]</span>
             <span class="co"># [1] &quot;A&quot;</span>
 
 <span class="co"># DOUBLE brackets returns a vector</span>
-my.list[[<span class="dv">1</span>]]  <span class="co"># [1] &quot;A&quot;</span>
+my_list[[<span class="dv">1</span>]]  <span class="co"># [1] &quot;A&quot;</span>
 
 <span class="co"># can use any vector as the argument to single brackets, just like with vectors</span>
-my.list[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]
+my_list[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]
             <span class="co"># [[1]]</span>
             <span class="co"># [1] &quot;A&quot;</span>
             <span class="co">#</span>
@@ -540,7 +540,7 @@ my.list[<span class="dv">1</span><span class="op">:</span><span class="dv">3</sp
 <h3><span class="header-section-number">8.1.4</span> Modifying Lists</h3>
 <p>Similarly to vectors, you can add and modify list elements. However, lists also enable you to <em>remove</em> elements.</p>
 <p>You can add elements to a list simply by assigning a value to a tag (or index) in the list that doesn’t yet exist:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first.name =</span> <span class="st">&quot;Ada&quot;</span>, <span class="dt">job =</span> <span class="st">&quot;Programmer&quot;</span>, <span class="dt">salary =</span> <span class="dv">78000</span>, <span class="dt">in.union =</span> <span class="ot">TRUE</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first_name =</span> <span class="st">&quot;Ada&quot;</span>, <span class="dt">job =</span> <span class="st">&quot;Programmer&quot;</span>, <span class="dt">salary =</span> <span class="dv">78000</span>, <span class="dt">in_union =</span> <span class="ot">TRUE</span>)
 
 <span class="co"># has no `age` element</span>
 person<span class="op">$</span>age  <span class="co"># NULL</span>
@@ -553,9 +553,9 @@ person<span class="op">$</span>age  <span class="co"># [1] 40</span>
 person[[<span class="dv">10</span>]] &lt;-<span class="st"> &quot;Tenth field&quot;</span>
 <span class="co"># elements 6-9 will be NULL</span></code></pre></div>
 <p>You can also remove elements by assiging the special value <code>NULL</code> to their tag or index:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a.list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&#39;A&#39;</span>, <span class="dv">201</span>, True)
-a.list[[<span class="dv">2</span>]] &lt;-<span class="st"> </span><span class="ot">NULL</span>  <span class="co"># remove element #2</span>
-<span class="kw">print</span>(a.list)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&#39;A&#39;</span>, <span class="dv">201</span>, True)
+a_list[[<span class="dv">2</span>]] &lt;-<span class="st"> </span><span class="ot">NULL</span>  <span class="co"># remove element #2</span>
+<span class="kw">print</span>(a_list)
             <span class="co"># [[1]]</span>
             <span class="co"># [1] &quot;A&quot;</span>
             <span class="co">#</span>
@@ -571,7 +571,7 @@ a.list[[<span class="dv">2</span>]] &lt;-<span class="st"> </span><span class="o
 people &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;Sarah&quot;</span>, <span class="st">&quot;Amit&quot;</span>, <span class="st">&quot;Zhang&quot;</span>)
 
 <span class="co"># apply the `toupper()` function to each element in `people`</span>
-people.upper &lt;-<span class="st"> </span><span class="kw">lapply</span>(people, toupper)
+people_upper &lt;-<span class="st"> </span><span class="kw">lapply</span>(people, toupper)
             <span class="co"># [[1]]</span>
             <span class="co"># [1] &quot;SARAH&quot;</span>
             <span class="co">#</span>
@@ -583,14 +583,14 @@ people.upper &lt;-<span class="st"> </span><span class="kw">lapply</span>(people
 
 <span class="co"># apply the `paste()` function to each element in `people`,</span>
 <span class="co"># with an addition argument `&quot;dances!&quot;` to each call</span>
-dance.party &lt;-<span class="st"> </span><span class="kw">lapply</span>(people, paste, <span class="st">&quot;dances!&quot;</span>)</code></pre></div>
+dance_party &lt;-<span class="st"> </span><span class="kw">lapply</span>(people, paste, <span class="st">&quot;dances!&quot;</span>)</code></pre></div>
 <ul>
 <li>Notice that the second argument to <code>lapply()</code> is just the name of the function: not a character string (it’s not in <code>&quot;&quot;</code>). You’re also not actually <em>calling</em> that function (there are no <code>()</code> after it). Just put the name of the function! After that, you can put any additional arguments you want the applied function to be called with: for example, how many digits to round to, or what value to paste to the end of a string.</li>
 </ul>
 <p>Note that the <code>lapply()</code> function returns a <em>new</em> list; the original one is unmodified (though if the list contains vectors or other lists as elements, it’s possible for those values to be changed). This makes it a <strong>mapping</strong> operation (applied to the maps that are lists).</p>
 <p>You commonly use <code>lapply()</code> with your own custom functions which define what you want to do to a single element in that list:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># A function that prepends &quot;Hello&quot; to any item</span>
-Greet &lt;-<span class="st"> </span><span class="cf">function</span>(item) {
+greet &lt;-<span class="st"> </span><span class="cf">function</span>(item) {
   <span class="kw">return</span>(<span class="kw">paste</span>(<span class="st">&quot;Hello&quot;</span>, item))
 }
 
@@ -598,7 +598,7 @@ Greet &lt;-<span class="st"> </span><span class="cf">function</span>(item) {
 people &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;Sarah&quot;</span>, <span class="st">&quot;Amit&quot;</span>, <span class="st">&quot;Zhang&quot;</span>)
 
 <span class="co"># greet each name</span>
-greetings &lt;-<span class="st"> </span><span class="kw">lapply</span>(people, Greet)
+greetings &lt;-<span class="st"> </span><span class="kw">lapply</span>(people, greet)
             <span class="co"># [[1]]</span>
             <span class="co"># [1] &quot;Hello Sarah&quot;</span>
             <span class="co">#</span>
