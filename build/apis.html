@@ -466,18 +466,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h4><span class="header-section-number">11.2.1.2</span> Access Tokens and API Keys</h4>
 <p>Many web services require you to register with them in order to send them requests. This allows them to limit access to the data, as well as to keep track of who is asking for what data (usually so that if someone starts “spamming” the service, they can be blocked).</p>
 <p>To facilitate this tracking, many services provide <strong>Access Tokens</strong> (also called <strong>API Keys</strong>). These are unique strings of letters and numbers that identify a particular developer (like a secret password that only works for you). Web services will require you to include your <em>access token</em> as a query parameter in the request; the exact name of the parameter varies, but it often looks like <code>access_token</code> or <code>api_key</code>. When exploring a web service, keep an eye out for whether they require such tokens.</p>
-<p><em>Access tokens</em> act a lot like passwords; you will want to keep them secret and not share them with others. This means that you <strong>should not include them in your committed files</strong>, so that the passwords don’t get pushed to GitHub and shared with the world. The best way to get around this in R is to create a separate script file in your repo (e.g., <code>apikeys.R</code>) which includes exactly one line: assigning the key to a variable:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># in `apikeys.R`</span>
-api.key &lt;-<span class="st"> &quot;123456789abcdefg&quot;</span></code></pre></div>
+<p><em>Access tokens</em> act a lot like passwords; you will want to keep them secret and not share them with others. This means that you <strong>should not include them in your committed files</strong>, so that the passwords don’t get pushed to GitHub and shared with the world. The best way to get around this in R is to create a separate script file in your repo (e.g., <code>api-keys.R</code>) which includes exactly one line: assigning the key to a variable:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># in `api-keys.R`</span>
+api_key &lt;-<span class="st"> &quot;123456789abcdefg&quot;</span></code></pre></div>
 <p>You can then include this file_name_ in a <strong><code>.gitignore</code></strong> file in your repo; that will keep it from even possibly being committed with your code!</p>
-<p>In order to access this variable in your “main” script, you can use the <code>source()</code> function to load and run your <code>apikeys.R</code> script. This will execute the line of code that assigns the <code>api.key</code> variable, making it available in your environment for your use:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># in `myScript.R`</span>
+<p>In order to access this variable in your “main” script, you can use the <code>source()</code> function to load and run your <code>api-keys.R</code> script. This will execute the line of code that assigns the <code>api_key</code> variable, making it available in your environment for your use:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># in `my-script.R`</span>
 
 <span class="co"># (make sure working directory is set)</span>
 
-<span class="kw">source</span>(<span class="st">&#39;apiKeys.R&#39;</span>)  <span class="co"># load the script</span>
-<span class="kw">print</span>(api.key)  <span class="co"># key is now available!</span></code></pre></div>
-<p>Anyone else who runs the script will simply need to provide an <code>api.key</code> variable to access the API using their key, keeping everyone’s account separate!</p>
+<span class="kw">source</span>(<span class="st">&#39;api-keys.R&#39;</span>)  <span class="co"># load the script</span>
+<span class="kw">print</span>(api_key)  <span class="co"># key is now available!</span></code></pre></div>
+<p>Anyone else who runs the script will simply need to provide an <code>api_key</code> variable to access the API using their key, keeping everyone’s account separate!</p>
 <p class="alert alert-warning">
 Watch out for APIs that mention using <a href="https://en.wikipedia.org/wiki/OAuth">OAuth</a> when explaining API keys. OAuth is a system for performing <strong>authentification</strong>—that is, letting someone log into a website from your application (like what a “Log in with Facebook” button does). OAuth systems require more than one access key, and these keys <strong><em>must</em></strong> be kept secret and usually require you to run a web server to utilize them correctly (which requires lots of extra setup, see <a href="https://cran.r-project.org/web/packages/httr/httr.pdf">the full <code>httr</code> docs</a> for details). So for this course, we encourage you to avoid anything that needs OAuth
 </p>
@@ -517,8 +517,8 @@ Watch out for APIs that mention using <a href="https://en.wikipedia.org/wiki/OAu
 response &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;https://api.github.com/search/repositories?q=d3&amp;sort=forks&quot;</span>)</code></pre></div>
 <p>While it is possible to include <em>query parameters</em> in the URI string, <code>httr</code> also allows you to include them as a <em>list</em>, making it easy to set and change variables (instead of needing to do a complex <code>paste0()</code> operation to produce the correct string):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Equivalent to the above, but easier to read and change</span>
-query.params &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">q =</span> <span class="st">&quot;d3&quot;</span>, <span class="dt">sort =</span> <span class="st">&quot;forks&quot;</span>)
-response &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;https://api.github.com&quot;</span>, <span class="dt">query =</span> query.params)</code></pre></div>
+query_params &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">q =</span> <span class="st">&quot;d3&quot;</span>, <span class="dt">sort =</span> <span class="st">&quot;forks&quot;</span>)
+response &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;https://api.github.com&quot;</span>, <span class="dt">query =</span> query_params)</code></pre></div>
 <p>If you try printing out the <code>response</code> variable, you’ll see information about the response:</p>
 <pre><code>Response [https://api.github.com/?q=d3&amp;sort=forks]
   Date: 2017-10-22 19:05
@@ -549,9 +549,10 @@ body &lt;-<span class="st"> </span><span class="kw">content</span>(response, <sp
   <span class="fu">}</span>
 <span class="fu">}</span></code></pre></div>
 <p>(In JavaScript the period <code>.</code> has special meaning, so it is not used in key names; hence the underscores <code>_</code>). The above is equivalent to the <code>R</code> list:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list</span>(<span class="dt">first_name =</span> <span class="st">&quot;Ada&quot;</span>, <span class="dt">job =</span> <span class="st">&quot;Programmer&quot;</span>, <span class="dt">salary =</span> <span class="dv">78000</span>, <span class="dt">in_union =</span> <span class="ot">TRUE</span>,
-        <span class="dt">favorites =</span> <span class="kw">list</span>(<span class="dt">music =</span> <span class="st">&quot;jazz&quot;</span>, <span class="dt">food =</span> <span class="st">&quot;pizza&quot;</span>)  <span class="co"># nested list in the list!</span>
-    )</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list</span>(
+  <span class="dt">first_name =</span> <span class="st">&quot;Ada&quot;</span>, <span class="dt">job =</span> <span class="st">&quot;Programmer&quot;</span>, <span class="dt">salary =</span> <span class="dv">78000</span>, <span class="dt">in_union =</span> <span class="ot">TRUE</span>,
+  <span class="dt">favorites =</span> <span class="kw">list</span>(<span class="dt">music =</span> <span class="st">&quot;jazz&quot;</span>, <span class="dt">food =</span> <span class="st">&quot;pizza&quot;</span>) <span class="co"># nested list in the list!</span>
+)</code></pre></div>
 <p>Additionally, JSON supports what are called <em>arrays</em> of data. These are like lists without keys (and so are only accessed by index). Key-less arrays are written in square brackets (<strong><code>[ ]</code></strong>), with values separated by commas. For example:</p>
 <div class="sourceCode"><pre class="sourceCode json"><code class="sourceCode json"><span class="ot">[</span><span class="st">&quot;Aardvark&quot;</span><span class="ot">,</span> <span class="st">&quot;Baboon&quot;</span><span class="ot">,</span> <span class="st">&quot;Camel&quot;</span><span class="ot">]</span></code></pre></div>
 <p>which is equvalent to the <code>R</code> list:</p>
@@ -586,48 +587,48 @@ body &lt;-<span class="st"> </span><span class="kw">content</span>(response, <sp
 <span class="kw">library</span>(<span class="st">&quot;jsonlite&quot;</span>)</code></pre></div>
 <p><code>jsonlite</code> provides a function called <strong><code>fromJSON()</code></strong> that allows you to convert a JSON string into a list—or even a data frame if the columns have the right lengths!</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># send request for albums by David Bowie</span>
-query.params &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">q =</span> <span class="st">&quot;d3&quot;</span>, <span class="dt">sort =</span> <span class="st">&quot;forks&quot;</span>)
-response &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;https://api.github.com&quot;</span>, <span class="dt">query =</span> query.params)
+query_params &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">q =</span> <span class="st">&quot;d3&quot;</span>, <span class="dt">sort =</span> <span class="st">&quot;forks&quot;</span>)
+response &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;https://api.github.com&quot;</span>, <span class="dt">query =</span> query_params)
 body &lt;-<span class="st"> </span><span class="kw">content</span>(response, <span class="st">&quot;text&quot;</span>)  <span class="co"># extract the body JSON</span>
-parsed.data &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(body)  <span class="co"># convert the JSON string to a list</span></code></pre></div>
-<p>The <code>parsed.data</code> will contain a <em>list</em> built out of the JSON. Depending on the complexity of the JSON, this may already be a data frame you can <code>View()</code>… but more likely you’ll need to <em>explore</em> the list more to locate the “main” data you are interested in. Good strategies for this include:</p>
+parsed_data &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(body)  <span class="co"># convert the JSON string to a list</span></code></pre></div>
+<p>The <code>parsed_data</code> will contain a <em>list</em> built out of the JSON. Depending on the complexity of the JSON, this may already be a data frame you can <code>View()</code>… but more likely you’ll need to <em>explore</em> the list more to locate the “main” data you are interested in. Good strategies for this include:</p>
 <ul>
 <li>You can <code>print()</code> the data, but that is often hard to read (it requires a lot of scrolling).</li>
 <li>The <code>str()</code> method will produce a more organized printed list, though it can still be hard to read.</li>
 <li>The <code>names()</code> method will let you see a list of the what keys the list has, which is good for delving into the data.</li>
 </ul>
 <p>As an example continuing the above code:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.data.frame</span>(parsed.data)  <span class="co"># FALSE; not a data frame you can work with</span>
-<span class="kw">names</span>(parsed.data)  <span class="co"># &quot;href&quot; &quot;items&quot; &quot;limit&quot; &quot;next&quot; &quot;offset&quot; &quot;previous&quot; &quot;total&quot;</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.data.frame</span>(parsed_data)  <span class="co"># FALSE; not a data frame you can work with</span>
+<span class="kw">names</span>(parsed_data)  <span class="co"># &quot;href&quot; &quot;items&quot; &quot;limit&quot; &quot;next&quot; &quot;offset&quot; &quot;previous&quot; &quot;total&quot;</span>
   <span class="co"># looking at the JSON data itself (e.g., in the browser), `items` is the</span>
   <span class="co"># key that contains the value we want</span>
 
-items &lt;-<span class="st"> </span>parsed.data<span class="op">$</span>items  <span class="co"># extract that element from the list</span>
+items &lt;-<span class="st"> </span>parsed_data<span class="op">$</span>items  <span class="co"># extract that element from the list</span>
 <span class="kw">is.data.frame</span>(items)  <span class="co"># TRUE; you can work with that!</span></code></pre></div>
 </div>
 <div id="flattening-data" class="section level3">
 <h3><span class="header-section-number">11.4.2</span> Flattening Data</h3>
 <p>Because JSON supports—and in fact encourages—nested lists (lists within lists), parsing a JSON string is likely to produce a data frame whose columns <em>are themselves data frames</em>. As an example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># A somewhat contrived example</span>
-people &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">names =</span> <span class="kw">c</span>(<span class="st">&#39;Spencer&#39;</span>, <span class="st">&#39;Jessica&#39;</span>, <span class="st">&#39;Keagan&#39;</span>))  <span class="co"># a data frame with one column</span>
+people &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">names =</span> <span class="kw">c</span>(<span class="st">&quot;Spencer&quot;</span>, <span class="st">&quot;Jessica&quot;</span>, <span class="st">&quot;Keagan&quot;</span>)) <span class="co"># a data frame with one column</span>
 
-favorites &lt;-<span class="st"> </span><span class="kw">data.frame</span>(  <span class="co"># a data frame with two columns</span>
-                <span class="dt">food =</span> <span class="kw">c</span>(<span class="st">&#39;Pizza&#39;</span>, <span class="st">&#39;Pasta&#39;</span>, <span class="st">&#39;salad&#39;</span>),
-                <span class="dt">music =</span> <span class="kw">c</span>(<span class="st">&#39;Bluegrass&#39;</span>, <span class="st">&#39;Indie&#39;</span>, <span class="st">&#39;Electronic&#39;</span>)
-            )
+favorites &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="co"># a data frame with two columns</span>
+  <span class="dt">food =</span> <span class="kw">c</span>(<span class="st">&quot;Pizza&quot;</span>, <span class="st">&quot;Pasta&quot;</span>, <span class="st">&quot;salad&quot;</span>),
+  <span class="dt">music =</span> <span class="kw">c</span>(<span class="st">&quot;Bluegrass&quot;</span>, <span class="st">&quot;Indie&quot;</span>, <span class="st">&quot;Electronic&quot;</span>)
+)
 <span class="co"># Store second dataframe as column of first</span>
-people<span class="op">$</span>favorites &lt;-<span class="st"> </span>favorites  <span class="co"># the `favorites` column is a data frame!</span>
+people<span class="op">$</span>favorites &lt;-<span class="st"> </span>favorites <span class="co"># the `favorites` column is a data frame!</span>
 
 <span class="co"># This prints nicely...</span>
 <span class="kw">print</span>(people)
-  <span class="co">#     names favorites.food favorites.music</span>
-  <span class="co"># 1 Spencer          Pizza       Bluegrass</span>
-  <span class="co"># 2 Jessica          Pasta           Indie</span>
-  <span class="co"># 3  Keagan          salad      Electronic</span>
+<span class="co">#     names favorites.food favorites.music</span>
+<span class="co"># 1 Spencer          Pizza       Bluegrass</span>
+<span class="co"># 2 Jessica          Pasta           Indie</span>
+<span class="co"># 3  Keagan          salad      Electronic</span>
 
 <span class="co"># but doesn&#39;t actually work like you expect!</span>
-people<span class="op">$</span>favorites.food  <span class="co"># NULL</span>
-people<span class="op">$</span>favorites<span class="op">$</span>food  <span class="co"># [1] Pizza Pasta salad</span></code></pre></div>
+people<span class="op">$</span>favorites.food <span class="co"># NULL</span>
+people<span class="op">$</span>favorites<span class="op">$</span>food <span class="co"># [1] Pizza Pasta salad</span></code></pre></div>
 <p>Nested data frames make it hard to work with the data using previously established techniques. Luckily, the <code>jsonlite</code> package provides a helpful function for addressing this called <strong><code>flatten()</code></strong>. This function takes the columns of each <em>nested</em> data frame and converts them into appropriately named columns in the “outer” data frame:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">people &lt;-<span class="st"> </span><span class="kw">flatten</span>(people)
 people<span class="op">$</span>favorites.food  <span class="co"># this just got created! Woo!</span></code></pre></div>
