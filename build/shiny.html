@@ -429,18 +429,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><p>The <strong>User Interface (UI)</strong> defines how the application will be <em>displayed</em> in the browser. The UI can render R content such as text or graphics just like R Markdown, but it can also include <strong>widgets</strong>, which are interactive controls for your application (think buttons or sliders). The UI can specify a <strong>layout</strong> for these components (e.g., so you can put widgets above, below, or beside one another).</p>
 <p>The UI for a Shiny application is defined as a <strong>value</strong>, usually one returned from calling a <strong>layout function</strong>. For example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># The ui is the result of calling the `fluidPage()` layout function</span>
-my.ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
+my_ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
   <span class="co"># A widget: a text input box (save input in the `username` key)</span>
-  <span class="kw">textInput</span>(<span class="st">&#39;username&#39;</span>, <span class="dt">label=</span><span class="st">&quot;What is your name?&quot;</span>),
+  <span class="kw">textInput</span>(<span class="st">&quot;username&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;What is your name?&quot;</span>),
 
   <span class="co"># An output element: a text output (for the `message` key)</span>
-  <span class="kw">textOutput</span>(<span class="st">&#39;message&#39;</span>)
+  <span class="kw">textOutput</span>(<span class="st">&quot;message&quot;</span>)
 )</code></pre></div>
 <p>This UI defines a <a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html">fluidPage</a> (where the content flows “fluidly” down the page), that contains two <em>content elements</em>: a text input box where the user can type their name, and some outputted text based on the <code>message</code> variable.</p></li>
 <li><p>The <strong>Server</strong> defines the data that will be displayed through the UI. You can think of this as an interactive R script that the user will be able to “run”: the script will take in <em>inputs</em> from the user (based on their interactions) and provide <em>outputs</em> that the UI will then display. The server uses <strong>reactive expressions</strong>, which are like functions that will automatically be re-run whenever the input changes. This allows the output to be dynamic and interactive.</p>
 <p>The Server for a Shiny application is defined as a <strong>function</strong> (as opposed to the UI which is a <em>value</em>). This function takes in two <em>lists</em> as argments: an <code>input</code> and <code>output</code>. It then uses <em>render functions</em> and <em>reactive expressions</em> that assign values to the <code>output</code> list based on the <code>input</code> list. For example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># The server is a function that takes `input` and `output` args</span>
-my.server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {
+my_server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {
   <span class="co"># assign a value to the `message` key in `output`</span>
   <span class="co"># argument is a reactive expression for showing text</span>
   output<span class="op">$</span>message &lt;-<span class="st"> </span><span class="kw">renderText</span>({
@@ -457,7 +457,7 @@ my.server &lt;-<span class="st"> </span><span class="cf">function</span>(input, 
 <p>There are two ways of combining the UI and server:</p>
 <p>The first (newer) way is to define a file called <strong><code>app.R</code></strong>. This file should call the <a href="http://shiny.rstudio.com/reference/shiny/latest/shinyApp.html"><strong><code>shinyApp()</code></strong></a> function, which takes a UI value and Server function as arguments. For example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># pass in the variables defined above</span>
-<span class="kw">shinyApp</span>(<span class="dt">ui =</span> my.ui, <span class="dt">server =</span> my.server)</code></pre></div>
+<span class="kw">shinyApp</span>(<span class="dt">ui =</span> my_ui, <span class="dt">server =</span> my_server)</code></pre></div>
 <p>Executing the <code>shinyApp()</code> function will start the App (you can also click the <strong>“Run App”</strong> button at the top of RStudio).</p>
 <ul>
 <li><p>Note: if you change the UI or the Server, you do <strong>not</strong> need to stop and start the app; you can simply refresh the browser or viewer window and it will reload with the new UI and server.</p></li>
@@ -466,17 +466,17 @@ my.server &lt;-<span class="st"> </span><span class="cf">function</span>(input, 
 <p>Using this function allows you to define your entire application (UI and Server) in a single file (which <strong>must</strong> be named <code>app.R</code>). This approach is good for simple applications that you wish to be able to share with others, since the entire application code can be listed in a single file.</p>
 <p>However, it is also possible to define the UI and server as <em>separate</em> files. This allows you to keep the presentation (UI) separated from the logic (server) of your application, making it easier to maintain and change in the future. To do this, you define two separate files: <strong><code>ui.R</code></strong> for the UI and <strong><code>server.R</code></strong> for the Server (the files <strong>must</strong> be named <code>ui.R</code> and <code>server.R</code>). In these files, you must call the functions <code>shinyUI()</code> and <code>shinyServer()</code> respectively to create the UI and server, and then RStudio will automatically combine these files together into an application:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># In ui.R file</span>
-my.ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
+my_ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
   <span class="co"># define widgets</span>
 )
 
-<span class="kw">shinyUI</span>(my.ui)</code></pre></div>
+<span class="kw">shinyUI</span>(my_ui)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># In server.R file</span>
-my.server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {
+my_server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {
   <span class="co"># define output reactive expressions</span>
 }
 
-<span class="kw">shinyServer</span>(my.server)</code></pre></div>
+<span class="kw">shinyServer</span>(my_server)</code></pre></div>
 <p>You can then run the app by using the <strong>“Run App”</strong> button at the top of RStudio:</p>
 <div class="figure">
 <img src="img/shiny/run-app.png" title="Run App button" alt="Use RStudio to run a shiny app defined in separate UI and Server files." />
@@ -484,7 +484,7 @@ my.server &lt;-<span class="st"> </span><span class="cf">function</span>(input, 
 </div>
 <p>This chapter will primarily use the “single file” approach for compactness and readability, but you are encouraged to break up the UI and server into separate files for your own, larger applications.</p>
 <ul>
-<li>Note that it is also possible to simply define the (e.g.) <code>my.ui</code> and <code>my.server</code> variables in separate files, and then use <code>source()</code> to load them into the <code>app.R</code> file and pass them into <code>shinyApp()</code>.</li>
+<li>Note that it is also possible to simply define the (e.g.) <code>my_ui</code> and <code>my_server</code> variables in separate files, and then use <code>source()</code> to load them into the <code>app.R</code> file and pass them into <code>shinyApp()</code>.</li>
 </ul>
 </div>
 </div>
@@ -498,7 +498,7 @@ ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(element1, ele
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># still just calling a function with arguments!</span>
 ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
   <span class="kw">h1</span>(<span class="st">&quot;My App&quot;</span>),  <span class="co"># first argument</span>
-  <span class="kw">textInput</span>(<span class="st">&#39;username&#39;</span>, <span class="dt">label=</span><span class="st">&quot;What is your name?&quot;</span>),  <span class="co"># second argument</span>
+  <span class="kw">textInput</span>(<span class="st">&#39;username&#39;</span>, <span class="dt">label =</span> <span class="st">&quot;What is your name?&quot;</span>),  <span class="co"># second argument</span>
   <span class="kw">textOutput</span>(<span class="st">&#39;message&#39;</span>)  <span class="co"># third argument</span>
 )</code></pre></div>
 <p>Note that layout functions <em>themselves return content elements</em>, meaning it is possible to include a layout inside another layout. This allows you to create complex layouts by combining multiple layout elements together. For example:</p>
@@ -552,12 +552,13 @@ Fun Fact: much of Shiny’s styling and layout structure is based on the <a href
 </ul>
 <p>Other arguments may be required by a particular widget—for example, a slider’s <code>min</code> and <code>max</code> values:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># this function would be nested in a layout function (e.g., `fluidPage()`)</span>
-<span class="kw">sliderInput</span>(<span class="st">&#39;age&#39;</span>,              <span class="co"># key this value will be assigned to</span>
-            <span class="st">&quot;Age of subjects&quot;</span>,  <span class="co"># label</span>
-            <span class="dt">min =</span> <span class="dv">18</span>,           <span class="co"># minimum slider value</span>
-            <span class="dt">max =</span> <span class="dv">80</span>,           <span class="co"># maximum slider value</span>
-            <span class="dt">value =</span> <span class="dv">42</span>          <span class="co"># starting value</span>
-           )</code></pre></div>
+<span class="kw">sliderInput</span>(
+  <span class="st">&quot;age&quot;</span>, <span class="co"># key this value will be assigned to</span>
+  <span class="st">&quot;Age of subjects&quot;</span>, <span class="co"># label</span>
+  <span class="dt">min =</span> <span class="dv">18</span>, <span class="co"># minimum slider value</span>
+  <span class="dt">max =</span> <span class="dv">80</span>, <span class="co"># maximum slider value</span>
+  <span class="dt">value =</span> <span class="dv">42</span> <span class="co"># starting value</span>
+)</code></pre></div>
 <p>Widgets are used to provide <strong>inputs <em>to</em></strong> the Server; see the below section for how to use these inputs, as well as examples from <a href="http://shiny.rstudio.com/gallery/">the gallery</a>.</p>
 <p>In order to display <strong>outputs <em>from</em></strong> the Server, you include a <strong>reactive output</strong> element in your UI layout. These are elements similar to the basic content elements, but instead of just displaying <em>static</em> (unchanging) content they can display <em>dynamic</em> (changing) content produced by the Server.</p>
 <p>As with other content elements, reactive outputs are creating by calling an appropriate function. For example:</p>
@@ -586,10 +587,10 @@ Fun Fact: much of Shiny’s styling and layout structure is based on the <a href
 <p>Render functions take as an argument a <strong>Reactive Expression</strong>. This is a lot like a function: it is a <strong>block</strong> of code (in braces <strong><code>{}</code></strong>) that <strong>returns</strong> the value which should be rendered. For example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">output<span class="op">$</span>msg &lt;-<span class="st"> </span><span class="kw">renderText</span>({
   <span class="co"># code goes here, just like any other function</span>
-  my.greeting &lt;-<span class="st"> &quot;Hello&quot;</span>
+  my_greeting &lt;-<span class="st"> &quot;Hello&quot;</span>
 
   <span class="co"># code should always draw upon a key from the `input` variable</span>
-  message &lt;-<span class="st"> </span><span class="kw">paste</span>(my.greeting, input<span class="op">$</span>username)
+  message &lt;-<span class="st"> </span><span class="kw">paste</span>(my_greeting, input<span class="op">$</span>username)
 
   <span class="co"># return the variable that will be rendered</span>
   <span class="kw">return</span>(message)
@@ -605,37 +606,37 @@ This technically defines a <em>closure</em>, which is a programming concept used
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {
   <span class="co"># render a histogram plot</span>
   output<span class="op">$</span>hist &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({
-    uniform.nums &lt;-<span class="st"> </span><span class="kw">runif</span>(input<span class="op">$</span>num, <span class="dv">1</span>, <span class="dv">10</span>)  <span class="co"># random nums between 1 and 10</span>
-    <span class="kw">return</span>(<span class="kw">hist</span>(uniform.nums))  <span class="co"># built-in plotting for simplicity</span>
+    uniform_nums &lt;-<span class="st"> </span><span class="kw">runif</span>(input<span class="op">$</span>num, <span class="dv">1</span>, <span class="dv">10</span>)  <span class="co"># random nums between 1 and 10</span>
+    <span class="kw">return</span>(<span class="kw">hist</span>(uniform_nums))  <span class="co"># built-in plotting for simplicity</span>
   })
 
   <span class="co"># render the counts</span>
   output<span class="op">$</span>counts &lt;-<span class="st"> </span><span class="kw">renderPrint</span>({
-    uniform.nums &lt;-<span class="st"> </span><span class="kw">runif</span>(input<span class="op">$</span>num, <span class="dv">1</span>, <span class="dv">10</span>)  <span class="co"># random nums between 1 and 10</span>
-    counts &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">cut</span>(uniform.nums, <span class="dt">breaks=</span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>))  <span class="co"># factor</span>
+    uniform_nums &lt;-<span class="st"> </span><span class="kw">runif</span>(input<span class="op">$</span>num, <span class="dv">1</span>, <span class="dv">10</span>)  <span class="co"># random nums between 1 and 10</span>
+    counts &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">cut</span>(uniform_nums, <span class="dt">breaks=</span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>))  <span class="co"># factor</span>
     <span class="kw">return</span>(<span class="kw">summary</span>(counts))  <span class="co"># simple vector of counts</span>
   })
 }</code></pre></div>
 <p>If you look at the above example though, you’ll notice that each render function produces a set of random numbers… which means each will produce a <em>different</em> set of numbers! The histogram and the table won’t match!</p>
-<p>This is an example of where you want to share a single piece of data (a single <strong>model</strong>) between multiple different renditions (multiple <strong>views</strong>). Effectively, you want to define a shared variable (the <code>uniform.nums</code>) that can be referenced by both render functions. But since you need that shared variable to be able to <em>update</em> whenever the <code>input</code> changes, you need to make it be a <em>reactive expression</em> itself. You can do this by using the <strong><code>reactive()</code></strong> function:</p>
+<p>This is an example of where you want to share a single piece of data (a single <strong>model</strong>) between multiple different renditions (multiple <strong>views</strong>). Effectively, you want to define a shared variable (the <code>uniform_nums</code>) that can be referenced by both render functions. But since you need that shared variable to be able to <em>update</em> whenever the <code>input</code> changes, you need to make it be a <em>reactive expression</em> itself. You can do this by using the <strong><code>reactive()</code></strong> function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {
   <span class="co"># define a reactive variable</span>
-  uniform.nums &lt;-<span class="st"> </span><span class="kw">reactive</span>({
+  uniform_nums &lt;-<span class="st"> </span><span class="kw">reactive</span>({
     <span class="kw">return</span>(<span class="kw">runif</span>(input<span class="op">$</span>num, <span class="dv">1</span>, <span class="dv">10</span>))  <span class="co"># just like for a render function</span>
   })
 
   <span class="co"># render a histogram plot</span>
   output<span class="op">$</span>hist &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({
-    <span class="kw">return</span>(<span class="kw">hist</span>(<span class="kw">uniform.nums</span>()))  <span class="co"># call the reactive variable AS A FUNCTION</span>
+    <span class="kw">return</span>(<span class="kw">hist</span>(<span class="kw">uniform_nums</span>()))  <span class="co"># call the reactive variable AS A FUNCTION</span>
   })
 
   <span class="co"># render the counts</span>
   output<span class="op">$</span>counts &lt;-<span class="st"> </span><span class="kw">renderPrint</span>({
-    counts &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">cut</span>(<span class="kw">uniform.nums</span>(), <span class="dt">breaks=</span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>))  <span class="co"># call the reactive variable AS A FUNCTION</span>
+    counts &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">cut</span>(<span class="kw">uniform_nums</span>(), <span class="dt">breaks=</span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>))  <span class="co"># call the reactive variable AS A FUNCTION</span>
     <span class="kw">return</span>(<span class="kw">summary</span>(counts))
   })
 }</code></pre></div>
-<p>The <code>reactive()</code> function lets you define a single “variable” that is a <em>reactive function</em> which can be called from within the render functions. Importantly, the value returned by this function (the <code>uniform.nums()</code>) only changes <strong>when a referenced <code>input</code> changes</strong>. Thus as long as <code>input$num</code> stays the same, <code>uniform.nums()</code> will return the same value.</p>
+<p>The <code>reactive()</code> function lets you define a single “variable” that is a <em>reactive function</em> which can be called from within the render functions. Importantly, the value returned by this function (the <code>uniform_nums()</code>) only changes <strong>when a referenced <code>input</code> changes</strong>. Thus as long as <code>input$num</code> stays the same, <code>uniform_nums()</code> will return the same value.</p>
 <p>This is very powerful for allowing multiple <strong>views</strong> of a single piece of data: you can have a single source of data displayed both graphically and textually, with both views linked off of the same processed data table. Additionally, it can help keep your code more organized and readable, and avoid needing to duplicate any processing.</p>
 </div>
 </div>
