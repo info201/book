@@ -433,7 +433,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">9.1.1</span> Creating Data Frames</h3>
 <p>Typically you will <em>load</em> data sets from some external source (see <a href="data-frames.html#csv-files">below</a>), rather than writing out the data by hand. However, it is important to understand that you can construct a data frame by combining multiple vectors. To accomplish this, you can use the <code>data.frame()</code> function, which accepts <strong>vectors</strong> as <em>arguments</em>, and creates a table with a column for each vector. For example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vector of names</span>
-name &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Ada&#39;</span>,<span class="st">&#39;Bob&#39;</span>,<span class="st">&#39;Chris&#39;</span>,<span class="st">&#39;Diya&#39;</span>,<span class="st">&#39;Emma&#39;</span>)
+name &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Ada&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Chris&quot;</span>, <span class="st">&quot;Diya&quot;</span>, <span class="st">&quot;Emma&quot;</span>)
 
 <span class="co"># Vector of heights</span>
 height &lt;-<span class="st"> </span><span class="dv">58</span><span class="op">:</span><span class="dv">62</span>
@@ -443,19 +443,19 @@ weight &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">
 
 <span class="co"># Combine the vectors into a data.frame</span>
 <span class="co"># Note the names of the variables become the names of the columns!</span>
-my.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(name, height, weight, <span class="dt">stringsAsFactors=</span><span class="ot">FALSE</span>)</code></pre></div>
+my_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(name, height, weight, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</code></pre></div>
 <ul>
 <li>(The last argument to the <code>data.frame()</code> function is included because one of the vectors contains strings; it tells R to treat that vector as a <em>vector</em> not as a <strong>factor</strong>. This is usually what you’ll want to do. See below for details about <a href="data-frames.html#factors">factors</a>).</li>
 </ul>
-<p>Because data frame elements are lists, you can access the values from <code>my.data</code> using the same <strong>dollar notation</strong> and <strong>double-bracket notation</strong> as lists:</p>
+<p>Because data frame elements are lists, you can access the values from <code>my_data</code> using the same <strong>dollar notation</strong> and <strong>double-bracket notation</strong> as lists:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Using the same weights/heights as above:</span>
-my.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(height, weight)
+my_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(height, weight)
 
 <span class="co"># Retrieve weights (the `weight` element of the list: a vector!)</span>
-my.weights &lt;-<span class="st"> </span>my.data<span class="op">$</span>weight
+my_weights &lt;-<span class="st"> </span>my_data<span class="op">$</span>weight
 
 <span class="co"># Retrieve heights (the whole column: a vector!)</span>
-my.heights &lt;-<span class="st"> </span>my.data[[<span class="st">&#39;height&#39;</span>]]</code></pre></div>
+my_heights &lt;-<span class="st"> </span>my_data[[<span class="st">&quot;height&quot;</span>]]</code></pre></div>
 </div>
 <div id="describing-structure-of-data-frames" class="section level3">
 <h3><span class="header-section-number">9.1.2</span> Describing Structure of Data Frames</h3>
@@ -473,52 +473,52 @@ my.heights &lt;-<span class="st"> </span>my.data[[<span class="st">&#39;height&#
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><code>nrow(my.data.frame)</code></td>
+<td align="left"><code>nrow(my_data_frame)</code></td>
 <td align="left">Number of rows in the data frame</td>
 </tr>
 <tr class="even">
-<td align="left"><code>ncol(my.data.frame)</code></td>
+<td align="left"><code>ncol(my_data_frame)</code></td>
 <td align="left">Number of columns in the data frame</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>dim(my.data.frame)</code></td>
+<td align="left"><code>dim(my_data_frame)</code></td>
 <td align="left">Dimensions (rows, columns) in the data frame</td>
 </tr>
 <tr class="even">
-<td align="left"><code>colnames(my.data.frame)</code></td>
+<td align="left"><code>colnames(my_data_frame)</code></td>
 <td align="left">Names of the columns of the data frame</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>rownames(my.data.frame)</code></td>
+<td align="left"><code>rownames(my_data_frame)</code></td>
 <td align="left">Names of the row of the data frame</td>
 </tr>
 <tr class="even">
-<td align="left"><code>head(my.data.frame)</code></td>
+<td align="left"><code>head(my_data_frame)</code></td>
 <td align="left">Extracts the first few rows of the data frame (as a new data frame)</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>tail(my.data.frame)</code></td>
+<td align="left"><code>tail(my_data_frame)</code></td>
 <td align="left">Extracts the last few rows of the data frame (as a new data frame)</td>
 </tr>
 <tr class="even">
-<td align="left"><code>View(my.data.frame)</code></td>
+<td align="left"><code>View(my_data_frame)</code></td>
 <td align="left">Opens the data frame in as spreadsheet-like viewer (only in RStudio)</td>
 </tr>
 </tbody>
 </table>
 <p>Note that many of these description functions can also be used to <em>modify</em> the structure of a data frame. For example, you can use the <code>colnames</code> functions to assign a new set of column names to a data frame:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Using the same weights/heights as above:</span>
-my.data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(name, height, weight)
+my_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(name, height, weight)
 
 <span class="co"># A vector of new column names</span>
-new.col.names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;first.name&#39;</span>,<span class="st">&#39;how.tall&#39;</span>,<span class="st">&#39;how.heavy&#39;</span>)
+new_col_names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;first_name&#39;</span>,<span class="st">&#39;how_tall&#39;</span>,<span class="st">&#39;how_heavy&#39;</span>)
 
 <span class="co"># Assign that vector to be the vector of column names</span>
-<span class="kw">colnames</span>(my.data) &lt;-<span class="st"> </span>new.col.names</code></pre></div>
+<span class="kw">colnames</span>(my_data) &lt;-<span class="st"> </span>new_col_names</code></pre></div>
 </div>
 <div id="accessing-data-in-data-frames" class="section level3">
 <h3><span class="header-section-number">9.1.3</span> Accessing Data in Data Frames</h3>
-<p>As stated above, since data frames <em>are</em> lists, it’s possible to use <strong>dollar notation</strong> (<code>my.data.frame$column.name</code>) or <strong>double-bracket notation</strong> (<code>my.data.frame[['column.name']]</code>) to access entire columns. However, R also uses a variation of <strong>single-bracket notation</strong> which allows you to access individual data elements (cells) in the table. In this syntax, you put <em>two</em> values separated by a comma (<strong><code>,</code></strong>) inside the brackets—the first for which row and the second for which column you wish you extract:</p>
+<p>As stated above, since data frames <em>are</em> lists, it’s possible to use <strong>dollar notation</strong> (<code>my_data_frame$column_name</code>) or <strong>double-bracket notation</strong> (<code>my_data_frame[['column_name']]</code>) to access entire columns. However, R also uses a variation of <strong>single-bracket notation</strong> which allows you to access individual data elements (cells) in the table. In this syntax, you put <em>two</em> values separated by a comma (<strong><code>,</code></strong>) inside the brackets—the first for which row and the second for which column you wish you extract:</p>
 <table>
 <colgroup>
 <col width="30%" />
@@ -534,51 +534,51 @@ new.col.names &lt;-<span class="st"> </span><span class="kw">c</span>(<span clas
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><code>my.df[row.num, col.num]</code></td>
+<td align="left"><code>my_df[row_num, col_num]</code></td>
 <td align="left">Element by row and column indices</td>
-<td align="left"><code>my.frame[2,3]</code> (element in the second row, third column)</td>
+<td align="left"><code>my_frame[2,3]</code> (element in the second row, third column)</td>
 </tr>
 <tr class="even">
-<td align="left"><code>my.df[row.name, col.name]</code></td>
+<td align="left"><code>my_df[row_name, col_name]</code></td>
 <td align="left">Element by row and column names</td>
-<td align="left"><code>my.frame['Ada','height']</code> (element in row <em>named</em> <code>Ada</code> and column <em>named</em> <code>height</code>; the <code>height</code> of <code>Ada</code>)</td>
+<td align="left"><code>my_frame['Ada','height']</code> (element in row <em>named</em> <code>Ada</code> and column <em>named</em> <code>height</code>; the <code>height</code> of <code>Ada</code>)</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>my.df[row, col]</code></td>
+<td align="left"><code>my_df[row, col]</code></td>
 <td align="left">Element by row and col; can mix indices and names</td>
-<td align="left"><code>my.frame[2,'height']</code> (second element in the <code>height</code> column)</td>
+<td align="left"><code>my_frame[2,'height']</code> (second element in the <code>height</code> column)</td>
 </tr>
 <tr class="even">
-<td align="left"><code>my.df[row, ]</code></td>
+<td align="left"><code>my_df[row, ]</code></td>
 <td align="left">All elements (columns) in row index or name</td>
-<td align="left"><code>my.frame[2,]</code> (all columns in the second row)</td>
+<td align="left"><code>my_frame[2,]</code> (all columns in the second row)</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>my.df[, col]</code></td>
+<td align="left"><code>my_df[, col]</code></td>
 <td align="left">All elements (rows) in a col index or name</td>
-<td align="left"><code>my.frame[,'height']</code> (all rows in the <code>height</code> column; equivalent to list notations)</td>
+<td align="left"><code>my_frame[,'height']</code> (all rows in the <code>height</code> column; equivalent to list notations)</td>
 </tr>
 </tbody>
 </table>
 <p>Take special note of the 4th option’s syntax (for retrieving rows): you still include the comma (<code>,</code>), but because you leave <em>which column</em> blank, you get all of the columns!</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Extract the second row</span>
-my.data[<span class="dv">2</span>, ]  <span class="co"># comma</span>
+my_data[<span class="dv">2</span>, ] <span class="co"># comma</span>
 
 <span class="co"># Extract the second column AS A VECTOR</span>
-my.data[, <span class="dv">2</span>]  <span class="co"># comma</span>
+my_data[, <span class="dv">2</span>] <span class="co"># comma</span>
 
 <span class="co"># Extract the second column AS A DATA FRAME (filtering)</span>
-my.data[<span class="dv">2</span>]  <span class="co"># no comma</span></code></pre></div>
+my_data[<span class="dv">2</span>] <span class="co"># no comma</span></code></pre></div>
 <p>(Extracting from more than one column will produce a <em>sub-data frame</em>; extracting from just one column will produce a vector).</p>
 <p>And of course, because <em>everything is a vector</em>, you’re actually specifying vectors of indices to extract. This allows you to get multiple rows or columns:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get the second through fourth rows</span>
-my.data[<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>, ]
+my_data[<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>, ]
 
 <span class="co"># Get the `height` and `weight` columns</span>
-my.data[, <span class="kw">c</span>(<span class="st">&#39;height&#39;</span>, <span class="st">&#39;weight&#39;</span>)]
+my_data[, <span class="kw">c</span>(<span class="st">&quot;height&quot;</span>, <span class="st">&quot;weight&quot;</span>)]
 
 <span class="co"># Perform filtering</span>
-my.data[my.data<span class="op">$</span>height <span class="op">&gt;</span><span class="st"> </span><span class="dv">60</span>, ] <span class="co"># rows for which `height` is greater than 60</span></code></pre></div>
+my_data[my_data<span class="op">$</span>height <span class="op">&gt;</span><span class="st"> </span><span class="dv">60</span>, ] <span class="co"># rows for which `height` is greater than 60</span></code></pre></div>
 </div>
 </div>
 <div id="csv-files" class="section level2">
@@ -591,8 +591,8 @@ Diya, 61, 123
 Emma, 62, 126</code></pre>
 <p>Most spreadsheet programs like Microsoft Excel, Numbers, or Google Sheets are simply interfaces for formatting and interacting with data that is saved in this format. These programs easily import and export <code>.csv</code> files; however <code>.csv</code> files are unable to save the formatting done in those programs—the files only store the data!</p>
 <p>You can load the data from a <code>.csv</code> file into R by using the <code>read.csv()</code> function:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Read data from the file `my_file.csv` into a data frame `my.data`</span>
-my.data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;my_file.csv&#39;</span>, <span class="dt">stringsAsFactors=</span><span class="ot">FALSE</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Read data from the file `my_file.csv` into a data frame `my_data`</span>
+my_data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;my_file.csv&#39;</span>, <span class="dt">stringsAsFactors=</span><span class="ot">FALSE</span>)</code></pre></div>
 <p>Again, use the <code>stringsAsFactors</code> argument to make sure string data is stored as a <em>vector</em> rather than as a <em>factor</em> (see <a href="data-frames.html#factors">below</a>). This function will return a data frame, just like those described above!</p>
 <p class="alert alert-warning">
 <strong>Important Note</strong>: If for whatever reason an element is missing from a data frame (which is very common with real world data!), R will fill that cell with the logical value <code>NA</code> (distinct from the string <code>&quot;NA&quot;</code>), meaning “<strong>N</strong>ot <strong>A</strong>vailable”. There are multiple ways to handle this in an analysis; see <a href="http://www.statmethods.net/input/missingdata.html">this link</a> among others for details.
@@ -604,7 +604,7 @@ my.data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span cla
 <ul>
 <li>This makes sense if you think about it: you can run R commands through the console without having a script, and you can have open multiple script files from separate folders that are all interacting with the same execution environment.</li>
 </ul>
-<p>Just as you can view the current working directory when on the commandline (using <code>pwd</code>), you can use an R function to view the current working directory when in R:</p>
+<p>Just as you can view the current working directory when on the command line (using <code>pwd</code>), you can use an R function to view the current working directory when in R:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># get the absolute path to the current working directory</span>
 <span class="kw">getwd</span>()</code></pre></div>
 <p>You often will want to change the working directory to be your “project” directory (wherever your scripts and data files happen to be). It is possible to change the current working directory using the <code>setwd()</code> function. However, this function would also take an absolute path, so doesn’t fix the problem. You would not want to include this absolute path in your script (though you could use it from the console).</p>
@@ -626,71 +626,72 @@ my.data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span cla
 <p>For example, imagine that you had a vector of shirt sizes which could only take on the values <code>small</code>, <code>medium</code>, or <code>large</code>. If you were working with a large dataset (thousands of shirts!), it would end up taking up a lot of memory to store the character strings (5+ letters per word at 1 or more bytes per letter) for each one of those variables.</p>
 <p>A <strong>factor</strong> on the other hand would instead store a <em>number</em> (called a <strong>level</strong>) for each of these character strings: for example, <code>1</code> for <code>small</code>, <code>2</code> for <code>medium</code>, or <code>3</code> for <code>large</code> (though the order or specific numbers will vary). R will remember the relationship between the integers and their <strong>labels</strong> (the strings). Since each number only takes 4 bytes (rather than 1 per letter), factors allow R to keep much more information in memory.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Start with a character vector of shirt sizes</span>
-shirt.sizes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;small&#39;</span>, <span class="st">&#39;medium&#39;</span>, <span class="st">&#39;small&#39;</span>, <span class="st">&#39;large&#39;</span>, <span class="st">&#39;medium&#39;</span>, <span class="st">&#39;large&#39;</span>)
+shirt_sizes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;small&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;small&quot;</span>, <span class="st">&quot;large&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;large&quot;</span>)
 
 <span class="co"># Convert to a vector of factor data</span>
-shirt.sizes.factor &lt;-<span class="st"> </span><span class="kw">as.factor</span>(shirt.sizes)
+shirt_sizes_factor &lt;-<span class="st"> </span><span class="kw">as.factor</span>(shirt_sizes)
 
 <span class="co"># View the factor and its levels</span>
-<span class="kw">print</span>(shirt.sizes.factor)
+<span class="kw">print</span>(shirt_sizes_factor)
 
 <span class="co"># The length of the factor is still the length of the vector, not the number of levels</span>
-<span class="kw">length</span>(shirt.sizes.factor)  <span class="co"># 6</span></code></pre></div>
-<p>When you print out the <code>shirt.sizes.factor</code> variable, R still (intelligently) prints out the <strong>labels</strong> that you are presumably interested in. It also indicates the <strong>levels</strong>, which are the <em>only</em> possible values that elements can take on.</p>
+<span class="kw">length</span>(shirt_sizes_factor) <span class="co"># 6</span></code></pre></div>
+<p>When you print out the <code>shirt_sizes_factor</code> variable, R still (intelligently) prints out the <strong>labels</strong> that you are presumably interested in. It also indicates the <strong>levels</strong>, which are the <em>only</em> possible values that elements can take on.</p>
 <p>It is worth re-stating: <strong>factors are not vectors</strong>. This means that most all the operations and functions you want to use on vectors <em>will not work</em>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a factor of numbers (factors need not be strings)</span>
-num.factors &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">40</span>))
+num_factors &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">40</span>))
 
 <span class="co"># Print the factor to see its levels</span>
-<span class="kw">print</span>(num.factors)
+<span class="kw">print</span>(num_factors)
 
 <span class="co"># Multiply the numbers by 2</span>
-num.factors <span class="op">*</span><span class="st"> </span><span class="dv">2</span>  <span class="co"># Error: * not meaningful</span>
+num_factors <span class="op">*</span><span class="st"> </span><span class="dv">2</span>  <span class="co"># Error: * not meaningful</span>
                  <span class="co"># returns vector of NA instead</span>
 
 <span class="co"># Changing entry to a level is fine</span>
-num.factors[<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">40</span>
+num_factors[<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">40</span>
 
 <span class="co"># Change entry to a value that ISN&#39;T a level fails</span>
-num.factors[<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">50</span>  <span class="co"># Error: invalid factor level</span>
-                      <span class="co"># num.factors[1] is now NA</span></code></pre></div>
+num_factors[<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">50</span>  <span class="co"># Error: invalid factor level</span>
+                      <span class="co"># num_factors[1] is now NA</span></code></pre></div>
 <p>If you create a data frame with a string vector as a column (as what happens with <code>read.csv()</code>), it will automatically be treated as a factor <em>unless you explicitly tell it not to</em>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Vector of shirt sizes</span>
-shirt.size &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;small&#39;</span>, <span class="st">&#39;medium&#39;</span>, <span class="st">&#39;small&#39;</span>, <span class="st">&#39;large&#39;</span>, <span class="st">&#39;medium&#39;</span>, <span class="st">&#39;large&#39;</span>)
+shirt_size &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;small&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;small&quot;</span>, <span class="st">&quot;large&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;large&quot;</span>)
 
 <span class="co"># Vector of costs (in dollars)</span>
 cost &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">15.5</span>, <span class="dv">17</span>, <span class="dv">17</span>, <span class="dv">14</span>, <span class="dv">12</span>, <span class="dv">23</span>)
 
 <span class="co"># Data frame of inventory (with factors, since didn&#39;t say otherwise)</span>
-shirts.factor &lt;-<span class="st"> </span><span class="kw">data.frame</span>(shirt.size, cost)
+shirts_factor &lt;-<span class="st"> </span><span class="kw">data.frame</span>(shirt_size, cost)
 
-<span class="co"># The shirt.size column is a factor</span>
-<span class="kw">is.factor</span>(shirts.factor<span class="op">$</span>shirt.size)  <span class="co"># TRUE</span>
+<span class="co"># The shirt_size column is a factor</span>
+<span class="kw">is.factor</span>(shirts_factor<span class="op">$</span>shirt_size) <span class="co"># TRUE</span>
 
 <span class="co"># Can treat this as a vector; but better to fix how the data is loaded</span>
-<span class="kw">as.vector</span>(shirts.factor<span class="op">$</span>shirt.size)  <span class="co"># a vector</span>
+<span class="kw">as.vector</span>(shirts_factor<span class="op">$</span>shirt_size) <span class="co"># a vector</span>
 
 <span class="co"># Data frame of orders (without factoring)</span>
-shirts &lt;-<span class="st"> </span><span class="kw">data.frame</span>(shirt.size, cost, <span class="dt">stringsAsFactors=</span><span class="ot">FALSE</span>)
+shirts &lt;-<span class="st"> </span><span class="kw">data.frame</span>(shirt_size, cost, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
 
-<span class="co"># The shirt.size column is NOT a factor</span>
-<span class="kw">is.factor</span>(shirts<span class="op">$</span>shirt.size)  <span class="co"># FALSE</span></code></pre></div>
+<span class="co"># The shirt_size column is NOT a factor</span>
+<span class="kw">is.factor</span>(shirts<span class="op">$</span>shirt_size) <span class="co"># FALSE</span></code></pre></div>
 <p>This is not to say that factors can’t be useful (beyond just saving memory)! They offer easy ways to group and process data using specialized functions:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">shirt.size &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;small&#39;</span>, <span class="st">&#39;medium&#39;</span>, <span class="st">&#39;small&#39;</span>, <span class="st">&#39;large&#39;</span>, <span class="st">&#39;medium&#39;</span>, <span class="st">&#39;large&#39;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">shirt_size &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;small&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;small&quot;</span>, <span class="st">&quot;large&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;large&quot;</span>)
 cost &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">15.5</span>, <span class="dv">17</span>, <span class="dv">17</span>, <span class="dv">14</span>, <span class="dv">12</span>, <span class="dv">23</span>)
 
 <span class="co"># Data frame of inventory (with factors)</span>
-shirts.factor &lt;-<span class="st"> </span><span class="kw">data.frame</span>(shirt.size, cost)
+shirts_factor &lt;-<span class="st"> </span><span class="kw">data.frame</span>(shirt_size, cost)
 
 <span class="co"># Produce a list of data frames, one for each factor level</span>
 <span class="co"># first argument is the data frame to split, second is the factor to split by</span>
-shirt.size.frames &lt;-<span class="st"> </span><span class="kw">split</span>(shirts.factor, shirts.factor<span class="op">$</span>shirt.size)
+shirt_size_frames &lt;-<span class="st"> </span><span class="kw">split</span>(shirts_factor, shirts_factor<span class="op">$</span>shirt_size)
+
 
 <span class="co"># Apply a function (mean) to each factor level</span>
 <span class="co">#   first argument is the vector to apply the function to,</span>
 <span class="co">#   second argument is the factor to split by</span>
 <span class="co">#   third argument is the name of the function</span>
-<span class="kw">tapply</span>(shirts<span class="op">$</span>cost, shirts<span class="op">$</span>shirt.size, mean)</code></pre></div>
+<span class="kw">tapply</span>(shirts_factor<span class="op">$</span>cost, shirts_factor<span class="op">$</span>shirt_size, mean)</code></pre></div>
 <p>However, in general this course is more interested in working with data as vectors, thus you should always use <code>stringsAsFactors=FALSE</code> when creating data frames or loading <code>.csv</code> files that include strings.</p>
 </div>
 <div id="resources-8" class="section level2 unnumbered">
