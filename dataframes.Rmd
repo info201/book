@@ -24,7 +24,7 @@ Typically you will _load_ data sets from some external source (see [below](#csv-
 
 ```r
 # vector of names
-name <- c('Ada','Bob','Chris','Diya','Emma')
+name <- c("Ada", "Bob", "Chris", "Diya", "Emma")
 
 # Vector of heights
 height <- 58:62
@@ -34,22 +34,22 @@ weight <- c(115, 117, 120, 123, 126)
 
 # Combine the vectors into a data.frame
 # Note the names of the variables become the names of the columns!
-my.data <- data.frame(name, height, weight, stringsAsFactors=FALSE)
+my_data <- data.frame(name, height, weight, stringsAsFactors = FALSE)
 ```
 
 - (The last argument to the `data.frame()` function is included because one of the vectors contains strings; it tells R to treat that vector as a _vector_ not as a **factor**. This is usually what you'll want to do. See below for details about [factors](#factors)).
 
-Because data frame elements are lists, you can access the values from `my.data` using the same **dollar notation** and **double-bracket notation** as lists:
+Because data frame elements are lists, you can access the values from `my_data` using the same **dollar notation** and **double-bracket notation** as lists:
 
 ```r
 # Using the same weights/heights as above:
-my.data <- data.frame(height, weight)
+my_data <- data.frame(height, weight)
 
 # Retrieve weights (the `weight` element of the list: a vector!)
-my.weights <- my.data$weight
+my_weights <- my_data$weight
 
 # Retrieve heights (the whole column: a vector!)
-my.heights <- my.data[['height']]
+my_heights <- my_data[["height"]]
 ```
 
 
@@ -58,50 +58,50 @@ While you can interact with data frames as lists, they also offer a number of ad
 
 | Function | Description |
 | :--- | :----------------------------------------------------------------- |
-| `nrow(my.data.frame)` | Number of rows in the data frame |
-| `ncol(my.data.frame)` | Number of columns in the data frame |
-| `dim(my.data.frame)` | Dimensions (rows, columns) in the data frame |
-| `colnames(my.data.frame)` | Names of the columns of the data frame |
-| `rownames(my.data.frame)` | Names of the row of the data frame |
-| `head(my.data.frame)` | Extracts the first few rows of the data frame (as a new data frame) |
-| `tail(my.data.frame)` | Extracts the last few rows of the data frame (as a new data frame) |
-| `View(my.data.frame)` | Opens the data frame in as spreadsheet-like viewer (only in RStudio)|
+| `nrow(my_data_frame)` | Number of rows in the data frame |
+| `ncol(my_data_frame)` | Number of columns in the data frame |
+| `dim(my_data_frame)` | Dimensions (rows, columns) in the data frame |
+| `colnames(my_data_frame)` | Names of the columns of the data frame |
+| `rownames(my_data_frame)` | Names of the row of the data frame |
+| `head(my_data_frame)` | Extracts the first few rows of the data frame (as a new data frame) |
+| `tail(my_data_frame)` | Extracts the last few rows of the data frame (as a new data frame) |
+| `View(my_data_frame)` | Opens the data frame in as spreadsheet-like viewer (only in RStudio)|
 
 Note that many of these description functions can also be used to _modify_ the structure of a data frame. For example, you can use the `colnames` functions to assign a new set of column names to a data frame:
 
 ```r
 # Using the same weights/heights as above:
-my.data <- data.frame(name, height, weight)
+my_data <- data.frame(name, height, weight)
 
 # A vector of new column names
-new.col.names <- c('first.name','how.tall','how.heavy')
+new_col_names <- c('first_name','how_tall','how_heavy')
 
 # Assign that vector to be the vector of column names
-colnames(my.data) <- new.col.names
+colnames(my_data) <- new_col_names
 ```
 
 ### Accessing Data in Data Frames
-As stated above, since data frames _are_ lists, it's possible to use **dollar notation** (`my.data.frame$column.name`) or **double-bracket notation** (`my.data.frame[['column.name']]`) to access entire columns. However, R also uses a variation of **single-bracket notation** which allows you to access individual data elements (cells) in the table. In this syntax, you put _two_ values separated by a comma (**`,`**) inside the brackets&mdash;the first for which row and the second for which column you wish you extract:
+As stated above, since data frames _are_ lists, it's possible to use **dollar notation** (`my_data_frame$column_name`) or **double-bracket notation** (`my_data_frame[['column_name']]`) to access entire columns. However, R also uses a variation of **single-bracket notation** which allows you to access individual data elements (cells) in the table. In this syntax, you put _two_ values separated by a comma (**`,`**) inside the brackets&mdash;the first for which row and the second for which column you wish you extract:
 
 | Syntax | Description | Example |
 | :-------------------- | :------------------- | :--------------------------- |
-| `my.df[row.num, col.num]` | Element by row and column indices | `my.frame[2,3]` (element in the second row, third column) |
-| `my.df[row.name, col.name]` | Element by row and column names | `my.frame['Ada','height']` (element in row _named_ `Ada` and column _named_ `height`; the `height` of `Ada`) |
-| `my.df[row, col]` | Element by row and col; can mix indices and names | `my.frame[2,'height']` (second element in the `height` column) |
-| `my.df[row, ]` | All elements (columns) in row index or name |  `my.frame[2,]` (all columns in the second row) |
-| `my.df[, col]`| All elements (rows) in a col index or name | `my.frame[,'height']`  (all rows in the `height` column; equivalent to list notations) |
+| `my_df[row_num, col_num]` | Element by row and column indices | `my_frame[2,3]` (element in the second row, third column) |
+| `my_df[row_name, col_name]` | Element by row and column names | `my_frame['Ada','height']` (element in row _named_ `Ada` and column _named_ `height`; the `height` of `Ada`) |
+| `my_df[row, col]` | Element by row and col; can mix indices and names | `my_frame[2,'height']` (second element in the `height` column) |
+| `my_df[row, ]` | All elements (columns) in row index or name |  `my_frame[2,]` (all columns in the second row) |
+| `my_df[, col]`| All elements (rows) in a col index or name | `my_frame[,'height']`  (all rows in the `height` column; equivalent to list notations) |
 
 Take special note of the 4th option's syntax (for retrieving rows): you still include the comma (`,`), but because you leave _which column_ blank, you get all of the columns!
 
 ```r
 # Extract the second row
-my.data[2, ]  # comma
+my_data[2, ] # comma
 
 # Extract the second column AS A VECTOR
-my.data[, 2]  # comma
+my_data[, 2] # comma
 
 # Extract the second column AS A DATA FRAME (filtering)
-my.data[2]  # no comma
+my_data[2] # no comma
 ```
 
 (Extracting from more than one column will produce a _sub-data frame_; extracting from just one column will produce a vector).
@@ -110,13 +110,13 @@ And of course, because _everything is a vector_, you're actually specifying vect
 
 ```r
 # Get the second through fourth rows
-my.data[2:4, ]
+my_data[2:4, ]
 
 # Get the `height` and `weight` columns
-my.data[, c('height', 'weight')]
+my_data[, c("height", "weight")]
 
 # Perform filtering
-my.data[my.data$height > 60, ] # rows for which `height` is greater than 60
+my_data[my_data$height > 60, ] # rows for which `height` is greater than 60
 ```
 
 ## Working with CSV Data {#csv-files}
@@ -135,8 +135,8 @@ Most spreadsheet programs like Microsoft Excel, Numbers, or Google Sheets are si
 You can load the data from a `.csv` file into R by using the `read.csv()` function:
 
 ```r
-# Read data from the file `my_file.csv` into a data frame `my.data`
-my.data <- read.csv('my_file.csv', stringsAsFactors=FALSE)
+# Read data from the file `my_file.csv` into a data frame `my_data`
+my_data <- read.csv('my_file.csv', stringsAsFactors=FALSE)
 ```
 
 Again, use the `stringsAsFactors` argument to make sure string data is stored as a _vector_ rather than as a _factor_ (see [below](#factors)). This function will return a data frame, just like those described above!
@@ -151,7 +151,7 @@ Like the command-line, the R interpreter (running inside R Studio) has a **curre
 
 - This makes sense if you think about it: you can run R commands through the console without having a script, and you can have open multiple script files from separate folders that are all interacting with the same execution environment.
 
-Just as you can view the current working directory when on the commandline (using `pwd`), you can use an R function to view the current working directory when in R:
+Just as you can view the current working directory when on the command line (using `pwd`), you can use an R function to view the current working directory when in R:
 
 ```r
 # get the absolute path to the current working directory
@@ -185,84 +185,85 @@ A **factor** on the other hand would instead store a _number_ (called a **level*
 
 ```r
 # Start with a character vector of shirt sizes
-shirt.sizes <- c('small', 'medium', 'small', 'large', 'medium', 'large')
+shirt_sizes <- c("small", "medium", "small", "large", "medium", "large")
 
 # Convert to a vector of factor data
-shirt.sizes.factor <- as.factor(shirt.sizes)
+shirt_sizes_factor <- as.factor(shirt_sizes)
 
 # View the factor and its levels
-print(shirt.sizes.factor)
+print(shirt_sizes_factor)
 
 # The length of the factor is still the length of the vector, not the number of levels
-length(shirt.sizes.factor)  # 6
+length(shirt_sizes_factor) # 6
 ```
 
-When you print out the `shirt.sizes.factor` variable, R still (intelligently) prints out the **labels** that you are presumably interested in. It also indicates the **levels**, which are the _only_ possible values that elements can take on.
+When you print out the `shirt_sizes_factor` variable, R still (intelligently) prints out the **labels** that you are presumably interested in. It also indicates the **levels**, which are the _only_ possible values that elements can take on.
 
 It is worth re-stating: **factors are not vectors**. This means that most all the operations and functions you want to use on vectors _will not work_:
 
 ```r
 # Create a factor of numbers (factors need not be strings)
-num.factors <- as.factor(c(10,10,20,20,30,30,40,40))
+num_factors <- as.factor(c(10,10,20,20,30,30,40,40))
 
 # Print the factor to see its levels
-print(num.factors)
+print(num_factors)
 
 # Multiply the numbers by 2
-num.factors * 2  # Error: * not meaningful
+num_factors * 2  # Error: * not meaningful
                  # returns vector of NA instead
 
 # Changing entry to a level is fine
-num.factors[1] <- 40
+num_factors[1] <- 40
 
 # Change entry to a value that ISN'T a level fails
-num.factors[1] <- 50  # Error: invalid factor level
-                      # num.factors[1] is now NA
+num_factors[1] <- 50  # Error: invalid factor level
+                      # num_factors[1] is now NA
 ```
 
 If you create a data frame with a string vector as a column (as what happens with `read.csv()`), it will automatically be treated as a factor _unless you explicitly tell it not to_:
 
 ```r
 # Vector of shirt sizes
-shirt.size <- c('small', 'medium', 'small', 'large', 'medium', 'large')
+shirt_size <- c("small", "medium", "small", "large", "medium", "large")
 
 # Vector of costs (in dollars)
 cost <- c(15.5, 17, 17, 14, 12, 23)
 
 # Data frame of inventory (with factors, since didn't say otherwise)
-shirts.factor <- data.frame(shirt.size, cost)
+shirts_factor <- data.frame(shirt_size, cost)
 
-# The shirt.size column is a factor
-is.factor(shirts.factor$shirt.size)  # TRUE
+# The shirt_size column is a factor
+is.factor(shirts_factor$shirt_size) # TRUE
 
 # Can treat this as a vector; but better to fix how the data is loaded
-as.vector(shirts.factor$shirt.size)  # a vector
+as.vector(shirts_factor$shirt_size) # a vector
 
 # Data frame of orders (without factoring)
-shirts <- data.frame(shirt.size, cost, stringsAsFactors=FALSE)
+shirts <- data.frame(shirt_size, cost, stringsAsFactors = FALSE)
 
-# The shirt.size column is NOT a factor
-is.factor(shirts$shirt.size)  # FALSE
+# The shirt_size column is NOT a factor
+is.factor(shirts$shirt_size) # FALSE
 ```
 
 This is not to say that factors can't be useful (beyond just saving memory)! They offer easy ways to group and process data using specialized functions:
 
 ```r
-shirt.size <- c('small', 'medium', 'small', 'large', 'medium', 'large')
+shirt_size <- c("small", "medium", "small", "large", "medium", "large")
 cost <- c(15.5, 17, 17, 14, 12, 23)
 
 # Data frame of inventory (with factors)
-shirts.factor <- data.frame(shirt.size, cost)
+shirts_factor <- data.frame(shirt_size, cost)
 
 # Produce a list of data frames, one for each factor level
 # first argument is the data frame to split, second is the factor to split by
-shirt.size.frames <- split(shirts.factor, shirts.factor$shirt.size)
+shirt_size_frames <- split(shirts_factor, shirts_factor$shirt_size)
+
 
 # Apply a function (mean) to each factor level
 #   first argument is the vector to apply the function to,
 #   second argument is the factor to split by
 #   third argument is the name of the function
-tapply(shirts$cost, shirts$shirt.size, mean)
+tapply(shirts_factor$cost, shirts_factor$shirt_size, mean)
 ```
 
 However, in general this course is more interested in working with data as vectors, thus you should always use `stringsAsFactors=FALSE` when creating data frames or loading `.csv` files that include strings.

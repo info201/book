@@ -24,12 +24,12 @@ Shiny applications are divided into two parts:
 
     ```r
     # The ui is the result of calling the `fluidPage()` layout function
-    my.ui <- fluidPage(
+    my_ui <- fluidPage(
       # A widget: a text input box (save input in the `username` key)
-      textInput('username', label="What is your name?"),
+      textInput("username", label = "What is your name?"),
 
       # An output element: a text output (for the `message` key)
-      textOutput('message')
+      textOutput("message")
     )
     ```
 
@@ -41,7 +41,7 @@ Shiny applications are divided into two parts:
 
     ```r
     # The server is a function that takes `input` and `output` args
-    my.server <- function(input, output) {
+    my_server <- function(input, output) {
       # assign a value to the `message` key in `output`
       # argument is a reactive expression for showing text
       output$message <- renderText({
@@ -63,7 +63,7 @@ The first (newer) way is to define a file called **`app.R`**. This file should c
 
 ```r
 # pass in the variables defined above
-shinyApp(ui = my.ui, server = my.server)
+shinyApp(ui = my_ui, server = my_server)
 ```
 
 Executing the `shinyApp()` function will start the App (you can also click the **"Run App"** button at the top of RStudio).
@@ -78,20 +78,20 @@ However, it is also possible to define the UI and server as _separate_ files. Th
 
 ```r
 # In ui.R file
-my.ui <- fluidPage(
+my_ui <- fluidPage(
   # define widgets
 )
 
-shinyUI(my.ui)
+shinyUI(my_ui)
 ```
 
 ```r
 # In server.R file
-my.server <- function(input, output) {
+my_server <- function(input, output) {
   # define output reactive expressions
 }
 
-shinyServer(my.server)
+shinyServer(my_server)
 ```
 
 You can then run the app by using the **"Run App"** button at the top of RStudio:
@@ -100,7 +100,7 @@ You can then run the app by using the **"Run App"** button at the top of RStudio
 
 This chapter will primarily use the "single file" approach for compactness and readability, but you are encouraged to break up the UI and server into separate files for your own, larger applications.
 
-- Note that it is also possible to simply define the (e.g.) `my.ui` and `my.server` variables in separate files, and then use `source()` to load them into the `app.R` file and pass them into `shinyApp()`.
+- Note that it is also possible to simply define the (e.g.) `my_ui` and `my_server` variables in separate files, and then use `source()` to load them into the `app.R` file and pass them into `shinyApp()`.
 
 ### The UI
 The UI defines how the app will be displayed in the browser. You create a UI by calling a **layout function** such as `fluidPage()`, which will return a UI definition that can be used by the `shinyUI()` or `shinyApp()` functions.
@@ -118,7 +118,7 @@ Content elements are defined by calling specific _functions_ that create them: f
 # still just calling a function with arguments!
 ui <- fluidPage(
   h1("My App"),  # first argument
-  textInput('username', label="What is your name?"),  # second argument
+  textInput('username', label = "What is your name?"),  # second argument
   textOutput('message')  # third argument
 )
 ```
@@ -181,12 +181,13 @@ Other arguments may be required by a particular widget&mdash;for example, a slid
 
 ```r
 # this function would be nested in a layout function (e.g., `fluidPage()`)
-sliderInput('age',              # key this value will be assigned to
-            "Age of subjects",  # label
-            min = 18,           # minimum slider value
-            max = 80,           # maximum slider value
-            value = 42          # starting value
-           )
+sliderInput(
+  "age", # key this value will be assigned to
+  "Age of subjects", # label
+  min = 18, # minimum slider value
+  max = 80, # maximum slider value
+  value = 42 # starting value
+)
 ```
 
 Widgets are used to provide **inputs _to_** the Server; see the below section for how to use these inputs, as well as examples from [the gallery](http://shiny.rstudio.com/gallery/).
@@ -226,10 +227,10 @@ Render functions take as an argument a **Reactive Expression**. This is a lot li
 ```r
 output$msg <- renderText({
   # code goes here, just like any other function
-  my.greeting <- "Hello"
+  my_greeting <- "Hello"
 
   # code should always draw upon a key from the `input` variable
-  message <- paste(my.greeting, input$username)
+  message <- paste(my_greeting, input$username)
 
   # return the variable that will be rendered
   return(message)
@@ -249,14 +250,14 @@ It is quite common in a Shiny app to produce _lots_ of output variables, and thu
 server <- function(input, output) {
   # render a histogram plot
   output$hist <- renderPlot({
-    uniform.nums <- runif(input$num, 1, 10)  # random nums between 1 and 10
-    return(hist(uniform.nums))  # built-in plotting for simplicity
+    uniform_nums <- runif(input$num, 1, 10)  # random nums between 1 and 10
+    return(hist(uniform_nums))  # built-in plotting for simplicity
   })
 
   # render the counts
   output$counts <- renderPrint({
-    uniform.nums <- runif(input$num, 1, 10)  # random nums between 1 and 10
-    counts <- factor(cut(uniform.nums, breaks=1:10))  # factor
+    uniform_nums <- runif(input$num, 1, 10)  # random nums between 1 and 10
+    counts <- factor(cut(uniform_nums, breaks=1:10))  # factor
     return(summary(counts))  # simple vector of counts
   })
 }
@@ -264,29 +265,29 @@ server <- function(input, output) {
 
 If you look at the above example though, you'll notice that each render function produces a set of random numbers... which means each will produce a _different_ set of numbers! The histogram and the table won't match!
 
-This is an example of where you want to share a single piece of data (a single **model**) between multiple different renditions (multiple **views**). Effectively, you want to define a shared variable (the `uniform.nums`) that can be referenced by both render functions. But since you need that shared variable to be able to _update_ whenever the `input` changes, you need to make it be a _reactive expression_ itself. You can do this by using the **`reactive()`** function:
+This is an example of where you want to share a single piece of data (a single **model**) between multiple different renditions (multiple **views**). Effectively, you want to define a shared variable (the `uniform_nums`) that can be referenced by both render functions. But since you need that shared variable to be able to _update_ whenever the `input` changes, you need to make it be a _reactive expression_ itself. You can do this by using the **`reactive()`** function:
 
 ```r
 server <- function(input, output) {
   # define a reactive variable
-  uniform.nums <- reactive({
+  uniform_nums <- reactive({
     return(runif(input$num, 1, 10))  # just like for a render function
   })
 
   # render a histogram plot
   output$hist <- renderPlot({
-    return(hist(uniform.nums()))  # call the reactive variable AS A FUNCTION
+    return(hist(uniform_nums()))  # call the reactive variable AS A FUNCTION
   })
 
   # render the counts
   output$counts <- renderPrint({
-    counts <- factor(cut(uniform.nums(), breaks=1:10))  # call the reactive variable AS A FUNCTION
+    counts <- factor(cut(uniform_nums(), breaks=1:10))  # call the reactive variable AS A FUNCTION
     return(summary(counts))
   })
 }
 ```
 
-The `reactive()` function lets you define a single "variable" that is a _reactive function_ which can be called from within the render functions. Importantly, the value returned by this function (the `uniform.nums()`) only changes **when a referenced `input` changes**. Thus as long as `input$num` stays the same, `uniform.nums()` will return the same value.
+The `reactive()` function lets you define a single "variable" that is a _reactive function_ which can be called from within the render functions. Importantly, the value returned by this function (the `uniform_nums()`) only changes **when a referenced `input` changes**. Thus as long as `input$num` stays the same, `uniform_nums()` will return the same value.
 
 This is very powerful for allowing multiple **views** of a single piece of data: you can have a single source of data displayed both graphically and textually, with both views linked off of the same processed data table. Additionally, it can help keep your code more organized and readable, and avoid needing to duplicate any processing.
 

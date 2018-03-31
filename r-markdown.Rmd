@@ -227,19 +227,19 @@ Because data frames are so central to programming with R, R Markdown includes ca
 
 ```{r results='asis', echo=FALSE}
 # written as string to help with formatting
-cat("````rmd
+cat('````rmd
 \`\`\`{r echo=FALSE}
 library(knitr)  # make sure you load this library (once per doc)
 
 # make a data frame
-letters <- c('a','b','c')
+letters <- c("a", "b", "c")
 numbers <- 1:3
 df <- data.frame(letters = letters, numbers = numbers)
 
 # render the table
 kable(df)
 \`\`\`
-````")
+````')
 ```
 
 - `kable()` supports a number of other arguments that can be used to customize how it outputs a table.
