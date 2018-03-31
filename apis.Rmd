@@ -99,7 +99,7 @@ When you send a request to a particular resource, you need to indicate what you 
 
 By far the most common verb is `GET`, which is used to "get" (download) data from a web service. Depending on how you connect to your API (i.e., which programming language you are using), you'll specify the verb of interest to indicate what we want to do to a particular resource.
 
-Overall, this structure of treating each datum on the web as a **resource** which we can interact with via **HTTP Requests** is refered to as the **REST Architecture** (REST stands for _REpresentational State Transfer_). This is a standard way of structuring computer applications that allows them to be interacted with in the same way as everyday websites. Thus a web service that enabled data access through named resources and responds to HTTP requests is known as a **RESTful** service, with a _RESTful API_.
+Overall, this structure of treating each datum on the web as a **resource** which we can interact with via **HTTP Requests** is referred to as the **REST Architecture** (REST stands for _REpresentational State Transfer_). This is a standard way of structuring computer applications that allows them to be interacted with in the same way as everyday websites. Thus a web service that enabled data access through named resources and responds to HTTP requests is known as a **RESTful** service, with a _RESTful API_.
 
 
 ## Accessing Web APIs
@@ -110,12 +110,12 @@ https://api.github.com/search/repositories?q=d3&sort=forks
 
 ```
 
-This query acceses the `/search/repositories/` endpoint, and also specifies 2 parameters:
+This query accesses the `/search/repositories/` endpoint, and also specifies 2 query parameters:
 
 - `q`: The term(s) you are searching for, and
 - `sort`: The attribute of each repository that you would like to use to sort the results
 
-(Note that the data you'll get back is structued in JSON format. See [below](#json) for details).
+(Note that the data you'll get back is structured in JSON format. See [below](#json) for details).
 
 In `R` you can send GET requests using the [`httr`](https://cran.r-project.org/web/packages/httr/vignettes/quickstart.html) library. Like `dplyr`, you will need to install and load it to use it:
 
@@ -249,7 +249,7 @@ library("jsonlite")
 ```r
 # send request for albums by David Bowie
 query.params <- list(q = "d3", sort = "forks")
-response <- GET("https://api.github.com", query = query.params)
+response <- GET("https://api.github.com/search/repositories", query = query.params)
 body <- content(response, "text")  # extract the body JSON
 parsed.data <- fromJSON(body)  # convert the JSON string to a list
 ```

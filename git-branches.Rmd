@@ -2,7 +2,8 @@
 
 While `git` is great for uploading and downloading code, its true benefits are its ability to support _reversability_ (e.g., undo) and _collaboration_ (working with other people). In order to effectively utilize these capabilities, you need to understand git's **branching model**, which is central to how the program manages different versions of code.
 
-This chapter will cover how to work with **branches** with git and GitHub, including using them to work on different features simultaneously and to undo previous changes. It will also discuss how to use branches to support different _collaborative workflows_, allowing multiple people to work on code in the same repository.
+This chapter will cover how to work with **branches** with git and GitHub, including using them to work on different features simultaneously and to undo previous changes.
+<!-- It will also discuss how to use branches to support different _collaborative workflows_, allowing multiple people to work on code in the same repository. -->
 
 
 ## Git Branches
@@ -248,9 +249,9 @@ Some important notes:
 
     - Be careful not push [any passwords or anything](http://www.itnews.com.au/news/aws-urges-developers-to-scrub-github-of-secret-keys-375785) to GitHub!
 
-4. The web page will only be initially built when a **repo administrator** pushes a change to the `gh-pages` branch; if someone just as "write access" to the repo (e.g., they are a contributor, but not an "owner"), then the page won't be created. But once an administrator (such as the person who created the repo) pushes that branch and causes the initial page to be created, then any further updates will appear as well.
+4. The web page will only be initially built when a **repo administrator** pushes a change to the `gh-pages` branch; if someone just has "write access" to the repo (e.g., they are a contributor, but not an "owner"), then the page won't be created. But once an administrator (such as the person who created the repo) pushes that branch and causes the initial page to be created, then any further updates will appear as well.
 
-After you've created your initial `gh-pages` branch, any changes you want to appear online will need to be saved as new commits to that branch and then pushed back up to GitHub. **HOWEVER**, it is best practice to ___not___ make any changes directly to the `gh-pages` branch! Instead, you should switch back to the `master` branch, make your changes there, comit them, then `merge` them back into `gh-pages` before pushing to GitHub:
+After you've created your initial `gh-pages` branch, any changes you want to appear online will need to be saved as new commits to that branch and then pushed back up to GitHub. **HOWEVER**, it is best practice to ___not___ make any changes directly to the `gh-pages` branch! Instead, you should switch back to the `master` branch, make your changes there, commit them, then `merge` them back into `gh-pages` before pushing to GitHub:
 
 ```bash
 # switch back to master

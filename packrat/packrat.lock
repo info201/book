@@ -70,6 +70,11 @@ Source: CRAN
 Version: 1.3-2
 Hash: 0bf8618b585fa98eb23414cd3ab95118
 
+Package: data.table
+Source: CRAN
+Version: 1.10.4-3
+Hash: 3c270a59ca3298aba8df3c1ae3bbea19
+
 Package: dichromat
 Source: CRAN
 Version: 2.0-0
@@ -163,6 +168,11 @@ Source: CRAN
 Version: 0.8
 Hash: 045d7c594d503b41f1c28946d076c8aa
 Requires: mime
+
+Package: microbenchmark
+Source: CRAN
+Version: 1.4-4
+Hash: a42147966106d4a16d5e4823da6dc1e4
 
 Package: mime
 Source: CRAN
