@@ -210,7 +210,7 @@ cat("````rmd
 animals <- c(\"Lions\", \"Tigers\", \"Bears\")
 
 # paste a `-` in front of each, then cat the items with newlines between
-markdown.list <- cat(paste('-',animals), sep='\\n')
+markdown.list <- paste(paste('-',animals), collapse='\\n')
 \`\`\`
 
 \`r markdown.list`

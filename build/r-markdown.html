@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2018-03-30">
+<meta name="date" content="2018-04-26">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -572,7 +572,7 @@ markdown.list &lt;- &quot;
 animals &lt;- c(&quot;Lions&quot;, &quot;Tigers&quot;, &quot;Bears&quot;)
 
 # paste a `-` in front of each, then cat the items with newlines between
-markdown.list &lt;- cat(paste(&#39;-&#39;,animals), sep=&#39;\n&#39;)
+markdown.list &lt;- paste(paste(&#39;-&#39;,animals), collapse=&#39;\n&#39;)
 ```
 
 `r markdown.list`</code></pre>
