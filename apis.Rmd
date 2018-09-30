@@ -62,27 +62,27 @@ Many web services require you to register with them in order to send them reques
 
 To facilitate this tracking, many services provide **Access Tokens** (also called **API Keys**). These are unique strings of letters and numbers that identify a particular developer (like a secret password that only works for you). Web services will require you to include your _access token_ as a query parameter in the request; the exact name of the parameter varies, but it often looks like `access_token` or `api_key`. When exploring a web service, keep an eye out for whether they require such tokens.
 
-_Access tokens_ act a lot like passwords; you will want to keep them secret and not share them with others. This means that you **should not include them in your committed files**, so that the passwords don't get pushed to GitHub and shared with the world. The best way to get around this in R is to create a separate script file in your repo (e.g., `apikeys.R`) which includes exactly one line: assigning the key to a variable:
+_Access tokens_ act a lot like passwords; you will want to keep them secret and not share them with others. This means that you **should not include them in your committed files**, so that the passwords don't get pushed to GitHub and shared with the world. The best way to get around this in R is to create a separate script file in your repo (e.g., `api-keys.R`) which includes exactly one line: assigning the key to a variable:
 
 ```r
-# in `apikeys.R`
-api.key <- "123456789abcdefg"
+# in `api-keys.R`
+api_key <- "123456789abcdefg"
 ```
 
 You can then include this file_name_ in a **`.gitignore`** file in your repo; that will keep it from even possibly being committed with your code!
 
-In order to access this variable in your "main" script, you can use the `source()` function to load and run your `apikeys.R` script. This will execute the line of code that assigns the `api.key` variable, making it available in your environment for your use:
+In order to access this variable in your "main" script, you can use the `source()` function to load and run your `api-keys.R` script. This will execute the line of code that assigns the `api_key` variable, making it available in your environment for your use:
 
 ```r
-# in `myScript.R`
+# in `my-script.R`
 
 # (make sure working directory is set)
 
-source('apiKeys.R')  # load the script
-print(api.key)  # key is now available!
+source('api-keys.R')  # load the script
+print(api_key)  # key is now available!
 ```
 
-Anyone else who runs the script will simply need to provide an `api.key` variable to access the API using their key, keeping everyone's account separate!
+Anyone else who runs the script will simply need to provide an `api_key` variable to access the API using their key, keeping everyone's account separate!
 
 <p class="alert alert-warning">Watch out for APIs that mention using [OAuth](https://en.wikipedia.org/wiki/OAuth) when explaining API keys. OAuth is a system for performing **authentification**&mdash;that is, letting someone log into a website from your application (like what a "Log in with Facebook" button does). OAuth systems require more than one access key, and these keys ___must___ be kept secret and usually require you to run a web server to utilize them correctly (which requires lots of extra setup, see [the full `httr` docs](https://cran.r-project.org/web/packages/httr/httr.pdf) for details). So for this course, we encourage you to avoid anything that needs OAuth</p>
 
@@ -99,7 +99,7 @@ When you send a request to a particular resource, you need to indicate what you 
 
 By far the most common verb is `GET`, which is used to "get" (download) data from a web service. Depending on how you connect to your API (i.e., which programming language you are using), you'll specify the verb of interest to indicate what we want to do to a particular resource.
 
-Overall, this structure of treating each datum on the web as a **resource** which we can interact with via **HTTP Requests** is refered to as the **REST Architecture** (REST stands for _REpresentational State Transfer_). This is a standard way of structuring computer applications that allows them to be interacted with in the same way as everyday websites. Thus a web service that enabled data access through named resources and responds to HTTP requests is known as a **RESTful** service, with a _RESTful API_.
+Overall, this structure of treating each datum on the web as a **resource** which we can interact with via **HTTP Requests** is referred to as the **REST Architecture** (REST stands for _REpresentational State Transfer_). This is a standard way of structuring computer applications that allows them to be interacted with in the same way as everyday websites. Thus a web service that enabled data access through named resources and responds to HTTP requests is known as a **RESTful** service, with a _RESTful API_.
 
 
 ## Accessing Web APIs
@@ -110,12 +110,12 @@ https://api.github.com/search/repositories?q=d3&sort=forks
 
 ```
 
-This query acceses the `/search/repositories/` endpoint, and also specifies 2 parameters:
+This query accesses the `/search/repositories/` endpoint, and also specifies 2 query parameters:
 
 - `q`: The term(s) you are searching for, and
 - `sort`: The attribute of each repository that you would like to use to sort the results
 
-(Note that the data you'll get back is structued in JSON format. See [below](#json) for details).
+(Note that the data you'll get back is structured in JSON format. See [below](#json) for details).
 
 In `R` you can send GET requests using the [`httr`](https://cran.r-project.org/web/packages/httr/vignettes/quickstart.html) library. Like `dplyr`, you will need to install and load it to use it:
 
@@ -135,8 +135,8 @@ While it is possible to include _query parameters_ in the URI string, `httr` als
 
 ```r
 # Equivalent to the above, but easier to read and change
-query.params <- list(q = "d3", sort = "forks")
-response <- GET("https://api.github.com", query = query.params)
+query_params <- list(q = "d3", sort = "forks")
+response <- GET("https://api.github.com", query = query_params)
 ```
 
 If you try printing out the `response` variable, you'll see information about the response:
@@ -184,9 +184,10 @@ In JSON, lists of key-value pairs (called _objects_) are put inside braces (**`{
 (In JavaScript the period `.` has special meaning, so it is not used in key names; hence the underscores `_`). The above is equivalent to the `R` list:
 
 ```r
-list(first_name = "Ada", job = "Programmer", salary = 78000, in_union = TRUE,
-        favorites = list(music = "jazz", food = "pizza")  # nested list in the list!
-    )
+list(
+  first_name = "Ada", job = "Programmer", salary = 78000, in_union = TRUE,
+  favorites = list(music = "jazz", food = "pizza") # nested list in the list!
+)
 ```
 
 Additionally, JSON supports what are called _arrays_ of data. These are like lists without keys (and so are only accessed by index). Key-less arrays are written in square brackets (**`[ ]`**), with values separated by commas. For example:
@@ -248,13 +249,18 @@ library("jsonlite")
 
 ```r
 # send request for albums by David Bowie
+<<<<<<< HEAD
 query.params <- list(q = "d3", sort = "forks")
-response <- GET("https://api.github.com", query = query.params)
+response <- GET("https://api.github.com/search/repositories", query = query.params)
+=======
+query_params <- list(q = "d3", sort = "forks")
+response <- GET("https://api.github.com", query = query_params)
+>>>>>>> 112475b2d49fb2adbcb635aef504ee74c89a9a15
 body <- content(response, "text")  # extract the body JSON
-parsed.data <- fromJSON(body)  # convert the JSON string to a list
+parsed_data <- fromJSON(body)  # convert the JSON string to a list
 ```
 
-The `parsed.data` will contain a _list_ built out of the JSON. Depending on the complexity of the JSON, this may already be a data frame you can `View()`... but more likely you'll need to _explore_ the list more to locate the "main" data you are interested in. Good strategies for this include:
+The `parsed_data` will contain a _list_ built out of the JSON. Depending on the complexity of the JSON, this may already be a data frame you can `View()`... but more likely you'll need to _explore_ the list more to locate the "main" data you are interested in. Good strategies for this include:
 
 - You can `print()` the data, but that is often hard to read (it requires a lot of scrolling).
 - The `str()` method will produce a more organized printed list, though it can still be hard to read.
@@ -263,12 +269,12 @@ The `parsed.data` will contain a _list_ built out of the JSON. Depending on the 
 As an example continuing the above code:
 
 ```r
-is.data.frame(parsed.data)  # FALSE; not a data frame you can work with
-names(parsed.data)  # "href" "items" "limit" "next" "offset" "previous" "total"
+is.data.frame(parsed_data)  # FALSE; not a data frame you can work with
+names(parsed_data)  # "href" "items" "limit" "next" "offset" "previous" "total"
   # looking at the JSON data itself (e.g., in the browser), `items` is the
   # key that contains the value we want
 
-items <- parsed.data$items  # extract that element from the list
+items <- parsed_data$items  # extract that element from the list
 is.data.frame(items)  # TRUE; you can work with that!
 ```
 
@@ -277,25 +283,25 @@ Because JSON supports&mdash;and in fact encourages&mdash;nested lists (lists wit
 
 ```r
 # A somewhat contrived example
-people <- data.frame(names = c('Spencer', 'Jessica', 'Keagan'))  # a data frame with one column
+people <- data.frame(names = c("Spencer", "Jessica", "Keagan")) # a data frame with one column
 
-favorites <- data.frame(  # a data frame with two columns
-                food = c('Pizza', 'Pasta', 'salad'),
-                music = c('Bluegrass', 'Indie', 'Electronic')
-            )
+favorites <- data.frame( # a data frame with two columns
+  food = c("Pizza", "Pasta", "salad"),
+  music = c("Bluegrass", "Indie", "Electronic")
+)
 # Store second dataframe as column of first
-people$favorites <- favorites  # the `favorites` column is a data frame!
+people$favorites <- favorites # the `favorites` column is a data frame!
 
 # This prints nicely...
 print(people)
-  #     names favorites.food favorites.music
-  # 1 Spencer          Pizza       Bluegrass
-  # 2 Jessica          Pasta           Indie
-  # 3  Keagan          salad      Electronic
+#     names favorites.food favorites.music
+# 1 Spencer          Pizza       Bluegrass
+# 2 Jessica          Pasta           Indie
+# 3  Keagan          salad      Electronic
 
 # but doesn't actually work like you expect!
-people$favorites.food  # NULL
-people$favorites$food  # [1] Pizza Pasta salad
+people$favorites.food # NULL
+people$favorites$food # [1] Pizza Pasta salad
 ```
 
 Nested data frames make it hard to work with the data using previously established techniques. Luckily, the `jsonlite` package provides a helpful function for addressing this called **`flatten()`**. This function takes the columns of each _nested_ data frame and converts them into appropriately named columns in the "outer" data frame:

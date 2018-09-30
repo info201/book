@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-<link rel="prev" href="lists.html">
-<link rel="next" href="dplyr.html">
+<link rel="prev" href="control-structures.html">
+<link rel="next" href="remote-server.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -412,306 +412,388 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-frames" class="section level1">
-<h1><span class="header-section-number">Chapter 9</span> Data Frames</h1>
-<p>This chapter introduces <strong>data frame</strong> objects, which are the primary data storage type used in R. In many ways, data frames are similar to a two-dimensional row/column layout that you should be familiar with from spreadsheet programs like Microsoft Excel. Rather than interact with this data structure through a UI, we’ll learn how to programmatically and reproducibly perform operations on this data type. This chapter covers various ways of creating, describing, and accessing data frames, as well as how they are related to other data types in R.</p>
-<div id="what-is-a-data-frame" class="section level2">
-<h2><span class="header-section-number">9.1</span> What is a Data Frame?</h2>
-<p>At a practical level, <strong>Data Frames</strong> act like <em>tables</em>, where data is organized into rows and columns. For example, consider the following table of names, weights, and heights:</p>
-<div class="figure">
-<img src="img/dataframes/table-example.png" title="table of weights and heights" alt="A table of data (people’s weights and heights)." />
-<p class="caption">A table of data (people’s weights and heights).</p>
+<div id="data-tables" class="section level1">
+<h1><span class="header-section-number">C</span> Thinking Big: Data Tables</h1>
+<p>Data frames are core elements for data handling in R. However, the suffer from several limitations. One of the major issue with data frames is that they are memory hungry and slow. This is not an issue when working with relatively small datasets (say, up to 100,000 rows). However, when your dataset size exceed gigabytes, dataframes may be infeasibly slow and too memory hungry.</p>
+<div id="background-passing-by-value-and-passing-by-reference" class="section level2">
+<h2><span class="header-section-number">C.1</span> Background: Passing By Value And Passing By Reference</h2>
+<p>R is (mostly) a pass-by-value language. This means that when you modify the data, at every step a new copy of the complete modified object is created, stored in memory, and the former object is freed (carbage-collected) if not in use any more.</p>
+<p>The main advantage of this approach is consistency: we have the guarantee that functions do not modify their inputs. However, in case of large objects, copying may be slow, and even more, it requires at least twice as much memory before the old object is freed. In case of more complex process pipelines, the memory consumption may be even more than twice of the size of the original object.</p>
+<p>Data tables implement a number of pass-by-reference functions. In pass-by-reference, the function is not given a fresh copy of the inputs, but is instead told where is the object in memory. Instead of copying gigabytes of data, only a single tiny memory pointer is passed. But this also means the function now is accessing and modifying the original object, not a copy of it. This may sometimes lead to bugs and unexpected behavior, but professional use of pass-by-reference approach may improve the speed and lower the memory footprint substantially.</p>
 </div>
-<p>In this table, each <em>row</em> represents a <strong>record</strong> or <strong>observation</strong>: an instance of a single thing being measured (e.g., a person). Each <em>column</em> represents a <strong>feature</strong>: a particular property or aspect of the thing being measured (e.g., the person’s height or weight). This structure is used to organize lots of different <em>related</em> data points for easier analysis.</p>
-<p>In R, you can use <strong>data frames</strong> to represent these kinds of tables. Data frames are really just <strong>lists</strong> (see <a href="lists.html#lists">Lists</a>) in which each element is a <strong>vector of the same length</strong>. Each vector represents a <strong>column, <em>not</em> a row</strong>. The elements at corresponding indices in the vectors are considered part of the same record (row).</p>
+<div id="data-tables-introduction" class="section level2">
+<h2><span class="header-section-number">C.2</span> Data Tables: Introduction</h2>
+<p>Data tables and most of the related goodies live in <em>data.table</em> library, so you either have to load the library or specify the namespace when using the functions.</p>
+<div id="replacement-for-data-frames-sort-of" class="section level3">
+<h3><span class="header-section-number">C.2.1</span> Replacement for Data Frames (Sort of)</h3>
+<p>Data tables are designed to be largely a replacement to data frames. The syntax is similar and they are largely replaceable. For instance, we can create and play with a data table as</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table)</code></pre></div>
+<pre><code>## Warning: package &#39;data.table&#39; was built under R version 3.4.2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt &lt;-<span class="st"> </span><span class="kw">data.table</span>(<span class="dt">id=</span><span class="dv">1</span>:<span class="dv">5</span>, <span class="dt">x=</span><span class="kw">rnorm</span>(<span class="dv">5</span>), <span class="dt">y=</span><span class="kw">runif</span>(<span class="dv">5</span>))
+dt</code></pre></div>
+<pre><code>##    id          x          y
+## 1:  1  0.9075283 0.31777207
+## 2:  2 -0.2216395 0.02943805
+## 3:  3 -0.9640137 0.19161354
+## 4:  4 -0.5245877 0.85537861
+## 5:  5  0.6633378 0.79260910</code></pre>
+<p>The result looks almost identical to a similar data frame (the only difference are the colons after the row numbers). Behind the scenes these objects are almost identical too–both objects are lists of vectors. This structural similarity allows to use data tables as drop-in replacements for dataframes, at least in some circumstances. For instance, we can extract variables with <code>$</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt$x</code></pre></div>
+<pre><code>## [1]  0.9075283 -0.2216395 -0.9640137 -0.5245877  0.6633378</code></pre>
+<p>or rows with row indices:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>),]</code></pre></div>
+<pre><code>##    id          x          y
+## 1:  2 -0.2216395 0.02943805
+## 2:  4 -0.5245877 0.85537861</code></pre>
+<p>However, data tables use unquoted variables names (like <em>dplyr</em>) by default:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt[,x]</code></pre></div>
+<pre><code>## [1]  0.9075283 -0.2216395 -0.9640137 -0.5245877  0.6633378</code></pre>
+<p>In case we need to store the variable name into another variable, with have to use the additional argument <code>with</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">var &lt;-<span class="st"> &quot;x&quot;</span>
+dt[, var, with=<span class="ot">FALSE</span>]</code></pre></div>
+<pre><code>##             x
+## 1:  0.9075283
+## 2: -0.2216395
+## 3: -0.9640137
+## 4: -0.5245877
+## 5:  0.6633378</code></pre>
+<p>Note also that instead of getting a vector, now we get a data.table with a single column “x” in the first. This behavior is the main culprit that when replacing data frames with data tables one may need to change quite a bit of code.</p>
+</div>
+<div id="fast-reading-and-writing" class="section level3">
+<h3><span class="header-section-number">C.2.2</span> Fast Reading and Writing</h3>
+<p>Many data frame users may appreciate the fact that the data input-output function <code>fread</code> and <code>fwrite</code> run at least a magnitude faster on large files. These are largely replacement for <code>read.table</code> and <code>write.table</code>, however they syntax differs noticeably in places. In particular, <code>fread</code> accepts either a file name, http-url, or a <em>shell command that prints output</em>; it automatically detects the column separator, but it does not automatically open compressed files. The latter is not a big deal when using unix where one can just issue</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="st">&quot;bzcat data.csv.bz2&quot;</span>)</code></pre></div>
+<p>However, the decompression is not that simple on windows and hence it is hard to write platform-independent code that opens compressed files.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
+<p>If your computer has enough memory and speed is not an issue, your interest for data tables may end here. You can just transform data table into a data frame with <code>setDF</code> (and the other way around with <code>setDT</code>). Let’s transform our data table to data frame:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setDF</span>(dt)
+dt</code></pre></div>
+<pre><code>##   id          x          y
+## 1  1  0.9075283 0.31777207
+## 2  2 -0.2216395 0.02943805
+## 3  3 -0.9640137 0.19161354
+## 4  4 -0.5245877 0.85537861
+## 5  5  0.6633378 0.79260910</code></pre>
+<p>Do you see that the colons after row names are gone? This means <code>dt</code> now is a data frame.</p>
+<p>Note that this function behaves very differently from what we have learned earlier: it modifies the object <em>in place</em> (by reference). We do not have to assign the result into a new variable using a construct like <code>df &lt;- setDF(dt)</code> (but we still can write like this, handy when using magrittr pipes). This is a manifestation of the power of data.tables: the object is not copied but the same object is modified in memory instead. <code>setDF</code> and <code>setDT</code> are very efficient, even huge tables are converted instantly with virtually no need for any additional memory.</p>
+<p>However, big powers come hand-in-hand with big responsibility: it is easy to forget that <code>setDF</code> modifies the function argument.</p>
+</div>
+</div>
+<div id="indexing-the-major-powerhorse-of-data-tables" class="section level2">
+<h2><span class="header-section-number">C.3</span> Indexing: The Major Powerhorse of Data Tables</h2>
+<p>Data tables’ indexing is much more powerful than that of data frames. The single-bracket indexing is a powerful (albeit confusing) set of functions. It’s general syntax is as follows:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt[i, j, by]</code></pre></div>
+<p>where <code>i</code> specifies what to do with rows (for instance, select certain rows), <code>j</code> tells what to do with columns (such as select columns, compute new columns, aggregate columns), and <code>by</code> contains the grouping variables.</p>
+<p>Let’s demonstrate this with the <em>flights</em> data from <em>nycflights13</em> package. We load the data and transform it into data.table:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(flights, <span class="dt">package=</span><span class="st">&quot;nycflights13&quot;</span>)
+<span class="kw">setDT</span>(flights)
+<span class="kw">head</span>(flights)</code></pre></div>
+<pre><code>##    year month day dep_time sched_dep_time dep_delay arr_time
+## 1: 2013     1   1      517            515         2      830
+## 2: 2013     1   1      533            529         4      850
+## 3: 2013     1   1      542            540         2      923
+## 4: 2013     1   1      544            545        -1     1004
+## 5: 2013     1   1      554            600        -6      812
+## 6: 2013     1   1      554            558        -4      740
+##    sched_arr_time arr_delay carrier flight tailnum origin dest air_time
+## 1:            819        11      UA   1545  N14228    EWR  IAH      227
+## 2:            830        20      UA   1714  N24211    LGA  IAH      227
+## 3:            850        33      AA   1141  N619AA    JFK  MIA      160
+## 4:           1022       -18      B6    725  N804JB    JFK  BQN      183
+## 5:            837       -25      DL    461  N668DN    LGA  ATL      116
+## 6:            728        12      UA   1696  N39463    EWR  ORD      150
+##    distance hour minute           time_hour
+## 1:     1400    5     15 2013-01-01 05:00:00
+## 2:     1416    5     29 2013-01-01 05:00:00
+## 3:     1089    5     40 2013-01-01 05:00:00
+## 4:     1576    5     45 2013-01-01 05:00:00
+## 5:      762    6      0 2013-01-01 06:00:00
+## 6:      719    5     58 2013-01-01 05:00:00</code></pre>
+<div id="i-select-observations" class="section level3">
+<h3><span class="header-section-number">C.3.1</span> i: Select Observations</h3>
+<p>Obviously, we can always just tell which observations we want:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[<span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">3</span>),]</code></pre></div>
+<pre><code>##    year month day dep_time sched_dep_time dep_delay arr_time
+## 1: 2013     1   1      517            515         2      830
+## 2: 2013     1   1      533            529         4      850
+## 3: 2013     1   1      542            540         2      923
+##    sched_arr_time arr_delay carrier flight tailnum origin dest air_time
+## 1:            819        11      UA   1545  N14228    EWR  IAH      227
+## 2:            830        20      UA   1714  N24211    LGA  IAH      227
+## 3:            850        33      AA   1141  N619AA    JFK  MIA      160
+##    distance hour minute           time_hour
+## 1:     1400    5     15 2013-01-01 05:00:00
+## 2:     1416    5     29 2013-01-01 05:00:00
+## 3:     1089    5     40 2013-01-01 05:00:00</code></pre>
+<p>picks the first three lines from the data. Maybe more interestingly, we can use the special variable <code>.N</code> (the number of rows), to get the penultimate row:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[.N<span class="dv">-1</span>,]</code></pre></div>
+<pre><code>##    year month day dep_time sched_dep_time dep_delay arr_time
+## 1: 2013     9  30       NA           1159        NA       NA
+##    sched_arr_time arr_delay carrier flight tailnum origin dest air_time
+## 1:           1344        NA      MQ   3572  N511MQ    LGA  CLE       NA
+##    distance hour minute           time_hour
+## 1:      419   11     59 2013-09-30 11:00:00</code></pre>
+<p>We can select observations with logical index vector in the same way as in data frames:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(flights[origin ==<span class="st"> &quot;EWR&quot;</span> &amp;<span class="st"> </span>dest ==<span class="st"> &quot;SEA&quot;</span>,], <span class="dv">3</span>)</code></pre></div>
+<pre><code>##    year month day dep_time sched_dep_time dep_delay arr_time
+## 1: 2013     1   1      724            725        -1     1020
+## 2: 2013     1   1      857            851         6     1157
+## 3: 2013     1   1     1418           1419        -1     1726
+##    sched_arr_time arr_delay carrier flight tailnum origin dest air_time
+## 1:           1030       -10      AS     11  N594AS    EWR  SEA      338
+## 2:           1222       -25      UA   1670  N45440    EWR  SEA      343
+## 3:           1732        -6      UA     16  N37464    EWR  SEA      348
+##    distance hour minute           time_hour
+## 1:     2402    7     25 2013-01-01 07:00:00
+## 2:     2402    8     51 2013-01-01 08:00:00
+## 3:     2402   14     19 2013-01-01 14:00:00</code></pre>
+<p>will create a new data table including only flights from Newark to Seattle. However, note that we just use <code>origin</code>, and not <code>flights$origin</code> as were the case with data frames. Data tables evaluate the arguments as if inside <code>with</code>-function.</p>
+<p>The first, integer indexing corresponds to dplyr’s <code>slice</code> function while the other one is equivalent to <code>filter</code>.</p>
+</div>
+<div id="j-work-with-columns" class="section level3">
+<h3><span class="header-section-number">C.3.2</span> j: Work with Columns</h3>
+<p><code>j</code> is perhaps the most powerful (and most confusing) of all arguments for data table indexing. It allows both to select and do more complex tasks. Lets start with selection:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(flights[, dest], <span class="dv">3</span>)</code></pre></div>
+<pre><code>## [1] &quot;IAH&quot; &quot;IAH&quot; &quot;MIA&quot;</code></pre>
+<p>selects only the <code>dest</code> variable from the data. Note this results in a vector, not in a single-variable data table. If you want to get that, you can do</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(flights[, .(dest)], <span class="dv">3</span>)</code></pre></div>
+<pre><code>##    dest
+## 1:  IAH
+## 2:  IAH
+## 3:  MIA</code></pre>
+<p><code>.()</code> is just an alias for <code>list()</code>, encoded differently in data tables to improve readability and make it easier to type. If we want to select more that one variable, we can use the latter syntax:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(flights[, .(origin, dest)], <span class="dv">3</span>)</code></pre></div>
+<pre><code>##    origin dest
+## 1:    EWR  IAH
+## 2:    LGA  IAH
+## 3:    JFK  MIA</code></pre>
+<p>Selection supports a number of goodies, such as ranges of variables with <code>:</code> (for instance, <code>dep_time:arr_delay</code>) and excluding variables with <code>!</code> or <code>-</code> (for instance, <code>-year</code>).</p>
+<p>Obviously we can combine both <code>i</code> and <code>j</code>: let’s select origin and departure delay for flights to Seattle:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(flights[dest ==<span class="st"> &quot;SEA&quot;</span>, .(origin, dep_delay)], <span class="dv">3</span>)</code></pre></div>
+<pre><code>##    origin dep_delay
+## 1:    EWR        -1
+## 2:    JFK        13
+## 3:    EWR         6</code></pre>
+<p>The example so far broadly correspond to dplyr’s <code>select</code>.</p>
+<p>But <code>j</code> is not just for selecting. It is also for computing. Let’s find the mean arrival delay for flights to Seattle:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[dest ==<span class="st"> &quot;SEA&quot;</span>, <span class="kw">mean</span>(arr_delay, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)]</code></pre></div>
+<pre><code>## [1] -1.099099</code></pre>
+<p>Several variables can be returned by wrapping, and optionally named, these in <code>.()</code>. For instance, find the average departure and arrival delay for all flights to Seattle, given the flight was delayed on arrival, and name these <code>dep</code> and <code>arr</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[dest ==<span class="st"> &quot;SEA&quot;</span> &amp;<span class="st"> </span>arr_delay &gt;<span class="st"> </span><span class="dv">0</span>,
+        .(<span class="dt">dep =</span> <span class="kw">mean</span>(dep_delay, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), <span class="dt">arr =</span> <span class="kw">mean</span>(arr_delay, <span class="dt">na.rm=</span><span class="ot">TRUE</span>))]</code></pre></div>
+<pre><code>##         dep      arr
+## 1: 33.98266 39.79984</code></pre>
+<p>The result is a data table with two variables.</p>
+<p>We can use the special variable <code>.N</code> to count the rows:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[dest ==<span class="st"> &quot;SEA&quot;</span> &amp;<span class="st"> </span>arr_delay &gt;<span class="st"> </span><span class="dv">0</span>, .N]</code></pre></div>
+<pre><code>## [1] 1269</code></pre>
+<p>will tell us how many flights to Seattle were delayed at arrival.</p>
+<p>Handling the case where the variable names are stored in other variables is not that hard, but still adds a layer of complexity. We can specify the variables in <code>.SDcols</code> parameter. This parameter determines which columns go into <code>.SD</code> (=Subset Data) special variable. Afterwards we make an <code>lapply</code> expression in <code>j</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[dest ==<span class="st"> &quot;SEA&quot;</span> &amp;<span class="st"> </span>arr_delay &gt;<span class="st"> </span><span class="dv">0</span>,
+        <span class="kw">lapply</span>(.SD, function(x) <span class="kw">mean</span>(x, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)),
+        .SDcols =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;arr_delay&quot;</span>, <span class="st">&quot;dep_delay&quot;</span>)]</code></pre></div>
+<pre><code>##    arr_delay dep_delay
+## 1:  39.79984  33.98266</code></pre>
+<p>Let’s repeat: <code>.SDcols</code> determines which variables will go into the special <code>.SD</code> list (default: all). <code>lapply</code> in <code>j</code> computes mean values of each of the variables in the <code>.SD</code> list. This procedure feels complex, although it is internally optimized.</p>
+<p>These examples correspond to dplyr’s <code>aggregate</code> function. One can argue, however, that data tables’ syntax is more confusing and harder to read. Note also that the functionality data tables offer here is optimized for speed and memory efficiency but still return a new object. Aggregation does not work by reference.</p>
+</div>
+<div id="group-in-by" class="section level3">
+<h3><span class="header-section-number">C.3.3</span> Group in <code>by</code></h3>
+<p>Finally, all of the above can by computed by groups using <code>by</code>. Let’s compute the average delays above by carrier and origin:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[dest ==<span class="st"> &quot;SEA&quot;</span> &amp;<span class="st"> </span>arr_delay &gt;<span class="st"> </span><span class="dv">0</span>,
+        .(<span class="dt">dep =</span> <span class="kw">mean</span>(dep_delay, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), <span class="dt">arr =</span> <span class="kw">mean</span>(arr_delay, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)),
+        by =<span class="st"> </span>.(carrier, origin)]</code></pre></div>
+<pre><code>##    carrier origin      dep      arr
+## 1:      DL    JFK 29.82373 39.49831
+## 2:      B6    JFK 28.49767 40.32093
+## 3:      UA    EWR 40.24053 41.85078
+## 4:      AS    EWR 31.80952 34.36508
+## 5:      AA    JFK 34.04132 40.48760</code></pre>
+<p>We just had to specify the <code>by</code> argument that lists the grouping variables. If more than one, these should be wrapped in a list with <code>.()</code> function.</p>
+<p>We can use the <code>.N</code> variable to get the group size. How many flights did each carrier from each origin?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[, .N, by=.(carrier, origin)] %&gt;%
+<span class="st">   </span><span class="kw">head</span>(<span class="dv">3</span>)</code></pre></div>
+<pre><code>##    carrier origin     N
+## 1:      UA    EWR 46087
+## 2:      UA    LGA  8044
+## 3:      AA    JFK 13783</code></pre>
+<p>Finally, we can also use quoted variables for grouping too just be replacing <code>.()</code> with <code>c()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[, .N, by=<span class="kw">c</span>(<span class="st">&quot;carrier&quot;</span>, <span class="st">&quot;origin&quot;</span>)] %&gt;%
+<span class="st">   </span><span class="kw">head</span>(<span class="dv">3</span>)</code></pre></div>
+<pre><code>##    carrier origin     N
+## 1:      UA    EWR 46087
+## 2:      UA    LGA  8044
+## 3:      AA    JFK 13783</code></pre>
+<p>In dplyr context, the examples here include <code>group_by</code> and <code>summarize</code> verbs.</p>
+<p>Read more about the basic usage in data.table the vignette <a href="https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html">Data analysis using data.table</a>.</p>
+</div>
+</div>
+<div id="create-variables-by-reference" class="section level2">
+<h2><span class="header-section-number">C.4</span> <code>:=</code>–Create variables by reference</h2>
+<p>While summarizing we compute values in <code>j</code>, these will always create a new data.table. Reducing operations are not possible to do in-place. But computing new variables can be done in-place.</p>
+<p>In place variable computations (without summarizing) can be done with <code>:=</code> assignment operator in <code>j</code>. Let’s compute a new variable–speed–for each flight. We can do this as follows:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[, speed :<span class="er">=</span><span class="st"> </span>distance/(air_time/<span class="dv">60</span>)]
+flights %&gt;%<span class="st"> </span><span class="kw">head</span>(<span class="dv">3</span>)</code></pre></div>
+<pre><code>##    year month day dep_time sched_dep_time dep_delay arr_time
+## 1: 2013     1   1      517            515         2      830
+## 2: 2013     1   1      533            529         4      850
+## 3: 2013     1   1      542            540         2      923
+##    sched_arr_time arr_delay carrier flight tailnum origin dest air_time
+## 1:            819        11      UA   1545  N14228    EWR  IAH      227
+## 2:            830        20      UA   1714  N24211    LGA  IAH      227
+## 3:            850        33      AA   1141  N619AA    JFK  MIA      160
+##    distance hour minute           time_hour    speed
+## 1:     1400    5     15 2013-01-01 05:00:00 370.0441
+## 2:     1416    5     29 2013-01-01 05:00:00 374.2731
+## 3:     1089    5     40 2013-01-01 05:00:00 408.3750</code></pre>
+<p>We see the new variable, speed, included as the last variable in the data. Note we did this operation <em>by reference</em>, i.e. we did not assign the result to a new data table. The existing table was modified in place.</p>
+<p>The same assignment operator also permits us to remove variables by setting these to <code>NULL</code>. Let’s remove speed:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[, speed :<span class="er">=</span><span class="st"> </span><span class="ot">NULL</span>]
+flights %&gt;%<span class="st"> </span><span class="kw">head</span>(<span class="dv">3</span>)</code></pre></div>
+<pre><code>##    year month day dep_time sched_dep_time dep_delay arr_time
+## 1: 2013     1   1      517            515         2      830
+## 2: 2013     1   1      533            529         4      850
+## 3: 2013     1   1      542            540         2      923
+##    sched_arr_time arr_delay carrier flight tailnum origin dest air_time
+## 1:            819        11      UA   1545  N14228    EWR  IAH      227
+## 2:            830        20      UA   1714  N24211    LGA  IAH      227
+## 3:            850        33      AA   1141  N619AA    JFK  MIA      160
+##    distance hour minute           time_hour
+## 1:     1400    5     15 2013-01-01 05:00:00
+## 2:     1416    5     29 2013-01-01 05:00:00
+## 3:     1089    5     40 2013-01-01 05:00:00</code></pre>
+<p>Indeed, there is not speed any more.</p>
+<p>Assigning more that one variable by reference may feel somewhat more intimidating:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[, <span class="kw">c</span>(<span class="st">&quot;speed&quot;</span>, <span class="st">&quot;meanDelay&quot;</span>) :<span class="er">=</span><span class="st"> </span>.(distance/(air_time/<span class="dv">60</span>), (arr_delay +<span class="st"> </span>dep_delay)/<span class="dv">2</span>)]
+flights %&gt;%<span class="st"> </span><span class="kw">head</span>(<span class="dv">3</span>)</code></pre></div>
+<pre><code>##    year month day dep_time sched_dep_time dep_delay arr_time
+## 1: 2013     1   1      517            515         2      830
+## 2: 2013     1   1      533            529         4      850
+## 3: 2013     1   1      542            540         2      923
+##    sched_arr_time arr_delay carrier flight tailnum origin dest air_time
+## 1:            819        11      UA   1545  N14228    EWR  IAH      227
+## 2:            830        20      UA   1714  N24211    LGA  IAH      227
+## 3:            850        33      AA   1141  N619AA    JFK  MIA      160
+##    distance hour minute           time_hour    speed meanDelay
+## 1:     1400    5     15 2013-01-01 05:00:00 370.0441       6.5
+## 2:     1416    5     29 2013-01-01 05:00:00 374.2731      12.0
+## 3:     1089    5     40 2013-01-01 05:00:00 408.3750      17.5</code></pre>
+<p>Assignment works together with both selection and grouping. For instance, we may want to replace negative delay by zeros:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[ arr_delay &lt;<span class="st"> </span><span class="dv">0</span>, arr_delay :<span class="er">=</span><span class="st"> </span><span class="dv">0</span>][, arr_delay] %&gt;%
+<span class="st">   </span><span class="kw">head</span>(<span class="dv">20</span>)</code></pre></div>
+<pre><code>##  [1] 11 20 33  0  0 12 19  0  0  8  0  0  7  0 31  0  0  0 12  0</code></pre>
+<p>Indeed, we only see positive numbers and zeros. But be careful: now we have overwritten the <code>arr_delay</code> in the original data. We cannot restore the previous state any more without re-loading the dataset.</p>
+<p>As an example of groupings, let’s compute the maximum departure delay by origin:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[, maxDelay :<span class="er">=</span><span class="st"> </span><span class="kw">max</span>(dep_delay, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), by=origin] %&gt;%
+<span class="st">   </span><span class="kw">head</span>(<span class="dv">4</span>)</code></pre></div>
+<pre><code>##    year month day dep_time sched_dep_time dep_delay arr_time
+## 1: 2013     1   1      517            515         2      830
+## 2: 2013     1   1      533            529         4      850
+## 3: 2013     1   1      542            540         2      923
+## 4: 2013     1   1      544            545        -1     1004
+##    sched_arr_time arr_delay carrier flight tailnum origin dest air_time
+## 1:            819        11      UA   1545  N14228    EWR  IAH      227
+## 2:            830        20      UA   1714  N24211    LGA  IAH      227
+## 3:            850        33      AA   1141  N619AA    JFK  MIA      160
+## 4:           1022         0      B6    725  N804JB    JFK  BQN      183
+##    distance hour minute           time_hour    speed meanDelay maxDelay
+## 1:     1400    5     15 2013-01-01 05:00:00 370.0441       6.5     1126
+## 2:     1416    5     29 2013-01-01 05:00:00 374.2731      12.0      911
+## 3:     1089    5     40 2013-01-01 05:00:00 408.3750      17.5     1301
+## 4:     1576    5     45 2013-01-01 05:00:00 516.7213      -9.5     1301</code></pre>
+<p>We can see that <code>by</code> caused the delay to be computed for each group, however, the data is not summarized, just the max delay is added to every single row.</p>
+<p>Finally, if you <em>do not</em> want to modify the original data, you should use <code>copy</code> function. This makes a deep copy of the data, and you can modify the copy afterwards:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fl &lt;-<span class="st"> </span><span class="kw">copy</span>(flights)
+fl &lt;-<span class="st"> </span>fl[, .(origin, dest)]
+<span class="kw">head</span>(fl, <span class="dv">3</span>)</code></pre></div>
+<pre><code>##    origin dest
+## 1:    EWR  IAH
+## 2:    LGA  IAH
+## 3:    JFK  MIA</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(flights, <span class="dv">3</span>)</code></pre></div>
+<pre><code>##    year month day dep_time sched_dep_time dep_delay arr_time
+## 1: 2013     1   1      517            515         2      830
+## 2: 2013     1   1      533            529         4      850
+## 3: 2013     1   1      542            540         2      923
+##    sched_arr_time arr_delay carrier flight tailnum origin dest air_time
+## 1:            819        11      UA   1545  N14228    EWR  IAH      227
+## 2:            830        20      UA   1714  N24211    LGA  IAH      227
+## 3:            850        33      AA   1141  N619AA    JFK  MIA      160
+##    distance hour minute           time_hour    speed meanDelay maxDelay
+## 1:     1400    5     15 2013-01-01 05:00:00 370.0441       6.5     1126
+## 2:     1416    5     29 2013-01-01 05:00:00 374.2731      12.0      911
+## 3:     1089    5     40 2013-01-01 05:00:00 408.3750      17.5     1301</code></pre>
+<p>As you see, the <code>flights</code> data has not changed.</p>
+<p>These operations correspond to the dplyr’s <code>mutate</code> verb. However, <code>mutate</code> always makes a copy of the original dataset, something that may well make your analysis slow and sluggish with large data.</p>
+<p>Read more in vignette <a href="https://cran.r-project.org/web/packages/data.table/vignettes/datatable-reference-semantics.html">Data.table reference semantics</a></p>
+</div>
+<div id="keys" class="section level2">
+<h2><span class="header-section-number">C.5</span> keys</h2>
+<p>Data tables allow fast lookup based on <em>key</em>. In it’s simplest version, a key is a column (or several columns) which is used to pre-sort the data table. Pre-sorting makes it much faster to look up certain values, perform grouping operations and merges. As data can only be sorted according to one rule at a time, there can only be one key on data.table (but a key may include several variables).</p>
+<p>Let’s set origin and destination as keys for the data table:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(flights, <span class="dt">pkg=</span><span class="st">&quot;nycflights13&quot;</span>)</code></pre></div>
+<pre><code>## Warning in data(flights, pkg = &quot;nycflights13&quot;): data set &#39;flights&#39; not
+## found</code></pre>
+<pre><code>## Warning in data(flights, pkg = &quot;nycflights13&quot;): data set &#39;nycflights13&#39; not
+## found</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setDT</span>(flights, <span class="dt">key=</span><span class="kw">c</span>(<span class="st">&quot;origin&quot;</span>, <span class="st">&quot;dest&quot;</span>))
+fl &lt;-<span class="st"> </span>flights[,.(origin, dest, arr_delay)]
+                           <span class="co"># focus on a few variables only</span>
+<span class="kw">head</span>(fl, <span class="dv">3</span>)</code></pre></div>
+<pre><code>##    origin dest arr_delay
+## 1:    EWR  ALB         0
+## 2:    EWR  ALB        40
+## 3:    EWR  ALB        44</code></pre>
+<p>We see that both origin and destination are alphabetically ordered. Note that when selecting variables, the resulting data table <code>fl</code> will have the same keys as the original one.</p>
+<p>When set, we can easily subset by key by just feeding the key values in <code>i</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fl[<span class="st">&quot;LGA&quot;</span>] %&gt;%
+<span class="st">   </span><span class="kw">head</span>(<span class="dv">5</span>)</code></pre></div>
+<pre><code>##    origin dest arr_delay
+## 1:    LGA  ATL         0
+## 2:    LGA  ATL        12
+## 3:    LGA  ATL         5
+## 4:    LGA  ATL         0
+## 5:    LGA  ATL        17</code></pre>
+<p>will extract all LaGuardia-originating flights. In terms of output, this is equivalent to <code>fl[origin == &quot;LGA&quot;]</code>, just much more efficient. When you want to extract flights based on origin-destination pair, you can just add both key columns:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fl[.(<span class="st">&quot;EWR&quot;</span>, <span class="st">&quot;SEA&quot;</span>)] %&gt;%
+<span class="st">   </span><span class="kw">head</span>(<span class="dv">4</span>)</code></pre></div>
+<pre><code>##    origin dest arr_delay
+## 1:    EWR  SEA         0
+## 2:    EWR  SEA         0
+## 3:    EWR  SEA         0
+## 4:    EWR  SEA         0</code></pre>
+<p>Again, this can be achieved in other ways, just keys are more efficient. Finally, if we want to extract based on the second key, the syntax is more confusing:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fl[.(<span class="kw">unique</span>(origin), <span class="st">&quot;SEA&quot;</span>)] %&gt;%
+<span class="st">   </span><span class="kw">head</span>(<span class="dv">4</span>)</code></pre></div>
+<pre><code>##    origin dest arr_delay
+## 1:    EWR  SEA         0
+## 2:    EWR  SEA         0
+## 3:    EWR  SEA         0
+## 4:    EWR  SEA         0</code></pre>
+<p>We have to tell the <code>[</code> that we want to extract all observations where the first key is everything, and the second one is “SEA”.</p>
+<p>Read more in the vignette <a href="https://cran.r-project.org/web/packages/data.table/vignettes/datatable-keys-fast-subset.html">Keys and fast binary search based subset</a>.</p>
+</div>
+<div id="resources-17" class="section level2">
+<h2><span class="header-section-number">C.6</span> Resources</h2>
 <ul>
-<li>This makes sense because each row may have a different type of data—e.g., a person’s <code>name</code> (string) and <code>height</code> (number)—and vector elements must all be of the same type.</li>
-</ul>
-<p>For example, you can think of the above table as a <em>list</em> of three <em>vectors</em>: <code>name</code>, <code>height</code> and <code>weight</code>. The name, height, and weight of the first person measured are represented by the first elements of the <code>name</code>, <code>height</code> and <code>weight</code> vectors respectively.</p>
-<p>You can work with data frames as if they were lists, but data frames include additional properties as well that make them particularly well suited for handling tables of data.</p>
-<div id="creating-data-frames" class="section level3">
-<h3><span class="header-section-number">9.1.1</span> Creating Data Frames</h3>
-<p>Typically you will <em>load</em> data sets from some external source (see <a href="data-frames.html#csv-files">below</a>), rather than writing out the data by hand. However, it is important to understand that you can construct a data frame by combining multiple vectors. To accomplish this, you can use the <code>data.frame()</code> function, which accepts <strong>vectors</strong> as <em>arguments</em>, and creates a table with a column for each vector. For example:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vector of names</span>
-name &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Ada&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Chris&quot;</span>, <span class="st">&quot;Diya&quot;</span>, <span class="st">&quot;Emma&quot;</span>)
-
-<span class="co"># Vector of heights</span>
-height &lt;-<span class="st"> </span><span class="dv">58</span>:<span class="dv">62</span>
-
-<span class="co"># Vector of weights</span>
-weight &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">115</span>, <span class="dv">117</span>, <span class="dv">120</span>, <span class="dv">123</span>, <span class="dv">126</span>)
-
-<span class="co"># Combine the vectors into a data.frame</span>
-<span class="co"># Note the names of the variables become the names of the columns!</span>
-my_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(name, height, weight, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</code></pre></div>
-<ul>
-<li>(The last argument to the <code>data.frame()</code> function is included because one of the vectors contains strings; it tells R to treat that vector as a <em>vector</em> not as a <strong>factor</strong>. This is usually what you’ll want to do. See below for details about <a href="data-frames.html#factors">factors</a>).</li>
-</ul>
-<p>Because data frame elements are lists, you can access the values from <code>my_data</code> using the same <strong>dollar notation</strong> and <strong>double-bracket notation</strong> as lists:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Using the same weights/heights as above:</span>
-my_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(height, weight)
-
-<span class="co"># Retrieve weights (the `weight` element of the list: a vector!)</span>
-my_weights &lt;-<span class="st"> </span>my_data$weight
-
-<span class="co"># Retrieve heights (the whole column: a vector!)</span>
-my_heights &lt;-<span class="st"> </span>my_data[[<span class="st">&quot;height&quot;</span>]]</code></pre></div>
-</div>
-<div id="describing-structure-of-data-frames" class="section level3">
-<h3><span class="header-section-number">9.1.2</span> Describing Structure of Data Frames</h3>
-<p>While you can interact with data frames as lists, they also offer a number of additional capabilities and functions. For example, here are a few ways you can <em>inspect</em> the structure of a data frame:</p>
-<table>
-<colgroup>
-<col width="6%" />
-<col width="93%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Function</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"><code>nrow(my_data_frame)</code></td>
-<td align="left">Number of rows in the data frame</td>
-</tr>
-<tr class="even">
-<td align="left"><code>ncol(my_data_frame)</code></td>
-<td align="left">Number of columns in the data frame</td>
-</tr>
-<tr class="odd">
-<td align="left"><code>dim(my_data_frame)</code></td>
-<td align="left">Dimensions (rows, columns) in the data frame</td>
-</tr>
-<tr class="even">
-<td align="left"><code>colnames(my_data_frame)</code></td>
-<td align="left">Names of the columns of the data frame</td>
-</tr>
-<tr class="odd">
-<td align="left"><code>rownames(my_data_frame)</code></td>
-<td align="left">Names of the row of the data frame</td>
-</tr>
-<tr class="even">
-<td align="left"><code>head(my_data_frame)</code></td>
-<td align="left">Extracts the first few rows of the data frame (as a new data frame)</td>
-</tr>
-<tr class="odd">
-<td align="left"><code>tail(my_data_frame)</code></td>
-<td align="left">Extracts the last few rows of the data frame (as a new data frame)</td>
-</tr>
-<tr class="even">
-<td align="left"><code>View(my_data_frame)</code></td>
-<td align="left">Opens the data frame in as spreadsheet-like viewer (only in RStudio)</td>
-</tr>
-</tbody>
-</table>
-<p>Note that many of these description functions can also be used to <em>modify</em> the structure of a data frame. For example, you can use the <code>colnames</code> functions to assign a new set of column names to a data frame:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Using the same weights/heights as above:</span>
-my_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(name, height, weight)
-
-<span class="co"># A vector of new column names</span>
-new_col_names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;first_name&#39;</span>,<span class="st">&#39;how_tall&#39;</span>,<span class="st">&#39;how_heavy&#39;</span>)
-
-<span class="co"># Assign that vector to be the vector of column names</span>
-<span class="kw">colnames</span>(my_data) &lt;-<span class="st"> </span>new_col_names</code></pre></div>
-</div>
-<div id="accessing-data-in-data-frames" class="section level3">
-<h3><span class="header-section-number">9.1.3</span> Accessing Data in Data Frames</h3>
-<p>As stated above, since data frames <em>are</em> lists, it’s possible to use <strong>dollar notation</strong> (<code>my_data_frame$column_name</code>) or <strong>double-bracket notation</strong> (<code>my_data_frame[['column_name']]</code>) to access entire columns. However, R also uses a variation of <strong>single-bracket notation</strong> which allows you to access individual data elements (cells) in the table. In this syntax, you put <em>two</em> values separated by a comma (<strong><code>,</code></strong>) inside the brackets—the first for which row and the second for which column you wish you extract:</p>
-<table>
-<colgroup>
-<col width="30%" />
-<col width="29%" />
-<col width="40%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Syntax</th>
-<th align="left">Description</th>
-<th align="left">Example</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"><code>my_df[row_num, col_num]</code></td>
-<td align="left">Element by row and column indices</td>
-<td align="left"><code>my_frame[2,3]</code> (element in the second row, third column)</td>
-</tr>
-<tr class="even">
-<td align="left"><code>my_df[row_name, col_name]</code></td>
-<td align="left">Element by row and column names</td>
-<td align="left"><code>my_frame['Ada','height']</code> (element in row <em>named</em> <code>Ada</code> and column <em>named</em> <code>height</code>; the <code>height</code> of <code>Ada</code>)</td>
-</tr>
-<tr class="odd">
-<td align="left"><code>my_df[row, col]</code></td>
-<td align="left">Element by row and col; can mix indices and names</td>
-<td align="left"><code>my_frame[2,'height']</code> (second element in the <code>height</code> column)</td>
-</tr>
-<tr class="even">
-<td align="left"><code>my_df[row, ]</code></td>
-<td align="left">All elements (columns) in row index or name</td>
-<td align="left"><code>my_frame[2,]</code> (all columns in the second row)</td>
-</tr>
-<tr class="odd">
-<td align="left"><code>my_df[, col]</code></td>
-<td align="left">All elements (rows) in a col index or name</td>
-<td align="left"><code>my_frame[,'height']</code> (all rows in the <code>height</code> column; equivalent to list notations)</td>
-</tr>
-</tbody>
-</table>
-<p>Take special note of the 4th option’s syntax (for retrieving rows): you still include the comma (<code>,</code>), but because you leave <em>which column</em> blank, you get all of the columns!</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Extract the second row</span>
-my_data[<span class="dv">2</span>, ] <span class="co"># comma</span>
-
-<span class="co"># Extract the second column AS A VECTOR</span>
-my_data[, <span class="dv">2</span>] <span class="co"># comma</span>
-
-<span class="co"># Extract the second column AS A DATA FRAME (filtering)</span>
-my_data[<span class="dv">2</span>] <span class="co"># no comma</span></code></pre></div>
-<p>(Extracting from more than one column will produce a <em>sub-data frame</em>; extracting from just one column will produce a vector).</p>
-<p>And of course, because <em>everything is a vector</em>, you’re actually specifying vectors of indices to extract. This allows you to get multiple rows or columns:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get the second through fourth rows</span>
-my_data[<span class="dv">2</span>:<span class="dv">4</span>, ]
-
-<span class="co"># Get the `height` and `weight` columns</span>
-my_data[, <span class="kw">c</span>(<span class="st">&quot;height&quot;</span>, <span class="st">&quot;weight&quot;</span>)]
-
-<span class="co"># Perform filtering</span>
-my_data[my_data$height &gt;<span class="st"> </span><span class="dv">60</span>, ] <span class="co"># rows for which `height` is greater than 60</span></code></pre></div>
-</div>
-</div>
-<div id="csv-files" class="section level2">
-<h2><span class="header-section-number">9.2</span> Working with CSV Data</h2>
-<p>So far you’ve been constructing your own data frames by “hard-coding” the data values. But it’s much more common to load that data from somewhere else, such as a separate file on your computer or by downloading it off the internet. While R is able to ingest data from a variety of sources, this chapter will focus on reading tabular data in <strong>comma separated value</strong> (CSV) format, usually stored in a <code>.csv</code> file. In this format, each line of the file represents a record (<em>row</em>) of data, while each feature (<em>column</em>) of that record is separated by a comma:</p>
-<pre><code>Ada, 58, 115
-Bob, 59, 117
-Chris, 60, 120
-Diya, 61, 123
-Emma, 62, 126</code></pre>
-<p>Most spreadsheet programs like Microsoft Excel, Numbers, or Google Sheets are simply interfaces for formatting and interacting with data that is saved in this format. These programs easily import and export <code>.csv</code> files; however <code>.csv</code> files are unable to save the formatting done in those programs—the files only store the data!</p>
-<p>You can load the data from a <code>.csv</code> file into R by using the <code>read.csv()</code> function:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Read data from the file `my_file.csv` into a data frame `my_data`</span>
-my_data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;my_file.csv&#39;</span>, <span class="dt">stringsAsFactors=</span><span class="ot">FALSE</span>)</code></pre></div>
-<p>Again, use the <code>stringsAsFactors</code> argument to make sure string data is stored as a <em>vector</em> rather than as a <em>factor</em> (see <a href="data-frames.html#factors">below</a>). This function will return a data frame, just like those described above!</p>
-<p class="alert alert-warning">
-<strong>Important Note</strong>: If for whatever reason an element is missing from a data frame (which is very common with real world data!), R will fill that cell with the logical value <code>NA</code> (distinct from the string <code>&quot;NA&quot;</code>), meaning “<strong>N</strong>ot <strong>A</strong>vailable”. There are multiple ways to handle this in an analysis; see <a href="http://www.statmethods.net/input/missingdata.html">this link</a> among others for details.
-</p>
-<div id="working-directory" class="section level3">
-<h3><span class="header-section-number">9.2.1</span> Working Directory</h3>
-<p>The biggest complication when loading <code>.csv</code> files is that the <code>read.csv()</code> function takes as an argument a <strong>path</strong> to the file. Because you want this script to work on any computer (to support collaboration, as well as things like assignment grading), you need to be sure to use a <strong>relative path</strong> to the file. The question is: <em>relative to what</em>?</p>
-<p>Like the command-line, the R interpreter (running inside R Studio) has a <strong>current working directory</strong> from which all file paths are relative. The trick is that <strong><em>the working directory is not the directory of the current script file!</em></strong></p>
-<ul>
-<li>This makes sense if you think about it: you can run R commands through the console without having a script, and you can have open multiple script files from separate folders that are all interacting with the same execution environment.</li>
-</ul>
-<p>Just as you can view the current working directory when on the command line (using <code>pwd</code>), you can use an R function to view the current working directory when in R:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># get the absolute path to the current working directory</span>
-<span class="kw">getwd</span>()</code></pre></div>
-<p>You often will want to change the working directory to be your “project” directory (wherever your scripts and data files happen to be). It is possible to change the current working directory using the <code>setwd()</code> function. However, this function would also take an absolute path, so doesn’t fix the problem. You would not want to include this absolute path in your script (though you could use it from the console).</p>
-<p>One solution is to use the tilde (<code>~</code>) shortcut to specify your directory:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Set working directory on Desktop</span>
-<span class="kw">setwd</span>(<span class="st">&quot;~/Desktop/project-name&quot;</span>)</code></pre></div>
-<p>This enables you to work across machines, as long as the project is stored in the same location on each machine.</p>
-<p>Another solution is to use R Studio itself to change the working directory. This is reasonable because the working directory is a property of the <em>current running environment</em>, which is what R Studio makes accessible! The easiest way to do this is to use the <strong><code>Session &gt; Set Working Directory</code></strong> menu options: you can either set the working directory <code>To Source File Location</code> (the folder containing whichever <code>.R</code> script you are currently editing; this is usually what you want), or you can browse for a particular directory with <code>Choose Directory</code>.</p>
-<div class="figure">
-<img src="img/dataframes/session-setwd-rstudio.png" alt="Use Session &gt; Set Working Directory to change the working directory through R Studio" />
-<p class="caption">Use <code>Session &gt; Set Working Directory</code> to change the working directory through R Studio</p>
-</div>
-<p>You should do this whenever you hit a “path” problem when loading external files. If you want to do this repeatedly by calling <code>setwd()</code> from your script to an absolute path, you may want to keep it commented out (<code># setwd(...)</code>) so it doesn’t cause problems for others who try to run your script.</p>
-</div>
-</div>
-<div id="factors" class="section level2">
-<h2><span class="header-section-number">9.3</span> Factor Variables</h2>
-<p><strong>Factors</strong> are a way of <em>optimizing</em> variables that consist of a finite set of categories (i.e., they are <strong>categorical (nominal) variables</strong>).</p>
-<p>For example, imagine that you had a vector of shirt sizes which could only take on the values <code>small</code>, <code>medium</code>, or <code>large</code>. If you were working with a large dataset (thousands of shirts!), it would end up taking up a lot of memory to store the character strings (5+ letters per word at 1 or more bytes per letter) for each one of those variables.</p>
-<p>A <strong>factor</strong> on the other hand would instead store a <em>number</em> (called a <strong>level</strong>) for each of these character strings: for example, <code>1</code> for <code>small</code>, <code>2</code> for <code>medium</code>, or <code>3</code> for <code>large</code> (though the order or specific numbers will vary). R will remember the relationship between the integers and their <strong>labels</strong> (the strings). Since each number only takes 4 bytes (rather than 1 per letter), factors allow R to keep much more information in memory.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Start with a character vector of shirt sizes</span>
-shirt_sizes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;small&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;small&quot;</span>, <span class="st">&quot;large&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;large&quot;</span>)
-
-<span class="co"># Convert to a vector of factor data</span>
-shirt_sizes_factor &lt;-<span class="st"> </span><span class="kw">as.factor</span>(shirt_sizes)
-
-<span class="co"># View the factor and its levels</span>
-<span class="kw">print</span>(shirt_sizes_factor)
-
-<span class="co"># The length of the factor is still the length of the vector, not the number of levels</span>
-<span class="kw">length</span>(shirt_sizes_factor) <span class="co"># 6</span></code></pre></div>
-<p>When you print out the <code>shirt_sizes_factor</code> variable, R still (intelligently) prints out the <strong>labels</strong> that you are presumably interested in. It also indicates the <strong>levels</strong>, which are the <em>only</em> possible values that elements can take on.</p>
-<p>It is worth re-stating: <strong>factors are not vectors</strong>. This means that most all the operations and functions you want to use on vectors <em>will not work</em>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a factor of numbers (factors need not be strings)</span>
-num_factors &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">40</span>))
-
-<span class="co"># Print the factor to see its levels</span>
-<span class="kw">print</span>(num_factors)
-
-<span class="co"># Multiply the numbers by 2</span>
-num_factors *<span class="st"> </span><span class="dv">2</span>  <span class="co"># Error: * not meaningful</span>
-                 <span class="co"># returns vector of NA instead</span>
-
-<span class="co"># Changing entry to a level is fine</span>
-num_factors[<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">40</span>
-
-<span class="co"># Change entry to a value that ISN&#39;T a level fails</span>
-num_factors[<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">50</span>  <span class="co"># Error: invalid factor level</span>
-                      <span class="co"># num_factors[1] is now NA</span></code></pre></div>
-<p>If you create a data frame with a string vector as a column (as what happens with <code>read.csv()</code>), it will automatically be treated as a factor <em>unless you explicitly tell it not to</em>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Vector of shirt sizes</span>
-shirt_size &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;small&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;small&quot;</span>, <span class="st">&quot;large&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;large&quot;</span>)
-
-<span class="co"># Vector of costs (in dollars)</span>
-cost &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">15.5</span>, <span class="dv">17</span>, <span class="dv">17</span>, <span class="dv">14</span>, <span class="dv">12</span>, <span class="dv">23</span>)
-
-<span class="co"># Data frame of inventory (with factors, since didn&#39;t say otherwise)</span>
-shirts_factor &lt;-<span class="st"> </span><span class="kw">data.frame</span>(shirt_size, cost)
-
-<span class="co"># The shirt_size column is a factor</span>
-<span class="kw">is.factor</span>(shirts_factor$shirt_size) <span class="co"># TRUE</span>
-
-<span class="co"># Can treat this as a vector; but better to fix how the data is loaded</span>
-<span class="kw">as.vector</span>(shirts_factor$shirt_size) <span class="co"># a vector</span>
-
-<span class="co"># Data frame of orders (without factoring)</span>
-shirts &lt;-<span class="st"> </span><span class="kw">data.frame</span>(shirt_size, cost, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
-
-<span class="co"># The shirt_size column is NOT a factor</span>
-<span class="kw">is.factor</span>(shirts$shirt_size) <span class="co"># FALSE</span></code></pre></div>
-<p>This is not to say that factors can’t be useful (beyond just saving memory)! They offer easy ways to group and process data using specialized functions:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">shirt_size &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;small&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;small&quot;</span>, <span class="st">&quot;large&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;large&quot;</span>)
-cost &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">15.5</span>, <span class="dv">17</span>, <span class="dv">17</span>, <span class="dv">14</span>, <span class="dv">12</span>, <span class="dv">23</span>)
-
-<span class="co"># Data frame of inventory (with factors)</span>
-shirts_factor &lt;-<span class="st"> </span><span class="kw">data.frame</span>(shirt_size, cost)
-
-<span class="co"># Produce a list of data frames, one for each factor level</span>
-<span class="co"># first argument is the data frame to split, second is the factor to split by</span>
-shirt_size_frames &lt;-<span class="st"> </span><span class="kw">split</span>(shirts_factor, shirts_factor$shirt_size)
-
-
-<span class="co"># Apply a function (mean) to each factor level</span>
-<span class="co">#   first argument is the vector to apply the function to,</span>
-<span class="co">#   second argument is the factor to split by</span>
-<span class="co">#   third argument is the name of the function</span>
-<span class="kw">tapply</span>(shirts_factor$cost, shirts_factor$shirt_size, mean)</code></pre></div>
-<p>However, in general this course is more interested in working with data as vectors, thus you should always use <code>stringsAsFactors=FALSE</code> when creating data frames or loading <code>.csv</code> files that include strings.</p>
-</div>
-<div id="resources-8" class="section level2 unnumbered">
-<h2>Resources</h2>
-<ul>
-<li><a href="http://www.r-tutor.com/r-introduction/data-frame">R Tutorial: Data Frames</a></li>
-<li><a href="http://www.r-tutor.com/r-introduction/data-frame/data-frame-row-slice">R Tutorial: Data Frame Indexing</a></li>
-<li><a href="http://www.statmethods.net/input/missingdata.html">Quick-R: Missing Values</a></li>
-<li><a href="http://www.ats.ucla.edu/stat/r/modules/factor_variables.htm">Factor Variables (UCLA)</a></li>
+<li><a href="https://s3.amazonaws.com/assets.datacamp.com/blog_assets/datatable_Cheat_Sheet_R.pdf">Data Table Cheatsheet</a></li>
+<li><a href="https://cran.r-project.org/web/packages/data.table/index.html">Data Table CRAN page</a>. Vignettes are a very valuable source of information.</li>
 </ul>
 
 </div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Automatic decompression is a feature request for data tables<a href="data-tables.html#fnref1">↩</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="lists.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="dplyr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="control-structures.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="remote-server.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -740,7 +822,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/info201/book/edit/master/dataframes.Rmd",
+"link": "https://github.com/info201/book/edit/master/data-tables.Rmd",
 "text": "Edit"
 },
 "download": ["tech-foundations-of-informatics.pdf", "tech-foundations-of-informatics.epub"],

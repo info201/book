@@ -38,7 +38,7 @@ The **`select()`** operation allows you to choose and extract **columns** of int
 
 ```r
 # Select `storm` and `pressure` columns from `storms` data frame
-storm.info <- select(storms, storm, pressure)
+storm_info <- select(storms, storm, pressure)
 ```
 
 ![Diagram of the `select()` function (by Nathan Stephens).](img/dplyr/select.png "Diagram of the select() function")
@@ -49,7 +49,7 @@ This function is equivalent to simply extracting the columns:
 
 ```r
 # Extract columns by name
-storm.info <- storms[, c("storm", "pressure")]  # Note the comma!
+storm_info <- storms[, c("storm", "pressure")]  # Note the comma!
 ```
 
 But easier to read and write!
@@ -59,7 +59,7 @@ The **`filter()`** operation allows you to choose and extract **rows** of intere
 
 ```r
 # Select rows whose `wind` column is greater than or equal to 50
-some.storms <- filter(storms, wind >= 50)
+some_storms <- filter(storms, wind >= 50)
 ```
 
 ![Diagram of the `filter()` function (by Nathan Stephens).](img/dplyr/filter.png "Diagram of the filter() function")
@@ -72,7 +72,7 @@ This function is equivalent to simply extracting the rows:
 
 ```r
 # Extract rows by condition
-some.storms <- storms[storms$wind >= 50, ]  # Note the comma!
+some_storms <- storms[storms$wind >= 50, ]  # Note the comma!
 ```
 
 As the number of conditions increases, it is **far easier** to read and write `filter()` functions, rather than squeeze your conditions into brackets.
@@ -95,11 +95,12 @@ In cases where you are creating multiple columns (and therefore writing really l
 
 ```r
 # Generic mutate command
-more.columns <- mutate(my.data.frame,
-                       new.column.1 = old.column * 2,
-                       new.column.2 = old.column * 3,
-                       new.column.3 = old.column * 4
-                      )
+more_columns <- mutate(
+  my_data_frame,
+  new_column_1 = old_column * 2,
+  new_column_2 = old_column * 3,
+  new_column_3 = old_column * 4
+)
 ```
 
 ### Arrange
@@ -107,14 +108,14 @@ The **`arrange()`** operation allows you to **sort the rows** of your data frame
 
 ```r
 # Arrange storms by INCREASING order of the `wind` column
-sorted.storms <- arrange(storms, wind)
+sorted_storms <- arrange(storms, wind)
 ```
 
 ![Diagram of the `arrange()` function (by Nathan Stephens).](img/dplyr/arrange.png "Diagram of the arrange() function")
 
 By default, the `arrange()` function will sort rows in **increasing** order. To sort in **reverse** (decreasing) order, place a minus sign (**`-`**) in front of the column name (e.g., `-wind`). You can also use the `desc()` helper function (e.g, `desc(wind)`).
 
-- You can pass multiple arguments into the `arrange()` function in order to sort first by `argument.1`, then by `argument.2`, and so on.
+- You can pass multiple arguments into the `arrange()` function in order to sort first by `argument_1`, then by `argument_2`, and so on.
 
 - Again, this doesn't actually modify the argument data frame&mdash;instead returning a new data frame you'll need to store.
 
@@ -132,12 +133,13 @@ The `summarize()` function takes in the data frame to mutate, followed by the va
 
 ```r
 # Compute statistics for the `amount` column
-summaries <- summarize(pollution,
-                       median = median(amount),  # median value
-                       mean = mean(amount),      # "average" value
-                       sum = sum(amount),        # total value
-                       count = n()               # number of values (neat trick!)
-                       )
+summaries <- summarize(
+  pollution,
+  median = median(amount), # median value
+  mean = mean(amount), # "average" value
+  sum = sum(amount), # total value
+  count = n() # number of values (neat trick!)
+)
 ```
 
 Note that the `summarize()` function is particularly useful for grouped operations (see [below](#grouped-operations)), as you can produce summaries of different groups of data.
@@ -152,10 +154,10 @@ For example (no diagram available):
 # Create a quick data frame
 x <- c(1, 1, 2, 2, 3, 3, 4, 4)  # duplicate x values
 y <- 1:8                        # unique y values
-my.df <- data.frame(x, y)
+my_df <- data.frame(x, y)
 
 # Select distinct rows, judging by the `x` column
-distinct.rows <- distinct(my.df, x)
+distinct_rows <- distinct(my_df, x)
                                     #   x
                                     # 1 1
                                     # 2 2
@@ -163,7 +165,7 @@ distinct.rows <- distinct(my.df, x)
                                     # 4 4
 
 # Select distinct rows, judging by the `x` and `y`columns
-distinct.rows <- distinct(my.df, x, y)  # returns whole table, since no duplicate rows
+distinct_rows <- distinct(my_df, x, y)  # returns whole table, since no duplicate rows
 ```
 
 While this is a simple way to get a unique set of rows, **be careful** not to lazily remove rows of your data which may be important.
@@ -184,37 +186,37 @@ You could then implement each step as follows:
 
 ```r
 # Preparation: add a column that is the car name
-mtcars.named <- mutate(mtcars, car.name = row.names(mtcars))
+mtcars_named <- mutate(mtcars, car_name = row.names(mtcars))
 
 # 1. Filter down to only four cylinder cars
-four.cyl <- filter(mtcars.named, cyl == 4)
+four_cyl <- filter(mtcars_named, cyl == 4)
 
 # 2. Filter down to the one with the highest mpg
-best.four.cyl <- filter(four.cyl, mpg == max(mpg))
+best_four_cyl <- filter(four_cyl, mpg == max(mpg))
 
 # 3. Select the car name of the car
-best.car.name <- select(best.four.cyl, car.name)
+best_car_name <- select(best_four_cyl, car_name)
 ```
 
-While this works fine, it clutters the work environment with variables you won't need to use again, and which can potentially step on one anothers toes. It can help with readability (the results of each step is explicit), but those extra variables make it harder to modify and change the algorithm later (you have to change them in two places).
+While this works fine, it clutters the work environment with variables you won't need to use again, and which can potentially step on one another's toes. It can help with readability (the results of each step is explicit), but those extra variables make it harder to modify and change the algorithm later (you have to change them in two places).
 
 An alternative to saving each step as a distinct, named variable would be to utilize **anonymous variables** and write the desired statements **nested** within other functions. For example, you could write the algorithm above as follows:
 
 ```r
 # Preparation: add a column that is the car name
-mtcars.named <- mutate(mtcars, car.name = row.names(mtcars))
+mtcars_named <- mutate(mtcars, car_name = row.names(mtcars))
 
 # Write a nested operation to return the best car name
-best.car.name <- select(  # 3. Select car name of the car
-                  filter(  # 2. Filter down to the one with the highest mpg
-                    filter( # 1. Filter down to only four cylinder cars
-                      mtcars.named,  # arguments for the Step 1 filter
-                      cyl == 4
-                    ),
-                    mpg == max(mpg)  # other arguments for the Step 2 filter
-                  ),
-                  car.name  # other arguments for the Step 3 select
-                )
+best_car_name <- select( # 3. Select car name of the car
+  filter( # 2. Filter down to the one with the highest mpg
+    filter( # 1. Filter down to only four cylinder cars
+      mtcars_named, # arguments for the Step 1 filter
+      cyl == 4
+    ),
+    mpg == max(mpg) # other arguments for the Step 2 filter
+  ),
+  car_name # other arguments for the Step 3 select
+)
 ```
 
 This version uses _anonymous variables_&mdash;result values which are not assigned to names (so are anonymous), but instead are immediately used as the arguments to another function. You've used these frequently with the `print()` function and with filters (those vectors of `TRUE` and `FALSE` values)&mdash;and even the `max(mpg)` in the Step 2 filter is an anonymous variable!
@@ -240,11 +242,11 @@ Or as another version of the above data wrangling:
 
 ```r
 # Preparation: add a column that is the car name
-mtcars.named <- mutate(mtcars, car.name = row.names(mtcars))
+mtcars_named <- mutate(mtcars, car_name = row.names(mtcars))
 
-best.car.name <- filter(mtcars.named, cyl == 4) %>%  # Step 1
-  filter(mpg == max(mpg)) %>%  # Step 2
-  select(car.name)  # Step 3
+best_car_name <- filter(mtcars_named, cyl == 4) %>% # Step 1
+  filter(mpg == max(mpg)) %>% # Step 2
+  select(car_name) # Step 3
 ```
 
 - Yes, the `%>%` operator is awkward to type and takes some getting use to (especially compared to the command-line's use of `|` to pipe). However, you can ease the typing by using the [RStudio keyboard shortcut](https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts) `cmd + shift + m`.
@@ -259,7 +261,7 @@ The **`group_by()`** operation allows you to break a data frame down into _group
 
 ```r
 # Get summary statistics by city
-city.summary <- group_by(pollution, city) %>%
+city_summary <- group_by(pollution, city) %>%
   summarize( # first argument (the data frame) is received from the pipe
     mean = mean(amount),
     sum = sum(amount),
@@ -277,7 +279,7 @@ This simple question requires computing the mean for different subsets of the da
 
 ```r
 # Group cars by gear number, then compute the mean and median mpg
-gear.summary <- group_by(mtcars, gear) %>%  # group by gear
+gear_summary <- group_by(mtcars, gear) %>%  # group by gear
                  summarize(mean = mean(mpg))  # calculate mean
 # Computing the difference between scores is done elsewhere (or by hand!)
 ```
@@ -303,35 +305,35 @@ left_join(songs, artists)
 
 ![Diagram of the `left_join()` function (by Nathan Stephens).](img/dplyr/left_join.png "Diagram of the left_join() function")
 
-To understand how this works, consider a specific example where you have a table of student ids and the students' contact information. You also have a separate table of student ids and the students' majors (your institution very well may store this information in separate tables for privacy or organizational reasons).
+To understand how this works, consider a specific example where you have a table of student_ids and the students' contact information. You also have a separate table of student_ids and the students' majors (your institution very well may store this information in separate tables for privacy or organizational reasons).
 
 ```r
 # Table of contact information
-student.contact <- data.frame(
-    student.id = c(1, 2, 3, 4),  # id numbers
-    email = c("id1@school.edu", "id2@school.edu", "id3@school.edu", "id4@school.edu")
+student_contact <- data.frame(
+  student_id = c(1, 2, 3, 4), # id numbers
+  email = c("id1@school.edu", "id2@school.edu", "id3@school.edu", "id4@school.edu")
 )
 
 # Table of information about majors
-student.majors <- data.frame(
-  student.id = c(1, 2, 3),  # id numbers
-  major = c('sociology', 'math', 'biology')
+student_majors <- data.frame(
+  student_id = c(1, 2, 3), # id numbers
+  major = c("sociology", "math", "biology")
 )
 ```
 
-Notice that both tables have a `student.id` column, allowing you to "match" the rows from the `student.contact` table to the `student.majors` table and merge them together:
+Notice that both tables have a `student_id` column, allowing you to "match" the rows from the `student_contact` table to the `student_majors` table and merge them together:
 
 ```r
-# Join tables by the student.id column
-merged.student.info <- left_join(student.contact, student.majors)
-                        #    student.id          email     major
+# Join tables by the student_id column
+merged_student_info <- left_join(student_contact, student_majors)
+                        #    student_id          email     major
                         # 1          1 id1@school.edu sociology
                         # 2          2 id2@school.edu      math
                         # 3          3 id3@school.edu   biology
                         # 4          4  id4@school.edu      <NA>
 ```
 
-When you perform this **left join**, R goes through each row in the table on the "left" (the first argument), looking at the shared column(s) (`student.id`). For each row, it looks for a corresponding value in `student.majors$student.id`, and if it finds one then it adds any data from columns that are in `student.majors` but _not_ in `student.contact` (e.g., `major`) to new columns in the resulting table, with values from whatever the matching row was. Thus student \#1 is given a `major` of "sociology", student \#2 is given a `major` of "math", and student \#4 is given a `major` of `NA` (because that student had no corresponding row in `student.majors`!)
+When you perform this **left join**, R goes through each row in the table on the "left" (the first argument), looking at the shared column(s) (`student_id`). For each row, it looks for a corresponding value in `student_majors$student_id`, and if it finds one then it adds any data from columns that are in `student_majors` but _not_ in `student_contact` (e.g., `major`) to new columns in the resulting table, with values from whatever the matching row was. Thus student \#1 is given a `major` of "sociology", student \#2 is given a `major` of "math", and student \#4 is given a `major` of `NA` (because that student had no corresponding row in `student_majors`!)
 
 - In short, a **left join** returns all of the rows from the _first_ table, with all of the columns from _both_ tables.
 
@@ -339,7 +341,7 @@ R will join tables by any and all shared columns. However, if the names of your 
 
 ```r
 # Use the named `by` argument to specify (a vector of) columns to match on
-left_join(student.contact, student.majors, by="student.id")
+left_join(student_contact, student_majors, by="student_id")
 ```
 
 - With the `by` argument, column name _is_ a string (in quotes) because you're specifying a vector of column names (the string literal is a vector length 1).
@@ -347,9 +349,9 @@ left_join(student.contact, student.majors, by="student.id")
 Notice that because of how a left join is defined, **the argument order matters!** The resulting table only has rows for elements in the _left_ (first) table; any unmatched elements in the second table are lost. If you switch the order of the operands, you would only have information for students with majors:
 
 ```r
-# Join tables by the student.id column
-merged.student.info <- left_join(student.majors, student.contact)  # switched order!
-                        #   student.id     major          email
+# Join tables by the student_id column
+merged_student_info <- left_join(student_majors, student_contact)  # switched order!
+                        #   student_id     major          email
                         # 1          1 sociology id1@school.edu
                         # 2          2      math id2@school.edu
                         # 3          3   biology id3@school.edu
@@ -384,34 +386,34 @@ Most of the time this won't cause you any problems&mdash;you can either use NSE 
 mpg <- select(mtcars, mpg)
 
 # "Standard-evaluation" version (same result)
-mpg <- select(mtcars, 'mpg')  # with quotes! 'mpg' is a normal value!
+mpg <- select(mtcars, "mpg") # with quotes! "mpg" is a normal value!
 
 # Make the column name a variable
-which.col <- 'mpg'
-my.column <- select(mtcars, which.col)
+which_col <- "mpg"
+my_column <- select(mtcars, which_col)
 ```
 
 However, this NSE can sometimes trip you up when using more complex functions such as `summarize()` or `group_by()`, or when you want to create your own functions that use NSE.
 
 ```r
-which.col <- 'mpg'
-summarize(mtcars, avg = mean(which.col))  # In mean.default(which.col) :
+which_col <- "mpg"
+summarize(mtcars, avg = mean(which_col))  # In mean.default(which_col) :
                             # argument is not numeric or logical: returning NA
 ```
 
-In this case, the `summarize()` function is trying to "quote" what we typed in (the `which.col` variable name&dmash;not it's `mpg` value), and then hitting a problem because there is no column of that name (it can't resolve that column name to a column index).
+In this case, the `summarize()` function is trying to "quote" what we typed in (the `which_col` variable name&dmash;not it's `mpg` value), and then hitting a problem because there is no column of that name (it can't resolve that column name to a column index).
 
-To fix this problem, there are two parts: first, you need to explicitly tell R that the _value_ of `which.col` (`mpg`) is actually the value that needs to be automatically "quoted"&mdash;that is, that `mpg` is really a variable! Variable names in R are referred to as [**symbols**](https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Symbol-objects)&mdash;a symbol refers to the variable label itself. You can explicitly change a value into a symbol by using the [`rlang::sym()`](https://www.rdocumentation.org/packages/rlang/versions/0.1.6/topics/sym) function (the `sym()` function found in the `rlang` library; the `::` indicates that the function belongs to a library).
+To fix this problem, there are two parts: first, you need to explicitly tell R that the _value_ of `which_col` (`mpg`) is actually the value that needs to be automatically "quoted"&mdash;that is, that `mpg` is really a variable! Variable names in R are referred to as [**symbols**](https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Symbol-objects)&mdash;a symbol refers to the variable label itself. You can explicitly change a value into a symbol by using the [`rlang::sym()`](https://www.rdocumentation.org/packages/rlang/versions/0.1.6/topics/sym) function (the `sym()` function found in the `rlang` library; the `::` indicates that the function belongs to a library).
 
 ```r
-which.col.sym <- rlang::sym(which.col)  # convert to a symbol
-print(which.col.sym)  # => mpg (but not in quotes, because it's not a string!)
+which_col_sym <- rlang::sym(which_col)  # convert to a symbol
+print(which_col_sym)  # => mpg (but not in quotes, because it's not a string!)
 ```
 
 Second, you will need to tell the `summarize()` function that it should _not_ quote this symbol (because you've already converted it into a variable)&mdash;what is called **unquoting**. In `dplyr`, you "unquote" a parameter to a method by including two exclamation points in front of it:
 
 ```r
-summarize(mtcars, avg = mean(!!which.col.sym))  # arranges by the specified column
+summarize(mtcars, avg = mean(!!which_col_sym))  # arranges by the specified column
 ```
 
 There are many more details involved in this "quoting/unquoting" process, which are described in [this tutorial](http://dplyr.tidyverse.org/articles/programming.html) (though that is currently [being updated with better examples](http://rpubs.com/lionel-/programming-draft)).
@@ -429,16 +431,16 @@ mpg <- select(mtcars, mpg)
 mpg <- select_(mtcars, 'mpg')  # with quotes! 'mpg' is a normal value!
 
 # Normal, non-standard evaluation version of equations
-mean.mpg <- summarize(mtcars, mean(mpg))
+mean_mpg <- summarize(mtcars, mean(mpg))
 
 # Standard-evaluation version of equations (same result)
-mean.mpg <- summarize_(mtcars, 'mean(mpg)')
+mean_mpg <- summarize_(mtcars, 'mean(mpg)')
 
 # Which column you're interested in
-which.column <- 'mpg'
+which_column <- 'mpg'
 
 # Use standard evaluation to execute function:
-my.column <- arrange_(mtcars, which.column)
+my_column <- arrange_(mtcars, which_column)
 ```
 
 <p class="alert alert-warning">Yes, it does feel a bit off that the "normal" way of using `dplyr` is the "non-standard" way. Remember that using SE is the "different" approach</p>
