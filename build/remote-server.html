@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Technical Foundations of Informatics</title>
   <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.6 and GitBook 2.6.7">
 
   <meta property="og:title" content="Technical Foundations of Informatics" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2018-02-21">
+<meta name="date" content="2018-09-30">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -520,20 +520,24 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">A.6</span> Advanced Usage</h2>
 <div id="ssh-keys-.sshconfig" class="section level3">
 <h3><span class="header-section-number">A.6.1</span> ssh keys, .ssh/config</h3>
-<p>Without further configuration, every time you open a ssh connection, you have to insert your password again. Instead of re-entering it over and over again (this may not even be secure), you can configure your ssh keys and copy it to the server. Next time, you will be automatically authenticated with the key and no password is necessary. Note: this is the same ssh key that is used by GitHub if you use ssh connection to GitHub.</p>
-<p>It is possible to configure ssh connection to use your public key instead of password. (Note: this is the same public key that permits passwordless connection to GitHub.) You first have to create the key with <code>ssh-keygen</code> (you may choose an empty passphrase) unless you already have created one. Thereafter copy your public key to the server with <code>ssh-copy-id</code>. Next time you log onto the server, no password is needed. Look yourself for more information if interested.</p>
-<p>Finally, you can also configure your ssh to recognize abbreviated server names and your corresponding user names. Check out how to create <code>~/.ssh/config</code> file.</p>
+<p>Without further configuration, every time you open a ssh connection, you have to type your password. Instead of re-entering it over and over again (this may not be particularly secure), you can configure your ssh keys and copy it to the server. Next time, you will be automatically authenticated with the key and you don’t have to type the password any more. Note: this is the same ssh key that is used by GitHub if you use ssh connection to GitHub.</p>
+<p>As the first step, you have to create the key with <code>ssh-keygen</code> (you may choose an empty passphrase) unless you already have created one. Thereafter copy your public key to the server with <code>ssh-copy-id</code>. Next time you log onto the server, no password is needed. A good source for help with creating and managing ssh keys is <a href="https://help.github.com/articles/connecting-to-github-with-ssh/">GitHub help</a>.</p>
+<p>You can also configure your ssh to recognize abbreviated server names and your corresponding user names. This allows you to connect to server with a simple command like <code>ssh info201</code>. This information is stored in the file <code>~/.ssh/config</code>, and should contain lines like</p>
+<pre><code>Host info201
+    User &lt;your username&gt;
+    Hostname info201.ischool.uw.edu</code></pre>
+<p>The <code>Host</code> keyword is followed by the abbreviated name of the server, the following lines contain your username and the publicly visible hostname for the server. Seek out more information if you are interested.</p>
 </div>
 <div id="running-rscript-in-ssh-session" class="section level3">
 <h3><span class="header-section-number">A.6.2</span> Running RScript in ssh Session</h3>
-<p>Passwordless ssh connection gives you new wonderful possibilities. First, you don’t even have to log into the server explicitly. You can run a one-command ssh session on your server directly from your laptop. Namely, ssh accepts commands to be run on the remote machine. If invoked by something like</p>
+<p>Passwordless ssh connection gives you new wonderful possibilities. First, you don’t even have to log into the server explicitly. You can run a one-command ssh session on the server directly from your laptop. Namely, ssh accepts commands to be run on the remote machine. If invoked as</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">ssh</span> myusername@server.ischool.edu <span class="st">&quot;Rscript myscript.R&quot;</span></code></pre></div>
 <p>It does not open a remote shell but runs <code>Rscript script.R</code> instead. Your command sequence for the whole process will accordingly look something like:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">rsync</span> -v Desktop/info201/* myusername@server.ischool.edu:scripts/
 <span class="fu">ssh</span> myusername@server.ischool.edu <span class="st">&quot;Rscript scripts/myscript.R&quot;</span>
 <span class="fu">rsync</span> -v myusername@server.ischool.edu:scripts/* Desktop/info201/</code></pre></div>
 <p>All these command are issued on your laptop. You can also save these to a text file and run all three together as a single <strong>shell script</strong>!</p>
-<p>Further, you can also avoid the shell. Instead, you may explain R on our laptop how to start R on the remote server over ssh. In this way you can turn your laptop and server combination into a high-performance-computing cluster! This allows you to copy the script and run it on the server directly from within your R program that runs on your laptop. Cluster computing is out of scope of this book, but if you are interested, look up the <strong>makePSOCKcluster()</strong> function in <strong>parallel</strong> package.</p>
+<p>Further, you don’t even need the shell. Instead, you may explain R on your laptop how to start R on the remote server over ssh. In this way you can turn your laptop and server combination into a high-performance-computing cluster! This allows you to copy the script and run it on the server directly from within your R program that runs on your laptop. Cluster computing is out of scope of this chapter, but if you are interested, look up the <strong>makePSOCKcluster()</strong> function in <strong>parallel</strong> package.</p>
 
 </div>
 </div>

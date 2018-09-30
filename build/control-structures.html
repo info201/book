@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Technical Foundations of Informatics</title>
   <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.6 and GitBook 2.6.7">
 
   <meta property="og:title" content="Technical Foundations of Informatics" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2018-02-21">
+<meta name="date" content="2018-09-30">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -554,10 +554,10 @@ good &lt;-<span class="st"> </span><span class="cf">function</span>()
    <span class="kw">sqrt</span>(seq)
 microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<span class="kw">baad</span>(), <span class="kw">soso</span>(), <span class="kw">good</span>())</code></pre></div>
 <pre><code>## Unit: microseconds
-##    expr      min        lq       mean   median       uq       max neval
-##  baad() 1014.810 1367.2240 2731.31033 1798.707 2876.528 16841.133   100
-##  soso()   47.353   49.5340   98.31217   52.409   68.788  3015.981   100
-##  good()    2.898    3.3295   17.46044    4.675    6.968  1213.084   100</code></pre>
+##    expr      min        lq       mean    median       uq      max neval
+##  baad() 1142.800 1159.4830 1596.38296 1193.1745 2237.220 6730.411   100
+##  soso()   60.785   61.3565   87.94043   62.4030   63.511 2577.629   100
+##  good()    4.726    4.9885   15.31697    5.4345    5.892  982.245   100</code></pre>
 <p>When comparing the median values, we can see that the middle example is 10x slower than the vectorized example, and the first version is almost 300x slower!</p>
 <p>The above holds for “true” vectorized operations. R provides many pseudo-vectorizers (the lapply family) that may be handy in many circumstances, but not in case you need speed. Under the hood these functions just use a loop. We can demonstrate this by adding one more function to our family:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">soso2 &lt;-<span class="st"> </span><span class="cf">function</span>() {
@@ -565,11 +565,11 @@ microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<
 }
 microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<span class="kw">baad</span>(), <span class="kw">soso</span>(), <span class="kw">soso2</span>(), <span class="kw">good</span>())</code></pre></div>
 <pre><code>## Unit: microseconds
-##     expr     min        lq       mean    median        uq      max neval
-##   baad() 983.054 1206.6770 2342.85870 1654.4360 2129.2335 7798.831   100
-##   soso()  46.703   49.5075   57.68555   51.3555   54.4615  186.960   100
-##  soso2() 277.310  296.9535  359.06501  312.9880  370.9215 1402.721   100
-##   good()   2.876    3.3990    9.39531    4.0055    5.2080  485.943   100</code></pre>
+##     expr      min        lq       mean    median        uq      max neval
+##   baad() 1142.262 1168.1125 1485.26062 1187.6260 2088.9205 2389.367   100
+##   soso()   60.799   61.7210   62.81773   62.5950   63.2620   69.678   100
+##  soso2()  345.090  363.4775  392.91471  374.8675  398.3735 1726.643   100
+##   good()    4.798    5.0080    5.42022    5.3665    5.6750    6.990   100</code></pre>
 <p>As it turns out, <code>sapply</code> is much slower than plain for-loop. Lapply-family is not a substitute for true vectorization. However, one may argue that <code>soso2</code> function is easier to understand than explicit loop in <code>soso</code>. In any case, it is easier to type when working on the interactive console.</p>
 <p>Finally, it should be noted that when performing truly vectorized operations on long vectors, the overhead of R interpreter becomes negligible and the resulting speed is almost equalt to that of the corresponding C code. And optimized R code can easily beat non-optimized C.</p>
 </div>
