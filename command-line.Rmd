@@ -117,14 +117,7 @@ means "list the contents of the folder that contains the current folder".
 
 Note that **`.`** and **`..`** act just like folder names, so you can include them anywhere in paths: `../../my_folder` says to go up two directories, and then into `my_folder`.
 
-<p class="alert alert-info">**Protip:** Most command shells like
-Terminal and Git Bash support **tab-completion**. If you type out just
-the first few letters of a file or folder name and then hit the `tab`
-key, it will automatically fill in the rest of the name! If the name
-is ambiguous (e.g., you type `Do` and there is both a `Documents` and
-a `Downloads` folder), you can hit `tab` _twice_ to see the list of
-matching folders. Then add enough letters to distinguish them and tab
-to complete! This will make your life _a lot_ easier.</p>
+<p class="alert alert-info">**Protip:** Most command shells like Terminal and Git Bash support **tab-completion**. If you type out just the first few letters of a file or folder name and then hit the `tab` key, it will automatically fill in the rest of the name! If the name is ambiguous (e.g., you type `Do` and there is both a `Documents` and a `Downloads` folder), you can hit `tab` _twice_ to see the list of matching folders. Then add enough letters to distinguish them and tab to complete! This will make your life _a lot_ easier.</p>
 
 Additionally, you can use a tilde **`~`** as shorthand for the home directory of the current user. Just like `.` refers to "current folder", `~` refers to the user's home directory (usually  `/Users/USERNAME`). And of course, you can use the tilde as part of a path as well (e.g., `~/Desktop` is an _absolute path_ to the desktop for the current user).
 
