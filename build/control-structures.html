@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Technical Foundations of Informatics</title>
   <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.6 and GitBook 2.6.7">
 
   <meta property="og:title" content="Technical Foundations of Informatics" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2018-04-26">
+<meta name="date" content="2018-09-30">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -421,14 +421,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="for-loop" class="section level3">
 <h3><span class="header-section-number">B.1.1</span> For Loop</h3>
 <p>For-loop is a good choice if you want to run some statements repeatedly, each time picking a different value for a variable from a sequence; or just repeat some statements a given number of times. The syntax of for-loop is the following:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for(variable in sequence) {
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(variable <span class="cf">in</span> sequence) {
                            <span class="co"># do something many times.  Each time &#39;variable&#39; has</span>
                            <span class="co"># a different value, taken from &#39;sequence&#39;</span>
 }</code></pre></div>
 <p>The statement block inside of the curly braces {} is are repeated through the sequence.</p>
 <p>Despite the curly braces, the loop body is still evaluated in the same environment as the rest of the code. This means the variables generated before entering the loop are visible from inside, and the variables created inside will be visible after the loop ends.</p>
 <p>A simple and perhaps the most common usage of for loop is just to run some code a given number of times:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for(i in <span class="dv">1</span>:<span class="dv">5</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)
    <span class="kw">print</span>(i)</code></pre></div>
 <pre><code>## [1] 1
 ## [1] 2
@@ -438,15 +438,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Through the loop the variable <code>i</code> takes all the values from the sequence <code>1:5</code>. Note: we do not need curly braces if the loop block only contains a single statement.</p>
 <p>But the sequence does not have to be a simple sequence of numbers. It may as well be a list:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;Xiaotian&quot;</span>, <span class="dv">25</span>, <span class="kw">c</span>(<span class="dv">2061234567</span>, <span class="dv">2069876543</span>))
-for(field in data) {
+<span class="cf">for</span>(field <span class="cf">in</span> data) {
    <span class="kw">cat</span>(<span class="st">&quot;field length:&quot;</span>, <span class="kw">length</span>(field), <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)
 }</code></pre></div>
 <pre><code>## field length: 1 
 ## field length: 1 
 ## field length: 2</code></pre>
 <p>As another less common example, we may run different functions over the same data:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">4</span>
-for(fun in <span class="kw">c</span>(sqrt, exp, sin)) {
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">4</span>
+<span class="cf">for</span>(fun <span class="cf">in</span> <span class="kw">c</span>(sqrt, exp, sin)) {
    <span class="kw">print</span>(<span class="kw">fun</span>(data))
 }</code></pre></div>
 <pre><code>## [1] 1.000000 1.414214 1.732051 2.000000
@@ -456,14 +456,14 @@ for(fun in <span class="kw">c</span>(sqrt, exp, sin)) {
 <div id="while-loop" class="section level3">
 <h3><span class="header-section-number">B.1.2</span> While loop</h3>
 <p>While loop let’s the programmer to decide explicitly if we want to execute the statements one more time:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">while(condition) {
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">while</span>(condition) {
                            <span class="co"># do something if the &#39;condition&#39; is true</span>
 }</code></pre></div>
 <p>For instance, we can repeat something a given number of times (although this is more of a task for for-loop):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">i &lt;-<span class="st"> </span><span class="dv">0</span>
-while(i &lt;<span class="st"> </span><span class="dv">5</span>) {
+<span class="cf">while</span>(i <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span>) {
    <span class="kw">print</span>(i)
-   i &lt;-<span class="st"> </span>i +<span class="st"> </span><span class="dv">1</span>
+   i &lt;-<span class="st"> </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
 }</code></pre></div>
 <pre><code>## [1] 0
 ## [1] 1
@@ -472,51 +472,51 @@ while(i &lt;<span class="st"> </span><span class="dv">5</span>) {
 ## [1] 4</code></pre>
 <p>Note that in case the condition is not true to begin with, the loop never executes and control is immediately passed to the code after the loop:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">i &lt;-<span class="st"> </span><span class="dv">10</span>
-while(i &lt;<span class="st"> </span><span class="dv">5</span>) {
+<span class="cf">while</span>(i <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span>) {
    <span class="kw">print</span>(i)
-   i &lt;-<span class="st"> </span>i +<span class="st"> </span><span class="dv">1</span>
+   i &lt;-<span class="st"> </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
 }
 <span class="kw">cat</span>(<span class="st">&quot;done</span><span class="ch">\n</span><span class="st">&quot;</span>)</code></pre></div>
 <pre><code>## done</code></pre>
 <p>While loop is great for handling repeated attempts to get input in shape. One can write something like this:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">getData</span>()
-while(!<span class="kw">dataIsGood</span>(data)) {
+<span class="cf">while</span>(<span class="op">!</span><span class="kw">dataIsGood</span>(data)) {
    data &lt;-<span class="st"> </span><span class="kw">getData</span>(<span class="dt">tryReallyHard =</span> <span class="ot">TRUE</span>)
 }</code></pre></div>
 <p>This will run <code>getData()</code> until data is good. If it is not good at the first try, the code tries really hard next time(s).</p>
 <p>While can also easily do infinite loops with:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">while(<span class="ot">TRUE</span>) { ... }</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">while</span>(<span class="ot">TRUE</span>) { ... }</code></pre></div>
 <p>will execute until something breaks the loop. Another somewhat interesting usage of <code>while</code> is to disable execution of part of your code:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">while(<span class="ot">FALSE</span>) {
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">while</span>(<span class="ot">FALSE</span>) {
    ## code you don&#39;t want to be executed
 }</code></pre></div>
 </div>
 <div id="repeat-loop" class="section level3">
 <h3><span class="header-section-number">B.1.3</span> repeat-loop</h3>
 <p>The R way of implementing repeat-loop does not include any condition and hence it just keeps running infdefinitely, or until something breaks the execution (see below):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">repeat {
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">repeat</span> {
    ## just do something indefinitely many times.
    ## if you want to stop, use `break` statement.
 }</code></pre></div>
 <p>Repeat is useful in many similar situations as while. For instance, we can write a modified version of getting data using <code>repeat</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">repeat {
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">repeat</span> {
    data &lt;-<span class="st"> </span><span class="kw">getData</span>()
-   if(<span class="kw">dataIsGood</span>())
-      break
+   <span class="cf">if</span>(<span class="kw">dataIsGood</span>())
+      <span class="cf">break</span>
 }</code></pre></div>
 <p>The main difference between this, and the previous <code>while</code>-version is that we a) don’t have to write <code>getData</code> function twice, and b) on each try we attempt to get data in the same way.</p>
 <p>Exactly as in the case of <em>for</em> and <em>while</em> loop, enclosing the loop body in curly braces is only necessary if it contains more than one statement. For instance, if you want to close all the graphics devices left open by buggy code, you can use the following one-liner from console:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">repeat <span class="kw">dev.off</span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">repeat</span> <span class="kw">dev.off</span>()</code></pre></div>
 <p>The loop will be broken by error when attempting to close the last null device.</p>
 <p>It should also be noted that the loop does not create a separate environment (scope). All the variables from outside of the loop are visible inside, and variables created inside of the loop remain accessible after the loop terminates.</p>
 </div>
 <div id="leaving-early-break-and-next" class="section level3">
 <h3><span class="header-section-number">B.1.4</span> Leaving Early: <code>break</code> and <code>next</code></h3>
 <p>A straightforward way to leave a loop is the <code>break</code> statement. It just leaves the loop and transfers control to the code immediately after the loop body. It breaks all three loops discussed here (<em>for</em>, <em>while</em>, and <em>repeat</em>-loops) but not some of the other types of loops implemented outside of base R. For instance:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for(i in <span class="dv">1</span>:<span class="dv">10</span>) {
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) {
    <span class="kw">cat</span>(i, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)
-   if(i &gt;<span class="st"> </span><span class="dv">4</span>)
-      break
+   <span class="cf">if</span>(i <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span>)
+      <span class="cf">break</span>
 }</code></pre></div>
 <pre><code>## 1 
 ## 2 
@@ -529,9 +529,9 @@ while(!<span class="kw">dataIsGood</span>(data)) {
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(i)</code></pre></div>
 <pre><code>## [1] 5</code></pre>
 <p>Opposite to <code>break</code>, <code>next</code> will throw the execution flow back to the head of the loop without running the commands following <code>next</code>. In case of for-loop, this means a new value is picked from the sequence, in case of while-loop the condition is evaluated again; the head of repeat loop does not do any calculations. For instance, we can print only even numbers:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for(i in <span class="dv">1</span>:<span class="dv">10</span>) {
-   if(i %%<span class="st"> </span><span class="dv">2</span> !=<span class="st"> </span><span class="dv">0</span>)
-      next
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) {
+   <span class="cf">if</span>(i <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>)
+      <span class="cf">next</span>
    <span class="kw">print</span>(i)
 }</code></pre></div>
 <pre><code>## [1] 2
@@ -548,43 +548,43 @@ while(!<span class="kw">dataIsGood</span>(data)) {
 <p>Similar arguments hold if you consider to loop over input files to read, output files to create, figures to plot, webpage to scrape… In all these cases the loop overheads are negligible compared to the task performed inside the loops. And there are no real vectorized alternatives anyway.</p>
 <p>The opposite is the case where good alternatives exist. Never do this kind of computations in R:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res &lt;-<span class="st"> </span><span class="kw">numeric</span>()
-for(i in <span class="dv">1</span>:<span class="dv">1000</span>) {
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>) {
    res &lt;-<span class="st"> </span><span class="kw">c</span>(res, <span class="kw">sqrt</span>(i))
 }</code></pre></div>
 <p>This loop introduces three inefficiencies. First, and most importantly, you are growing your when adding new values to it. This involves creating new and longer vectors again and again when the old one is filled up. This is very slow. Second, as the true vectorized alternatives exist here, one can easily speed up the code by a magnitude or more by just switching to the vectorized code. Third, and perhaps most importantly, this code is much harder to read than the pure vectorized expression:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">1</span>:<span class="dv">1000</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>)</code></pre></div>
 <p>We can easily demonstrate how much faster the vectorized expressions work. Let’s do this using <em>microbenchmark</em> library (it provides nanosecond timings). Let’s wrap these expressions in functions for easier handling by <em>microbenchmark</em>. We also include a middle version where we use a loop but avoid the terribly slow vector re-allocation by creating the right-sized result in advance:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">seq &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">1000</span> <span class="co"># global variables are easier to handle with microbenchmark</span>
-baad &lt;-<span class="st"> </span>function() {
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">seq &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">1000</span> <span class="co"># global variables are easier to handle with microbenchmark</span>
+baad &lt;-<span class="st"> </span><span class="cf">function</span>() {
    r &lt;-<span class="st"> </span><span class="kw">numeric</span>()
-   for(i in seq)
+   <span class="cf">for</span>(i <span class="cf">in</span> seq)
       r &lt;-<span class="st"> </span><span class="kw">c</span>(r, <span class="kw">sqrt</span>(i))
 }
-soso &lt;-<span class="st"> </span>function() {
+soso &lt;-<span class="st"> </span><span class="cf">function</span>() {
    r &lt;-<span class="st"> </span><span class="kw">numeric</span>(<span class="kw">length</span>(seq))
-   for(i in seq)
+   <span class="cf">for</span>(i <span class="cf">in</span> seq)
       r[i] &lt;-<span class="st"> </span><span class="kw">sqrt</span>(i)
 }
-good &lt;-<span class="st"> </span>function()
+good &lt;-<span class="st"> </span><span class="cf">function</span>()
    <span class="kw">sqrt</span>(seq)
-microbenchmark::<span class="kw">microbenchmark</span>(<span class="kw">baad</span>(), <span class="kw">soso</span>(), <span class="kw">good</span>())</code></pre></div>
+microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<span class="kw">baad</span>(), <span class="kw">soso</span>(), <span class="kw">good</span>())</code></pre></div>
 <pre><code>## Unit: microseconds
-##    expr     min       lq       mean    median        uq      max neval
-##  baad() 943.336 1021.377 1779.46876 1880.7315 2244.6920 4451.993   100
-##  soso()  45.621   47.928   78.88184   50.0215   54.3960 2373.122   100
-##  good()   2.756    3.013   11.70231    4.0060    5.5255  702.272   100</code></pre>
+##    expr      min        lq       mean    median        uq      max neval
+##  baad() 1139.312 1185.0725 1637.48173 1207.2920 2286.6975 7143.081   100
+##  soso()   60.909   62.7140   94.14871   64.1575   66.9270 2951.462   100
+##  good()    4.776    4.9875   13.54474    5.3935    6.0075  790.984   100</code></pre>
 <p>When comparing the median values, we can see that the middle example is 10x slower than the vectorized example, and the first version is almost 300x slower!</p>
 <p>The above holds for “true” vectorized operations. R provides many pseudo-vectorizers (the lapply family) that may be handy in many circumstances, but not in case you need speed. Under the hood these functions just use a loop. We can demonstrate this by adding one more function to our family:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">soso2 &lt;-<span class="st"> </span>function() {
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">soso2 &lt;-<span class="st"> </span><span class="cf">function</span>() {
    <span class="kw">sapply</span>(seq, sqrt)
 }
-microbenchmark::<span class="kw">microbenchmark</span>(<span class="kw">baad</span>(), <span class="kw">soso</span>(), <span class="kw">soso2</span>(), <span class="kw">good</span>())</code></pre></div>
+microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<span class="kw">baad</span>(), <span class="kw">soso</span>(), <span class="kw">soso2</span>(), <span class="kw">good</span>())</code></pre></div>
 <pre><code>## Unit: microseconds
-##     expr     min        lq       mean    median       uq      max neval
-##   baad() 940.375 1031.9170 1578.17503 1609.9965 1882.543 3491.407   100
-##   soso()  45.726   48.0495   54.74229   50.3170   54.932  101.392   100
-##  soso2() 268.906  292.1795  336.26804  306.2820  342.283 1292.909   100
-##   good()   2.797    3.2105    4.15068    3.7725    4.462   12.364   100</code></pre>
+##     expr      min        lq       mean    median       uq      max neval
+##   baad() 1152.051 1183.8090 1511.98804 1209.7100 2124.550 2760.176   100
+##   soso()   61.233   62.5075   65.10850   63.9015   67.229   81.512   100
+##  soso2()  348.188  365.7295  394.86066  378.0120  401.352 1741.826   100
+##   good()    4.800    5.0820    5.51374    5.4030    5.592   14.058   100</code></pre>
 <p>As it turns out, <code>sapply</code> is much slower than plain for-loop. Lapply-family is not a substitute for true vectorization. However, one may argue that <code>soso2</code> function is easier to understand than explicit loop in <code>soso</code>. In any case, it is easier to type when working on the interactive console.</p>
 <p>Finally, it should be noted that when performing truly vectorized operations on long vectors, the overhead of R interpreter becomes negligible and the resulting speed is almost equalt to that of the corresponding C code. And optimized R code can easily beat non-optimized C.</p>
 </div>
@@ -595,30 +595,30 @@ microbenchmark::<span class="kw">microbenchmark</span>(<span class="kw">baad</sp
 <div id="where-to-put-else" class="section level3">
 <h3><span class="header-section-number">B.2.1</span> Where To Put Else</h3>
 <p>Normally R wants to understand if a line of code belongs to an earlier statement, or is it beginning of a fresh one. For instance,</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if(condition) {
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span>(condition) {
    ## do something
 }
-else {
+<span class="cf">else</span> {
    ## do something else
 }</code></pre></div>
 <p>may fail. R finishes the if-block on line 3 and thinks line 4 is beginning of a new statement. And gets confused by the unaccompanied <code>else</code> as it has already forgotten about the <code>if</code> above. However, this code works if used inside a function, or more generally, inside a {…} block.</p>
 <p>But else may always stay on the same line as the the statement of the if-block. You are already familiar with the form</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if(condition) {
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span>(condition) {
    ## do something
-} else {
+} <span class="cf">else</span> {
    ## do something else
 }</code></pre></div>
 <p>but this applies more generally. For instance:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if(condition) 
-   x &lt;-<span class="st"> </span><span class="dv">1</span> else {
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span>(condition) 
+   x &lt;-<span class="st"> </span><span class="dv">1</span> <span class="cf">else</span> {
              ## do something else
           }</code></pre></div>
 <p>or</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if(condition) { ... } else {
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span>(condition) { ... } <span class="cf">else</span> {
              ## do something else
           }</code></pre></div>
 <p>or</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if(condition) { x &lt;-<span class="st"> </span><span class="dv">1</span>; y &lt;-<span class="st"> </span><span class="dv">2</span> } else z &lt;-<span class="st"> </span><span class="dv">3</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span>(condition) { x &lt;-<span class="st"> </span><span class="dv">1</span>; y &lt;-<span class="st"> </span><span class="dv">2</span> } <span class="cf">else</span> z &lt;-<span class="st"> </span><span class="dv">3</span></code></pre></div>
 <p>the last one-liner uses the fact that we can write several statements on a single line with <code>;</code>. Arguably, such style is often a bad idea, but it has it’s place, for instance when creating anonymous functions for <code>lapply</code> and friends.</p>
 </div>
 <div id="return-value" class="section level3">
@@ -626,14 +626,14 @@ else {
 <p>As most commands in R, if-else block has a return value. This is the last value evaluated by the block, and it can be assigned to variables. If the condition is false, and there is no else block, <code>if</code> returns <code>NULL</code>.</p>
 <p>Using return values of if-else statement is often a recipe for hard-to-read code but may be a good choice in other circumstances, for instance where the multy-line form will take too much attention away from more crucial parts of the code. The line</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="dv">3</span>
-parity &lt;-<span class="st"> </span>if(n %%<span class="st"> </span><span class="dv">2</span> ==<span class="st"> </span><span class="dv">0</span>) <span class="st">&quot;even&quot;</span> else <span class="st">&quot;odd&quot;</span>
+parity &lt;-<span class="st"> </span><span class="cf">if</span>(n <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="st">&quot;even&quot;</span> <span class="cf">else</span> <span class="st">&quot;odd&quot;</span>
 parity</code></pre></div>
 <pre><code>## [1] &quot;odd&quot;</code></pre>
 <p>is rather easy to read. This is the closest general construct in R corresponding to C conditional shortcuts <code>parity = n % 2 ? &quot;even&quot; : &quot;odd&quot;</code>.</p>
 <p>Another good place for such compressed if-else statements is inside anonymous functions in <code>lapply</code> and friends. For instance, the following code replaces <code>NULL</code>-s and <code>NA</code>-s in a list of characters:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">emails &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;ott@example.com&quot;</span>, <span class="st">&quot;xi@abc.net&quot;</span>, <span class="ot">NULL</span>, <span class="st">&quot;li@whitehouse.gov&quot;</span>, <span class="ot">NA</span>)
 n &lt;-<span class="st"> </span><span class="dv">0</span>
-<span class="kw">sapply</span>(emails, function(x) if(<span class="kw">is.null</span>(x) ||<span class="st"> </span><span class="kw">is.na</span>(x)) <span class="st">&quot;-&quot;</span> else x)</code></pre></div>
+<span class="kw">sapply</span>(emails, <span class="cf">function</span>(x) <span class="cf">if</span>(<span class="kw">is.null</span>(x) <span class="op">||</span><span class="st"> </span><span class="kw">is.na</span>(x)) <span class="st">&quot;-&quot;</span> <span class="cf">else</span> x)</code></pre></div>
 <pre><code>## [1] &quot;ott@example.com&quot;   &quot;xi@abc.net&quot;        &quot;-&quot;                
 ## [4] &quot;li@whitehouse.gov&quot; &quot;-&quot;</code></pre>
 </div>
@@ -642,7 +642,7 @@ n &lt;-<span class="st"> </span><span class="dv">0</span>
 <h2><span class="header-section-number">B.3</span> <code>switch</code>: Choosing Between Multiple Conditions</h2>
 <p>If-else is appropriate if we have a small number of conditions, potentially only one. Switch is a related construct that tests a large number of equality conditions. The best way to explain it’s syntax is through an example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stock &lt;-<span class="st"> &quot;AMZN&quot;</span>
-switch(stock,
+<span class="cf">switch</span>(stock,
        <span class="st">&quot;AAPL&quot;</span> =<span class="st"> &quot;Apple Inc&quot;</span>,
        <span class="st">&quot;AMZN&quot;</span> =<span class="st"> &quot;Amazon.com Inc&quot;</span>,
        <span class="st">&quot;INTC&quot;</span> =<span class="st"> &quot;Intel Corp&quot;</span>,
@@ -650,7 +650,7 @@ switch(stock,
 <pre><code>## [1] &quot;Amazon.com Inc&quot;</code></pre>
 <p>Switch expression attempts to match the expression, here <code>stock = &quot;AMZN&quot;</code>, to a list of alternatives. If one of the alternative matches the name of the argument, that argument is returned. If none matches, the nameless default argument (here “unknown”) is returned. In case there is not default argument, <code>switch</code> returns <code>NULL</code>.</p>
 <p>Switch allows to specify the same return value for multiple cases:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">switch(stock,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">switch</span>(stock,
        <span class="st">&quot;AAPL&quot;</span> =<span class="st"> &quot;Apple Inc&quot;</span>,
        <span class="st">&quot;AMZN&quot;</span> =, <span class="st">&quot;INTC&quot;</span> =<span class="st"> &quot;something else&quot;</span>,
        <span class="st">&quot;unknown&quot;</span>)</code></pre></div>

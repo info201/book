@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Technical Foundations of Informatics</title>
   <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.6 and GitBook 2.6.7">
 
   <meta property="og:title" content="Technical Foundations of Informatics" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2018-04-26">
+<meta name="date" content="2018-09-30">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -425,16 +425,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <p>Once you’ve added everyone to the GitHub repository, <strong>each team member</strong> will need to <strong><code>clone</code></strong> the repository to their local machines to work on the code individually. Collaborators can then <code>push</code> any changes they make to the central repository, and <code>pull</code> and changes made by others. Because multiple members will be contributing to the <em>same repositiory</em>, it’s important to ensure that you are working on the most up-to-date version of the code. This means that you will regularly have to <strong>pull in changes</strong> from GitHub that your team members may have committed. As a result, we suggest that you have a workflow that looks like this:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># Begin your work session by pulling in changes from GitHub</span>
-<span class="kw">git</span> pull origin master
+<span class="fu">git</span> pull origin master
 
 <span class="co"># If necessary, resolve any merge conflicts and commit them</span>
-<span class="kw">git</span> add .
-<span class="kw">git</span> commit -m <span class="st">&quot;Merge in changes from GitHub&quot;</span>
+<span class="fu">git</span> add .
+<span class="fu">git</span> commit -m <span class="st">&quot;Merge in changes from GitHub&quot;</span>
 
 <span class="co"># Do your work, then add, commit and push</span>
-<span class="kw">git</span> add .
-<span class="kw">git</span> commit -m <span class="st">&quot;Make progress on feature X&quot;</span>
-<span class="kw">git</span> push origin master</code></pre></div>
+<span class="fu">git</span> add .
+<span class="fu">git</span> commit -m <span class="st">&quot;Make progress on feature X&quot;</span>
+<span class="fu">git</span> push origin master</code></pre></div>
 <p>Note, if someone pushes a commit to GitHub <em>before you push your changes</em>, you’ll need to integrate those into your code (and test them!) before pushing up to GitHub. While working on a single <code>master</code> branch in this fashion is possible, you’ll encounter fewer conflicts if you use a dedicated <strong>feature branch</strong> for each developer or feature you’re working on.</p>
 </div>
 <div id="feature-branch-workflow" class="section level2">
@@ -444,35 +444,35 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>The workflow thus works like this:</p>
 <ol style="list-style-type: decimal">
 <li><p>Ada decides to add a new feature or part to the code. She creates a new feature branch off of <code>master</code>:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> checkout master
-<span class="kw">git</span> checkout -b adas-feature</code></pre></div></li>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> checkout master
+<span class="fu">git</span> checkout -b adas-feature</code></pre></div></li>
 <li><p>Ada does some work on this feature</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># work is done outside of terminal</span>
 
-<span class="kw">git</span> add .
-<span class="kw">git</span> commit -m <span class="st">&quot;Add progress on feature&quot;</span></code></pre></div></li>
+<span class="fu">git</span> add .
+<span class="fu">git</span> commit -m <span class="st">&quot;Add progress on feature&quot;</span></code></pre></div></li>
 <li><p>Ada takes a break, pushing her changes to GitHub</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> push -u origin adas-feature</code></pre></div></li>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> push -u origin adas-feature</code></pre></div></li>
 <li><p>After talking to Ada, Bebe decides to help finish up the feature. She checks out the branch and makes some changes, then pushes them back to GitHub</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># fetch will &quot;download&quot; commits from GitHub, without merging them</span>
-<span class="kw">git</span> fetch origin
-<span class="kw">git</span> checkout adas-feature
+<span class="fu">git</span> fetch origin
+<span class="fu">git</span> checkout adas-feature
 
 <span class="co"># work is on adas-feature done outside of terminal</span>
 
-<span class="kw">git</span> add .
-<span class="kw">git</span> commit -m <span class="st">&quot;Add more progress on feature&quot;</span>
-<span class="kw">git</span> push origin adas-feature</code></pre></div></li>
+<span class="fu">git</span> add .
+<span class="fu">git</span> commit -m <span class="st">&quot;Add more progress on feature&quot;</span>
+<span class="fu">git</span> push origin adas-feature</code></pre></div></li>
 <li><p>Ada downloads Bebe’s changes</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> pull origin adas-feature</code></pre></div></li>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> pull origin adas-feature</code></pre></div></li>
 <li><p>Ada decides the feature is finished, and <em>merges</em> it back into <code>master</code>. But first, she makes sure she has the latest version of the <code>master</code> code to integrate her changes with</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> checkout master  <span class="co"># switch to master</span>
-<span class="kw">git</span> pull origin master  <span class="co"># download any changes</span>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> checkout master  # switch to master
+<span class="fu">git</span> pull origin master  # download any changes
 
-<span class="kw">git</span> merge adas-feature  <span class="co"># merge the feature into the master branch</span>
+<span class="fu">git</span> merge adas-feature  # merge the feature into the master branch
 <span class="co"># fix any merge conflicts!!</span>
 
-<span class="kw">git</span> push origin master  <span class="co"># upload the updated code to master</span></code></pre></div></li>
+<span class="fu">git</span> push origin master  # upload the updated code to master</code></pre></div></li>
 <li><p>And now that the feature has been successfully added to the project, Ada can delete the feature branch (using <code>git branch -d branch_name</code>). See also <a href="http://stackoverflow.com/questions/2003505/how-to-delete-a-git-branch-both-locally-and-remotely">here</a>.</p></li>
 </ol>
 <p>This kind of workflow is very common and effective for supporting collaboration. Note that as projects get large, you may need to start being more organized about how and when you create feature branches. For example, the <a href="http://nvie.com/posts/a-successful-git-branching-model/"><strong>Git Flow</strong></a> model organizes feature branches around product releases, and is often a starting point for large collaborative projects.</p>

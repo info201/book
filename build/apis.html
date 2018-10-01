@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Technical Foundations of Informatics</title>
   <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.6 and GitBook 2.6.7">
 
   <meta property="og:title" content="Technical Foundations of Informatics" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2018-04-26">
+<meta name="date" content="2018-09-30">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -587,13 +587,13 @@ body &lt;-<span class="st"> </span><span class="kw">content</span>(response, <sp
 <span class="kw">library</span>(<span class="st">&quot;jsonlite&quot;</span>)</code></pre></div>
 <p><code>jsonlite</code> provides a function called <strong><code>fromJSON()</code></strong> that allows you to convert a JSON string into a list—or even a data frame if the columns have the right lengths!</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># send request for albums by David Bowie</span>
-&lt;<span class="er">&lt;&lt;&lt;&lt;&lt;&lt;</span><span class="st"> </span>HEAD
+<span class="op">&lt;</span><span class="er">&lt;&lt;&lt;&lt;&lt;&lt;</span><span class="st"> </span>HEAD
 query.params &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">q =</span> <span class="st">&quot;d3&quot;</span>, <span class="dt">sort =</span> <span class="st">&quot;forks&quot;</span>)
 response &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;https://api.github.com/search/repositories&quot;</span>, <span class="dt">query =</span> query.params)
-==<span class="er">=====</span>
+<span class="op">==</span><span class="er">=====</span>
 query_params &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">q =</span> <span class="st">&quot;d3&quot;</span>, <span class="dt">sort =</span> <span class="st">&quot;forks&quot;</span>)
 response &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;https://api.github.com&quot;</span>, <span class="dt">query =</span> query_params)
-&gt;<span class="er">&gt;&gt;&gt;&gt;&gt;&gt;</span><span class="st"> </span>112475b2d49fb2adbcb635aef504ee74c89a9a15
+<span class="op">&gt;</span><span class="er">&gt;&gt;&gt;&gt;&gt;&gt;</span><span class="st"> </span>112475b2d49fb2adbcb635aef504ee74c89a9a15
 body &lt;-<span class="st"> </span><span class="kw">content</span>(response, <span class="st">&quot;text&quot;</span>)  <span class="co"># extract the body JSON</span>
 parsed_data &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(body)  <span class="co"># convert the JSON string to a list</span></code></pre></div>
 <p>The <code>parsed_data</code> will contain a <em>list</em> built out of the JSON. Depending on the complexity of the JSON, this may already be a data frame you can <code>View()</code>… but more likely you’ll need to <em>explore</em> the list more to locate the “main” data you are interested in. Good strategies for this include:</p>
@@ -608,7 +608,7 @@ parsed_data &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(body)
   <span class="co"># looking at the JSON data itself (e.g., in the browser), `items` is the</span>
   <span class="co"># key that contains the value we want</span>
 
-items &lt;-<span class="st"> </span>parsed_data$items  <span class="co"># extract that element from the list</span>
+items &lt;-<span class="st"> </span>parsed_data<span class="op">$</span>items  <span class="co"># extract that element from the list</span>
 <span class="kw">is.data.frame</span>(items)  <span class="co"># TRUE; you can work with that!</span></code></pre></div>
 </div>
 <div id="flattening-data" class="section level3">
@@ -622,7 +622,7 @@ favorites &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <spa
   <span class="dt">music =</span> <span class="kw">c</span>(<span class="st">&quot;Bluegrass&quot;</span>, <span class="st">&quot;Indie&quot;</span>, <span class="st">&quot;Electronic&quot;</span>)
 )
 <span class="co"># Store second dataframe as column of first</span>
-people$favorites &lt;-<span class="st"> </span>favorites <span class="co"># the `favorites` column is a data frame!</span>
+people<span class="op">$</span>favorites &lt;-<span class="st"> </span>favorites <span class="co"># the `favorites` column is a data frame!</span>
 
 <span class="co"># This prints nicely...</span>
 <span class="kw">print</span>(people)
@@ -632,11 +632,11 @@ people$favorites &lt;-<span class="st"> </span>favorites <span class="co"># the 
 <span class="co"># 3  Keagan          salad      Electronic</span>
 
 <span class="co"># but doesn&#39;t actually work like you expect!</span>
-people$favorites.food <span class="co"># NULL</span>
-people$favorites$food <span class="co"># [1] Pizza Pasta salad</span></code></pre></div>
+people<span class="op">$</span>favorites.food <span class="co"># NULL</span>
+people<span class="op">$</span>favorites<span class="op">$</span>food <span class="co"># [1] Pizza Pasta salad</span></code></pre></div>
 <p>Nested data frames make it hard to work with the data using previously established techniques. Luckily, the <code>jsonlite</code> package provides a helpful function for addressing this called <strong><code>flatten()</code></strong>. This function takes the columns of each <em>nested</em> data frame and converts them into appropriately named columns in the “outer” data frame:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">people &lt;-<span class="st"> </span><span class="kw">flatten</span>(people)
-people$favorites.food  <span class="co"># this just got created! Woo!</span></code></pre></div>
+people<span class="op">$</span>favorites.food  <span class="co"># this just got created! Woo!</span></code></pre></div>
 <p>Note that <code>flatten()</code> only works on values that are <em>already data frames</em>; thus you may need to find the appropriate element inside of the list (that is, the item which is the data frame you want to flatten).</p>
 <p>In practice, you will almost always want to flatten the data returned from a web API. Thus your “algorithm” for downloading web data is as follows:</p>
 <ol style="list-style-type: decimal">

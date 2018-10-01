@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Technical Foundations of Informatics</title>
   <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.6 and GitBook 2.6.7">
 
   <meta property="og:title" content="Technical Foundations of Informatics" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2018-04-26">
+<meta name="date" content="2018-09-30">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -427,36 +427,35 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="replacement-for-data-frames-sort-of" class="section level3">
 <h3><span class="header-section-number">C.2.1</span> Replacement for Data Frames (Sort of)</h3>
 <p>Data tables are designed to be largely a replacement to data frames. The syntax is similar and they are largely replaceable. For instance, we can create and play with a data table as</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table)</code></pre></div>
-<pre><code>## Warning: package &#39;data.table&#39; was built under R version 3.4.2</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt &lt;-<span class="st"> </span><span class="kw">data.table</span>(<span class="dt">id=</span><span class="dv">1</span>:<span class="dv">5</span>, <span class="dt">x=</span><span class="kw">rnorm</span>(<span class="dv">5</span>), <span class="dt">y=</span><span class="kw">runif</span>(<span class="dv">5</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table)
+dt &lt;-<span class="st"> </span><span class="kw">data.table</span>(<span class="dt">id=</span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">x=</span><span class="kw">rnorm</span>(<span class="dv">5</span>), <span class="dt">y=</span><span class="kw">runif</span>(<span class="dv">5</span>))
 dt</code></pre></div>
-<pre><code>##    id          x          y
-## 1:  1  0.9075283 0.31777207
-## 2:  2 -0.2216395 0.02943805
-## 3:  3 -0.9640137 0.19161354
-## 4:  4 -0.5245877 0.85537861
-## 5:  5  0.6633378 0.79260910</code></pre>
+<pre><code>##    id           x          y
+## 1:  1 -0.41648511 0.11658481
+## 2:  2 -1.95858744 0.20915327
+## 3:  3  0.45602878 0.92032835
+## 4:  4 -1.97580570 0.68078015
+## 5:  5  0.08101103 0.02827685</code></pre>
 <p>The result looks almost identical to a similar data frame (the only difference are the colons after the row numbers). Behind the scenes these objects are almost identical too–both objects are lists of vectors. This structural similarity allows to use data tables as drop-in replacements for dataframes, at least in some circumstances. For instance, we can extract variables with <code>$</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt$x</code></pre></div>
-<pre><code>## [1]  0.9075283 -0.2216395 -0.9640137 -0.5245877  0.6633378</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt<span class="op">$</span>x</code></pre></div>
+<pre><code>## [1] -0.41648511 -1.95858744  0.45602878 -1.97580570  0.08101103</code></pre>
 <p>or rows with row indices:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>),]</code></pre></div>
-<pre><code>##    id          x          y
-## 1:  2 -0.2216395 0.02943805
-## 2:  4 -0.5245877 0.85537861</code></pre>
+<pre><code>##    id         x         y
+## 1:  2 -1.958587 0.2091533
+## 2:  4 -1.975806 0.6807802</code></pre>
 <p>However, data tables use unquoted variables names (like <em>dplyr</em>) by default:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt[,x]</code></pre></div>
-<pre><code>## [1]  0.9075283 -0.2216395 -0.9640137 -0.5245877  0.6633378</code></pre>
+<pre><code>## [1] -0.41648511 -1.95858744  0.45602878 -1.97580570  0.08101103</code></pre>
 <p>In case we need to store the variable name into another variable, with have to use the additional argument <code>with</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">var &lt;-<span class="st"> &quot;x&quot;</span>
 dt[, var, with=<span class="ot">FALSE</span>]</code></pre></div>
-<pre><code>##             x
-## 1:  0.9075283
-## 2: -0.2216395
-## 3: -0.9640137
-## 4: -0.5245877
-## 5:  0.6633378</code></pre>
+<pre><code>##              x
+## 1: -0.41648511
+## 2: -1.95858744
+## 3:  0.45602878
+## 4: -1.97580570
+## 5:  0.08101103</code></pre>
 <p>Note also that instead of getting a vector, now we get a data.table with a single column “x” in the first. This behavior is the main culprit that when replacing data frames with data tables one may need to change quite a bit of code.</p>
 </div>
 <div id="fast-reading-and-writing" class="section level3">
@@ -467,12 +466,12 @@ dt[, var, with=<span class="ot">FALSE</span>]</code></pre></div>
 <p>If your computer has enough memory and speed is not an issue, your interest for data tables may end here. You can just transform data table into a data frame with <code>setDF</code> (and the other way around with <code>setDT</code>). Let’s transform our data table to data frame:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setDF</span>(dt)
 dt</code></pre></div>
-<pre><code>##   id          x          y
-## 1  1  0.9075283 0.31777207
-## 2  2 -0.2216395 0.02943805
-## 3  3 -0.9640137 0.19161354
-## 4  4 -0.5245877 0.85537861
-## 5  5  0.6633378 0.79260910</code></pre>
+<pre><code>##   id           x          y
+## 1  1 -0.41648511 0.11658481
+## 2  2 -1.95858744 0.20915327
+## 3  3  0.45602878 0.92032835
+## 4  4 -1.97580570 0.68078015
+## 5  5  0.08101103 0.02827685</code></pre>
 <p>Do you see that the colons after row names are gone? This means <code>dt</code> now is a data frame.</p>
 <p>Note that this function behaves very differently from what we have learned earlier: it modifies the object <em>in place</em> (by reference). We do not have to assign the result into a new variable using a construct like <code>df &lt;- setDF(dt)</code> (but we still can write like this, handy when using magrittr pipes). This is a manifestation of the power of data.tables: the object is not copied but the same object is modified in memory instead. <code>setDF</code> and <code>setDT</code> are very efficient, even huge tables are converted instantly with virtually no need for any additional memory.</p>
 <p>However, big powers come hand-in-hand with big responsibility: it is easy to forget that <code>setDF</code> modifies the function argument.</p>
@@ -511,7 +510,7 @@ dt</code></pre></div>
 <div id="i-select-observations" class="section level3">
 <h3><span class="header-section-number">C.3.1</span> i: Select Observations</h3>
 <p>Obviously, we can always just tell which observations we want:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[<span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">3</span>),]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>),]</code></pre></div>
 <pre><code>##    year month day dep_time sched_dep_time dep_delay arr_time
 ## 1: 2013     1   1      517            515         2      830
 ## 2: 2013     1   1      533            529         4      850
@@ -533,7 +532,7 @@ dt</code></pre></div>
 ##    distance hour minute           time_hour
 ## 1:      419   11     59 2013-09-30 11:00:00</code></pre>
 <p>We can select observations with logical index vector in the same way as in data frames:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(flights[origin ==<span class="st"> &quot;EWR&quot;</span> &amp;<span class="st"> </span>dest ==<span class="st"> &quot;SEA&quot;</span>,], <span class="dv">3</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(flights[origin <span class="op">==</span><span class="st"> &quot;EWR&quot;</span> <span class="op">&amp;</span><span class="st"> </span>dest <span class="op">==</span><span class="st"> &quot;SEA&quot;</span>,], <span class="dv">3</span>)</code></pre></div>
 <pre><code>##    year month day dep_time sched_dep_time dep_delay arr_time
 ## 1: 2013     1   1      724            725        -1     1020
 ## 2: 2013     1   1      857            851         6     1157
@@ -568,28 +567,28 @@ dt</code></pre></div>
 ## 3:    JFK  MIA</code></pre>
 <p>Selection supports a number of goodies, such as ranges of variables with <code>:</code> (for instance, <code>dep_time:arr_delay</code>) and excluding variables with <code>!</code> or <code>-</code> (for instance, <code>-year</code>).</p>
 <p>Obviously we can combine both <code>i</code> and <code>j</code>: let’s select origin and departure delay for flights to Seattle:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(flights[dest ==<span class="st"> &quot;SEA&quot;</span>, .(origin, dep_delay)], <span class="dv">3</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(flights[dest <span class="op">==</span><span class="st"> &quot;SEA&quot;</span>, .(origin, dep_delay)], <span class="dv">3</span>)</code></pre></div>
 <pre><code>##    origin dep_delay
 ## 1:    EWR        -1
 ## 2:    JFK        13
 ## 3:    EWR         6</code></pre>
 <p>The example so far broadly correspond to dplyr’s <code>select</code>.</p>
 <p>But <code>j</code> is not just for selecting. It is also for computing. Let’s find the mean arrival delay for flights to Seattle:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[dest ==<span class="st"> &quot;SEA&quot;</span>, <span class="kw">mean</span>(arr_delay, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[dest <span class="op">==</span><span class="st"> &quot;SEA&quot;</span>, <span class="kw">mean</span>(arr_delay, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)]</code></pre></div>
 <pre><code>## [1] -1.099099</code></pre>
 <p>Several variables can be returned by wrapping, and optionally named, these in <code>.()</code>. For instance, find the average departure and arrival delay for all flights to Seattle, given the flight was delayed on arrival, and name these <code>dep</code> and <code>arr</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[dest ==<span class="st"> &quot;SEA&quot;</span> &amp;<span class="st"> </span>arr_delay &gt;<span class="st"> </span><span class="dv">0</span>,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[dest <span class="op">==</span><span class="st"> &quot;SEA&quot;</span> <span class="op">&amp;</span><span class="st"> </span>arr_delay <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>,
         .(<span class="dt">dep =</span> <span class="kw">mean</span>(dep_delay, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), <span class="dt">arr =</span> <span class="kw">mean</span>(arr_delay, <span class="dt">na.rm=</span><span class="ot">TRUE</span>))]</code></pre></div>
 <pre><code>##         dep      arr
 ## 1: 33.98266 39.79984</code></pre>
 <p>The result is a data table with two variables.</p>
 <p>We can use the special variable <code>.N</code> to count the rows:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[dest ==<span class="st"> &quot;SEA&quot;</span> &amp;<span class="st"> </span>arr_delay &gt;<span class="st"> </span><span class="dv">0</span>, .N]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[dest <span class="op">==</span><span class="st"> &quot;SEA&quot;</span> <span class="op">&amp;</span><span class="st"> </span>arr_delay <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, .N]</code></pre></div>
 <pre><code>## [1] 1269</code></pre>
 <p>will tell us how many flights to Seattle were delayed at arrival.</p>
 <p>Handling the case where the variable names are stored in other variables is not that hard, but still adds a layer of complexity. We can specify the variables in <code>.SDcols</code> parameter. This parameter determines which columns go into <code>.SD</code> (=Subset Data) special variable. Afterwards we make an <code>lapply</code> expression in <code>j</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[dest ==<span class="st"> &quot;SEA&quot;</span> &amp;<span class="st"> </span>arr_delay &gt;<span class="st"> </span><span class="dv">0</span>,
-        <span class="kw">lapply</span>(.SD, function(x) <span class="kw">mean</span>(x, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)),
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[dest <span class="op">==</span><span class="st"> &quot;SEA&quot;</span> <span class="op">&amp;</span><span class="st"> </span>arr_delay <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>,
+        <span class="kw">lapply</span>(.SD, <span class="cf">function</span>(x) <span class="kw">mean</span>(x, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)),
         .SDcols =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;arr_delay&quot;</span>, <span class="st">&quot;dep_delay&quot;</span>)]</code></pre></div>
 <pre><code>##    arr_delay dep_delay
 ## 1:  39.79984  33.98266</code></pre>
@@ -599,7 +598,7 @@ dt</code></pre></div>
 <div id="group-in-by" class="section level3">
 <h3><span class="header-section-number">C.3.3</span> Group in <code>by</code></h3>
 <p>Finally, all of the above can by computed by groups using <code>by</code>. Let’s compute the average delays above by carrier and origin:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[dest ==<span class="st"> &quot;SEA&quot;</span> &amp;<span class="st"> </span>arr_delay &gt;<span class="st"> </span><span class="dv">0</span>,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[dest <span class="op">==</span><span class="st"> &quot;SEA&quot;</span> <span class="op">&amp;</span><span class="st"> </span>arr_delay <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>,
         .(<span class="dt">dep =</span> <span class="kw">mean</span>(dep_delay, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), <span class="dt">arr =</span> <span class="kw">mean</span>(arr_delay, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)),
         by =<span class="st"> </span>.(carrier, origin)]</code></pre></div>
 <pre><code>##    carrier origin      dep      arr
@@ -610,14 +609,14 @@ dt</code></pre></div>
 ## 5:      AA    JFK 34.04132 40.48760</code></pre>
 <p>We just had to specify the <code>by</code> argument that lists the grouping variables. If more than one, these should be wrapped in a list with <code>.()</code> function.</p>
 <p>We can use the <code>.N</code> variable to get the group size. How many flights did each carrier from each origin?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[, .N, by=.(carrier, origin)] %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[, .N, by=.(carrier, origin)] <span class="op">%&gt;%</span>
 <span class="st">   </span><span class="kw">head</span>(<span class="dv">3</span>)</code></pre></div>
 <pre><code>##    carrier origin     N
 ## 1:      UA    EWR 46087
 ## 2:      UA    LGA  8044
 ## 3:      AA    JFK 13783</code></pre>
 <p>Finally, we can also use quoted variables for grouping too just be replacing <code>.()</code> with <code>c()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[, .N, by=<span class="kw">c</span>(<span class="st">&quot;carrier&quot;</span>, <span class="st">&quot;origin&quot;</span>)] %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[, .N, by=<span class="kw">c</span>(<span class="st">&quot;carrier&quot;</span>, <span class="st">&quot;origin&quot;</span>)] <span class="op">%&gt;%</span>
 <span class="st">   </span><span class="kw">head</span>(<span class="dv">3</span>)</code></pre></div>
 <pre><code>##    carrier origin     N
 ## 1:      UA    EWR 46087
@@ -631,8 +630,8 @@ dt</code></pre></div>
 <h2><span class="header-section-number">C.4</span> <code>:=</code>–Create variables by reference</h2>
 <p>While summarizing we compute values in <code>j</code>, these will always create a new data.table. Reducing operations are not possible to do in-place. But computing new variables can be done in-place.</p>
 <p>In place variable computations (without summarizing) can be done with <code>:=</code> assignment operator in <code>j</code>. Let’s compute a new variable–speed–for each flight. We can do this as follows:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[, speed :<span class="er">=</span><span class="st"> </span>distance/(air_time/<span class="dv">60</span>)]
-flights %&gt;%<span class="st"> </span><span class="kw">head</span>(<span class="dv">3</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[, speed <span class="op">:</span><span class="er">=</span><span class="st"> </span>distance<span class="op">/</span>(air_time<span class="op">/</span><span class="dv">60</span>)]
+flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(<span class="dv">3</span>)</code></pre></div>
 <pre><code>##    year month day dep_time sched_dep_time dep_delay arr_time
 ## 1: 2013     1   1      517            515         2      830
 ## 2: 2013     1   1      533            529         4      850
@@ -647,8 +646,8 @@ flights %&gt;%<span class="st"> </span><span class="kw">head</span>(<span class=
 ## 3:     1089    5     40 2013-01-01 05:00:00 408.3750</code></pre>
 <p>We see the new variable, speed, included as the last variable in the data. Note we did this operation <em>by reference</em>, i.e. we did not assign the result to a new data table. The existing table was modified in place.</p>
 <p>The same assignment operator also permits us to remove variables by setting these to <code>NULL</code>. Let’s remove speed:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[, speed :<span class="er">=</span><span class="st"> </span><span class="ot">NULL</span>]
-flights %&gt;%<span class="st"> </span><span class="kw">head</span>(<span class="dv">3</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[, speed <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="ot">NULL</span>]
+flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(<span class="dv">3</span>)</code></pre></div>
 <pre><code>##    year month day dep_time sched_dep_time dep_delay arr_time
 ## 1: 2013     1   1      517            515         2      830
 ## 2: 2013     1   1      533            529         4      850
@@ -663,8 +662,8 @@ flights %&gt;%<span class="st"> </span><span class="kw">head</span>(<span class=
 ## 3:     1089    5     40 2013-01-01 05:00:00</code></pre>
 <p>Indeed, there is not speed any more.</p>
 <p>Assigning more that one variable by reference may feel somewhat more intimidating:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[, <span class="kw">c</span>(<span class="st">&quot;speed&quot;</span>, <span class="st">&quot;meanDelay&quot;</span>) :<span class="er">=</span><span class="st"> </span>.(distance/(air_time/<span class="dv">60</span>), (arr_delay +<span class="st"> </span>dep_delay)/<span class="dv">2</span>)]
-flights %&gt;%<span class="st"> </span><span class="kw">head</span>(<span class="dv">3</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[, <span class="kw">c</span>(<span class="st">&quot;speed&quot;</span>, <span class="st">&quot;meanDelay&quot;</span>) <span class="op">:</span><span class="er">=</span><span class="st"> </span>.(distance<span class="op">/</span>(air_time<span class="op">/</span><span class="dv">60</span>), (arr_delay <span class="op">+</span><span class="st"> </span>dep_delay)<span class="op">/</span><span class="dv">2</span>)]
+flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(<span class="dv">3</span>)</code></pre></div>
 <pre><code>##    year month day dep_time sched_dep_time dep_delay arr_time
 ## 1: 2013     1   1      517            515         2      830
 ## 2: 2013     1   1      533            529         4      850
@@ -678,12 +677,12 @@ flights %&gt;%<span class="st"> </span><span class="kw">head</span>(<span class=
 ## 2:     1416    5     29 2013-01-01 05:00:00 374.2731      12.0
 ## 3:     1089    5     40 2013-01-01 05:00:00 408.3750      17.5</code></pre>
 <p>Assignment works together with both selection and grouping. For instance, we may want to replace negative delay by zeros:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[ arr_delay &lt;<span class="st"> </span><span class="dv">0</span>, arr_delay :<span class="er">=</span><span class="st"> </span><span class="dv">0</span>][, arr_delay] %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[ arr_delay <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>, arr_delay <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="dv">0</span>][, arr_delay] <span class="op">%&gt;%</span>
 <span class="st">   </span><span class="kw">head</span>(<span class="dv">20</span>)</code></pre></div>
 <pre><code>##  [1] 11 20 33  0  0 12 19  0  0  8  0  0  7  0 31  0  0  0 12  0</code></pre>
 <p>Indeed, we only see positive numbers and zeros. But be careful: now we have overwritten the <code>arr_delay</code> in the original data. We cannot restore the previous state any more without re-loading the dataset.</p>
 <p>As an example of groupings, let’s compute the maximum departure delay by origin:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[, maxDelay :<span class="er">=</span><span class="st"> </span><span class="kw">max</span>(dep_delay, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), by=origin] %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[, maxDelay <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="kw">max</span>(dep_delay, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), by=origin] <span class="op">%&gt;%</span>
 <span class="st">   </span><span class="kw">head</span>(<span class="dv">4</span>)</code></pre></div>
 <pre><code>##    year month day dep_time sched_dep_time dep_delay arr_time
 ## 1: 2013     1   1      517            515         2      830
@@ -745,7 +744,7 @@ fl &lt;-<span class="st"> </span>flights[,.(origin, dest, arr_delay)]
 ## 3:    EWR  ALB        44</code></pre>
 <p>We see that both origin and destination are alphabetically ordered. Note that when selecting variables, the resulting data table <code>fl</code> will have the same keys as the original one.</p>
 <p>When set, we can easily subset by key by just feeding the key values in <code>i</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fl[<span class="st">&quot;LGA&quot;</span>] %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fl[<span class="st">&quot;LGA&quot;</span>] <span class="op">%&gt;%</span>
 <span class="st">   </span><span class="kw">head</span>(<span class="dv">5</span>)</code></pre></div>
 <pre><code>##    origin dest arr_delay
 ## 1:    LGA  ATL         0
@@ -754,7 +753,7 @@ fl &lt;-<span class="st"> </span>flights[,.(origin, dest, arr_delay)]
 ## 4:    LGA  ATL         0
 ## 5:    LGA  ATL        17</code></pre>
 <p>will extract all LaGuardia-originating flights. In terms of output, this is equivalent to <code>fl[origin == &quot;LGA&quot;]</code>, just much more efficient. When you want to extract flights based on origin-destination pair, you can just add both key columns:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fl[.(<span class="st">&quot;EWR&quot;</span>, <span class="st">&quot;SEA&quot;</span>)] %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fl[.(<span class="st">&quot;EWR&quot;</span>, <span class="st">&quot;SEA&quot;</span>)] <span class="op">%&gt;%</span>
 <span class="st">   </span><span class="kw">head</span>(<span class="dv">4</span>)</code></pre></div>
 <pre><code>##    origin dest arr_delay
 ## 1:    EWR  SEA         0
@@ -762,7 +761,7 @@ fl &lt;-<span class="st"> </span>flights[,.(origin, dest, arr_delay)]
 ## 3:    EWR  SEA         0
 ## 4:    EWR  SEA         0</code></pre>
 <p>Again, this can be achieved in other ways, just keys are more efficient. Finally, if we want to extract based on the second key, the syntax is more confusing:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fl[.(<span class="kw">unique</span>(origin), <span class="st">&quot;SEA&quot;</span>)] %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fl[.(<span class="kw">unique</span>(origin), <span class="st">&quot;SEA&quot;</span>)] <span class="op">%&gt;%</span>
 <span class="st">   </span><span class="kw">head</span>(<span class="dv">4</span>)</code></pre></div>
 <pre><code>##    origin dest arr_delay
 ## 1:    EWR  SEA         0
