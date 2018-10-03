@@ -98,11 +98,13 @@ In R, we mark text as a comment by putting it after the pound/hashtag symbol (**
 bottles <- 99 - 1  # 98 bottles
 ```
 
-(You may recognize this `#` syntax and commenting behavior from the commmand-line and git chapters. That's because the same syntax is used in a Bash shell!)
+(You may recognize this `#` syntax and commenting behavior from the command-line and git chapters. That's because the same syntax is used in a Bash shell!)
 
 
 ## Variables
-Since computer programs involve working with lots of _information_, we need a way to store and refer to this information. We do this with **variables**. Variables are labels for information; in R, you can think of them as "boxes" or "nametags" for data. After putting data in a variable box, you can then refer to that data by the name on the box.
+Since computer programs involve working with lots of _information_, we
+need a way to store and refer to this information. We do this with
+**variables**. Variables are labels for information stored in memory; in R, you can think of them as "boxes" or "nametags" for data. After putting data in a variable box, you can then refer to that data by the name on the box.
 
 Variable names can contain any combination of letters, numbers, periods (`.`), or underscores (`_`). Variables names must begin with a letter. Note that like everything in programming, variable names are case sensitive. It is best practice to make variable names descriptive and information about what data they contain. `a` is not a good variable name. `cups_of_coffee` is a good variable name. In this course, we will use the [Tidyverse Style Guide](http://style.tidyverse.org/) as a foundation of _how we should style our code_. To comply with this style guide, variables should be **all lower-case letters, separated by underscore (`_`)**. This is also known as **snake_case**.
 
@@ -146,7 +148,7 @@ print(z)  # 12
 ### Basic Data Types
 In the example above, we stored **numeric** values in variables. R is a **dynamically typed language**, which means that we _do not_ need to explicitly state what type of information will be stored in each variable we create. R is intelligent enough to understand that if we have code `x <- 7`, then `x` will contain a numeric value (and so we can do math upon it!)
 
-There are a few "basic types" (or _modes_) for data in R:
+There six "basic types" (called _atomic data types_) for data in R:
 
 - **Numeric**: The default computational data type in R is numeric data, which consists of the set of real numbers (including decimals). We use use **mathematical operators** on numeric data (such as `+`, `-`, `*`, `-`, etc.). There are also numerous functions that work on numeric data (such as calculating sums or averages).
 
@@ -154,14 +156,20 @@ There are a few "basic types" (or _modes_) for data in R:
 
     ```r
     # Create character variable `famous.poet` with the value "Bill Shakespeare"
-    famous.poet <- "Bill Shakespeare"
+    famous_poet <- "Bill Shakespeare"
     ```
 
     Note that character data _is still data_, so it can be assigned to a variable just like numeric data!
 
     There are no special operators for character data, though there are a many built-in functions for working with strings.
 
-- **Logical**: Logical (a.k.a Boolean) data types store "yes-or-no" data. A logical value can be one of two values: `TRUE` or `FALSE`. Importantly, these **are not** the strings `"TRUE"` or `"FALSE"`; logical values are a different type! If you prefer, you can use the shorthand `T` or `F` in lieu of `TRUE` and `FALSE` in variable assignment.
+- **Logical**: Logical (a.k.a Boolean) data types store "yes-or-no"
+    data. A logical value can be one of two values: `TRUE` or
+    `FALSE`. Importantly, these **are not** the strings `"TRUE"` or
+    `"FALSE"`; logical values are a different type!  In interactive
+    session, you can use the shorthand `T` or `F` in lieu of `TRUE` and
+    `FALSE` in variable assignment but this is not recommended for
+    programs. 
 
     - _Fun fact:_ logical values are called "booleans" after mathematician and logician [George Boole](https://en.wikipedia.org/wiki/George_Boole).
 
@@ -204,16 +212,22 @@ There are a few "basic types" (or _modes_) for data in R:
 
     Note that it's easy to write complex expressions with logical operators. If you find yourself getting lost, I recommend rethinking your question to see if there is a simpler way to express it!
 
+- **Integer**: Integer values are technically a different data type than numeric values because of how they are stored and manipulated by the R interpreter. This is something that you will rarely encounter, but it's good to know that you can specify a number is of integer type rather than general numeric type by placing a capital `L` (for "long integer") after an value in variable assignment (`my_integer <- 10L`).
 
-- **Complex**: Complex (imaginary) numbers have their own data storage type in R, are are created using the `i` syntax: `complex.variable <- 2i`. We will not be using complex numbers in this course.
-
-- **Integer**: Integer values are technically a different data type than numeric values because of how they are stored and manipulated by the R interpreter. This is something that you will rarely encounter, but it's good to know that you can specify a number is of integer type rather than general numeric type by placing a capital `L` (for "long integer") after an value in variable assignment (`my.integer <- 10L`).
+- **Complex**: Complex (imaginary) numbers have their own data storage
+    type in R, are are created using the `i` syntax: `complex_variable
+    <- 1 + 2i`. We will not be using complex numbers in this course.
+	
+- **Raw**: is a sequence of "raw" data.  This is good for storing "raw"
+    sequence of bytes, such as image data.  R does not interpret raw data
+    in any particular way.  We will not discuss raw data in this book.
 
 
 ## Getting Help {#gettinghelp}
 As with any programming language, when working in R you will inevitably run into problems, confusing situations, or just general questions. Here are a few ways to start getting help.
 
-1. **Read the error messages**: If there is an issue with the way you have written or executed your code, R will often print out a red error message in your console. Do you best to decipher the message (read it carefully, and think about what is meant by each word in the message), or you can put it directly into Google to get more information. You'll soon get the hang of interpreting these messages if you put the time into trying to understand them.
+1. **Read the error messages**: If there is an issue with the way you
+have written or executed your code, R will often print out a red error message in your console. Do you best to decipher the message (read it carefully, and think about what is meant by each word in the message), or you can put it directly into Google to get more information. You'll soon get the hang of interpreting these messages if you put the time into trying to understand them.
 
 2. **Google**: When you're trying to figure out how to do something, it should be no surprise that Google is often the best resource. Try searching for queries like `"how to <DO THING> in R"`. More frequently than not, your question will lead you to a Q/A forum called StackOverflow (see below), which is a great place to find potential answers.
 
@@ -236,6 +250,7 @@ As with any programming language, when working in R you will inevitably run into
 - [R Tutorial: Operators](https://www.tutorialspoint.com/r/r_operators.htm)
 - [RStudio Keyboard Shortcuts](https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts)
 - [R Documentation](https://www.rdocumentation.org/) searchable online documentation
-- [R for Data Science](http://r4ds.had.co.nz/) online textbook
+- [R for Data Science](http://r4ds.had.co.nz/) online textbook, oriented
+  toward R usage in data processing and visualization
 - [aRrgh: a newcomer's (angry) guide to R](http://arrgh.tim-smith.us/) opinionated but clear introduction
 - [The Art of R Programming](https://www.nostarch.com/artofr.htm) print textbook

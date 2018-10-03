@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2018-09-30">
+<meta name="date" content="2018-10-02">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -504,11 +504,11 @@ Always read the output when working on the command-line!
 <p>In R, we mark text as a comment by putting it after the pound/hashtag symbol (<strong><code>#</code></strong>). Everything from the <code>#</code> until the end of the line is a comment. We put descriptive comments <em>immediately above</em> the code it describes, but you can also put very short notes at the end of the line of code (preferably following two spaces):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Set how many bottles of beer are on the wall</span>
 bottles &lt;-<span class="st"> </span><span class="dv">99</span> <span class="op">-</span><span class="st"> </span><span class="dv">1</span>  <span class="co"># 98 bottles</span></code></pre></div>
-<p>(You may recognize this <code>#</code> syntax and commenting behavior from the commmand-line and git chapters. That’s because the same syntax is used in a Bash shell!)</p>
+<p>(You may recognize this <code>#</code> syntax and commenting behavior from the command-line and git chapters. That’s because the same syntax is used in a Bash shell!)</p>
 </div>
 <div id="variables" class="section level2">
 <h2><span class="header-section-number">5.4</span> Variables</h2>
-<p>Since computer programs involve working with lots of <em>information</em>, we need a way to store and refer to this information. We do this with <strong>variables</strong>. Variables are labels for information; in R, you can think of them as “boxes” or “nametags” for data. After putting data in a variable box, you can then refer to that data by the name on the box.</p>
+<p>Since computer programs involve working with lots of <em>information</em>, we need a way to store and refer to this information. We do this with <strong>variables</strong>. Variables are labels for information stored in memory; in R, you can think of them as “boxes” or “nametags” for data. After putting data in a variable box, you can then refer to that data by the name on the box.</p>
 <p>Variable names can contain any combination of letters, numbers, periods (<code>.</code>), or underscores (<code>_</code>). Variables names must begin with a letter. Note that like everything in programming, variable names are case sensitive. It is best practice to make variable names descriptive and information about what data they contain. <code>a</code> is not a good variable name. <code>cups_of_coffee</code> is a good variable name. In this course, we will use the <a href="http://style.tidyverse.org/">Tidyverse Style Guide</a> as a foundation of <em>how we should style our code</em>. To comply with this style guide, variables should be <strong>all lower-case letters, separated by underscore (<code>_</code>)</strong>. This is also known as <strong>snake_case</strong>.</p>
 <p class="alert alert-info">
 <strong>Note:</strong> There is an important distinction between <em>syntax</em> and <em>style</em>. You need to use the proper <em>syntax</em> such that your <em>machine</em> understands your code. This requires that you follow a set of rigid rules for what code can be procesed. <em>Style</em> is what helps make your code understandable for other <em>humans</em>. Good style is not required to get your code to run, but it’s imperative for writing clear, (human) readable code.
@@ -537,15 +537,15 @@ z &lt;-<span class="st"> </span>z <span class="op">+</span><span class="st"> </s
 <div id="basic-data-types" class="section level3">
 <h3><span class="header-section-number">5.4.1</span> Basic Data Types</h3>
 <p>In the example above, we stored <strong>numeric</strong> values in variables. R is a <strong>dynamically typed language</strong>, which means that we <em>do not</em> need to explicitly state what type of information will be stored in each variable we create. R is intelligent enough to understand that if we have code <code>x &lt;- 7</code>, then <code>x</code> will contain a numeric value (and so we can do math upon it!)</p>
-<p>There are a few “basic types” (or <em>modes</em>) for data in R:</p>
+<p>There six “basic types” (called <em>atomic data types</em>) for data in R:</p>
 <ul>
 <li><p><strong>Numeric</strong>: The default computational data type in R is numeric data, which consists of the set of real numbers (including decimals). We use use <strong>mathematical operators</strong> on numeric data (such as <code>+</code>, <code>-</code>, <code>*</code>, <code>-</code>, etc.). There are also numerous functions that work on numeric data (such as calculating sums or averages).</p></li>
 <li><p><strong>Character</strong>: Character data stores <em>strings</em> of characters (things you type with a keyboard) in a variable. You specify that some information is character data by surrounding it in either single quotes (<strong><code>'</code></strong>) or double quotes (<strong><code>&quot;</code></strong>). To comply with the <a href="http://style.tidyverse.org/syntax.html#quotes">style guide</a>, we’ll consider it best practice to use <strong>double quotes</strong>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create character variable `famous.poet` with the value &quot;Bill Shakespeare&quot;</span>
-famous.poet &lt;-<span class="st"> &quot;Bill Shakespeare&quot;</span></code></pre></div>
+famous_poet &lt;-<span class="st"> &quot;Bill Shakespeare&quot;</span></code></pre></div>
 <p>Note that character data <em>is still data</em>, so it can be assigned to a variable just like numeric data!</p>
 <p>There are no special operators for character data, though there are a many built-in functions for working with strings.</p></li>
-<li><p><strong>Logical</strong>: Logical (a.k.a Boolean) data types store “yes-or-no” data. A logical value can be one of two values: <code>TRUE</code> or <code>FALSE</code>. Importantly, these <strong>are not</strong> the strings <code>&quot;TRUE&quot;</code> or <code>&quot;FALSE&quot;</code>; logical values are a different type! If you prefer, you can use the shorthand <code>T</code> or <code>F</code> in lieu of <code>TRUE</code> and <code>FALSE</code> in variable assignment.</p>
+<li><p><strong>Logical</strong>: Logical (a.k.a Boolean) data types store “yes-or-no” data. A logical value can be one of two values: <code>TRUE</code> or <code>FALSE</code>. Importantly, these <strong>are not</strong> the strings <code>&quot;TRUE&quot;</code> or <code>&quot;FALSE&quot;</code>; logical values are a different type! In interactive session, you can use the shorthand <code>T</code> or <code>F</code> in lieu of <code>TRUE</code> and <code>FALSE</code> in variable assignment but this is not recommended for programs.</p>
 <ul>
 <li><em>Fun fact:</em> logical values are called “booleans” after mathematician and logician <a href="https://en.wikipedia.org/wiki/George_Boole">George Boole</a>.</li>
 </ul>
@@ -579,8 +579,9 @@ pet <span class="op">==</span><span class="st"> &quot;cat&quot;</span> <span cla
 <span class="co"># Check if pet is &quot;dog&quot; AND NOT weather is &quot;rain&quot;</span>
 pet <span class="op">==</span><span class="st"> &quot;dog&quot;</span> <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span>(weather <span class="op">==</span><span class="st"> &quot;rain&quot;</span>)  <span class="co"># FALSE</span></code></pre></div>
 <p>Note that it’s easy to write complex expressions with logical operators. If you find yourself getting lost, I recommend rethinking your question to see if there is a simpler way to express it!</p></li>
-<li><p><strong>Complex</strong>: Complex (imaginary) numbers have their own data storage type in R, are are created using the <code>i</code> syntax: <code>complex.variable &lt;- 2i</code>. We will not be using complex numbers in this course.</p></li>
-<li><p><strong>Integer</strong>: Integer values are technically a different data type than numeric values because of how they are stored and manipulated by the R interpreter. This is something that you will rarely encounter, but it’s good to know that you can specify a number is of integer type rather than general numeric type by placing a capital <code>L</code> (for “long integer”) after an value in variable assignment (<code>my.integer &lt;- 10L</code>).</p></li>
+<li><p><strong>Integer</strong>: Integer values are technically a different data type than numeric values because of how they are stored and manipulated by the R interpreter. This is something that you will rarely encounter, but it’s good to know that you can specify a number is of integer type rather than general numeric type by placing a capital <code>L</code> (for “long integer”) after an value in variable assignment (<code>my_integer &lt;- 10L</code>).</p></li>
+<li><p><strong>Complex</strong>: Complex (imaginary) numbers have their own data storage type in R, are are created using the <code>i</code> syntax: <code>complex_variable &lt;- 1 + 2i</code>. We will not be using complex numbers in this course.</p></li>
+<li><p><strong>Raw</strong>: is a sequence of “raw” data. This is good for storing “raw” sequence of bytes, such as image data. R does not interpret raw data in any particular way. We will not discuss raw data in this book.</p></li>
 </ul>
 </div>
 </div>
@@ -611,7 +612,7 @@ pet <span class="op">==</span><span class="st"> &quot;dog&quot;</span> <span cla
 <li><a href="https://www.tutorialspoint.com/r/r_operators.htm">R Tutorial: Operators</a></li>
 <li><a href="https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts">RStudio Keyboard Shortcuts</a></li>
 <li><a href="https://www.rdocumentation.org/">R Documentation</a> searchable online documentation</li>
-<li><a href="http://r4ds.had.co.nz/">R for Data Science</a> online textbook</li>
+<li><a href="http://r4ds.had.co.nz/">R for Data Science</a> online textbook, oriented toward R usage in data processing and visualization</li>
 <li><a href="http://arrgh.tim-smith.us/">aRrgh: a newcomer’s (angry) guide to R</a> opinionated but clear introduction</li>
 <li><a href="https://www.nostarch.com/artofr.htm">The Art of R Programming</a> print textbook</li>
 </ul>
