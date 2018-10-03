@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Technical Foundations of Informatics</title>
   <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
-  <meta name="generator" content="bookdown 0.6 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
 
   <meta property="og:title" content="Technical Foundations of Informatics" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2018-10-02">
+<meta name="date" content="2018-10-03">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -509,10 +509,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>The first thing you need to do is to save those changes to the <strong>staging area</strong>. This is like a shopping cart in an online store: you put changes in temporary storage before you commit to recording them in the database (e.g., before hitting “purchase”).</p>
 <p>We add files to the staging area using the <code>git add</code> command:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> add filename</code></pre></div>
-<p>(Replacing <code>filename</code> with the name/path of the file/folder you want to add). This will add a single file <em>in its current saved state</em> to the staging area. If you change the file later, you will need to re-add the updated version.</p>
-<p>You can also add all the contents of the directory (tracked or untracked) to the staging area with:</p>
+<p>(Replacing <code>filename</code> with the name/path of the file/folder you want to add). You can also add all the contents of the directory (tracked or untracked) to the staging area with:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> add .</code></pre></div>
 <p>(This is what I tend to use, unless I explicitly don’t want to save changes to some files.)</p>
+<p class="alert alert-danger">
+<strong>WARNING</strong>: This will add <em>everything</em> in your current directory to your git repo, unless ignored through the <code>.gitignore</code> file (see below). This may include your top secret passwords, gigabytes of data, all your illegally ripped dvds, and just files that are unnecessary to upload.
+</p>
 <p>Add the <code>books.md</code> file to the staging area. And of course, now that you’ve changed the repo (you put something in the staging area), you should run <code>git status</code> to see what it says to do. Notice that it tells you what files are in the staging area, as well as the command to <em>unstage</em> those files (remove them from the “cart”).</p>
 </div>
 <div id="committing" class="section level3">
@@ -559,6 +561,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><strong>Commit</strong> the changes to the repository</li>
 </ol>
 <p>Be sure and check the status at each step to make sure everything works!</p>
+<p>You can also add more files besides <code>books.md</code>, such as <code>movies.md</code> or <code>restaurants.md</code>. When your repository grows, you can check which files are tracked by <em>git</em>, both already committed and in the staging area, by</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">git</span> ls-files</code></pre></div>
+<p>(Note that <code>git status</code> does not mention tracked files that are not changed.)</p>
 </div>
 </div>
 <div id="the-.gitignore-file" class="section level3">
