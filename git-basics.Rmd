@@ -139,6 +139,13 @@ You can also add all the contents of the directory (tracked or untracked) to the
 git add .
 ```
 
+<p class="alert alert-danger">**WARNING**: This will add _everything_ in
+your current directory to your git repo, unless ignored through the
+`.gitignore` file (see below).  This may include your top secret passwords,
+gigabytes of data, all your illegally ripped dvds, and just files that are
+unimplortant to upload.  </p>
+
+
 (This is what I tend to use, unless I explicitly don't want to save changes to some files.)
 
 Add the `books.md` file to the staging area. And of course, now that you've changed the repo (you put something in the staging area), you should run `git status` to see what it says to do. Notice that it tells you what files are in the staging area, as well as the command to _unstage_ those files (remove them from the "cart").
