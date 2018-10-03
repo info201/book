@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Technical Foundations of Informatics</title>
   <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
-  <meta name="generator" content="bookdown 0.6 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
 
   <meta property="og:title" content="Technical Foundations of Informatics" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2018-10-02">
+<meta name="date" content="2018-10-03">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -569,10 +569,10 @@ good &lt;-<span class="st"> </span><span class="cf">function</span>()
    <span class="kw">sqrt</span>(seq)
 microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<span class="kw">baad</span>(), <span class="kw">soso</span>(), <span class="kw">good</span>())</code></pre></div>
 <pre><code>## Unit: microseconds
-##    expr      min       lq       mean   median       uq      max neval
-##  baad() 1127.320 1157.073 1697.08554 1744.599 2063.873 6443.385   100
-##  soso()   75.972   76.777  103.96939   77.546   78.564 2693.264   100
-##  good()    4.727    4.924   14.76671    5.289    5.742  940.874   100</code></pre>
+##    expr      min       lq       mean    median        uq      max neval
+##  baad() 1021.737 1045.407 1727.92022 1109.6465 2378.7745 3468.875   100
+##  soso()   48.314   48.616   68.41305   50.3075   51.9040 1814.809   100
+##  good()    2.625    2.776    9.46416    3.0640    4.2155  580.444   100</code></pre>
 <p>When comparing the median values, we can see that the middle example is 10x slower than the vectorized example, and the first version is almost 300x slower!</p>
 <p>The above holds for “true” vectorized operations. R provides many pseudo-vectorizers (the lapply family) that may be handy in many circumstances, but not in case you need speed. Under the hood these functions just use a loop. We can demonstrate this by adding one more function to our family:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">soso2 &lt;-<span class="st"> </span><span class="cf">function</span>() {
@@ -581,10 +581,10 @@ microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<
 microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<span class="kw">baad</span>(), <span class="kw">soso</span>(), <span class="kw">soso2</span>(), <span class="kw">good</span>())</code></pre></div>
 <pre><code>## Unit: microseconds
 ##     expr      min        lq       mean    median        uq       max neval
-##   baad() 1135.869 1170.9975 2230.36697 1326.1780 1944.2005 68142.813   100
-##   soso()   76.073   77.0245   77.83719   77.7755   78.4075    83.579   100
-##  soso2()  322.630  349.3230  395.24221  366.4870  400.3160  1711.577   100
-##   good()    4.794    4.9975    5.50801    5.5065    5.8460     9.050   100</code></pre>
+##   baad() 1013.739 1040.6645 2088.25500 1235.5125 2250.3670 45798.048   100
+##   soso()   48.291   49.8670   52.45436   51.3610   52.8125    70.115   100
+##  soso2()  256.786  273.0135  297.50445  286.3585  296.8865  1227.241   100
+##   good()    2.692    3.1985    3.88633    3.5235    4.1815    10.788   100</code></pre>
 <p>As it turns out, <code>sapply</code> is much slower than plain for-loop. Lapply-family is not a substitute for true vectorization. However, one may argue that <code>soso2</code> function is easier to understand than explicit loop in <code>soso</code>. In any case, it is easier to type when working on the interactive console.</p>
 <p>Finally, it should be noted that when performing truly vectorized operations on long vectors, the overhead of R interpreter becomes negligible and the resulting speed is almost equalt to that of the corresponding C code. And optimized R code can easily beat non-optimized C.</p>
 </div>

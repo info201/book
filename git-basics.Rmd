@@ -131,8 +131,7 @@ We add files to the staging area using the `git add` command:
 git add filename
 ```
 
-(Replacing `filename` with the name/path of the file/folder you want to add). This will add a single file _in its current saved state_ to the staging area. If you change the file later, you will need to re-add the updated version.
-
+(Replacing `filename` with the name/path of the file/folder you want to add). 
 You can also add all the contents of the directory (tracked or untracked) to the staging area with:
 
 ```bash
@@ -141,7 +140,18 @@ git add .
 
 (This is what I tend to use, unless I explicitly don't want to save changes to some files.)
 
-Add the `books.md` file to the staging area. And of course, now that you've changed the repo (you put something in the staging area), you should run `git status` to see what it says to do. Notice that it tells you what files are in the staging area, as well as the command to _unstage_ those files (remove them from the "cart").
+<p class="alert alert-danger">**WARNING**: This will add _everything_ in
+your current directory to your git repo, unless ignored through the
+`.gitignore` file (see below).  This may include your top secret passwords,
+gigabytes of data, all your illegally ripped dvds, and just files that are
+unnecessary to upload.</p>
+
+Add the `books.md` file to the staging area. And of course, now that
+you've changed the repo (you put something in the staging area), you
+should run `git status` to see what it says to do. Notice that it tells
+you what files are in the staging area, as well as the command to
+_unstage_ those files (remove them from the "cart").
+
 
 ### Committing
 When you're happy with the contents of your staging area (e.g., you're ready to purchase), it's time to **commit** those changes, saving that snapshot of the files in the repository database. We do this with the `git commit` command:
@@ -195,6 +205,18 @@ For further practice using git, perform the following steps:
 3. **Commit** the changes to the repository
 
 Be sure and check the status at each step to make sure everything works!
+
+You can also add more files besides `books.md`, such as `movies.md` or
+`restaurants.md`. 
+When your repository grows, you can check which files are tracked by _git_, both already
+committed and in the staging area, by
+
+```bash
+git ls-files
+```
+
+(Note that `git status` does not mention tracked files that are not changed.)
+
 
 ### The `.gitignore` File
 Sometimes you want git to always ignore particular directories or files in your project. For example, if you use a Mac and you tend to organize your files in the Finder, the operating system will create a hidden file in that folder named `.DS_Store` (the leading dot makes it "hidden") to track the positions of icons, which folders have been "expanded", etc. This file will likely be different from machine to machine. If it is added to your repository and you work from multiple machines (or as part of a team), it could lead to a lot of merge conflicts (not to mention cluttering up the folders for Windows users).

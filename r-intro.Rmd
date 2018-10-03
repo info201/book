@@ -218,7 +218,7 @@ There six "basic types" (called _atomic data types_) for data in R:
     type in R, are are created using the `i` syntax: `complex_variable
     <- 1 + 2i`. We will not be using complex numbers in this course.
 	
-- **Raw**: is a sequence of "raw" data.  This is good for storing "raw"
+- **Raw**: is a sequence of "raw" data.  It is good for storing a "raw"
     sequence of bytes, such as image data.  R does not interpret raw data
     in any particular way.  We will not discuss raw data in this book.
 
