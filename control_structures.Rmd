@@ -8,10 +8,10 @@ cover the if/else statement in more detail.
 
 ## Loops
 
-One of the common problems that computers are good at is to execute
+One of the common problems that computers are good at, is to execute
 similar tasks repeatedly many times.  This can be achieved through
 _loops_.  R implements three loops: for-loop, while-loop, and
-repeat-loop, these are amont the most popular loops in many modern
+repeat-loop, these are among the most popular loops in many modern
 programming languages.  Loops are often advised agains in case of R.  While it
 is true that loops in R are more demanding than in several other
 languages, and can often be replaced by more efficient constructs,
@@ -34,12 +34,14 @@ for(variable in sequence) {
 }
 ```
 The statement block inside of the curly braces {} is
-are repeated through the sequence.
+repeated through the sequence.
 
 Despite the curly braces, the loop body is still evaluated in the same
 environment as the rest of the code.  This means the variables
 generated before entering the loop are visible from inside, and the
-variables created inside will be visible after the loop ends.
+variables created inside will be visible after the loop ends.  This is
+in contrast to functions where the function body, also enclosed in curly
+braces, is a separate scope.
 
 A simple and perhaps the most common usage of for loop is just to run
 some code a given number of times:
@@ -69,9 +71,9 @@ for(fun in c(sqrt, exp, sin)) {
 }
 ```
 
-### While loop
+### While-loop
 
-While loop let's the programmer to decide explicitly if we want to execute the
+While-loop let's the programmer to decide explicitly if we want to execute the
 statements one more time:
 ```r
 while(condition) {
@@ -100,7 +102,7 @@ while(i < 5) {
 cat("done\n")
 ```
 
-While loop is great for handling repeated attempts to get input in
+While-loop is great for handling repeated attempts to get input in
 shape.  One can write something like this:
 ```r
 data <- getData()
@@ -236,11 +238,12 @@ for(i in 1:1000) {
 }
 ```
 This loop introduces three inefficiencies.  First, and most
-importantly, you are growing your when adding new values to it.  This involves
+importantly, you are growing your results vector `res` when adding new values to it.  This involves
 creating new and longer vectors again and again when the old one is
 filled up.  This is very slow.  Second, as the true vectorized
 alternatives exist here, one can easily speed up the code by a
-magnitude or more by just switching to the vectorized code.  Third, and perhaps most importantly, this code is much harder
+magnitude or more by just switching to the vectorized code.  Third, and
+this is a very important point again, this code is much harder
 to read than the pure vectorized expression:
 ```r
 res <- sqrt(1:1000)
@@ -398,7 +401,7 @@ Switch expression attempts to match the expression, here `stock = "AMZN"`, to a
 list of alternatives.  If one of the alternative matches the name of
 the argument, that argument is returned.  If none matches, the
 nameless default argument (here "unknown") is returned.  In case there
-is not default argument, `switch` returns `NULL`.
+is no default argument, `switch` returns `NULL`.
 
 Switch allows to specify the same return value for multiple cases:
 ```{r}

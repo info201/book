@@ -1,6 +1,6 @@
 # Thinking Big: Data Tables {#data-tables}
 
-Data frames are core elements for data handling in R.  However, the
+Data frames are core elements for data handling in R.  However, they
 suffer from several limitations.  One of the major issue with data
 frames is that they are memory hungry and slow.  This is not an issue
 when working with relatively small datasets (say, up to 100,000
@@ -24,7 +24,7 @@ than twice of the size of the original object.
 
 Data tables implement a number of pass-by-reference functions.  In
 pass-by-reference, the function is not given a fresh copy of the
-inputs, but is instead told where is the object in memory.  Instead of
+inputs, but is instead told where the object is in memory.  Instead of
 copying gigabytes of data, only a single tiny memory pointer is
 passed.  But this also means the function now is accessing and
 modifying the original object, not a copy of it.  This may sometimes
@@ -200,7 +200,7 @@ departure delay for flights to Seattle:
 ```{r}
 head(flights[dest == "SEA", .(origin, dep_delay)], 3)
 ```
-The example so far broadly correspond to dplyr's `select`.
+The example so far broadly corresponds to dplyr's `select`.
 
 But `j` is not just for selecting.  It is also for computing.  Let's
 find the mean arrival delay for flights to Seattle:
@@ -301,7 +301,7 @@ setting these to `NULL`.  Let's remove speed:
 flights[, speed := NULL]
 flights %>% head(3)
 ```
-Indeed, there is not speed any more.
+Indeed, there is no speed any more.
 
 Assigning more that one variable by reference may feel somewhat more
 intimidating:
@@ -356,7 +356,7 @@ version, a key is a column (or several columns) which is used to
 pre-sort the data table.  Pre-sorting makes it much faster to look up
 certain values, perform grouping operations and merges.  As data can
 only be sorted according to one rule at a time, there can only be one
-key on data.table (but a key may include several variables).
+key on data.table (but a key may be based on several variables).
 
 Let's set origin and destination as keys for the data table:
 ```{r}

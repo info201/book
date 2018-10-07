@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2018-10-06">
+<meta name="date" content="2018-10-07">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -200,18 +200,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="functions.html"><a href="functions.html#resources-5"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>7</b> Vectors</a><ul>
-<li class="chapter" data-level="7.1" data-path="vectors.html"><a href="vectors.html#what-is-a-vector"><i class="fa fa-check"></i><b>7.1</b> What is a Vector?</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="vectors.html"><a href="vectors.html#creating-vectors"><i class="fa fa-check"></i><b>7.1.1</b> Creating Vectors</a></li>
+<li class="chapter" data-level="7.1" data-path="vectors.html"><a href="vectors.html#what-is-a-vector"><i class="fa fa-check"></i><b>7.1</b> What is a Vector?</a></li>
+<li class="chapter" data-level="7.2" data-path="vectors.html"><a href="vectors.html#creating-vectors"><i class="fa fa-check"></i><b>7.2</b> Creating Vectors</a></li>
+<li class="chapter" data-level="7.3" data-path="vectors.html"><a href="vectors.html#vector-indices"><i class="fa fa-check"></i><b>7.3</b> Vector Indices</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="vectors.html"><a href="vectors.html#simple-numeric-indices"><i class="fa fa-check"></i><b>7.3.1</b> Simple Numeric Indices</a></li>
+<li class="chapter" data-level="7.3.2" data-path="vectors.html"><a href="vectors.html#multiple-indices"><i class="fa fa-check"></i><b>7.3.2</b> Multiple Indices</a></li>
+<li class="chapter" data-level="7.3.3" data-path="vectors.html"><a href="vectors.html#logical-indexing"><i class="fa fa-check"></i><b>7.3.3</b> Logical Indexing</a></li>
+<li class="chapter" data-level="7.3.4" data-path="vectors.html"><a href="vectors.html#named-vectors-and-character-indexing"><i class="fa fa-check"></i><b>7.3.4</b> Named Vectors and Character Indexing</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="vectors.html"><a href="vectors.html#vector-indices"><i class="fa fa-check"></i><b>7.2</b> Vector Indices</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="vectors.html"><a href="vectors.html#multiple-indices"><i class="fa fa-check"></i><b>7.2.1</b> Multiple Indices</a></li>
-</ul></li>
-<li class="chapter" data-level="7.3" data-path="vectors.html"><a href="vectors.html#modifying-vectors"><i class="fa fa-check"></i><b>7.3</b> Modifying Vectors</a></li>
-<li class="chapter" data-level="7.4" data-path="vectors.html"><a href="vectors.html#vector-filtering"><i class="fa fa-check"></i><b>7.4</b> Vector Filtering</a></li>
+<li class="chapter" data-level="7.4" data-path="vectors.html"><a href="vectors.html#modifying-vectors"><i class="fa fa-check"></i><b>7.4</b> Modifying Vectors</a></li>
 <li class="chapter" data-level="7.5" data-path="vectors.html"><a href="vectors.html#vectorized-operations"><i class="fa fa-check"></i><b>7.5</b> Vectorized Operations</a><ul>
-<li class="chapter" data-level="7.5.1" data-path="vectors.html"><a href="vectors.html#recycling"><i class="fa fa-check"></i><b>7.5.1</b> Recycling</a></li>
-<li class="chapter" data-level="7.5.2" data-path="vectors.html"><a href="vectors.html#everything-is-a-vector"><i class="fa fa-check"></i><b>7.5.2</b> Everything is a Vector!</a></li>
-<li class="chapter" data-level="7.5.3" data-path="vectors.html"><a href="vectors.html#vectorized-functions"><i class="fa fa-check"></i><b>7.5.3</b> Vectorized Functions</a></li>
+<li class="chapter" data-level="7.5.1" data-path="vectors.html"><a href="vectors.html#vectorized-operators"><i class="fa fa-check"></i><b>7.5.1</b> Vectorized Operators</a></li>
+<li class="chapter" data-level="7.5.2" data-path="vectors.html"><a href="vectors.html#vectorized-functions"><i class="fa fa-check"></i><b>7.5.2</b> Vectorized Functions</a></li>
+<li class="chapter" data-level="7.5.3" data-path="vectors.html"><a href="vectors.html#recycling"><i class="fa fa-check"></i><b>7.5.3</b> Recycling</a></li>
+<li class="chapter" data-level="7.5.4" data-path="vectors.html"><a href="vectors.html#r-is-a-vectorized-world"><i class="fa fa-check"></i><b>7.5.4</b> R Is a Vectorized World</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#resources-6"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
@@ -342,7 +344,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="B" data-path="control-structures.html"><a href="control-structures.html"><i class="fa fa-check"></i><b>B</b> R Language Control Structures</a><ul>
 <li class="chapter" data-level="B.1" data-path="control-structures.html"><a href="control-structures.html#loops"><i class="fa fa-check"></i><b>B.1</b> Loops</a><ul>
 <li class="chapter" data-level="B.1.1" data-path="control-structures.html"><a href="control-structures.html#for-loop"><i class="fa fa-check"></i><b>B.1.1</b> For Loop</a></li>
-<li class="chapter" data-level="B.1.2" data-path="control-structures.html"><a href="control-structures.html#while-loop"><i class="fa fa-check"></i><b>B.1.2</b> While loop</a></li>
+<li class="chapter" data-level="B.1.2" data-path="control-structures.html"><a href="control-structures.html#while-loop"><i class="fa fa-check"></i><b>B.1.2</b> While-loop</a></li>
 <li class="chapter" data-level="B.1.3" data-path="control-structures.html"><a href="control-structures.html#repeat-loop"><i class="fa fa-check"></i><b>B.1.3</b> repeat-loop</a></li>
 <li class="chapter" data-level="B.1.4" data-path="control-structures.html"><a href="control-structures.html#leaving-early-break-and-next"><i class="fa fa-check"></i><b>B.1.4</b> Leaving Early: <code>break</code> and <code>next</code></a></li>
 <li class="chapter" data-level="B.1.5" data-path="control-structures.html"><a href="control-structures.html#when-not-to-use-loops-in-r"><i class="fa fa-check"></i><b>B.1.5</b> When (Not) To Use Loops In R?</a></li>
@@ -413,12 +415,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="data-tables" class="section level1">
 <h1><span class="header-section-number">C</span> Thinking Big: Data Tables</h1>
-<p>Data frames are core elements for data handling in R. However, the suffer from several limitations. One of the major issue with data frames is that they are memory hungry and slow. This is not an issue when working with relatively small datasets (say, up to 100,000 rows). However, when your dataset size exceed gigabytes, dataframes may be infeasibly slow and too memory hungry.</p>
+<p>Data frames are core elements for data handling in R. However, they suffer from several limitations. One of the major issue with data frames is that they are memory hungry and slow. This is not an issue when working with relatively small datasets (say, up to 100,000 rows). However, when your dataset size exceed gigabytes, dataframes may be infeasibly slow and too memory hungry.</p>
 <div id="background-passing-by-value-and-passing-by-reference" class="section level2">
 <h2><span class="header-section-number">C.1</span> Background: Passing By Value And Passing By Reference</h2>
 <p>R is (mostly) a pass-by-value language. This means that when you modify the data, at every step a new copy of the complete modified object is created, stored in memory, and the former object is freed (carbage-collected) if not in use any more.</p>
 <p>The main advantage of this approach is consistency: we have the guarantee that functions do not modify their inputs. However, in case of large objects, copying may be slow, and even more, it requires at least twice as much memory before the old object is freed. In case of more complex process pipelines, the memory consumption may be even more than twice of the size of the original object.</p>
-<p>Data tables implement a number of pass-by-reference functions. In pass-by-reference, the function is not given a fresh copy of the inputs, but is instead told where is the object in memory. Instead of copying gigabytes of data, only a single tiny memory pointer is passed. But this also means the function now is accessing and modifying the original object, not a copy of it. This may sometimes lead to bugs and unexpected behavior, but professional use of pass-by-reference approach may improve the speed and lower the memory footprint substantially.</p>
+<p>Data tables implement a number of pass-by-reference functions. In pass-by-reference, the function is not given a fresh copy of the inputs, but is instead told where the object is in memory. Instead of copying gigabytes of data, only a single tiny memory pointer is passed. But this also means the function now is accessing and modifying the original object, not a copy of it. This may sometimes lead to bugs and unexpected behavior, but professional use of pass-by-reference approach may improve the speed and lower the memory footprint substantially.</p>
 </div>
 <div id="data-tables-introduction" class="section level2">
 <h2><span class="header-section-number">C.2</span> Data Tables: Introduction</h2>
@@ -430,47 +432,47 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 dt &lt;-<span class="st"> </span><span class="kw">data.table</span>(<span class="dt">id=</span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">x=</span><span class="kw">rnorm</span>(<span class="dv">5</span>), <span class="dt">y=</span><span class="kw">runif</span>(<span class="dv">5</span>))
 dt</code></pre></div>
 <pre><code>##    id          x          y
-## 1:  1  0.5229832 0.09094617
-## 2:  2 -0.7577427 0.57112152
-## 3:  3 -0.0959820 0.81258789
-## 4:  4  0.7154781 0.17501766
-## 5:  5 -2.0225495 0.69436592</code></pre>
+## 1:  1  0.9335295 0.05414348
+## 2:  2 -0.8587123 0.86981546
+## 3:  3  0.9805689 0.04606727
+## 4:  4  0.6479585 0.21062348
+## 5:  5  0.3173820 0.69472893</code></pre>
 <p>The result looks almost identical to a similar data frame (the only difference are the colons after the row numbers). Behind the scenes these objects are almost identical too–both objects are lists of vectors. This structural similarity allows to use data tables as drop-in replacements for dataframes, at least in some circumstances. For instance, we can extract variables with <code>$</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt<span class="op">$</span>x</code></pre></div>
-<pre><code>## [1]  0.5229832 -0.7577427 -0.0959820  0.7154781 -2.0225495</code></pre>
+<pre><code>## [1]  0.9335295 -0.8587123  0.9805689  0.6479585  0.3173820</code></pre>
 <p>or rows with row indices:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>),]</code></pre></div>
 <pre><code>##    id          x         y
-## 1:  2 -0.7577427 0.5711215
-## 2:  4  0.7154781 0.1750177</code></pre>
+## 1:  2 -0.8587123 0.8698155
+## 2:  4  0.6479585 0.2106235</code></pre>
 <p>However, data tables use unquoted variables names (like <em>dplyr</em>) by default:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt[,x]</code></pre></div>
-<pre><code>## [1]  0.5229832 -0.7577427 -0.0959820  0.7154781 -2.0225495</code></pre>
+<pre><code>## [1]  0.9335295 -0.8587123  0.9805689  0.6479585  0.3173820</code></pre>
 <p>In case we need to store the variable name into another variable, with have to use the additional argument <code>with</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">var &lt;-<span class="st"> &quot;x&quot;</span>
 dt[, var, with=<span class="ot">FALSE</span>]</code></pre></div>
 <pre><code>##             x
-## 1:  0.5229832
-## 2: -0.7577427
-## 3: -0.0959820
-## 4:  0.7154781
-## 5: -2.0225495</code></pre>
+## 1:  0.9335295
+## 2: -0.8587123
+## 3:  0.9805689
+## 4:  0.6479585
+## 5:  0.3173820</code></pre>
 <p>Note also that instead of getting a vector, now we get a data.table with a single column “x” in the first. This behavior is the main culprit that when replacing data frames with data tables one may need to change quite a bit of code.</p>
 </div>
 <div id="fast-reading-and-writing" class="section level3">
 <h3><span class="header-section-number">C.2.2</span> Fast Reading and Writing</h3>
 <p>Many data frame users may appreciate the fact that the data input-output function <code>fread</code> and <code>fwrite</code> run at least a magnitude faster on large files. These are largely replacement for <code>read.table</code> and <code>write.table</code>, however they syntax differs noticeably in places. In particular, <code>fread</code> accepts either a file name, http-url, or a <em>shell command that prints output</em>; it automatically detects the column separator, but it does not automatically open compressed files. The latter is not a big deal when using unix where one can just issue</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="st">&quot;bzcat data.csv.bz2&quot;</span>)</code></pre></div>
-<p>However, the decompression is not that simple on windows and hence it is hard to write platform-independent code that opens compressed files.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
+<p>However, the decompression is not that simple on windows and hence it is hard to write platform-independent code that opens compressed files.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></p>
 <p>If your computer has enough memory and speed is not an issue, your interest for data tables may end here. You can just transform data table into a data frame with <code>setDF</code> (and the other way around with <code>setDT</code>). Let’s transform our data table to data frame:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setDF</span>(dt)
 dt</code></pre></div>
 <pre><code>##   id          x          y
-## 1  1  0.5229832 0.09094617
-## 2  2 -0.7577427 0.57112152
-## 3  3 -0.0959820 0.81258789
-## 4  4  0.7154781 0.17501766
-## 5  5 -2.0225495 0.69436592</code></pre>
+## 1  1  0.9335295 0.05414348
+## 2  2 -0.8587123 0.86981546
+## 3  3  0.9805689 0.04606727
+## 4  4  0.6479585 0.21062348
+## 5  5  0.3173820 0.69472893</code></pre>
 <p>Do you see that the colons after row names are gone? This means <code>dt</code> now is a data frame.</p>
 <p>Note that this function behaves very differently from what we have learned earlier: it modifies the object <em>in place</em> (by reference). We do not have to assign the result into a new variable using a construct like <code>df &lt;- setDF(dt)</code> (but we still can write like this, handy when using magrittr pipes). This is a manifestation of the power of data.tables: the object is not copied but the same object is modified in memory instead. <code>setDF</code> and <code>setDT</code> are very efficient, even huge tables are converted instantly with virtually no need for any additional memory.</p>
 <p>However, big powers come hand-in-hand with big responsibility: it is easy to forget that <code>setDF</code> modifies the function argument.</p>
@@ -571,7 +573,7 @@ dt</code></pre></div>
 ## 1:    EWR        -1
 ## 2:    JFK        13
 ## 3:    EWR         6</code></pre>
-<p>The example so far broadly correspond to dplyr’s <code>select</code>.</p>
+<p>The example so far broadly corresponds to dplyr’s <code>select</code>.</p>
 <p>But <code>j</code> is not just for selecting. It is also for computing. Let’s find the mean arrival delay for flights to Seattle:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[dest <span class="op">==</span><span class="st"> &quot;SEA&quot;</span>, <span class="kw">mean</span>(arr_delay, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)]</code></pre></div>
 <pre><code>## [1] -1.099099</code></pre>
@@ -659,7 +661,7 @@ flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">
 ## 1:     1400    5     15 2013-01-01 05:00:00
 ## 2:     1416    5     29 2013-01-01 05:00:00
 ## 3:     1089    5     40 2013-01-01 05:00:00</code></pre>
-<p>Indeed, there is not speed any more.</p>
+<p>Indeed, there is no speed any more.</p>
 <p>Assigning more that one variable by reference may feel somewhat more intimidating:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[, <span class="kw">c</span>(<span class="st">&quot;speed&quot;</span>, <span class="st">&quot;meanDelay&quot;</span>) <span class="op">:</span><span class="er">=</span><span class="st"> </span>.(distance<span class="op">/</span>(air_time<span class="op">/</span><span class="dv">60</span>), (arr_delay <span class="op">+</span><span class="st"> </span>dep_delay)<span class="op">/</span><span class="dv">2</span>)]
 flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(<span class="dv">3</span>)</code></pre></div>
@@ -726,7 +728,7 @@ fl &lt;-<span class="st"> </span>fl[, .(origin, dest)]
 </div>
 <div id="keys" class="section level2">
 <h2><span class="header-section-number">C.5</span> keys</h2>
-<p>Data tables allow fast lookup based on <em>key</em>. In it’s simplest version, a key is a column (or several columns) which is used to pre-sort the data table. Pre-sorting makes it much faster to look up certain values, perform grouping operations and merges. As data can only be sorted according to one rule at a time, there can only be one key on data.table (but a key may include several variables).</p>
+<p>Data tables allow fast lookup based on <em>key</em>. In it’s simplest version, a key is a column (or several columns) which is used to pre-sort the data table. Pre-sorting makes it much faster to look up certain values, perform grouping operations and merges. As data can only be sorted according to one rule at a time, there can only be one key on data.table (but a key may be based on several variables).</p>
 <p>Let’s set origin and destination as keys for the data table:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(flights, <span class="dt">pkg=</span><span class="st">&quot;nycflights13&quot;</span>)</code></pre></div>
 <pre><code>## Warning in data(flights, pkg = &quot;nycflights13&quot;): data set &#39;flights&#39; not
@@ -781,8 +783,8 @@ fl &lt;-<span class="st"> </span>flights[,.(origin, dest, arr_delay)]
 </div>
 <div class="footnotes">
 <hr />
-<ol start="1">
-<li id="fn1"><p>Automatic decompression is a feature request for data tables<a href="data-tables.html#fnref1">↩</a></p></li>
+<ol start="2">
+<li id="fn2"><p>Automatic decompression is a feature request for data tables<a href="data-tables.html#fnref2">↩</a></p></li>
 </ol>
 </div>
             </section>

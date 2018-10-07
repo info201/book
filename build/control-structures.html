@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2018-10-06">
+<meta name="date" content="2018-10-07">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -200,18 +200,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="functions.html"><a href="functions.html#resources-5"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>7</b> Vectors</a><ul>
-<li class="chapter" data-level="7.1" data-path="vectors.html"><a href="vectors.html#what-is-a-vector"><i class="fa fa-check"></i><b>7.1</b> What is a Vector?</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="vectors.html"><a href="vectors.html#creating-vectors"><i class="fa fa-check"></i><b>7.1.1</b> Creating Vectors</a></li>
+<li class="chapter" data-level="7.1" data-path="vectors.html"><a href="vectors.html#what-is-a-vector"><i class="fa fa-check"></i><b>7.1</b> What is a Vector?</a></li>
+<li class="chapter" data-level="7.2" data-path="vectors.html"><a href="vectors.html#creating-vectors"><i class="fa fa-check"></i><b>7.2</b> Creating Vectors</a></li>
+<li class="chapter" data-level="7.3" data-path="vectors.html"><a href="vectors.html#vector-indices"><i class="fa fa-check"></i><b>7.3</b> Vector Indices</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="vectors.html"><a href="vectors.html#simple-numeric-indices"><i class="fa fa-check"></i><b>7.3.1</b> Simple Numeric Indices</a></li>
+<li class="chapter" data-level="7.3.2" data-path="vectors.html"><a href="vectors.html#multiple-indices"><i class="fa fa-check"></i><b>7.3.2</b> Multiple Indices</a></li>
+<li class="chapter" data-level="7.3.3" data-path="vectors.html"><a href="vectors.html#logical-indexing"><i class="fa fa-check"></i><b>7.3.3</b> Logical Indexing</a></li>
+<li class="chapter" data-level="7.3.4" data-path="vectors.html"><a href="vectors.html#named-vectors-and-character-indexing"><i class="fa fa-check"></i><b>7.3.4</b> Named Vectors and Character Indexing</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="vectors.html"><a href="vectors.html#vector-indices"><i class="fa fa-check"></i><b>7.2</b> Vector Indices</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="vectors.html"><a href="vectors.html#multiple-indices"><i class="fa fa-check"></i><b>7.2.1</b> Multiple Indices</a></li>
-</ul></li>
-<li class="chapter" data-level="7.3" data-path="vectors.html"><a href="vectors.html#modifying-vectors"><i class="fa fa-check"></i><b>7.3</b> Modifying Vectors</a></li>
-<li class="chapter" data-level="7.4" data-path="vectors.html"><a href="vectors.html#vector-filtering"><i class="fa fa-check"></i><b>7.4</b> Vector Filtering</a></li>
+<li class="chapter" data-level="7.4" data-path="vectors.html"><a href="vectors.html#modifying-vectors"><i class="fa fa-check"></i><b>7.4</b> Modifying Vectors</a></li>
 <li class="chapter" data-level="7.5" data-path="vectors.html"><a href="vectors.html#vectorized-operations"><i class="fa fa-check"></i><b>7.5</b> Vectorized Operations</a><ul>
-<li class="chapter" data-level="7.5.1" data-path="vectors.html"><a href="vectors.html#recycling"><i class="fa fa-check"></i><b>7.5.1</b> Recycling</a></li>
-<li class="chapter" data-level="7.5.2" data-path="vectors.html"><a href="vectors.html#everything-is-a-vector"><i class="fa fa-check"></i><b>7.5.2</b> Everything is a Vector!</a></li>
-<li class="chapter" data-level="7.5.3" data-path="vectors.html"><a href="vectors.html#vectorized-functions"><i class="fa fa-check"></i><b>7.5.3</b> Vectorized Functions</a></li>
+<li class="chapter" data-level="7.5.1" data-path="vectors.html"><a href="vectors.html#vectorized-operators"><i class="fa fa-check"></i><b>7.5.1</b> Vectorized Operators</a></li>
+<li class="chapter" data-level="7.5.2" data-path="vectors.html"><a href="vectors.html#vectorized-functions"><i class="fa fa-check"></i><b>7.5.2</b> Vectorized Functions</a></li>
+<li class="chapter" data-level="7.5.3" data-path="vectors.html"><a href="vectors.html#recycling"><i class="fa fa-check"></i><b>7.5.3</b> Recycling</a></li>
+<li class="chapter" data-level="7.5.4" data-path="vectors.html"><a href="vectors.html#r-is-a-vectorized-world"><i class="fa fa-check"></i><b>7.5.4</b> R Is a Vectorized World</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#resources-6"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
@@ -342,7 +344,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="B" data-path="control-structures.html"><a href="control-structures.html"><i class="fa fa-check"></i><b>B</b> R Language Control Structures</a><ul>
 <li class="chapter" data-level="B.1" data-path="control-structures.html"><a href="control-structures.html#loops"><i class="fa fa-check"></i><b>B.1</b> Loops</a><ul>
 <li class="chapter" data-level="B.1.1" data-path="control-structures.html"><a href="control-structures.html#for-loop"><i class="fa fa-check"></i><b>B.1.1</b> For Loop</a></li>
-<li class="chapter" data-level="B.1.2" data-path="control-structures.html"><a href="control-structures.html#while-loop"><i class="fa fa-check"></i><b>B.1.2</b> While loop</a></li>
+<li class="chapter" data-level="B.1.2" data-path="control-structures.html"><a href="control-structures.html#while-loop"><i class="fa fa-check"></i><b>B.1.2</b> While-loop</a></li>
 <li class="chapter" data-level="B.1.3" data-path="control-structures.html"><a href="control-structures.html#repeat-loop"><i class="fa fa-check"></i><b>B.1.3</b> repeat-loop</a></li>
 <li class="chapter" data-level="B.1.4" data-path="control-structures.html"><a href="control-structures.html#leaving-early-break-and-next"><i class="fa fa-check"></i><b>B.1.4</b> Leaving Early: <code>break</code> and <code>next</code></a></li>
 <li class="chapter" data-level="B.1.5" data-path="control-structures.html"><a href="control-structures.html#when-not-to-use-loops-in-r"><i class="fa fa-check"></i><b>B.1.5</b> When (Not) To Use Loops In R?</a></li>
@@ -416,7 +418,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>In chapter <a href="functions.html#functions">Functions</a> we briefly described conditional execution using the <code>if</code>/<code>else</code> construct. Here we introduce the other main control structures, and cover the if/else statement in more detail.</p>
 <div id="loops" class="section level2">
 <h2><span class="header-section-number">B.1</span> Loops</h2>
-<p>One of the common problems that computers are good at is to execute similar tasks repeatedly many times. This can be achieved through <em>loops</em>. R implements three loops: for-loop, while-loop, and repeat-loop, these are amont the most popular loops in many modern programming languages. Loops are often advised agains in case of R. While it is true that loops in R are more demanding than in several other languages, and can often be replaced by more efficient constructs, they nevertheless have a very important role in R. Good usage of loops is easy, fast, and improves the readability of your code.</p>
+<p>One of the common problems that computers are good at, is to execute similar tasks repeatedly many times. This can be achieved through <em>loops</em>. R implements three loops: for-loop, while-loop, and repeat-loop, these are among the most popular loops in many modern programming languages. Loops are often advised agains in case of R. While it is true that loops in R are more demanding than in several other languages, and can often be replaced by more efficient constructs, they nevertheless have a very important role in R. Good usage of loops is easy, fast, and improves the readability of your code.</p>
 <div id="for-loop" class="section level3">
 <h3><span class="header-section-number">B.1.1</span> For Loop</h3>
 <p>For-loop is a good choice if you want to run some statements repeatedly, each time picking a different value for a variable from a sequence; or just repeat some statements a given number of times. The syntax of for-loop is the following:</p>
@@ -424,8 +426,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
                            <span class="co"># do something many times.  Each time &#39;variable&#39; has</span>
                            <span class="co"># a different value, taken from &#39;sequence&#39;</span>
 }</code></pre></div>
-<p>The statement block inside of the curly braces {} is are repeated through the sequence.</p>
-<p>Despite the curly braces, the loop body is still evaluated in the same environment as the rest of the code. This means the variables generated before entering the loop are visible from inside, and the variables created inside will be visible after the loop ends.</p>
+<p>The statement block inside of the curly braces {} is repeated through the sequence.</p>
+<p>Despite the curly braces, the loop body is still evaluated in the same environment as the rest of the code. This means the variables generated before entering the loop are visible from inside, and the variables created inside will be visible after the loop ends. This is in contrast to functions where the function body, also enclosed in curly braces, is a separate scope.</p>
 <p>A simple and perhaps the most common usage of for loop is just to run some code a given number of times:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)
    <span class="kw">print</span>(i)</code></pre></div>
@@ -453,8 +455,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## [1]  0.8414710  0.9092974  0.1411200 -0.7568025</code></pre>
 </div>
 <div id="while-loop" class="section level3">
-<h3><span class="header-section-number">B.1.2</span> While loop</h3>
-<p>While loop let’s the programmer to decide explicitly if we want to execute the statements one more time:</p>
+<h3><span class="header-section-number">B.1.2</span> While-loop</h3>
+<p>While-loop let’s the programmer to decide explicitly if we want to execute the statements one more time:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">while</span>(condition) {
                            <span class="co"># do something if the &#39;condition&#39; is true</span>
 }</code></pre></div>
@@ -477,7 +479,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 }
 <span class="kw">cat</span>(<span class="st">&quot;done</span><span class="ch">\n</span><span class="st">&quot;</span>)</code></pre></div>
 <pre><code>## done</code></pre>
-<p>While loop is great for handling repeated attempts to get input in shape. One can write something like this:</p>
+<p>While-loop is great for handling repeated attempts to get input in shape. One can write something like this:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">getData</span>()
 <span class="cf">while</span>(<span class="op">!</span><span class="kw">dataIsGood</span>(data)) {
    data &lt;-<span class="st"> </span><span class="kw">getData</span>(<span class="dt">tryReallyHard =</span> <span class="ot">TRUE</span>)
@@ -550,7 +552,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>) {
    res &lt;-<span class="st"> </span><span class="kw">c</span>(res, <span class="kw">sqrt</span>(i))
 }</code></pre></div>
-<p>This loop introduces three inefficiencies. First, and most importantly, you are growing your when adding new values to it. This involves creating new and longer vectors again and again when the old one is filled up. This is very slow. Second, as the true vectorized alternatives exist here, one can easily speed up the code by a magnitude or more by just switching to the vectorized code. Third, and perhaps most importantly, this code is much harder to read than the pure vectorized expression:</p>
+<p>This loop introduces three inefficiencies. First, and most importantly, you are growing your results vector <code>res</code> when adding new values to it. This involves creating new and longer vectors again and again when the old one is filled up. This is very slow. Second, as the true vectorized alternatives exist here, one can easily speed up the code by a magnitude or more by just switching to the vectorized code. Third, and this is a very important point again, this code is much harder to read than the pure vectorized expression:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>)</code></pre></div>
 <p>We can easily demonstrate how much faster the vectorized expressions work. Let’s do this using <em>microbenchmark</em> library (it provides nanosecond timings). Let’s wrap these expressions in functions for easier handling by <em>microbenchmark</em>. We also include a middle version where we use a loop but avoid the terribly slow vector re-allocation by creating the right-sized result in advance:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">seq &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">1000</span> <span class="co"># global variables are easier to handle with microbenchmark</span>
@@ -569,9 +571,9 @@ good &lt;-<span class="st"> </span><span class="cf">function</span>()
 microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<span class="kw">baad</span>(), <span class="kw">soso</span>(), <span class="kw">good</span>())</code></pre></div>
 <pre><code>## Unit: microseconds
 ##    expr      min        lq       mean    median        uq       max neval
-##  baad() 1135.528 1195.0805 2381.46573 1598.3245 2059.5410 73447.606   100
-##  soso()   60.764   61.7020   91.09793   63.1665   65.2315  2792.365   100
-##  good()    4.801    5.1225   13.53404    5.3580    6.3785   775.009   100</code></pre>
+##  baad() 1121.537 1182.5840 2485.37546 1792.4110 2371.2960 68554.363   100
+##  soso()   60.778   63.4245   98.52148   64.8020   71.4160  2921.656   100
+##  good()    4.772    5.1415   14.68472    5.8495    7.3665   820.514   100</code></pre>
 <p>When comparing the median values, we can see that the middle example is 10x slower than the vectorized example, and the first version is almost 300x slower!</p>
 <p>The above holds for “true” vectorized operations. R provides many pseudo-vectorizers (the lapply family) that may be handy in many circumstances, but not in case you need speed. Under the hood these functions just use a loop. We can demonstrate this by adding one more function to our family:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">soso2 &lt;-<span class="st"> </span><span class="cf">function</span>() {
@@ -580,10 +582,10 @@ microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<
 microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<span class="kw">baad</span>(), <span class="kw">soso</span>(), <span class="kw">soso2</span>(), <span class="kw">good</span>())</code></pre></div>
 <pre><code>## Unit: microseconds
 ##     expr      min        lq       mean    median        uq      max neval
-##   baad() 1125.880 1200.2900 1674.73042 1394.9175 2121.3090 2618.870   100
-##   soso()   60.962   62.6415   65.20475   63.8290   65.8645   88.055   100
-##  soso2()  330.098  371.0610  415.54002  399.9645  422.8780 1721.329   100
-##   good()    4.881    5.1065   13.52946    5.5975    6.1640  782.132   100</code></pre>
+##   baad() 1123.195 1149.3775 1592.14446 1876.1285 1968.8845 2527.273   100
+##   soso()   60.952   62.3745   64.90556   63.7800   65.2270   95.952   100
+##  soso2()  327.762  351.1130  390.89667  372.1560  404.9525 1687.197   100
+##   good()    4.764    5.0710    5.71361    5.4565    5.9530   13.987   100</code></pre>
 <p>As it turns out, <code>sapply</code> is much slower than plain for-loop. Lapply-family is not a substitute for true vectorization. However, one may argue that <code>soso2</code> function is easier to understand than explicit loop in <code>soso</code>. In any case, it is easier to type when working on the interactive console.</p>
 <p>Finally, it should be noted that when performing truly vectorized operations on long vectors, the overhead of R interpreter becomes negligible and the resulting speed is almost equalt to that of the corresponding C code. And optimized R code can easily beat non-optimized C.</p>
 </div>
@@ -647,7 +649,7 @@ n &lt;-<span class="st"> </span><span class="dv">0</span>
        <span class="st">&quot;INTC&quot;</span> =<span class="st"> &quot;Intel Corp&quot;</span>,
        <span class="st">&quot;unknown&quot;</span>)</code></pre></div>
 <pre><code>## [1] &quot;Amazon.com Inc&quot;</code></pre>
-<p>Switch expression attempts to match the expression, here <code>stock = &quot;AMZN&quot;</code>, to a list of alternatives. If one of the alternative matches the name of the argument, that argument is returned. If none matches, the nameless default argument (here “unknown”) is returned. In case there is not default argument, <code>switch</code> returns <code>NULL</code>.</p>
+<p>Switch expression attempts to match the expression, here <code>stock = &quot;AMZN&quot;</code>, to a list of alternatives. If one of the alternative matches the name of the argument, that argument is returned. If none matches, the nameless default argument (here “unknown”) is returned. In case there is no default argument, <code>switch</code> returns <code>NULL</code>.</p>
 <p>Switch allows to specify the same return value for multiple cases:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">switch</span>(stock,
        <span class="st">&quot;AAPL&quot;</span> =<span class="st"> &quot;Apple Inc&quot;</span>,

@@ -3,13 +3,33 @@
 This chapter covers the foundational concepts for working with vectors in R. Vectors are _the_ fundamental data type in R: in order to use R, you need to become comfortable with vectors. This chapter will discuss how R stores information in vectors, the way in which operations are executed in _vectorized_ form, and how to extract subsets of vectors. These concepts are **key to effectively programming** in R.
 
 ## What is a Vector?
-**Vectors** are _one-dimensional collections of values_ that are all stored in a single variable. For example, you can make a vector `people` that contains the character strings "Sarah", "Amit", and "Zhang". Alternatively, you could make a vector `one_to_ninety` that stores the numbers from 1 to 100. Each value in a vector is refered to as an **element** of that vector; thus the `people` vector would have 3 elements: `"Sarah"`, `"Amit"`, and `"Zhang"`.
 
-- Importantly, all the elements in a vector need to have the same _type_ (numeric, character, logical, etc.). You can't have a vector whose elements include both numbers and character strings.
+**Vectors** are _one-dimensional ordered collections of values_ that are all
+  stored in a single variable. For example, you can make a vector
+  `people` that contains the character strings "Sarah", "Amit", and
+  "Zhang". Alternatively, you could make a vector `numbers` that stores
+  the numbers from 1 to 100. Each value in a vector is refered to as an
+  **element** of that vector; thus the `people` vector would have 3
+  elements, `"Sarah"`, `"Amit"`, and `"Zhang"`, and `numbers` vector
+  will have 100 elements.  _Ordered_ means that once in the vector, the
+  elements will remain there in the original order.  If "Amit" was put
+  on the second place, it will remain on the second place unless explicitly moved.
+  
+Unfortunately, there are at least five different sometimes contradicting
+definitions of what is "vector" in R.  Here we focus on **atomic
+vectors**, vectors that contain the
+[atomic data types](#basic-data-types).  Another different class of
+vectors is
+**generalized vectors** or **lists**, the topic of [chapter Lists](#lists).
+
+Atomic vector can only contain elements of an atomic data
+type&mdash;numeric, integer, character or logical.  Importantly, all the
+elements in a vector need to have the same.  You can't have an atomic vector whose elements include both numbers and character strings.
 
 
-### Creating Vectors
-The easiest and most common syntax for creating vectors is to use the built in `c()` function, which is used to ***c***_ombine_ values into a vector. The `c()` function takes in any number of **arguments** of the same type (separated by commas as usual), and **returns** a vector of that contains those elements:
+## Creating Vectors
+
+The easiest and most universal syntax for creating vectors is to use the built in `c()` function, which is used to ***c***_ombine_ values into a vector. The `c()` function takes in any number of **arguments** of the same type (separated by commas as usual), and **returns** a vector that contains those elements:
 
 ```r
 # Use the combine (`c`) function to create a vector.
@@ -24,19 +44,33 @@ You can use the `length()` function to determine how many **elements** are in a 
 
 ```r
 people <- c("Sarah", "Amit", "Zhang")
-people_length <- length(people)
-print(people_length) # [1] 3
+length(people)  # [1] 3
 
 numbers <- c(1, 2, 3, 4, 5)
-print(length(numbers)) # [1] 5
+length(numbers)  # [1] 5
 ```
 
-Other functions can also help with creating vectors. For example, the `seq()` function mentioned in [chapter 6](#functions) takes 2 arguments and produces a vector of the integers between them. An _optional_ third argument specifies how many numbers to skip in each step:
+As atomic vectors can only contain same type of elements, `c()`
+automatically **casts** (converts) one type to the other if necessary
+(and if possible).  For instance, when attempting to create a vector
+containing number 1 and character "a"
+```{r, eval=FALSE}
+mix <- c(1, "a")
+mix  # [1] "1" "a"
+```
+we get a _character vector_ where the number 1 was converted to a
+character "1".  This is a frequent problem when reading data where some
+fields contain invalid number codes.
+
+There are other handy ways to create vectors.  For example, the `seq()`
+function mentioned in [chapter 6](#functions) takes 2 (or more) arguments and
+produces a vector of the integers between them. An _optional_ third
+argument specifies by which step to increment the numbers:
 
 ```r
 # Make vector of numbers 1 to 90
 one_to_ninety <- seq(1, 90)
-print(one_to_ninety)
+print(one_to_ninety)  # [1] 1 2 3 4 5 ...
 
 # Make vector of numbers 1 to 10, counting by 2
 odds <- seq(1, 10, 2)
@@ -51,8 +85,13 @@ As a shorthand, you can produce a sequence with the **colon operator** (**`a:b`*
 one_to_ninety <- 1:90
 ```
 
-Once created, you are **unable to change** the number of elements in a vector (elements cannot be added or removed). However, you can create a _new vector_ by **c**ombining a new element with an existing vector:
+Another useful function that creates vectors is `rep()` that repeats
+it's first argument:
+```{r, eval=FALSE}
+rep("Xi'an", 5)  # [1] "Xi'an" "Xi'an" "Xi'an" "Xi'an" "Xi'an"
+```
 
+`c()` can also be used to add elements to an existing vector: 
 ```r
 # Use the combine (`c()`) function to create a vector.
 people <- c("Sarah", "Amit", "Zhang")
@@ -61,11 +100,20 @@ people <- c("Sarah", "Amit", "Zhang")
 more_people <- c(people, 'Josh')
 print(more_people)  # [1] "Sarah" "Amit"  "Zhang" "Josh"
 ```
+Note that `c()` retains the order of elements&mdash;"Josh" will be the
+last element in the extended vector.
+
+All the vector creation functions we introduced here, `c()`, `seq()` and
+`rep()` are noticeably more powerful and complex than the brief
+discussion above.  You are encouraged to read the help pages!
+
 
 ## Vector Indices
+
 Vectors are the fundamental structure for storing collections of data. Yet you often want to only work with _some_ of the data in a vector. This section will discuss a few ways that you can get a **subset** of elements in a vector.
 
-In particular, you can refer to individual elements in a vector by their **index**, which is the number of their position in the vector. For example, in the vector:
+In particular, you can refer to individual elements in a vector by their
+**index** (more specifically **numeric index**), which is the number of their position in the vector. For example, in the vector:
 
 ```r
 vowels <- c('a','e','i','o','u')
@@ -73,7 +121,13 @@ vowels <- c('a','e','i','o','u')
 
 The `'a'` (the first element) is at _index_ 1, `'e'` (the second element) is at index 2, and so on.
 
-- Note in R vector elements are indexed starting with `1`. This is distinct from most other programming languages which are _zero-indexed_ and so reference the first element at index `0`.
+<p class="alert alert-info">
+Note in R vector elements are indexed starting with `1` (**one-based indexing**). This is distinct from many other programming languages
+  which use **zero-based indexing** and so reference the first element
+  at index `0`.
+</p>  
+
+### Simple Numeric Indices
 
 You can retrieve a value from a vector using **bracket notation**: you refer to the element at a particular index of a vector by writing the name of the vector, followed by square brackets (**`[]`**) that contain the index of interest:
 
@@ -82,22 +136,25 @@ You can retrieve a value from a vector using **bracket notation**: you refer to 
 people <- c("Sarah", "Amit", "Zhang")
 
 # access the element at index 1
-first_person <- people[1]
-print(first_person)  # [1] "Sarah"
+people[1]  # [1] "Sarah"
 
 # access the element at index 2
-second_person <- people[2]
-print(second_person)  # [1] "Amit"
+people[2]  # [1] "Amit"
 
 # You can also use variables inside the brackets
 last_index <- length(people)  # last index is the length of the vector!
-last_person <- people[last_index]  # returns "Zhang"
+people[last_index]  # returns "Zhang"
+                    # You may want to check out the `tail()` function instead!
 ```
 
-- Don't get confused by the `[1]` in the printed output&mdash;it doesn't refer to which index you got from `people`, but what index in the _extracted_ result (e.g., stored in `first_person`) is being printed!
+Don't get confused by the `[1]` in the printed output&mdash;it doesn't refer to which index you got from `people`, but what index in the _extracted_ result (e.g., stored in `first_person`) is being printed!
 
 
-If you specify an index that is **out-of-bounds** (e.g., greater than the number of elements in the vector) in the square brackets, you will get back the value `NA`, which stands for **N**ot **A**vailable. Note that this is _not_ the _character string_ `"NA"`, but a specific logical value.
+If you specify an index that is **out-of-bounds** (e.g., greater than
+the number of elements in the vector) in the square brackets, you will
+get back the value `NA`, which stands for **N**ot **A**vailable. Note
+that this is _not_ the _character string_ `"NA"`, but a specific value,
+specially designed to denote missing data.
 
 ```r
 vowels <- c('a','e','i','o','u')
@@ -117,7 +174,8 @@ print(all_but_e) # [1] "a" "i" "o" "u"
 ```
 
 ### Multiple Indices
-Remember that in R, **everything is a vector**. This means that when you put a single number inside the square brackets, you're actually putting a _vector with a single element in it_ into the brackets So what you're really doing is specifying a **vector of indices** that you want R to extract from the vector. As such, you can put a vector of any length inside the brackets, and R will extract _all_ the elements with those indices from the vector (producing a **subset** of the vector elements):
+
+Remember that in R, **all atomic objects are vectors**. This means that when you put a single number inside the square brackets, you're actually putting a _vector with a single element in it_ into the brackets So what you're really doing is specifying a **vector of indices** that you want R to extract from the vector. As such, you can put a vector of any length inside the brackets, and R will extract _all_ the elements with those indices from the vector (producing a **subset** of the vector elements):
 
 ```r
 # Create a `colors` vector
@@ -127,63 +185,37 @@ colors <- c("red", "green", "blue", "yellow", "purple")
 indices <- c(1, 3, 4)
 
 # Retrieve the colors at those indices
-extracted <- colors[indices]
-print(extracted) # [1] "red"    "blue"   "yellow"
-
+colors[indices]  # [1] "red"    "blue"   "yellow"
 
 # Specify the index array anonymously
-others <- colors[c(2, 5)]
-print(others) # [1] "green"  "purple"
+colors[c(2, 5)]  # [1] "green"  "purple"
 ```
 
-It's incredibly common to use the **colon operator** to quickly specify a range of indices to extract:
+It's very-very handy to use the **colon operator** to quickly specify a range of indices to extract:
 
 ```r
-# Create a `colors` vector
 colors <- c("red", "green", "blue", "yellow", "purple")
 
 # Retrieve values in positions 2 through 5
 colors[2:5] # [1] "green"  "blue"   "yellow" "purple"
 ```
 
-This easily reads as _"a vector of the elements in positions 2 through 5"_.
+This easily reads as _"a vector of the elements in positions 2 through
+5"_.
+
+<p class="alert alert-info">
+The object returned by multiple indexing (and also by a single index) is
+a **copy of the original**, unlike in some other programming
+languages.  These are good news in terms of avoiding unexpected effects:
+modifying the returned copy does not affect the original.
+However, copying large objects may be costly and make your code slow and sluggish.
+</p>  
 
 
-## Modifying Vectors
-While you are unable to change the number of elements within a vector, you _are_ able to change the individual values within a vector. To achieve this, put the extracted _subset_ on the **left-hand side** of the assignment operator, and then assign the element a new value:
+### Logical Indexing
 
-```r
-# Create a vector of school supplies
-school_supplies <- c("Backpack", "Laptop", "Pen")
-
-# Replace 'Pen' (element at index 3) with 'Pencil'
-school_supplies[3] <- "Pencil"
-```
-
-And of course, there's no reason that you can't select multiple elements on the left-hand side, and assign them multiple values. The assignment operator is also _vectorized_!
-
-```r
-# Create a vector of school supplies
-school_supplies <- c("Backpack", "Laptop", "Pen")
-
-# Replace  'Laptop' with 'Tablet', and 'Pen' with 'Pencil'
-school_supplies[c(2, 3)] <- c("Tablet", "Pencil")
-```
-
-As a more useful example, imagine you had a vector of values in which you wanted to replace all numbers greater that 10 with the number 10 (to "cap" the values). Because the assignment operator is vectorized, you can leverage _recycling_ to assign a single value to each element that has been _filtered_ from the vector:
-
-```r
-# Element of values
-v1 <- c(1, 5, 55, 1, 3, 11, 4, 27)
-
-# Replace all values greater than 10 with 10
-v1[v1 > 10] <- 10  # returns 1, 5, 10, 1, 3, 10, 4, 10
-```
-
-In this example, the number `10` get recycled for each element in which `v1` is greater than 10 (`v1[v1 > 10]`). Presto!
-
-## Vector Filtering
-In the above section, you used a vector of indices (_numeric_ values) to retrieve a subset of elements from a vector. Alternatively, you can put a **vector of logical (boolean) values** inside the square brackets to specify which ones you want to extract (`TRUE` in the _corresponding position_ means extract, `FALSE` means don't extract):
+In the above section, you used a vector of indices (_numeric_ values) to
+retrieve a subset of elements from a vector. Alternatively, you can put a **vector of logical values** inside the square brackets to specify which ones you want to extract (`TRUE` in the _corresponding position_ means extract, `FALSE` means don't extract):
 
 ```r
 # Create a vector of shoe sizes
@@ -196,7 +228,8 @@ filter <- c(TRUE, FALSE, FALSE, TRUE, TRUE)
 shoe_sizes[filter]  # [1]  7 11  8
 ```
 
-R will go through the boolean vector and extract every item at the same position as a `TRUE`. In the example above, since `filter` is `TRUE` and indices 1, 4, and 5, then `shoe_sizes[filter]` returns a vector with the elements from indices 1, 4, and 5.
+R will go through the boolean vector and extract every item at the
+position that is `TRUE`. In the example above, since `filter` is `TRUE` and indices 1, 4, and 5, then `shoe_sizes[filter]` returns a vector with the elements from indices 1, 4, and 5.
 
 This may seem a bit strange, but it is actually incredibly powerful because it lets you select elements from a vector that _meet a certain criteria_ (called **filtering**). You perform this _filtering operation_ by first creating a vector of boolean values that correspond with the indices meeting that criteria, and then put that filter vector inside the square brackets:
 
@@ -211,10 +244,9 @@ shoe_is_big <- shoe_sizes > 6.5 # T, F, F, T, T
 big_shoes <- shoe_sizes[shoe_is_big] # returns 7, 11, 8
 ```
 
-The magic here is that you are once again using _recycling_: the relational operator `>` is _vectorized_, meaning that the shorter vector (the `6.5`) is recycled and applied to each element in the `shoe_sizes` vector, thus producing the boolean vector that you want!
-
-You can even combine the second and third lines of code into a single statement. You can think of the following statement as saying "shoe_sizes **where** shoe_sizes is greater than 6.5":
-
+There is often little reason to explicitly create the index vector
+`shoe_is_big`.  You can combine the second and third lines of code into
+a single statement with anonymous index vector:
 ```r
 # Create a vector of shoe sizes
 shoe_sizes <- c(7, 6.5, 4, 11, 8)
@@ -222,12 +254,135 @@ shoe_sizes <- c(7, 6.5, 4, 11, 8)
 # Select shoe sizes that are greater than 6.5
 shoe_sizes[shoe_sizes > 6.5]  # returns 7, 11, 8
 ```
+You can think of the this statement as saying "shoe_sizes **where**
+shoe_sizes is greater than 6.5".  This is a valid statement because the
+logical expression inside of the square-brackets (`shoe_sizes > 6.5`) is
+evaluated first, producing an anonymos boolean vector which is then used to filter the `shoe_sizes` vector.
 
-This is a valid statement because the equality inside of the square-brackets (`shoe_sizes > 6.5`) is evaluated first, producing the boolean vector which is then used to filter the `shoe_sizes` vector.
+This kind of filtering is immensely popular in real-life applications.
 
-This kind of filtering is crucial for being able to ask real world questions of datasets.
+
+### Named Vectors and Character Indexing
+
+All the vectors we created above where created without names.  But
+vector elements can have names, and given they have names, we can access
+these using the names.  There are two ways to create **named vectors**.
+
+First, we can add names when creating vectors with `c()` function:
+```{r, eval=FALSE}
+param <- c(gamma=3, alpha=1.7, "c-2"=-1.33)
+param
+
+## gamma alpha   c-2 
+##  3.00  1.70 -1.33 
+```
+
+This creates a numeric vector of length 3 where each element has a
+name.  Note that we have to quote the names, such as "c-2", that are not
+valid R variable names.  Note also that the printout differs from that
+of unnamed vectors, in particular the index position (`[1]`) is not
+printed.
+
+Alternatively, we can set names to an already existing vector using the
+`names()`
+function:^[Strictly speaking, this is `names()<-` function, the assignment function that sets the names, in contrast to the `names()` function that extracts names from an object.]
+```{r, eval=FALSE}
+numbers <- 1:5
+names(numbers) <- c("A", "B", "C", "D", "E")
+numbers
+
+## A B C D E 
+## 1 2 3 4 5 
+```
+
+Now when we have a named vector, we can access it's elements by names.
+For instance
+```{r, eval=FALSE}
+numbers["C"]
+## C
+## 3
+numbers[c("D", "B")]
+## D B 
+## 4 2 
+```
+
+Note that in  the latter case the names `"B"` and `"D"` are in "wrong
+order", i.e. not in the same order as they are in the vector `numbers`.
+However, this works just fine, the elements are extracted in the order
+they are specified in the index (This is only possible with character
+and numeric indices, logical index can only extract elements in the
+"right" order.)
+
+While most vectors we encounter in this book gain little by 
+names, exactly the same approach also applies to lists and data frames
+where character indexing is one of the important workhorses.
+
+Another important use case of named vectors in R are a substitute of **maps**
+(aka **dictionaries**).  Maps are just lookup tables where we can
+find a value that corresponds to a value of another element in the
+table.  For instance, the example above found values that correspond to
+the names `"D"` and `"B"`.
+
+
+## Modifying Vectors
+
+Indexing can also be used to modify elements within the vector.  To do this, put the extracted _subset_ on the **left-hand side** of the assignment operator, and then assign the element a new value:
+
+```r
+# Create a vector of school supplies
+school_supplies <- c("Backpack", "Laptop", "Pen")
+
+# Replace 'Pen' (element at index 3) with 'Pencil'
+school_supplies[3] <- "Pencil"
+```
+
+And of course, there's no reason that you can't select multiple elements on the left-hand side, and assign them multiple values. The assignment operator is _vectorized_!
+
+```r
+# Create a vector of school supplies
+school_supplies <- c("Backpack", "Laptop", "Pen")
+
+# Replace  'Laptop' with 'Tablet', and 'Pen' with 'Pencil'
+school_supplies[c(2, 3)] <- c("Tablet", "Pencil")
+```
+If you vector has names, you can use character indexing in exactly the
+same way.
+
+Logical indexing offer some very powerful possibilities.  Imagine you
+had a vector of values in which you wanted to replace all numbers
+greater that 10 with the number 10 (to "cap" the values).   We can
+achieve with an one-liner:
+
+```r
+# Element of values
+v1 <- c(1, 5, 55, 1, 3, 11, 4, 27)
+
+# Replace all values greater than 10 with 10
+v1[v1 > 10] <- 10  # returns 1, 5, 10, 1, 3, 10, 4, 10
+```
+
+In this example, we first compute the logical index of "too large"
+values by `v1 > 10`, and thereafter assign the value 10 to all these
+elements in vector v1.  Replacing a numeric vector by the absolute
+values of the elements can be done in a similar fashion:
+```{r, eval=FALSE}
+v <- c(1,-1,2,-2)
+v[v < 0] <- -v[v < 0]
+v  # [1] 1 1 2 2
+```
+As a first step we find the logical index of the negative elements of
+`v`: `v < 0`.  Next, we flip the sign of these elements in `v` by
+replacing these with `-v[v < 0]`.
+
 
 ## Vectorized Operations
+
+Many R operators and functions are optimized for vectors, i.e. when fed
+a vector, they work on all elements of that vector.  These operations
+are usually very fast and efficient.
+
+### Vectorized Operators
+
 When performing operations (such as mathematical operations `+`, `-`, etc.) on vectors, the operation is applied to vector elements **member-wise**. This means that each element from the first vector operand is modified by the element in the **same corresponding position** in the second vector operand, in order to determine the value _at the corresponding position_ of the resulting vector. E.g., if you want to add (`+`) two vectors, then the value of the first element in the result will be the sum (`+`) of the first elements in each vector, the second element in the result will be the sum of the second elements in each vector, and so on.
 
 ```r
@@ -248,73 +403,27 @@ v3 <- v2 + v2  # returns 2, 4, 6, 8, 10
 v4 <- (v1 + v2) / (v1 + v1)  # returns 1, 1.5, 2, 2.5, 3
 ```
 
-While we can't apply mathematical operators (namely, `+`) to combine vectors of character strings, we can use functions like `paste()` to concatenate the elements of two vectors.
-
-```r
-colors <- c("Green", "Blue")
-spaces <- c("sky", "grass")
-
-# Note: look up the `paste0()` function if it's not familiar!
-band <- paste0(colors, spaces) # returns "Greensky", "Bluegrass"
-# http://greenskybluegrass.com/
-```
-
-Notice the same _member-wise_ combination is occurring: the `paste0()` function is applied to the first elements, then to the second elements, and so on.
-
-
-### Recycling
-**Recycling** refers to what R does in cases when there are an unequal number of elements in two operand vectors. If R is tasked with performing a vectorized operation with two vectors of unequal length, it will reuse (_recycle_) elements from the shorter vector. For example:
-
-```r
-# Create vectors to combine
-v1 <- c(1, 3, 5)
-v2 <- c(1, 2)
-
-# Add vectors
-v3 <- v1 + v2  # returns (2, 5, 6)
-```
-
-In this example, R first combined the elements in the first position of each vector (`1+1=2`). Then, it combined elements from the second position (`3+2=5`). When it got to the third element (which only was present in `v1`), it went back to the **beginning** of `v2` to select a value, yielding `5+1=6`.
-
-- Recycling will occur no matter if the longer vector is the first or second operand.
-
-- R may provide a warning message, notifying you that the vectors are of different length. This warning doesn't necessarily mean you did something wrong, but you should pay attention to it because it may be indicative of an error (i.e., you thought the vectors were of the same length, but made a mistake somewhere).
-
-
-### Everything is a Vector!
-What happens if you try to add a vector and a "regular" single value (a **scalar**)?
-
-```r
-# create vector of numbers 1 to 5
-v1 <- 1:5
-result <- v1 + 4  # add scalar to vector
-print(result)     # [1] 5 6 7 8 9
-```
-
-As you can see (and probably expected), the operation added `4` to every element in the vector.
-
-The reason this sensible behavior occurs is because, in truth, **everything in R is a vector**. Even when you thought you were creating a single value (a scalar), you were actually just creating a vector with a single element (length 1). When you create a variable storing the number `7` (with `x <- 7`), R creates a vector of length 1 with the number `7` as that single element.
-
-- This is why R prints the `[1]` in front of all results: it's telling you that it's showing a vector (which happens to have 1 element) starting at element number 1.
-
-- This is also why you can't use the `length()` function to get the length of a character string; it just returns the length of the array containing that string (`1`). Instead, use the `nchar()` function to get the number of characters in a character string.
-
-```r
-# Create a vector of length 1 in a variable x
-x <- 7  # equivalent to `x <- c(7)`
-
-# Print out x: R states the vector index (1) in the console
-print(x)  # [1] 7
-```
-
-Thus when you add a "scalar" such as `4` to a vector, what you're really doing is adding a vector with a single element `4`. As such the same _recycling_ principle applies, and that single element is "recycled" and applied to each element of the first operand.
-
-
 ### Vectorized Functions
 
 > _Vectors In, Vector Out_
 
-Because _everything is a vector_, it means that pretty much every function you've used so far has actually applied to vectors, not just to single values. These are referred to as **vectorized functions**, and will run significantly faster than non-vector approaches. You'll find that functions work the same way for vectors as they do for single values, because single values are just instances of vectors!
+Because all atomic objects are vectors, it means that pretty much every
+function you've used so far has actually applied to vectors, not just to
+single values. These are referred to as **vectorized functions**, and
+will run significantly faster than non-vector approaches. You'll find
+that functions work the same way for vectors as they do for single
+values, because single values are just instances of vectors!  For
+instance, we can use `paste()` to
+concatenate the elements of two character vectors:
+```{r, eval=FALSE}
+colors <- c("Green", "Blue")
+spaces <- c("sky", "grass")
+
+# Note: look up the `paste()` function if it's not familiar!
+paste(colors, spaces)  # "Green sky", "Blue grass"
+```
+
+Notice the same _member-wise_ combination is occurring: the `paste()` function is applied to the first elements, then to the second elements, and so on.
 
 - _Fun fact:_ The mathematical operators (e.g., `+`) are actually functions in R that take 2 arguments (the operands). The mathematical notation we're used to using is just a shortcut.
 
@@ -324,31 +433,118 @@ Because _everything is a vector_, it means that pretty much every function you'v
     x <- '+'(2, 3)  # add 2 and 3
     ```
 
-This means that you can use any function on a vector, and it will act in the same **vectorized**, _member-wise_ manner: the function will result in a new vector where the function's transformation has been applied to each individual element in order.
-
-For example consider the `round()` function described in the previous chapter. This function rounds the given argument to the nearest whole number (or number of decimal places if specified).
+For another example consider the `round()` function described in the previous chapter. This function rounds the given argument to the nearest whole number (or number of decimal places if specified).
 
 ```r
 # round number to 1 decimal place
 round(1.67, 1)  # returns 1.6
 ```
 
-But recall that the `1.6` in the above example is _actually a vector of length 1_. If we instead pass a vector as an argument, the function will perform the same rounding on each element in the vector.
+But recall that the `1.6` in the above example is _actually a vector of
+length 1_. If we instead pass a longer vector as an argument, the function will perform the same rounding on each element in the vector.
 
 ```r
 # Create a vector of numbers
 nums <- c(3.98, 8, 10.8, 3.27, 5.21)
 
 # Perform the vectorized operation
-whole_nums <- round(nums, 1)
-
-# Print the results (each element is rounded)
-print(whole_nums)  # [1]  4.0  8.0 10.8  3.3  5.2
+round(nums, 1)  # [1]  4.0  8.0 10.8  3.3  5.2
 ```
 
 This vectorization process is ___extremely powerful___, and is a significant factor in what makes R an efficient language for working with large data sets (particularly in comparison to languages that require explicit iteration through elements in a collection). Thus to write really effective R code, you'll need to be comfortable applying functions to vectors of data, and getting vectors of data back as results.
 
-<p class="alert">Just remember: _when you use a function on a vector, you're using that function **on each item** in the vector_!</p>
+<p class="alert alert-info">Just remember: _when you use a vectorized function on a vector, you're using that function **on each item** in the vector_!</p>
+
+
+
+### Recycling
+
+Above we saw a number of vectorized operations, where similar operations
+were applied to elements of two vectors member-wise.  However, what
+happens if the two vectors are of unequal length?
+**Recycling** refers to what R does in cases when there are an unequal number of elements in two operand vectors. If R is tasked with performing a vectorized operation with two vectors of unequal length, it will reuse (_recycle_) elements from the shorter vector. For example:
+
+```r
+# Create vectors to combine
+v1 <- c(1, 3, 5, 8)
+v2 <- c(1, 2)
+
+# Add vectors
+v1 + v2  #  [1]  2  5  6 10
+```
+
+In this example, R first combined the elements in the first position of
+each vector (`1+1=2`). Then, it combined elements from the second
+position (`3+2=5`). When it got to the third element of `v1` it run out
+of elements of `v2`, so it went back to the **beginning** of `v2` to
+select a value, yielding `5+1=6`.  Finally, it combined the 4th element
+of `v1` (8) with the second element of `v2` (2) to get 10.
+
+If the longer object length is not a multiple of shorter object length,
+R will issue a warning, notifying you that the lengths do not match.
+This warning doesn't necessarily mean you did something wrong although
+in practice this tends to be the case.
+
+
+### R Is a Vectorized World 
+
+Actually we have already met many more examples of recycling and
+vectorized functions above.  For
+instance, in the case of finding big shoes with
+```{r, eval=FALSE}
+shoe_sizes <- c(7, 6.5, 4, 11, 8)
+shoe_sizes[shoe_sizes > 6.5]
+```
+we first recycle the length-one vector `6.5` five times to match it with
+the shoe size vector `c(7, 6.5, 4, 11, 8)`.  Afterwards we use the
+vectorized operator `>` (or actually the function `">()"`) to compare
+each of the shoe sizes with the value 6.5.  The result is a logical
+vector of length 5.
+
+This is also what happens if you add a vector and a "regular" single value (a **scalar**):
+
+```r
+# create vector of numbers 1 to 5
+v1 <- 1:5
+v1 + 4  # add scalar to vector
+## [1] 5 6 7 8 9
+```
+
+As you can see (and probably expected), the operation added `4` to every
+element in the vector.  The reason this sensible behavior occurs is
+because all atomic objects are vectors.  Even when you thought you were
+creating a single value (a scalar), you were actually just creating a
+vector with a single element (length 1). When you create a variable
+storing the number `7` (with `x <- 7`), R creates a vector of length 1
+with the number `7` as that single element:
+
+```r
+# Create a vector of length 1 in a variable x
+x <- 7  # equivalent to `x <- c(7)`
+```
+
+- This is why R prints the `[1]` in front of all results: it's telling you that it's showing a vector (which happens to have 1 element) starting at element number 1.
+
+- This is also why you can't use the `length()` function to get the
+  length of a character string; it just returns the length of the array
+  containing that string (`1`). Instead, use the `nchar()` function to
+  get the number of characters in each element in a character vector.
+
+Thus when you add a "scalar" such as `4` to a vector, what you're really doing is adding a vector with a single element `4`. As such the same _recycling_ principle applies, and that single element is "recycled" and applied to each element of the first operand.
+
+<p class="alert alert-info">
+Note: here we are implicitly using the word _vector_ in two different
+meanings.  The one is a way R stores objects (atomic vector), the other
+is _vector_ in the mathematical sense, as the opposite to _scalar_.
+Similar confusion also occurs with matrices.  Matrices as mathematical
+objects are distinct from vectors (and scalars).  In R they are stored
+as vectors, and treated as matrices in dedicated matrix operations only.
+</p>
+
+Finally, you should also know that there are many kinds of objects in
+R that are not vectors.  These include functions, and many other more
+"exotic" objects.
+
 
 ## Resources {-}
 - [R Tutorial: Vectors](http://www.r-tutor.com/r-introduction/vector)
