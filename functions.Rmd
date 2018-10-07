@@ -48,10 +48,17 @@ and `"\n"` (the line break symbol).  However, here we may not care about the ret
 R functions are referred to by name (technically, they are values like
 any other variable, just not atomic values). As in many programming
 languages, we **call** a function by writing the name of the function
-followed immediately (no space) by parentheses `()`. Inside the
-parentheses, we put the **arguments** (inputs) to the function separated
+followed immediately (no space) by parentheses `()`.  Sometimes this is
+enough, for instance
+```{r, eval=FALSE}
+Sys.Date()
+```
+gives us the current date and that's it.
+
+But often we want the function to do something with our inputs.  In this
+case we put the **arguments** (inputs) inside the parenthesis, separated
 by commas (**`,`**). Thus computer functions look just like
-multi-variable mathematical functions, but usually with fancier names than `f()`.
+multi-variable mathematical functions, although usually with fancier names than `f()`.
 
 ```r
 # call the sqrt() function, passing it 25 as an argument
@@ -336,7 +343,13 @@ the _formal arguments_. Then it executes each line of code in the _function body
 
 
 ## Conditional Statements
-Functions are a way to organize and control the flow of execution (e.g., what lines of code get run in what order). In R, as in other languages, we have one other way of controlling program flow, and that is by specifying different instructions that can be run based on a different set of conditions. **Conditional statements** allow us to specify different chunks of code to run when given different contexts, which is often valuable within functions.
+Functions are one way to organize and control the flow of execution
+(e.g., what lines of code get run in what order).  There are other
+ways.  In all languages, we can specify that different instructions will
+be run based on a different set of conditions.  These are **Conditional
+statements** which specify which chunks of code will run
+depending on which conditions are true.  This is valuable both within
+and outside of functions.
 
 In an abstract sense, an conditional statement is saying:
 
@@ -359,7 +372,7 @@ if (condition) {
 
 (Note that the the `else` needs to be on the same line as the closing `}` of the `if` block. It is also possible to omit the `else` and its block).
 
-The `condition` can be any variable or expression that resolves to a logical value (`TRUE` or `FALSE`). Thus both of the below conditional statements are valid:
+The `condition` can be any variable or expression that resolves to a logical value (`TRUE` or `FALSE`). Thus both of the conditional statements below are valid:
 
 ```r
 porridge_temp <- 115 # in degrees F
