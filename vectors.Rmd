@@ -203,6 +203,57 @@ This easily reads as _"a vector of the elements in positions 2 through
 5"_.
 
 
+### Logical Indexing
+
+In the above section, you used a vector of indices (_numeric_ values) to
+retrieve a subset of elements from a vector. Alternatively, you can put a **vector of logical values** inside the square brackets to specify which ones you want to extract (`TRUE` in the _corresponding position_ means extract, `FALSE` means don't extract):
+
+```r
+# Create a vector of shoe sizes
+shoe_sizes <- c(7, 6.5, 4, 11, 8)
+
+# Vector of elements to extract
+filter <- c(TRUE, FALSE, FALSE, TRUE, TRUE)
+
+# Extract every element in an index that is TRUE
+shoe_sizes[filter]  # [1]  7 11  8
+```
+
+R will go through the boolean vector and extract every item at the
+position that is `TRUE`. In the example above, since `filter` is `TRUE` and indices 1, 4, and 5, then `shoe_sizes[filter]` returns a vector with the elements from indices 1, 4, and 5.
+
+This may seem a bit strange, but it is actually incredibly powerful because it lets you select elements from a vector that _meet a certain criteria_ (called **filtering**). You perform this _filtering operation_ by first creating a vector of boolean values that correspond with the indices meeting that criteria, and then put that filter vector inside the square brackets:
+
+```r
+# Create a vector of shoe sizes
+shoe_sizes <- c(7, 6.5, 4, 11, 8)
+
+# Create a boolean vector that indicates if a shoe size is greater than 6.5
+shoe_is_big <- shoe_sizes > 6.5 # T, F, F, T, T
+
+# Use the `shoe_is_big` vector to select large shoes
+big_shoes <- shoe_sizes[shoe_is_big] # returns 7, 11, 8
+```
+
+There is often little reason to explicitly create the index vector
+`shoe_is_big`.  You can combine the second and third lines of code into
+a single statement with anonymous index vector:
+```r
+# Create a vector of shoe sizes
+shoe_sizes <- c(7, 6.5, 4, 11, 8)
+
+# Select shoe sizes that are greater than 6.5
+shoe_sizes[shoe_sizes > 6.5]  # returns 7, 11, 8
+```
+You can think of the this statement as saying "shoe_sizes **where**
+shoe_sizes is greater than 6.5".  This is a valid statement because the
+logical expression inside of the square-brackets (`shoe_sizes > 6.5`) is
+evaluated first, producing an anonymos boolean vector which is then used to filter the `shoe_sizes` vector.
+
+This kind of filtering is immensely popular in real-life applications.
+
+
+
 ## Modifying Vectors
 
 Indexing can also be used to modify elements within the vector.  To do this, put the extracted _subset_ on the **left-hand side** of the assignment operator, and then assign the element a new value:
@@ -237,50 +288,6 @@ v1[v1 > 10] <- 10  # returns 1, 5, 10, 1, 3, 10, 4, 10
 
 In this example, the number `10` get recycled for each element in which `v1` is greater than 10 (`v1[v1 > 10]`). Presto!
 
-## Vector Filtering
-In the above section, you used a vector of indices (_numeric_ values) to retrieve a subset of elements from a vector. Alternatively, you can put a **vector of logical (boolean) values** inside the square brackets to specify which ones you want to extract (`TRUE` in the _corresponding position_ means extract, `FALSE` means don't extract):
-
-```r
-# Create a vector of shoe sizes
-shoe_sizes <- c(7, 6.5, 4, 11, 8)
-
-# Vector of elements to extract
-filter <- c(TRUE, FALSE, FALSE, TRUE, TRUE)
-
-# Extract every element in an index that is TRUE
-shoe_sizes[filter]  # [1]  7 11  8
-```
-
-R will go through the boolean vector and extract every item at the same position as a `TRUE`. In the example above, since `filter` is `TRUE` and indices 1, 4, and 5, then `shoe_sizes[filter]` returns a vector with the elements from indices 1, 4, and 5.
-
-This may seem a bit strange, but it is actually incredibly powerful because it lets you select elements from a vector that _meet a certain criteria_ (called **filtering**). You perform this _filtering operation_ by first creating a vector of boolean values that correspond with the indices meeting that criteria, and then put that filter vector inside the square brackets:
-
-```r
-# Create a vector of shoe sizes
-shoe_sizes <- c(7, 6.5, 4, 11, 8)
-
-# Create a boolean vector that indicates if a shoe size is greater than 6.5
-shoe_is_big <- shoe_sizes > 6.5 # T, F, F, T, T
-
-# Use the `shoe_is_big` vector to select large shoes
-big_shoes <- shoe_sizes[shoe_is_big] # returns 7, 11, 8
-```
-
-The magic here is that you are once again using _recycling_: the relational operator `>` is _vectorized_, meaning that the shorter vector (the `6.5`) is recycled and applied to each element in the `shoe_sizes` vector, thus producing the boolean vector that you want!
-
-You can even combine the second and third lines of code into a single statement. You can think of the following statement as saying "shoe_sizes **where** shoe_sizes is greater than 6.5":
-
-```r
-# Create a vector of shoe sizes
-shoe_sizes <- c(7, 6.5, 4, 11, 8)
-
-# Select shoe sizes that are greater than 6.5
-shoe_sizes[shoe_sizes > 6.5]  # returns 7, 11, 8
-```
-
-This is a valid statement because the equality inside of the square-brackets (`shoe_sizes > 6.5`) is evaluated first, producing the boolean vector which is then used to filter the `shoe_sizes` vector.
-
-This kind of filtering is crucial for being able to ask real world questions of datasets.
 
 ## Vectorized Operations
 When performing operations (such as mathematical operations `+`, `-`, etc.) on vectors, the operation is applied to vector elements **member-wise**. This means that each element from the first vector operand is modified by the element in the **same corresponding position** in the second vector operand, in order to determine the value _at the corresponding position_ of the resulting vector. E.g., if you want to add (`+`) two vectors, then the value of the first element in the result will be the sum (`+`) of the first elements in each vector, the second element in the result will be the sum of the second elements in each vector, and so on.
@@ -315,6 +322,10 @@ band <- paste0(colors, spaces) # returns "Greensky", "Bluegrass"
 ```
 
 Notice the same _member-wise_ combination is occurring: the `paste0()` function is applied to the first elements, then to the second elements, and so on.
+
+
+The magic here is that you are once again using _recycling_: the relational operator `>` is _vectorized_, meaning that the shorter vector (the `6.5`) is recycled and applied to each element in the `shoe_sizes` vector, thus producing the boolean vector that you want!
+
 
 
 ### Recycling
