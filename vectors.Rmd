@@ -12,7 +12,8 @@ This chapter covers the foundational concepts for working with vectors in R. Vec
   **element** of that vector; thus the `people` vector would have 3
   elements, `"Sarah"`, `"Amit"`, and `"Zhang"`, and `numbers` vector
   will have 100 elements.  _Ordered_ means that once in the vector, the
-  elements will remain there in the original order.
+  elements will remain there in the original order.  If "Amit" was put
+  on the second place, it will remain on the second place unless explicitly moved.
   
 Unfortunately, there are at least five different sometimes contradicting
 definitions of what is "vector" in R.  Here we focus on **atomic
