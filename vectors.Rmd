@@ -253,6 +253,67 @@ evaluated first, producing an anonymos boolean vector which is then used to filt
 This kind of filtering is immensely popular in real-life applications.
 
 
+### Named Vectors and Character Indexing
+
+All the vectors we created above where created without names.  But
+vector elements can have names, and given they have names, we can access
+these using the names.  There are two ways to create **named vectors**.
+
+First, we can add names when creating vectors with `c()` function:
+```{r, eval=FALSE}
+param <- c(gamma=3, alpha=1.7, "c-2"=-1.33)
+param
+
+## gamma alpha   c-2 
+##  3.00  1.70 -1.33 
+```
+
+This creates a numeric vector of length 3 where each element has a
+name.  Note that we have to quote the names, such as "c-2", that are not
+valid R variable names.  Note also that the printout differs from that
+of unnamed vectors, in particular the index position (`[1]`) is not
+printed.
+
+Alternatively, we can set names to an already existing vector using the
+`names()`
+function:^[Strictly speaking, this is `names()<-` function, the assignment function that sets the names, in contrast to the `names()` function that extracts names from an object.]
+```{r, eval=FALSE}
+numbers <- 1:5
+names(numbers) <- c("A", "B", "C", "D", "E")
+numbers
+
+## A B C D E 
+## 1 2 3 4 5 
+```
+
+Now when we have a named vector, we can access it's elements by names.
+For instance
+```{r, eval=FALSE}
+numbers["C"]
+## C
+## 3
+numbers[c("D", "B")]
+## D B 
+## 4 2 
+```
+
+Note that in  the latter case the names `"B"` and `"D"` are in "wrong
+order", i.e. not in the same order as they are in the vector `numbers`.
+However, this works just fine, the elements are extracted in the order
+they are specified in the index (This is only possible with character
+and numeric indices, logical index can only extract elements in the
+"right" order.)
+
+While most vectors we encounter in this book gain little by 
+names, exactly the same approach also applies to lists and data frames
+where character indexing is one of the important workhorses.
+
+Another important use case of named vectors in R are a substitute of **maps**
+(aka **dictionaries**).  Maps are just lookup tables where we can
+find a value that corresponds to a value of another element in the
+table.  For instance, the example above found values that correspond to
+the names `"D"` and `"B"`.
+
 
 ## Modifying Vectors
 
@@ -266,7 +327,7 @@ school_supplies <- c("Backpack", "Laptop", "Pen")
 school_supplies[3] <- "Pencil"
 ```
 
-And of course, there's no reason that you can't select multiple elements on the left-hand side, and assign them multiple values. The assignment operator is also _vectorized_!
+And of course, there's no reason that you can't select multiple elements on the left-hand side, and assign them multiple values. The assignment operator is _vectorized_!
 
 ```r
 # Create a vector of school supplies
@@ -275,8 +336,13 @@ school_supplies <- c("Backpack", "Laptop", "Pen")
 # Replace  'Laptop' with 'Tablet', and 'Pen' with 'Pencil'
 school_supplies[c(2, 3)] <- c("Tablet", "Pencil")
 ```
+If you vector has names, you can use character indexing in exactly the
+same way.
 
-As a more useful example, imagine you had a vector of values in which you wanted to replace all numbers greater that 10 with the number 10 (to "cap" the values). Because the assignment operator is vectorized, you can leverage _recycling_ to assign a single value to each element that has been _filtered_ from the vector:
+Logical indexing offer some very powerful possibilities.  Imagine you
+had a vector of values in which you wanted to replace all numbers
+greater that 10 with the number 10 (to "cap" the values).   We can
+achieve with an one-liner:
 
 ```r
 # Element of values
@@ -286,7 +352,18 @@ v1 <- c(1, 5, 55, 1, 3, 11, 4, 27)
 v1[v1 > 10] <- 10  # returns 1, 5, 10, 1, 3, 10, 4, 10
 ```
 
-In this example, the number `10` get recycled for each element in which `v1` is greater than 10 (`v1[v1 > 10]`). Presto!
+In this example, we first compute the logical index of "too large"
+values by `v1 > 10`, and thereafter assign the value 10 to all these
+elements in vector v1.  Replacing a numeric vector by the absolute
+values of the elements can be done in a similar fashion:
+```{r, eval=FALSE}
+v <- c(1,-1,2,-2)
+v[v < 0] <- -v[v < 0]
+v  # [1] 1 1 2 2
+```
+As a first step we find the logical index of the negative elements of
+`v`: `v < 0`.  Next, we flip the sign of these elements in `v` by
+replacing these with `-v[v < 0]`.
 
 
 ## Vectorized Operations
