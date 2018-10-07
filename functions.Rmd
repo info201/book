@@ -2,38 +2,95 @@
 
 This chapter will explore how to use **functions** in R to perform advanced capabilities and actually ask questions about data. After considering a function in an abstract sense, it will discuss using built-in R functions, accessing additional functions by loading R packages, and writing your own functions.
 
+
 ## What are Functions?
-In a broad sense, a **function** is a named sequence of instructions (lines of code) that you may want to perform one or more times throughout a program. They provide a way of _encapsulating_ multiple instructions into a single "unit" that can be used in a variety of different contexts. So rather than needing to repeatedly write down all the individual instructions for "make a sandwich" every time you're hungry, you can define a `make_sandwich()` function once and then just **call** (execute) that function when you want to perform those steps.
 
-In addition to grouping instructions, functions in programming languages like R also tend to follow the mathematical definition of functions, which is a set of operations (instructions!) that are performed on some **inputs** and lead to some **outputs**. Function inputs are called **arguments** or **parameters**, and we say that these arguments are **passed** to a function (like a football). We say that a function then **returns** an output to use. For example, imagine a function that can determine the largest number in a set of numbers. That function’s **input** would be the set of numbers, and the **output** would be the largest number in the set.
+In a broad sense, a **function** is a named sequence of instructions
+(lines of code) that you may want to perform one or more times
+throughout a program. They provide a way of _encapsulating_ multiple
+instructions into a single "unit" that can be used in a variety of
+different contexts. So rather than needing to repeatedly write down all
+the individual instructions for "make a sandwich" every time you're
+hungry, you can define a `make_sandwich()` function once and then just
+**call** (execute) that function when you want to perform those steps.
+Typically, functions also accept _inputs_ so you can make the things
+slightly differently from time to time.  For instance, sometimes you may
+want to call `make_sandwich(cheese)` while another time `make_sandwich(chicken)`.
 
-### R Function Syntax
-R functions are referred to by name (technically, they are values like any other variable). As in many programming languages, we **call** a function by writing the name of the function followed immediately (no space) by parentheses `()`. Inside the parentheses, we put the **arguments** (inputs) to the function separated by commas (**`,`**). Thus computer functions look just like multi-variable mathematical functions, but with names longer than `f()`.
+In addition to grouping instructions, functions in programming languages
+also allow to model the mathematical definition of function,
+i.e. perform certain operations on a number of inputs that lead to an
+_output_.  For instance, look at the
+function `max()` that finds the largest value among numbers:
+
+```{r, eval=FALSE}
+max(1,2,3)  # 3
+```
+The inputs are numbers `1`, `2`, and `3` in parenthesis, usually called
+**arguments** or **parameters**, and we say that these arguments are
+**passed** to a function (like a football). We say that a function then
+**returns** a value, number "3" in this example, which we can either
+print or assign to a variable and use later.
+
+Finally, the functions may also have **side effects**.  An example case
+is the `cat()` function that just prints it's arguments.  For instance,
+in case of the following line of code
+```{r, eval=FALSE}
+cat("The answer is", 1+1, "\n")
+```
+we call function `cat()` with three arguments: `"The answer is"`, `2`
+(note: `1+1` will be evaluated to 2),
+and `"\n"` (the line break symbol).  However, here we may not care about the return value but in the side effect&mdash;the message being printed on the screen.
+
+
+## How to Use Functions
+
+R functions are referred to by name (technically, they are values like
+any other variable, just not atomic values). As in many programming
+languages, we **call** a function by writing the name of the function
+followed immediately (no space) by parentheses `()`.  Sometimes this is
+enough, for instance
+```{r, eval=FALSE}
+Sys.Date()
+```
+gives us the current date and that's it.
+
+But often we want the function to do something with our inputs.  In this
+case we put the **arguments** (inputs) inside the parenthesis, separated
+by commas (**`,`**). Thus computer functions look just like
+multi-variable mathematical functions, although usually with fancier names than `f()`.
 
 ```r
-# call the print() function, pass it "Hello world" value as an argument
-print("Hello world")  # "Hello world"
-
 # call the sqrt() function, passing it 25 as an argument
 sqrt(25)  # 5, square root of 25
+
+# count number of characters in "Hello world" as an argument
+nchar("Hello world")  # 11, note: space is a character too
 
 # call the min() function, pass it 1, 6/8, AND 4/3 as arguments
 # this is an example of a function that takes multiple args
 min(1, 6/8, 4/3)  # 0.75, (6/8 is the smallest value)
 ```
 
-- _Note:_ To keep functions and variables distinct, we try to always include empty parentheses `()` when referring to a function by name. This does not mean that the function takes no arguments, it is just a useful shorthand for indicating that something is a function.
+To keep functions and ordinary variables distinct, we include empty parentheses `()` when referring to a function by name. This does not mean that the function takes no arguments, it is just a useful shorthand for indicating that something is a function.
+
+<p class="alert alert-info">**Note:** You always need to supply the
+parenthesis if you want to _call_ the function (force it to do what it
+is supposed to do).  If you leave the parenthesis out, you get the
+function definition printed on screen instead.  (Try this by issuing
+`cat` without parenthesis on the console.)  So `cat()` is actually a _function call_ while `cat` is the function.
+However, we ignore this distinction here.</p>
 
 If you call any of these functions interactively, R will display the **returned value** (the output) in the console. However, the computer is not able to "read" what is written in the console&mdash;that's for humans to view! If you want the computer to be able to _use_ a returned value, you will need to give that value a name so that the computer can refer to it. That is, you need to store the returned value in a variable:
 
 ```r
 # store min value in smallest.number variable
-smallest.number <- min(1, 6/8, 4/3)
+smallest_number <- min(1, 6/8, 4/3)
 
 # we can then use the variable as normal, such as for a comparison
-min.is.big <- smallest.number > 1  # FALSE
+min_is_big <- smallest_number > 1  # FALSE
 
-# we can also use functions directly when storing to variables
+# we can also use functions directly when doing computations
 phi <- .5 + sqrt(5)/2  # 1.618...
 
 # we can even pass the result of a function as an argument to another!
@@ -41,9 +98,41 @@ phi <- .5 + sqrt(5)/2  # 1.618...
 print(min(1.5, sqrt(3)))  # prints 1.5
 ```
 
-- In the last example, the resulting _value_ of the "inner" function (e.g., `sqrt()`) is immediately used as an argument. Because that value is used immediately, we don't have to assign it a separate variable name. It is thus known as an **anonymous variable**.
+- In the last example, the resulting _value_ of the "inner" function
+  (e.g., `sqrt()`) is immediately used as an argument for the middle
+  function (i.e. `min()`), value of which is fed in turn to the outer
+  function `print()`.  Because that value is used immediately, we don't
+  have to assign it a separate variable name. It is known as an
+  **anonymous variable**.
+- note also that in the last example, we are solely interested in the
+  side effect of the `print()` function.  It also returns it's argument
+  (`min(1.5, sqrt(3))` here) but we do not store it in a variable.
+
+R functions take two types of arguments: **positional arguments** and
+**named arguments**: the function has to know how to treat each of it's
+arguments.  For instance, we can round number _e_ to 3
+digits by `round(2.718282, 3)`.  But in order to do this, the `round()` function must know that `2.718282` is the number
+and `3` is the requested number of digits, and not the other way around.  It understands this because 
+it requires the number to be the first argument, and digits
+the second argument.  This approach works well in case of known small
+number of inputs.  However, this is not an option for functions with
+**variable number of arguments**, such as `cat()`.  `cat()` just prints
+out all of it's (potentially a large number of) inputs, except a limited number of special named
+arguments.  One of these is `sep`, the string to be placed between the other pieces
+of output (by default just a space is printed).  Note the difference in output
+between 
+```{r, eval=FALSE}
+cat(1, 2, "-", "\n")  # 1 2 - 
+cat(1, 2, sep="-", "\n")  # 1-2-
+```
+In the first case `cat()` prints `1`, `2`, `"-"`, and the line break
+`"\n"`, all separated by a space.  In the second case the name `sep`
+ensures that `"-"` is not
+printed out but instead treated as the separator between `1`, `2` and `"\n"`.
+
 
 ## Built-in R Functions
+
 As you have likely noticed, R comes with a variety of functions that are built into the language. In the above example, we used the `print()` function to print a value to the console, the `min()` function to find the smallest number among the arguments, and the `sqrt()` function to take the square root of a number. Here is a _very_ limited list of functions you can experiment with (or see a few more [here](http://www.statmethods.net/management/functions.html)).
 
 <!-- TODO: Fix the formatting for this? -->
@@ -67,27 +156,98 @@ To learn more about any individual function, look them up in the R documentation
 
 
 ## Loading Functions
-Although R comes with lots of built-in functions, you can always use more functions! **Packages** (or **libraries**) are additional sets of R functions that are written and published by the R community. Because many R users encounter the same data management/analysis challenges, programmers are able to use these libraries and thus benefit from the work of others (this is the amazing thing about the open-source community&mdash;people solve problems and then make those solutions available to others). R packages **do not** ship with the R software by default, and need to be downloaded (once) and then loaded into your interpreter's environment (each time you wish to use them). While this may seem cumbersome, the R software would be huge and slow if you had to install and load _all_ available packages to use it.
 
-Luckily, it is quite simple to install and load R packages from within R. To do so, you'll need to use the _built-in_ R functions `install.packages` and `library`. Below is an example of installing and loading the `stringr` package (which contains more handy functions for working with character strings):
+Although R comes with lots of built-in functions, you can always use
+more! **Packages** (also known as **libraries**) are additional sets of
+R functions (and data and variables) that are written and published by the R community. Because
+many R users encounter the same data management/analysis challenges,
+programmers are able to use these libraries and thus benefit from the
+work of others (this is the amazing thing about the open-source
+community&mdash;people solve problems and then make those solutions
+available to others).  Popular packages include _dplyr_ for
+manipulating data, _ggplot2_ for visualizations, and _data.table_ for
+handling large datasets.
+
+Most of the R packages **do not** ship with the R
+software by default, and need to be downloaded (once) and then loaded
+into your interpreter's environment (each time you wish to use
+them). While this may seem cumbersome, it is a necessary trade-off
+between speed and size.  R software would be huge and slow if it would
+include _all_ available packages.
+
+Luckily, it is quite simple to install and load R packages from within
+R. To do so, you'll need to use the _built-in_ R functions
+`install.packages` and `library`. Below is an example of installing and
+loading the `stringr` package (which contains many handy functions for working with character strings):
 
 ```r
 # Install the `stringr` package. Only needs to be done once on your machine
 install.packages("stringr")
+```
+<p class="alert alert-warning">
+We stress here that you need to install each package only once per computer.
+As installation may be slow and and resource-demanding, you **should not
+do it repeatedly inside your script!**.  Even more, if your script is
+also run by other users on their computers, you should get their
+explicit consent before installing additional software for them!
+The easiest remedy is to solely rely on manual installation.
+</p>
 
+Exactly the same syntax&mdash;`install.packages("stringr")`&mdash;is
+also used for re-installing it.  You may want to re-install it if a
+newer version comes out, of if you upgrade your R and receive warnings 
+about the package being built under a previous version of R.
+  
+After installation, the easiest way to get access to the functions is by
+_loading the package_:
+```{r, eval=FALSE}
 # Load the package (make stringr() functions available in this R session/program)
 library("stringr") # quotes optional here
 ```
+This makes all functions in the _stringr_ package available for R (see [the documentation](https://cran.r-project.org/web/packages/stringr/stringr.pdf) for a list of functions included with the `stringr` library).  For
+instance, if we want to pad the word "justice" from left with tildes to create a
+width-10 string, we can do
+```{r, eval=FALSE}
+str_pad("justice", 10, "left", "~")  # "~~~justice"
+```
+We can use `str_pad` function without any additional hassle because `library()` command made it
+available.
 
-- Note that when you load a package, you may receive a warning message about the package being built under a previous version of R. In all likelihood this shouldn't cause a problem, but you should pay attention to the details of the messages and keep them in mind (especially if you start getting unexpected errors).
+This is an easy and popular approach.  However, what happens if more than one package call a function by the same name?  For
+instance, many packages implement function `filter()`.  In this case
+the more recent package will _mask_ the function as defined by the
+previous package.  You will also see related warnings when you load the
+library.  In case you want to use a masked
+function you can write something like `package::function()` in order to
+call it.  For instance, we can do the example above with
+```{r, eval=FALSE}
+stringr::str_pad("justice", 10, "left", "~")  # "~~~justice"
+```
+This approach&mdash;specifying _namespace_ in front of the
+function&mdash;ensures we access the function in the right package.  If
+we call all functions in this way, we don't even need to load the
+package with `library()` command.  This is the preferred approach if you
+only need few functions from a large library.
 
-After loading the package with the `library()` function, you have access to functions that were written as part of that package (see [the documentation](https://cran.r-project.org/web/packages/stringr/stringr.pdf) for a list of functions included with the `stringr` library).
 
 
 ## Writing Functions
-Even more exciting than loading other peoples' functions is writing your own. Any time that you have a task that you may repeat throughout a script&mdash;or you simply want to organize your thinking&mdash;it's good practice to write a function to perform that task. This will limit repetition and reduce the likelihood of errors... as well as make things easier to read and understand (and thus identify flaws in your analysis).
+Even more exciting than loading other peoples' functions is writing your
+own. Any time you have a task that you may repeat throughout a
+script&mdash;or sometimes when you just want to organize your code
+better&mdash;it's a good practice to write a function to perform that task. This will limit repetition and reduce the likelihood of errors as well as make things easier to read and understand (and thus identify flaws in your analysis).
 
-Functions are named like any other variable, so we use the _assignment operator_ (**`<-`**) to store a new `function` in a variable. It is [best practice ](http://style.tidyverse.org/functions.html) to assign functions names as verbs, also written in **snake_case** (just like other variables).
+Functions are values like numbers and characters, so we use the _assignment
+operator_ (**`<-`**) to store a function into a variable.  
+<p class="alert alert-info">
+Although "values" (more precisely _objects_), functions are not [atomic
+objects](#basic-data-strucures).  But they can still be stored and
+manipulated in many ways like other objects.
+</p>
+[Tidyverse style guide](http://style.tidyverse.org/functions.html) we
+follow in this books suggests to use verbs as function names, 
+written in **snake_case** just like other variables.
+
 The best way to understand the syntax for defining a function is to look at an example:
 
 ```r
@@ -96,34 +256,100 @@ The best way to understand the syntax for defining a function is to look at an e
 make_full_name <- function(first_name, last_name) {
   # Function body: perform tasks in here
   full_name <- paste(first_name, last_name)
-
+                           # paste joins first and last name into a
+                           # single string
   # Return: what you want the function to output
   return(full_name)
 }
 
 # Call the `make_full_name` function with the values "Alice" and "Kim"
-my.name <- make_full_name("Alice", "Kim")  # "Alice Kim"
+my_name <- make_full_name("Alice", "Kim")  # "Alice Kim"
 ```
 
-Functions have a couple of pieces to them:
+Function definition contains several important pieces:
 
-- **Arguments**: the value assigned to the function variable uses the syntax `function(...)` to indicate that you are creating a function (as opposed to a number or character string). The values put between the parentheses are variables that _will contain_ the values passed in as **arguments**. For example, when we call `make_full_name("Alice", "Kim")`, the value of the first argument (`"Alice"`) will be assigned to the first variable (`first.name`), and the value of the second argument (`"Kim"`) will be assigned to the second variable (`last.name`).
+- The value assigned to the function variable uses the
+    syntax `function(....)` to indicate that you are creating a function
+    (as opposed to a number or character string).  
+	
+-  If you want to feed your function with certain
+    inputs, these must be referred somehow inside of your function.
+    You list these names between the parentheses in the `function(....)`
+    declaration.  These are called **formal arguments**.  Formal arguments _will
+    contain_ the values passed in when calling the function (called
+    **actual arguments**).  For example, when we
+    call `make_full_name("Alice", "Kim")`, the value of the first
+    actual argument (`"Alice"`) will be assigned to the first formal argument
+    (`first_name`), and the value of the second actual argument (`"Kim"`) will
+    be assigned to the second formal argument (`last_name`).  Inside the
+    function's body, both of these formal arguments behave exactly as
+    ordinary variables with values "Alice" and "Kim" respectively.
 
-    Importantly, we could have made the argument names anything we wanted (`name.first`, `given.name`, etc.), just as long as we then use _that variable name_ to refer to the argument while inside the function. Moreover, these argument variable names _only apply_ while inside the function. You can think of them like "nicknames" for the values. The variables `first.name`, `last.name`, and `full.name` only exist within this particular function.
+    Importantly, we could have made the formal argument names anything
+    we wanted (`name_first`, `xyz`, etc.), just as long as we then use
+    _these formal argument names_ to refer to the argument while inside
+    the function. 
+	
+	Moreover, the formal argument names _only apply_ while inside the function. You can think of them like "nicknames" for the values. The variables `first_name`, `last_name`, and `full_name` only exist within this particular function.
 
 - **Body**: The body of the function is a **block** of code that falls between curly braces **`{}`** (a "block" is represented by curly braces surrounding code statements). Note that cleanest style is to put the opening `{` immediately after the arguments list, and the closing `}` on its own line.
 
-    The function body specifies all the instructions (lines of code) that your function will perform. A function can contain as many lines of code as you want&mdash;you'll usually want more than 1 to make it worth while, but if you have more than 20 you might want to break it up into separate functions. You can use the argument variables in here, create new variables, call other functions... basically any code that you would write outside of a function can be written inside of one as well!
+    The function body specifies all the instructions (lines of code)
+    that your function will perform. A function can contain as many
+    lines of code as you want&mdash;you'll usually want more than 1 to
+    make it worth while, but if you have more than 20 you might want to
+    break it up into separate functions. You can use the formal
+    arguments here as any other variables, you can create new variables,
+    call other functions, you can even declare functions inside
+    functions... basically any code that you would write outside of a
+    function can be written inside of one as well!
+	
+	All the variables you create in the function body are **local
+	variables**.  These are only visible from within the function and
+	"will be forgotten" as soon as you return from the function.  However,
+	variables defined outside of the function are still visible from
+	within. 
 
-- **Return value**: You can specify what output a function produces by calling the `return()` function and passing that the value that you wish _your function_ to return (output). The `return()` function will execute instructions that end the current function and _return_ the flow of code execution to wherever this function was called from. Note that even though we returned a variable called `full_name`, that variable was _local_ to the function and so doesn't exist outside of it; thus we have to take the returned value and assign it to a new variable (as with `name <- make_full_name("Alice", "Kim")`).
+- **Return value** is what your function produces.  You can specify this
+    by calling the `return()` function and passing that the value that
+    you wish _your function_ to return.  It is typically the last line
+    of the function.  Note that even though we returned a variable
+    called `full_name`, that variable was _local_ to the function and so
+    doesn't exist outside of it; thus we have to store the returned
+    value into another variable if we want to use it later (as with
+    `name <- make_full_name("Alice", "Kim")`).
 
-    Because the `return()` call exits the function, it is usually the last line of code in the function. Technically, the function will return the last element defined in your function, so it is unnecessary to write a _return_ statement.
+`return()` statement is usually unnecessary as R implicitly returns
+the last object it evaluated anyway.  So we may shorten the function
+definition into
+```{r, eval=FALSE}
+make_full_name <- function(first_name, last_name) {
+  full_name <- paste(first_name, last_name)
+}
+```
+or even not store the concatenated names into `full_name`:
+```{r, eval=FALSE}
+make_full_name <- function(first_name, last_name) {
+   paste(first_name, last_name)
+}
+```
+The last evaluation was concatenating the first and last name, and
+hence the full name will be implicitly returned.
 
-We can call (execute) a function we defined the same way we called built-in functions. When we do so, R will take the **arguments** we passed in (e.g., `"Alice"` and `"Kim"`) and assign them to the _argument variables_. Then it executes each line of code in the **function body** one at a time. When it gets to the `return()` call, it will end the function and return the given value, which can then be assigned to a different variable outside of the functions.
+We can call (execute) a function we defined exactly in the same way we
+call built-in functions. When we do so, R will take the _actual
+arguments_ we passed in (e.g., `"Alice"` and `"Kim"`) and assign them to
+the _formal arguments_. Then it executes each line of code in the _function body_ one at a time. When it gets to the `return()` call, it will end the function and return the given value, which can then be assigned to a different variable outside of the function.
 
 
 ## Conditional Statements
-Functions are a way to organize and control the flow of execution (e.g., what lines of code get run in what order). In R, as in other languages, we have one other way of controlling program flow, and that is by specifying different instructions that can be run based on a different set of conditions. **Conditional statements** allow us to specify different chunks of code to run when given different contexts, which is often valuable within functions.
+Functions are one way to organize and control the flow of execution
+(e.g., what lines of code get run in what order).  There are other
+ways.  In all languages, we can specify that different instructions will
+be run based on a different set of conditions.  These are **Conditional
+statements** which specify which chunks of code will run
+depending on which conditions are true.  This is valuable both within
+and outside of functions.
 
 In an abstract sense, an conditional statement is saying:
 
@@ -146,7 +372,7 @@ if (condition) {
 
 (Note that the the `else` needs to be on the same line as the closing `}` of the `if` block. It is also possible to omit the `else` and its block).
 
-The `condition` can be any variable or expression that resolves to a logical value (`TRUE` or `FALSE`). Thus both of the below conditional statements are valid:
+The `condition` can be any variable or expression that resolves to a logical value (`TRUE` or `FALSE`). Thus both of the conditional statements below are valid:
 
 ```r
 porridge_temp <- 115 # in degrees F
@@ -181,7 +407,7 @@ test_food_temp(60)   # "This porridge is too cold!"
 test_food_temp(150)  # "This porridge is too hot!"
 ```
 
-See more about `if` and `else` in [Appendix C](#control-structures).
+See more about `if`, `else` and other related constructs in [Appendix C](#control-structures).
 
 ## Resources {-}
 - [R Function Cheatsheet](https://cran.r-project.org/doc/contrib/Short-refcard.pdf)

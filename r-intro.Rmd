@@ -145,7 +145,8 @@ z <- z + 1  # take z, add 1, and store result back in z
 print(z)  # 12
 ```
 
-### Basic Data Types
+### Basic Data Types {#basic-data-types}
+
 In the example above, we stored **numeric** values in variables. R is a **dynamically typed language**, which means that we _do not_ need to explicitly state what type of information will be stored in each variable we create. R is intelligent enough to understand that if we have code `x <- 7`, then `x` will contain a numeric value (and so we can do math upon it!)
 
 There six "basic types" (called _atomic data types_) for data in R:

@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Technical Foundations of Informatics</title>
   <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.6 and GitBook 2.6.7">
 
   <meta property="og:title" content="Technical Foundations of Informatics" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2018-10-03">
+<meta name="date" content="2018-10-06">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -191,13 +191,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="r-intro.html"><a href="r-intro.html#resources-4"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>6</b> Functions</a><ul>
-<li class="chapter" data-level="6.1" data-path="functions.html"><a href="functions.html#what-are-functions"><i class="fa fa-check"></i><b>6.1</b> What are Functions?</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="functions.html"><a href="functions.html#r-function-syntax"><i class="fa fa-check"></i><b>6.1.1</b> R Function Syntax</a></li>
-</ul></li>
-<li class="chapter" data-level="6.2" data-path="functions.html"><a href="functions.html#built-in-r-functions"><i class="fa fa-check"></i><b>6.2</b> Built-in R Functions</a></li>
-<li class="chapter" data-level="6.3" data-path="functions.html"><a href="functions.html#loading-functions"><i class="fa fa-check"></i><b>6.3</b> Loading Functions</a></li>
-<li class="chapter" data-level="6.4" data-path="functions.html"><a href="functions.html#writing-functions"><i class="fa fa-check"></i><b>6.4</b> Writing Functions</a></li>
-<li class="chapter" data-level="6.5" data-path="functions.html"><a href="functions.html#conditional-statements"><i class="fa fa-check"></i><b>6.5</b> Conditional Statements</a></li>
+<li class="chapter" data-level="6.1" data-path="functions.html"><a href="functions.html#what-are-functions"><i class="fa fa-check"></i><b>6.1</b> What are Functions?</a></li>
+<li class="chapter" data-level="6.2" data-path="functions.html"><a href="functions.html#how-to-use-functions"><i class="fa fa-check"></i><b>6.2</b> How to Use Functions</a></li>
+<li class="chapter" data-level="6.3" data-path="functions.html"><a href="functions.html#built-in-r-functions"><i class="fa fa-check"></i><b>6.3</b> Built-in R Functions</a></li>
+<li class="chapter" data-level="6.4" data-path="functions.html"><a href="functions.html#loading-functions"><i class="fa fa-check"></i><b>6.4</b> Loading Functions</a></li>
+<li class="chapter" data-level="6.5" data-path="functions.html"><a href="functions.html#writing-functions"><i class="fa fa-check"></i><b>6.5</b> Writing Functions</a></li>
+<li class="chapter" data-level="6.6" data-path="functions.html"><a href="functions.html#conditional-statements"><i class="fa fa-check"></i><b>6.6</b> Conditional Statements</a></li>
 <li class="chapter" data-level="" data-path="functions.html"><a href="functions.html#resources-5"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>7</b> Vectors</a><ul>
@@ -431,31 +430,31 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 dt &lt;-<span class="st"> </span><span class="kw">data.table</span>(<span class="dt">id=</span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">x=</span><span class="kw">rnorm</span>(<span class="dv">5</span>), <span class="dt">y=</span><span class="kw">runif</span>(<span class="dv">5</span>))
 dt</code></pre></div>
 <pre><code>##    id          x          y
-## 1:  1 -1.2602172 0.60048378
-## 2:  2  0.9061220 0.82201002
-## 3:  3 -0.7160390 0.68062870
-## 4:  4 -0.6594294 0.05003122
-## 5:  5 -1.2580854 0.93483605</code></pre>
+## 1:  1  0.5229832 0.09094617
+## 2:  2 -0.7577427 0.57112152
+## 3:  3 -0.0959820 0.81258789
+## 4:  4  0.7154781 0.17501766
+## 5:  5 -2.0225495 0.69436592</code></pre>
 <p>The result looks almost identical to a similar data frame (the only difference are the colons after the row numbers). Behind the scenes these objects are almost identical too–both objects are lists of vectors. This structural similarity allows to use data tables as drop-in replacements for dataframes, at least in some circumstances. For instance, we can extract variables with <code>$</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt<span class="op">$</span>x</code></pre></div>
-<pre><code>## [1] -1.2602172  0.9061220 -0.7160390 -0.6594294 -1.2580854</code></pre>
+<pre><code>## [1]  0.5229832 -0.7577427 -0.0959820  0.7154781 -2.0225495</code></pre>
 <p>or rows with row indices:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>),]</code></pre></div>
-<pre><code>##    id          x          y
-## 1:  2  0.9061220 0.82201002
-## 2:  4 -0.6594294 0.05003122</code></pre>
+<pre><code>##    id          x         y
+## 1:  2 -0.7577427 0.5711215
+## 2:  4  0.7154781 0.1750177</code></pre>
 <p>However, data tables use unquoted variables names (like <em>dplyr</em>) by default:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt[,x]</code></pre></div>
-<pre><code>## [1] -1.2602172  0.9061220 -0.7160390 -0.6594294 -1.2580854</code></pre>
+<pre><code>## [1]  0.5229832 -0.7577427 -0.0959820  0.7154781 -2.0225495</code></pre>
 <p>In case we need to store the variable name into another variable, with have to use the additional argument <code>with</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">var &lt;-<span class="st"> &quot;x&quot;</span>
 dt[, var, with=<span class="ot">FALSE</span>]</code></pre></div>
 <pre><code>##             x
-## 1: -1.2602172
-## 2:  0.9061220
-## 3: -0.7160390
-## 4: -0.6594294
-## 5: -1.2580854</code></pre>
+## 1:  0.5229832
+## 2: -0.7577427
+## 3: -0.0959820
+## 4:  0.7154781
+## 5: -2.0225495</code></pre>
 <p>Note also that instead of getting a vector, now we get a data.table with a single column “x” in the first. This behavior is the main culprit that when replacing data frames with data tables one may need to change quite a bit of code.</p>
 </div>
 <div id="fast-reading-and-writing" class="section level3">
@@ -467,11 +466,11 @@ dt[, var, with=<span class="ot">FALSE</span>]</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setDF</span>(dt)
 dt</code></pre></div>
 <pre><code>##   id          x          y
-## 1  1 -1.2602172 0.60048378
-## 2  2  0.9061220 0.82201002
-## 3  3 -0.7160390 0.68062870
-## 4  4 -0.6594294 0.05003122
-## 5  5 -1.2580854 0.93483605</code></pre>
+## 1  1  0.5229832 0.09094617
+## 2  2 -0.7577427 0.57112152
+## 3  3 -0.0959820 0.81258789
+## 4  4  0.7154781 0.17501766
+## 5  5 -2.0225495 0.69436592</code></pre>
 <p>Do you see that the colons after row names are gone? This means <code>dt</code> now is a data frame.</p>
 <p>Note that this function behaves very differently from what we have learned earlier: it modifies the object <em>in place</em> (by reference). We do not have to assign the result into a new variable using a construct like <code>df &lt;- setDF(dt)</code> (but we still can write like this, handy when using magrittr pipes). This is a manifestation of the power of data.tables: the object is not copied but the same object is modified in memory instead. <code>setDF</code> and <code>setDT</code> are very efficient, even huge tables are converted instantly with virtually no need for any additional memory.</p>
 <p>However, big powers come hand-in-hand with big responsibility: it is easy to forget that <code>setDF</code> modifies the function argument.</p>
@@ -524,7 +523,7 @@ dt</code></pre></div>
 ## 2:     1416    5     29 2013-01-01 05:00:00
 ## 3:     1089    5     40 2013-01-01 05:00:00</code></pre>
 <p>picks the first three lines from the data. Maybe more interestingly, we can use the special variable <code>.N</code> (the number of rows), to get the penultimate row:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[.N<span class="op">-</span><span class="dv">1</span>,]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[.N<span class="dv">-1</span>,]</code></pre></div>
 <pre><code>##    year month day dep_time sched_dep_time dep_delay arr_time
 ## 1: 2013     9  30       NA           1159        NA       NA
 ##    sched_arr_time arr_delay carrier flight tailnum origin dest air_time
