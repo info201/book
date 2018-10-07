@@ -72,7 +72,7 @@ parenthesis if you want to _call_ the function (force it to do what it
 is supposed to do).  If you leave the parenthesis out, you get the
 function definition printed on screen instead.  (Try this by issuing
 `cat` without parenthesis on the console.)  So `cat()` is actually a _function call_ while `cat` is the function.
-However, we ignore this distinction in this book.</p>
+However, we ignore this distinction here.</p>
 
 If you call any of these functions interactively, R will display the **returned value** (the output) in the console. However, the computer is not able to "read" what is written in the console&mdash;that's for humans to view! If you want the computer to be able to _use_ a returned value, you will need to give that value a name so that the computer can refer to it. That is, you need to store the returned value in a variable:
 
@@ -100,6 +100,28 @@ print(min(1.5, sqrt(3)))  # prints 1.5
 - note also that in the last example, we are solely interested in the
   side effect of the `print()` function.  It also returns it's argument
   (`min(1.5, sqrt(3))` here) but we do not store it in a variable.
+
+R functions take two types of arguments: **positional arguments** and
+**named arguments**: the function has to know how to treat each of it's
+arguments.  For instance, we can round number _e_ to 3
+digits by `round(2.718282, 3)`.  But in order to do this, the `round()` function must know that `2.718282` is the number
+and `3` is the requested number of digits, and not the other way around.  It understands this because 
+it requires the number to be the first argument, and digits
+the second argument.  This approach works well in case of known small
+number of inputs.  However, this is not an option for functions with
+**variable number of arguments**, such as `cat()`.  `cat()` just prints
+out all of it's (potentially a large number of) inputs, except a limited number of special named
+arguments.  One of these is `sep`, the string to be placed between the other pieces
+of output (by default just a space is printed).  Note the difference in output
+between 
+```{r, eval=FALSE}
+cat(1, 2, "-", "\n")  # 1 2 - 
+cat(1, 2, sep="-", "\n")  # 1-2-
+```
+In the first case `cat()` prints `1`, `2`, `"-"`, and the line break
+`"\n"`, all separated by a space.  In the second case the name `sep`
+ensures that `"-"` is not
+printed out but instead treated as the separator between `1`, `2` and `"\n"`.
 
 
 ## Built-in R Functions
