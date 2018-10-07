@@ -4,14 +4,15 @@ This chapter covers the foundational concepts for working with vectors in R. Vec
 
 ## What is a Vector?
 
-**Vectors** are _one-dimensional collections of values_ that are all
+**Vectors** are _one-dimensional ordered collections of values_ that are all
   stored in a single variable. For example, you can make a vector
   `people` that contains the character strings "Sarah", "Amit", and
   "Zhang". Alternatively, you could make a vector `numbers` that stores
   the numbers from 1 to 100. Each value in a vector is refered to as an
   **element** of that vector; thus the `people` vector would have 3
   elements, `"Sarah"`, `"Amit"`, and `"Zhang"`, and `numbers` vector
-  will have 100 elements.
+  will have 100 elements.  _Ordered_ means that once in the vector, the
+  elements will remain there in the original order.
   
 Unfortunately, there are at least five different sometimes contradicting
 definitions of what is "vector" in R.  Here we focus on **atomic
@@ -107,9 +108,11 @@ discussion above.  You are encouraged to read the help pages!
 
 
 ## Vector Indices
+
 Vectors are the fundamental structure for storing collections of data. Yet you often want to only work with _some_ of the data in a vector. This section will discuss a few ways that you can get a **subset** of elements in a vector.
 
-In particular, you can refer to individual elements in a vector by their **index**, which is the number of their position in the vector. For example, in the vector:
+In particular, you can refer to individual elements in a vector by their
+**index** (more specifically **numeric index**), which is the number of their position in the vector. For example, in the vector:
 
 ```r
 vowels <- c('a','e','i','o','u')
@@ -117,7 +120,13 @@ vowels <- c('a','e','i','o','u')
 
 The `'a'` (the first element) is at _index_ 1, `'e'` (the second element) is at index 2, and so on.
 
-- Note in R vector elements are indexed starting with `1`. This is distinct from most other programming languages which are _zero-indexed_ and so reference the first element at index `0`.
+<p class="alert alert-info">
+Note in R vector elements are indexed starting with `1` (**one-based indexing**). This is distinct from many other programming languages
+  which use **zero-based indexing** and so reference the first element
+  at index `0`.
+</p>  
+
+### Simple Numeric Indices
 
 You can retrieve a value from a vector using **bracket notation**: you refer to the element at a particular index of a vector by writing the name of the vector, followed by square brackets (**`[]`**) that contain the index of interest:
 
@@ -126,22 +135,25 @@ You can retrieve a value from a vector using **bracket notation**: you refer to 
 people <- c("Sarah", "Amit", "Zhang")
 
 # access the element at index 1
-first_person <- people[1]
-print(first_person)  # [1] "Sarah"
+people[1]  # [1] "Sarah"
 
 # access the element at index 2
-second_person <- people[2]
-print(second_person)  # [1] "Amit"
+people[2]  # [1] "Amit"
 
 # You can also use variables inside the brackets
 last_index <- length(people)  # last index is the length of the vector!
-last_person <- people[last_index]  # returns "Zhang"
+people[last_index]  # returns "Zhang"
+                    # You may want to check out the `tail()` function instead!
 ```
 
-- Don't get confused by the `[1]` in the printed output&mdash;it doesn't refer to which index you got from `people`, but what index in the _extracted_ result (e.g., stored in `first_person`) is being printed!
+Don't get confused by the `[1]` in the printed output&mdash;it doesn't refer to which index you got from `people`, but what index in the _extracted_ result (e.g., stored in `first_person`) is being printed!
 
 
-If you specify an index that is **out-of-bounds** (e.g., greater than the number of elements in the vector) in the square brackets, you will get back the value `NA`, which stands for **N**ot **A**vailable. Note that this is _not_ the _character string_ `"NA"`, but a specific logical value.
+If you specify an index that is **out-of-bounds** (e.g., greater than
+the number of elements in the vector) in the square brackets, you will
+get back the value `NA`, which stands for **N**ot **A**vailable. Note
+that this is _not_ the _character string_ `"NA"`, but a specific value,
+specially designed to denote missing data.
 
 ```r
 vowels <- c('a','e','i','o','u')
@@ -161,7 +173,8 @@ print(all_but_e) # [1] "a" "i" "o" "u"
 ```
 
 ### Multiple Indices
-Remember that in R, **everything is a vector**. This means that when you put a single number inside the square brackets, you're actually putting a _vector with a single element in it_ into the brackets So what you're really doing is specifying a **vector of indices** that you want R to extract from the vector. As such, you can put a vector of any length inside the brackets, and R will extract _all_ the elements with those indices from the vector (producing a **subset** of the vector elements):
+
+Remember that in R, **all atomic objects are vectors**. This means that when you put a single number inside the square brackets, you're actually putting a _vector with a single element in it_ into the brackets So what you're really doing is specifying a **vector of indices** that you want R to extract from the vector. As such, you can put a vector of any length inside the brackets, and R will extract _all_ the elements with those indices from the vector (producing a **subset** of the vector elements):
 
 ```r
 # Create a `colors` vector
@@ -171,30 +184,28 @@ colors <- c("red", "green", "blue", "yellow", "purple")
 indices <- c(1, 3, 4)
 
 # Retrieve the colors at those indices
-extracted <- colors[indices]
-print(extracted) # [1] "red"    "blue"   "yellow"
-
+colors[indices]  # [1] "red"    "blue"   "yellow"
 
 # Specify the index array anonymously
-others <- colors[c(2, 5)]
-print(others) # [1] "green"  "purple"
+colors[c(2, 5)]  # [1] "green"  "purple"
 ```
 
-It's incredibly common to use the **colon operator** to quickly specify a range of indices to extract:
+It's very-very handy to use the **colon operator** to quickly specify a range of indices to extract:
 
 ```r
-# Create a `colors` vector
 colors <- c("red", "green", "blue", "yellow", "purple")
 
 # Retrieve values in positions 2 through 5
 colors[2:5] # [1] "green"  "blue"   "yellow" "purple"
 ```
 
-This easily reads as _"a vector of the elements in positions 2 through 5"_.
+This easily reads as _"a vector of the elements in positions 2 through
+5"_.
 
 
 ## Modifying Vectors
-While you are unable to change the number of elements within a vector, you _are_ able to change the individual values within a vector. To achieve this, put the extracted _subset_ on the **left-hand side** of the assignment operator, and then assign the element a new value:
+
+Indexing can also be used to modify elements within the vector.  To do this, put the extracted _subset_ on the **left-hand side** of the assignment operator, and then assign the element a new value:
 
 ```r
 # Create a vector of school supplies
