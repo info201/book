@@ -130,7 +130,7 @@ To learn more about any individual function, look them up in the R documentation
 
 Although R comes with lots of built-in functions, you can always use
 more! **Packages** (also known as **libraries**) are additional sets of
-R functions that are written and published by the R community. Because
+R functions (and data and variables) that are written and published by the R community. Because
 many R users encounter the same data management/analysis challenges,
 programmers are able to use these libraries and thus benefit from the
 work of others (this is the amazing thing about the open-source
