@@ -2,38 +2,88 @@
 
 This chapter will explore how to use **functions** in R to perform advanced capabilities and actually ask questions about data. After considering a function in an abstract sense, it will discuss using built-in R functions, accessing additional functions by loading R packages, and writing your own functions.
 
+
 ## What are Functions?
-In a broad sense, a **function** is a named sequence of instructions (lines of code) that you may want to perform one or more times throughout a program. They provide a way of _encapsulating_ multiple instructions into a single "unit" that can be used in a variety of different contexts. So rather than needing to repeatedly write down all the individual instructions for "make a sandwich" every time you're hungry, you can define a `make_sandwich()` function once and then just **call** (execute) that function when you want to perform those steps.
 
-In addition to grouping instructions, functions in programming languages like R also tend to follow the mathematical definition of functions, which is a set of operations (instructions!) that are performed on some **inputs** and lead to some **outputs**. Function inputs are called **arguments** or **parameters**, and we say that these arguments are **passed** to a function (like a football). We say that a function then **returns** an output to use. For example, imagine a function that can determine the largest number in a set of numbers. That function’s **input** would be the set of numbers, and the **output** would be the largest number in the set.
+In a broad sense, a **function** is a named sequence of instructions
+(lines of code) that you may want to perform one or more times
+throughout a program. They provide a way of _encapsulating_ multiple
+instructions into a single "unit" that can be used in a variety of
+different contexts. So rather than needing to repeatedly write down all
+the individual instructions for "make a sandwich" every time you're
+hungry, you can define a `make_sandwich()` function once and then just
+**call** (execute) that function when you want to perform those steps.
+Typically, functions also accept _inputs_ so you can make the things
+slightly differently from time to time.  For instance, sometimes you may
+want to call `make_sandwich(cheese)` while another time `make_sandwich(chicken)`.
 
-### R Function Syntax
-R functions are referred to by name (technically, they are values like any other variable). As in many programming languages, we **call** a function by writing the name of the function followed immediately (no space) by parentheses `()`. Inside the parentheses, we put the **arguments** (inputs) to the function separated by commas (**`,`**). Thus computer functions look just like multi-variable mathematical functions, but with names longer than `f()`.
+In addition to grouping instructions, functions in programming languages
+also allow to model the mathematical definition of function,
+i.e. perform certain operations on a number of inputs that lead to an
+_output_.  For instance, look at the
+function `max()` that finds the largest value among numbers:
+
+```{r, eval=FALSE}
+max(1,2,3)  # 3
+```
+The inputs are numbers `1`, `2`, and `3` in parenthesis, usually called
+**arguments** or **parameters**, and we say that these arguments are
+**passed** to a function (like a football). We say that a function then
+**returns** a value, number "3" in this example, which we can either
+print or assign to a variable and use later.
+
+Finally, the functions may also have **side effects**.  An example case
+is the `cat()` function that just prints it's arguments.  For instance,
+in case of the following line of code
+```{r, eval=FALSE}
+cat("The answer is", 1+1, "\n")
+```
+we call function `cat()` with three arguments: `"The answer is"`, `2`
+(note: `1+1` will be evaluated to 2),
+and `"\n"` (the line break symbol).  However, here we may not care about the return value but in the side effect&mdash;the message being printed on the screen.
+
+
+## How to Use Functions
+
+R functions are referred to by name (technically, they are values like
+any other variable, just not atomic values). As in many programming
+languages, we **call** a function by writing the name of the function
+followed immediately (no space) by parentheses `()`. Inside the
+parentheses, we put the **arguments** (inputs) to the function separated
+by commas (**`,`**). Thus computer functions look just like
+multi-variable mathematical functions, but usually with fancier names than `f()`.
 
 ```r
-# call the print() function, pass it "Hello world" value as an argument
-print("Hello world")  # "Hello world"
-
 # call the sqrt() function, passing it 25 as an argument
 sqrt(25)  # 5, square root of 25
+
+# count number of characters in "Hello world" as an argument
+nchar("Hello world")  # 11, note: space is a character too
 
 # call the min() function, pass it 1, 6/8, AND 4/3 as arguments
 # this is an example of a function that takes multiple args
 min(1, 6/8, 4/3)  # 0.75, (6/8 is the smallest value)
 ```
 
-- _Note:_ To keep functions and variables distinct, we try to always include empty parentheses `()` when referring to a function by name. This does not mean that the function takes no arguments, it is just a useful shorthand for indicating that something is a function.
+To keep functions and ordinary variables distinct, we include empty parentheses `()` when referring to a function by name. This does not mean that the function takes no arguments, it is just a useful shorthand for indicating that something is a function.
+
+<p class="alert alert-info">**Note:** You always need to supply the
+parenthesis if you want to _call_ the function (force it to do what it
+is supposed to do).  If you leave the parenthesis out, you get the
+function definition printed on screen instead.  (Try this by issuing
+`cat` without parenthesis on the console.)  So `cat()` is actually a _function call_ while `cat` is the function.
+However, we ignore this distinction in this book.</p>
 
 If you call any of these functions interactively, R will display the **returned value** (the output) in the console. However, the computer is not able to "read" what is written in the console&mdash;that's for humans to view! If you want the computer to be able to _use_ a returned value, you will need to give that value a name so that the computer can refer to it. That is, you need to store the returned value in a variable:
 
 ```r
 # store min value in smallest.number variable
-smallest.number <- min(1, 6/8, 4/3)
+smallest_number <- min(1, 6/8, 4/3)
 
 # we can then use the variable as normal, such as for a comparison
-min.is.big <- smallest.number > 1  # FALSE
+min_is_big <- smallest_number > 1  # FALSE
 
-# we can also use functions directly when storing to variables
+# we can also use functions directly when doing computations
 phi <- .5 + sqrt(5)/2  # 1.618...
 
 # we can even pass the result of a function as an argument to another!
@@ -41,9 +91,19 @@ phi <- .5 + sqrt(5)/2  # 1.618...
 print(min(1.5, sqrt(3)))  # prints 1.5
 ```
 
-- In the last example, the resulting _value_ of the "inner" function (e.g., `sqrt()`) is immediately used as an argument. Because that value is used immediately, we don't have to assign it a separate variable name. It is thus known as an **anonymous variable**.
+- In the last example, the resulting _value_ of the "inner" function
+  (e.g., `sqrt()`) is immediately used as an argument for the middle
+  function (i.e. `min()`), value of which is fed in turn to the outer
+  function `print()`.  Because that value is used immediately, we don't
+  have to assign it a separate variable name. It is known as an
+  **anonymous variable**.
+- note also that in the last example, we are solely interested in the
+  side effect of the `print()` function.  It also returns it's argument
+  (`min(1.5, sqrt(3))` here) but we do not store it in a variable.
+
 
 ## Built-in R Functions
+
 As you have likely noticed, R comes with a variety of functions that are built into the language. In the above example, we used the `print()` function to print a value to the console, the `min()` function to find the smallest number among the arguments, and the `sqrt()` function to take the square root of a number. Here is a _very_ limited list of functions you can experiment with (or see a few more [here](http://www.statmethods.net/management/functions.html)).
 
 <!-- TODO: Fix the formatting for this? -->
@@ -67,21 +127,79 @@ To learn more about any individual function, look them up in the R documentation
 
 
 ## Loading Functions
-Although R comes with lots of built-in functions, you can always use more functions! **Packages** (or **libraries**) are additional sets of R functions that are written and published by the R community. Because many R users encounter the same data management/analysis challenges, programmers are able to use these libraries and thus benefit from the work of others (this is the amazing thing about the open-source community&mdash;people solve problems and then make those solutions available to others). R packages **do not** ship with the R software by default, and need to be downloaded (once) and then loaded into your interpreter's environment (each time you wish to use them). While this may seem cumbersome, the R software would be huge and slow if you had to install and load _all_ available packages to use it.
 
-Luckily, it is quite simple to install and load R packages from within R. To do so, you'll need to use the _built-in_ R functions `install.packages` and `library`. Below is an example of installing and loading the `stringr` package (which contains more handy functions for working with character strings):
+Although R comes with lots of built-in functions, you can always use
+more! **Packages** (also known as **libraries**) are additional sets of
+R functions that are written and published by the R community. Because
+many R users encounter the same data management/analysis challenges,
+programmers are able to use these libraries and thus benefit from the
+work of others (this is the amazing thing about the open-source
+community&mdash;people solve problems and then make those solutions
+available to others).  Popular packages include _dplyr_ for
+manipulating data, _ggplot2_ for visualizations, and _data.table_ for
+handling large datasets.
+
+Most of the R packages **do not** ship with the R
+software by default, and need to be downloaded (once) and then loaded
+into your interpreter's environment (each time you wish to use
+them). While this may seem cumbersome, it is a necessary trade-off
+between speed and size.  R software would be huge and slow if it would
+include _all_ available packages.
+
+Luckily, it is quite simple to install and load R packages from within
+R. To do so, you'll need to use the _built-in_ R functions
+`install.packages` and `library`. Below is an example of installing and
+loading the `stringr` package (which contains many handy functions for working with character strings):
 
 ```r
 # Install the `stringr` package. Only needs to be done once on your machine
 install.packages("stringr")
+```
+<p class="alert alert-warning">
+We stress here that you need to install each package only once per computer.
+As installation may be slow and and resource-demanding, you **should not
+do it repeatedly inside your script!**.  Even more, if your script is
+also run by other users on their computers, you should get their
+explicit consent before installing additional software for them!
+The easiest remedy is to solely rely on manual installation.
+</p>
 
+Exactly the same syntax&mdash;`install.packages("stringr")`&mdash;is
+also used for re-installing it.  You may want to re-install it if a
+newer version comes out, of if you upgrade your R and receive warnings 
+about the package being built under a previous version of R.
+  
+After installation, the easiest way to get access to the functions is by
+_loading the package_:
+```{r, eval=FALSE}
 # Load the package (make stringr() functions available in this R session/program)
 library("stringr") # quotes optional here
 ```
+This makes all functions in the _stringr_ package available for R (see [the documentation](https://cran.r-project.org/web/packages/stringr/stringr.pdf) for a list of functions included with the `stringr` library).  For
+instance, if we want to pad the word "justice" from left with tildes to create a
+width-10 string, we can do
+```{r, eval=FALSE}
+str_pad("justice", 10, "left", "~")  # "~~~justice"
+```
+We can use `str_pad` function without any additional hassle because `library()` command made it
+available.
 
-- Note that when you load a package, you may receive a warning message about the package being built under a previous version of R. In all likelihood this shouldn't cause a problem, but you should pay attention to the details of the messages and keep them in mind (especially if you start getting unexpected errors).
+This is an easy and popular approach.  However, what happens if more than one package call a function by the same name?  For
+instance, many packages implement function `filter()`.  In this case
+the more recent package will _mask_ the function as defined by the
+previous package.  You will also see related warnings when you load the
+library.  In case you want to use a masked
+function you can write something like `package::function()` in order to
+call it.  For instance, we can do the example above with
+```{r, eval=FALSE}
+stringr::str_pad("justice", 10, "left", "~")  # "~~~justice"
+```
+This approach&mdash;specifying _namespace_ in front of the
+function&mdash;ensures we access the function in the right package.  If
+we call all functions in this way, we don't even need to load the
+package with `library()` command.  This is the preferred approach if you
+only need few functions from a large library.
 
-After loading the package with the `library()` function, you have access to functions that were written as part of that package (see [the documentation](https://cran.r-project.org/web/packages/stringr/stringr.pdf) for a list of functions included with the `stringr` library).
 
 
 ## Writing Functions
