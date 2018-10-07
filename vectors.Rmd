@@ -203,6 +203,14 @@ colors[2:5] # [1] "green"  "blue"   "yellow" "purple"
 This easily reads as _"a vector of the elements in positions 2 through
 5"_.
 
+<p class="alert alert-info">
+The object returned by multiple indexing (and also by a single index) is
+a **copy of the original**, unlike in some other programming
+languages.  These are good news in terms of avoiding unexpected effects:
+modifying the returned copy does not affect the original.
+However, copying large objects may be costly and make your code slow and sluggish.
+</p>  
+
 
 ### Logical Indexing
 
