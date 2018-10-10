@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Technical Foundations of Informatics</title>
   <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
-  <meta name="generator" content="bookdown 0.6 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
 
   <meta property="og:title" content="Technical Foundations of Informatics" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2018-10-07">
+<meta name="date" content="2018-10-10">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -218,13 +218,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#resources-6"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="lists.html"><a href="lists.html"><i class="fa fa-check"></i><b>8</b> Lists</a><ul>
-<li class="chapter" data-level="8.1" data-path="lists.html"><a href="lists.html#what-is-a-list"><i class="fa fa-check"></i><b>8.1</b> What is a List?</a><ul>
-<li class="chapter" data-level="8.1.1" data-path="lists.html"><a href="lists.html#creating-lists"><i class="fa fa-check"></i><b>8.1.1</b> Creating Lists</a></li>
-<li class="chapter" data-level="8.1.2" data-path="lists.html"><a href="lists.html#accessing-lists"><i class="fa fa-check"></i><b>8.1.2</b> Accessing Lists</a></li>
-<li class="chapter" data-level="8.1.3" data-path="lists.html"><a href="lists.html#list-indices"><i class="fa fa-check"></i><b>8.1.3</b> List Indices</a></li>
-<li class="chapter" data-level="8.1.4" data-path="lists.html"><a href="lists.html#modifying-lists"><i class="fa fa-check"></i><b>8.1.4</b> Modifying Lists</a></li>
+<li class="chapter" data-level="8.1" data-path="lists.html"><a href="lists.html#what-is-a-list"><i class="fa fa-check"></i><b>8.1</b> What is a List?</a></li>
+<li class="chapter" data-level="8.2" data-path="lists.html"><a href="lists.html#creating-lists"><i class="fa fa-check"></i><b>8.2</b> Creating Lists</a></li>
+<li class="chapter" data-level="8.3" data-path="lists.html"><a href="lists.html#accessing-list-elements"><i class="fa fa-check"></i><b>8.3</b> Accessing List Elements</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="lists.html"><a href="lists.html#extracting-named-elements-with"><i class="fa fa-check"></i><b>8.3.1</b> Extracting named elements with <code>$</code></a></li>
+<li class="chapter" data-level="8.3.2" data-path="lists.html"><a href="lists.html#list-indices"><i class="fa fa-check"></i><b>8.3.2</b> List Indices</a></li>
+<li class="chapter" data-level="8.3.3" data-path="lists.html"><a href="lists.html#modifying-lists"><i class="fa fa-check"></i><b>8.3.3</b> Modifying Lists</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="lists.html"><a href="lists.html#the-lapply-function"><i class="fa fa-check"></i><b>8.2</b> The <code>lapply()</code> Function</a></li>
+<li class="chapter" data-level="8.4" data-path="lists.html"><a href="lists.html#the-lapply-function"><i class="fa fa-check"></i><b>8.4</b> The <code>lapply()</code> Function</a></li>
 <li class="chapter" data-level="" data-path="lists.html"><a href="lists.html#resources-7"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>9</b> Data Frames</a><ul>
@@ -431,32 +432,32 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table)
 dt &lt;-<span class="st"> </span><span class="kw">data.table</span>(<span class="dt">id=</span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">x=</span><span class="kw">rnorm</span>(<span class="dv">5</span>), <span class="dt">y=</span><span class="kw">runif</span>(<span class="dv">5</span>))
 dt</code></pre></div>
-<pre><code>##    id          x         y
-## 1:  1  0.5213876 0.1500300
-## 2:  2  0.9392670 0.7514377
-## 3:  3  0.7917135 0.1369614
-## 4:  4 -0.6806879 0.8890503
-## 5:  5 -1.7589843 0.1944049</code></pre>
+<pre><code>##    id          x          y
+## 1:  1 -0.7115973 0.53075803
+## 2:  2 -0.3004335 0.73692797
+## 3:  3  0.3111305 0.55294991
+## 4:  4 -0.9577410 0.33257866
+## 5:  5  0.1785049 0.02977919</code></pre>
 <p>The result looks almost identical to a similar data frame (the only difference are the colons after the row numbers). Behind the scenes these objects are almost identical too–both objects are lists of vectors. This structural similarity allows to use data tables as drop-in replacements for dataframes, at least in some circumstances. For instance, we can extract variables with <code>$</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt<span class="op">$</span>x</code></pre></div>
-<pre><code>## [1]  0.5213876  0.9392670  0.7917135 -0.6806879 -1.7589843</code></pre>
+<pre><code>## [1] -0.7115973 -0.3004335  0.3111305 -0.9577410  0.1785049</code></pre>
 <p>or rows with row indices:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>),]</code></pre></div>
 <pre><code>##    id          x         y
-## 1:  2  0.9392670 0.7514377
-## 2:  4 -0.6806879 0.8890503</code></pre>
+## 1:  2 -0.3004335 0.7369280
+## 2:  4 -0.9577410 0.3325787</code></pre>
 <p>However, data tables use unquoted variables names (like <em>dplyr</em>) by default:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt[,x]</code></pre></div>
-<pre><code>## [1]  0.5213876  0.9392670  0.7917135 -0.6806879 -1.7589843</code></pre>
+<pre><code>## [1] -0.7115973 -0.3004335  0.3111305 -0.9577410  0.1785049</code></pre>
 <p>In case we need to store the variable name into another variable, with have to use the additional argument <code>with</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">var &lt;-<span class="st"> &quot;x&quot;</span>
 dt[, var, with=<span class="ot">FALSE</span>]</code></pre></div>
 <pre><code>##             x
-## 1:  0.5213876
-## 2:  0.9392670
-## 3:  0.7917135
-## 4: -0.6806879
-## 5: -1.7589843</code></pre>
+## 1: -0.7115973
+## 2: -0.3004335
+## 3:  0.3111305
+## 4: -0.9577410
+## 5:  0.1785049</code></pre>
 <p>Note also that instead of getting a vector, now we get a data.table with a single column “x” in the first. This behavior is the main culprit that when replacing data frames with data tables one may need to change quite a bit of code.</p>
 </div>
 <div id="fast-reading-and-writing" class="section level3">
@@ -467,12 +468,12 @@ dt[, var, with=<span class="ot">FALSE</span>]</code></pre></div>
 <p>If your computer has enough memory and speed is not an issue, your interest for data tables may end here. You can just transform data table into a data frame with <code>setDF</code> (and the other way around with <code>setDT</code>). Let’s transform our data table to data frame:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setDF</span>(dt)
 dt</code></pre></div>
-<pre><code>##   id          x         y
-## 1  1  0.5213876 0.1500300
-## 2  2  0.9392670 0.7514377
-## 3  3  0.7917135 0.1369614
-## 4  4 -0.6806879 0.8890503
-## 5  5 -1.7589843 0.1944049</code></pre>
+<pre><code>##   id          x          y
+## 1  1 -0.7115973 0.53075803
+## 2  2 -0.3004335 0.73692797
+## 3  3  0.3111305 0.55294991
+## 4  4 -0.9577410 0.33257866
+## 5  5  0.1785049 0.02977919</code></pre>
 <p>Do you see that the colons after row names are gone? This means <code>dt</code> now is a data frame.</p>
 <p>Note that this function behaves very differently from what we have learned earlier: it modifies the object <em>in place</em> (by reference). We do not have to assign the result into a new variable using a construct like <code>df &lt;- setDF(dt)</code> (but we still can write like this, handy when using magrittr pipes). This is a manifestation of the power of data.tables: the object is not copied but the same object is modified in memory instead. <code>setDF</code> and <code>setDT</code> are very efficient, even huge tables are converted instantly with virtually no need for any additional memory.</p>
 <p>However, big powers come hand-in-hand with big responsibility: it is easy to forget that <code>setDF</code> modifies the function argument.</p>
@@ -525,7 +526,7 @@ dt</code></pre></div>
 ## 2:     1416    5     29 2013-01-01 05:00:00
 ## 3:     1089    5     40 2013-01-01 05:00:00</code></pre>
 <p>picks the first three lines from the data. Maybe more interestingly, we can use the special variable <code>.N</code> (the number of rows), to get the penultimate row:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[.N<span class="dv">-1</span>,]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights[.N<span class="op">-</span><span class="dv">1</span>,]</code></pre></div>
 <pre><code>##    year month day dep_time sched_dep_time dep_delay arr_time
 ## 1: 2013     9  30       NA           1159        NA       NA
 ##    sched_arr_time arr_delay carrier flight tailnum origin dest air_time

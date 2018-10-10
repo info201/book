@@ -1,24 +1,37 @@
 # Lists
 
-This chapter covers an additional R data type called lists. Lists are somewhat similar to vectors, but can store more types of data and more details _about_ that data (with some cost). Lists are R's version of a **Map**, which is a common and extremely useful way of organizing data in a computer program. Moreover: lists are used to create _data frames_, which is the primary data storage type used for working with sets of real data in R. This chapter will cover how to create and access elements in a list, as well as how to apply functions to lists or vectors.
+This chapter covers an additional R data type called lists. Lists are
+somewhat similar to atomic vectors (they are "generalized vectors"!),
+but can store more types of data and more details _about_ that data
+(with some cost).  Lists are another way to create R's version of a
+**Map** data structure, a common and extremely useful way of organizing data in a computer program. Moreover: lists are used to create _data frames_, which is the primary data storage type used for working with sets of real data in R. This chapter will cover how to create and access elements in a list, as well as how to apply functions to lists or vectors.
 
 ## What is a List?
-A **List** is a lot like a vector, in that it is a _one-dimensional collection of data_. However, lists have two main differences from vectors:
 
-1. Unlike a vector, you can store elements of _different types_ in a list: e.g., a list can contain numeric data _and_ character string data.
+A **List** is a lot like an atomic vector, in that it is a
+_one-dimensional collection of data_. However, lists have a few major differences from vectors:
 
-2. Elements in a list can be **tagged** with with names which you can use to easily refer to them&mdash;rather than talking about the list's "element \#1", we can talk about the list's "`first_name` element".
+1. Unlike a vector, you can store elements of _different types_ in a
+list: e.g., a list can contain numeric data _and_ character string data,
+functions, and even other lists.
 
-The second feature is the most significant, as it allows you to use lists to create a type of **map**. In computer programming, a map (or "mapping") is a way of associating one value with another. The most common real-world example is a _dictionary_ or _encyclopedia_: a dictionary associates each word with it's definition&mdash;you can "look up" a definition by using the word itself, rather than needing to look up the 3891st definition in the book. In fact, this same data structure is called a `dictionary` in the Python programming language!
+2. Because lists can contain any type of data, they are much less efficient
+as vectors.  The vectorized operations that can handle atomic vectors on
+the fly usually fail in case of lists.  Hence one should prefer atomic
+vectors over lists if possible.
+
+3. Elements in a list can also be named, but unlike in case of vector,
+there exists a convenient shorthand `$`-construct to extract named elements from lists.
 
 Lists are extremely useful for organizing data. They allow you to group together data like a person's name (characters), job title (characters), salary (number), and whether they are in a union (logical)&mdash;and you don't have to remember whether whether the person's name or title was the first element!
 
-<p class="alert alert-info">Note: <em>technically</em>, you can create named elements in a vector, but this is very rarely done. Compared to vectors, lists provide a simpler syntax for accessing named elements.</p>
+## Creating Lists
 
-### Creating Lists
 You create a list by using the `list()` function and passing it any number of **arguments** (separated by commas) that you want to make up that list&mdash;similar to the `c()` functon for vectors.
 
-However, you can (and should) specify the _tags_ for each element in the list by putting the name of the tag (which is like a variable name), followed by an equal symbol (**`=`**), followed by the value you want to go in the list and be associated with that tag. For example:
+However, if your list contains heterogenous elements, it is usually a
+good idea to specify the _tags_ for each element in the list in the same
+way you can give names to vector elements in `c()`&mdash;by putting the name tag (which is like a variable name), followed by an equal symbol (**`=`**), followed by the value you want to go in the list and be associated with that tag. For example:
 
 ```r
 person <- list(first_name = "Ada", job = "Programmer", salary = 78000, in_union = TRUE)
@@ -30,16 +43,32 @@ This creates a list of 4 elements: `"Ada"` which is tagged with `first_name`, `"
 
 - The use of the `=` symbol here is an example of assigning a value to a specific named argument. You can actually use this syntax for _any_ function (e.g., rather than listing arguments in order, you can explicit "assign" a value to each argument), but it is more common to just use the normal order of the arguments if there aren't very many.
 
-It is possible to create a list without tagging the elements:
+It is possible to create a list without tagging the elements and assign
+names later:
 
 ```r
 person_alt <- list("Ada", "Programmer", 78000, TRUE)
+names(person_alt) <- c("name", "work", "income", "memebership")
 ```
+This is usually more error-prone and harder way to create lists
+manually, but when you automatically create lists in your code, it is a
+good alternative.
 
-But it will make code harder to read and more error-prone, so isn't as common.
+Finally, empty lists of given lenth can also be created using the
+general `vector()` function.  For instance, `vector("list", 5)`, creates
+a list of five `NULL` elements.  This is a good approach if you are
+updating the list later.
 
 
-### Accessing Lists
+## Accessing List Elements
+
+There are four ways to access elements in lists.  Three of these reflect
+atomic vector indexing, the `$`-construct is unique for lists.  However, there
+are important differences.
+
+
+### Extracting named elements with `$`
+
 If you printed out the above `person` list, you would see the following:
 
 ```
@@ -57,7 +86,12 @@ $in_union
 [1] TRUE
 ```
 
-Notice that the output lists each tag name prepended with a dollar sign (**`$`**) symbol, and then on the following line the vector that is the element itself. The `$` symbol is one of the easiest ways of accessing list elements (which can't be done with vectors).
+Notice that the output lists each tag name prepended with a dollar sign
+(**`$`**) symbol, and then on the following line the vector that is the
+element itself. The `$` symbol is one of the easiest ways of accessing
+list elements.  There are no analogue for atomic vectors, even for named
+vectors.  `$` extractor only exists for lists (and such data structures
+that are derived from lists like data frames).
 
 Because list elements are (usually) tagged, you can access them by their tag name rather than by the index number you used with vectors. You do this by using **dollar notation**: you refer to the element with a particular tag in a list by writing the name of the list, followed by a `$`, followed by the element's tag:
 
