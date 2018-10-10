@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Technical Foundations of Informatics</title>
   <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
-  <meta name="generator" content="bookdown 0.6 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
 
   <meta property="og:title" content="Technical Foundations of Informatics" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2018-10-07">
+<meta name="date" content="2018-10-10">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -218,13 +218,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html#resources-6"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="lists.html"><a href="lists.html"><i class="fa fa-check"></i><b>8</b> Lists</a><ul>
-<li class="chapter" data-level="8.1" data-path="lists.html"><a href="lists.html#what-is-a-list"><i class="fa fa-check"></i><b>8.1</b> What is a List?</a><ul>
-<li class="chapter" data-level="8.1.1" data-path="lists.html"><a href="lists.html#creating-lists"><i class="fa fa-check"></i><b>8.1.1</b> Creating Lists</a></li>
-<li class="chapter" data-level="8.1.2" data-path="lists.html"><a href="lists.html#accessing-lists"><i class="fa fa-check"></i><b>8.1.2</b> Accessing Lists</a></li>
-<li class="chapter" data-level="8.1.3" data-path="lists.html"><a href="lists.html#list-indices"><i class="fa fa-check"></i><b>8.1.3</b> List Indices</a></li>
-<li class="chapter" data-level="8.1.4" data-path="lists.html"><a href="lists.html#modifying-lists"><i class="fa fa-check"></i><b>8.1.4</b> Modifying Lists</a></li>
+<li class="chapter" data-level="8.1" data-path="lists.html"><a href="lists.html#what-is-a-list"><i class="fa fa-check"></i><b>8.1</b> What is a List?</a></li>
+<li class="chapter" data-level="8.2" data-path="lists.html"><a href="lists.html#creating-lists"><i class="fa fa-check"></i><b>8.2</b> Creating Lists</a></li>
+<li class="chapter" data-level="8.3" data-path="lists.html"><a href="lists.html#accessing-list-elements"><i class="fa fa-check"></i><b>8.3</b> Accessing List Elements</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="lists.html"><a href="lists.html#extracting-named-elements-with"><i class="fa fa-check"></i><b>8.3.1</b> Extracting named elements with <code>$</code></a></li>
+<li class="chapter" data-level="8.3.2" data-path="lists.html"><a href="lists.html#list-indices"><i class="fa fa-check"></i><b>8.3.2</b> List Indices</a></li>
+<li class="chapter" data-level="8.3.3" data-path="lists.html"><a href="lists.html#modifying-lists"><i class="fa fa-check"></i><b>8.3.3</b> Modifying Lists</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="lists.html"><a href="lists.html#the-lapply-function"><i class="fa fa-check"></i><b>8.2</b> The <code>lapply()</code> Function</a></li>
+<li class="chapter" data-level="8.4" data-path="lists.html"><a href="lists.html#the-lapply-function"><i class="fa fa-check"></i><b>8.4</b> The <code>lapply()</code> Function</a></li>
 <li class="chapter" data-level="" data-path="lists.html"><a href="lists.html#resources-7"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>9</b> Data Frames</a><ul>
@@ -415,35 +416,38 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="lists" class="section level1">
 <h1><span class="header-section-number">Chapter 8</span> Lists</h1>
-<p>This chapter covers an additional R data type called lists. Lists are somewhat similar to vectors, but can store more types of data and more details <em>about</em> that data (with some cost). Lists are R’s version of a <strong>Map</strong>, which is a common and extremely useful way of organizing data in a computer program. Moreover: lists are used to create <em>data frames</em>, which is the primary data storage type used for working with sets of real data in R. This chapter will cover how to create and access elements in a list, as well as how to apply functions to lists or vectors.</p>
+<p>This chapter covers an additional R data type called lists. Lists are somewhat similar to atomic vectors (they are “generalized vectors”!), but can store more types of data and more details <em>about</em> that data (with some cost). Lists are another way to create R’s version of a <strong>Map</strong> data structure, a common and extremely useful way of organizing data in a computer program. Moreover: lists are used to create <em>data frames</em>, which is the primary data storage type used for working with sets of real data in R. This chapter will cover how to create and access elements in a list, as well as how to apply functions to lists or vectors.</p>
 <div id="what-is-a-list" class="section level2">
 <h2><span class="header-section-number">8.1</span> What is a List?</h2>
-<p>A <strong>List</strong> is a lot like a vector, in that it is a <em>one-dimensional collection of data</em>. However, lists have two main differences from vectors:</p>
+<p>A <strong>List</strong> is a lot like an atomic vector, in that it is a <em>one-dimensional collection of data</em>. However, lists have a few major differences from vectors:</p>
 <ol style="list-style-type: decimal">
-<li><p>Unlike a vector, you can store elements of <em>different types</em> in a list: e.g., a list can contain numeric data <em>and</em> character string data.</p></li>
-<li><p>Elements in a list can be <strong>tagged</strong> with with names which you can use to easily refer to them—rather than talking about the list’s “element #1”, we can talk about the list’s “<code>first_name</code> element”.</p></li>
+<li><p>Unlike a vector, you can store elements of <em>different types</em> in a list: e.g., a list can contain numeric data <em>and</em> character string data, functions, and even other lists.</p></li>
+<li><p>Because lists can contain any type of data, they are much less efficient as vectors. The vectorized operations that can handle atomic vectors on the fly usually fail in case of lists. Hence one should prefer atomic vectors over lists if possible.</p></li>
+<li><p>Elements in a list can also be named, but unlike in case of vector, there exists a convenient shorthand <code>$</code>-construct to extract named elements from lists.</p></li>
 </ol>
-<p>The second feature is the most significant, as it allows you to use lists to create a type of <strong>map</strong>. In computer programming, a map (or “mapping”) is a way of associating one value with another. The most common real-world example is a <em>dictionary</em> or <em>encyclopedia</em>: a dictionary associates each word with it’s definition—you can “look up” a definition by using the word itself, rather than needing to look up the 3891st definition in the book. In fact, this same data structure is called a <code>dictionary</code> in the Python programming language!</p>
 <p>Lists are extremely useful for organizing data. They allow you to group together data like a person’s name (characters), job title (characters), salary (number), and whether they are in a union (logical)—and you don’t have to remember whether whether the person’s name or title was the first element!</p>
-<p class="alert alert-info">
-Note: <em>technically</em>, you can create named elements in a vector, but this is very rarely done. Compared to vectors, lists provide a simpler syntax for accessing named elements.
-</p>
-<div id="creating-lists" class="section level3">
-<h3><span class="header-section-number">8.1.1</span> Creating Lists</h3>
+</div>
+<div id="creating-lists" class="section level2">
+<h2><span class="header-section-number">8.2</span> Creating Lists</h2>
 <p>You create a list by using the <code>list()</code> function and passing it any number of <strong>arguments</strong> (separated by commas) that you want to make up that list—similar to the <code>c()</code> functon for vectors.</p>
-<p>However, you can (and should) specify the <em>tags</em> for each element in the list by putting the name of the tag (which is like a variable name), followed by an equal symbol (<strong><code>=</code></strong>), followed by the value you want to go in the list and be associated with that tag. For example:</p>
+<p>However, if your list contains heterogenous elements, it is usually a good idea to specify the <em>tags</em> for each element in the list in the same way you can give names to vector elements in <code>c()</code>—by putting the name tag (which is like a variable name), followed by an equal symbol (<strong><code>=</code></strong>), followed by the value you want to go in the list and be associated with that tag. For example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first_name =</span> <span class="st">&quot;Ada&quot;</span>, <span class="dt">job =</span> <span class="st">&quot;Programmer&quot;</span>, <span class="dt">salary =</span> <span class="dv">78000</span>, <span class="dt">in_union =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p>This creates a list of 4 elements: <code>&quot;Ada&quot;</code> which is tagged with <code>first_name</code>, <code>&quot;Programmer&quot;</code> which is tagged with <code>job</code>, <code>78000</code> which is tagged with <code>salary</code>, and <code>TRUE</code> which is tagged with <code>in_union</code>.</p>
 <ul>
 <li><p>Note that you can have <em>vectors</em> as elements of a list. In fact, each of these scalar values are really vectors (of length 1)!</p></li>
 <li><p>The use of the <code>=</code> symbol here is an example of assigning a value to a specific named argument. You can actually use this syntax for <em>any</em> function (e.g., rather than listing arguments in order, you can explicit “assign” a value to each argument), but it is more common to just use the normal order of the arguments if there aren’t very many.</p></li>
 </ul>
-<p>It is possible to create a list without tagging the elements:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">person_alt &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;Ada&quot;</span>, <span class="st">&quot;Programmer&quot;</span>, <span class="dv">78000</span>, <span class="ot">TRUE</span>)</code></pre></div>
-<p>But it will make code harder to read and more error-prone, so isn’t as common.</p>
+<p>It is possible to create a list without tagging the elements and assign names later:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">person_alt &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;Ada&quot;</span>, <span class="st">&quot;Programmer&quot;</span>, <span class="dv">78000</span>, <span class="ot">TRUE</span>)
+<span class="kw">names</span>(person_alt) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;work&quot;</span>, <span class="st">&quot;income&quot;</span>, <span class="st">&quot;memebership&quot;</span>)</code></pre></div>
+<p>This is usually more error-prone and harder way to create lists manually, but when you automatically create lists in your code, it is a good alternative.</p>
+<p>Finally, empty lists of given lenth can also be created using the general <code>vector()</code> function. For instance, <code>vector(&quot;list&quot;, 5)</code>, creates a list of five <code>NULL</code> elements. This is a good approach if you are updating the list later.</p>
 </div>
-<div id="accessing-lists" class="section level3">
-<h3><span class="header-section-number">8.1.2</span> Accessing Lists</h3>
+<div id="accessing-list-elements" class="section level2">
+<h2><span class="header-section-number">8.3</span> Accessing List Elements</h2>
+<p>There are four ways to access elements in lists. Three of these reflect atomic vector indexing, the <code>$</code>-construct is unique for lists. However, there are important differences.</p>
+<div id="extracting-named-elements-with" class="section level3">
+<h3><span class="header-section-number">8.3.1</span> Extracting named elements with <code>$</code></h3>
 <p>If you printed out the above <code>person</code> list, you would see the following:</p>
 <pre><code>&gt; print(person)
 $first_name
@@ -457,7 +461,7 @@ $salary
 
 $in_union
 [1] TRUE</code></pre>
-<p>Notice that the output lists each tag name prepended with a dollar sign (<strong><code>$</code></strong>) symbol, and then on the following line the vector that is the element itself. The <code>$</code> symbol is one of the easiest ways of accessing list elements (which can’t be done with vectors).</p>
+<p>Notice that the output lists each tag name prepended with a dollar sign (<strong><code>$</code></strong>) symbol, and then on the following line the vector that is the element itself. The <code>$</code> symbol is one of the easiest ways of accessing list elements. There are no analogue for atomic vectors, even for named vectors. <code>$</code> extractor only exists for lists (and such data structures that are derived from lists like data frames).</p>
 <p>Because list elements are (usually) tagged, you can access them by their tag name rather than by the index number you used with vectors. You do this by using <strong>dollar notation</strong>: you refer to the element with a particular tag in a list by writing the name of the list, followed by a <code>$</code>, followed by the element’s tag:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first_name =</span> <span class="st">&quot;Ada&quot;</span>, <span class="dt">job =</span> <span class="st">&quot;Programmer&quot;</span>, <span class="dt">salary =</span> <span class="dv">78000</span>, <span class="dt">in_union =</span> <span class="ot">TRUE</span>)
 
@@ -486,7 +490,7 @@ person<span class="op">$</span>salary &lt;-<span class="st"> </span>person<span 
 </ul>
 </div>
 <div id="list-indices" class="section level3">
-<h3><span class="header-section-number">8.1.3</span> List Indices</h3>
+<h3><span class="header-section-number">8.3.2</span> List Indices</h3>
 <p>Whether or not a list element has a tag, you can also access it by its numeric index (i.e., if it is the 1st, 2nd, etc. item in the list). You do this by using <strong>double-bracket notation</strong>: you refer to the element at a particular index of a list by writing the name of the list, followed by double square brackets (<strong><code>[[]]</code></strong>) that contain the index of interest:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># note: a list and not a vector, even though elements have the same types</span>
 animals &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;Aardvark&quot;</span>, <span class="st">&quot;Baboon&quot;</span>, <span class="st">&quot;Camel&quot;</span>)
@@ -509,7 +513,7 @@ person[[name_to_use]]  <span class="co"># [1] &quot;Bob&quot;</span>
 person[[<span class="dv">1</span>]]  <span class="co"># [1] &quot;Bob&quot;</span>
 person[[<span class="dv">4</span>]]  <span class="co"># [1] TRUE</span></code></pre></div>
 <div id="single-vs.double-brackets" class="section level4">
-<h4><span class="header-section-number">8.1.3.1</span> Single vs. Double Brackets</h4>
+<h4><span class="header-section-number">8.3.2.1</span> Single vs. Double Brackets</h4>
 <p class="alert alert-warning">
 <strong>Watch out!</strong>: vectors use <strong><em>single</em></strong>-bracket notation for accessing by index, but lists use <strong><em>double</em></strong>-bracket notation for accessing by index!
 </p>
@@ -538,7 +542,7 @@ my_list[<span class="dv">1</span><span class="op">:</span><span class="dv">3</sp
 </div>
 </div>
 <div id="modifying-lists" class="section level3">
-<h3><span class="header-section-number">8.1.4</span> Modifying Lists</h3>
+<h3><span class="header-section-number">8.3.3</span> Modifying Lists</h3>
 <p>Similarly to vectors, you can add and modify list elements. However, lists also enable you to <em>remove</em> elements.</p>
 <p>You can add elements to a list simply by assigning a value to a tag (or index) in the list that doesn’t yet exist:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first_name =</span> <span class="st">&quot;Ada&quot;</span>, <span class="dt">job =</span> <span class="st">&quot;Programmer&quot;</span>, <span class="dt">salary =</span> <span class="dv">78000</span>, <span class="dt">in_union =</span> <span class="ot">TRUE</span>)
@@ -565,7 +569,7 @@ a_list[[<span class="dv">2</span>]] &lt;-<span class="st"> </span><span class="o
 </div>
 </div>
 <div id="the-lapply-function" class="section level2">
-<h2><span class="header-section-number">8.2</span> The <code>lapply()</code> Function</h2>
+<h2><span class="header-section-number">8.4</span> The <code>lapply()</code> Function</h2>
 <p>Since everything is a vector in R, and most functions are <em>vectorized</em>, you can can pass most functions (e.g., <code>paste()</code>, <code>round()</code>, etc.) a vector as an argument and the function will be applied to each item in the vector. It “just works”. But if you want to apply a function to each item in a <em>list</em>, you need to put in a bit more effort.</p>
 <p>In particular, you need to use a function called <strong><code>lapply()</code></strong> (for <em><strong>l</strong>ist apply</em>). This function takes two arguments: the first is a list or vector you want to modify, and the second is a function you want to “apply” to each item in that list. For example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># list, not a vector</span>
