@@ -25,14 +25,21 @@ vectors over lists if possible.
 3. Elements in a list can also be named, but unlike in case of vector,
 there exists a convenient shorthand `$`-construct to extract named elements from lists.
 
-Lists are extremely useful for organizing data. They allow you to group together data like a person's name (characters), job title (characters), salary (number), and whether they are in a union (logical)&mdash;and you don't have to remember whether whether the person's name or title was the first element!
+Lists are extremely useful for organizing data. They allow you to group
+together data like a person's name (characters), job title (characters),
+salary (number), and whether they are in a union (logical)&mdash;and you
+don't have to remember whether the person's name or title was the first
+element!  In this sense lists can be used as a quick alternative to
+formal classes, objects that can store heterogeneous data in a
+consistent way.  This is one of the primary uses of lists.
+
 
 ## Creating Lists
 
 You create a list by using the `list()` function and passing it any number of **arguments** (separated by commas) that you want to make up that list&mdash;similar to the `c()` functon for vectors.
 
 However, if your list contains heterogenous elements, it is usually a
-good idea to specify the _tags_ for each element in the list in the same
+good idea to specify the **names** (or **tags**) for each element in the list in the same
 way you can give names to vector elements in `c()`&mdash;by putting the name tag (which is like a variable name), followed by an equal symbol (**`=`**), followed by the value you want to go in the list and be associated with that tag. For example:
 
 ```r
@@ -65,8 +72,16 @@ about it below), and prints the components themselves right after the names.
 
 - The use of the `=` symbol here is an example of assigning a value to a specific named argument. You can actually use this syntax for _any_ function (e.g., rather than listing arguments in order, you can explicit "assign" a value to each argument), but it is more common to just use the normal order of the arguments if there aren't very many.
 
-It is possible to create a list without tagging the elements and assign
-names later:
+Note that if you need to, you can get a _vector_ of element tags using the `names()` function:
+
+```r
+person <- list(first_name = "Ada", job = "Programmer", salary = 78000, in_union = TRUE)
+names(person)  # [1] "first_name" "job"  "salary"  "in_union"
+```
+This is useful for understanding the structure of variables that may have come from other data sources.
+
+It is possible to create a list without tagging the elements, and assign
+names later if you need these:
 
 ```r
 person_alt <- list("Ada", 78000, TRUE)
@@ -111,7 +126,7 @@ updating the list later.
 ## Accessing List Elements
 
 There are four ways to access elements in lists.  Three of these reflect
-atomic vector indexing, the `$`-construct is unique for lists.  However, there
+atomic vector indexing, the [`$`-construct](#lists-dollar-shortcut) is unique for lists.  However, there
 are important differences.
 
 
@@ -162,7 +177,7 @@ components: `animals[[1:2]]` will give you _subscript out of bounds_.
 As above, this is a design choice: as list components may be of
 different type, you may not be able to mold these into a single vector.
 
-<p class="alert alert-note>
+<p class="alert alert-info">
 There are ways to merge components into a vector, given they are of the
 same type.  For instance `Reduce(c, animals)` will convert the animals
 into a vector of suitable type.  Ditto with `as.character(animals)`.
@@ -189,14 +204,13 @@ person[c("first_name", "salary")]
 person[["first_name"]]  # [1] "Bob"
 person[["salary"]]  # [1] 77000
 ```
-
 As in case of positional indexing, single brackets return a sublist
 while double brackets return the corresponding component itself.
 
 
-### Indexing by Logical vector
+### Indexing by Logical Vector
 
-Finally, as in case of atomic vectors, we can use logical indices with
+As in case of atomic vectors, we can use logical indices with
 lists too.  There are a few differences though:
 
 * one can only extract sublists, not individual components.
@@ -204,10 +218,10 @@ lists too.  There are a few differences though:
   first and last name.  `person[[c(TRUE, FALSE, FALSE, FALSE)]]` will
   fail.
 * many operators are vectorized but they are not "listified".  You
-  cannot use operators like `>` or `+` for comparing lists.  Hence the
-  powerful logical indexing operations like `x[x > 0]` are not possible
+  cannot do math like `*` or `+` with lists.  Hence the
+  powerful logical indexing operations like `x[x > 0]` are in general not possible
   with lists.  This substantially reduces the potential usage cases of
-  logical indexing for lists.
+  logical indexing.
 
 For instance, we can extract all components of certain name from the
 list:
@@ -216,7 +230,8 @@ planes <- list("Airbus 380"=c(seats=575, speed=0.85),
                "Boeing 787"=c(seats=290, speed=0.85),
                "Airbus 350"=c(seats=325, speed=0.85))
                            # cruise speed, Mach
-planes[startsWith(names(planes), "Airbus")]
+planes[startsWith(names(planes), "Airbus")]  # extract components, names
+                           # of which starting with "Airbus"
 ## $`Airbus 380`
 ##  seats  speed 
 ## 575.00   0.85 
@@ -225,75 +240,44 @@ planes[startsWith(names(planes), "Airbus")]
 ##  seats  speed 
 ## 325.00   0.85 
 ```
+<p class="alert alert-info">
+However, certain vectorized operations, such as `>` or `==` also work with lists
+that contain single numeric values as their elements.  It seems to be
+hard to come up with general rules, so we recommed not to rely on this
+behaviour in code.
+</p>
 
 
-#### Single vs. Double Brackets
-<p class="alert alert-warning">**Watch out!**: vectors use ___single___-bracket notation for accessing by index, but lists use ___double___-bracket notation for accessing by index!</p>
+### Extracting named elements with `$` {#lists-dollar-shortcut}
 
-This is because the single-bracket syntax for vectors isn't actually selecting by index: rather it is **filtering** by whatever vector is inside the brackets (which may be just a single element: the index number to extract). In R, single brackets _always_ mean to filter the collection. So if you put single-brackets after a list, what you're actually doing is getting a filtered **sub-list** of the elements that have those indices, just as single brackets on a vector return a subset of elements in that vector:
+Finally, there is a very convenient `$`-shortcut alternative for
+extracting individual components.
+If you printed out one of the named lists above, for instance `person`, you would see the following:
 
-```r
-my_list <- list('A', 201, TRUE, 'rhinoceros')
-
-# SINGLE brackets returns a list
-my_list[1]
-            # [[1]]
-            # [1] "A"
-
-# DOUBLE brackets returns a vector
-my_list[[1]]  # [1] "A"
-
-# can use any vector as the argument to single brackets, just like with vectors
-my_list[1:3]
-            # [[1]]
-            # [1] "A"
-            #
-            # [[2]]
-            # [1] 201
-            #
-            # [[3]]
-            # [1] TRUE
+```{r, eval=FALSE}
+person <- list(name = "Ada", job = "Programmer")
+print(person)
+## $first_name
+## [1] "Ada"
+## 
+## $job
+## [1] "Programmer"
 ```
 
-In sum, remember that **single-brackets gives a list, double-brackets gives a list element**. You almost always want to be refering to the value itself (the vector&mdash;everything is a vector!) rather than a list, so almost always want to use ___double-brackets___ when accessing lists.
-
-
-### Extracting named elements with `$`
-
-If you printed out the above `person` list, you would see the following:
-
-```
-> print(person)
-$first_name
-[1] "Ada"
-
-$job
-[1] "Programmer"
-
-$salary
-[1] 78000
-
-$in_union
-[1] TRUE
-```
-
-Notice that the output lists each tag name prepended with a dollar sign
+Notice that the output lists each name tag prepended with a dollar sign
 (**`$`**) symbol, and then on the following line the vector that is the
-element itself. The `$` symbol is one of the easiest ways of accessing
-list elements.  There are no analogue for atomic vectors, even for named
-vectors.  `$` extractor only exists for lists (and such data structures
-that are derived from lists like data frames).
+element itself.  You can retrieve individual components in a similar
+fashion, the **dollar notation** is one of the easiest ways of accessing
+list elements.  You refer to the particular element in the list with its
+tag by writing the name of the list, followed by a `$`, followed by the element's tag:
+```{r, eval=FALSE}
 
-Because list elements are (usually) tagged, you can access them by their tag name rather than by the index number you used with vectors. You do this by using **dollar notation**: you refer to the element with a particular tag in a list by writing the name of the list, followed by a `$`, followed by the element's tag:
-
-```r
-person <- list(first_name = "Ada", job = "Programmer", salary = 78000, in_union = TRUE)
-
-person$first_name  # [1] "Ada"
-person$salary  # [1] 78000
+person$name  # [1] "Ada"
+person$job  # [1] "Programmer"
 ```
-
-(See below for other options for accessing list elements).
+Obviously, this only works for named lists.  There are no dollar notation analogue for atomic vectors, even for named
+vectors.  `$` extractor only exists for lists (and such data structures
+that are derived from lists, like data frames).  
 
 You can almost read the dollar sign as like an "apostrophe s" (possessive) in English: so `person$salary` would mean "the `person` list**'s** `salary` value".
 
@@ -314,22 +298,67 @@ person$salary <- person$salary * 1.15  # a 15% raise!
 print(person$salary)  # [1] 89700
 ```
 
-Note that if you need to, you can get a _vector_ of element tags using the `names()` function:
-
-```r
-person <- list(first_name = "Ada", job = "Programmer", salary = 78000, in_union = TRUE)
-names(person)  # [1] "first_name" "job"  "salary"  "in_union"
-```
-
-- This is useful for understanding the structure of variables that may have come from other data sources.
+Dollar-notation is a drop-in replacement to double-brackets extraction
+given you know the name of the component.  If you do not&mdash;as is
+often the case when programming, you have to rely on double bracket approach.
 
 
+### Single vs. Double Brackets vs. Dollar
+
+The list indexing may be confusing: we have single and double brackets,
+indexing by position and name, and finally the dollar-notation.  Which
+is the right thing to do?  As is so often the case, it depends.
+
+* **Dollar notation** is the quickest and easiest way to extract a single
+  named component in case you know it's name.
+  
+* **Double brackets** is very much a more verbose alternative to the dollar notation.  It returns a single component exactly as the dollar notation.  However, it also allows one to decide later which components to extract.  (This is terribly useful in programs!)  For instance,
+we can decide if we want to use someones first or last name:
+```{r, eval=FALSE}
+person <- list(first_name = "Bob", last_name = "Wong", salary = 77000)
 name_to_use <- "last_name"  # choose name (i.e., based on formality)
 person[[name_to_use]]  # [1] "Wong"
+
 name_to_use <- "first_name"  # change name to use
 person[[name_to_use]]  # [1] "Bob"
+```
+<p class="alert alert-info">
+Note: you can often hear that double brackets return a vector.  This is only true if the corresponding element is a vector.  But they always return the element!
+</p>
 
-You can also use double-bracket notation to access an element by its tag if you put a character string (in `""`) of the tag name inside the brackets. This is particularly useful if you want the tag itself to be a variable!
+
+* **Single brackets** is the most powerful and universal way of indexing.  If work in a very similar fashion than vector indexing.  The main caveat here is that it _returns a sub-list_, not a vector.  (But note that in case of vectors, single-bracket indexing returns a _sub-vector_.)  It allows by position, by names, and by logical vector.  
+In some sense it is **filtering** by whatever vector is inside the brackets (which may have just a single element).  In R, single brackets _always_ mean to filter the collection where the collection may be either atomic vector or list.  So if you put single-brackets after a collection, you get a filtered version of the same collection, containing the desired elements.  The type of the collection, list or atomic vector, is not affected.
+
+<p class="alert alert-warning">**Watch out!**: In vectors, single-bracket notation returns a vector, in lists single-bracket notation returns a list!
+</p>
+
+We recap this section by an example:
+
+```r
+animal <- list(class='A', count=201, endangered=TRUE, species='rhinoceros')
+
+## SINGLE brackets returns a list
+animal[1]
+## $class
+## [1] "A"
+
+## can use any vector as the argument to single brackets, just like with vectors
+animal[c("species", "endangered")]
+## $species
+## [1] "rhinoceros"
+## 
+## $endangered
+## [1] TRUE
+
+# DOUBLE brackets returns the element (here its a vector)!
+animal[[1]]  # [1] "A"
+
+```
+
+Finally, all these methods can also be used for assignment.  Just put any of these construct on the left side of the assignment operator `<-`.
+
+
 
 ### Modifying Lists
 Similarly to vectors, you can add and modify list elements. However, lists also enable you to _remove_ elements.
