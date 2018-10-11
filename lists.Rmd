@@ -8,8 +8,8 @@ but can store more types of data and more details _about_ that data
 
 ## What is a List?
 
-A **List** is a lot like an atomic vector, in that it is a
-_one-dimensional ordered positional collection of data_.  Exaclyt as in
+A **List** is a lot like an atomic vector.  It is also a
+_one-dimensional positional ordered collection of data_.  Exaclyt as in
 case of atomic vectors, list elements preserve their order, and they
 have a well-defined position in the list.  However, lists have a few major differences from vectors:
 
@@ -19,7 +19,7 @@ functions, and even other lists.
 
 2. Because lists can contain any type of data, they are much less efficient
 as vectors.  The vectorized operations that can handle atomic vectors on
-the fly usually fail in case of lists.  Hence one should prefer atomic
+the fly usually fail in case of lists, or may work substantially slower.  Hence one should prefer atomic
 vectors over lists if possible.
 
 3. Elements in a list can also be named, but unlike in case of vector,
@@ -330,7 +330,7 @@ Note: you can often hear that double brackets return a vector.  This is only tru
 * **Single brackets** is the most powerful and universal way of indexing.  If work in a very similar fashion than vector indexing.  The main caveat here is that it _returns a sub-list_, not a vector.  (But note that in case of vectors, single-bracket indexing returns a _sub-vector_.)  It allows by position, by names, and by logical vector.  
 In some sense it is **filtering** by whatever vector is inside the brackets (which may have just a single element).  In R, single brackets _always_ mean to filter the collection where the collection may be either atomic vector or list.  So if you put single-brackets after a collection, you get a filtered version of the same collection, containing the desired elements.  The type of the collection, list or atomic vector, is not affected.
 
-<p class="alert alert-warning">**Watch out!**: In vectors, single-bracket notation returns a vector, in lists single-bracket notation returns a list!
+<p class="alert alert-warning">**Watch out**: In vectors, single-bracket notation returns a vector, in lists single-bracket notation returns a list!
 </p>
 
 We recap this section by an example:
@@ -351,8 +351,11 @@ animal[c("species", "endangered")]
 ## $endangered
 ## [1] TRUE
 
-# DOUBLE brackets returns the element (here its a vector)!
+## DOUBLE brackets returns the element (here its a vector)!
 animal[[1]]  # [1] "A"
+
+## Dollar notation is equivalent to the double brackets
+animal$class  # [1] "A"
 
 ```
 
@@ -360,11 +363,11 @@ Finally, all these methods can also be used for assignment.  Just put any of the
 
 
 
-### Modifying Lists
-Similarly to vectors, you can add and modify list elements. However, lists also enable you to _remove_ elements.
+## Modifying Lists
+
+As in the case with atomic vectors, you can assign new values to existing elements.  However, lists also enable dedicated syntax to _remove_ elements.  (Remember, you can always "unselect" an element in a vector, including list, by using negative positional index.)
 
 You can add elements to a list simply by assigning a value to a tag (or index) in the list that doesn't yet exist:
-
 ```r
 person <- list(first_name = "Ada", job = "Programmer", salary = 78000, in_union = TRUE)
 
@@ -379,6 +382,7 @@ person$age  # [1] 40
 person[[10]] <- "Tenth field"
 # elements 6-9 will be NULL
 ```
+This parallel fairly closely with atomic vectors.
 
 You can also remove elements by assiging the special value `NULL` to their tag or index:
 
@@ -392,7 +396,7 @@ print(a_list)
             # [[2]]
             # [1] TRUE
 ```
-
+There is no analogue Here to atomic vectors.
 
 
 
