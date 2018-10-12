@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2018-10-10">
+<meta name="date" content="2018-10-11">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -221,11 +221,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.1" data-path="lists.html"><a href="lists.html#what-is-a-list"><i class="fa fa-check"></i><b>8.1</b> What is a List?</a></li>
 <li class="chapter" data-level="8.2" data-path="lists.html"><a href="lists.html#creating-lists"><i class="fa fa-check"></i><b>8.2</b> Creating Lists</a></li>
 <li class="chapter" data-level="8.3" data-path="lists.html"><a href="lists.html#accessing-list-elements"><i class="fa fa-check"></i><b>8.3</b> Accessing List Elements</a><ul>
-<li class="chapter" data-level="8.3.1" data-path="lists.html"><a href="lists.html#extracting-named-elements-with"><i class="fa fa-check"></i><b>8.3.1</b> Extracting named elements with <code>$</code></a></li>
-<li class="chapter" data-level="8.3.2" data-path="lists.html"><a href="lists.html#list-indices"><i class="fa fa-check"></i><b>8.3.2</b> List Indices</a></li>
-<li class="chapter" data-level="8.3.3" data-path="lists.html"><a href="lists.html#modifying-lists"><i class="fa fa-check"></i><b>8.3.3</b> Modifying Lists</a></li>
+<li class="chapter" data-level="8.3.1" data-path="lists.html"><a href="lists.html#lists-indexing-by-position"><i class="fa fa-check"></i><b>8.3.1</b> Indexing by position</a></li>
+<li class="chapter" data-level="8.3.2" data-path="lists.html"><a href="lists.html#indexing-by-name"><i class="fa fa-check"></i><b>8.3.2</b> Indexing by Name</a></li>
+<li class="chapter" data-level="8.3.3" data-path="lists.html"><a href="lists.html#indexing-by-logical-vector"><i class="fa fa-check"></i><b>8.3.3</b> Indexing by Logical Vector</a></li>
+<li class="chapter" data-level="8.3.4" data-path="lists.html"><a href="lists.html#lists-dollar-shortcut"><i class="fa fa-check"></i><b>8.3.4</b> Extracting named elements with <code>$</code></a></li>
+<li class="chapter" data-level="8.3.5" data-path="lists.html"><a href="lists.html#single-vs.double-brackets-vs.dollar"><i class="fa fa-check"></i><b>8.3.5</b> Single vs. Double Brackets vs. Dollar</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="lists.html"><a href="lists.html#the-lapply-function"><i class="fa fa-check"></i><b>8.4</b> The <code>lapply()</code> Function</a></li>
+<li class="chapter" data-level="8.4" data-path="lists.html"><a href="lists.html#modifying-lists"><i class="fa fa-check"></i><b>8.4</b> Modifying Lists</a></li>
+<li class="chapter" data-level="8.5" data-path="lists.html"><a href="lists.html#the-lapply-function"><i class="fa fa-check"></i><b>8.5</b> The <code>lapply()</code> Function</a></li>
 <li class="chapter" data-level="" data-path="lists.html"><a href="lists.html#resources-7"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>9</b> Data Frames</a><ul>
@@ -572,9 +575,9 @@ good &lt;-<span class="st"> </span><span class="cf">function</span>()
 microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<span class="kw">baad</span>(), <span class="kw">soso</span>(), <span class="kw">good</span>())</code></pre></div>
 <pre><code>## Unit: microseconds
 ##    expr      min        lq       mean    median        uq      max neval
-##  baad() 1013.075 1031.6250 1704.55797 1695.5935 2351.6490 2799.635   100
-##  soso()   47.938   48.2425   70.64227   49.9765   51.9485 2062.477   100
-##  good()    2.666    2.7920    9.71689    3.7875    4.7300  573.869   100</code></pre>
+##  baad() 1020.647 1040.4745 1725.50689 1741.4645 2381.8785 2702.308   100
+##  soso()   47.839   48.1620   71.02041   50.1080   51.8645 2104.121   100
+##  good()    2.673    2.8125    9.41450    3.3755    4.4350  567.226   100</code></pre>
 <p>When comparing the median values, we can see that the middle example is 10x slower than the vectorized example, and the first version is almost 300x slower!</p>
 <p>The above holds for “true” vectorized operations. R provides many pseudo-vectorizers (the lapply family) that may be handy in many circumstances, but not in case you need speed. Under the hood these functions just use a loop. We can demonstrate this by adding one more function to our family:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">soso2 &lt;-<span class="st"> </span><span class="cf">function</span>() {
@@ -583,10 +586,10 @@ microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<
 microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<span class="kw">baad</span>(), <span class="kw">soso</span>(), <span class="kw">soso2</span>(), <span class="kw">good</span>())</code></pre></div>
 <pre><code>## Unit: microseconds
 ##     expr      min        lq       mean    median        uq      max neval
-##   baad() 1003.556 1044.4180 1586.56832 1069.9695 2230.5435 2479.860   100
-##   soso()   47.982   48.4280   50.40421   49.8280   50.7525   85.643   100
-##  soso2()  259.613  269.1750  344.57474  284.6425  304.4020 1531.091   100
-##   good()    2.694    2.9695   15.39815    3.5560    4.1135 1178.777   100</code></pre>
+##   baad() 1023.150 1042.3255 1647.45757 1639.9345 2235.8390 2520.252   100
+##   soso()   47.806   48.2765   49.89410   49.3025   50.8405   62.844   100
+##  soso2()  259.294  270.3180  289.72443  277.1005  287.6410 1229.318   100
+##   good()    2.684    2.8335    3.66597    3.3270    4.0805   11.163   100</code></pre>
 <p>As it turns out, <code>sapply</code> is much slower than plain for-loop. Lapply-family is not a substitute for true vectorization. However, one may argue that <code>soso2</code> function is easier to understand than explicit loop in <code>soso</code>. In any case, it is easier to type when working on the interactive console.</p>
 <p>Finally, it should be noted that when performing truly vectorized operations on long vectors, the overhead of R interpreter becomes negligible and the resulting speed is almost equalt to that of the corresponding C code. And optimized R code can easily beat non-optimized C.</p>
 </div>
