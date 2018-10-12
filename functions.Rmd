@@ -43,7 +43,7 @@ we call function `cat()` with three arguments: `"The answer is"`, `2`
 and `"\n"` (the line break symbol).  However, here we may not care about the return value but in the side effect&mdash;the message being printed on the screen.
 
 
-## How to Use Functions
+## How to Use Functions {#how-to-use-functions}
 
 R functions are referred to by name (technically, they are values like
 any other variable, just not atomic values). As in many programming
@@ -77,9 +77,9 @@ To keep functions and ordinary variables distinct, we include empty parentheses 
 <p class="alert alert-info">**Note:** You always need to supply the
 parenthesis if you want to _call_ the function (force it to do what it
 is supposed to do).  If you leave the parenthesis out, you get the
-function definition printed on screen instead.  (Try this by issuing
-`cat` without parenthesis on the console.)  So `cat()` is actually a _function call_ while `cat` is the function.
-However, we ignore this distinction here.</p>
+function definition printed on screen instead.  So `cat()` is actually a _function call_ while `cat` is the function.  You can see that it is a function if you just print it as `print(cat)`.
+However, we ignore this distinction here.
+</p>
 
 If you call any of these functions interactively, R will display the **returned value** (the output) in the console. However, the computer is not able to "read" what is written in the console&mdash;that's for humans to view! If you want the computer to be able to _use_ a returned value, you will need to give that value a name so that the computer can refer to it. That is, you need to store the returned value in a variable:
 
