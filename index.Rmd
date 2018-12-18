@@ -25,19 +25,16 @@ favicon: img/favicon.png
 #to include only in html (centered)
 #knitr::include_graphics('img/cover-img.png', dpi = NA)
 ```
+<div class="alert alert-danger">
+<p>**Announcement**: Starting in 2019, readings for the INFO 201 course will come from the textbook <em>Programming Skills for Data Science</em>, which is available to UW students for free via <a href="https://learning.oreilly.com/library/view/programming-skills-for/9780135159071/" target="_blank">SafariBooksOnline</a> or <a href="https://www.amazon.com/gp/product/0135133106" target="_blank">in print</a>. Unless specifically directed to a section of this online text, you should refer to the <em>Programming Skills for Data Science</em> textbook. 
 
+This resource will remain online for free access into the future.</p></div>
 
 ![](img/cover-img.png)
 <h2>About the Book</h2>
 
 
 This book covers the foundation skills necessary to start ___writing computer programs to work with data___ using modern and reproducible techniques. It requires no technical background. These materials were developed for the **INFO 201: Technical Foundations of Informatics** course taught at the [University of Washington Information School](https://ischool.uw.edu/); however they have been structured to be an online resource for anyone hoping to learn to work with information using programmatic approaches.
-
-<!-- TODO: Include previous course offerings? -->
-
-<!-- TODO: Include author contact info? -->
-
-<p class="alert alert-warning">This book is currently in **beta** status. Visit us on [GitHub](https://github.com/info201/book) to contribute improvements.</p>
 
 ![Creative Commons License](img/index/by-nc-sa.png)
 This book is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).

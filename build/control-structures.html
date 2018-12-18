@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Technical Foundations of Informatics</title>
   <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
 
   <meta property="og:title" content="Technical Foundations of Informatics" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2018-10-11">
+<meta name="date" content="2018-12-18">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -574,10 +574,10 @@ good &lt;-<span class="st"> </span><span class="cf">function</span>()
    <span class="kw">sqrt</span>(seq)
 microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<span class="kw">baad</span>(), <span class="kw">soso</span>(), <span class="kw">good</span>())</code></pre></div>
 <pre><code>## Unit: microseconds
-##    expr      min        lq       mean    median        uq      max neval
-##  baad() 1020.647 1040.4745 1725.50689 1741.4645 2381.8785 2702.308   100
-##  soso()   47.839   48.1620   71.02041   50.1080   51.8645 2104.121   100
-##  good()    2.673    2.8125    9.41450    3.3755    4.4350  567.226   100</code></pre>
+##    expr      min        lq       mean    median        uq       max neval
+##  baad() 1298.966 1639.9680 3196.47031 2264.6695 4681.5515 12521.992   100
+##  soso()   57.445   60.5405  100.76151   66.7690   81.8385  2942.372   100
+##  good()    5.557    6.2190   19.82199    8.1285   10.0400  1109.065   100</code></pre>
 <p>When comparing the median values, we can see that the middle example is 10x slower than the vectorized example, and the first version is almost 300x slower!</p>
 <p>The above holds for “true” vectorized operations. R provides many pseudo-vectorizers (the lapply family) that may be handy in many circumstances, but not in case you need speed. Under the hood these functions just use a loop. We can demonstrate this by adding one more function to our family:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">soso2 &lt;-<span class="st"> </span><span class="cf">function</span>() {
@@ -586,10 +586,10 @@ microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<
 microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<span class="kw">baad</span>(), <span class="kw">soso</span>(), <span class="kw">soso2</span>(), <span class="kw">good</span>())</code></pre></div>
 <pre><code>## Unit: microseconds
 ##     expr      min        lq       mean    median        uq      max neval
-##   baad() 1023.150 1042.3255 1647.45757 1639.9345 2235.8390 2520.252   100
-##   soso()   47.806   48.2765   49.89410   49.3025   50.8405   62.844   100
-##  soso2()  259.294  270.3180  289.72443  277.1005  287.6410 1229.318   100
-##   good()    2.684    2.8335    3.66597    3.3270    4.0805   11.163   100</code></pre>
+##   baad() 1339.245 1588.1480 2738.43668 2117.6470 3433.8680 7464.029   100
+##   soso()   57.962   60.7225   71.34766   65.8805   75.6400  117.047   100
+##  soso2()  324.304  364.2735  432.50992  390.2240  445.6665 1975.400   100
+##   good()    5.681    6.2125    7.88787    7.0950    8.9055   17.737   100</code></pre>
 <p>As it turns out, <code>sapply</code> is much slower than plain for-loop. Lapply-family is not a substitute for true vectorization. However, one may argue that <code>soso2</code> function is easier to understand than explicit loop in <code>soso</code>. In any case, it is easier to type when working on the interactive console.</p>
 <p>Finally, it should be noted that when performing truly vectorized operations on long vectors, the overhead of R interpreter becomes negligible and the resulting speed is almost equalt to that of the corresponding C code. And optimized R code can easily beat non-optimized C.</p>
 </div>
@@ -689,6 +689,7 @@ gitbook.start({
 "facebook": false,
 "twitter": false,
 "google": false,
+"linkedin": false,
 "weibo": false,
 "instapper": false,
 "vk": false,
