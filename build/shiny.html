@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Technical Foundations of Informatics</title>
+  <title>Chapter 16 The shiny Framework | Technical Foundations of Informatics</title>
   <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Technical Foundations of Informatics" />
+  <meta property="og:title" content="Chapter 16 The shiny Framework | Technical Foundations of Informatics" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://info201.github.io/" />
   <meta property="og:image" content="https://info201.github.io/img/cover-img.png" />
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="info201/book" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Technical Foundations of Informatics" />
+  <meta name="twitter:title" content="Chapter 16 The shiny Framework | Technical Foundations of Informatics" />
   
   <meta name="twitter:description" content="The course reader for INFO 201: Technical Foundations of Informatics." />
   <meta name="twitter:image" content="https://info201.github.io/img/cover-img.png" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2018-12-18">
+<meta name="date" content="2019-04-03">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -36,6 +36,7 @@
 <link rel="next" href="plotly.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -60,41 +61,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -225,7 +252,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.3.2" data-path="lists.html"><a href="lists.html#indexing-by-name"><i class="fa fa-check"></i><b>8.3.2</b> Indexing by Name</a></li>
 <li class="chapter" data-level="8.3.3" data-path="lists.html"><a href="lists.html#indexing-by-logical-vector"><i class="fa fa-check"></i><b>8.3.3</b> Indexing by Logical Vector</a></li>
 <li class="chapter" data-level="8.3.4" data-path="lists.html"><a href="lists.html#lists-dollar-shortcut"><i class="fa fa-check"></i><b>8.3.4</b> Extracting named elements with <code>$</code></a></li>
-<li class="chapter" data-level="8.3.5" data-path="lists.html"><a href="lists.html#single-vs.double-brackets-vs.dollar"><i class="fa fa-check"></i><b>8.3.5</b> Single vs. Double Brackets vs. Dollar</a></li>
+<li class="chapter" data-level="8.3.5" data-path="lists.html"><a href="lists.html#single-vs.-double-brackets-vs.-dollar"><i class="fa fa-check"></i><b>8.3.5</b> Single vs. Double Brackets vs. Dollar</a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="lists.html"><a href="lists.html#modifying-lists"><i class="fa fa-check"></i><b>8.4</b> Modifying Lists</a></li>
 <li class="chapter" data-level="8.5" data-path="lists.html"><a href="lists.html#the-lapply-function"><i class="fa fa-check"></i><b>8.5</b> The <code>lapply()</code> Function</a></li>
@@ -258,7 +285,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="dplyr.html"><a href="dplyr.html#grouped-operations"><i class="fa fa-check"></i><b>10.4</b> Grouped Operations</a></li>
 <li class="chapter" data-level="10.5" data-path="dplyr.html"><a href="dplyr.html#joins"><i class="fa fa-check"></i><b>10.5</b> Joins</a></li>
-<li class="chapter" data-level="10.6" data-path="dplyr.html"><a href="dplyr.html#non-standard-evaluation-vs.standard-evaluation"><i class="fa fa-check"></i><b>10.6</b> Non-Standard Evaluation vs. Standard Evaluation</a><ul>
+<li class="chapter" data-level="10.6" data-path="dplyr.html"><a href="dplyr.html#non-standard-evaluation-vs.-standard-evaluation"><i class="fa fa-check"></i><b>10.6</b> Non-Standard Evaluation vs. Standard Evaluation</a><ul>
 <li class="chapter" data-level="10.6.1" data-path="dplyr.html"><a href="dplyr.html#explicit-standard-evaluation"><i class="fa fa-check"></i><b>10.6.1</b> Explicit Standard Evaluation</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#resources-9"><i class="fa fa-check"></i>Resources</a></li>
@@ -310,7 +337,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#resources-12"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="git-branches.html"><a href="git-branches.html"><i class="fa fa-check"></i><b>14</b> Git Branches</a><ul>
-<li class="chapter" data-level="14.1" data-path="git-branches.html"><a href="git-branches.html#git-branches"><i class="fa fa-check"></i><b>14.1</b> Git Branches</a></li>
+<li class="chapter" data-level="14.1" data-path="git-branches.html"><a href="git-branches.html#git-branches-1"><i class="fa fa-check"></i><b>14.1</b> Git Branches</a></li>
 <li class="chapter" data-level="14.2" data-path="git-branches.html"><a href="git-branches.html#merging"><i class="fa fa-check"></i><b>14.2</b> Merging</a><ul>
 <li class="chapter" data-level="14.2.1" data-path="git-branches.html"><a href="git-branches.html#merge-conflicts"><i class="fa fa-check"></i><b>14.2.1</b> Merge Conflicts</a></li>
 </ul></li>
@@ -424,8 +451,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">16.1</span> Creating Shiny Apps</h2>
 <p>Shiny is a <strong>web application framework for R</strong>. As opposed to a simple (static) web page like you’ve created with R Markdown, a <em>web application</em> is an interactive, dynamic web page—the user can click on buttons, check boxes, or input text in order to change the presentation of the data. Shiny is a <em>framework</em> in that it provides the “code” for producing and enabling this interaction, while you as the developer simply “fill in the blanks” by providing <em>variables</em> or <em>functions</em> that the provided code will utilize to create the interactive page.</p>
 <p><code>shiny</code> is another external package (like <code>dplyr</code> and <code>ggplot2</code>), so you will need to install and load it in order to use it:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;shiny&quot;</span>)  <span class="co"># once per machine</span>
-<span class="kw">library</span>(<span class="st">&quot;shiny&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;shiny&quot;</span>)  <span class="co"># once per machine</span>
+<span class="kw">library</span>(<span class="st">&quot;shiny&quot;</span>)</code></pre>
 <p>This will make all of the framework functions and variables you will need to work with available.</p>
 <div id="application-structure" class="section level3">
 <h3><span class="header-section-number">16.1.1</span> Application Structure</h3>
@@ -433,18 +460,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ol style="list-style-type: decimal">
 <li><p>The <strong>User Interface (UI)</strong> defines how the application will be <em>displayed</em> in the browser. The UI can render R content such as text or graphics just like R Markdown, but it can also include <strong>widgets</strong>, which are interactive controls for your application (think buttons or sliders). The UI can specify a <strong>layout</strong> for these components (e.g., so you can put widgets above, below, or beside one another).</p>
 <p>The UI for a Shiny application is defined as a <strong>value</strong>, usually one returned from calling a <strong>layout function</strong>. For example:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># The ui is the result of calling the `fluidPage()` layout function</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># The ui is the result of calling the `fluidPage()` layout function</span>
 my_ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
   <span class="co"># A widget: a text input box (save input in the `username` key)</span>
   <span class="kw">textInput</span>(<span class="st">&quot;username&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;What is your name?&quot;</span>),
 
   <span class="co"># An output element: a text output (for the `message` key)</span>
   <span class="kw">textOutput</span>(<span class="st">&quot;message&quot;</span>)
-)</code></pre></div>
+)</code></pre>
 <p>This UI defines a <a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html">fluidPage</a> (where the content flows “fluidly” down the page), that contains two <em>content elements</em>: a text input box where the user can type their name, and some outputted text based on the <code>message</code> variable.</p></li>
 <li><p>The <strong>Server</strong> defines the data that will be displayed through the UI. You can think of this as an interactive R script that the user will be able to “run”: the script will take in <em>inputs</em> from the user (based on their interactions) and provide <em>outputs</em> that the UI will then display. The server uses <strong>reactive expressions</strong>, which are like functions that will automatically be re-run whenever the input changes. This allows the output to be dynamic and interactive.</p>
 <p>The Server for a Shiny application is defined as a <strong>function</strong> (as opposed to the UI which is a <em>value</em>). This function takes in two <em>lists</em> as argments: an <code>input</code> and <code>output</code>. It then uses <em>render functions</em> and <em>reactive expressions</em> that assign values to the <code>output</code> list based on the <code>input</code> list. For example:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># The server is a function that takes `input` and `output` args</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># The server is a function that takes `input` and `output` args</span>
 my_server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {
   <span class="co"># assign a value to the `message` key in `output`</span>
   <span class="co"># argument is a reactive expression for showing text</span>
@@ -453,7 +480,7 @@ my_server &lt;-<span class="st"> </span><span class="cf">function</span>(input, 
     <span class="co"># for the `message` key in output</span>
     <span class="kw">return</span>(<span class="kw">paste</span>(<span class="st">&quot;Hello&quot;</span>, input<span class="op">$</span>username))
   })
-}</code></pre></div></li>
+}</code></pre></li>
 </ol>
 <p>Combined, this UI and server will allow the user to type their name into an input box, and will then say “hello” to whatever name is typed in.</p>
 <p>More details about the UI and server components can be found in the sections below.</p>
@@ -461,8 +488,8 @@ my_server &lt;-<span class="st"> </span><span class="cf">function</span>(input, 
 <h4><span class="header-section-number">16.1.1.1</span> Combining UI and Server</h4>
 <p>There are two ways of combining the UI and server:</p>
 <p>The first (newer) way is to define a file called <strong><code>app.R</code></strong>. This file should call the <a href="http://shiny.rstudio.com/reference/shiny/latest/shinyApp.html"><strong><code>shinyApp()</code></strong></a> function, which takes a UI value and Server function as arguments. For example:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># pass in the variables defined above</span>
-<span class="kw">shinyApp</span>(<span class="dt">ui =</span> my_ui, <span class="dt">server =</span> my_server)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># pass in the variables defined above</span>
+<span class="kw">shinyApp</span>(<span class="dt">ui =</span> my_ui, <span class="dt">server =</span> my_server)</code></pre>
 <p>Executing the <code>shinyApp()</code> function will start the App (you can also click the <strong>“Run App”</strong> button at the top of RStudio).</p>
 <ul>
 <li><p>Note: if you change the UI or the Server, you do <strong>not</strong> need to stop and start the app; you can simply refresh the browser or viewer window and it will reload with the new UI and server.</p></li>
@@ -470,18 +497,18 @@ my_server &lt;-<span class="st"> </span><span class="cf">function</span>(input, 
 </ul>
 <p>Using this function allows you to define your entire application (UI and Server) in a single file (which <strong>must</strong> be named <code>app.R</code>). This approach is good for simple applications that you wish to be able to share with others, since the entire application code can be listed in a single file.</p>
 <p>However, it is also possible to define the UI and server as <em>separate</em> files. This allows you to keep the presentation (UI) separated from the logic (server) of your application, making it easier to maintain and change in the future. To do this, you define two separate files: <strong><code>ui.R</code></strong> for the UI and <strong><code>server.R</code></strong> for the Server (the files <strong>must</strong> be named <code>ui.R</code> and <code>server.R</code>). In these files, you must call the functions <code>shinyUI()</code> and <code>shinyServer()</code> respectively to create the UI and server, and then RStudio will automatically combine these files together into an application:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># In ui.R file</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># In ui.R file</span>
 my_ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
   <span class="co"># define widgets</span>
 )
 
-<span class="kw">shinyUI</span>(my_ui)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># In server.R file</span>
+<span class="kw">shinyUI</span>(my_ui)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># In server.R file</span>
 my_server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {
   <span class="co"># define output reactive expressions</span>
 }
 
-<span class="kw">shinyServer</span>(my_server)</code></pre></div>
+<span class="kw">shinyServer</span>(my_server)</code></pre>
 <p>You can then run the app by using the <strong>“Run App”</strong> button at the top of RStudio:</p>
 <div class="figure">
 <img src="img/shiny/run-app.png" title="Run App button" alt="Use RStudio to run a shiny app defined in separate UI and Server files." />
@@ -497,17 +524,17 @@ my_server &lt;-<span class="st"> </span><span class="cf">function</span>(input, 
 <h3><span class="header-section-number">16.1.2</span> The UI</h3>
 <p>The UI defines how the app will be displayed in the browser. You create a UI by calling a <strong>layout function</strong> such as <code>fluidPage()</code>, which will return a UI definition that can be used by the <code>shinyUI()</code> or <code>shinyApp()</code> functions.</p>
 <p>You specify the “content” that you want the layout to contain (and hence the app to show) by passing each <strong>content element</strong> (piece of content) as an <em>argument</em> to that function:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a &quot;pseudocode&quot; example, calling a function with arguments</span>
-ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(element1, element2, element3)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a &quot;pseudocode&quot; example, calling a function with arguments</span>
+ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(element1, element2, element3)</code></pre>
 <p>Content elements are defined by calling specific <em>functions</em> that create them: for example <code>h1()</code> will create an element that has a first-level heading, <code>textInput()</code> will create an element where the user can enter text, and <code>textOutput</code> will create an element that can have dynamic (changing) content. Usually these content elements are defined as <em>nested</em> (anonymous) variables, each on its own line:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># still just calling a function with arguments!</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># still just calling a function with arguments!</span>
 ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
   <span class="kw">h1</span>(<span class="st">&quot;My App&quot;</span>),  <span class="co"># first argument</span>
   <span class="kw">textInput</span>(<span class="st">&#39;username&#39;</span>, <span class="dt">label =</span> <span class="st">&quot;What is your name?&quot;</span>),  <span class="co"># second argument</span>
   <span class="kw">textOutput</span>(<span class="st">&#39;message&#39;</span>)  <span class="co"># third argument</span>
-)</code></pre></div>
+)</code></pre>
 <p>Note that layout functions <em>themselves return content elements</em>, meaning it is possible to include a layout inside another layout. This allows you to create complex layouts by combining multiple layout elements together. For example:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(   <span class="co"># UI is a fluid page</span>
+<pre class="sourceCode r"><code class="sourceCode r">ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(   <span class="co"># UI is a fluid page</span>
   <span class="kw">titlePanel</span>(<span class="st">&quot;My Title&quot;</span>),  <span class="co"># include panel with the title (also sets browser title)</span>
 
   <span class="kw">sidebarLayout</span>(   <span class="co"># layout the page in two columns</span>
@@ -518,7 +545,7 @@ ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(
       <span class="kw">p</span>(<span class="st">&quot;main panel content goes here&quot;</span>)
     )
   )
-)</code></pre></div>
+)</code></pre>
 <p>See the <a href="http://shiny.rstudio.com/reference/shiny/latest/">Shiny documentation</a> and <a href="http://shiny.rstudio.com/gallery/">gallery</a> for details and examples of doing complex application layouts.</p>
 <p class="alert alert-info">
 Fun Fact: much of Shiny’s styling and layout structure is based on the <a href="http://getbootstrap.com/">Bootstrap</a> web framework.
@@ -553,17 +580,17 @@ Fun Fact: much of Shiny’s styling and layout structure is based on the <a href
 <p>All widget functions take at least two arguments:</p>
 <ul>
 <li>A <strong>name</strong> (as a string) for the widget’s value. This will be the <strong>“key”</strong> that will allow the server to be able to access the value the user has input (think: the key in the <code>input</code> <em>list</em>).</li>
-<li>A <strong>label</strong> (a string or content element described above) that will be shown alongside the widget and tell the user what the value represents. Note that this can be an empty string (<code>&quot;&quot;</code>) if you don’t want to show anything.</li>
+<li>A <strong>label</strong> (a string or content element described above) that will be shown alongside the widget and tell the user what the value represents. Note that this can be an empty string (<code>""</code>) if you don’t want to show anything.</li>
 </ul>
 <p>Other arguments may be required by a particular widget—for example, a slider’s <code>min</code> and <code>max</code> values:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># this function would be nested in a layout function (e.g., `fluidPage()`)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># this function would be nested in a layout function (e.g., `fluidPage()`)</span>
 <span class="kw">sliderInput</span>(
   <span class="st">&quot;age&quot;</span>, <span class="co"># key this value will be assigned to</span>
   <span class="st">&quot;Age of subjects&quot;</span>, <span class="co"># label</span>
   <span class="dt">min =</span> <span class="dv">18</span>, <span class="co"># minimum slider value</span>
   <span class="dt">max =</span> <span class="dv">80</span>, <span class="co"># maximum slider value</span>
   <span class="dt">value =</span> <span class="dv">42</span> <span class="co"># starting value</span>
-)</code></pre></div>
+)</code></pre>
 <p>Widgets are used to provide <strong>inputs <em>to</em></strong> the Server; see the below section for how to use these inputs, as well as examples from <a href="http://shiny.rstudio.com/gallery/">the gallery</a>.</p>
 <p>In order to display <strong>outputs <em>from</em></strong> the Server, you include a <strong>reactive output</strong> element in your UI layout. These are elements similar to the basic content elements, but instead of just displaying <em>static</em> (unchanging) content they can display <em>dynamic</em> (changing) content produced by the Server.</p>
 <p>As with other content elements, reactive outputs are creating by calling an appropriate function. For example:</p>
@@ -578,9 +605,9 @@ Fun Fact: much of Shiny’s styling and layout structure is based on the <a href
 <div id="the-server" class="section level3">
 <h3><span class="header-section-number">16.1.3</span> The Server</h3>
 <p>The Server defines how the data input by the user will be used to create the output displayed by the app—that is, how the <em>control widgets</em> and <em>reactive outputs</em> will be connected. You create a Server by <em>defining a new function</em> (not calling a provided one):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {
+<pre class="sourceCode r"><code class="sourceCode r">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {
   <span class="co"># assign values to `output` here</span>
-}</code></pre></div>
+}</code></pre>
 <p>Note that this is <em>just a normal function</em> that happens two take <strong>lists</strong> as arguments. That means you can include the same kinds of code as you normally would—though that code will only be run once (when the application is first started) unless defined as part of a reactive expression.</p>
 <p>The first argument is a list of any values defined by the <em>control widgets</em>: each <strong>name</strong> in a control widget will be a <strong>key</strong> in this list. For example, using the above <code>sliderInput()</code> example would cause the list to have an <code>age</code> key (referenced as <code>input$age</code>). This allows the Server to access any data that the user has input, using the key names defined in the UI. Note that the values in this list <em>will change as the user interacts with the UI’s control widgets</em>.</p>
 <p>The purpose of the Server function is to assign new <em>values</em> to the <code>output</code> argument list (each with an appropriate <em>key</em>). These values will then be displayed by the <em>reactive outputs</em> defined in the UI. To make it so that the values can actually be displayed by by the UI, the values assigned to this list need to be the results of <strong>Render Functions</strong>. Similar to creating widgets or reactive outputs, different functions are associated with different types of output the server should produce. For example:</p>
@@ -590,7 +617,7 @@ Fun Fact: much of Shiny’s styling and layout structure is based on the <a href
 <li><code>renderPlot()</code> will produce a graphical plot that can be displayed (i.e., by <code>plotOutput()</code> in the UI)</li>
 </ul>
 <p>Render functions take as an argument a <strong>Reactive Expression</strong>. This is a lot like a function: it is a <strong>block</strong> of code (in braces <strong><code>{}</code></strong>) that <strong>returns</strong> the value which should be rendered. For example:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">output<span class="op">$</span>msg &lt;-<span class="st"> </span><span class="kw">renderText</span>({
+<pre class="sourceCode r"><code class="sourceCode r">output<span class="op">$</span>msg &lt;-<span class="st"> </span><span class="kw">renderText</span>({
   <span class="co"># code goes here, just like any other function</span>
   my_greeting &lt;-<span class="st"> &quot;Hello&quot;</span>
 
@@ -599,7 +626,7 @@ Fun Fact: much of Shiny’s styling and layout structure is based on the <a href
 
   <span class="co"># return the variable that will be rendered</span>
   <span class="kw">return</span>(message)
-})</code></pre></div>
+})</code></pre>
 <p>The only difference between writing a <em>reactive expression</em> and a function is that you only include the <em>block</em> (the braces and the code inside of them): you don’t use the keyword <code>function</code> and don’t specify a set of arguments.</p>
 <p class="alert alert-info">
 This technically defines a <em>closure</em>, which is a programming concept used to encapsulate functions and the context for those functions.
@@ -608,7 +635,7 @@ This technically defines a <em>closure</em>, which is a programming concept used
 <div id="multiple-views" class="section level4">
 <h4><span class="header-section-number">16.1.3.1</span> Multiple Views</h4>
 <p>It is quite common in a Shiny app to produce <em>lots</em> of output variables, and thus to have multiple reactive expressions. For example:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {
+<pre class="sourceCode r"><code class="sourceCode r">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {
   <span class="co"># render a histogram plot</span>
   output<span class="op">$</span>hist &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({
     uniform_nums &lt;-<span class="st"> </span><span class="kw">runif</span>(input<span class="op">$</span>num, <span class="dv">1</span>, <span class="dv">10</span>)  <span class="co"># random nums between 1 and 10</span>
@@ -621,10 +648,10 @@ This technically defines a <em>closure</em>, which is a programming concept used
     counts &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">cut</span>(uniform_nums, <span class="dt">breaks=</span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>))  <span class="co"># factor</span>
     <span class="kw">return</span>(<span class="kw">summary</span>(counts))  <span class="co"># simple vector of counts</span>
   })
-}</code></pre></div>
+}</code></pre>
 <p>If you look at the above example though, you’ll notice that each render function produces a set of random numbers… which means each will produce a <em>different</em> set of numbers! The histogram and the table won’t match!</p>
 <p>This is an example of where you want to share a single piece of data (a single <strong>model</strong>) between multiple different renditions (multiple <strong>views</strong>). Effectively, you want to define a shared variable (the <code>uniform_nums</code>) that can be referenced by both render functions. But since you need that shared variable to be able to <em>update</em> whenever the <code>input</code> changes, you need to make it be a <em>reactive expression</em> itself. You can do this by using the <strong><code>reactive()</code></strong> function:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {
+<pre class="sourceCode r"><code class="sourceCode r">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {
   <span class="co"># define a reactive variable</span>
   uniform_nums &lt;-<span class="st"> </span><span class="kw">reactive</span>({
     <span class="kw">return</span>(<span class="kw">runif</span>(input<span class="op">$</span>num, <span class="dv">1</span>, <span class="dv">10</span>))  <span class="co"># just like for a render function</span>
@@ -640,7 +667,7 @@ This technically defines a <em>closure</em>, which is a programming concept used
     counts &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">cut</span>(<span class="kw">uniform_nums</span>(), <span class="dt">breaks=</span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>))  <span class="co"># call the reactive variable AS A FUNCTION</span>
     <span class="kw">return</span>(<span class="kw">summary</span>(counts))
   })
-}</code></pre></div>
+}</code></pre>
 <p>The <code>reactive()</code> function lets you define a single “variable” that is a <em>reactive function</em> which can be called from within the render functions. Importantly, the value returned by this function (the <code>uniform_nums()</code>) only changes <strong>when a referenced <code>input</code> changes</strong>. Thus as long as <code>input$num</code> stays the same, <code>uniform_nums()</code> will return the same value.</p>
 <p>This is very powerful for allowing multiple <strong>views</strong> of a single piece of data: you can have a single source of data displayed both graphically and textually, with both views linked off of the same processed data table. Additionally, it can help keep your code more organized and readable, and avoid needing to duplicate any processing.</p>
 </div>
@@ -652,11 +679,11 @@ This technically defines a <em>closure</em>, which is a programming concept used
 <p>While there are a few different ways of “hosting” Shiny Apps, in this course you’ll use the simplest one: hosting through <a href="https://www.shinyapps.io"><strong>shinyapps.io</strong></a>. shinyapps.io is a platform for hosting and running Shiny Apps; while large applications cost money, anyone can deploy a simple app (like the ones you’ll create in this course) for free.</p>
 <p>In order to host your app on shinyapps.io, you’ll need to <a href="https://www.shinyapps.io/admin/#/signup">create a free account</a>. Note that you can sign up with GitHub or your Google/UW account. Follow the site’s instructions to</p>
 <ol style="list-style-type: decimal">
-<li>Select an account name (use something professional, like you used when signing up with GitHub)</li>
-<li>Install the required <code>rsconnect</code> package (may be included with RStudio)</li>
+<li><p>Select an account name (use something professional, like you used when signing up with GitHub)</p></li>
+<li><p>Install the required <code>rsconnect</code> package (may be included with RStudio)</p></li>
 <li><p>Set your authorization token (“password”). Just click the green “Copy to Clipboard” button, and then paste that into the <strong>Console</strong> in RStudio. You should only need to do this once.</p>
 <p class="alert alert-warning">
-Don’t worry about “Step 3 - Deploy”; you’ll do that through RStudio directly!
+<p>Don’t worry about “Step 3 - Deploy”; you’ll do that through RStudio directly!</p>
 </p></li>
 </ol>
 <p>After you’ve set up an account, you can <em>Run</em> your application (as above) and hit the <strong>Publish</strong> button in the upper-right corner:</p>
@@ -719,7 +746,7 @@ gitbook.start({
 "google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
 "all": ["github", "facebook", "twitter", "google"]
 },
@@ -732,7 +759,11 @@ gitbook.start({
 "link": "https://github.com/info201/book/edit/master/shiny.Rmd",
 "text": "Edit"
 },
-"download": ["tech-foundations-of-informatics.pdf", "tech-foundations-of-informatics.epub"],
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
 "toc": {
 "collapse": "section",
 "scroll_highlight": true

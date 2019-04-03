@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Technical Foundations of Informatics</title>
+  <title>Chapter 5 Introduction to R | Technical Foundations of Informatics</title>
   <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Technical Foundations of Informatics" />
+  <meta property="og:title" content="Chapter 5 Introduction to R | Technical Foundations of Informatics" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://info201.github.io/" />
   <meta property="og:image" content="https://info201.github.io/img/cover-img.png" />
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="info201/book" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Technical Foundations of Informatics" />
+  <meta name="twitter:title" content="Chapter 5 Introduction to R | Technical Foundations of Informatics" />
   
   <meta name="twitter:description" content="The course reader for INFO 201: Technical Foundations of Informatics." />
   <meta name="twitter:image" content="https://info201.github.io/img/cover-img.png" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2018-12-18">
+<meta name="date" content="2019-04-03">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -36,6 +36,7 @@
 <link rel="next" href="functions.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -60,41 +61,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -225,7 +252,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.3.2" data-path="lists.html"><a href="lists.html#indexing-by-name"><i class="fa fa-check"></i><b>8.3.2</b> Indexing by Name</a></li>
 <li class="chapter" data-level="8.3.3" data-path="lists.html"><a href="lists.html#indexing-by-logical-vector"><i class="fa fa-check"></i><b>8.3.3</b> Indexing by Logical Vector</a></li>
 <li class="chapter" data-level="8.3.4" data-path="lists.html"><a href="lists.html#lists-dollar-shortcut"><i class="fa fa-check"></i><b>8.3.4</b> Extracting named elements with <code>$</code></a></li>
-<li class="chapter" data-level="8.3.5" data-path="lists.html"><a href="lists.html#single-vs.double-brackets-vs.dollar"><i class="fa fa-check"></i><b>8.3.5</b> Single vs. Double Brackets vs. Dollar</a></li>
+<li class="chapter" data-level="8.3.5" data-path="lists.html"><a href="lists.html#single-vs.-double-brackets-vs.-dollar"><i class="fa fa-check"></i><b>8.3.5</b> Single vs. Double Brackets vs. Dollar</a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="lists.html"><a href="lists.html#modifying-lists"><i class="fa fa-check"></i><b>8.4</b> Modifying Lists</a></li>
 <li class="chapter" data-level="8.5" data-path="lists.html"><a href="lists.html#the-lapply-function"><i class="fa fa-check"></i><b>8.5</b> The <code>lapply()</code> Function</a></li>
@@ -258,7 +285,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="dplyr.html"><a href="dplyr.html#grouped-operations"><i class="fa fa-check"></i><b>10.4</b> Grouped Operations</a></li>
 <li class="chapter" data-level="10.5" data-path="dplyr.html"><a href="dplyr.html#joins"><i class="fa fa-check"></i><b>10.5</b> Joins</a></li>
-<li class="chapter" data-level="10.6" data-path="dplyr.html"><a href="dplyr.html#non-standard-evaluation-vs.standard-evaluation"><i class="fa fa-check"></i><b>10.6</b> Non-Standard Evaluation vs. Standard Evaluation</a><ul>
+<li class="chapter" data-level="10.6" data-path="dplyr.html"><a href="dplyr.html#non-standard-evaluation-vs.-standard-evaluation"><i class="fa fa-check"></i><b>10.6</b> Non-Standard Evaluation vs. Standard Evaluation</a><ul>
 <li class="chapter" data-level="10.6.1" data-path="dplyr.html"><a href="dplyr.html#explicit-standard-evaluation"><i class="fa fa-check"></i><b>10.6.1</b> Explicit Standard Evaluation</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#resources-9"><i class="fa fa-check"></i>Resources</a></li>
@@ -310,7 +337,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#resources-12"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="git-branches.html"><a href="git-branches.html"><i class="fa fa-check"></i><b>14</b> Git Branches</a><ul>
-<li class="chapter" data-level="14.1" data-path="git-branches.html"><a href="git-branches.html#git-branches"><i class="fa fa-check"></i><b>14.1</b> Git Branches</a></li>
+<li class="chapter" data-level="14.1" data-path="git-branches.html"><a href="git-branches.html#git-branches-1"><i class="fa fa-check"></i><b>14.1</b> Git Branches</a></li>
 <li class="chapter" data-level="14.2" data-path="git-branches.html"><a href="git-branches.html#merging"><i class="fa fa-check"></i><b>14.2</b> Merging</a><ul>
 <li class="chapter" data-level="14.2.1" data-path="git-branches.html"><a href="git-branches.html#merge-conflicts"><i class="fa fa-check"></i><b>14.2.1</b> Merge Conflicts</a></li>
 </ul></li>
@@ -441,7 +468,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <img src="img/r-intro/r-interactive-session.png" title="interactive R session" alt="An interactive R session running in the terminal." />
 <p class="caption">An interactive R session running in the terminal.</p>
 </div>
-<p>Notice that this description also include <em>instructions on what to do next</em>—most importantly <code>&quot;Type 'q()' to quit R.&quot;</code>.</p>
+<p>Notice that this description also include <em>instructions on what to do next</em>—most importantly <code>"Type 'q()' to quit R."</code>.</p>
 <p class="alert alert-warning">
 Always read the output when working on the command-line!
 </p>
@@ -507,55 +534,63 @@ Always read the output when working on the command-line!
 <p>Before discussing how to program with R, we need to talk about a piece of syntax that lets you comment your code. In programming, <strong>comments</strong> are bits of text that are <em>not interpreted as computer instructions</em>—they aren’t code, they’re just notes about the code! Since computer code can be opaque and difficult to understand, we use comments to help write down the meaning and <em>purpose</em> of our code. While a computer is able to understand the code, comments are there to help <em>people</em> understand it. This is particularly imporant when someone else will be looking at your work—whether that person is a collaborator, or is simply a future version of you (e.g., when you need to come back and fix something and so need to remember what you were even thinking).</p>
 <p>Comments should be clear, concise, and helpful—they should provide information that is not otherwise present or “obvious” in the code itself.</p>
 <p>In R, we mark text as a comment by putting it after the pound/hashtag symbol (<strong><code>#</code></strong>). Everything from the <code>#</code> until the end of the line is a comment. We put descriptive comments <em>immediately above</em> the code it describes, but you can also put very short notes at the end of the line of code (preferably following two spaces):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Set how many bottles of beer are on the wall</span>
-bottles &lt;-<span class="st"> </span><span class="dv">99</span> <span class="op">-</span><span class="st"> </span><span class="dv">1</span>  <span class="co"># 98 bottles</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Set how many bottles of beer are on the wall</span>
+bottles &lt;-<span class="st"> </span><span class="dv">99</span> <span class="op">-</span><span class="st"> </span><span class="dv">1</span>  <span class="co"># 98 bottles</span></code></pre>
 <p>(You may recognize this <code>#</code> syntax and commenting behavior from the command-line and git chapters. That’s because the same syntax is used in a Bash shell!)</p>
 </div>
 <div id="variables" class="section level2">
 <h2><span class="header-section-number">5.4</span> Variables</h2>
-<p>Since computer programs involve working with lots of <em>information</em>, we need a way to store and refer to this information. We do this with <strong>variables</strong>. Variables are labels for information stored in memory; in R, you can think of them as “boxes” or “nametags” for data. After putting data in a variable box, you can then refer to that data by the name on the box.</p>
+<p>Since computer programs involve working with lots of <em>information</em>, we
+need a way to store and refer to this information. We do this with
+<strong>variables</strong>. Variables are labels for information stored in memory; in R, you can think of them as “boxes” or “nametags” for data. After putting data in a variable box, you can then refer to that data by the name on the box.</p>
 <p>Variable names can contain any combination of letters, numbers, periods (<code>.</code>), or underscores (<code>_</code>). Variables names must begin with a letter. Note that like everything in programming, variable names are case sensitive. It is best practice to make variable names descriptive and information about what data they contain. <code>a</code> is not a good variable name. <code>cups_of_coffee</code> is a good variable name. In this course, we will use the <a href="http://style.tidyverse.org/">Tidyverse Style Guide</a> as a foundation of <em>how we should style our code</em>. To comply with this style guide, variables should be <strong>all lower-case letters, separated by underscore (<code>_</code>)</strong>. This is also known as <strong>snake_case</strong>.</p>
 <p class="alert alert-info">
 <strong>Note:</strong> There is an important distinction between <em>syntax</em> and <em>style</em>. You need to use the proper <em>syntax</em> such that your <em>machine</em> understands your code. This requires that you follow a set of rigid rules for what code can be procesed. <em>Style</em> is what helps make your code understandable for other <em>humans</em>. Good style is not required to get your code to run, but it’s imperative for writing clear, (human) readable code.
 </p>
 <p>We call putting information in a variable <strong>assigning</strong> that value to the variable. We do this using the <em>assignment operator</em> <strong><code>&lt;-</code></strong>. For example:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Stores the number 7 into a variable called `shoe_size`</span>
-shoe_size &lt;-<span class="st"> </span><span class="dv">7</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Stores the number 7 into a variable called `shoe_size`</span>
+shoe_size &lt;-<span class="st"> </span><span class="dv">7</span></code></pre>
 <ul>
 <li><em>Notice:</em> variable name goes on the left, value goes on the right!</li>
 </ul>
 <p>You can see what value (data) is inside a variable by either typing that variable name as a line of code, or by using R’s built-in <code>print()</code> function (more on functions later):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(shoe_size)
-<span class="co"># [1] 7</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(shoe_size)
+<span class="co"># [1] 7</span></code></pre>
 <ul>
 <li>We’ll talk about the <code>[1]</code> in that output later.</li>
 </ul>
 <p>You can also use <strong>mathematical operators</strong> (e.g., <code>+</code>, <code>-</code>, <code>/</code>, <code>*</code>) when assigning values to variables. For example, you could create a variable that is the sum of two numbers as follows:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">4</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">4</span></code></pre>
 <p>Once a value (like a number) is <em>in</em> a variable, you can use that variable in place of any other value. So all of the following are valid:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">2</span>  <span class="co"># store 2 in x</span>
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">2</span>  <span class="co"># store 2 in x</span>
 y &lt;-<span class="st"> </span><span class="dv">9</span>  <span class="co"># store 9 in y</span>
 z &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span>y  <span class="co"># store sum of x and y in z</span>
 <span class="kw">print</span>(z)  <span class="co"># 11</span>
 z &lt;-<span class="st"> </span>z <span class="op">+</span><span class="st"> </span><span class="dv">1</span>  <span class="co"># take z, add 1, and store result back in z</span>
-<span class="kw">print</span>(z)  <span class="co"># 12</span></code></pre></div>
+<span class="kw">print</span>(z)  <span class="co"># 12</span></code></pre>
 <div id="basic-data-types" class="section level3">
 <h3><span class="header-section-number">5.4.1</span> Basic Data Types</h3>
 <p>In the example above, we stored <strong>numeric</strong> values in variables. R is a <strong>dynamically typed language</strong>, which means that we <em>do not</em> need to explicitly state what type of information will be stored in each variable we create. R is intelligent enough to understand that if we have code <code>x &lt;- 7</code>, then <code>x</code> will contain a numeric value (and so we can do math upon it!)</p>
 <p>There six “basic types” (called <em>atomic data types</em>) for data in R:</p>
 <ul>
 <li><p><strong>Numeric</strong>: The default computational data type in R is numeric data, which consists of the set of real numbers (including decimals). We use use <strong>mathematical operators</strong> on numeric data (such as <code>+</code>, <code>-</code>, <code>*</code>, <code>-</code>, etc.). There are also numerous functions that work on numeric data (such as calculating sums or averages).</p></li>
-<li><p><strong>Character</strong>: Character data stores <em>strings</em> of characters (things you type with a keyboard) in a variable. You specify that some information is character data by surrounding it in either single quotes (<strong><code>'</code></strong>) or double quotes (<strong><code>&quot;</code></strong>). To comply with the <a href="http://style.tidyverse.org/syntax.html#quotes">style guide</a>, we’ll consider it best practice to use <strong>double quotes</strong>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create character variable `famous.poet` with the value &quot;Bill Shakespeare&quot;</span>
-famous_poet &lt;-<span class="st"> &quot;Bill Shakespeare&quot;</span></code></pre></div>
+<li><p><strong>Character</strong>: Character data stores <em>strings</em> of characters (things you type with a keyboard) in a variable. You specify that some information is character data by surrounding it in either single quotes (<strong><code>'</code></strong>) or double quotes (<strong><code>"</code></strong>). To comply with the <a href="http://style.tidyverse.org/syntax.html#quotes">style guide</a>, we’ll consider it best practice to use <strong>double quotes</strong>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create character variable `famous.poet` with the value &quot;Bill Shakespeare&quot;</span>
+famous_poet &lt;-<span class="st"> &quot;Bill Shakespeare&quot;</span></code></pre>
 <p>Note that character data <em>is still data</em>, so it can be assigned to a variable just like numeric data!</p>
 <p>There are no special operators for character data, though there are a many built-in functions for working with strings.</p></li>
-<li><p><strong>Logical</strong>: Logical (a.k.a Boolean) data types store “yes-or-no” data. A logical value can be one of two values: <code>TRUE</code> or <code>FALSE</code>. Importantly, these <strong>are not</strong> the strings <code>&quot;TRUE&quot;</code> or <code>&quot;FALSE&quot;</code>; logical values are a different type! In interactive session, you can use the shorthand <code>T</code> or <code>F</code> in lieu of <code>TRUE</code> and <code>FALSE</code> in variable assignment but this is not recommended for programs.</p>
+<li><p><strong>Logical</strong>: Logical (a.k.a Boolean) data types store “yes-or-no”
+data. A logical value can be one of two values: <code>TRUE</code> or
+<code>FALSE</code>. Importantly, these <strong>are not</strong> the strings <code>"TRUE"</code> or
+<code>"FALSE"</code>; logical values are a different type! In interactive
+session, you can use the shorthand <code>T</code> or <code>F</code> in lieu of <code>TRUE</code> and
+<code>FALSE</code> in variable assignment but this is not recommended for
+programs.</p>
 <ul>
 <li><em>Fun fact:</em> logical values are called “booleans” after mathematician and logician <a href="https://en.wikipedia.org/wiki/George_Boole">George Boole</a>.</li>
 </ul>
 <p>Logical values are most commonly the result of applying a <strong>relational operator</strong> (also called a <strong>comparison operator</strong>) to some other data. Comparison operators are used to compare values and include: <code>&lt;</code> (less than), <code>&gt;</code> (greater than), <code>&lt;=</code> (less-than-or-equal), <code>&gt;=</code> (greater-than-or-equal), <code>==</code> (equal), and <code>!=</code> (not-equal).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Store values in variables</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Store values in variables</span>
 x &lt;-<span class="st"> </span><span class="dv">3</span>
 y &lt;-<span class="st"> </span><span class="fl">3.15</span>
 
@@ -567,9 +602,9 @@ y <span class="op">!=</span><span class="st"> </span>x  <span class="co"># retur
 y <span class="op">==</span><span class="st"> </span>pi  <span class="co"># returns logical value FALSE</span>
 
 <span class="co"># compare strings (based on alphabetical ordering)</span>
-<span class="st">&quot;cat&quot;</span> <span class="op">&gt;</span><span class="st"> &quot;dog&quot;</span>  <span class="co"># returns FALSE</span></code></pre></div>
+<span class="st">&quot;cat&quot;</span> <span class="op">&gt;</span><span class="st"> &quot;dog&quot;</span>  <span class="co"># returns FALSE</span></code></pre>
 <p>Logical values have their own operators as well (called <strong>logical operators</strong> or <strong>boolean operators</strong>). These <em>apply to</em> logical values and <em>produce</em> logical values, allowing you to make more complex logical expressions. These include <code>&amp;</code> (and), <code>|</code> (or), and <code>!</code> (not).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Store values in variables</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Store values in variables</span>
 x &lt;-<span class="st"> </span><span class="fl">3.1</span>
 y &lt;-<span class="st"> </span><span class="fl">3.2</span>
 pet &lt;-<span class="st"> &quot;dog&quot;</span>
@@ -582,11 +617,14 @@ x <span class="op">&lt;</span><span class="st"> </span>pi <span class="op">&amp;
 pet <span class="op">==</span><span class="st"> &quot;cat&quot;</span> <span class="op">|</span><span class="st"> </span>pet <span class="op">==</span><span class="st"> &quot;dog&quot;</span>  <span class="co"># TRUE</span>
 
 <span class="co"># Check if pet is &quot;dog&quot; AND NOT weather is &quot;rain&quot;</span>
-pet <span class="op">==</span><span class="st"> &quot;dog&quot;</span> <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span>(weather <span class="op">==</span><span class="st"> &quot;rain&quot;</span>)  <span class="co"># FALSE</span></code></pre></div>
+pet <span class="op">==</span><span class="st"> &quot;dog&quot;</span> <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span>(weather <span class="op">==</span><span class="st"> &quot;rain&quot;</span>)  <span class="co"># FALSE</span></code></pre>
 <p>Note that it’s easy to write complex expressions with logical operators. If you find yourself getting lost, I recommend rethinking your question to see if there is a simpler way to express it!</p></li>
 <li><p><strong>Integer</strong>: Integer values are technically a different data type than numeric values because of how they are stored and manipulated by the R interpreter. This is something that you will rarely encounter, but it’s good to know that you can specify a number is of integer type rather than general numeric type by placing a capital <code>L</code> (for “long integer”) after an value in variable assignment (<code>my_integer &lt;- 10L</code>).</p></li>
-<li><p><strong>Complex</strong>: Complex (imaginary) numbers have their own data storage type in R, are are created using the <code>i</code> syntax: <code>complex_variable &lt;- 1 + 2i</code>. We will not be using complex numbers in this course.</p></li>
-<li><p><strong>Raw</strong>: is a sequence of “raw” data. It is good for storing a “raw” sequence of bytes, such as image data. R does not interpret raw data in any particular way. We will not discuss raw data in this book.</p></li>
+<li><p><strong>Complex</strong>: Complex (imaginary) numbers have their own data storage
+type in R, are are created using the <code>i</code> syntax: <code>complex_variable   &lt;- 1 + 2i</code>. We will not be using complex numbers in this course.</p></li>
+<li><p><strong>Raw</strong>: is a sequence of “raw” data. It is good for storing a “raw”
+sequence of bytes, such as image data. R does not interpret raw data
+in any particular way. We will not discuss raw data in this book.</p></li>
 </ul>
 </div>
 </div>
@@ -594,8 +632,9 @@ pet <span class="op">==</span><span class="st"> &quot;dog&quot;</span> <span cla
 <h2><span class="header-section-number">5.5</span> Getting Help</h2>
 <p>As with any programming language, when working in R you will inevitably run into problems, confusing situations, or just general questions. Here are a few ways to start getting help.</p>
 <ol style="list-style-type: decimal">
-<li><p><strong>Read the error messages</strong>: If there is an issue with the way you have written or executed your code, R will often print out a red error message in your console. Do you best to decipher the message (read it carefully, and think about what is meant by each word in the message), or you can put it directly into Google to get more information. You’ll soon get the hang of interpreting these messages if you put the time into trying to understand them.</p></li>
-<li><p><strong>Google</strong>: When you’re trying to figure out how to do something, it should be no surprise that Google is often the best resource. Try searching for queries like <code>&quot;how to &lt;DO THING&gt; in R&quot;</code>. More frequently than not, your question will lead you to a Q/A forum called StackOverflow (see below), which is a great place to find potential answers.</p></li>
+<li><p><strong>Read the error messages</strong>: If there is an issue with the way you
+have written or executed your code, R will often print out a red error message in your console. Do you best to decipher the message (read it carefully, and think about what is meant by each word in the message), or you can put it directly into Google to get more information. You’ll soon get the hang of interpreting these messages if you put the time into trying to understand them.</p></li>
+<li><p><strong>Google</strong>: When you’re trying to figure out how to do something, it should be no surprise that Google is often the best resource. Try searching for queries like <code>"how to &lt;DO THING&gt; in R"</code>. More frequently than not, your question will lead you to a Q/A forum called StackOverflow (see below), which is a great place to find potential answers.</p></li>
 <li><p><strong>StackOverflow</strong>: StackOverflow is an amazing Q/A forum for asking/answering programming questions. Indeed, most basic questions have already been asked/answered here. However, don’t hesitate to post your own questions to StackOverflow. Be sure to hone in on the specific question you’re trying to answer, and provide error messages and sample code. I often find that, by the time I can articulate the question clearly enough to post it, I’ve figured out my problem anyway.</p>
 <ul>
 <li>There is a classical method of debugging called <a href="https://en.wikipedia.org/wiki/Rubber_duck_debugging">rubber duck debugging</a>, which involves simply trying to explain your code/problem to an inanimate object (talking to pets works too). You’ll usually be able to fix the problem if you just step back and think about how you would explain it to someone else!</li>
@@ -617,7 +656,8 @@ pet <span class="op">==</span><span class="st"> &quot;dog&quot;</span> <span cla
 <li><a href="https://www.tutorialspoint.com/r/r_operators.htm">R Tutorial: Operators</a></li>
 <li><a href="https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts">RStudio Keyboard Shortcuts</a></li>
 <li><a href="https://www.rdocumentation.org/">R Documentation</a> searchable online documentation</li>
-<li><a href="http://r4ds.had.co.nz/">R for Data Science</a> online textbook, oriented toward R usage in data processing and visualization</li>
+<li><a href="http://r4ds.had.co.nz/">R for Data Science</a> online textbook, oriented
+toward R usage in data processing and visualization</li>
 <li><a href="http://arrgh.tim-smith.us/">aRrgh: a newcomer’s (angry) guide to R</a> opinionated but clear introduction</li>
 <li><a href="https://www.nostarch.com/artofr.htm">The Art of R Programming</a> print textbook</li>
 </ul>
@@ -650,7 +690,7 @@ gitbook.start({
 "google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
 "all": ["github", "facebook", "twitter", "google"]
 },
@@ -663,7 +703,11 @@ gitbook.start({
 "link": "https://github.com/info201/book/edit/master/r-intro.Rmd",
 "text": "Edit"
 },
-"download": ["tech-foundations-of-informatics.pdf", "tech-foundations-of-informatics.epub"],
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
 "toc": {
 "collapse": "section",
 "scroll_highlight": true

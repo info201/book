@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Technical Foundations of Informatics</title>
+  <title>D Using Remote Server | Technical Foundations of Informatics</title>
   <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Technical Foundations of Informatics" />
+  <meta property="og:title" content="D Using Remote Server | Technical Foundations of Informatics" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://info201.github.io/" />
   <meta property="og:image" content="https://info201.github.io/img/cover-img.png" />
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="info201/book" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Technical Foundations of Informatics" />
+  <meta name="twitter:title" content="D Using Remote Server | Technical Foundations of Informatics" />
   
   <meta name="twitter:description" content="The course reader for INFO 201: Technical Foundations of Informatics." />
   <meta name="twitter:image" content="https://info201.github.io/img/cover-img.png" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2018-12-18">
+<meta name="date" content="2019-04-03">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -36,6 +36,7 @@
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -60,41 +61,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -225,7 +252,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.3.2" data-path="lists.html"><a href="lists.html#indexing-by-name"><i class="fa fa-check"></i><b>8.3.2</b> Indexing by Name</a></li>
 <li class="chapter" data-level="8.3.3" data-path="lists.html"><a href="lists.html#indexing-by-logical-vector"><i class="fa fa-check"></i><b>8.3.3</b> Indexing by Logical Vector</a></li>
 <li class="chapter" data-level="8.3.4" data-path="lists.html"><a href="lists.html#lists-dollar-shortcut"><i class="fa fa-check"></i><b>8.3.4</b> Extracting named elements with <code>$</code></a></li>
-<li class="chapter" data-level="8.3.5" data-path="lists.html"><a href="lists.html#single-vs.double-brackets-vs.dollar"><i class="fa fa-check"></i><b>8.3.5</b> Single vs. Double Brackets vs. Dollar</a></li>
+<li class="chapter" data-level="8.3.5" data-path="lists.html"><a href="lists.html#single-vs.-double-brackets-vs.-dollar"><i class="fa fa-check"></i><b>8.3.5</b> Single vs. Double Brackets vs. Dollar</a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="lists.html"><a href="lists.html#modifying-lists"><i class="fa fa-check"></i><b>8.4</b> Modifying Lists</a></li>
 <li class="chapter" data-level="8.5" data-path="lists.html"><a href="lists.html#the-lapply-function"><i class="fa fa-check"></i><b>8.5</b> The <code>lapply()</code> Function</a></li>
@@ -258,7 +285,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="dplyr.html"><a href="dplyr.html#grouped-operations"><i class="fa fa-check"></i><b>10.4</b> Grouped Operations</a></li>
 <li class="chapter" data-level="10.5" data-path="dplyr.html"><a href="dplyr.html#joins"><i class="fa fa-check"></i><b>10.5</b> Joins</a></li>
-<li class="chapter" data-level="10.6" data-path="dplyr.html"><a href="dplyr.html#non-standard-evaluation-vs.standard-evaluation"><i class="fa fa-check"></i><b>10.6</b> Non-Standard Evaluation vs. Standard Evaluation</a><ul>
+<li class="chapter" data-level="10.6" data-path="dplyr.html"><a href="dplyr.html#non-standard-evaluation-vs.-standard-evaluation"><i class="fa fa-check"></i><b>10.6</b> Non-Standard Evaluation vs. Standard Evaluation</a><ul>
 <li class="chapter" data-level="10.6.1" data-path="dplyr.html"><a href="dplyr.html#explicit-standard-evaluation"><i class="fa fa-check"></i><b>10.6.1</b> Explicit Standard Evaluation</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#resources-9"><i class="fa fa-check"></i>Resources</a></li>
@@ -310,7 +337,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#resources-12"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="git-branches.html"><a href="git-branches.html"><i class="fa fa-check"></i><b>14</b> Git Branches</a><ul>
-<li class="chapter" data-level="14.1" data-path="git-branches.html"><a href="git-branches.html#git-branches"><i class="fa fa-check"></i><b>14.1</b> Git Branches</a></li>
+<li class="chapter" data-level="14.1" data-path="git-branches.html"><a href="git-branches.html#git-branches-1"><i class="fa fa-check"></i><b>14.1</b> Git Branches</a></li>
 <li class="chapter" data-level="14.2" data-path="git-branches.html"><a href="git-branches.html#merging"><i class="fa fa-check"></i><b>14.2</b> Merging</a><ul>
 <li class="chapter" data-level="14.2.1" data-path="git-branches.html"><a href="git-branches.html#merge-conflicts"><i class="fa fa-check"></i><b>14.2.1</b> Merge Conflicts</a></li>
 </ul></li>
@@ -419,145 +446,326 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="remote-server" class="section level1">
 <h1><span class="header-section-number">D</span> Using Remote Server</h1>
-<p>Sooner-or-later you are in a situation where you have to work on a <strong>distant networked computer</strong>. There are many reasons for this, either your laptop is to weak for certain tasks, or certain data is not allowed to be taken out from where it is, or you are expected to use the same computer as your teammates. The server may be a standalone box located in a rack in your employer’s server room, or it may be a virtual machine in a cloud like Amazon EC2. You may also want to set up your own server.</p>
+<p>Sooner-or-later you are in a situation where you have to work on a
+<strong>distant networked computer</strong>. There are many reasons for this,
+either your laptop is to weak for certain tasks, or certain
+data is not allowed to be taken out from where it is, or you are
+expected to use the same computer as your teammates. The server may
+be a standalone box located in a rack in your employer’s server room,
+or it may be a virtual machine in a cloud like Amazon EC2. You may
+also want to set up your own server.</p>
 <div id="server-setup" class="section level2">
 <h2><span class="header-section-number">D.1</span> Server Setup</h2>
-<p>There are many ways one can set up a distant machine. It may be Windows or linux (or any of the other unixes). It may or may not have graphical user interface (GUI) installed or otherwise accessible (many unix programs can display nice windows on your laptop while still running on the server). It may or may not have RStudio made available over web browser. Here we discuss the most barebone setup with no access to GUI and no web access to RStudio.</p>
-<p>This is a fairly common setup, for instance when dealing with sensitive data, in organizations where computer skills and sysadmin’s time is limited, or when you rent your own tiny but cheap server.</p>
+<p>There are many ways one can set up a distant machine. It may be
+Windows or linux (or any of the other unixes). It may or may not have
+graphical user interface (GUI) installed or otherwise accessible (many
+unix programs can display nice windows on your laptop while still
+running on the server). It may or may not have RStudio made
+available over web browser. Here we discuss the most barebone setup
+with no access to GUI and no web access to RStudio.</p>
+<p>This is a fairly common setup, for instance when dealing with
+sensitive data, in organizations where computer skills and
+sysadmin’s time is limited, or when you rent your own tiny but cheap
+server.</p>
 </div>
 <div id="connecting-to-the-remote-server" class="section level2">
 <h2><span class="header-section-number">D.2</span> Connecting to the Remote Server</h2>
-<p>Given the server is already running, your first task is to connect to it. Here it means that you will enter commands on your laptop, but those command are actually run on the server.</p>
-<p>The most common way to connect to remote server is via <em>ssh</em>. ssh stands for “secure shell” and means that both all network communication is encrypted. You connect to the server as</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">ssh</span> myserver.somewhere.com</code></pre></div>
-<p>The remote server asks for your password and opens remote shell connection. Note: when entering your password, it usually does not print anything in response, not even asterisks. It feels as if your keyboard is not working. It will offer you a similar bash shell environment as you are using on your computer but most likely you see a different prompt, one that contains the server’s name. You may also see some login messages. Now all the commands you are issuing are running on the remote machine. So <code>pwd</code> shows your working directory on the server, which in general is not the same as on the local machine, and <code>ls</code> shows the files on the server, not on your laptop. Now you can use <code>mkdir</code> to create the project folder on the server.</p>
-<p>By default, ssh attempts to login with your local username. If your username on the server differs from that on your laptop, you want to add it to the ssh command:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">ssh</span> username@myserver.somewhere.com</code></pre></div>
-<p>Finally, when done, you want to get out. The polite way to close the connection is with command</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">exit</span></code></pre></div>
-<p>that waits until all open connections are safely closed. But usually you can as well just close the terminal.</p>
+<p>Given the server is already running, your first task is to connect to it. Here it means
+that you will enter commands on your laptop, but those command are
+actually run on the server.</p>
+<p>The most common way to connect to remote server is via <em>ssh</em>. ssh
+stands for “secure shell” and means that both all network
+communication is encrypted. You connect to the server
+as</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">ssh</span> myserver.somewhere.com</code></pre>
+<p>The remote server asks for your password and opens remote shell
+connection. Note: when entering your password, it usually does not
+print anything in response, not even asterisks. It feels as if your
+keyboard is not working. It will offer you a similar bash shell environment as you are using
+on your computer but most likely you see a different prompt, one that
+contains the server’s name. You may also see some login
+messages. Now all the commands you are issuing are
+running on the remote machine. So <code>pwd</code> shows your working
+directory on the server, which in general is not the same as on the
+local machine, and <code>ls</code> shows the files on the server, not on your
+laptop. Now you can use <code>mkdir</code> to create the project folder on the
+server.</p>
+<p>By default, ssh attempts to login with your local username. If your
+username on the server differs from that on your laptop, you want to add it to the ssh command:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">ssh</span> username@myserver.somewhere.com</code></pre>
+<p>Finally, when done, you want to get out. The polite way to close the
+connection is with
+command</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">exit</span></code></pre>
+<p>that waits until all open connections are safely closed. But usually you
+can as well just close the terminal.</p>
 </div>
 <div id="copying-files" class="section level2">
 <h2><span class="header-section-number">D.3</span> Copying Files</h2>
-<p>Before you can run your R scripts on the server, you have to get these copied over. There are several possibilities.</p>
+<p>Before you can run your R scripts on the server, you have to get
+these copied over. There are several possibilities.</p>
 <div id="scp" class="section level3">
 <h3><span class="header-section-number">D.3.1</span> scp</h3>
-<p>The most straightforward approach is <code>scp</code>, <strong>s</strong>ecure <strong>c</strong>o<strong>p</strong>y. It works in many ways in the same way as <code>cp</code> for the local files, just <code>scp</code> can copy files between your machine and a remote computer. Under the hood it uses ssh connection, just like <code>ssh</code> command itself. It syntax is rather similar to that of <code>cp</code>:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">scp</span> user1@host1:file1 user2@host2:file2</code></pre></div>
-<p>This copies “file1” from the server “host1” under username “user1” to the other server. Passwords are asked for as needed. The “host” part of the file must be understood as the full hostname including dots, such as “hyak.washington.edu”. “file” is the full path to file, relative to home directory, such as <code>Desktop/info201/myscript.R</code>. When accessing local files, you may omit the “<a href="mailto:user@host">user@host</a>:” part. So, for instance, in order to copy your <code>myscript.R</code> from folder <code>info201</code> on your laptop’s Desktop to the folder <code>scripts</code> in your home folder on the server, you may issue</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">scp</span> Desktop/info201/myscript.R myusername@server.ischool.edu:scripts/</code></pre></div>
-<p>(here we assume that the working directory of your laptop is the one above <code>Desktop</code>.) Note that exactly as with <code>cp</code>, you may omit the destination file name if the destination is a directory: it simply copies the file into that directory while preserving its name.</p>
-<p>After running your script, you may want to copy your results back to your laptop. For instance, if you need to get the file <code>figure.png</code> out of the server, you can do</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">scp</span> myusername@server.ischool.edu:scripts/figure.png Desktop/info201/</code></pre></div>
-<p>As above, this copies a file from the given directory, and drops it into the <code>info201</code> folder on your Desktop.</p>
+<p>The most straightforward approach is <code>scp</code>, <strong>s</strong>ecure <strong>c</strong>o<strong>p</strong>y. It works in many
+ways in the same way as <code>cp</code> for the local files, just <code>scp</code> can copy
+files between your machine and a remote computer. Under the hood it uses ssh
+connection, just like <code>ssh</code> command itself. It syntax is rather
+similar to that of <code>cp</code>:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">scp</span> user1@host1:file1 user2@host2:file2</code></pre>
+<p>This copies “file1” from the server “host1” under username “user1” to
+the other server. Passwords are asked for as needed. The “host” part
+of the file must be understood as the full hostname including dots,
+such as “hyak.washington.edu”. “file” is the full path to file,
+relative to home directory, such as <code>Desktop/info201/myscript.R</code>.
+When accessing local files, you may omit the “<a href="mailto:user@host" class="email">user@host</a>:” part. So,
+for instance, in order to copy your <code>myscript.R</code> from folder
+<code>info201</code> on your laptop’s Desktop to the folder <code>scripts</code> in
+your home folder on the server, you may issue</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">scp</span> Desktop/info201/myscript.R myusername@server.ischool.edu:scripts/</code></pre>
+<p>(here we assume that the working directory of your laptop is the one above
+<code>Desktop</code>.)
+Note that exactly as with <code>cp</code>, you may omit the destination file name
+if the destination is a directory: it simply copies the file into that
+directory while preserving its name.</p>
+<p>After running your script, you may want to copy your results back to
+your laptop. For instance, if you need to get the file
+<code>figure.png</code> out of the server, you can do</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">scp</span> myusername@server.ischool.edu:scripts/figure.png Desktop/info201/</code></pre>
+<p>As above, this copies a file from the given directory, and drops it
+into the <code>info201</code> folder on your Desktop.</p>
 </div>
 <div id="rsync" class="section level3">
 <h3><span class="header-section-number">D.3.2</span> rsync</h3>
-<p><code>rsync</code> is a more advanced approach to <code>scp</code>. It works in many ways like <code>scp</code>, just it is smart enough to understand which files are updated, and copy the updated parts of the files only. It is the recommended way for working with small updates in large files. Its syntax is rather similar to that of <code>scp</code>. To copy <code>file</code> to the remote server as <code>file2</code> (in the home directory), we do</p>
+<p><code>rsync</code> is a more advanced approach to <code>scp</code>. It works in many ways
+like <code>scp</code>, just it is smart enough to understand which files
+are updated, and copy the updated parts of the files only. It is the
+recommended way for working with small updates in large files.
+Its syntax is rather similar to that of <code>scp</code>. To copy <code>file</code> to the
+remote server as <code>file2</code> (in the home directory), we do</p>
 <pre><code>rsync file user2@host2:file2</code></pre>
-<p>and in order to copy a <code>file1</code> from server as local <code>file</code> (in the current working directory):</p>
+<p>and in order to copy a <code>file1</code> from server as local <code>file</code> (in the
+current working directory):</p>
 <pre><code>rsync file user1@host1:file1 file</code></pre>
-<p>I also recommend to explore some of its many options, for instance <code>-v</code> (verbose) reports what it’s doing. The example above with your code and figure might now look like that:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">rsync</span> -v Desktop/info201/myscript.R myusername@server.ischool.edu:scripts/
+<p>I also recommend to
+explore some of its many options, for instance <code>-v</code> (verbose) reports
+what it’s doing.
+The example above with your code and figure might now look like that:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">rsync</span> -v Desktop/info201/myscript.R myusername@server.ischool.edu:scripts/
 <span class="co"># now run the script on the remote machine</span>
-<span class="fu">rsync</span> -v myusername@server.ischool.edu:scripts/figure.pdf Desktop/info201/</code></pre></div>
-<p>Maybe the easiest way to copy your files is to copy (or rather update) the whole directories. For instance, instead of the code above, you can do</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># copy all files to server:</span>
+<span class="fu">rsync</span> -v myusername@server.ischool.edu:scripts/figure.pdf Desktop/info201/</code></pre>
+<p>Maybe the easiest way to copy your files is to copy (or rather update) the whole
+directories. For instance, instead of the code above, you can do</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># copy all files to server:</span>
 <span class="fu">rsync</span> -v Desktop/info201/* myusername@server.ischool.edu:scripts/
 <span class="co"># now run the script on the remote machine</span>
 <span class="co"># ... and copy the results back:</span>
-<span class="fu">rsync</span> -v myusername@server.ischool.edu:scripts/* Desktop/info201/</code></pre></div>
-<p>Here <code>*</code> means <em>all files in this directory</em>. Hence, instead of copying the files individually between the computers, we just copy all of them. Even better, we actually do not copy but just update. Huge files that do not change do not take any bandwidth.</p>
+<span class="fu">rsync</span> -v myusername@server.ischool.edu:scripts/* Desktop/info201/</code></pre>
+<p>Here <code>*</code> means <em>all files in this directory</em>. Hence, instead of
+copying the files individually between the computers, we just copy
+all
+of them. Even better, we actually do not copy but just update. Huge
+files that do not change do not take any bandwidth.</p>
 </div>
 <div id="graphical-frontends" class="section level3">
 <h3><span class="header-section-number">D.3.3</span> Graphical Frontends</h3>
-<p>Instead on relying on command line tools, one can also use graphical front-ends. For instance, “WinSCP” is a nice Norton Commander-Style frontend for copying files between the local and a remote machine over scp for Windows. It provides a split window representing files on the local and the remote end, and one can move, copy-and-paste and interact with the mouse on these panes. On Mac you may take a look at “Cyberduck”.</p>
+<p>Instead on relying on command line tools, one can also use graphical
+front-ends. For instance, “WinSCP” is a nice Norton Commander-Style
+frontend for copying files between the local and a remote machine over scp
+for Windows. It provides a split window representing files on the
+local and the remote end, and one can move, copy-and-paste and interact
+with the mouse on these panes. On Mac you may take a look at
+“Cyberduck”.</p>
 </div>
 <div id="remote-editing" class="section level3">
 <h3><span class="header-section-number">D.3.4</span> Remote Editing</h3>
-<p>Besides copying your files, many text editors also offer a “remote editing” option. From the user perspective this looks as if directly working on the remote server’s hard disk. Under the hood, the files are copied back and forth with scp, rsync or one of their friends. Emacs and vi do it out-of-the box, VSCode, Atom and sublime require a plugin. AFAIK it is not possible with RStudio.</p>
-<p>It is also possible to mount (attach) the harddisk of the remote server to your laptop as if it were a local disk. Look yourself for more information if you are interested.</p>
+<p>Besides copying your files, many text editors also offer a “remote
+editing” option. From the user perspective this looks as if directly
+working on the remote server’s hard disk. Under the hood, the files
+are copied back and forth with scp, rsync or one of their friends.
+Emacs and vi do it out-of-the box, VSCode, Atom and sublime require a
+plugin. AFAIK it is not possible with RStudio.</p>
+<p>It is also possible to mount (attach) the harddisk of the remote
+server to your laptop as if it were a local disk. Look yourself for
+more information if you are interested.</p>
 </div>
 </div>
 <div id="r-and-rscript" class="section level2">
 <h2><span class="header-section-number">D.4</span> R and Rscript</h2>
-<p>When your code has been transferred to the server, your next task is to run it. But before you can do it, you may want to install the packages you need. For instance, you may want to install the whole “tidyverse” bundle. This must be done from R console using <code>install.packages()</code>. You start R interactively by the command</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">R</span></code></pre></div>
-<p>It opens an R session, not unlike what you see inside of RStudio, just here you have no RStudio to handrail you through the session. Now all loading, saving, inspecting files, etc must be done through R commands.</p>
-<p>The first time you do it, R complains about non-writeable system-wide library and proposes to install and create your personal libary. You should answer “yes” to these prompts. As Linux systems typically compile the packages during installations, installation is slow and you see many messages (including warnings) in the process. But it works, given that the necessary system libraries are available.</p>
-<p>Now you can finally run your R code. I strongly recommend to do it from the directory where you intend to run the project before starting R (<code>cd scripts</code> if you follow the example directory setup above). There are two options: either start R interactively, or run it as a script. If you do it from an interactive R session, you have to <em>source</em> your script:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;myscript.R&quot;</span>)</code></pre></div>
-<p>The script will run, and the first attempt most likely ends with an error message. You have to correct the error either on your laptop and copy the file over to the server again, or directly on the server, and re-run it again. Note that you don’t have to exit from the R session when copying the files between your laptop and the server. Edit it, copy it over from your laptop (using <code>scp</code> or other tools), and just re-source the file from within the R session.</p>
-<p>Opening a separate R session may be useful for installing packages. For running your scripts, I recommend you to run it entirely from command line, either as</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">R</span> CMD BATCH myscript.R</code></pre></div>
+<p>When your code has been transferred to the server, your next task is to
+run it. But before you can do it, you may want to install the
+packages you need. For instance, you may want to install the whole
+“tidyverse” bundle. This must be done from R console using
+<code>install.packages()</code>. You start R interactively by the command</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">R</span></code></pre>
+<p>It opens an R session, not unlike what you see inside of RStudio, just
+here you have no RStudio to handrail you through the session. Now all loading,
+saving, inspecting files, etc must be done through R commands.</p>
+<p>The first time you do it, R complains about
+non-writeable system-wide library and proposes to install and create
+your personal libary. You should answer “yes” to these prompts. As
+Linux systems typically compile the packages during installations, installation is slow and you see many messages (including warnings) in the
+process. But it works, given that the necessary system libraries are available.</p>
+<p>Now you can finally run your R code. I strongly recommend to do it
+from the directory where you intend to run the project before starting
+R (<code>cd scripts</code> if you follow the example directory setup above). There are two options: either start R
+interactively, or run it as a script.
+If you do it from an interactive R session, you have to <em>source</em> your script:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;myscript.R&quot;</span>)</code></pre>
+<p>The script will run, and the first attempt most likely ends with an error message. You have
+to correct the error either on your laptop and copy the file over to
+the server again, or directly on the server, and
+re-run it again. Note that you don’t have to exit from the R session when
+copying the files between your laptop and the server. Edit it, copy it over
+from your laptop (using <code>scp</code> or
+other tools), and just re-source the file from
+within the R session.</p>
+<p>Opening a separate R session may be useful for installing packages.
+For running your scripts, I recommend you to run it entirely from
+command line, either as</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">R</span> CMD BATCH myscript.R</code></pre>
 <p>or</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">Rscript</span> myscript.R</code></pre></div>
-<p>The first version produces a little more informative error messages, the other one handles the environment in a little more consistent and efficient manner.</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">Rscript</span> myscript.R</code></pre>
+<p>The first version produces a little more informative error messages,
+the other one handles the environment in a little more consistent and
+efficient manner.</p>
 <div id="graphics-output-with-no-gui" class="section level3">
 <h3><span class="header-section-number">D.4.1</span> Graphics Output with No GUI</h3>
-<p>If the server does not have any graphics capabilities, you have to save your figures as files. For instance, to save the image in a pdf file, you may use the following code in your R program:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pdf</span>(<span class="dt">file=</span><span class="st">&quot;figure1.pdf&quot;</span>, <span class="dt">width=</span><span class="dv">12</span>, <span class="dt">height=</span><span class="dv">8</span>)
+<p>If the server does not have any graphics capabilities, you have to
+save your figures as files. For instance, to save the image in a pdf
+file, you may use the following code in your R program:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pdf</span>(<span class="dt">file=</span><span class="st">&quot;figure1.pdf&quot;</span>, <span class="dt">width=</span><span class="dv">12</span>, <span class="dt">height=</span><span class="dv">8</span>)
     <span class="co"># width and height in inches</span>
     <span class="co"># check also out jpeg() and png() devices.</span>
 <span class="co"># do your plotting here</span>
 <span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="kw">rnorm</span>(<span class="dv">10</span>))
 <span class="co"># done plotting</span>
 <span class="kw">dev.off</span>()
-    <span class="co"># saves the image to disk and closes the file.</span></code></pre></div>
-<p>Afterwards you will have to copy the image file to your laptop for inspection, or addition in your final project report.</p>
+    <span class="co"># saves the image to disk and closes the file.</span></code></pre>
+<p>Afterwards you will have to copy the image file to your laptop for
+inspection, or addition in your final project report.</p>
 </div>
 </div>
 <div id="life-on-server" class="section level2">
 <h2><span class="header-section-number">D.5</span> Life on Server</h2>
-<p>The servers operate the same in many ways as the command line on your own computer. However, there are a number of differences.</p>
+<p>The servers operate the same in many ways as the command line
+on your own computer. However, there are a number of differences.</p>
 <div id="be-social" class="section level3">
 <h3><span class="header-section-number">D.5.1</span> Be Social!</h3>
-<p>While you laptop is yours, and you are free to exploit all its resources for your own good, this is not true for the server. The server is a multiuser system, potentially doing good work for many people at the same time. So the first rule is: <strong>Don’t take more resources than what you need!</strong></p>
-<p>This that means don’t let the system run, grab memory, or occupy disk space just for fun. Try to keep your R workspace clean (check out <code>rm()</code> function) and close R as soon as it has finished (this happens automatically if you run your script through <code>Rscript</code> from command line). Don’t copy the dataset without a good reason, and keep your copies in a compressed form. R can open gzip and bzip2 files on the fly, so usually you don’t even need to decompress these. Avoid costly recalculations of something you already calculated. All this is even more important the last days before the deadline when many people are running using the server.</p>
-<p>Servers are typically well configured to tame misbehaving programs. You may sometimes see your script stopping with a message “killed”. This most likely means that it occupied too much memory, and the system just killed it. Deal with this.</p>
+<p>While you laptop is yours, and you are free to exploit all its
+resources for your own good, this is not true for the server. The server is a
+multiuser system, potentially doing good work for many people at the
+same time. So
+the first rule is: <strong>Don’t take more resources than what you need!</strong></p>
+<p>This that means don’t let the system run, grab memory, or occupy disk space
+just for fun. Try to keep your R workspace clean (check out <code>rm()</code>
+function) and
+close R as soon as it has finished (this happens automatically if you
+run your script through <code>Rscript</code> from command line). Don’t copy the dataset without a
+good reason, and keep your copies in a compressed form. R can open
+gzip and bzip2 files on the fly, so usually you don’t even need to
+decompress these. Avoid costly recalculations of something you
+already calculated. All this is even more important the last days before the deadline
+when many people are running using the server.</p>
+<p>Servers are typically well configured to tame misbehaving programs.
+You may sometimes see your script stopping with a message “killed”.
+This most likely means that it occupied too much memory, and the system
+just killed it. Deal with this.</p>
 </div>
 <div id="useful-things-to-do" class="section level3">
 <h3><span class="header-section-number">D.5.2</span> Useful Things to Do</h3>
-<p>There are several useful commands you can experiment with while on the server.</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">htop</span></code></pre></div>
-<p>(press <code>q</code> to quit) tells you which programs run on the server, how much memory and cpu do these take, and who are their owners (the corresponding users). It also permits you to kill your misbehaving processes (press <code>k</code> and select <code>SIGKILL</code>). Read more with <code>man htop</code>.</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">w</span></code></pre></div>
+<p>There are several useful commands you can experiment with while on the
+server.</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">htop</span></code></pre>
+<p>(press <code>q</code> to quit) tells you which programs run on the server, how much memory and cpu do
+these take, and who are their owners (the corresponding users). It
+also permits you to kill your misbehaving processes (press <code>k</code> and
+select <code>SIGKILL</code>). Read more with <code>man htop</code>.</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">w</span></code></pre>
 <p>(<strong>w</strong>ho) prints the current logged-in users of the server.</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">df</span> -h</code></pre></div>
-<p>(<strong>d</strong>isplay <strong>f</strong>ree in <strong>h</strong>uman-readable units) shows the free and occupied disk space. You are mainly influenced by what is going on in the file system <code>/home</code>.</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">df</span> -h</code></pre>
+<p>(<strong>d</strong>isplay <strong>f</strong>ree in <strong>h</strong>uman-readable units) shows the free and
+occupied disk space. You are mainly influenced by what is going on in the file system
+<code>/home</code>.</p>
 </div>
 <div id="permissions-and-ownership" class="section level3">
 <h3><span class="header-section-number">D.5.3</span> Permissions and ownership</h3>
-<p>Unix systems are very strict about ownership and permissions. You are a normal user with limited privileges. In particular, you cannot modify or delete files that you don’t own. In a similar fashion, you cannot kill processes you did not start. Feel free to attempt. It won’t work.</p>
-<p>In case you need to do something with elevated privileges (as “superuser”), you have to contact the system administrator. In practice, their responsiveness and willingness to accommodate your requests will vary.</p>
+<p>Unix systems are very strict about ownership and permissions. You are
+a normal user with limited privileges. In particular, you cannot
+modify or delete files that you don’t own. In a similar fashion, you
+cannot kill processes you did not start. Feel free to attempt. It
+won’t work.</p>
+<p>In case you need to do something with elevated privileges (as
+“superuser”), you have to contact the system administrator. In practice,
+their responsiveness and willingness to accommodate your requests will
+vary.</p>
 </div>
 <div id="more-than-one-connection" class="section level3">
 <h3><span class="header-section-number">D.5.4</span> More than One Connection</h3>
-<p>It perfectly possible to log onto the server through multiple terminals at the same time. You just open several terminals and log onto the server from each of these. You can use one terminal to observe how your script is doing (with <code>htop</code>), the other one to run the script, and the third one to inspect output. If you find such approach useful, I recommend you to familiarize yourself with gnu screen (command <code>screen</code> that includes many related goodies.)</p>
+<p>It perfectly possible to log onto the server through multiple terminals at the
+same time. You just open several terminals and log onto the
+server from each of these. You can use one terminal to observe how your script is
+doing (with <code>htop</code>), the other one to run the script, and the third one to inspect
+output. If you find such approach useful, I recommend you to
+familiarize yourself with gnu screen (command <code>screen</code> that includes
+many related goodies.)</p>
 </div>
 </div>
 <div id="advanced-usage" class="section level2">
 <h2><span class="header-section-number">D.6</span> Advanced Usage</h2>
 <div id="ssh-keys-.sshconfig" class="section level3">
 <h3><span class="header-section-number">D.6.1</span> ssh keys, .ssh/config</h3>
-<p>Without further configuration, every time you open a ssh connection, you have to type your password. Instead of re-entering it over and over again (this may not be particularly secure), you can configure your ssh keys and copy it to the server. Next time, you will be automatically authenticated with the key and you don’t have to type the password any more. Note: this is the same ssh key that is used by GitHub if you use ssh connection to GitHub.</p>
-<p>As the first step, you have to create the key with <code>ssh-keygen</code> (you may choose an empty passphrase) unless you already have created one. Thereafter copy your public key to the server with <code>ssh-copy-id</code>. Next time you log onto the server, no password is needed. A good source for help with creating and managing ssh keys is <a href="https://help.github.com/articles/connecting-to-github-with-ssh/">GitHub help</a>.</p>
-<p>You can also configure your ssh to recognize abbreviated server names and your corresponding user names. This allows you to connect to server with a simple command like <code>ssh info201</code>. This information is stored in the file <code>~/.ssh/config</code>, and should contain lines like</p>
+<p>Without further configuration, every time you open a ssh connection,
+you have to type your password. Instead of re-entering it
+over and over again (this may not be particularly secure), you can configure
+your ssh keys and copy it to the server. Next time, you will be
+automatically authenticated with the key and you don’t have to type
+the password any more. Note: this is the same ssh key that is used by GitHub if
+you use ssh connection to GitHub.</p>
+<p>As the first step, you have to create the key
+with <code>ssh-keygen</code> (you may choose an empty passphrase) unless you
+already have created one. Thereafter copy
+your public key to the server with <code>ssh-copy-id</code>. Next time you log
+onto the server, no password is needed. A good source for help with creating
+and managing ssh keys is
+<a href="https://help.github.com/articles/connecting-to-github-with-ssh/">GitHub help</a>.</p>
+<p>You can also configure your ssh to recognize abbreviated
+server names and your corresponding user names. This allows you to
+connect to server with a simple command like <code>ssh info201</code>. This
+information is stored in the file
+<code>~/.ssh/config</code>, and should contain lines like</p>
 <pre><code>Host info201
     User &lt;your username&gt;
     Hostname info201.ischool.uw.edu</code></pre>
-<p>The <code>Host</code> keyword is followed by the abbreviated name of the server, the following lines contain your username and the publicly visible hostname for the server. Seek out more information if you are interested.</p>
+<p>The <code>Host</code> keyword is followed by the abbreviated name of the server,
+the following lines contain your username and the publicly visible
+hostname for the server. Seek out more information if you are interested.</p>
 </div>
 <div id="running-rscript-in-ssh-session" class="section level3">
 <h3><span class="header-section-number">D.6.2</span> Running RScript in ssh Session</h3>
-<p>Passwordless ssh connection gives you new wonderful possibilities. First, you don’t even have to log into the server explicitly. You can run a one-command ssh session on the server directly from your laptop. Namely, ssh accepts commands to be run on the remote machine. If invoked as</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">ssh</span> myusername@server.ischool.edu <span class="st">&quot;Rscript myscript.R&quot;</span></code></pre></div>
-<p>It does not open a remote shell but runs <code>Rscript script.R</code> instead. Your command sequence for the whole process will accordingly look something like:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">rsync</span> -v Desktop/info201/* myusername@server.ischool.edu:scripts/
+<p>Passwordless ssh connection gives you new wonderful possibilities.
+First, you don’t even have to log into the server explicitly. You can
+run a one-command ssh session on the server directly from your
+laptop. Namely, ssh accepts commands to be run on the remote
+machine. If invoked as</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">ssh</span> myusername@server.ischool.edu <span class="st">&quot;Rscript myscript.R&quot;</span></code></pre>
+<p>It does not open a remote shell but runs <code>Rscript script.R</code> instead.
+Your command sequence for the whole process will accordingly look something like:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">rsync</span> -v Desktop/info201/* myusername@server.ischool.edu:scripts/
 <span class="fu">ssh</span> myusername@server.ischool.edu <span class="st">&quot;Rscript scripts/myscript.R&quot;</span>
-<span class="fu">rsync</span> -v myusername@server.ischool.edu:scripts/* Desktop/info201/</code></pre></div>
-<p>All these command are issued on your laptop. You can also save these to a text file and run all three together as a single <strong>shell script</strong>!</p>
-<p>Further, you don’t even need the shell. Instead, you may explain R on your laptop how to start R on the remote server over ssh. In this way you can turn your laptop and server combination into a high-performance-computing cluster! This allows you to copy the script and run it on the server directly from within your R program that runs on your laptop. Cluster computing is out of scope of this chapter, but if you are interested, look up the <strong>makePSOCKcluster()</strong> function in <strong>parallel</strong> package.</p>
+<span class="fu">rsync</span> -v myusername@server.ischool.edu:scripts/* Desktop/info201/</code></pre>
+<p>All these command are issued on your laptop. You can also save these
+to a text file and run all three together as a single <strong>shell
+script</strong>!</p>
+<p>Further, you don’t even need the shell. Instead, you may explain R on
+your laptop how to start R on the
+remote server over ssh. In this way you can turn your laptop and
+server combination
+into a high-performance-computing cluster! This allows you
+to copy the script and run it on the server directly from within your
+R program that runs
+on your laptop. Cluster computing is out of scope of this chapter, but if you
+are interested, look up the <strong>makePSOCKcluster()</strong> function in <strong>parallel</strong>
+package.</p>
 
 </div>
 </div>
@@ -595,7 +803,7 @@ gitbook.start({
 "google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
 "all": ["github", "facebook", "twitter", "google"]
 },
@@ -608,7 +816,11 @@ gitbook.start({
 "link": "https://github.com/info201/book/edit/master/ssh-to-remote-server.Rmd",
 "text": "Edit"
 },
-"download": ["tech-foundations-of-informatics.pdf", "tech-foundations-of-informatics.epub"],
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
 "toc": {
 "collapse": "section",
 "scroll_highlight": true
