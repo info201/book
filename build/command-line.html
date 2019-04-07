@@ -475,8 +475,11 @@ This includes clicking to move the cursor to an earlier part of the command you 
 <p>The first word is the <strong>command</strong>, or what you want the computer to do. In this case, you’re issuing the command that means <strong>c</strong>hange <strong>d</strong>irectory.</p>
 <p>The second word is an example of an <strong>argument</strong>, which is a programming term that means “more details about what to do”. In this case, you’re providing a <em>required</em> argument of what folder you want to change to! (You’ll of course need to replace <code>folder_name</code> with the name of the folder).</p>
 <ul>
-<li><p>Try changing to the <code>Desktop</code> folder, which should be inside the home folder you started in—you could see it in Finder or File Explorer!</p></li>
-<li><p>After you change folders, try printing your current location. Can you see that it has changed?</p></li>
+<li>Try changing to the <code>Desktop</code> folder, which should be inside the home folder you started in—you could see it in Finder or File Explorer!
+<p class="alert alert-info">
+<strong>A note about Desktop on Windows:</strong> the <code>Desktop</code> folder may be either in your home folder as in case of mac, or it may be inside of <code>OneDrive</code> folder inside your home directory.
+</p></li>
+<li>After you change folders, try printing your current location. Can you see that it has changed?</li>
 </ul>
 </div>
 <div id="listing-files" class="section level3">
@@ -515,7 +518,10 @@ You should <strong>always</strong> use relative paths, particularly when program
 <p class="alert alert-info">
 <strong>Protip:</strong> Most command shells like Terminal and Git Bash support <strong>tab-completion</strong>. If you type out just the first few letters of a file or folder name and then hit the <code>tab</code> key, it will automatically fill in the rest of the name! If the name is ambiguous (e.g., you type <code>Do</code> and there is both a <code>Documents</code> and a <code>Downloads</code> folder), you can hit <code>tab</code> <em>twice</em> to see the list of matching folders. Then add enough letters to distinguish them and tab to complete! This will make your life <em>a lot</em> easier.
 </p>
-<p>Additionally, you can use a tilde <strong><code>~</code></strong> as shorthand for the home directory of the current user. Just like <code>.</code> refers to “current folder”, <code>~</code> refers to the user’s home directory (usually <code>/Users/USERNAME</code>). And of course, you can use the tilde as part of a path as well (e.g., <code>~/Desktop</code> is an <em>absolute path</em> to the desktop for the current user).</p>
+<p>Additionally, you can use a tilde <strong><code>~</code></strong> as shorthand for the home directory of the current user. Just like <code>.</code> refers to “current folder”, <code>~</code> refers to the user’s home directory (usually <code>/Users/USERNAME</code> on mac or <code>/c/Documents and Settings/USERNAME</code> on windows). And of course, you can use the tilde as part of a path as well (e.g., <code>~/Desktop</code> is an <em>absolute path</em> to the desktop for the current user).</p>
+<p class="alert alert-info">
+<strong>A note about home directory on Windows:</strong> unlike unix, windows does not have a consistent concept of home directory, and different programs may interpret it in a different way. For instance, <em>gitbash</em> assumes the home directory is <code>/c/Documents and Settings/USERNAME</code> while <code>R</code> assumes it is <code>/c/Documents and Settings/USERNAME/Desktop</code>.
+</p>
 <p>As you perhaps noticed above, command line uses space as a separator between the command and additional arguments. This means it is more complicated to work with paths and file names that contain a space. For instance, if you want to change into a folder called <code>my folder</code>, then issuing <code>cd my folder</code> results in an error (“cd: too many arguments”). This is because <code>cd</code> thinks that <code>my</code> is folder name, and <code>folder</code> after space is an additional argument. But there are two ways to handle spaces: first, you can put your pathname in quotes like <code>cd &quot;my folder&quot;</code>, and second, you can <em>escape</em> the space with a backslash: <code>cd my\ folder</code>. Both of these options work reasonably well but in general we recommend to avoid spaces in file names whenever you work with command line.</p>
 </div>
 </div>
