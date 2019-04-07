@@ -43,6 +43,12 @@ You describe what folder you are in putting a slash `/` between each folder in t
 
 At the very top (or bottom, depending on your point of view) is the **root** `/` directory&dash;which has no name, and so is just indicated with that single slash. So `/Users/iguest` really means "the `iguest` folder, which is inside the `Users` folder, which is inside the _root_ folder".
 
+<p class="alert alert-info">
+**A Note about Windows:** while Mac (and other unix computers) use `/` as the root directory of the while system, Windows normally uses `This PC` on Explorer and similar graphical frontends, followed by the drive letters like `C:\`, followed by folder names separeted by backslashes.  _gitbash_ uses a unix-style filesystem tree approach with `/` replacing `This PC`, backslashes with forward slashes, and drive letters must be used without colon.  So `C:\Documents and Setting\Xiaotian\Desktop` can be accessed as `/c/Documents and settings/Xiatioan/Desktop`.
+</p>
+
+
+
 ### Changing Directories
 What if you want to change folders? In a graphical system like Finder, you would just double-click on the folder to open it. But there's no clicking on the command-line.
 
@@ -120,6 +126,8 @@ Note that **`.`** and **`..`** act just like folder names, so you can include th
 <p class="alert alert-info">**Protip:** Most command shells like Terminal and Git Bash support **tab-completion**. If you type out just the first few letters of a file or folder name and then hit the `tab` key, it will automatically fill in the rest of the name! If the name is ambiguous (e.g., you type `Do` and there is both a `Documents` and a `Downloads` folder), you can hit `tab` _twice_ to see the list of matching folders. Then add enough letters to distinguish them and tab to complete! This will make your life _a lot_ easier.</p>
 
 Additionally, you can use a tilde **`~`** as shorthand for the home directory of the current user. Just like `.` refers to "current folder", `~` refers to the user's home directory (usually  `/Users/USERNAME`). And of course, you can use the tilde as part of a path as well (e.g., `~/Desktop` is an _absolute path_ to the desktop for the current user).
+
+As you perhaps noticed above, command line uses space as a separator between the command and additional arguments.  This means it is more complicated to work with paths and file names that contain a space.  For instance, if you want to change into a folder called `my folder`, then issuing `cd my folder` results in an error ("cd: too many arguments").  This is because `cd` thinks that `my` is folder name, and `folder` after space is an additional argument.  But there are two ways to handle spaces: first, you can put your pathname in quotes like `cd "my folder"`, and second, you can _escape_ the space with a backslash: `cd my\ folder`.  Both of these options work reasonably well but in general we recommend to avoid spaces in file names whenever you work with command line.
 
 
 ## File Commands
