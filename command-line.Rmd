@@ -44,7 +44,7 @@ You describe what folder you are in putting a slash `/` between each folder in t
 At the very top (or bottom, depending on your point of view) is the **root** `/` directory&dash;which has no name, and so is just indicated with that single slash. So `/Users/iguest` really means "the `iguest` folder, which is inside the `Users` folder, which is inside the _root_ folder".
 
 <p class="alert alert-info">
-**A Note about Windows:** while Mac (and other unix computers) use `/` as the root directory of the while system, Windows normally uses `This PC` on Explorer and similar graphical frontends, followed by the drive letters like `C:\`, followed by folder names separeted by backslashes.  _gitbash_ uses a unix-style filesystem tree approach with `/` replacing `This PC`, backslashes with forward slashes, and drive letters must be used without colon.  So `C:\Documents and Setting\Xiaotian\Desktop` can be accessed as `/c/Documents and settings/Xiatioan/Desktop`.
+**A Note about Windows:** while Mac (and other unix computers) use `/` as the root directory of the while system, Windows normally uses `This PC` on Explorer and similar graphical frontends, followed by the drive letters like `C:\`, followed by folder names separeted by backslashes.  _gitbash_ uses a unix-style filesystem tree approach with `/` replacing `This PC`, backslashes with forward slashes, and drive letters must be used without colon.  So `C:\Users\Xiaotian\Desktop` can be accessed as `/c/Users/Xiatioan/Desktop`.
 </p>
 
 
@@ -68,7 +68,7 @@ The second word is an example of an **argument**, which is a programming term th
 
 - Try changing to the `Desktop` folder, which should be inside the home folder you started in&mdash;you could see it in Finder or File Explorer!
 <p class="alert alert-info">
-**A note about Desktop on Windows:** the `Desktop` folder may be either in your home folder as in case of mac, or it may be inside of `OneDrive` folder inside your home directory.
+**A note about Desktop on Windows:** If you're on Windows and the contents of your Desktop in the terminal doesn't match the contents of your actual Desktop, your computer may be configured to have your Desktop in a different directory. This usually happens if you've set up software to back up your Desktop to an online service. Instead of `~/Desktop`, check if your Desktop folder is really in `~/OneDrive/Desktop` or `~/Dropbox/Desktop`.
 </p>
 
 - After you change folders, try printing your current location. Can you see that it has changed?
@@ -128,10 +128,10 @@ Note that **`.`** and **`..`** act just like folder names, so you can include th
 
 <p class="alert alert-info">**Protip:** Most command shells like Terminal and Git Bash support **tab-completion**. If you type out just the first few letters of a file or folder name and then hit the `tab` key, it will automatically fill in the rest of the name! If the name is ambiguous (e.g., you type `Do` and there is both a `Documents` and a `Downloads` folder), you can hit `tab` _twice_ to see the list of matching folders. Then add enough letters to distinguish them and tab to complete! This will make your life _a lot_ easier.</p>
 
-Additionally, you can use a tilde **`~`** as shorthand for the home directory of the current user. Just like `.` refers to "current folder", `~` refers to the user's home directory (usually  `/Users/USERNAME` on mac or `/c/Documents and Settings/USERNAME` on windows). And of course, you can use the tilde as part of a path as well (e.g., `~/Desktop` is an _absolute path_ to the desktop for the current user).
+Additionally, you can use a tilde **`~`** as shorthand for the home directory of the current user. Just like `.` refers to "current folder", `~` refers to the user's home directory (usually  `/Users/USERNAME` on mac or `/c/Users/USERNAME` on windows). And of course, you can use the tilde as part of a path as well (e.g., `~/Desktop` is an _absolute path_ to the desktop for the current user).
 
 <p class="alert alert-info">
-**A note about home directory on Windows:** unlike unix, windows does not have a consistent concept of home directory, and different programs may interpret it in a different way.  For instance, _gitbash_ assumes the home directory is `/c/Documents and Settings/USERNAME` while `R` assumes it is `/c/Documents and Settings/USERNAME/Desktop`.
+**A note about home directory on Windows:** unlike unix, windows does not have a consistent concept of home directory, and different programs may interpret it in a different way.  For instance, _gitbash_ assumes the home directory is `/c/Users/USERNAME` while `R` assumes it is `/c/Users/USERNAME/Desktop`.
 </p>
 
 As you perhaps noticed above, command line uses space as a separator between the command and additional arguments.  This means it is more complicated to work with paths and file names that contain a space.  For instance, if you want to change into a folder called `my folder`, then issuing `cd my folder` results in an error ("cd: too many arguments").  This is because `cd` thinks that `my` is folder name, and `folder` after space is an additional argument.  But there are two ways to handle spaces: first, you can put your pathname in quotes like `cd "my folder"`, and second, you can _escape_ the space with a backslash: `cd my\ folder`.  Both of these options work reasonably well but in general we recommend to avoid spaces in file names whenever you work with command line.
