@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Technical Foundations of Informatics</title>
+  <title>Chapter 1 Setting up your Machine | Technical Foundations of Informatics</title>
   <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Technical Foundations of Informatics" />
+  <meta property="og:title" content="Chapter 1 Setting up your Machine | Technical Foundations of Informatics" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://info201.github.io/" />
   <meta property="og:image" content="https://info201.github.io/img/cover-img.png" />
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="info201/book" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Technical Foundations of Informatics" />
+  <meta name="twitter:title" content="Chapter 1 Setting up your Machine | Technical Foundations of Informatics" />
   
   <meta name="twitter:description" content="The course reader for INFO 201: Technical Foundations of Informatics." />
   <meta name="twitter:image" content="https://info201.github.io/img/cover-img.png" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2018-10-11">
+<meta name="date" content="2019-04-07">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -36,6 +36,7 @@
 <link rel="next" href="command-line.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -455,6 +456,7 @@ Note that iSchool lab machines should have all appropriate software already inst
 <div id="command-line-on-a-mac" class="section level3">
 <h3><span class="header-section-number">1.2.1</span> Command-line on a Mac</h3>
 <p>On a Mac you’ll want to use the built-in app called <em>Terminal</em>. You can open Terminal by searching via Spotlight (hit Cmd (<code>⌘</code>) and Spacebar together, type in “terminal”, then select the app to open it), or by finding it in the <code>Applications &gt; Utilities</code> folder.</p>
+<p>The terminal allows you to use many of the command-line tools without any further installation. However, certain commands, in particular <em>git</em>, require <em>X-Code Tools</em>. Mac will automatically ask your permission to install these tools, you have to reply “Yes”.</p>
 </div>
 <div id="command-line-on-windows" class="section level3">
 <h3><span class="header-section-number">1.2.2</span> Command-line on Windows</h3>
@@ -462,7 +464,7 @@ Note that iSchool lab machines should have all appropriate software already inst
 <ul>
 <li>Note that Windows does come with its own command-prompt, called the <em>DOS Prompt</em>, but it has a different set of commands and features. <em>Powershell</em> is a more powerful version of the DOS prompt if you really want to get into the Windows Management Framework. But Bash is more common in open-source programming like we’ll be doing, and so we will be focusing on that set of commands.</li>
 </ul>
-<p>Alternatively, the latest updates to Windows 10 (August 2016 or later) <em>does</em> includes a beta version of an integrated Bash shell. You can access this by <a href="https://msdn.microsoft.com/en-us/commandline/wsl/install_guide">enabling the subsystem for Linux</a> and then running <code>bash</code> in the command prompt.</p>
+<p>Alternatively, the latest updates to Windows 10 (August 2016 or later) <em>does</em> includes a version of an integrated Bash shell. You can access this by <a href="https://msdn.microsoft.com/en-us/commandline/wsl/install_guide">enabling the subsystem for Linux</a> and then running <code>bash</code> in the command prompt.</p>
 </div>
 </div>
 <div id="text-editors" class="section level2">
@@ -551,8 +553,9 @@ gitbook.start({
 "facebook": false,
 "twitter": false,
 "google": false,
+"linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
 "all": ["github", "facebook", "twitter", "google"]
 },
@@ -565,7 +568,11 @@ gitbook.start({
 "link": "https://github.com/info201/book/edit/master/setup.Rmd",
 "text": "Edit"
 },
-"download": ["tech-foundations-of-informatics.pdf", "tech-foundations-of-informatics.epub"],
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
 "toc": {
 "collapse": "section",
 "scroll_highlight": true

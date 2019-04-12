@@ -41,12 +41,15 @@ In order to use the command-line, you will need to use a **command shell** (also
 ### Command-line on a Mac
 On a Mac you'll want to use the built-in app called *Terminal*. You can open Terminal by searching via Spotlight (hit Cmd (`⌘`) and Spacebar together, type in "terminal", then select the app to open it), or by finding it in the `Applications > Utilities` folder.
 
+The terminal allows you to use many of the command-line tools without any further installation.  However, certain commands, in particular _git_, require _X-Code Tools_.  Mac will automatically ask your permission to install these tools, you have to reply "Yes".
+
+
 ### Command-line on Windows
 On Windows, we recommend using [**Git Bash**](https://git-scm.com/downloads), which you should have installed along with `git` (above). Open this program to open the command-shell. This works great, since you'll primarily be using the command-line for performing version control.
 
 - Note that Windows does come with its own command-prompt, called the _DOS Prompt_, but it has a different set of commands and features. _Powershell_ is a more powerful version of the DOS prompt if you really want to get into the Windows Management Framework. But Bash is more common in open-source programming like we'll be doing, and so we will be focusing on that set of commands.
 
-Alternatively, the latest updates to Windows 10 (August 2016 or later) _does_ includes a beta version of an integrated Bash shell. You can access this by [enabling the subsystem for Linux](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide) and then running `bash` in the command prompt.
+Alternatively, the latest updates to Windows 10 (August 2016 or later) _does_ includes a version of an integrated Bash shell. You can access this by [enabling the subsystem for Linux](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide) and then running `bash` in the command prompt.
 
 
 ## Text Editors
