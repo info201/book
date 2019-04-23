@@ -245,7 +245,6 @@ have written or executed your code, R will often print out a red error message i
 
 ## Resources {-}
 - [Tidyverse Style Guide](http://style.tidyverse.org/)
-- [DataCamp](https://www.datacamp.com/home) (awesome resource for interactive tutorials in R)
 - [R Tutorial: Introduction](http://www.r-tutor.com/r-introduction)
 - [R Tutorial: Basic Data Types](http://www.r-tutor.com/r-introduction/basic-data-types)
 - [R Tutorial: Operators](https://www.tutorialspoint.com/r/r_operators.htm)

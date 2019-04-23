@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>B R Language Control Structures | Technical Foundations of Informatics</title>
+  <title>Technical Foundations of Informatics</title>
   <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
 
-  <meta property="og:title" content="B R Language Control Structures | Technical Foundations of Informatics" />
+  <meta property="og:title" content="Technical Foundations of Informatics" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://info201.github.io/" />
   <meta property="og:image" content="https://info201.github.io/img/cover-img.png" />
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="info201/book" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="B R Language Control Structures | Technical Foundations of Informatics" />
+  <meta name="twitter:title" content="Technical Foundations of Informatics" />
   
   <meta name="twitter:description" content="The course reader for INFO 201: Technical Foundations of Informatics." />
   <meta name="twitter:image" content="https://info201.github.io/img/cover-img.png" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2019-04-07">
+<meta name="date" content="2019-04-23">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -36,7 +36,6 @@
 <link rel="next" href="data-tables.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -575,10 +574,10 @@ good &lt;-<span class="st"> </span><span class="cf">function</span>()
    <span class="kw">sqrt</span>(seq)
 microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<span class="kw">baad</span>(), <span class="kw">soso</span>(), <span class="kw">good</span>())</code></pre></div>
 <pre><code>## Unit: microseconds
-##    expr      min        lq      mean    median       uq      max neval
-##  baad() 1834.612 1928.7350 2529.2593 1969.0955 2000.787 8088.992   100
-##  soso()  147.523  161.9965  227.1516  165.6805  168.960 6369.740   100
-##  good()    6.356    7.0560   25.6362    8.6915   11.079 1605.534   100</code></pre>
+##    expr      min        lq       mean   median        uq       max neval
+##  baad() 1289.677 1550.0645 3174.48637 1842.845 3727.1335 63861.195   100
+##  soso()   57.598   58.3565   91.39745   60.465   65.5665  2699.902   100
+##  good()    5.536    5.9680   24.87865    6.716    7.6820  1757.694   100</code></pre>
 <p>When comparing the median values, we can see that the middle example is 10x slower than the vectorized example, and the first version is almost 300x slower!</p>
 <p>The above holds for “true” vectorized operations. R provides many pseudo-vectorizers (the lapply family) that may be handy in many circumstances, but not in case you need speed. Under the hood these functions just use a loop. We can demonstrate this by adding one more function to our family:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">soso2 &lt;-<span class="st"> </span><span class="cf">function</span>() {
@@ -587,10 +586,10 @@ microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<
 microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<span class="kw">baad</span>(), <span class="kw">soso</span>(), <span class="kw">soso2</span>(), <span class="kw">good</span>())</code></pre></div>
 <pre><code>## Unit: microseconds
 ##     expr      min        lq       mean    median        uq      max neval
-##   baad() 1866.552 1947.9020 2329.77283 1973.2140 2002.5720 7142.432   100
-##   soso()  150.211  162.5840  166.07179  166.4980  169.6205  193.816   100
-##  soso2()  695.808  732.1650  772.88559  744.9875  773.0665 3175.962   100
-##   good()    6.443    7.4305    8.94812    8.6060   10.2295   15.771   100</code></pre>
+##   baad() 1296.457 1464.2530 2665.36993 1948.9955 4357.7405 7294.275   100
+##   soso()   57.447   58.8595   63.12633   60.3180   63.1360  103.461   100
+##  soso2()  324.724  344.8365  387.54165  355.6475  390.3285 1555.773   100
+##   good()    5.595    6.0270    6.90509    6.4015    7.3745   15.584   100</code></pre>
 <p>As it turns out, <code>sapply</code> is much slower than plain for-loop. Lapply-family is not a substitute for true vectorization. However, one may argue that <code>soso2</code> function is easier to understand than explicit loop in <code>soso</code>. In any case, it is easier to type when working on the interactive console.</p>
 <p>Finally, it should be noted that when performing truly vectorized operations on long vectors, the overhead of R interpreter becomes negligible and the resulting speed is almost equalt to that of the corresponding C code. And optimized R code can easily beat non-optimized C.</p>
 </div>
@@ -692,7 +691,7 @@ gitbook.start({
 "google": false,
 "linkedin": false,
 "weibo": false,
-"instapaper": false,
+"instapper": false,
 "vk": false,
 "all": ["github", "facebook", "twitter", "google"]
 },
@@ -704,10 +703,6 @@ gitbook.start({
 "edit": {
 "link": "https://github.com/info201/book/edit/master/control_structures.Rmd",
 "text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
 },
 "download": null,
 "toc": {
