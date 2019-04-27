@@ -8,4 +8,12 @@ env:
 
 script:
   - ./_build.sh
-  - ./_deploy.sh
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $BOOK_GHP_UPLOAD_KEY
+  keep_history: true
+  local_dir: build
+  on:
+    branch: master
