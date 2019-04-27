@@ -2,5 +2,4 @@ Package: placeholder for travis
 Type: Book
 Title: info 201 intro to data programming course materials
 Version: 0.0.1
-Imports: bookdown, ggplot2
-
+Imports: bookdown, ggplot2, dplyr
