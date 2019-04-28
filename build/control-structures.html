@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Technical Foundations of Informatics</title>
+  <title>B R Language Control Structures | Technical Foundations of Informatics</title>
   <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Technical Foundations of Informatics" />
+  <meta property="og:title" content="B R Language Control Structures | Technical Foundations of Informatics" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://info201.github.io/" />
   <meta property="og:image" content="https://info201.github.io/img/cover-img.png" />
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="info201/book" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Technical Foundations of Informatics" />
+  <meta name="twitter:title" content="B R Language Control Structures | Technical Foundations of Informatics" />
   
   <meta name="twitter:description" content="The course reader for INFO 201: Technical Foundations of Informatics." />
   <meta name="twitter:image" content="https://info201.github.io/img/cover-img.png" />
@@ -25,11 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<<<<<<< HEAD
-<meta name="date" content="2019-04-12">
-=======
-<meta name="date" content="2019-04-23">
->>>>>>> upstream/master
+<meta name="date" content="2019-04-27">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -40,6 +36,7 @@
 <link rel="next" href="data-tables.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -301,7 +298,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="13" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>13</b> The <code>gglot2</code> Library</a><ul>
 <li class="chapter" data-level="13.1" data-path="ggplot2.html"><a href="ggplot2.html#a-grammar-of-graphics"><i class="fa fa-check"></i><b>13.1</b> A Grammar of Graphics</a></li>
 <li class="chapter" data-level="13.2" data-path="ggplot2.html"><a href="ggplot2.html#basic-plotting-with-ggplot2"><i class="fa fa-check"></i><b>13.2</b> Basic Plotting with <code>ggplot2</code></a><ul>
-<li class="chapter" data-level="13.2.1" data-path="ggplot2.html"><a href="ggplot2.html#aesthetic-mappings"><i class="fa fa-check"></i><b>13.2.1</b> Aesthetic Mappings</a></li>
+<li class="chapter" data-level="13.2.1" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2-library"><i class="fa fa-check"></i><b>13.2.1</b> <em>ggplot2</em> library</a></li>
+<li class="chapter" data-level="13.2.2" data-path="ggplot2.html"><a href="ggplot2.html#mpg-data"><i class="fa fa-check"></i><b>13.2.2</b> <em>mpg</em> data</a></li>
+<li class="chapter" data-level="13.2.3" data-path="ggplot2.html"><a href="ggplot2.html#our-first-ggplot"><i class="fa fa-check"></i><b>13.2.3</b> Our first ggplot</a></li>
+<li class="chapter" data-level="13.2.4" data-path="ggplot2.html"><a href="ggplot2.html#aesthetic-mappings"><i class="fa fa-check"></i><b>13.2.4</b> Aesthetic Mappings</a></li>
 </ul></li>
 <li class="chapter" data-level="13.3" data-path="ggplot2.html"><a href="ggplot2.html#complex-plots"><i class="fa fa-check"></i><b>13.3</b> Complex Plots</a><ul>
 <li class="chapter" data-level="13.3.1" data-path="ggplot2.html"><a href="ggplot2.html#specifying-geometry"><i class="fa fa-check"></i><b>13.3.1</b> Specifying Geometry</a></li>
@@ -578,17 +578,10 @@ good &lt;-<span class="st"> </span><span class="cf">function</span>()
    <span class="kw">sqrt</span>(seq)
 microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<span class="kw">baad</span>(), <span class="kw">soso</span>(), <span class="kw">good</span>())</code></pre></div>
 <pre><code>## Unit: microseconds
-<<<<<<< HEAD
-##    expr     min       lq       mean   median        uq      max neval
-##  baad() 977.242 984.8440 1329.18076 989.6555 1007.5195 4446.196   100
-##  soso()  55.517  55.7445   80.92756  56.5475   57.3135 2423.898   100
-##  good()   2.738   2.8880   11.94489   3.2970    4.1035  781.921   100</code></pre>
-=======
-##    expr      min        lq       mean   median        uq       max neval
-##  baad() 1289.677 1550.0645 3174.48637 1842.845 3727.1335 63861.195   100
-##  soso()   57.598   58.3565   91.39745   60.465   65.5665  2699.902   100
-##  good()    5.536    5.9680   24.87865    6.716    7.6820  1757.694   100</code></pre>
->>>>>>> upstream/master
+##    expr      min        lq      mean    median        uq      max neval
+##  baad() 1962.007 1995.7650 2553.2234 2018.3570 2048.2730 9722.521   100
+##  soso()  152.492  155.6170  221.0029  158.5355  164.5895 6262.073   100
+##  good()    6.398    6.8925   26.4951    8.7185   12.1285 1682.506   100</code></pre>
 <p>When comparing the median values, we can see that the middle example is 10x slower than the vectorized example, and the first version is almost 300x slower!</p>
 <p>The above holds for “true” vectorized operations. R provides many pseudo-vectorizers (the lapply family) that may be handy in many circumstances, but not in case you need speed. Under the hood these functions just use a loop. We can demonstrate this by adding one more function to our family:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">soso2 &lt;-<span class="st"> </span><span class="cf">function</span>() {
@@ -596,19 +589,11 @@ microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<
 }
 microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<span class="kw">baad</span>(), <span class="kw">soso</span>(), <span class="kw">soso2</span>(), <span class="kw">good</span>())</code></pre></div>
 <pre><code>## Unit: microseconds
-<<<<<<< HEAD
-##     expr     min        lq       mean    median       uq      max neval
-##   baad() 982.414 1013.2125 1229.62830 1024.5610 1046.615 3970.724   100
-##   soso()  55.556   56.1635   57.28048   56.8640   57.667   65.670   100
-##  soso2() 267.667  272.0410  288.25383  275.2540  281.236 1230.776   100
-##   good()   2.779    3.0530    3.68424    3.4205    3.880   13.009   100</code></pre>
-=======
-##     expr      min        lq       mean    median        uq      max neval
-##   baad() 1296.457 1464.2530 2665.36993 1948.9955 4357.7405 7294.275   100
-##   soso()   57.447   58.8595   63.12633   60.3180   63.1360  103.461   100
-##  soso2()  324.724  344.8365  387.54165  355.6475  390.3285 1555.773   100
-##   good()    5.595    6.0270    6.90509    6.4015    7.3745   15.584   100</code></pre>
->>>>>>> upstream/master
+##     expr      min        lq       mean    median       uq      max neval
+##   baad() 1370.606 1407.7605 1865.68860 1468.1870 1716.317 6722.909   100
+##   soso()   75.948   77.4855   91.11307   79.3915   88.578  162.539   100
+##  soso2()  396.355  427.2155  527.44968  451.7345  567.875 2188.450   100
+##   good()    5.331    6.2055    7.49017    7.0520    8.256   19.761   100</code></pre>
 <p>As it turns out, <code>sapply</code> is much slower than plain for-loop. Lapply-family is not a substitute for true vectorization. However, one may argue that <code>soso2</code> function is easier to understand than explicit loop in <code>soso</code>. In any case, it is easier to type when working on the interactive console.</p>
 <p>Finally, it should be noted that when performing truly vectorized operations on long vectors, the overhead of R interpreter becomes negligible and the resulting speed is almost equalt to that of the corresponding C code. And optimized R code can easily beat non-optimized C.</p>
 </div>
@@ -710,7 +695,7 @@ gitbook.start({
 "google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
 "all": ["github", "facebook", "twitter", "google"]
 },
@@ -722,6 +707,10 @@ gitbook.start({
 "edit": {
 "link": "https://github.com/info201/book/edit/master/control_structures.Rmd",
 "text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
 },
 "download": null,
 "toc": {

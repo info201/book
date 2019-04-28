@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Technical Foundations of Informatics</title>
+  <title>Chapter 13 The gglot2 Library | Technical Foundations of Informatics</title>
   <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Technical Foundations of Informatics" />
+  <meta property="og:title" content="Chapter 13 The gglot2 Library | Technical Foundations of Informatics" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://info201.github.io/" />
   <meta property="og:image" content="https://info201.github.io/img/cover-img.png" />
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="info201/book" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Technical Foundations of Informatics" />
+  <meta name="twitter:title" content="Chapter 13 The gglot2 Library | Technical Foundations of Informatics" />
   
   <meta name="twitter:description" content="The course reader for INFO 201: Technical Foundations of Informatics." />
   <meta name="twitter:image" content="https://info201.github.io/img/cover-img.png" />
@@ -25,11 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<<<<<<< HEAD
-<meta name="date" content="2019-04-12">
-=======
-<meta name="date" content="2019-04-23">
->>>>>>> upstream/master
+<meta name="date" content="2019-04-27">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -40,6 +36,7 @@
 <link rel="next" href="git-branches.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -301,7 +298,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="13" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>13</b> The <code>gglot2</code> Library</a><ul>
 <li class="chapter" data-level="13.1" data-path="ggplot2.html"><a href="ggplot2.html#a-grammar-of-graphics"><i class="fa fa-check"></i><b>13.1</b> A Grammar of Graphics</a></li>
 <li class="chapter" data-level="13.2" data-path="ggplot2.html"><a href="ggplot2.html#basic-plotting-with-ggplot2"><i class="fa fa-check"></i><b>13.2</b> Basic Plotting with <code>ggplot2</code></a><ul>
-<li class="chapter" data-level="13.2.1" data-path="ggplot2.html"><a href="ggplot2.html#aesthetic-mappings"><i class="fa fa-check"></i><b>13.2.1</b> Aesthetic Mappings</a></li>
+<li class="chapter" data-level="13.2.1" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2-library"><i class="fa fa-check"></i><b>13.2.1</b> <em>ggplot2</em> library</a></li>
+<li class="chapter" data-level="13.2.2" data-path="ggplot2.html"><a href="ggplot2.html#mpg-data"><i class="fa fa-check"></i><b>13.2.2</b> <em>mpg</em> data</a></li>
+<li class="chapter" data-level="13.2.3" data-path="ggplot2.html"><a href="ggplot2.html#our-first-ggplot"><i class="fa fa-check"></i><b>13.2.3</b> Our first ggplot</a></li>
+<li class="chapter" data-level="13.2.4" data-path="ggplot2.html"><a href="ggplot2.html#aesthetic-mappings"><i class="fa fa-check"></i><b>13.2.4</b> Aesthetic Mappings</a></li>
 </ul></li>
 <li class="chapter" data-level="13.3" data-path="ggplot2.html"><a href="ggplot2.html#complex-plots"><i class="fa fa-check"></i><b>13.3</b> Complex Plots</a><ul>
 <li class="chapter" data-level="13.3.1" data-path="ggplot2.html"><a href="ggplot2.html#specifying-geometry"><i class="fa fa-check"></i><b>13.3.1</b> Specifying Geometry</a></li>
@@ -446,14 +446,31 @@ Examples in this chapter adapted from <a href="http://r4ds.had.co.nz/"><em>R for
 </div>
 <div id="basic-plotting-with-ggplot2" class="section level2">
 <h2><span class="header-section-number">13.2</span> Basic Plotting with <code>ggplot2</code></h2>
-<p>The <a href="http://ggplot2.tidyverse.org/"><strong><code>ggplot2</code></strong></a> library provides a set of <em>declarative functions</em> that mirror the above grammar, enabling you to efficaciously specify what you want a plot to look like (e.g., what data, geometric objects, aesthetics, scales, etc. you want it to have).</p>
+<div id="ggplot2-library" class="section level3">
+<h3><span class="header-section-number">13.2.1</span> <em>ggplot2</em> library</h3>
+<p>The <a href="http://ggplot2.tidyverse.org/"><strong><code>ggplot2</code></strong></a> library provides a set of <em>declarative functions</em> that mirror the above grammar, enabling you to easily specify what you want a plot to look like (e.g., what data, geometric objects, aesthetics, scales, etc. you want it to have).</p>
 <p><code>ggplot2</code> is yet another external package (like <code>dplyr</code> and <code>httr</code> and <code>jsonlite</code>), so you will need to install and load it in order to use it:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)  <span class="co"># once per machine</span>
 <span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</code></pre></div>
 <p>This will make all of the plotting functions you’ll need available.</p>
-<ul>
-<li>Note that the library also comes with a number of built-in data sets. This chapter will use the provided <code>mpg</code> data set as an example, which is a data frame containing information about fuel economy for different cars.</li>
-</ul>
+<p class="alert">
+<em>ggplot2</em> is called <em>ggplot<strong>2</strong></em> because once upon a time there was just a library <em>ggplot</em>. However, the developer noticed that it used an inefficient set of functions. In order for not to break the API, the authors introduced a successor package <em>ggplot2</em>. However, the central function in this package is still called <code>ggplot()</code>, not <code>ggplot2()</code>!
+</p>
+</div>
+<div id="mpg-data" class="section level3">
+<h3><span class="header-section-number">13.2.2</span> <em>mpg</em> data</h3>
+<p><em>ggplot2</em> library comes with a number of built-in data sets. One of the most popular of these is <code>mpg</code>, a data frame about fuel economy for different cars. It is a sufficiently small but versatile dataset to demonstrate various aspects of plotting. <em>mpg</em> The <code>mpg</code> dataset has 234 rows and 11 columns. Below is a sample of it:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mpg[<span class="kw">sample</span>(<span class="kw">nrow</span>(mpg), <span class="dv">3</span>),]</code></pre></div>
+<pre><code>## # A tibble: 3 x 11
+##   manufacturer model  displ  year   cyl trans drv     cty   hwy fl    class
+##   &lt;chr&gt;        &lt;chr&gt;  &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+## 1 dodge        duran…   4.7  2008     8 auto… 4        13    17 r     suv  
+## 2 dodge        carav…   3.8  2008     6 auto… f        16    23 r     mini…
+## 3 volkswagen   gti      2    2008     4 auto… f        22    29 p     comp…</code></pre>
+<p>The most important variables for our purpose are following: * <strong>class</strong>, car class, such as SUV, compact, 2-seater * <strong>displ</strong>, engine size (liters) * <strong>cyl</strong>, number of cylinders * <strong>hwy</strong>, mileage on highway, miles per gallon * <strong>manufacturer</strong>, producer of the car, e.g. Volkswagen, Toyota</p>
+</div>
+<div id="our-first-ggplot" class="section level3">
+<h3><span class="header-section-number">13.2.3</span> Our first ggplot</h3>
 <p>In order to create a plot, you call the <code>ggplot()</code> function, specifying the <strong>data</strong> that you wish to plot. You then add new <em>layers</em> that are <strong>geometric objects</strong> which will show up on the plot:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot the `mpg` data set, with highway mileage on the x axis and</span>
 <span class="co"># engine displacement (power) on the y axis:</span>
@@ -471,10 +488,11 @@ Examples in this chapter adapted from <a href="http://r4ds.had.co.nz/"><em>R for
 <ul>
 <li>Note that <code>ggplot2</code> library does include a <code>qplot()</code> function for creating “quick plots”, which acts as a convenient shortcut for making simple, “default”-like plots. While this is a nice starting place, the strength of <code>ggplot2</code> is in it’s <em>customizability</em>, so read on!</li>
 </ul>
+</div>
 <div id="aesthetic-mappings" class="section level3">
-<h3><span class="header-section-number">13.2.1</span> Aesthetic Mappings</h3>
-<p>The <strong>aesthetic mappings</strong> take properties of the data and use them to influence <strong>visual channels</strong>, such as <em>position</em>, <em>color</em>, <em>size</em>, or <em>shape</em>. These are the representations that you want to <em>drive with your data properties</em>, rather than set for all markers. Each visual channel can therefore encode an aspect of the data and be used to express underlying patterns.</p>
-<p>The data-driven aesthetics for a plot are specified in the <a href="http://ggplot2.tidyverse.org/reference/index.html#section-aesthetics"><code>aes()</code></a> function call for that <code>geom</code> layer. For example, you can add a mapping from the <code>class</code> of the cars to the <em>color</em> channel:</p>
+<h3><span class="header-section-number">13.2.4</span> Aesthetic Mappings</h3>
+<p>The <strong>aesthetic mapping</strong> is a central concept of every data visualization. This means setting up the correspondence between <strong>aesthetics</strong>, the visual properties (visual channels) of the plot, such as <em>position</em>, <em>color</em>, <em>size</em>, or <em>shape</em>, and certain properties of the data, typically numeric values of certain variables. Aesthetics are the representations that you want to <em>drive with your data properties</em>, rather than fix in code for all markers. Each visual channel can therefore encode an aspect of the data and be used to express underlying patterns.</p>
+<p>The aesthetics mapping is specified in the <a href="http://ggplot2.tidyverse.org/reference/index.html#section-aesthetics"><code>aes()</code></a> function call in the <code>geom</code> layer. Above we used mapping <code>aes(x=displ, y=hwy)</code>. This means to map variable <code>displ</code> in the <code>mpg</code> data (engine size) to the horizontal position (<em>x</em>-coordinate) on the plot, and variable <code>hwy</code> (highway mileage) to the vertical position (<em>y</em> coordinate). We did not specify any other visual properties, such as color, point size or point shape, so by default the <code>geom_point</code> layer produced a set of equal size black dots, positioned according to the date. Let’s now color the points according to the class of the car. This amounts to taking an additional aesthetic, <em>color</em>, and mapping it to the variable <code>class</code> in data as <code>color=class</code>. As we want this to happen in the same layer, we must add this to the <code>aes()</code> function as an additional named argument:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># color the data by car type</span>
 <span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">color =</span> class))</code></pre></div>
@@ -685,7 +703,7 @@ best_in_class &lt;-<span class="st"> </span>mpg <span class="op">%&gt;%</span>
 <ul>
 <li><p><a href="http://ggvis.rstudio.com/"><strong><code>ggvis</code></strong></a> is a library that uses the <em>Grammar of Graphics</em> (similar to <code>ggplot</code>), but for interactive visualizations. The interactivity is provided through the <a href="http://www.rstudio.com/shiny/"><code>shiny</code></a> library, which is introduced in a later chapter.</p></li>
 <li><p><a href="http://hafen.github.io/rbokeh/index.html"><strong>Bokeh</strong></a> is an open-source library for developing interactive visualizations. It automatically provides a number of “standard” interactions (pop-up labels, drag to pan, select to zoom, etc) automatically. It is similar to <code>ggplot2</code>, in that you create a figure and then and then add <em>layers</em> representing different geometries (points, lines etc). It has detailed and readable documentation, and is also available to other programming languages (such as Python).</p></li>
-<li><p><a href="https://plot.ly/r/"><strong>Plotly</strong></a> is another libary similar to <em>Bokeh</em>, in that it automatically provided standard interactions. It is also possible to take a <code>ggplot2</code> plot and <a href="https://plot.ly/ggplot2/">wrap</a> it in Plotly in order to make it interactive. Plotly has many examples to learn from, though a less effective set of documentation than other libraries.</p></li>
+<li><p><a href="https://plot.ly/r/"><strong>Plotly</strong></a> is another library similar to <em>Bokeh</em>, in that it automatically provided standard interactions. It is also possible to take a <code>ggplot2</code> plot and <a href="https://plot.ly/ggplot2/">wrap</a> it in Plotly in order to make it interactive. Plotly has many examples to learn from, though a less effective set of documentation than other libraries.</p></li>
 <li><p><a href="http://rdatascience.io/rCharts/"><strong><code>rCharts</code></strong></a> provides a way to utilize a number of <em>JavaScript</em> interactive visualization libraries. JavaScript is the programming language used to create interactive websites (HTML files), and so is highly specialized for creating interactive experiences.</p></li>
 </ul>
 <p>There are many other libraries as well; searching around for a specific feature you need may lead you to a useful tool!</p>
@@ -731,7 +749,7 @@ gitbook.start({
 "google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
 "all": ["github", "facebook", "twitter", "google"]
 },
@@ -743,6 +761,10 @@ gitbook.start({
 "edit": {
 "link": "https://github.com/info201/book/edit/master/ggplot2.Rmd",
 "text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
 },
 "download": null,
 "toc": {
