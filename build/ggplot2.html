@@ -464,9 +464,9 @@ Examples in this chapter adapted from <a href="http://r4ds.had.co.nz/"><em>R for
 <pre><code>## # A tibble: 3 x 11
 ##   manufacturer model  displ  year   cyl trans drv     cty   hwy fl    class
 ##   &lt;chr&gt;        &lt;chr&gt;  &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
-## 1 dodge        duran…   4.7  2008     8 auto… 4        13    17 r     suv  
-## 2 dodge        carav…   3.8  2008     6 auto… f        16    23 r     mini…
-## 3 volkswagen   gti      2    2008     4 auto… f        22    29 p     comp…</code></pre>
+## 1 honda        civic    1.6  1999     4 manu… f        28    33 r     subc…
+## 2 nissan       pathf…   4    2008     6 auto… 4        14    20 p     suv  
+## 3 mercury      mount…   4    2008     6 auto… 4        13    19 r     suv</code></pre>
 <p>The most important variables for our purpose are following: * <strong>class</strong>, car class, such as SUV, compact, 2-seater * <strong>displ</strong>, engine size (liters) * <strong>cyl</strong>, number of cylinders * <strong>hwy</strong>, mileage on highway, miles per gallon * <strong>manufacturer</strong>, producer of the car, e.g. Volkswagen, Toyota</p>
 </div>
 <div id="our-first-ggplot" class="section level3">
@@ -498,7 +498,11 @@ Examples in this chapter adapted from <a href="http://r4ds.had.co.nz/"><em>R for
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">color =</span> class))</code></pre></div>
 <p><img src="img/ggplot2/aes_color-1.png" width="576" /></p>
 <p>(<code>ggplot2</code> will even create a legend for you!)</p>
-<p>Note that using the <code>aes()</code> function will cause the visual channel to be based on the data specified in the argument. For example, using <code>aes(color = &quot;blue&quot;)</code> won’t cause the geometry’s color to be “blue”, but will instead cause the visual channel to be mapped from the <em>vector</em> <code>c(&quot;blue&quot;)</code>—as if you only had a single type of engine that happened to be called “blue”. If you wish to apply an aesthetic property to an entire geometry, you can <strong><em>set</em></strong> that property as an argument to the <code>geom</code> method, outside of the <code>aes()</code> call:</p>
+<p>Note that using the <code>aes()</code> function will cause the visual channel to be based on the data specified in the argument. For example, using <code>aes(color = &quot;blue&quot;)</code> won’t cause the geometry’s color to be “blue”, but will instead cause the visual channel to be mapped from the <em>vector</em> <code>c(&quot;blue&quot;)</code>—as if you only had a single type of engine that happened to be called “blue”:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) <span class="op">+</span><span class="st">                         </span><span class="co"># note where parentheses are closed</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>))</code></pre></div>
+<p><img src="img/ggplot2/wrong_blue-1.png" width="576" /></p>
+<p>This looks confusing and is most likely not what you want. If you wish to specify a given aesthetic, you should <strong><em>set</em></strong> that property as an argument to the <code>geom</code> method, outside of the <code>aes()</code> call:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) <span class="op">+</span><span class="st">                         </span><span class="co"># note where parentheses are closed</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy), <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>)  <span class="co"># blue points!</span></code></pre></div>
 <p><img src="img/ggplot2/color_blue-1.png" width="576" /></p>

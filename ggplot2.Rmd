@@ -105,7 +105,15 @@ ggplot(data = mpg) +
 
 (`ggplot2` will even create a legend for you!)
 
-Note that using the `aes()` function will cause the visual channel to be based on the data specified in the argument. For example, using `aes(color = "blue")` won't cause the geometry's color to be "blue", but will instead cause the visual channel to be mapped from the _vector_ `c("blue")`&mdash;as if you only had a single type of engine that happened to be called "blue". If you wish to apply an aesthetic property to an entire geometry, you can ___set___ that property as an argument to the `geom` method, outside of the `aes()` call:
+Note that using the `aes()` function will cause the visual channel to be based on the data specified in the argument. For example, using `aes(color = "blue")` won't cause the geometry's color to be "blue", but will instead cause the visual channel to be mapped from the _vector_ `c("blue")`&mdash;as if you only had a single type of engine that happened to be called "blue":
+
+```{r wrong_blue}
+ggplot(data = mpg) +                         # note where parentheses are closed
+  geom_point(mapping = aes(x = displ, y = hwy, color = "blue"))
+```
+
+This looks confusing (note the weird legend!) and is most likely not what you want.
+If you wish to specify a given aesthetic, you should ___set___ that property as an argument to the `geom` method, outside of the `aes()` call:
 
 ```{r color_blue}
 ggplot(data = mpg) +                         # note where parentheses are closed
