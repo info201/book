@@ -52,12 +52,13 @@ This will make all of the plotting functions you'll need available.
 
 ### _mpg_ data
 
-_ggplot2_ library comes with a number of built-in data sets.  One of the most popular of these is `mpg`, a data frame about fuel economy for different cars.  It is a sufficiently small but versatile dataset to demonstrate various aspects of plotting.  _mpg_ The `mpg` dataset has `r nrow(mpg)` rows and `r ncol(mpg)` columns.  Below is a sample of it:
+_ggplot2_ library comes with a number of built-in data sets.  One of the most popular of these is `mpg`, a data frame about fuel economy for different cars.  It is a sufficiently small but versatile dataset to demonstrate various aspects of plotting.  _mpg_ has `r nrow(mpg)` rows and `r ncol(mpg)` columns.  Below is a sample of it:
 ```{r mpgDemo}
 mpg[sample(nrow(mpg), 3),]
 ```
 The most important variables for our purpose are following:
-* **class**, car class, such as SUV, compact, 2-seater
+
+* **class**, car class, such as SUV, compact, minivan
 * **displ**, engine size (liters)
 * **cyl**, number of cylinders
 * **hwy**, mileage on highway, miles per gallon

@@ -459,15 +459,22 @@ Examples in this chapter adapted from <a href="http://r4ds.had.co.nz/"><em>R for
 </div>
 <div id="mpg-data" class="section level3">
 <h3><span class="header-section-number">13.2.2</span> <em>mpg</em> data</h3>
-<p><em>ggplot2</em> library comes with a number of built-in data sets. One of the most popular of these is <code>mpg</code>, a data frame about fuel economy for different cars. It is a sufficiently small but versatile dataset to demonstrate various aspects of plotting. <em>mpg</em> The <code>mpg</code> dataset has 234 rows and 11 columns. Below is a sample of it:</p>
+<p><em>ggplot2</em> library comes with a number of built-in data sets. One of the most popular of these is <code>mpg</code>, a data frame about fuel economy for different cars. It is a sufficiently small but versatile dataset to demonstrate various aspects of plotting. <em>mpg</em> has 234 rows and 11 columns. Below is a sample of it:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mpg[<span class="kw">sample</span>(<span class="kw">nrow</span>(mpg), <span class="dv">3</span>),]</code></pre></div>
 <pre><code>## # A tibble: 3 x 11
 ##   manufacturer model  displ  year   cyl trans drv     cty   hwy fl    class
 ##   &lt;chr&gt;        &lt;chr&gt;  &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
-## 1 volkswagen   jetta    2    1999     4 auto… f        19    26 r     comp…
-## 2 dodge        carav…   3.3  1999     6 auto… f        16    22 r     mini…
-## 3 pontiac      grand…   3.1  1999     6 auto… f        18    26 r     mids…</code></pre>
-<p>The most important variables for our purpose are following: * <strong>class</strong>, car class, such as SUV, compact, 2-seater * <strong>displ</strong>, engine size (liters) * <strong>cyl</strong>, number of cylinders * <strong>hwy</strong>, mileage on highway, miles per gallon * <strong>manufacturer</strong>, producer of the car, e.g. Volkswagen, Toyota</p>
+## 1 dodge        ram 1…   4.7  2008     8 auto… 4         9    12 e     pick…
+## 2 volkswagen   jetta    2.8  1999     6 auto… f        16    23 r     comp…
+## 3 pontiac      grand…   3.8  1999     6 auto… f        16    26 p     mids…</code></pre>
+<p>The most important variables for our purpose are following:</p>
+<ul>
+<li><strong>class</strong>, car class, such as SUV, compact, minivan</li>
+<li><strong>displ</strong>, engine size (liters)</li>
+<li><strong>cyl</strong>, number of cylinders</li>
+<li><strong>hwy</strong>, mileage on highway, miles per gallon</li>
+<li><strong>manufacturer</strong>, producer of the car, e.g. Volkswagen, Toyota</li>
+</ul>
 </div>
 <div id="our-first-ggplot" class="section level3">
 <h3><span class="header-section-number">13.2.3</span> Our first ggplot</h3>

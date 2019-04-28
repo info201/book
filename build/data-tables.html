@@ -439,32 +439,32 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table)
 dt &lt;-<span class="st"> </span><span class="kw">data.table</span>(<span class="dt">id=</span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">x=</span><span class="kw">rnorm</span>(<span class="dv">5</span>), <span class="dt">y=</span><span class="kw">runif</span>(<span class="dv">5</span>))
 dt</code></pre></div>
-<pre><code>##    id          x         y
-## 1:  1  0.4021658 0.2668303
-## 2:  2 -1.6515890 0.9178986
-## 3:  3 -1.6692178 0.7932871
-## 4:  4 -0.5957107 0.3620516
-## 5:  5  0.5586241 0.8736146</code></pre>
+<pre><code>##    id          x          y
+## 1:  1  0.8414064 0.05853276
+## 2:  2  1.2837546 0.10949273
+## 3:  3 -1.2404474 0.79612115
+## 4:  4 -1.0669345 0.45780197
+## 5:  5  1.0636827 0.95042455</code></pre>
 <p>The result looks almost identical to a similar data frame (the only difference are the colons after the row numbers). Behind the scenes these objects are almost identical too–both objects are lists of vectors. This structural similarity allows to use data tables as drop-in replacements for dataframes, at least in some circumstances. For instance, we can extract variables with <code>$</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt<span class="op">$</span>x</code></pre></div>
-<pre><code>## [1]  0.4021658 -1.6515890 -1.6692178 -0.5957107  0.5586241</code></pre>
+<pre><code>## [1]  0.8414064  1.2837546 -1.2404474 -1.0669345  1.0636827</code></pre>
 <p>or rows with row indices:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>),]</code></pre></div>
-<pre><code>##    id          x         y
-## 1:  2 -1.6515890 0.9178986
-## 2:  4 -0.5957107 0.3620516</code></pre>
+<pre><code>##    id         x         y
+## 1:  2  1.283755 0.1094927
+## 2:  4 -1.066934 0.4578020</code></pre>
 <p>However, data tables use unquoted variables names (like <em>dplyr</em>) by default:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt[,x]</code></pre></div>
-<pre><code>## [1]  0.4021658 -1.6515890 -1.6692178 -0.5957107  0.5586241</code></pre>
+<pre><code>## [1]  0.8414064  1.2837546 -1.2404474 -1.0669345  1.0636827</code></pre>
 <p>In case we need to store the variable name into another variable, with have to use the additional argument <code>with</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">var &lt;-<span class="st"> &quot;x&quot;</span>
 dt[, var, with=<span class="ot">FALSE</span>]</code></pre></div>
 <pre><code>##             x
-## 1:  0.4021658
-## 2: -1.6515890
-## 3: -1.6692178
-## 4: -0.5957107
-## 5:  0.5586241</code></pre>
+## 1:  0.8414064
+## 2:  1.2837546
+## 3: -1.2404474
+## 4: -1.0669345
+## 5:  1.0636827</code></pre>
 <p>Note also that instead of getting a vector, now we get a data.table with a single column “x” in the first. This behavior is the main culprit that when replacing data frames with data tables one may need to change quite a bit of code.</p>
 </div>
 <div id="fast-reading-and-writing" class="section level3">
@@ -475,12 +475,12 @@ dt[, var, with=<span class="ot">FALSE</span>]</code></pre></div>
 <p>If your computer has enough memory and speed is not an issue, your interest for data tables may end here. You can just transform data table into a data frame with <code>setDF</code> (and the other way around with <code>setDT</code>). Let’s transform our data table to data frame:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setDF</span>(dt)
 dt</code></pre></div>
-<pre><code>##   id          x         y
-## 1  1  0.4021658 0.2668303
-## 2  2 -1.6515890 0.9178986
-## 3  3 -1.6692178 0.7932871
-## 4  4 -0.5957107 0.3620516
-## 5  5  0.5586241 0.8736146</code></pre>
+<pre><code>##   id          x          y
+## 1  1  0.8414064 0.05853276
+## 2  2  1.2837546 0.10949273
+## 3  3 -1.2404474 0.79612115
+## 4  4 -1.0669345 0.45780197
+## 5  5  1.0636827 0.95042455</code></pre>
 <p>Do you see that the colons after row names are gone? This means <code>dt</code> now is a data frame.</p>
 <p>Note that this function behaves very differently from what we have learned earlier: it modifies the object <em>in place</em> (by reference). We do not have to assign the result into a new variable using a construct like <code>df &lt;- setDF(dt)</code> (but we still can write like this, handy when using magrittr pipes). This is a manifestation of the power of data.tables: the object is not copied but the same object is modified in memory instead. <code>setDF</code> and <code>setDT</code> are very efficient, even huge tables are converted instantly with virtually no need for any additional memory.</p>
 <p>However, big powers come hand-in-hand with big responsibility: it is easy to forget that <code>setDF</code> modifies the function argument.</p>
