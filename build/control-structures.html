@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2019-04-27">
+<meta name="date" content="2019-04-29">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -310,7 +310,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="13.3.4" data-path="ggplot2.html"><a href="ggplot2.html#facets"><i class="fa fa-check"></i><b>13.3.4</b> Facets</a></li>
 <li class="chapter" data-level="13.3.5" data-path="ggplot2.html"><a href="ggplot2.html#labels-annotations"><i class="fa fa-check"></i><b>13.3.5</b> Labels &amp; Annotations</a></li>
 </ul></li>
-<li class="chapter" data-level="13.4" data-path="ggplot2.html"><a href="ggplot2.html#other-visualization-libraries"><i class="fa fa-check"></i><b>13.4</b> Other Visualization Libraries</a></li>
+<li class="chapter" data-level="13.4" data-path="ggplot2.html"><a href="ggplot2.html#plotting-in-scripts"><i class="fa fa-check"></i><b>13.4</b> Plotting in Scripts</a></li>
+<li class="chapter" data-level="13.5" data-path="ggplot2.html"><a href="ggplot2.html#other-visualization-libraries"><i class="fa fa-check"></i><b>13.5</b> Other Visualization Libraries</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#resources-12"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="git-branches.html"><a href="git-branches.html"><i class="fa fa-check"></i><b>14</b> Git Branches</a><ul>
@@ -578,10 +579,10 @@ good &lt;-<span class="st"> </span><span class="cf">function</span>()
    <span class="kw">sqrt</span>(seq)
 microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<span class="kw">baad</span>(), <span class="kw">soso</span>(), <span class="kw">good</span>())</code></pre></div>
 <pre><code>## Unit: microseconds
-##    expr      min        lq       mean    median        uq      max neval
-##  baad() 1331.834 1371.1295 1871.72162 1397.6715 1559.5830 8520.587   100
-##  soso()   75.842   76.4710  148.42866   81.1540   87.1505 6067.374   100
-##  good()    5.412    5.8625   17.15058    7.6085    9.9985  887.370   100</code></pre>
+##    expr      min        lq       mean    median       uq      max neval
+##  baad() 1989.118 2013.3185 2657.75610 2026.6220 2052.713 8071.536   100
+##  soso()  143.963  156.0715  220.21919  157.3405  159.743 6357.256   100
+##  good()    6.683    7.2265   22.96032    7.8075    9.390 1429.120   100</code></pre>
 <p>When comparing the median values, we can see that the middle example is 10x slower than the vectorized example, and the first version is almost 300x slower!</p>
 <p>The above holds for “true” vectorized operations. R provides many pseudo-vectorizers (the lapply family) that may be handy in many circumstances, but not in case you need speed. Under the hood these functions just use a loop. We can demonstrate this by adding one more function to our family:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">soso2 &lt;-<span class="st"> </span><span class="cf">function</span>() {
@@ -589,11 +590,11 @@ microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<
 }
 microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<span class="kw">baad</span>(), <span class="kw">soso</span>(), <span class="kw">soso2</span>(), <span class="kw">good</span>())</code></pre></div>
 <pre><code>## Unit: microseconds
-##     expr      min        lq       mean   median        uq      max neval
-##   baad() 1932.779 1983.0330 2366.71670 2003.266 2025.6470 7493.179   100
-##   soso()  140.739  155.0875  157.34635  157.134  159.5220  184.587   100
-##  soso2()  743.471  769.1990  814.60715  794.737  808.5620 3225.464   100
-##   good()    6.355    7.1580    8.77465    8.233    9.7335   15.099   100</code></pre>
+##     expr      min        lq      mean    median        uq      max neval
+##   baad() 1404.630 1561.1565 2215.7141 2031.8890 2064.9905 7538.084   100
+##   soso()   76.088   78.4350  129.9014  155.9475  157.9945  192.496   100
+##  soso2()  405.681  430.9670  692.8365  796.7235  813.7725 3219.458   100
+##   good()    5.471    6.6225    8.5292    8.0260    9.2065   66.385   100</code></pre>
 <p>As it turns out, <code>sapply</code> is much slower than plain for-loop. Lapply-family is not a substitute for true vectorization. However, one may argue that <code>soso2</code> function is easier to understand than explicit loop in <code>soso</code>. In any case, it is easier to type when working on the interactive console.</p>
 <p>Finally, it should be noted that when performing truly vectorized operations on long vectors, the overhead of R interpreter becomes negligible and the resulting speed is almost equalt to that of the corresponding C code. And optimized R code can easily beat non-optimized C.</p>
 </div>

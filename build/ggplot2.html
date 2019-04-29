@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2019-04-27">
+<meta name="date" content="2019-04-29">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -310,7 +310,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="13.3.4" data-path="ggplot2.html"><a href="ggplot2.html#facets"><i class="fa fa-check"></i><b>13.3.4</b> Facets</a></li>
 <li class="chapter" data-level="13.3.5" data-path="ggplot2.html"><a href="ggplot2.html#labels-annotations"><i class="fa fa-check"></i><b>13.3.5</b> Labels &amp; Annotations</a></li>
 </ul></li>
-<li class="chapter" data-level="13.4" data-path="ggplot2.html"><a href="ggplot2.html#other-visualization-libraries"><i class="fa fa-check"></i><b>13.4</b> Other Visualization Libraries</a></li>
+<li class="chapter" data-level="13.4" data-path="ggplot2.html"><a href="ggplot2.html#plotting-in-scripts"><i class="fa fa-check"></i><b>13.4</b> Plotting in Scripts</a></li>
+<li class="chapter" data-level="13.5" data-path="ggplot2.html"><a href="ggplot2.html#other-visualization-libraries"><i class="fa fa-check"></i><b>13.5</b> Other Visualization Libraries</a></li>
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#resources-12"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="git-branches.html"><a href="git-branches.html"><i class="fa fa-check"></i><b>14</b> Git Branches</a><ul>
@@ -464,9 +465,9 @@ Examples in this chapter adapted from <a href="http://r4ds.had.co.nz/"><em>R for
 <pre><code>## # A tibble: 3 x 11
 ##   manufacturer model  displ  year   cyl trans drv     cty   hwy fl    class
 ##   &lt;chr&gt;        &lt;chr&gt;  &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
-## 1 dodge        ram 1…   4.7  2008     8 auto… 4         9    12 e     pick…
-## 2 volkswagen   jetta    2.8  1999     6 auto… f        16    23 r     comp…
-## 3 pontiac      grand…   3.8  1999     6 auto… f        16    26 p     mids…</code></pre>
+## 1 dodge        duran…   4.7  2008     8 auto… 4        13    17 r     suv  
+## 2 toyota       camry…   2.4  2008     4 manu… f        21    31 r     comp…
+## 3 jeep         grand…   4.7  1999     8 auto… 4        14    17 r     suv</code></pre>
 <p>The most important variables for our purpose are following:</p>
 <ul>
 <li><strong>class</strong>, car class, such as SUV, compact, minivan</li>
@@ -706,8 +707,33 @@ best_in_class &lt;-<span class="st"> </span>mpg <span class="op">%&gt;%</span>
 <p><em>R for Data Science</em> (linked in the resources below) recommends using the <a href="https://github.com/slowkow/ggrepel"><code>ggrepel</code></a> package to help position labels.</p>
 </div>
 </div>
+<div id="plotting-in-scripts" class="section level2">
+<h2><span class="header-section-number">13.4</span> Plotting in Scripts</h2>
+<p>From the first encounter with <em>ggplot</em> one typically gets the impression that it is the <em>ggplot</em> function that creates the plot. This <strong>is not true!</strong>. A call to <em>ggplot</em> just creates a <em>ggplot</em>-object, a data structure that contains data and all other necessary details for creating the plot. But the image itself is not created. It is created instead by the <em>print</em>-method. If you type an expression on R console, R evaluates and prints this expression. This is why we can use it as a manual calculator for simple math, such as <code>2 + 2</code>. The same is true for <em>ggplot</em>: it returns a <em>ggplot</em>-object, and given you don’t store it into a variable, it is printed, and the print method of <em>ggplot</em>-object actually makes the image. This is why we can immediately see the images when we work with <em>ggplot</em> on console.</p>
+<p>Things may be different, however, if we do this in a script. When you execute a script, the returned non-stored expressions are not printed. For instance, the script</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">diamonds <span class="op">%&gt;%</span>
+<span class="st">   </span><span class="kw">sample_n</span>(<span class="dv">1000</span>) <span class="op">%&gt;%</span>
+<span class="kw">ggplot</span>() <span class="op">+</span>
+<span class="st">   </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(carat, price))  <span class="co"># note: not printed</span></code></pre></div>
+<p>will not produce any output when sourced as a single script (and not run line-by-line). You have to print the returned objects explicitly, for instance as</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span>diamonds <span class="op">%&gt;%</span>
+<span class="st">   </span><span class="kw">sample_n</span>(<span class="dv">1000</span>)
+p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(data) <span class="op">+</span>
+<span class="st">   </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(carat, price))  <span class="co"># store here</span>
+<span class="kw">print</span>(p)  <span class="co"># print here</span></code></pre></div>
+<p>In scripts we often want the code not to produce image on screen, but store it in a file instead. This can be achieved in a variety of ways, for instance through redirecting graphical output to a pdf device with the command <code>pdf()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span>diamonds <span class="op">%&gt;%</span>
+<span class="st">   </span><span class="kw">sample_n</span>(<span class="dv">1000</span>)
+p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(data) <span class="op">+</span>
+<span class="st">   </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(carat, price))  <span class="co"># store here</span>
+<span class="kw">pdf</span>(<span class="dt">file=</span><span class="st">&quot;diamonds.pdf&quot;</span>, <span class="dt">width=</span><span class="dv">10</span>, <span class="dt">height=</span><span class="dv">8</span>)
+                           <span class="co"># redirect to a pdf file</span>
+<span class="kw">print</span>(p)  <span class="co"># print here</span>
+<span class="kw">dev.off</span>()  <span class="co"># remember to close the file</span></code></pre></div>
+<p>After redirecting the output, all plots will be written to the pdf file (as separate pages if you create more than one plot). Note you have to close the file with <code>def.off()</code>, otherwise it will be broken. There are other output options besides pdf, you may want to check <code>jpeg</code> and <code>png</code> image outputs. Finally, <em>ggplot</em> also has a dedicated way to save individual plots to file using <code>ggsave</code>.</p>
+</div>
 <div id="other-visualization-libraries" class="section level2">
-<h2><span class="header-section-number">13.4</span> Other Visualization Libraries</h2>
+<h2><span class="header-section-number">13.5</span> Other Visualization Libraries</h2>
 <p><code>ggplot2</code> is easily the most popular library for producing data visualizations in R. That said, <code>ggplot2</code> is used to produce <strong>static</strong> visualizations: unchanging “pictures” of plots. Static plots are great for for <strong>explanatory visualizations</strong>: visualizations that are used to communicate some information—or more commonly, an <em>argument</em> about that information. All of the above visualizations have been ways to explain and demonstrate an argument about the data (e.g., the relationship between car engines and fuel efficiency).</p>
 <p>Data visualizations can also be highly effective for <strong>exploratory analysis</strong>, in which the visualization is used as a way to <em>ask and answer questions</em> about the data (rather than to convey an answer or argument). While it is perfectly feasible to do such exploration on a static visualization, many explorations can be better served with <strong>interactive visualizations</strong> in which the user can select and change the <em>view</em> and presentation of that data in order to understand it.</p>
 <p>While <code>ggplot2</code> does not directly support interactive visualizations, there are a number of additional R libraries that provide this functionality, including:</p>

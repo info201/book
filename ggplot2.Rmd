@@ -364,6 +364,42 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +  # same mapping for all 
 _R for Data Science_ (linked in the resources below) recommends using the [`ggrepel`](https://github.com/slowkow/ggrepel) package to help position labels.
 
 
+## Plotting in Scripts
+
+From the first encounter with _ggplot_ one typically gets the impression that it is the _ggplot_ function that creates the plot.  This **is not true!**.  A call to _ggplot_ just creates a _ggplot_-object, a data structure that contains data and all other necessary details for creating the plot.  But the image itself is not created.  It is created instead by the _print_-method.  If you type an expression on R console, R evaluates and prints this expression.  This is why we can use it as a manual calculator for simple math, such as `2 + 2`.  The same is true for _ggplot_: it returns a _ggplot_-object, and given you don't store it into a variable, it is printed, and the print method of _ggplot_-object actually makes the image.  This is why we can immediately see the images when we work with _ggplot_ on console.
+
+Things may be different, however, if we do this in a script.  When you execute a script, the returned non-stored expressions are not printed.  For instance, the script
+```{r ggplotNoPlot, eval=FALSE}
+diamonds %>%
+   sample_n(1000) %>%
+ggplot() +
+   geom_point(aes(carat, price))  # note: not printed
+```
+will not produce any output when sourced as a single script (and not run line-by-line).  You have to print the returned objects explicitly, for instance as
+```{r ggplotPrintPlot, eval=FALSE}
+data <- diamonds %>%
+   sample_n(1000)
+p <- ggplot(data) +
+   geom_point(aes(carat, price))  # store here
+print(p)  # print here
+```
+
+In scripts we often want the code not to produce image on screen, but store it in a file instead.  This can be achieved in a variety of ways, for instance through redirecting graphical output to a pdf device with the command `pdf()`:
+
+```{r ggplotPdf, eval=FALSE}
+data <- diamonds %>%
+   sample_n(1000)
+p <- ggplot(data) +
+   geom_point(aes(carat, price))  # store here
+pdf(file="diamonds.pdf", width=10, height=8)
+                           # redirect to a pdf file
+print(p)  # print here
+dev.off()  # remember to close the file
+```
+After redirecting the output, all plots will be written to the pdf file (as separate pages if you create more than one plot).  Note you have to close the file with `def.off()`, otherwise it will be broken.  There are other output options besides pdf, you may want to check `jpeg` and `png` image outputs.  Finally, _ggplot_ also has a dedicated way to save individual plots to file using `ggsave`.
+
+
+
 ## Other Visualization Libraries
 `ggplot2` is easily the most popular library for producing data visualizations in R. That said, `ggplot2` is used to produce **static** visualizations: unchanging "pictures" of plots. Static plots are great for for **explanatory visualizations**: visualizations that are used to communicate some information&mdash;or more commonly, an _argument_ about that information. All of the above visualizations have been ways to explain and demonstrate an argument about the data (e.g., the relationship between car engines and fuel efficiency).
 
