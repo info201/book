@@ -61,41 +61,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -226,7 +252,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.3.2" data-path="lists.html"><a href="lists.html#indexing-by-name"><i class="fa fa-check"></i><b>8.3.2</b> Indexing by Name</a></li>
 <li class="chapter" data-level="8.3.3" data-path="lists.html"><a href="lists.html#indexing-by-logical-vector"><i class="fa fa-check"></i><b>8.3.3</b> Indexing by Logical Vector</a></li>
 <li class="chapter" data-level="8.3.4" data-path="lists.html"><a href="lists.html#lists-dollar-shortcut"><i class="fa fa-check"></i><b>8.3.4</b> Extracting named elements with <code>$</code></a></li>
-<li class="chapter" data-level="8.3.5" data-path="lists.html"><a href="lists.html#single-vs.double-brackets-vs.dollar"><i class="fa fa-check"></i><b>8.3.5</b> Single vs. Double Brackets vs. Dollar</a></li>
+<li class="chapter" data-level="8.3.5" data-path="lists.html"><a href="lists.html#single-vs.-double-brackets-vs.-dollar"><i class="fa fa-check"></i><b>8.3.5</b> Single vs. Double Brackets vs. Dollar</a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="lists.html"><a href="lists.html#modifying-lists"><i class="fa fa-check"></i><b>8.4</b> Modifying Lists</a></li>
 <li class="chapter" data-level="8.5" data-path="lists.html"><a href="lists.html#the-lapply-function"><i class="fa fa-check"></i><b>8.5</b> The <code>lapply()</code> Function</a></li>
@@ -259,7 +285,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="dplyr.html"><a href="dplyr.html#grouped-operations"><i class="fa fa-check"></i><b>10.4</b> Grouped Operations</a></li>
 <li class="chapter" data-level="10.5" data-path="dplyr.html"><a href="dplyr.html#joins"><i class="fa fa-check"></i><b>10.5</b> Joins</a></li>
-<li class="chapter" data-level="10.6" data-path="dplyr.html"><a href="dplyr.html#non-standard-evaluation-vs.standard-evaluation"><i class="fa fa-check"></i><b>10.6</b> Non-Standard Evaluation vs. Standard Evaluation</a><ul>
+<li class="chapter" data-level="10.6" data-path="dplyr.html"><a href="dplyr.html#non-standard-evaluation-vs.-standard-evaluation"><i class="fa fa-check"></i><b>10.6</b> Non-Standard Evaluation vs. Standard Evaluation</a><ul>
 <li class="chapter" data-level="10.6.1" data-path="dplyr.html"><a href="dplyr.html#explicit-standard-evaluation"><i class="fa fa-check"></i><b>10.6.1</b> Explicit Standard Evaluation</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#resources-9"><i class="fa fa-check"></i>Resources</a></li>
@@ -315,7 +341,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#resources-12"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="git-branches.html"><a href="git-branches.html"><i class="fa fa-check"></i><b>14</b> Git Branches</a><ul>
-<li class="chapter" data-level="14.1" data-path="git-branches.html"><a href="git-branches.html#git-branches"><i class="fa fa-check"></i><b>14.1</b> Git Branches</a></li>
+<li class="chapter" data-level="14.1" data-path="git-branches.html"><a href="git-branches.html#git-branches-1"><i class="fa fa-check"></i><b>14.1</b> Git Branches</a></li>
 <li class="chapter" data-level="14.2" data-path="git-branches.html"><a href="git-branches.html#merging"><i class="fa fa-check"></i><b>14.2</b> Merging</a><ul>
 <li class="chapter" data-level="14.2.1" data-path="git-branches.html"><a href="git-branches.html#merge-conflicts"><i class="fa fa-check"></i><b>14.2.1</b> Merge Conflicts</a></li>
 </ul></li>
@@ -427,21 +453,50 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>This chapter will explore how to use <strong>functions</strong> in R to perform advanced capabilities and actually ask questions about data. After considering a function in an abstract sense, it will discuss using built-in R functions, accessing additional functions by loading R packages, and writing your own functions.</p>
 <div id="what-are-functions" class="section level2">
 <h2><span class="header-section-number">6.1</span> What are Functions?</h2>
-<p>In a broad sense, a <strong>function</strong> is a named sequence of instructions (lines of code) that you may want to perform one or more times throughout a program. They provide a way of <em>encapsulating</em> multiple instructions into a single “unit” that can be used in a variety of different contexts. So rather than needing to repeatedly write down all the individual instructions for “make a sandwich” every time you’re hungry, you can define a <code>make_sandwich()</code> function once and then just <strong>call</strong> (execute) that function when you want to perform those steps. Typically, functions also accept <em>inputs</em> so you can make the things slightly differently from time to time. For instance, sometimes you may want to call <code>make_sandwich(cheese)</code> while another time <code>make_sandwich(chicken)</code>.</p>
-<p>In addition to grouping instructions, functions in programming languages also allow to model the mathematical definition of function, i.e. perform certain operations on a number of inputs that lead to an <em>output</em>. For instance, look at the function <code>max()</code> that finds the largest value among numbers:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)  <span class="co"># 3</span></code></pre></div>
-<p>The inputs are numbers <code>1</code>, <code>2</code>, and <code>3</code> in parenthesis, usually called <strong>arguments</strong> or <strong>parameters</strong>, and we say that these arguments are <strong>passed</strong> to a function (like a football). We say that a function then <strong>returns</strong> a value, number “3” in this example, which we can either print or assign to a variable and use later.</p>
-<p>Finally, the functions may also have <strong>side effects</strong>. An example case is the <code>cat()</code> function that just prints it’s arguments. For instance, in case of the following line of code</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="st">&quot;The answer is&quot;</span>, <span class="dv">1</span><span class="op">+</span><span class="dv">1</span>, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</code></pre></div>
-<p>we call function <code>cat()</code> with three arguments: <code>&quot;The answer is&quot;</code>, <code>2</code> (note: <code>1+1</code> will be evaluated to 2), and <code>&quot;\n&quot;</code> (the line break symbol). However, here we may not care about the return value but in the side effect—the message being printed on the screen.</p>
+<p>In a broad sense, a <strong>function</strong> is a named sequence of instructions
+(lines of code) that you may want to perform one or more times
+throughout a program. They provide a way of <em>encapsulating</em> multiple
+instructions into a single “unit” that can be used in a variety of
+different contexts. So rather than needing to repeatedly write down all
+the individual instructions for “make a sandwich” every time you’re
+hungry, you can define a <code>make_sandwich()</code> function once and then just
+<strong>call</strong> (execute) that function when you want to perform those steps.
+Typically, functions also accept <em>inputs</em> so you can make the things
+slightly differently from time to time. For instance, sometimes you may
+want to call <code>make_sandwich(cheese)</code> while another time <code>make_sandwich(chicken)</code>.</p>
+<p>In addition to grouping instructions, functions in programming languages
+also allow to model the mathematical definition of function,
+i.e. perform certain operations on a number of inputs that lead to an
+<em>output</em>. For instance, look at the
+function <code>max()</code> that finds the largest value among numbers:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)  <span class="co"># 3</span></code></pre>
+<p>The inputs are numbers <code>1</code>, <code>2</code>, and <code>3</code> in parenthesis, usually called
+<strong>arguments</strong> or <strong>parameters</strong>, and we say that these arguments are
+<strong>passed</strong> to a function (like a football). We say that a function then
+<strong>returns</strong> a value, number “3” in this example, which we can either
+print or assign to a variable and use later.</p>
+<p>Finally, the functions may also have <strong>side effects</strong>. An example case
+is the <code>cat()</code> function that just prints it’s arguments. For instance,
+in case of the following line of code</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="st">&quot;The answer is&quot;</span>, <span class="dv">1</span><span class="op">+</span><span class="dv">1</span>, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</code></pre>
+<p>we call function <code>cat()</code> with three arguments: <code>"The answer is"</code>, <code>2</code>
+(note: <code>1+1</code> will be evaluated to 2),
+and <code>"\n"</code> (the line break symbol). However, here we may not care about the return value but in the side effect—the message being printed on the screen.</p>
 </div>
 <div id="how-to-use-functions" class="section level2">
 <h2><span class="header-section-number">6.2</span> How to Use Functions</h2>
-<p>R functions are referred to by name (technically, they are values like any other variable, just not atomic values). As in many programming languages, we <strong>call</strong> a function by writing the name of the function followed immediately (no space) by parentheses <code>()</code>. Sometimes this is enough, for instance</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.Date</span>()</code></pre></div>
+<p>R functions are referred to by name (technically, they are values like
+any other variable, just not atomic values). As in many programming
+languages, we <strong>call</strong> a function by writing the name of the function
+followed immediately (no space) by parentheses <code>()</code>. Sometimes this is
+enough, for instance</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.Date</span>()</code></pre>
 <p>gives us the current date and that’s it.</p>
-<p>But often we want the function to do something with our inputs. In this case we put the <strong>arguments</strong> (inputs) inside the parenthesis, separated by commas (<strong><code>,</code></strong>). Thus computer functions look just like multi-variable mathematical functions, although usually with fancier names than <code>f()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># call the sqrt() function, passing it 25 as an argument</span>
+<p>But often we want the function to do something with our inputs. In this
+case we put the <strong>arguments</strong> (inputs) inside the parenthesis, separated
+by commas (<strong><code>,</code></strong>). Thus computer functions look just like
+multi-variable mathematical functions, although usually with fancier names than <code>f()</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># call the sqrt() function, passing it 25 as an argument</span>
 <span class="kw">sqrt</span>(<span class="dv">25</span>)  <span class="co"># 5, square root of 25</span>
 
 <span class="co"># count number of characters in &quot;Hello world&quot; as an argument</span>
@@ -449,13 +504,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <span class="co"># call the min() function, pass it 1, 6/8, AND 4/3 as arguments</span>
 <span class="co"># this is an example of a function that takes multiple args</span>
-<span class="kw">min</span>(<span class="dv">1</span>, <span class="dv">6</span><span class="op">/</span><span class="dv">8</span>, <span class="dv">4</span><span class="op">/</span><span class="dv">3</span>)  <span class="co"># 0.75, (6/8 is the smallest value)</span></code></pre></div>
+<span class="kw">min</span>(<span class="dv">1</span>, <span class="dv">6</span><span class="op">/</span><span class="dv">8</span>, <span class="dv">4</span><span class="op">/</span><span class="dv">3</span>)  <span class="co"># 0.75, (6/8 is the smallest value)</span></code></pre>
 <p>To keep functions and ordinary variables distinct, we include empty parentheses <code>()</code> when referring to a function by name. This does not mean that the function takes no arguments, it is just a useful shorthand for indicating that something is a function.</p>
 <p class="alert alert-info">
-<strong>Note:</strong> You always need to supply the parenthesis if you want to <em>call</em> the function (force it to do what it is supposed to do). If you leave the parenthesis out, you get the function definition printed on screen instead. So <code>cat()</code> is actually a <em>function call</em> while <code>cat</code> is the function. You can see that it is a function if you just print it as <code>print(cat)</code>. However, we ignore this distinction here.
+<strong>Note:</strong> You always need to supply the
+parenthesis if you want to <em>call</em> the function (force it to do what it
+is supposed to do). If you leave the parenthesis out, you get the
+function definition printed on screen instead. So <code>cat()</code> is actually a <em>function call</em> while <code>cat</code> is the function. You can see that it is a function if you just print it as <code>print(cat)</code>.
+However, we ignore this distinction here.
 </p>
 <p>If you call any of these functions interactively, R will display the <strong>returned value</strong> (the output) in the console. However, the computer is not able to “read” what is written in the console—that’s for humans to view! If you want the computer to be able to <em>use</em> a returned value, you will need to give that value a name so that the computer can refer to it. That is, you need to store the returned value in a variable:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># store min value in smallest.number variable</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># store min value in smallest.number variable</span>
 smallest_number &lt;-<span class="st"> </span><span class="kw">min</span>(<span class="dv">1</span>, <span class="dv">6</span><span class="op">/</span><span class="dv">8</span>, <span class="dv">4</span><span class="op">/</span><span class="dv">3</span>)
 
 <span class="co"># we can then use the variable as normal, such as for a comparison</span>
@@ -466,15 +525,37 @@ phi &lt;-<span class="st"> </span><span class="fl">.5</span> <span class="op">+<
 
 <span class="co"># we can even pass the result of a function as an argument to another!</span>
 <span class="co"># watch out for where the parentheses close!</span>
-<span class="kw">print</span>(<span class="kw">min</span>(<span class="fl">1.5</span>, <span class="kw">sqrt</span>(<span class="dv">3</span>)))  <span class="co"># prints 1.5</span></code></pre></div>
+<span class="kw">print</span>(<span class="kw">min</span>(<span class="fl">1.5</span>, <span class="kw">sqrt</span>(<span class="dv">3</span>)))  <span class="co"># prints 1.5</span></code></pre>
 <ul>
-<li>In the last example, the resulting <em>value</em> of the “inner” function (e.g., <code>sqrt()</code>) is immediately used as an argument for the middle function (i.e. <code>min()</code>), value of which is fed in turn to the outer function <code>print()</code>. Because that value is used immediately, we don’t have to assign it a separate variable name. It is known as an <strong>anonymous variable</strong>.</li>
-<li>note also that in the last example, we are solely interested in the side effect of the <code>print()</code> function. It also returns it’s argument (<code>min(1.5, sqrt(3))</code> here) but we do not store it in a variable.</li>
+<li>In the last example, the resulting <em>value</em> of the “inner” function
+(e.g., <code>sqrt()</code>) is immediately used as an argument for the middle
+function (i.e. <code>min()</code>), value of which is fed in turn to the outer
+function <code>print()</code>. Because that value is used immediately, we don’t
+have to assign it a separate variable name. It is known as an
+<strong>anonymous variable</strong>.</li>
+<li>note also that in the last example, we are solely interested in the
+side effect of the <code>print()</code> function. It also returns it’s argument
+(<code>min(1.5, sqrt(3))</code> here) but we do not store it in a variable.</li>
 </ul>
-<p>R functions take two types of arguments: <strong>positional arguments</strong> and <strong>named arguments</strong>: the function has to know how to treat each of it’s arguments. For instance, we can round number <em>e</em> to 3 digits by <code>round(2.718282, 3)</code>. But in order to do this, the <code>round()</code> function must know that <code>2.718282</code> is the number and <code>3</code> is the requested number of digits, and not the other way around. It understands this because it requires the number to be the first argument, and digits the second argument. This approach works well in case of known small number of inputs. However, this is not an option for functions with <strong>variable number of arguments</strong>, such as <code>cat()</code>. <code>cat()</code> just prints out all of it’s (potentially a large number of) inputs, except a limited number of special named arguments. One of these is <code>sep</code>, the string to be placed between the other pieces of output (by default just a space is printed). Note the difference in output between</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&quot;-&quot;</span>, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)  <span class="co"># 1 2 - </span>
-<span class="kw">cat</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dt">sep=</span><span class="st">&quot;-&quot;</span>, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)  <span class="co"># 1-2-</span></code></pre></div>
-<p>In the first case <code>cat()</code> prints <code>1</code>, <code>2</code>, <code>&quot;-&quot;</code>, and the line break <code>&quot;\n&quot;</code>, all separated by a space. In the second case the name <code>sep</code> ensures that <code>&quot;-&quot;</code> is not printed out but instead treated as the separator between <code>1</code>, <code>2</code> and <code>&quot;\n&quot;</code>.</p>
+<p>R functions take two types of arguments: <strong>positional arguments</strong> and
+<strong>named arguments</strong>: the function has to know how to treat each of it’s
+arguments. For instance, we can round number <em>e</em> to 3
+digits by <code>round(2.718282, 3)</code>. But in order to do this, the <code>round()</code> function must know that <code>2.718282</code> is the number
+and <code>3</code> is the requested number of digits, and not the other way around. It understands this because
+it requires the number to be the first argument, and digits
+the second argument. This approach works well in case of known small
+number of inputs. However, this is not an option for functions with
+<strong>variable number of arguments</strong>, such as <code>cat()</code>. <code>cat()</code> just prints
+out all of it’s (potentially a large number of) inputs, except a limited number of special named
+arguments. One of these is <code>sep</code>, the string to be placed between the other pieces
+of output (by default just a space is printed). Note the difference in output
+between</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&quot;-&quot;</span>, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)  <span class="co"># 1 2 - </span>
+<span class="kw">cat</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dt">sep=</span><span class="st">&quot;-&quot;</span>, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)  <span class="co"># 1-2-</span></code></pre>
+<p>In the first case <code>cat()</code> prints <code>1</code>, <code>2</code>, <code>"-"</code>, and the line break
+<code>"\n"</code>, all separated by a space. In the second case the name <code>sep</code>
+ensures that <code>"-"</code> is not
+printed out but instead treated as the separator between <code>1</code>, <code>2</code> and <code>"\n"</code>.</p>
 </div>
 <div id="built-in-r-functions" class="section level2">
 <h2><span class="header-section-number">6.3</span> Built-in R Functions</h2>
@@ -484,7 +565,7 @@ phi &lt;-<span class="st"> </span><span class="fl">.5</span> <span class="op">+<
 <colgroup>
 <col width="20%" />
 <col width="33%" />
-<col width="45%" />
+<col width="46%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -507,17 +588,17 @@ phi &lt;-<span class="st"> </span><span class="fl">.5</span> <span class="op">+<
 <tr class="odd">
 <td align="left"><code>toupper(str)</code></td>
 <td align="left">Returns the characters in uppercase</td>
-<td align="left"><code>toupper(&quot;hi there&quot;)</code> returns <code>&quot;HI THERE&quot;</code></td>
+<td align="left"><code>toupper("hi there")</code> returns <code>"HI THERE"</code></td>
 </tr>
 <tr class="even">
 <td align="left"><code>paste(a,b,...)</code></td>
 <td align="left"><em>Concatenate</em> (combine) characters into one value</td>
-<td align="left"><code>paste(&quot;hi&quot;, &quot;there&quot;)</code> returns <code>&quot;hi there&quot;</code></td>
+<td align="left"><code>paste("hi", "there")</code> returns <code>"hi there"</code></td>
 </tr>
 <tr class="odd">
 <td align="left"><code>nchar(str)</code></td>
 <td align="left">Counts the number of characters in a string</td>
-<td align="left"><code>nchar(&quot;hi there&quot;)</code> returns <code>8</code> (space is a character!)</td>
+<td align="left"><code>nchar("hi there")</code> returns <code>8</code> (space is a character!)</td>
 </tr>
 <tr class="even">
 <td align="left"><code>c(a,b,...)</code></td>
@@ -539,36 +620,83 @@ phi &lt;-<span class="st"> </span><span class="fl">.5</span> <span class="op">+<
 </div>
 <div id="loading-functions" class="section level2">
 <h2><span class="header-section-number">6.4</span> Loading Functions</h2>
-<p>Although R comes with lots of built-in functions, you can always use more! <strong>Packages</strong> (also known as <strong>libraries</strong>) are additional sets of R functions (and data and variables) that are written and published by the R community. Because many R users encounter the same data management/analysis challenges, programmers are able to use these libraries and thus benefit from the work of others (this is the amazing thing about the open-source community—people solve problems and then make those solutions available to others). Popular packages include <em>dplyr</em> for manipulating data, <em>ggplot2</em> for visualizations, and <em>data.table</em> for handling large datasets.</p>
-<p>Most of the R packages <strong>do not</strong> ship with the R software by default, and need to be downloaded (once) and then loaded into your interpreter’s environment (each time you wish to use them). While this may seem cumbersome, it is a necessary trade-off between speed and size. R software would be huge and slow if it would include <em>all</em> available packages.</p>
-<p>Luckily, it is quite simple to install and load R packages from within R. To do so, you’ll need to use the <em>built-in</em> R functions <code>install.packages</code> and <code>library</code>. Below is an example of installing and loading the <code>stringr</code> package (which contains many handy functions for working with character strings):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Install the `stringr` package. Only needs to be done once on your machine</span>
-<span class="kw">install.packages</span>(<span class="st">&quot;stringr&quot;</span>)</code></pre></div>
+<p>Although R comes with lots of built-in functions, you can always use
+more! <strong>Packages</strong> (also known as <strong>libraries</strong>) are additional sets of
+R functions (and data and variables) that are written and published by the R community. Because
+many R users encounter the same data management/analysis challenges,
+programmers are able to use these libraries and thus benefit from the
+work of others (this is the amazing thing about the open-source
+community—people solve problems and then make those solutions
+available to others). Popular packages include <em>dplyr</em> for
+manipulating data, <em>ggplot2</em> for visualizations, and <em>data.table</em> for
+handling large datasets.</p>
+<p>Most of the R packages <strong>do not</strong> ship with the R
+software by default, and need to be downloaded (once) and then loaded
+into your interpreter’s environment (each time you wish to use
+them). While this may seem cumbersome, it is a necessary trade-off
+between speed and size. R software would be huge and slow if it would
+include <em>all</em> available packages.</p>
+<p>Luckily, it is quite simple to install and load R packages from within
+R. To do so, you’ll need to use the <em>built-in</em> R functions
+<code>install.packages</code> and <code>library</code>. Below is an example of installing and
+loading the <code>stringr</code> package (which contains many handy functions for working with character strings):</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Install the `stringr` package. Only needs to be done once on your machine</span>
+<span class="kw">install.packages</span>(<span class="st">&quot;stringr&quot;</span>)</code></pre>
 <p class="alert alert-warning">
-We stress here that you need to install each package only once per computer. As installation may be slow and and resource-demanding, you <strong>should not do it repeatedly inside your script!</strong>. Even more, if your script is also run by other users on their computers, you should get their explicit consent before installing additional software for them! The easiest remedy is to solely rely on manual installation.
+We stress here that you need to install each package only once per computer.
+As installation may be slow and and resource-demanding, you <strong>should not
+do it repeatedly inside your script!</strong>. Even more, if your script is
+also run by other users on their computers, you should get their
+explicit consent before installing additional software for them!
+The easiest remedy is to solely rely on manual installation.
 </p>
-<p>Exactly the same syntax—<code>install.packages(&quot;stringr&quot;)</code>—is also used for re-installing it. You may want to re-install it if a newer version comes out, of if you upgrade your R and receive warnings about the package being built under a previous version of R.</p>
-<p>After installation, the easiest way to get access to the functions is by <em>loading the package</em>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load the package (make stringr() functions available in this R session/program)</span>
-<span class="kw">library</span>(<span class="st">&quot;stringr&quot;</span>) <span class="co"># quotes optional here</span></code></pre></div>
-<p>This makes all functions in the <em>stringr</em> package available for R (see <a href="https://cran.r-project.org/web/packages/stringr/stringr.pdf">the documentation</a> for a list of functions included with the <code>stringr</code> library). For instance, if we want to pad the word “justice” from left with tildes to create a width-10 string, we can do</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_pad</span>(<span class="st">&quot;justice&quot;</span>, <span class="dv">10</span>, <span class="st">&quot;left&quot;</span>, <span class="st">&quot;~&quot;</span>)  <span class="co"># &quot;~~~justice&quot;</span></code></pre></div>
-<p>We can use <code>str_pad</code> function without any additional hassle because <code>library()</code> command made it available.</p>
-<p>This is an easy and popular approach. However, what happens if more than one package call a function by the same name? For instance, many packages implement function <code>filter()</code>. In this case the more recent package will <em>mask</em> the function as defined by the previous package. You will also see related warnings when you load the library. In case you want to use a masked function you can write something like <code>package::function()</code> in order to call it. For instance, we can do the example above with</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_pad</span>(<span class="st">&quot;justice&quot;</span>, <span class="dv">10</span>, <span class="st">&quot;left&quot;</span>, <span class="st">&quot;~&quot;</span>)  <span class="co"># &quot;~~~justice&quot;</span></code></pre></div>
-<p>This approach—specifying <em>namespace</em> in front of the function—ensures we access the function in the right package. If we call all functions in this way, we don’t even need to load the package with <code>library()</code> command. This is the preferred approach if you only need few functions from a large library.</p>
+<p>Exactly the same syntax—<code>install.packages("stringr")</code>—is
+also used for re-installing it. You may want to re-install it if a
+newer version comes out, of if you upgrade your R and receive warnings
+about the package being built under a previous version of R.</p>
+<p>After installation, the easiest way to get access to the functions is by
+<em>loading the package</em>:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load the package (make stringr() functions available in this R session/program)</span>
+<span class="kw">library</span>(<span class="st">&quot;stringr&quot;</span>) <span class="co"># quotes optional here</span></code></pre>
+<p>This makes all functions in the <em>stringr</em> package available for R (see <a href="https://cran.r-project.org/web/packages/stringr/stringr.pdf">the documentation</a> for a list of functions included with the <code>stringr</code> library). For
+instance, if we want to pad the word “justice” from left with tildes to create a
+width-10 string, we can do</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_pad</span>(<span class="st">&quot;justice&quot;</span>, <span class="dv">10</span>, <span class="st">&quot;left&quot;</span>, <span class="st">&quot;~&quot;</span>)  <span class="co"># &quot;~~~justice&quot;</span></code></pre>
+<p>We can use <code>str_pad</code> function without any additional hassle because <code>library()</code> command made it
+available.</p>
+<p>This is an easy and popular approach. However, what happens if more than one package call a function by the same name? For
+instance, many packages implement function <code>filter()</code>. In this case
+the more recent package will <em>mask</em> the function as defined by the
+previous package. You will also see related warnings when you load the
+library. In case you want to use a masked
+function you can write something like <code>package::function()</code> in order to
+call it. For instance, we can do the example above with</p>
+<pre class="sourceCode r"><code class="sourceCode r">stringr<span class="op">::</span><span class="kw">str_pad</span>(<span class="st">&quot;justice&quot;</span>, <span class="dv">10</span>, <span class="st">&quot;left&quot;</span>, <span class="st">&quot;~&quot;</span>)  <span class="co"># &quot;~~~justice&quot;</span></code></pre>
+<p>This approach—specifying <em>namespace</em> in front of the
+function—ensures we access the function in the right package. If
+we call all functions in this way, we don’t even need to load the
+package with <code>library()</code> command. This is the preferred approach if you
+only need few functions from a large library.</p>
 </div>
 <div id="writing-functions" class="section level2">
 <h2><span class="header-section-number">6.5</span> Writing Functions</h2>
-<p>Even more exciting than loading other peoples’ functions is writing your own. Any time you have a task that you may repeat throughout a script—or sometimes when you just want to organize your code better—it’s a good practice to write a function to perform that task. This will limit repetition and reduce the likelihood of errors as well as make things easier to read and understand (and thus identify flaws in your analysis).</p>
-Functions are values like numbers and characters, so we use the <em>assignment operator</em> (<strong><code>&lt;-</code></strong>) to store a function into a variable.<br />
+<p>Even more exciting than loading other peoples’ functions is writing your
+own. Any time you have a task that you may repeat throughout a
+script—or sometimes when you just want to organize your code
+better—it’s a good practice to write a function to perform that task. This will limit repetition and reduce the likelihood of errors as well as make things easier to read and understand (and thus identify flaws in your analysis).</p>
+Functions are values like numbers and characters, so we use the <em>assignment
+operator</em> (<strong><code>&lt;-</code></strong>) to store a function into a variable.<br />
 
 <p class="alert alert-info">
-Although “values” (more precisely <em>objects</em>), functions are not <a href="#basic-data-strucures">atomic objects</a>. But they can still be stored and manipulated in many ways like other objects.
+Although “values” (more precisely <em>objects</em>), functions are not <a href="#basic-data-strucures">atomic
+objects</a>. But they can still be stored and
+manipulated in many ways like other objects.
 </p>
-<p><a href="http://style.tidyverse.org/functions.html">Tidyverse style guide</a> we follow in this books suggests to use verbs as function names, written in <strong>snake_case</strong> just like other variables.</p>
+<p><a href="http://style.tidyverse.org/functions.html">Tidyverse style guide</a> we
+follow in this books suggests to use verbs as function names,
+written in <strong>snake_case</strong> just like other variables.</p>
 <p>The best way to understand the syntax for defining a function is to look at an example:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># A function named `make_full_name` that takes two arguments</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># A function named `make_full_name` that takes two arguments</span>
 <span class="co"># and returns the &quot;full name&quot; made from them</span>
 make_full_name &lt;-<span class="st"> </span><span class="cf">function</span>(first_name, last_name) {
   <span class="co"># Function body: perform tasks in here</span>
@@ -580,46 +708,93 @@ make_full_name &lt;-<span class="st"> </span><span class="cf">function</span>(fi
 }
 
 <span class="co"># Call the `make_full_name` function with the values &quot;Alice&quot; and &quot;Kim&quot;</span>
-my_name &lt;-<span class="st"> </span><span class="kw">make_full_name</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Kim&quot;</span>)  <span class="co"># &quot;Alice Kim&quot;</span></code></pre></div>
+my_name &lt;-<span class="st"> </span><span class="kw">make_full_name</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Kim&quot;</span>)  <span class="co"># &quot;Alice Kim&quot;</span></code></pre>
 <p>Function definition contains several important pieces:</p>
 <ul>
-<li><p>The value assigned to the function variable uses the syntax <code>function(....)</code> to indicate that you are creating a function (as opposed to a number or character string).</p></li>
-<li><p>If you want to feed your function with certain inputs, these must be referred somehow inside of your function. You list these names between the parentheses in the <code>function(....)</code> declaration. These are called <strong>formal arguments</strong>. Formal arguments <em>will contain</em> the values passed in when calling the function (called <strong>actual arguments</strong>). For example, when we call <code>make_full_name(&quot;Alice&quot;, &quot;Kim&quot;)</code>, the value of the first actual argument (<code>&quot;Alice&quot;</code>) will be assigned to the first formal argument (<code>first_name</code>), and the value of the second actual argument (<code>&quot;Kim&quot;</code>) will be assigned to the second formal argument (<code>last_name</code>). Inside the function’s body, both of these formal arguments behave exactly as ordinary variables with values “Alice” and “Kim” respectively.</p>
-<p>Importantly, we could have made the formal argument names anything we wanted (<code>name_first</code>, <code>xyz</code>, etc.), just as long as we then use <em>these formal argument names</em> to refer to the argument while inside the function.</p>
+<li><p>The value assigned to the function variable uses the
+syntax <code>function(....)</code> to indicate that you are creating a function
+(as opposed to a number or character string).</p></li>
+<li><p>If you want to feed your function with certain
+inputs, these must be referred somehow inside of your function.
+You list these names between the parentheses in the <code>function(....)</code>
+declaration. These are called <strong>formal arguments</strong>. Formal arguments <em>will
+contain</em> the values passed in when calling the function (called
+<strong>actual arguments</strong>). For example, when we
+call <code>make_full_name("Alice", "Kim")</code>, the value of the first
+actual argument (<code>"Alice"</code>) will be assigned to the first formal argument
+(<code>first_name</code>), and the value of the second actual argument (<code>"Kim"</code>) will
+be assigned to the second formal argument (<code>last_name</code>). Inside the
+function’s body, both of these formal arguments behave exactly as
+ordinary variables with values “Alice” and “Kim” respectively.</p>
+<p>Importantly, we could have made the formal argument names anything
+we wanted (<code>name_first</code>, <code>xyz</code>, etc.), just as long as we then use
+<em>these formal argument names</em> to refer to the argument while inside
+the function.</p>
 <p>Moreover, the formal argument names <em>only apply</em> while inside the function. You can think of them like “nicknames” for the values. The variables <code>first_name</code>, <code>last_name</code>, and <code>full_name</code> only exist within this particular function.</p></li>
 <li><p><strong>Body</strong>: The body of the function is a <strong>block</strong> of code that falls between curly braces <strong><code>{}</code></strong> (a “block” is represented by curly braces surrounding code statements). Note that cleanest style is to put the opening <code>{</code> immediately after the arguments list, and the closing <code>}</code> on its own line.</p>
-<p>The function body specifies all the instructions (lines of code) that your function will perform. A function can contain as many lines of code as you want—you’ll usually want more than 1 to make it worth while, but if you have more than 20 you might want to break it up into separate functions. You can use the formal arguments here as any other variables, you can create new variables, call other functions, you can even declare functions inside functions… basically any code that you would write outside of a function can be written inside of one as well!</p>
-<p>All the variables you create in the function body are <strong>local variables</strong>. These are only visible from within the function and “will be forgotten” as soon as you return from the function. However, variables defined outside of the function are still visible from within.</p></li>
-<li><p><strong>Return value</strong> is what your function produces. You can specify this by calling the <code>return()</code> function and passing that the value that you wish <em>your function</em> to return. It is typically the last line of the function. Note that even though we returned a variable called <code>full_name</code>, that variable was <em>local</em> to the function and so doesn’t exist outside of it; thus we have to store the returned value into another variable if we want to use it later (as with <code>name &lt;- make_full_name(&quot;Alice&quot;, &quot;Kim&quot;)</code>).</p></li>
+<p>The function body specifies all the instructions (lines of code)
+that your function will perform. A function can contain as many
+lines of code as you want—you’ll usually want more than 1 to
+make it worth while, but if you have more than 20 you might want to
+break it up into separate functions. You can use the formal
+arguments here as any other variables, you can create new variables,
+call other functions, you can even declare functions inside
+functions… basically any code that you would write outside of a
+function can be written inside of one as well!</p>
+<p>All the variables you create in the function body are <strong>local
+variables</strong>. These are only visible from within the function and
+“will be forgotten” as soon as you return from the function. However,
+variables defined outside of the function are still visible from
+within.</p></li>
+<li><p><strong>Return value</strong> is what your function produces. You can specify this
+by calling the <code>return()</code> function and passing that the value that
+you wish <em>your function</em> to return. It is typically the last line
+of the function. Note that even though we returned a variable
+called <code>full_name</code>, that variable was <em>local</em> to the function and so
+doesn’t exist outside of it; thus we have to store the returned
+value into another variable if we want to use it later (as with
+<code>name &lt;- make_full_name("Alice", "Kim")</code>).</p></li>
 </ul>
-<p><code>return()</code> statement is usually unnecessary as R implicitly returns the last object it evaluated anyway. So we may shorten the function definition into</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">make_full_name &lt;-<span class="st"> </span><span class="cf">function</span>(first_name, last_name) {
+<p><code>return()</code> statement is usually unnecessary as R implicitly returns
+the last object it evaluated anyway. So we may shorten the function
+definition into</p>
+<pre class="sourceCode r"><code class="sourceCode r">make_full_name &lt;-<span class="st"> </span><span class="cf">function</span>(first_name, last_name) {
   full_name &lt;-<span class="st"> </span><span class="kw">paste</span>(first_name, last_name)
-}</code></pre></div>
+}</code></pre>
 <p>or even not store the concatenated names into <code>full_name</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">make_full_name &lt;-<span class="st"> </span><span class="cf">function</span>(first_name, last_name) {
+<pre class="sourceCode r"><code class="sourceCode r">make_full_name &lt;-<span class="st"> </span><span class="cf">function</span>(first_name, last_name) {
    <span class="kw">paste</span>(first_name, last_name)
-}</code></pre></div>
-<p>The last evaluation was concatenating the first and last name, and hence the full name will be implicitly returned.</p>
-<p>We can call (execute) a function we defined exactly in the same way we call built-in functions. When we do so, R will take the <em>actual arguments</em> we passed in (e.g., <code>&quot;Alice&quot;</code> and <code>&quot;Kim&quot;</code>) and assign them to the <em>formal arguments</em>. Then it executes each line of code in the <em>function body</em> one at a time. When it gets to the <code>return()</code> call, it will end the function and return the given value, which can then be assigned to a different variable outside of the function.</p>
+}</code></pre>
+<p>The last evaluation was concatenating the first and last name, and
+hence the full name will be implicitly returned.</p>
+<p>We can call (execute) a function we defined exactly in the same way we
+call built-in functions. When we do so, R will take the <em>actual
+arguments</em> we passed in (e.g., <code>"Alice"</code> and <code>"Kim"</code>) and assign them to
+the <em>formal arguments</em>. Then it executes each line of code in the <em>function body</em> one at a time. When it gets to the <code>return()</code> call, it will end the function and return the given value, which can then be assigned to a different variable outside of the function.</p>
 </div>
 <div id="conditional-statements" class="section level2">
 <h2><span class="header-section-number">6.6</span> Conditional Statements</h2>
-<p>Functions are one way to organize and control the flow of execution (e.g., what lines of code get run in what order). There are other ways. In all languages, we can specify that different instructions will be run based on a different set of conditions. These are <strong>Conditional statements</strong> which specify which chunks of code will run depending on which conditions are true. This is valuable both within and outside of functions.</p>
+<p>Functions are one way to organize and control the flow of execution
+(e.g., what lines of code get run in what order). There are other
+ways. In all languages, we can specify that different instructions will
+be run based on a different set of conditions. These are <strong>Conditional
+statements</strong> which specify which chunks of code will run
+depending on which conditions are true. This is valuable both within
+and outside of functions.</p>
 <p>In an abstract sense, an conditional statement is saying:</p>
 <pre><code>IF something is true
   do some lines of code
 OTHERWISE
   do some other lines of code</code></pre>
 <p>In R, we write these conditional statements using the keywords <strong><code>if</code></strong> and <strong><code>else</code></strong> and the following syntax:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (condition) {
+<pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (condition) {
   <span class="co"># lines of code to run if condition is TRUE</span>
 } <span class="cf">else</span> {
   <span class="co"># lines of code to run if condition is FALSE</span>
-}</code></pre></div>
+}</code></pre>
 <p>(Note that the the <code>else</code> needs to be on the same line as the closing <code>}</code> of the <code>if</code> block. It is also possible to omit the <code>else</code> and its block).</p>
 <p>The <code>condition</code> can be any variable or expression that resolves to a logical value (<code>TRUE</code> or <code>FALSE</code>). Thus both of the conditional statements below are valid:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">porridge_temp &lt;-<span class="st"> </span><span class="dv">115</span> <span class="co"># in degrees F</span>
+<pre class="sourceCode r"><code class="sourceCode r">porridge_temp &lt;-<span class="st"> </span><span class="dv">115</span> <span class="co"># in degrees F</span>
 <span class="cf">if</span> (porridge_temp <span class="op">&gt;</span><span class="st"> </span><span class="dv">120</span>) {
   <span class="kw">print</span>(<span class="st">&quot;This porridge is too hot!&quot;</span>)
 }
@@ -628,9 +803,9 @@ too_cold &lt;-<span class="st"> </span>porridge_temp <span class="op">&lt;</span
 <span class="co"># a logical value</span>
 <span class="cf">if</span> (too_cold) {
   <span class="kw">print</span>(<span class="st">&quot;This porridge is too cold!&quot;</span>)
-}</code></pre></div>
+}</code></pre>
 <p>Note, we can extend the set of conditions evaluated using an <code>else if</code> statement. For example:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Function to determine if you should eat porridge</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Function to determine if you should eat porridge</span>
 test_food_temp &lt;-<span class="st"> </span><span class="cf">function</span>(temp) {
   <span class="cf">if</span> (temp <span class="op">&gt;</span><span class="st"> </span><span class="dv">120</span>) {
     status &lt;-<span class="st"> &quot;This porridge is too hot!&quot;</span>
@@ -644,7 +819,7 @@ test_food_temp &lt;-<span class="st"> </span><span class="cf">function</span>(te
 <span class="co"># Use function on different temperatures</span>
 <span class="kw">test_food_temp</span>(<span class="dv">119</span>)  <span class="co"># &quot;This porridge is just right!&quot;</span>
 <span class="kw">test_food_temp</span>(<span class="dv">60</span>)   <span class="co"># &quot;This porridge is too cold!&quot;</span>
-<span class="kw">test_food_temp</span>(<span class="dv">150</span>)  <span class="co"># &quot;This porridge is too hot!&quot;</span></code></pre></div>
+<span class="kw">test_food_temp</span>(<span class="dv">150</span>)  <span class="co"># &quot;This porridge is too hot!&quot;</span></code></pre>
 <p>See more about <code>if</code>, <code>else</code> and other related constructs in <a href="control-structures.html#control-structures">Appendix C</a>.</p>
 </div>
 <div id="resources-5" class="section level2 unnumbered">

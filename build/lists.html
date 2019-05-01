@@ -61,41 +61,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -226,7 +252,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.3.2" data-path="lists.html"><a href="lists.html#indexing-by-name"><i class="fa fa-check"></i><b>8.3.2</b> Indexing by Name</a></li>
 <li class="chapter" data-level="8.3.3" data-path="lists.html"><a href="lists.html#indexing-by-logical-vector"><i class="fa fa-check"></i><b>8.3.3</b> Indexing by Logical Vector</a></li>
 <li class="chapter" data-level="8.3.4" data-path="lists.html"><a href="lists.html#lists-dollar-shortcut"><i class="fa fa-check"></i><b>8.3.4</b> Extracting named elements with <code>$</code></a></li>
-<li class="chapter" data-level="8.3.5" data-path="lists.html"><a href="lists.html#single-vs.double-brackets-vs.dollar"><i class="fa fa-check"></i><b>8.3.5</b> Single vs. Double Brackets vs. Dollar</a></li>
+<li class="chapter" data-level="8.3.5" data-path="lists.html"><a href="lists.html#single-vs.-double-brackets-vs.-dollar"><i class="fa fa-check"></i><b>8.3.5</b> Single vs. Double Brackets vs. Dollar</a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="lists.html"><a href="lists.html#modifying-lists"><i class="fa fa-check"></i><b>8.4</b> Modifying Lists</a></li>
 <li class="chapter" data-level="8.5" data-path="lists.html"><a href="lists.html#the-lapply-function"><i class="fa fa-check"></i><b>8.5</b> The <code>lapply()</code> Function</a></li>
@@ -259,7 +285,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="dplyr.html"><a href="dplyr.html#grouped-operations"><i class="fa fa-check"></i><b>10.4</b> Grouped Operations</a></li>
 <li class="chapter" data-level="10.5" data-path="dplyr.html"><a href="dplyr.html#joins"><i class="fa fa-check"></i><b>10.5</b> Joins</a></li>
-<li class="chapter" data-level="10.6" data-path="dplyr.html"><a href="dplyr.html#non-standard-evaluation-vs.standard-evaluation"><i class="fa fa-check"></i><b>10.6</b> Non-Standard Evaluation vs. Standard Evaluation</a><ul>
+<li class="chapter" data-level="10.6" data-path="dplyr.html"><a href="dplyr.html#non-standard-evaluation-vs.-standard-evaluation"><i class="fa fa-check"></i><b>10.6</b> Non-Standard Evaluation vs. Standard Evaluation</a><ul>
 <li class="chapter" data-level="10.6.1" data-path="dplyr.html"><a href="dplyr.html#explicit-standard-evaluation"><i class="fa fa-check"></i><b>10.6.1</b> Explicit Standard Evaluation</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#resources-9"><i class="fa fa-check"></i>Resources</a></li>
@@ -315,7 +341,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#resources-12"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="git-branches.html"><a href="git-branches.html"><i class="fa fa-check"></i><b>14</b> Git Branches</a><ul>
-<li class="chapter" data-level="14.1" data-path="git-branches.html"><a href="git-branches.html#git-branches"><i class="fa fa-check"></i><b>14.1</b> Git Branches</a></li>
+<li class="chapter" data-level="14.1" data-path="git-branches.html"><a href="git-branches.html#git-branches-1"><i class="fa fa-check"></i><b>14.1</b> Git Branches</a></li>
 <li class="chapter" data-level="14.2" data-path="git-branches.html"><a href="git-branches.html#merging"><i class="fa fa-check"></i><b>14.2</b> Merging</a><ul>
 <li class="chapter" data-level="14.2.1" data-path="git-branches.html"><a href="git-branches.html#merge-conflicts"><i class="fa fa-check"></i><b>14.2.1</b> Merge Conflicts</a></li>
 </ul></li>
@@ -424,159 +450,238 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="lists" class="section level1">
 <h1><span class="header-section-number">Chapter 8</span> Lists</h1>
-<p>This chapter covers an additional R data type called lists. Lists are somewhat similar to atomic vectors (they are “generalized vectors”!), but can store more types of data and more details <em>about</em> that data (with some cost). Lists are another way to create R’s version of a <a href="https://en.wikipedia.org/wiki/Associative_array"><strong>Map</strong></a> data structure, a common and extremely useful way of organizing data in a computer program. Moreover: lists are used to create <em>data frames</em>, which is the primary data storage type used for working with sets of real data in R. This chapter will cover how to create and access elements in a list, as well as how to apply functions to lists or vectors.</p>
+<p>This chapter covers an additional R data type called lists. Lists are
+somewhat similar to atomic vectors (they are “generalized vectors”!),
+but can store more types of data and more details <em>about</em> that data
+(with some cost). Lists are another way to create R’s version of a
+<a href="https://en.wikipedia.org/wiki/Associative_array"><strong>Map</strong></a> data structure, a common and extremely useful way of organizing data in a computer program. Moreover: lists are used to create <em>data frames</em>, which is the primary data storage type used for working with sets of real data in R. This chapter will cover how to create and access elements in a list, as well as how to apply functions to lists or vectors.</p>
 <div id="what-is-a-list" class="section level2">
 <h2><span class="header-section-number">8.1</span> What is a List?</h2>
-<p>A <strong>List</strong> is a lot like an atomic vector. It is also a <em>one-dimensional positional ordered collection of data</em>. Exaclyt as in case of atomic vectors, list elements preserve their order, and they have a well-defined position in the list. However, lists have a few major differences from vectors:</p>
+<p>A <strong>List</strong> is a lot like an atomic vector. It is also a
+<em>one-dimensional positional ordered collection of data</em>. Exaclyt as in
+case of atomic vectors, list elements preserve their order, and they
+have a well-defined position in the list. However, lists have a few major differences from vectors:</p>
 <ol style="list-style-type: decimal">
-<li><p>Unlike a vector, you can store elements of <em>different types</em> in a list: e.g., a list can contain numeric data <em>and</em> character string data, functions, and even other lists.</p></li>
-<li><p>Because lists can contain any type of data, they are much less efficient as vectors. The vectorized operations that can handle atomic vectors on the fly usually fail in case of lists, or may work substantially slower. Hence one should prefer atomic vectors over lists if possible.</p></li>
-<li><p>Elements in a list can also be named, but unlike in case of vector, there exists a convenient shorthand <code>$</code>-construct to extract named elements from lists.</p></li>
+<li><p>Unlike a vector, you can store elements of <em>different types</em> in a
+list: e.g., a list can contain numeric data <em>and</em> character string data,
+functions, and even other lists.</p></li>
+<li><p>Because lists can contain any type of data, they are much less efficient
+as vectors. The vectorized operations that can handle atomic vectors on
+the fly usually fail in case of lists, or may work substantially slower. Hence one should prefer atomic
+vectors over lists if possible.</p></li>
+<li><p>Elements in a list can also be named, but unlike in case of vector,
+there exists a convenient shorthand <code>$</code>-construct to extract named elements from lists.</p></li>
 </ol>
-<p>Lists are extremely useful for organizing data. They allow you to group together data like a person’s name (characters), job title (characters), salary (number), and whether they are in a union (logical)—and you don’t have to remember whether the person’s name or title was the first element! In this sense lists can be used as a quick alternative to formal classes, objects that can store heterogeneous data in a consistent way. This is one of the primary uses of lists.</p>
+<p>Lists are extremely useful for organizing data. They allow you to group
+together data like a person’s name (characters), job title (characters),
+salary (number), and whether they are in a union (logical)—and you
+don’t have to remember whether the person’s name or title was the first
+element! In this sense lists can be used as a quick alternative to
+formal classes, objects that can store heterogeneous data in a
+consistent way. This is one of the primary uses of lists.</p>
 </div>
 <div id="creating-lists" class="section level2">
 <h2><span class="header-section-number">8.2</span> Creating Lists</h2>
 <p>You create a list by using the <code>list()</code> function and passing it any number of <strong>arguments</strong> (separated by commas) that you want to make up that list—similar to the <code>c()</code> functon for vectors.</p>
-<p>However, if your list contains heterogenous elements, it is usually a good idea to specify the <strong>names</strong> (or <strong>tags</strong>) for each element in the list in the same way you can give names to vector elements in <code>c()</code>—by putting the name tag (which is like a variable name), followed by an equal symbol (<strong><code>=</code></strong>), followed by the value you want to go in the list and be associated with that tag. For example:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first_name =</span> <span class="st">&quot;Ada&quot;</span>, <span class="dt">job =</span> <span class="st">&quot;Programmer&quot;</span>, <span class="dt">salary =</span> <span class="dv">78000</span>,
+<p>However, if your list contains heterogenous elements, it is usually a
+good idea to specify the <strong>names</strong> (or <strong>tags</strong>) for each element in the list in the same
+way you can give names to vector elements in <code>c()</code>—by putting the name tag (which is like a variable name), followed by an equal symbol (<strong><code>=</code></strong>), followed by the value you want to go in the list and be associated with that tag. For example:</p>
+<pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first_name =</span> <span class="st">&quot;Ada&quot;</span>, <span class="dt">job =</span> <span class="st">&quot;Programmer&quot;</span>, <span class="dt">salary =</span> <span class="dv">78000</span>,
                <span class="dt">in_union =</span> <span class="ot">TRUE</span>)
 person
-## person
-## $first_name
-## [1] &quot;Ada&quot;
-## 
-## $job
-## [1] &quot;Programmer&quot;
-## 
-## $salary
-## [1] 78000
-## 
-## $in_union
-## [1] TRUE</code></pre></div>
-<p>This creates a list of 4 elements: <code>&quot;Ada&quot;</code> which is tagged with <code>first_name</code>, <code>&quot;Programmer&quot;</code> which is tagged with <code>job</code>, <code>78000</code> which is tagged with <code>salary</code>, and <code>TRUE</code> which is tagged with <code>in_union</code>. The output lists all component names following the dollar sign <code>$</code> (more about it below), and prints the components themselves right after the names.</p>
+<span class="co">## person</span>
+<span class="co">## $first_name</span>
+<span class="co">## [1] &quot;Ada&quot;</span>
+<span class="co">## </span>
+<span class="co">## $job</span>
+<span class="co">## [1] &quot;Programmer&quot;</span>
+<span class="co">## </span>
+<span class="co">## $salary</span>
+<span class="co">## [1] 78000</span>
+<span class="co">## </span>
+<span class="co">## $in_union</span>
+<span class="co">## [1] TRUE</span></code></pre>
+<p>This creates a list of 4 elements: <code>"Ada"</code> which is tagged with
+<code>first_name</code>, <code>"Programmer"</code> which is tagged with <code>job</code>, <code>78000</code> which
+is tagged with <code>salary</code>, and <code>TRUE</code> which is tagged with <code>in_union</code>.
+The output lists all component names following the dollar sign <code>$</code> (more
+about it below), and prints the components themselves right after the names.</p>
 <ul>
-<li><p>Note that you can have <em>vectors</em> as elements of a list. In fact, each of these scalar values are really vectors (of length 1) as indicated by <code>[1]</code> preceeding their values!</p></li>
+<li><p>Note that you can have <em>vectors</em> as elements of a list. In fact, each
+of these scalar values are really vectors (of length 1) as indicated
+by <code>[1]</code> preceeding their values!</p></li>
 <li><p>The use of the <code>=</code> symbol here is an example of assigning a value to a specific named argument. You can actually use this syntax for <em>any</em> function (e.g., rather than listing arguments in order, you can explicit “assign” a value to each argument), but it is more common to just use the normal order of the arguments if there aren’t very many.</p></li>
 </ul>
 <p>Note that if you need to, you can get a <em>vector</em> of element tags using the <code>names()</code> function:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first_name =</span> <span class="st">&quot;Ada&quot;</span>, <span class="dt">job =</span> <span class="st">&quot;Programmer&quot;</span>, <span class="dt">salary =</span> <span class="dv">78000</span>, <span class="dt">in_union =</span> <span class="ot">TRUE</span>)
-<span class="kw">names</span>(person)  <span class="co"># [1] &quot;first_name&quot; &quot;job&quot;  &quot;salary&quot;  &quot;in_union&quot;</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first_name =</span> <span class="st">&quot;Ada&quot;</span>, <span class="dt">job =</span> <span class="st">&quot;Programmer&quot;</span>, <span class="dt">salary =</span> <span class="dv">78000</span>, <span class="dt">in_union =</span> <span class="ot">TRUE</span>)
+<span class="kw">names</span>(person)  <span class="co"># [1] &quot;first_name&quot; &quot;job&quot;  &quot;salary&quot;  &quot;in_union&quot;</span></code></pre>
 <p>This is useful for understanding the structure of variables that may have come from other data sources.</p>
-<p>It is possible to create a list without tagging the elements, and assign names later if you wish:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">person_alt &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;Ada&quot;</span>, <span class="dv">78000</span>, <span class="ot">TRUE</span>)
+<p>It is possible to create a list without tagging the elements, and assign
+names later if you wish:</p>
+<pre class="sourceCode r"><code class="sourceCode r">person_alt &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;Ada&quot;</span>, <span class="dv">78000</span>, <span class="ot">TRUE</span>)
 person_alt
 
-## [[1]]
-## [1] &quot;Ada&quot;
-## 
-## [[3]]
-## [1] 78000
-## 
-## [[4]]
-## [1] TRUE
+<span class="co">## [[1]]</span>
+<span class="co">## [1] &quot;Ada&quot;</span>
+<span class="co">## </span>
+<span class="co">## [[3]]</span>
+<span class="co">## [1] 78000</span>
+<span class="co">## </span>
+<span class="co">## [[4]]</span>
+<span class="co">## [1] TRUE</span>
 
 <span class="kw">names</span>(person_alt) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;income&quot;</span>, <span class="st">&quot;memebership&quot;</span>)
 person_alt
 
-## $name
-## [1] &quot;Ada&quot;
-## 
-## $income
-## [1] 78000
-## 
-## $memebership
-## [1] TRUE</code></pre></div>
-<p>Note that the name tags are missing before we assign names, instead of names we see the position of the components in double brackets like <code>[[1]]</code> (more about it <a href="lists.html#lists-indexing-by-position">below</a>).</p>
-<p>Making name-less lists and assigning names later is usually more error-prone and harder way to make lists manually, but when you automatically create lists in your code, it may be the only option.</p>
-<p>Finally, empty lists of given length can also be created using the general <code>vector()</code> function. For instance, <code>vector(&quot;list&quot;, 5)</code>, creates a list of five <code>NULL</code> elements. This is a good approach if you just want am empty list to be filled in a loop later.</p>
+<span class="co">## $name</span>
+<span class="co">## [1] &quot;Ada&quot;</span>
+<span class="co">## </span>
+<span class="co">## $income</span>
+<span class="co">## [1] 78000</span>
+<span class="co">## </span>
+<span class="co">## $memebership</span>
+<span class="co">## [1] TRUE</span></code></pre>
+<p>Note that the name tags are missing before we assign names, instead of
+names we see the position of the components in double brackets like
+<code>[[1]]</code> (more about it <a href="lists.html#lists-indexing-by-position">below</a>).</p>
+<p>Making name-less lists and assigning names later is usually more error-prone and harder way to make lists
+manually, but when you automatically create lists in your code, it may be the only option.</p>
+<p>Finally, empty lists of given length can also be created using the
+general <code>vector()</code> function. For instance, <code>vector("list", 5)</code>, creates
+a list of five <code>NULL</code> elements. This is a good approach if you just want am empty list to be filled in a loop later.</p>
 </div>
 <div id="accessing-list-elements" class="section level2">
 <h2><span class="header-section-number">8.3</span> Accessing List Elements</h2>
-<p>There are four ways to access elements in lists. Three of these reflect atomic vector indexing, the <a href="lists.html#lists-dollar-shortcut"><code>$</code>-construct</a> is unique for lists. However, there are important differences.</p>
+<p>There are four ways to access elements in lists. Three of these reflect
+atomic vector indexing, the <a href="lists.html#lists-dollar-shortcut"><code>$</code>-construct</a> is unique for lists. However, there
+are important differences.</p>
 <div id="lists-indexing-by-position" class="section level3">
 <h3><span class="header-section-number">8.3.1</span> Indexing by position</h3>
-<p>You can always access list elements by their position. It is in many ways similar to that of atomic vectors with one major caveat: indexing with single brackets will extract not the components but a <em>sublist</em> that contains just those components:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># note: this list is not not an atomic vector, even though elements have the same types</span>
+<p>You can always access list elements by their position. It is in many
+ways similar to that of atomic vectors with one major caveat:
+indexing with single brackets will extract not the components but a <em>sublist</em> that
+contains just those components:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># note: this list is not not an atomic vector, even though elements have the same types</span>
 animals &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;Aardvark&quot;</span>, <span class="st">&quot;Baboon&quot;</span>, <span class="st">&quot;Camel&quot;</span>)
 animals[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)]
 
-## [[1]]
-## [1] &quot;Aardvark&quot;
-## 
-## [[2]]
-## [1] &quot;Camel&quot;</code></pre></div>
-<p>You can see that the result is a list with two components, “Aardvark” and “Camel”, picked from the the positions 1 and 3 in the original list.</p>
-<p>The fact that single brackets return a list in case of vector is actually a smart design choice. First, it cannot return a vector in general—the requested components may be of different type and simply not fit into an atomic vector. Second, single-bracket indexing in case of vectors actually returns a <em>subvector</em>. We just tend to overlook that a “scalar” is actually a length-1 vector. But however smart this design decision may be, people tend to learn it in the hard way. When confronted with weird errors, check that what you think should be a vector is in fact a vector and not a list.</p>
-<p>The good news is that there is an easy way to extract components. A single element, and not just a length-one-sublist, is extracted by double brackets. For instance,</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">animals[[<span class="dv">2</span>]]
+<span class="co">## [[1]]</span>
+<span class="co">## [1] &quot;Aardvark&quot;</span>
+<span class="co">## </span>
+<span class="co">## [[2]]</span>
+<span class="co">## [1] &quot;Camel&quot;</span></code></pre>
+<p>You can see that the result is a list with two components, “Aardvark”
+and “Camel”, picked from the the positions 1 and 3 in the original list.</p>
+<p>The fact that single brackets return a list in case of vector is
+actually a smart design choice. First, it cannot return a vector in
+general—the requested components may be of different type and
+simply not fit into an atomic vector. Second, single-bracket indexing
+in case of vectors actually returns a <em>subvector</em>. We just tend to
+overlook that a “scalar” is actually a length-1 vector. But however
+smart this design decision may be, people tend to learn it in the hard
+way. When confronted with weird errors, check that what you think
+should be a vector is in fact a vector and not a list.</p>
+<p>The good news is that there is an easy way to extract components. A
+single element, and not just a length-one-sublist, is extracted by
+double brackets. For instance,</p>
+<pre class="sourceCode r"><code class="sourceCode r">animals[[<span class="dv">2</span>]]
 
-## [1] &quot;Baboon&quot;</code></pre></div>
+<span class="co">## [1] &quot;Baboon&quot;</span></code></pre>
 <p>returns a length-1 character vector.</p>
-<p>Unfortunately, the good news end here. You can extract individual elements in this way, but you cannot get a vector of individual list components: <code>animals[[1:2]]</code> will give you <em>subscript out of bounds</em>. As above, this is a design choice: as list components may be of different type, you may not be able to mold these into a single vector.</p>
+<p>Unfortunately, the good news end here. You can extract individual
+elements in this way, but you cannot get a vector of individual list
+components: <code>animals[[1:2]]</code> will give you <em>subscript out of bounds</em>.
+As above, this is a design choice: as list components may be of
+different type, you may not be able to mold these into a single vector.</p>
 <p class="alert alert-info">
-There are ways to merge components into a vector, given they are of the same type. For instance <code>Reduce(c, animals)</code> will convert the animals into a vector of suitable type. Ditto with <code>as.character(animals)</code>.
+There are ways to merge components into a vector, given they are of the
+same type. For instance <code>Reduce(c, animals)</code> will convert the animals
+into a vector of suitable type. Ditto with <code>as.character(animals)</code>.
 </p>
 </div>
 <div id="indexing-by-name" class="section level3">
 <h3><span class="header-section-number">8.3.2</span> Indexing by Name</h3>
-<p>If the list is named, one can use a character vector to extract it’s components, exacly in the same way as we used the numeric positions above. For instance</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first_name =</span> <span class="st">&quot;Bob&quot;</span>, <span class="dt">last_name =</span> <span class="st">&quot;Wong&quot;</span>, <span class="dt">salary =</span> <span class="dv">77000</span>, <span class="dt">in_union =</span> <span class="ot">TRUE</span>)
+<p>If the list is named, one can use a character vector to extract it’s
+components, exacly in the same way as we used the numeric positions
+above. For instance</p>
+<pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first_name =</span> <span class="st">&quot;Bob&quot;</span>, <span class="dt">last_name =</span> <span class="st">&quot;Wong&quot;</span>, <span class="dt">salary =</span> <span class="dv">77000</span>, <span class="dt">in_union =</span> <span class="ot">TRUE</span>)
 
 person[<span class="kw">c</span>(<span class="st">&quot;first_name&quot;</span>, <span class="st">&quot;salary&quot;</span>)]
 
-## $first_name
-## [1] &quot;Bob&quot;
-## 
-## $salary
-## [1] 77000
+<span class="co">## $first_name</span>
+<span class="co">## [1] &quot;Bob&quot;</span>
+<span class="co">## </span>
+<span class="co">## $salary</span>
+<span class="co">## [1] 77000</span>
 
 person[[<span class="st">&quot;first_name&quot;</span>]]  <span class="co"># [1] &quot;Bob&quot;</span>
-person[[<span class="st">&quot;salary&quot;</span>]]  <span class="co"># [1] 77000</span></code></pre></div>
-<p>As in case of positional indexing, single brackets return a sublist while double brackets return the corresponding component itself.</p>
+person[[<span class="st">&quot;salary&quot;</span>]]  <span class="co"># [1] 77000</span></code></pre>
+<p>As in case of positional indexing, single brackets return a sublist
+while double brackets return the corresponding component itself.</p>
 </div>
 <div id="indexing-by-logical-vector" class="section level3">
 <h3><span class="header-section-number">8.3.3</span> Indexing by Logical Vector</h3>
-<p>As in case of atomic vectors, we can use logical indices with lists too. There are a few differences though:</p>
+<p>As in case of atomic vectors, we can use logical indices with
+lists too. There are a few differences though:</p>
 <ul>
-<li>one can only extract sublists, not individual components. <code>person[c(TRUE, TRUE, FALSE, FALSE)]</code> will give you a sublist with first and last name. <code>person[[c(TRUE, FALSE, FALSE, FALSE)]]</code> will fail.</li>
-<li>many operators are vectorized but they are not “listified”. You cannot do math like <code>*</code> or <code>+</code> with lists. Hence the powerful logical indexing operations like <code>x[x &gt; 0]</code> are in general not possible with lists. This substantially reduces the potential usage cases of logical indexing.</li>
+<li>one can only extract sublists, not individual components.
+<code>person[c(TRUE, TRUE, FALSE, FALSE)]</code> will give you a sublist with
+first and last name. <code>person[[c(TRUE, FALSE, FALSE, FALSE)]]</code> will
+fail.</li>
+<li>many operators are vectorized but they are not “listified”. You
+cannot do math like <code>*</code> or <code>+</code> with lists. Hence the
+powerful logical indexing operations like <code>x[x &gt; 0]</code> are in general not possible
+with lists. This substantially reduces the potential usage cases of
+logical indexing.</li>
 </ul>
-<p>For instance, we can extract all components of certain name from the list:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">planes &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;Airbus 380&quot;</span>=<span class="kw">c</span>(<span class="dt">seats=</span><span class="dv">575</span>, <span class="dt">speed=</span><span class="fl">0.85</span>),
+<p>For instance, we can extract all components of certain name from the
+list:</p>
+<pre class="sourceCode r"><code class="sourceCode r">planes &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;Airbus 380&quot;</span>=<span class="kw">c</span>(<span class="dt">seats=</span><span class="dv">575</span>, <span class="dt">speed=</span><span class="fl">0.85</span>),
                <span class="st">&quot;Boeing 787&quot;</span>=<span class="kw">c</span>(<span class="dt">seats=</span><span class="dv">290</span>, <span class="dt">speed=</span><span class="fl">0.85</span>),
                <span class="st">&quot;Airbus 350&quot;</span>=<span class="kw">c</span>(<span class="dt">seats=</span><span class="dv">325</span>, <span class="dt">speed=</span><span class="fl">0.85</span>))
                            <span class="co"># cruise speed, Mach</span>
 planes[<span class="kw">startsWith</span>(<span class="kw">names</span>(planes), <span class="st">&quot;Airbus&quot;</span>)]  <span class="co"># extract components, names</span>
                            <span class="co"># of which starting with &quot;Airbus&quot;</span>
-## $`Airbus 380`
-##  seats  speed 
-## 575.00   0.85 
-## 
-## $`Airbus 350`
-##  seats  speed 
-## 325.00   0.85 </code></pre></div>
+<span class="co">## $`Airbus 380`</span>
+<span class="co">##  seats  speed </span>
+<span class="co">## 575.00   0.85 </span>
+<span class="co">## </span>
+<span class="co">## $`Airbus 350`</span>
+<span class="co">##  seats  speed </span>
+<span class="co">## 325.00   0.85 </span></code></pre>
 <p class="alert alert-info">
-However, certain vectorized operations, such as <code>&gt;</code> or <code>==</code> also work with lists that contain single numeric values as their elements. It seems to be hard to come up with general rules, so we recommed not to rely on this behaviour in code.
+However, certain vectorized operations, such as <code>&gt;</code> or <code>==</code> also work with lists
+that contain single numeric values as their elements. It seems to be
+hard to come up with general rules, so we recommed not to rely on this
+behaviour in code.
 </p>
 </div>
 <div id="lists-dollar-shortcut" class="section level3">
 <h3><span class="header-section-number">8.3.4</span> Extracting named elements with <code>$</code></h3>
-<p>Finally, there is a very convenient <code>$</code>-shortcut alternative for extracting individual components. If you printed out one of the named lists above, for instance <code>person</code>, you would see the following:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">name =</span> <span class="st">&quot;Ada&quot;</span>, <span class="dt">job =</span> <span class="st">&quot;Programmer&quot;</span>)
+<p>Finally, there is a very convenient <code>$</code>-shortcut alternative for
+extracting individual components.
+If you printed out one of the named lists above, for instance <code>person</code>, you would see the following:</p>
+<pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">name =</span> <span class="st">&quot;Ada&quot;</span>, <span class="dt">job =</span> <span class="st">&quot;Programmer&quot;</span>)
 <span class="kw">print</span>(person)
-## $first_name
-## [1] &quot;Ada&quot;
-## 
-## $job
-## [1] &quot;Programmer&quot;</code></pre></div>
-<p>Notice that the output lists each name tag prepended with a dollar sign (<strong><code>$</code></strong>) symbol, and then on the following line the vector that is the element itself. You can retrieve individual components in a similar fashion, the <strong>dollar notation</strong> is one of the easiest ways of accessing list elements. You refer to the particular element in the list with its tag by writing the name of the list, followed by a <code>$</code>, followed by the element’s tag:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">person<span class="op">$</span>name  <span class="co"># [1] &quot;Ada&quot;</span>
-person<span class="op">$</span>job  <span class="co"># [1] &quot;Programmer&quot;</span></code></pre></div>
-<p>Obviously, this only works for named lists. There are no dollar notation analogue for atomic vectors, even for named vectors. <code>$</code> extractor only exists for lists (and such data structures that are derived from lists, like data frames).</p>
+<span class="co">## $first_name</span>
+<span class="co">## [1] &quot;Ada&quot;</span>
+<span class="co">## </span>
+<span class="co">## $job</span>
+<span class="co">## [1] &quot;Programmer&quot;</span></code></pre>
+<p>Notice that the output lists each name tag prepended with a dollar sign
+(<strong><code>$</code></strong>) symbol, and then on the following line the vector that is the
+element itself. You can retrieve individual components in a similar
+fashion, the <strong>dollar notation</strong> is one of the easiest ways of accessing
+list elements. You refer to the particular element in the list with its
+tag by writing the name of the list, followed by a <code>$</code>, followed by the element’s tag:</p>
+<pre class="sourceCode r"><code class="sourceCode r">person<span class="op">$</span>name  <span class="co"># [1] &quot;Ada&quot;</span>
+person<span class="op">$</span>job  <span class="co"># [1] &quot;Programmer&quot;</span></code></pre>
+<p>Obviously, this only works for named lists. There are no dollar notation analogue for atomic vectors, even for named
+vectors. <code>$</code> extractor only exists for lists (and such data structures
+that are derived from lists, like data frames).</p>
 <p>You can almost read the dollar sign as like an “apostrophe s” (possessive) in English: so <code>person$salary</code> would mean “the <code>person</code> list<strong>’s</strong> <code>salary</code> value”.</p>
 <p>Dollar notation allows list elements to almost be treated as variables in their own right—for example, you specify that you’re talking about the <code>salary</code> variable in the <code>person</code> list, rather than the <code>salary</code> variable in some other list (or not in a list at all).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first_name =</span> <span class="st">&quot;Ada&quot;</span>, <span class="dt">job =</span> <span class="st">&quot;Programmer&quot;</span>, <span class="dt">salary =</span> <span class="dv">78000</span>, <span class="dt">in_union =</span> <span class="ot">TRUE</span>)
+<pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first_name =</span> <span class="st">&quot;Ada&quot;</span>, <span class="dt">job =</span> <span class="st">&quot;Programmer&quot;</span>, <span class="dt">salary =</span> <span class="dv">78000</span>, <span class="dt">in_union =</span> <span class="ot">TRUE</span>)
 
 <span class="co"># use elements as function or operation arguments</span>
 <span class="kw">paste</span>(person<span class="op">$</span>job, person<span class="op">$</span>first_name)   <span class="co"># [1] &quot;Programmer Ada&quot;</span>
@@ -587,22 +692,28 @@ person<span class="op">$</span>job &lt;-<span class="st"> &quot;Senior Programme
 
 <span class="co"># assign value to list element from itself</span>
 person<span class="op">$</span>salary &lt;-<span class="st"> </span>person<span class="op">$</span>salary <span class="op">*</span><span class="st"> </span><span class="fl">1.15</span>  <span class="co"># a 15% raise!</span>
-<span class="kw">print</span>(person<span class="op">$</span>salary)  <span class="co"># [1] 89700</span></code></pre></div>
-<p>Dollar-notation is a drop-in replacement to double-brackets extraction given you know the name of the component. If you do not—as is often the case when programming—you have to rely on double bracket approach.</p>
+<span class="kw">print</span>(person<span class="op">$</span>salary)  <span class="co"># [1] 89700</span></code></pre>
+<p>Dollar-notation is a drop-in replacement to double-brackets extraction
+given you know the name of the component. If you do not—as is
+often the case when programming—you have to rely on double bracket approach.</p>
 </div>
-<div id="single-vs.double-brackets-vs.dollar" class="section level3">
+<div id="single-vs.-double-brackets-vs.-dollar" class="section level3">
 <h3><span class="header-section-number">8.3.5</span> Single vs. Double Brackets vs. Dollar</h3>
-<p>The list indexing may be confusing: we have single and double brackets, indexing by position and name, and finally the dollar-notation. Which is the right thing to do? As is so often the case, it depends.</p>
+<p>The list indexing may be confusing: we have single and double brackets,
+indexing by position and name, and finally the dollar-notation. Which
+is the right thing to do? As is so often the case, it depends.</p>
 <ul>
-<li><p><strong>Dollar notation</strong> is the quickest and easiest way to extract a single named component in case you know it’s name.</p></li>
-<li><p><strong>Double brackets</strong> is very much a more verbose alternative to the dollar notation. It returns a single component exactly as the dollar notation. However, it also allows one to decide later which components to extract. (This is terribly useful in programs!) For instance, we can decide if we want to use someones first or last name:</p></li>
+<li><p><strong>Dollar notation</strong> is the quickest and easiest way to extract a single
+named component in case you know it’s name.</p></li>
+<li><p><strong>Double brackets</strong> is very much a more verbose alternative to the dollar notation. It returns a single component exactly as the dollar notation. However, it also allows one to decide later which components to extract. (This is terribly useful in programs!) For instance,
+we can decide if we want to use someones first or last name:</p></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first_name =</span> <span class="st">&quot;Bob&quot;</span>, <span class="dt">last_name =</span> <span class="st">&quot;Wong&quot;</span>, <span class="dt">salary =</span> <span class="dv">77000</span>)
+<pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first_name =</span> <span class="st">&quot;Bob&quot;</span>, <span class="dt">last_name =</span> <span class="st">&quot;Wong&quot;</span>, <span class="dt">salary =</span> <span class="dv">77000</span>)
 name_to_use &lt;-<span class="st"> &quot;last_name&quot;</span>  <span class="co"># choose name (i.e., based on formality)</span>
 person[[name_to_use]]  <span class="co"># [1] &quot;Wong&quot;</span>
 
 name_to_use &lt;-<span class="st"> &quot;first_name&quot;</span>  <span class="co"># change name to use</span>
-person[[name_to_use]]  <span class="co"># [1] &quot;Bob&quot;</span></code></pre></div>
+person[[name_to_use]]  <span class="co"># [1] &quot;Bob&quot;</span></code></pre>
 <p class="alert alert-info">
 Note: you can often hear that double brackets return a vector. This is only true if the corresponding element is a vector. But they always return the element!
 </p>
@@ -614,26 +725,26 @@ In some sense it is <strong>filtering</strong> by whatever vector is inside the 
 <strong>Watch out</strong>: In vectors, single-bracket notation returns a vector, in lists single-bracket notation returns a list!
 </p>
 <p>We recap this section by an example:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">animal &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">class=</span><span class="st">&#39;A&#39;</span>, <span class="dt">count=</span><span class="dv">201</span>, <span class="dt">endangered=</span><span class="ot">TRUE</span>, <span class="dt">species=</span><span class="st">&#39;rhinoceros&#39;</span>)
+<pre class="sourceCode r"><code class="sourceCode r">animal &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">class=</span><span class="st">&#39;A&#39;</span>, <span class="dt">count=</span><span class="dv">201</span>, <span class="dt">endangered=</span><span class="ot">TRUE</span>, <span class="dt">species=</span><span class="st">&#39;rhinoceros&#39;</span>)
 
-## SINGLE brackets returns a list
+<span class="co">## SINGLE brackets returns a list</span>
 animal[<span class="dv">1</span>]
-## $class
-## [1] &quot;A&quot;
+<span class="co">## $class</span>
+<span class="co">## [1] &quot;A&quot;</span>
 
-## can use any vector as the argument to single brackets, just like with vectors
+<span class="co">## can use any vector as the argument to single brackets, just like with vectors</span>
 animal[<span class="kw">c</span>(<span class="st">&quot;species&quot;</span>, <span class="st">&quot;endangered&quot;</span>)]
-## $species
-## [1] &quot;rhinoceros&quot;
-## 
-## $endangered
-## [1] TRUE
+<span class="co">## $species</span>
+<span class="co">## [1] &quot;rhinoceros&quot;</span>
+<span class="co">## </span>
+<span class="co">## $endangered</span>
+<span class="co">## [1] TRUE</span>
 
-## DOUBLE brackets returns the element (here its a vector)!
+<span class="co">## DOUBLE brackets returns the element (here its a vector)!</span>
 animal[[<span class="dv">1</span>]]  <span class="co"># [1] &quot;A&quot;</span>
 
-## Dollar notation is equivalent to the double brackets
-animal<span class="op">$</span>class  <span class="co"># [1] &quot;A&quot;</span></code></pre></div>
+<span class="co">## Dollar notation is equivalent to the double brackets</span>
+animal<span class="op">$</span>class  <span class="co"># [1] &quot;A&quot;</span></code></pre>
 <p>Finally, all these methods can also be used for assignment. Just put any of these construct on the left side of the assignment operator <code>&lt;-</code>.</p>
 </div>
 </div>
@@ -641,7 +752,7 @@ animal<span class="op">$</span>class  <span class="co"># [1] &quot;A&quot;</span
 <h2><span class="header-section-number">8.4</span> Modifying Lists</h2>
 <p>As in the case with atomic vectors, you can assign new values to existing elements. However, lists also enable dedicated syntax to <em>remove</em> elements. (Remember, you can always “unselect” an element in a vector, including list, by using negative positional index.)</p>
 <p>You can add elements to a list simply by assigning a value to a tag (or index) in the list that doesn’t yet exist:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first_name =</span> <span class="st">&quot;Ada&quot;</span>, <span class="dt">job =</span> <span class="st">&quot;Programmer&quot;</span>, <span class="dt">salary =</span> <span class="dv">78000</span>, <span class="dt">in_union =</span> <span class="ot">TRUE</span>)
+<pre class="sourceCode r"><code class="sourceCode r">person &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">first_name =</span> <span class="st">&quot;Ada&quot;</span>, <span class="dt">job =</span> <span class="st">&quot;Programmer&quot;</span>, <span class="dt">salary =</span> <span class="dv">78000</span>, <span class="dt">in_union =</span> <span class="ot">TRUE</span>)
 
 <span class="co"># has no `age` element</span>
 person<span class="op">$</span>age  <span class="co"># NULL</span>
@@ -652,55 +763,58 @@ person<span class="op">$</span>age  <span class="co"># [1] 40</span>
 
 <span class="co"># assign using index</span>
 person[[<span class="dv">10</span>]] &lt;-<span class="st"> &quot;Tenth field&quot;</span>
-<span class="co"># elements 6-9 will be NULL</span></code></pre></div>
+<span class="co"># elements 6-9 will be NULL</span></code></pre>
 <p>This parallel fairly closely with atomic vectors.</p>
 <p>You can remove elements by assiging the special value <code>NULL</code> to their tag or index:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&#39;A&#39;</span>, <span class="dv">201</span>, True)
+<pre class="sourceCode r"><code class="sourceCode r">a_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&#39;A&#39;</span>, <span class="dv">201</span>, True)
 a_list[[<span class="dv">2</span>]] &lt;-<span class="st"> </span><span class="ot">NULL</span>  <span class="co"># remove element #2</span>
 <span class="kw">print</span>(a_list)
             <span class="co"># [[1]]</span>
             <span class="co"># [1] &quot;A&quot;</span>
             <span class="co">#</span>
             <span class="co"># [[2]]</span>
-            <span class="co"># [1] TRUE</span></code></pre></div>
+            <span class="co"># [1] TRUE</span></code></pre>
 <p>There is no analogue here to atomic vectors.</p>
 </div>
 <div id="the-lapply-function" class="section level2">
 <h2><span class="header-section-number">8.5</span> The <code>lapply()</code> Function</h2>
-<p>A large number of common R functions (e.g., <code>paste()</code>, <code>round()</code>, etc.) and most common operators (like <code>+</code>, <code>&gt;</code>, etc) are <em>vectorized</em> so you can pass vectors as arguments, and the function will be applied to each item in the vector. It “just works”. In case of lists it usually fails. You need to put in a bit more effort if you want to apply a function to each item in a list. The effort involves either an explicit loop, or an implicit loop through a function called <strong><code>lapply()</code></strong> (for <em><strong>l</strong>ist apply</em>). We will discuss the latter approach here.</p>
+<p>A large number of common R functions (e.g., <code>paste()</code>, <code>round()</code>, etc.) and most common operators (like <code>+</code>, <code>&gt;</code>, etc) are <em>vectorized</em> so you can pass vectors as arguments, and the function will be applied to each item in the vector. It “just works”. In case of lists it usually fails. You need to put in a bit more effort if you want to apply a
+function to each item in a list.
+The effort involves either an explicit loop, or an implicit loop through a function called <strong><code>lapply()</code></strong> (for <em><strong>l</strong>ist apply</em>). We will discuss the latter approach here.</p>
 <p><code>lapply()</code> takes two arguments: the first is a list (or a vector, vectors will do as well) you want to work with, and the second is the function you want to “apply” to each item in that list. For example:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># list, not a vector</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># list, not a vector</span>
 people &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;Sarah&quot;</span>, <span class="st">&quot;Amit&quot;</span>, <span class="st">&quot;Zhang&quot;</span>)
 
 <span class="co"># apply the `toupper()` function to each element in `people`</span>
 <span class="kw">lapply</span>(people, toupper)
-## [[1]]
-## [1] &quot;SARAH&quot;
-##
-## [[2]]
-## [1] &quot;AMIT&quot;
-##
-## [[3]]
-## [1] &quot;ZHANG&quot;</code></pre></div>
+<span class="co">## [[1]]</span>
+<span class="co">## [1] &quot;SARAH&quot;</span>
+<span class="co">##</span>
+<span class="co">## [[2]]</span>
+<span class="co">## [1] &quot;AMIT&quot;</span>
+<span class="co">##</span>
+<span class="co">## [[3]]</span>
+<span class="co">## [1] &quot;ZHANG&quot;</span></code></pre>
 <p>You can add even more arguments to <code>lapply()</code>, those will be assumed to belong to the function you are applying:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># apply the `paste()` function to each element in `people`,</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># apply the `paste()` function to each element in `people`,</span>
 <span class="co"># with an addition argument `&quot;dances!&quot;` to each call</span>
 <span class="kw">lapply</span>(people, paste, <span class="st">&quot;dances!&quot;</span>)
-## [[1]]
-## [1] &quot;Sarah dances!&quot;
-## 
-## [[2]]
-## [1] &quot;Amit dances!&quot;
-## 
-## [[3]]
-## [1] &quot;Zhang dances!&quot;</code></pre></div>
-<p>The last unnamed argument, <code>&quot;dances&quot;</code>, are taken as the second argument to <code>paste</code>. So behind the scenes, <code>lapply()</code> runs a loop over <code>paste(&quot;Sarah&quot;, &quot;dances!&quot;)</code>, <code>paste(&quot;Amit&quot;, &quot;dances!&quot;)</code> and so on.</p>
+<span class="co">## [[1]]</span>
+<span class="co">## [1] &quot;Sarah dances!&quot;</span>
+<span class="co">## </span>
+<span class="co">## [[2]]</span>
+<span class="co">## [1] &quot;Amit dances!&quot;</span>
+<span class="co">## </span>
+<span class="co">## [[3]]</span>
+<span class="co">## [1] &quot;Zhang dances!&quot;</span></code></pre>
+<p>The last unnamed argument, <code>"dances"</code>, are taken as the second argument to <code>paste</code>. So behind the scenes, <code>lapply()</code> runs a loop over <code>paste("Sarah", "dances!")</code>, <code>paste("Amit", "dances!")</code> and so on.</p>
 <ul>
-<li>Notice that the second argument to <code>lapply()</code> is just the function: not the name of the functions as character string (it’s not quoted in <code>&quot;&quot;</code>). You’re also not actually <em>calling</em> that function when you write it’s name in <code>lapply()</code> (you don’t put the parenthesis <code>()</code> after its name). See more in <a href="functions.html#how-to-use-functions">section <em>How to Use Functions</em></a>. After the function, you can put any additional arguments you want the applied function to be called with: for example, how many digits to round to, or what value to paste to the end of a string.</li>
+<li>Notice that the second argument to <code>lapply()</code> is just the function: not the name of the functions as character string (it’s not quoted in <code>""</code>). You’re also not actually <em>calling</em> that function when you write it’s name in <code>lapply()</code> (you don’t put the parenthesis <code>()</code> after its name). See more in <a href="functions.html#how-to-use-functions">section <em>How to Use Functions</em></a>.
+After the function, you can put any additional arguments you want the applied function to be called with: for example, how many digits to round to, or what value to paste to the end of a string.</li>
 </ul>
 <p>Note that the <code>lapply()</code> function returns a <em>new</em> list; the original one is unmodified. This makes it a <a href="https://en.wikipedia.org/wiki/Map_(parallel_pattern)"><strong>mapping</strong></a> operation. It is an operation, and not the same thing as <em>map</em> data structure. In mapping operation the code applies the same <strong>elemental function</strong> to the all elements in a list.</p>
 <p>You commonly use <code>lapply()</code> with your own custom functions which define what you want to do to a single element in that list:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># A function that prepends &quot;Hello&quot; to any item</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># A function that prepends &quot;Hello&quot; to any item</span>
 greet &lt;-<span class="st"> </span><span class="cf">function</span>(item) {
   <span class="kw">return</span>(<span class="kw">paste</span>(<span class="st">&quot;Hello&quot;</span>, item))
 }
@@ -710,14 +824,14 @@ people &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="s
 
 <span class="co"># greet each name</span>
 greetings &lt;-<span class="st"> </span><span class="kw">lapply</span>(people, greet)
-## [[1]]
-## [1] &quot;Hello Sarah&quot;
-##
-## [[2]]
-## [1] &quot;Hello Amit&quot;
-##
-## [[3]]
-## [1] &quot;Hello Zhang&quot;</code></pre></div>
+<span class="co">## [[1]]</span>
+<span class="co">## [1] &quot;Hello Sarah&quot;</span>
+<span class="co">##</span>
+<span class="co">## [[2]]</span>
+<span class="co">## [1] &quot;Hello Amit&quot;</span>
+<span class="co">##</span>
+<span class="co">## [[3]]</span>
+<span class="co">## [1] &quot;Hello Zhang&quot;</span></code></pre>
 <p>Additionally, <code>lapply()</code> is a member of the “<code>*apply()</code>” family of functions: a set of functions that each start with different letters and may apply to a different data structure, but otherwise all work in a similar fashion. For example, <code>lapply()</code> returns a list, while <code>sapply()</code> (<strong>s</strong>implified apply) simplifies the list into a vector, if possible. If you are interested in parallel programming, we recommend you to check out the function <code>parLapply</code> and it’s friends in the <em>parallel</em> package.</p>
 </div>
 <div id="resources-7" class="section level2 unnumbered">

@@ -7,7 +7,7 @@ data is not allowed to be taken out from where it is, or you are
 expected to use the same computer as your teammates.  Or maybe you want to set up a website and your laptop, obviously, travels around with you instead of staying in one place with reliable internet connection all the time.  The server you use may
 be a standalone box located in a rack in your employer's server room,
 or it may be a virtual machine in a cloud like Amazon EC2.  You may
-also want to set up your own server, or even just a docker container in your laptop.
+also want to set up your own server, or your own virtual machine.
 
 
 ## Server Setup
@@ -16,14 +16,14 @@ There are many ways one can set up a distant machine.  It may be
 Windows or linux (or any of the other unixes).  It may or may not have
 graphical user interface (GUI) installed or otherwise accessible (many
 unix programs can display nice windows on your laptop while still
-running on the server).  It may or may not have RStudio made
+running on the server).  It may or may not have RStudio 
 available over web browser.  Here we discuss a barebone option
 with no access to GUI and no web access to RStudio.  We assume this server is already set up for you and do not discuss installation here.
 
 This is a fairly common setup, for instance when dealing with
 sensitive data, in organizations where computer skills and
-sysadmin's time is limited, or when you rent your own tiny but cheap
-server. 
+sysadmin's time is limited, or when you rent your own cheap but limited
+server (graphical user interface takes a lot of memory). 
 
 
 ## Connecting to the Remote Server
@@ -36,11 +36,13 @@ The most common way to connect to remote server is via _ssh_.  ssh
 stands for "secure shell" and means that all
 communication between you and the remote computer is encrypted.  You connect to the server
 as 
-```bash
+```sh
 ssh myserver.somewhere.com
 ```
-The remote server asks for your password and opens remote shell
-connection.  If this is your first time to connect to this server, you may also be asked to accept it's fingerprint.  This is an additional security measure to ensure you are actually talking to the computer you think you are talking to.
+_ssh_ is nowadays pretty much the industry standard for such connections, it comes pre-installed on macs and it is included with _gitbash_ too.
+
+When you ssh to the remote server, it asks for your password and opens remote shell
+connection.  If this is your first time to connect from this particular laptop, you may also be asked to accept it's fingerprint.  This is an additional security measure to ensure that you are actually talking to the computer you think you are talking to.
 
 The remote machine  will offer you a similar bash shell environment as you are using
 on your computer but most likely you see a different prompt, one that
@@ -57,17 +59,22 @@ print anything in response, not even asterisks.  It feels as if your
 keyboard is not working.  But it is working, and when you finish and press enter, you will be logged in.
 </p>
 
-
 By default, ssh attempts to login with your local username.  If your
 username on the server differs from that on your laptop, you want to add it to the ssh command:
-```bash
+```sh
 ssh username@myserver.somewhere.com
 ```
+
+![Local and remote shell window](img/ssh-to-remote-server/ssh-windows.png)
+
+<p class="caption">
+The screenshot above shows two command line windows, the upper one connecting remotely on _info201_, and the lower one running locally at a computer called _is-otoometd5060_.  In the upper one, you can see the login command `ssh otoomet@info201.ischool.uw.edu` and various start-up messages.  The `pwd` command shows the current working directory being _/home/otoomet_, and `ls` shows there are for objects there.  Below, we are on the local computer _is-otoometd5060_.  Current working directory has the same name, but on the local computer it contains rather more entries.
+</p>
 
 Finally, when done, you want to get out.  The polite way to close the
 connection is with
 command
-```bash
+```sh
 exit
 ```
 that waits until all open connections are safely closed.  But usually you
@@ -76,15 +83,13 @@ can as well just close the terminal.
 
 ## Copying Files
 
-Before you can run your R scripts on the server, you have to get
-these copied over.  There are several possibilities.
+Before you can run your R scripts, or build a website on the server, you have to get your code and data copied over.  There are several possibilities.
 
 ### scp
 
-The most straightforward approach is `scp`, **s**ecure **c**o**p**y.  It works in many
-ways in the same way as `cp` for the local files, just `scp` can copy
+The most straightforward approach is `scp`, **s**ecure **c**o**p**y.  It comes pre-installed on mac and gitbash and it works in a similar fashion as `cp` for the local files, just `scp` can copy
 files between your machine and a remote computer.  Under the hood it uses ssh
-connection, just like `ssh` command itself.  It syntax is rather
+connection, just like `ssh` command itself, so the bad guys out there cannot easily see what you are doing.  It syntax is rather
 similar to that of `cp`:
 ```bash
 scp user1@host1:file1 user2@host2:file2
@@ -107,6 +112,11 @@ Note that exactly as with `cp`, you may omit the destination file name
 if the destination is a directory: it simply copies the file into that
 directory while preserving its name.
 
+![copying a local file to the remote machine](img/ssh-to-remote-server/scp-local-remote.png)
+<p class="caption">
+`scp` in action.  The upper shell window, running locally, depicts _scp_ in action, copying file _startServer.R_ from directory _api_ to the remote server into _api_ directory (while retaining the same name).  The lower window shows the remote machine: first, `ls` command shows we have an _api_ folder in our home directory, and second `ls -l api` shows the content of the _api_ directory in long form.  _startServer.R_ is copied over there.
+</p>
+
 After running your script, you may want to copy your results back to
 your laptop.  For instance, if you need to get the file
 `figure.png` out of the server, you can do
@@ -115,6 +125,10 @@ scp myusername@server.ischool.edu:scripts/figure.png Desktop/info201/
 ```
 As above, this copies a file from the given directory, and drops it
 into the `info201` folder on your Desktop.
+
+<p class="alert alert-warning">
+Always issue `scp` command locally on your laptop.  This is because your laptop can access the server but usually not the way around.  In order to be connected via _ssh_ (and _scp_), a computer must have public ip-address, and ssh server up and running.  It is unlikely you have configured your laptop in this way.
+</p>
 
 
 ### rsync

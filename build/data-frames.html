@@ -61,41 +61,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -226,7 +252,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.3.2" data-path="lists.html"><a href="lists.html#indexing-by-name"><i class="fa fa-check"></i><b>8.3.2</b> Indexing by Name</a></li>
 <li class="chapter" data-level="8.3.3" data-path="lists.html"><a href="lists.html#indexing-by-logical-vector"><i class="fa fa-check"></i><b>8.3.3</b> Indexing by Logical Vector</a></li>
 <li class="chapter" data-level="8.3.4" data-path="lists.html"><a href="lists.html#lists-dollar-shortcut"><i class="fa fa-check"></i><b>8.3.4</b> Extracting named elements with <code>$</code></a></li>
-<li class="chapter" data-level="8.3.5" data-path="lists.html"><a href="lists.html#single-vs.double-brackets-vs.dollar"><i class="fa fa-check"></i><b>8.3.5</b> Single vs. Double Brackets vs. Dollar</a></li>
+<li class="chapter" data-level="8.3.5" data-path="lists.html"><a href="lists.html#single-vs.-double-brackets-vs.-dollar"><i class="fa fa-check"></i><b>8.3.5</b> Single vs. Double Brackets vs. Dollar</a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="lists.html"><a href="lists.html#modifying-lists"><i class="fa fa-check"></i><b>8.4</b> Modifying Lists</a></li>
 <li class="chapter" data-level="8.5" data-path="lists.html"><a href="lists.html#the-lapply-function"><i class="fa fa-check"></i><b>8.5</b> The <code>lapply()</code> Function</a></li>
@@ -259,7 +285,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="dplyr.html"><a href="dplyr.html#grouped-operations"><i class="fa fa-check"></i><b>10.4</b> Grouped Operations</a></li>
 <li class="chapter" data-level="10.5" data-path="dplyr.html"><a href="dplyr.html#joins"><i class="fa fa-check"></i><b>10.5</b> Joins</a></li>
-<li class="chapter" data-level="10.6" data-path="dplyr.html"><a href="dplyr.html#non-standard-evaluation-vs.standard-evaluation"><i class="fa fa-check"></i><b>10.6</b> Non-Standard Evaluation vs. Standard Evaluation</a><ul>
+<li class="chapter" data-level="10.6" data-path="dplyr.html"><a href="dplyr.html#non-standard-evaluation-vs.-standard-evaluation"><i class="fa fa-check"></i><b>10.6</b> Non-Standard Evaluation vs. Standard Evaluation</a><ul>
 <li class="chapter" data-level="10.6.1" data-path="dplyr.html"><a href="dplyr.html#explicit-standard-evaluation"><i class="fa fa-check"></i><b>10.6.1</b> Explicit Standard Evaluation</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#resources-9"><i class="fa fa-check"></i>Resources</a></li>
@@ -315,7 +341,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#resources-12"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="git-branches.html"><a href="git-branches.html"><i class="fa fa-check"></i><b>14</b> Git Branches</a><ul>
-<li class="chapter" data-level="14.1" data-path="git-branches.html"><a href="git-branches.html#git-branches"><i class="fa fa-check"></i><b>14.1</b> Git Branches</a></li>
+<li class="chapter" data-level="14.1" data-path="git-branches.html"><a href="git-branches.html#git-branches-1"><i class="fa fa-check"></i><b>14.1</b> Git Branches</a></li>
 <li class="chapter" data-level="14.2" data-path="git-branches.html"><a href="git-branches.html#merging"><i class="fa fa-check"></i><b>14.2</b> Merging</a><ul>
 <li class="chapter" data-level="14.2.1" data-path="git-branches.html"><a href="git-branches.html#merge-conflicts"><i class="fa fa-check"></i><b>14.2.1</b> Merge Conflicts</a></li>
 </ul></li>
@@ -442,7 +468,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="creating-data-frames" class="section level3">
 <h3><span class="header-section-number">9.1.1</span> Creating Data Frames</h3>
 <p>Typically you will <em>load</em> data sets from some external source (see <a href="data-frames.html#csv-files">below</a>), rather than writing out the data by hand. However, it is important to understand that you can construct a data frame by combining multiple vectors. To accomplish this, you can use the <code>data.frame()</code> function, which accepts <strong>vectors</strong> as <em>arguments</em>, and creates a table with a column for each vector. For example:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vector of names</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># vector of names</span>
 name &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Ada&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Chris&quot;</span>, <span class="st">&quot;Diya&quot;</span>, <span class="st">&quot;Emma&quot;</span>)
 
 <span class="co"># Vector of heights</span>
@@ -453,27 +479,27 @@ weight &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">
 
 <span class="co"># Combine the vectors into a data.frame</span>
 <span class="co"># Note the names of the variables become the names of the columns!</span>
-my_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(name, height, weight, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</code></pre></div>
+my_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(name, height, weight, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</code></pre>
 <ul>
 <li>(The last argument to the <code>data.frame()</code> function is included because one of the vectors contains strings; it tells R to treat that vector as a <em>vector</em> not as a <strong>factor</strong>. This is usually what you’ll want to do. See below for details about <a href="data-frames.html#factors">factors</a>).</li>
 </ul>
 <p>Because data frame elements are lists, you can access the values from <code>my_data</code> using the same <strong>dollar notation</strong> and <strong>double-bracket notation</strong> as lists:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Using the same weights/heights as above:</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Using the same weights/heights as above:</span>
 my_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(height, weight)
 
 <span class="co"># Retrieve weights (the `weight` element of the list: a vector!)</span>
 my_weights &lt;-<span class="st"> </span>my_data<span class="op">$</span>weight
 
 <span class="co"># Retrieve heights (the whole column: a vector!)</span>
-my_heights &lt;-<span class="st"> </span>my_data[[<span class="st">&quot;height&quot;</span>]]</code></pre></div>
+my_heights &lt;-<span class="st"> </span>my_data[[<span class="st">&quot;height&quot;</span>]]</code></pre>
 </div>
 <div id="describing-structure-of-data-frames" class="section level3">
 <h3><span class="header-section-number">9.1.2</span> Describing Structure of Data Frames</h3>
 <p>While you can interact with data frames as lists, they also offer a number of additional capabilities and functions. For example, here are a few ways you can <em>inspect</em> the structure of a data frame:</p>
 <table>
 <colgroup>
-<col width="6%" />
-<col width="93%" />
+<col width="5%" />
+<col width="94%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -517,14 +543,14 @@ my_heights &lt;-<span class="st"> </span>my_data[[<span class="st">&quot;height&
 </tbody>
 </table>
 <p>Note that many of these description functions can also be used to <em>modify</em> the structure of a data frame. For example, you can use the <code>colnames</code> functions to assign a new set of column names to a data frame:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Using the same weights/heights as above:</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Using the same weights/heights as above:</span>
 my_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(name, height, weight)
 
 <span class="co"># A vector of new column names</span>
 new_col_names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;first_name&#39;</span>,<span class="st">&#39;how_tall&#39;</span>,<span class="st">&#39;how_heavy&#39;</span>)
 
 <span class="co"># Assign that vector to be the vector of column names</span>
-<span class="kw">colnames</span>(my_data) &lt;-<span class="st"> </span>new_col_names</code></pre></div>
+<span class="kw">colnames</span>(my_data) &lt;-<span class="st"> </span>new_col_names</code></pre>
 </div>
 <div id="accessing-data-in-data-frames" class="section level3">
 <h3><span class="header-section-number">9.1.3</span> Accessing Data in Data Frames</h3>
@@ -532,7 +558,7 @@ new_col_names &lt;-<span class="st"> </span><span class="kw">c</span>(<span clas
 <table>
 <colgroup>
 <col width="30%" />
-<col width="29%" />
+<col width="28%" />
 <col width="40%" />
 </colgroup>
 <thead>
@@ -571,24 +597,24 @@ new_col_names &lt;-<span class="st"> </span><span class="kw">c</span>(<span clas
 </tbody>
 </table>
 <p>Take special note of the 4th option’s syntax (for retrieving rows): you still include the comma (<code>,</code>), but because you leave <em>which column</em> blank, you get all of the columns!</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Extract the second row</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Extract the second row</span>
 my_data[<span class="dv">2</span>, ] <span class="co"># comma</span>
 
 <span class="co"># Extract the second column AS A VECTOR</span>
 my_data[, <span class="dv">2</span>] <span class="co"># comma</span>
 
 <span class="co"># Extract the second column AS A DATA FRAME (filtering)</span>
-my_data[<span class="dv">2</span>] <span class="co"># no comma</span></code></pre></div>
+my_data[<span class="dv">2</span>] <span class="co"># no comma</span></code></pre>
 <p>(Extracting from more than one column will produce a <em>sub-data frame</em>; extracting from just one column will produce a vector).</p>
 <p>And of course, because <em>everything is a vector</em>, you’re actually specifying vectors of indices to extract. This allows you to get multiple rows or columns:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get the second through fourth rows</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get the second through fourth rows</span>
 my_data[<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>, ]
 
 <span class="co"># Get the `height` and `weight` columns</span>
 my_data[, <span class="kw">c</span>(<span class="st">&quot;height&quot;</span>, <span class="st">&quot;weight&quot;</span>)]
 
 <span class="co"># Perform filtering</span>
-my_data[my_data<span class="op">$</span>height <span class="op">&gt;</span><span class="st"> </span><span class="dv">60</span>, ] <span class="co"># rows for which `height` is greater than 60</span></code></pre></div>
+my_data[my_data<span class="op">$</span>height <span class="op">&gt;</span><span class="st"> </span><span class="dv">60</span>, ] <span class="co"># rows for which `height` is greater than 60</span></code></pre>
 </div>
 </div>
 <div id="csv-files" class="section level2">
@@ -601,11 +627,11 @@ Diya, 61, 123
 Emma, 62, 126</code></pre>
 <p>Most spreadsheet programs like Microsoft Excel, Numbers, or Google Sheets are simply interfaces for formatting and interacting with data that is saved in this format. These programs easily import and export <code>.csv</code> files; however <code>.csv</code> files are unable to save the formatting done in those programs—the files only store the data!</p>
 <p>You can load the data from a <code>.csv</code> file into R by using the <code>read.csv()</code> function:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Read data from the file `my_file.csv` into a data frame `my_data`</span>
-my_data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;my_file.csv&#39;</span>, <span class="dt">stringsAsFactors=</span><span class="ot">FALSE</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Read data from the file `my_file.csv` into a data frame `my_data`</span>
+my_data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;my_file.csv&#39;</span>, <span class="dt">stringsAsFactors=</span><span class="ot">FALSE</span>)</code></pre>
 <p>Again, use the <code>stringsAsFactors</code> argument to make sure string data is stored as a <em>vector</em> rather than as a <em>factor</em> (see <a href="data-frames.html#factors">below</a>). This function will return a data frame, just like those described above!</p>
 <p class="alert alert-warning">
-<strong>Important Note</strong>: If for whatever reason an element is missing from a data frame (which is very common with real world data!), R will fill that cell with the logical value <code>NA</code> (distinct from the string <code>&quot;NA&quot;</code>), meaning “<strong>N</strong>ot <strong>A</strong>vailable”. There are multiple ways to handle this in an analysis; see <a href="http://www.statmethods.net/input/missingdata.html">this link</a> among others for details.
+<strong>Important Note</strong>: If for whatever reason an element is missing from a data frame (which is very common with real world data!), R will fill that cell with the logical value <code>NA</code> (distinct from the string <code>"NA"</code>), meaning “<strong>N</strong>ot <strong>A</strong>vailable”. There are multiple ways to handle this in an analysis; see <a href="http://www.statmethods.net/input/missingdata.html">this link</a> among others for details.
 </p>
 <div id="working-directory" class="section level3">
 <h3><span class="header-section-number">9.2.1</span> Working Directory</h3>
@@ -615,12 +641,12 @@ my_data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span cla
 <li>This makes sense if you think about it: you can run R commands through the console without having a script, and you can have open multiple script files from separate folders that are all interacting with the same execution environment.</li>
 </ul>
 <p>Just as you can view the current working directory when on the command line (using <code>pwd</code>), you can use an R function to view the current working directory when in R:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># get the absolute path to the current working directory</span>
-<span class="kw">getwd</span>()</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># get the absolute path to the current working directory</span>
+<span class="kw">getwd</span>()</code></pre>
 <p>You often will want to change the working directory to be your “project” directory (wherever your scripts and data files happen to be). It is possible to change the current working directory using the <code>setwd()</code> function. However, this function would also take an absolute path, so doesn’t fix the problem. You would not want to include this absolute path in your script (though you could use it from the console).</p>
 <p>One solution is to use the tilde (<code>~</code>) shortcut to specify your directory:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Set working directory on Desktop</span>
-<span class="kw">setwd</span>(<span class="st">&quot;~/Desktop/project-name&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Set working directory on Desktop</span>
+<span class="kw">setwd</span>(<span class="st">&quot;~/Desktop/project-name&quot;</span>)</code></pre>
 <p>This enables you to work across machines, as long as the project is stored in the same location on each machine.</p>
 <p>Another solution is to use R Studio itself to change the working directory. This is reasonable because the working directory is a property of the <em>current running environment</em>, which is what R Studio makes accessible! The easiest way to do this is to use the <strong><code>Session &gt; Set Working Directory</code></strong> menu options: you can either set the working directory <code>To Source File Location</code> (the folder containing whichever <code>.R</code> script you are currently editing; this is usually what you want), or you can browse for a particular directory with <code>Choose Directory</code>.</p>
 <div class="figure">
@@ -635,7 +661,7 @@ my_data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span cla
 <p><strong>Factors</strong> are a way of <em>optimizing</em> variables that consist of a finite set of categories (i.e., they are <strong>categorical (nominal) variables</strong>).</p>
 <p>For example, imagine that you had a vector of shirt sizes which could only take on the values <code>small</code>, <code>medium</code>, or <code>large</code>. If you were working with a large dataset (thousands of shirts!), it would end up taking up a lot of memory to store the character strings (5+ letters per word at 1 or more bytes per letter) for each one of those variables.</p>
 <p>A <strong>factor</strong> on the other hand would instead store a <em>number</em> (called a <strong>level</strong>) for each of these character strings: for example, <code>1</code> for <code>small</code>, <code>2</code> for <code>medium</code>, or <code>3</code> for <code>large</code> (though the order or specific numbers will vary). R will remember the relationship between the integers and their <strong>labels</strong> (the strings). Since each number only takes 4 bytes (rather than 1 per letter), factors allow R to keep much more information in memory.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Start with a character vector of shirt sizes</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Start with a character vector of shirt sizes</span>
 shirt_sizes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;small&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;small&quot;</span>, <span class="st">&quot;large&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;large&quot;</span>)
 
 <span class="co"># Convert to a vector of factor data</span>
@@ -645,10 +671,10 @@ shirt_sizes_factor &lt;-<span class="st"> </span><span class="kw">as.factor</spa
 <span class="kw">print</span>(shirt_sizes_factor)
 
 <span class="co"># The length of the factor is still the length of the vector, not the number of levels</span>
-<span class="kw">length</span>(shirt_sizes_factor) <span class="co"># 6</span></code></pre></div>
+<span class="kw">length</span>(shirt_sizes_factor) <span class="co"># 6</span></code></pre>
 <p>When you print out the <code>shirt_sizes_factor</code> variable, R still (intelligently) prints out the <strong>labels</strong> that you are presumably interested in. It also indicates the <strong>levels</strong>, which are the <em>only</em> possible values that elements can take on.</p>
 <p>It is worth re-stating: <strong>factors are not vectors</strong>. This means that most all the operations and functions you want to use on vectors <em>will not work</em>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a factor of numbers (factors need not be strings)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a factor of numbers (factors need not be strings)</span>
 num_factors &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">40</span>))
 
 <span class="co"># Print the factor to see its levels</span>
@@ -663,9 +689,9 @@ num_factors[<span class="dv">1</span>] &lt;-<span class="st"> </span><span class
 
 <span class="co"># Change entry to a value that ISN&#39;T a level fails</span>
 num_factors[<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">50</span>  <span class="co"># Error: invalid factor level</span>
-                      <span class="co"># num_factors[1] is now NA</span></code></pre></div>
+                      <span class="co"># num_factors[1] is now NA</span></code></pre>
 <p>If you create a data frame with a string vector as a column (as what happens with <code>read.csv()</code>), it will automatically be treated as a factor <em>unless you explicitly tell it not to</em>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Vector of shirt sizes</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Vector of shirt sizes</span>
 shirt_size &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;small&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;small&quot;</span>, <span class="st">&quot;large&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;large&quot;</span>)
 
 <span class="co"># Vector of costs (in dollars)</span>
@@ -684,9 +710,9 @@ shirts_factor &lt;-<span class="st"> </span><span class="kw">data.frame</span>(s
 shirts &lt;-<span class="st"> </span><span class="kw">data.frame</span>(shirt_size, cost, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
 
 <span class="co"># The shirt_size column is NOT a factor</span>
-<span class="kw">is.factor</span>(shirts<span class="op">$</span>shirt_size) <span class="co"># FALSE</span></code></pre></div>
+<span class="kw">is.factor</span>(shirts<span class="op">$</span>shirt_size) <span class="co"># FALSE</span></code></pre>
 <p>This is not to say that factors can’t be useful (beyond just saving memory)! They offer easy ways to group and process data using specialized functions:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">shirt_size &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;small&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;small&quot;</span>, <span class="st">&quot;large&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;large&quot;</span>)
+<pre class="sourceCode r"><code class="sourceCode r">shirt_size &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;small&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;small&quot;</span>, <span class="st">&quot;large&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;large&quot;</span>)
 cost &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">15.5</span>, <span class="dv">17</span>, <span class="dv">17</span>, <span class="dv">14</span>, <span class="dv">12</span>, <span class="dv">23</span>)
 
 <span class="co"># Data frame of inventory (with factors)</span>
@@ -701,7 +727,7 @@ shirt_size_frames &lt;-<span class="st"> </span><span class="kw">split</span>(sh
 <span class="co">#   first argument is the vector to apply the function to,</span>
 <span class="co">#   second argument is the factor to split by</span>
 <span class="co">#   third argument is the name of the function</span>
-<span class="kw">tapply</span>(shirts_factor<span class="op">$</span>cost, shirts_factor<span class="op">$</span>shirt_size, mean)</code></pre></div>
+<span class="kw">tapply</span>(shirts_factor<span class="op">$</span>cost, shirts_factor<span class="op">$</span>shirt_size, mean)</code></pre>
 <p>However, in general this course is more interested in working with data as vectors, thus you should always use <code>stringsAsFactors=FALSE</code> when creating data frames or loading <code>.csv</code> files that include strings.</p>
 </div>
 <div id="resources-8" class="section level2 unnumbered">
