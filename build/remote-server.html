@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2019-04-29">
+<meta name="date" content="2019-05-01">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -424,18 +424,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="remote-server" class="section level1">
 <h1><span class="header-section-number">D</span> Using Remote Server</h1>
-<p>Sooner-or-later you are in a situation where you have to work on a <strong>distant networked computer</strong>. There are many reasons for this, either your laptop is to weak for certain tasks, or certain data is not allowed to be taken out from where it is, or you are expected to use the same computer as your teammates. The server may be a standalone box located in a rack in your employer’s server room, or it may be a virtual machine in a cloud like Amazon EC2. You may also want to set up your own server.</p>
+<p>Sooner-or-later you are in a situation where you have to work on a <strong>distant networked computer</strong>. There are many reasons for this, either your laptop is to weak for certain tasks, or certain data is not allowed to be taken out from where it is, or you are expected to use the same computer as your teammates. Or maybe you want to set up a website and your laptop, obviously, travels around with you instead of staying in one place with reliable internet connection all the time. The server you use may be a standalone box located in a rack in your employer’s server room, or it may be a virtual machine in a cloud like Amazon EC2. You may also want to set up your own server, or even just a docker container in your laptop.</p>
 <div id="server-setup" class="section level2">
 <h2><span class="header-section-number">D.1</span> Server Setup</h2>
-<p>There are many ways one can set up a distant machine. It may be Windows or linux (or any of the other unixes). It may or may not have graphical user interface (GUI) installed or otherwise accessible (many unix programs can display nice windows on your laptop while still running on the server). It may or may not have RStudio made available over web browser. Here we discuss the most barebone setup with no access to GUI and no web access to RStudio.</p>
+<p>There are many ways one can set up a distant machine. It may be Windows or linux (or any of the other unixes). It may or may not have graphical user interface (GUI) installed or otherwise accessible (many unix programs can display nice windows on your laptop while still running on the server). It may or may not have RStudio made available over web browser. Here we discuss a barebone option with no access to GUI and no web access to RStudio. We assume this server is already set up for you and do not discuss installation here.</p>
 <p>This is a fairly common setup, for instance when dealing with sensitive data, in organizations where computer skills and sysadmin’s time is limited, or when you rent your own tiny but cheap server.</p>
 </div>
 <div id="connecting-to-the-remote-server" class="section level2">
 <h2><span class="header-section-number">D.2</span> Connecting to the Remote Server</h2>
 <p>Given the server is already running, your first task is to connect to it. Here it means that you will enter commands on your laptop, but those command are actually run on the server.</p>
-<p>The most common way to connect to remote server is via <em>ssh</em>. ssh stands for “secure shell” and means that both all network communication is encrypted. You connect to the server as</p>
+<p>The most common way to connect to remote server is via <em>ssh</em>. ssh stands for “secure shell” and means that all communication between you and the remote computer is encrypted. You connect to the server as</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">ssh</span> myserver.somewhere.com</code></pre></div>
-<p>The remote server asks for your password and opens remote shell connection. Note: when entering your password, it usually does not print anything in response, not even asterisks. It feels as if your keyboard is not working. It will offer you a similar bash shell environment as you are using on your computer but most likely you see a different prompt, one that contains the server’s name. You may also see some login messages. Now all the commands you are issuing are running on the remote machine. So <code>pwd</code> shows your working directory on the server, which in general is not the same as on the local machine, and <code>ls</code> shows the files on the server, not on your laptop. Now you can use <code>mkdir</code> to create the project folder on the server.</p>
+<p>The remote server asks for your password and opens remote shell connection. If this is your first time to connect to this server, you may also be asked to accept it’s fingerprint. This is an additional security measure to ensure you are actually talking to the computer you think you are talking to.</p>
+The remote machine will offer you a similar bash shell environment as you are using on your computer but most likely you see a different prompt, one that contains the server’s name. You may also see some login messages. Now all the commands you are issuing are running on the remote machine. So <code>pwd</code> shows your working directory on the server, which in general is not the same as on the local machine, and <code>ls</code> shows the files on the server, not on your laptop. Now you can use <code>mkdir</code> to create the project folder on the server.
+<p class="alert">
+Note: when entering your password, it usually does not print anything in response, not even asterisks. It feels as if your keyboard is not working. But it is working, and when you finish and press enter, you will be logged in.
+</p>
 <p>By default, ssh attempts to login with your local username. If your username on the server differs from that on your laptop, you want to add it to the ssh command:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">ssh</span> username@myserver.somewhere.com</code></pre></div>
 <p>Finally, when done, you want to get out. The polite way to close the connection is with command</p>
