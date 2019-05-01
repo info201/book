@@ -614,10 +614,9 @@ more information if you are interested.</p>
 <h2><span class="header-section-number">D.4</span> R and Rscript</h2>
 <p>When your code has been transferred to the server, your next task is to
 run it. But before you can do it, you may want to install the
-packages you need. For instance, you may want to install the whole
-“tidyverse” bundle. This must be done from R console using
+packages you need. For instance, you may want to install the <em>ggplot2</em> and <em>dplyr</em>. This must be done from R console using
 <code>install.packages()</code>. You start R interactively by the command</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">R</span></code></pre>
+<pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">R</span></code></pre>
 <p>It opens an R session, not unlike what you see inside of RStudio, just
 here you have no RStudio to handrail you through the session. Now all loading,
 saving, inspecting files, etc must be done through R commands.</p>
@@ -625,7 +624,7 @@ saving, inspecting files, etc must be done through R commands.</p>
 non-writeable system-wide library and proposes to install and create
 your personal libary. You should answer “yes” to these prompts. As
 Linux systems typically compile the packages during installations, installation is slow and you see many messages (including warnings) in the
-process. But it works, given that the necessary system libraries are available.</p>
+process. But it works, given that the necessary system libraries are available. You may alo open another terminal and ssh to the server from there while the packages are compiling in the other window.</p>
 <p>Now you can finally run your R code. I strongly recommend to do it
 from the directory where you intend to run the project before starting
 R (<code>cd scripts</code> if you follow the example directory setup above). There are two options: either start R
@@ -639,7 +638,11 @@ re-run it again. Note that you don’t have to exit from the R session when
 copying the files between your laptop and the server. Edit it, copy it over
 from your laptop (using <code>scp</code> or
 other tools), and just re-source the file from
-within the R session.</p>
+within the R session. If you need an open R session on the server, you may want to have several terminals connected to the server at the same time: in one, you have the R session, in another you may want to copy/move/edit files, and it may also be handy to have a window with <code>htop</code> too see how your running code is doing (see below).</p>
+<img src="img/ssh-to-remote-server/multiple-connections.png" alt="multiple terminal connections" />
+<p class="caption">
+Three terminals connecting to a remote server at the same time. The top one has been used for file management, the middle one shows tha active processes by user <em>otoomet</em>, and the bottom one has open R session for package installations. Multiple open connections is often a convenient way to switch frequently between different tasks.
+</p>
 <p>Opening a separate R session may be useful for installing packages.
 For running your scripts, I recommend you to run it entirely from
 command line, either as</p>

@@ -491,12 +491,12 @@ we can create and play with a data table as</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table)
 dt &lt;-<span class="st"> </span><span class="kw">data.table</span>(<span class="dt">id=</span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">x=</span><span class="kw">rnorm</span>(<span class="dv">5</span>), <span class="dt">y=</span><span class="kw">runif</span>(<span class="dv">5</span>))
 dt</code></pre>
-<pre><code>##    id             x          y
-## 1:  1  0.1272545380 0.05300093
-## 2:  2 -0.3191663390 0.14756146
-## 3:  3  0.6490237396 0.67058011
-## 4:  4 -0.0001357273 0.84191449
-## 5:  5  0.6411181968 0.13903740</code></pre>
+<pre><code>##    id          x         y
+## 1:  1  0.3952582 0.4348118
+## 2:  2 -0.5169305 0.1527302
+## 3:  3 -0.6776447 0.2932308
+## 4:  4  0.6141422 0.6399505
+## 5:  5 -0.5665107 0.6883203</code></pre>
 <p>The result looks almost identical to a similar data frame (the only
 difference are the colons after the row numbers). Behind the scenes
 these objects are almost identical too–both objects are lists of
@@ -504,26 +504,26 @@ vectors. This structural similarity allows to use data tables
 as drop-in replacements for dataframes, at least in some
 circumstances. For instance, we can extract variables with <code>$</code>:</p>
 <pre class="sourceCode r"><code class="sourceCode r">dt<span class="op">$</span>x</code></pre>
-<pre><code>## [1]  0.1272545380 -0.3191663390  0.6490237396 -0.0001357273  0.6411181968</code></pre>
+<pre><code>## [1]  0.3952582 -0.5169305 -0.6776447  0.6141422 -0.5665107</code></pre>
 <p>or rows with row indices:</p>
 <pre class="sourceCode r"><code class="sourceCode r">dt[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>),]</code></pre>
-<pre><code>##    id             x         y
-## 1:  2 -0.3191663390 0.1475615
-## 2:  4 -0.0001357273 0.8419145</code></pre>
+<pre><code>##    id          x         y
+## 1:  2 -0.5169305 0.1527302
+## 2:  4  0.6141422 0.6399505</code></pre>
 <p>However, data tables use unquoted variables names (like <em>dplyr</em>) by
 default:</p>
 <pre class="sourceCode r"><code class="sourceCode r">dt[,x]</code></pre>
-<pre><code>## [1]  0.1272545380 -0.3191663390  0.6490237396 -0.0001357273  0.6411181968</code></pre>
+<pre><code>## [1]  0.3952582 -0.5169305 -0.6776447  0.6141422 -0.5665107</code></pre>
 <p>In case we need to store the variable name into another variable, with
 have to use the additional argument <code>with</code>:</p>
 <pre class="sourceCode r"><code class="sourceCode r">var &lt;-<span class="st"> &quot;x&quot;</span>
 dt[, var, with=<span class="ot">FALSE</span>]</code></pre>
-<pre><code>##                x
-## 1:  0.1272545380
-## 2: -0.3191663390
-## 3:  0.6490237396
-## 4: -0.0001357273
-## 5:  0.6411181968</code></pre>
+<pre><code>##             x
+## 1:  0.3952582
+## 2: -0.5169305
+## 3: -0.6776447
+## 4:  0.6141422
+## 5: -0.5665107</code></pre>
 <p>Note also that instead of getting a vector, now we get a data.table
 with a single column “x” in the first. This behavior is the main culprit that when
 replacing data frames with data tables one may need to change quite a
@@ -550,12 +550,12 @@ table into a data frame with <code>setDF</code> (and the other way around with <
 frame:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setDF</span>(dt)
 dt</code></pre>
-<pre><code>##   id             x          y
-## 1  1  0.1272545380 0.05300093
-## 2  2 -0.3191663390 0.14756146
-## 3  3  0.6490237396 0.67058011
-## 4  4 -0.0001357273 0.84191449
-## 5  5  0.6411181968 0.13903740</code></pre>
+<pre><code>##   id          x         y
+## 1  1  0.3952582 0.4348118
+## 2  2 -0.5169305 0.1527302
+## 3  3 -0.6776447 0.2932308
+## 4  4  0.6141422 0.6399505
+## 5  5 -0.5665107 0.6883203</code></pre>
 <p>Do you see that the colons after row names are gone? This means <code>dt</code>
 now is a data frame.</p>
 <p>Note that this function behaves very differently from what we have

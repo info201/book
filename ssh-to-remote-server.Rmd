@@ -203,10 +203,9 @@ more information if you are interested.
 
 When your code has been transferred to the server, your next task is to
 run it.  But before you can do it, you may want to install the
-packages you need.  For instance, you may want to install the whole
-"tidyverse" bundle.  This must be done from R console using
+packages you need.  For instance, you may want to install the _ggplot2_ and _dplyr_.  This must be done from R console using
 `install.packages()`.  You start R interactively by the command 
-```bash
+```sh
 R
 ```
 It opens an R session, not unlike what you see inside of RStudio, just
@@ -217,7 +216,7 @@ The first time you do it, R complains about
 non-writeable system-wide library and proposes to install and create
 your personal libary.  You should answer "yes" to these prompts.  As
 Linux systems typically compile the packages during installations, installation is slow and you see many messages (including warnings) in the
-process.  But it works, given that the necessary system libraries are available.
+process.  But it works, given that the necessary system libraries are available.  You may alo open another terminal and ssh to the server from there while the packages are compiling in the other window.
 
 Now you can finally run your R code.  I strongly recommend to do it
 from the directory where you intend to run the project before starting
@@ -234,7 +233,12 @@ re-run it again.  Note that you don't have to exit from the R session when
 copying the files between your laptop and the server.  Edit it, copy it over
 from your laptop (using `scp` or
 other tools), and just re-source the file from
-within the R session.
+within the R session.  If you need an open R session on the server, you may want to have several terminals connected to the server at the same time: in one, you have the R session, in another you may want to copy/move/edit files, and it may also be handy to have a window with `htop` too see how your running code is doing (see below).
+
+![multiple terminal connections](img/ssh-to-remote-server/multiple-connections.png)
+<p class="caption">
+Three terminals connecting to a remote server at the same time.  The top one has been used for file management, the middle one shows tha active processes by user _otoomet_, and the bottom one has open R session for package installations.  Multiple open connections is often a convenient way to switch frequently between different tasks.
+</p>
 
 Opening a separate R session may be useful for installing packages.
 For running your scripts, I recommend you to run it entirely from
