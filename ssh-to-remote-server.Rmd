@@ -270,8 +270,9 @@ plot(1:10, rnorm(10))
 dev.off()
     # saves the image to disk and closes the file.
 ```
-Afterwards you will have to copy the image file to your laptop for
-inspection, or addition in your final project report.
+Afterwards you will have to copy the image file _figure1.pdf_ to your laptop for future use.  Note that the file will be saved in the current working directory (unless you specify another folder) for the R session.  This is normally the folder where you execute the `Rscript` command.
+
+Besides of pdf graphics, R can also output jpg, png, svg and other formats.  Check out the corresponding devices `jpeg`, `png`, `svg` and so forth.  Additionally, _ggplot_ has it's own dedicated way of saving plots using `ggsave` although the base R graphics devices, such as `pdf` will work too.
 
 
 
@@ -359,7 +360,7 @@ many related goodies.)
 
 Without further configuration, every time you open a ssh connection,
 you have to type your password.  Instead of re-entering it
-over and over again (this may not be particularly secure), you can configure
+over and over again&mdash;this may not be particularly secure and it is definitely not convenient&mdash;you can configure
 your ssh keys and copy it to the server.  Next time, you will be
 automatically authenticated with the key and you don't have to type
 the password any more.  Note: this is the same ssh key that is used by GitHub if
@@ -386,6 +387,54 @@ Host info201
 The `Host` keyword is followed by the abbreviated name of the server,
 the following lines contain your username and the publicly visible
 hostname for the server.  Seek out more information if you are interested.
+
+
+### More about command line: pipes and shell patterns
+
+_bash_ is a powerful programming language.  It is not particularly well suited to peform calculations or produce graphs, but it is excellent in glueing together other programs and their output.
+
+One very powerful construct are _pipes_.  These are in many ways similar to _magrittr_ pipes in R, or perhaps we should say the other way around as shell pipes were introduced in 1973, a quarter of century before R was created.  Pipes connect output of one command into input of another command.  For instance, let's take commands `ls -s` and `head`.  The former lists the files (in long form) and the latter prints out a few first lines of a text file.  But `head` is not just for printing files, it can print the first few lines of whatever you feed it.  Look, for instance, the following command (actually a compound command):
+```sh
+ls -l | head
+```
+`ls -l` creates the file listing (in long form).  But instead of printing it on screen, it will now send it over pipe `|` to the `head` utility.  That one will extract the first lines and print only those.
+
+![example with `ls` and shell pipes](img/ssh-to-remote-server/shell-pipe.png)
+<p class="caption">
+Example of `ls -l` command that prints a number of files (above).  Below, the same command is piped through `head -3` that retains only the three first lines (and prints those).  Note that the first line is not a file, but a total size of files in this directory (in kilobytes).
+</p>
+
+Pipes are not limited to two commands only.  You can pipe as many commands together as you with.  For instance, you may want to see a few first lines in a large compressed csv file that contain the word _Zilong_.  We use the following commands:
+
+* **bzcat** prints bzip-compressed data (you normally invoke it like `bzcat file.txt`).  But it just prints and does not do anything else with the output.
+* **grep** searches for a pattern in text.  This can be used as `grep pattern file`, for instance grep `salary business-report.txt`.  Note that _pattern_ is a regular expression (rather similar as in R `gsub` and `grep` functions), so `grep` can search for a wide range of patterns.  However, it cannot open compressed files, and neither can it limit the output to just a few lines.
+* **head** prints first few lines of text.  You can print out the first _n_ lines of a file as `head -n file.txt`, but again--this does not work with compressed files.
+
+We pipe the commands together as
+```sh
+bzcat data.csv.bz2 | grep Zilong | head
+```
+and achieve the result we want.  So pipes are an excellent way to join  small commands, each of which is good at only a single task, into complex compound tasks.
+
+Another handy (albeit much less powerful) tool in shell is the shell patterns.  These are a little bit like regular expressions for file names, just much simpler.  There are two special characters in file names:
+
+* **\*** means any number of any characters.  For instance, `a.*` means all files like `a.`, `a.c`, `a.txt`, `a.txt.old`, `a...` and so on.  It is just any number of any characters, including none at all, and "any" also means dots.  However, the pattern does not cover `ba.c`.
+* **?** means a single character, so `a.?` can stand for `a.c` and `a.R` but not for `a.txt`.
+
+Shell patterns are useful for file manipulations where you have quicly sort though some sort of fine name patterns.  These are handled by shell and not by individual commands, so they may not work if you are not at shell prompt but running another program, such as R or a text editor.
+
+For instance, let's list all _jpg_ files in the current directory:
+```sh
+ls *.jpg
+```
+This lists all files of patten `*.jpg`, i.e. everything that has _.jpg_ at it's end.
+Now let us copy all _png_ files from server to the current directory:
+```sh
+scp user@server.com:*.png .
+```
+This copies all files in the form `*.png` from the server here, i.e. all files that end with _.png_.
+
+
 
 
 ### Running RScript in ssh Session
