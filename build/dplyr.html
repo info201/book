@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2019-05-05">
+<meta name="date" content="2019-05-16">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -61,41 +61,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -167,7 +193,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.3.2" data-path="git-basics.html"><a href="git-basics.html#committing"><i class="fa fa-check"></i><b>4.3.2</b> Committing</a></li>
 <li class="chapter" data-level="4.3.3" data-path="git-basics.html"><a href="git-basics.html#commit-history"><i class="fa fa-check"></i><b>4.3.3</b> Commit History</a></li>
 <li class="chapter" data-level="4.3.4" data-path="git-basics.html"><a href="git-basics.html#reviewing-the-process"><i class="fa fa-check"></i><b>4.3.4</b> Reviewing the Process</a></li>
-<li class="chapter" data-level="4.3.5" data-path="git-basics.html"><a href="git-basics.html#the-.gitignore-file"><i class="fa fa-check"></i><b>4.3.5</b> The <code>.gitignore</code> File</a></li>
+<li class="chapter" data-level="4.3.5" data-path="git-basics.html"><a href="git-basics.html#gitignore"><i class="fa fa-check"></i><b>4.3.5</b> The <code>.gitignore</code> File</a></li>
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="git-basics.html"><a href="git-basics.html#github-and-remotes"><i class="fa fa-check"></i><b>4.4</b> GitHub and Remotes</a><ul>
 <li class="chapter" data-level="4.4.1" data-path="git-basics.html"><a href="git-basics.html#forking-and-cloning"><i class="fa fa-check"></i><b>4.4.1</b> Forking and Cloning</a></li>
@@ -226,7 +252,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.3.2" data-path="lists.html"><a href="lists.html#indexing-by-name"><i class="fa fa-check"></i><b>8.3.2</b> Indexing by Name</a></li>
 <li class="chapter" data-level="8.3.3" data-path="lists.html"><a href="lists.html#indexing-by-logical-vector"><i class="fa fa-check"></i><b>8.3.3</b> Indexing by Logical Vector</a></li>
 <li class="chapter" data-level="8.3.4" data-path="lists.html"><a href="lists.html#lists-dollar-shortcut"><i class="fa fa-check"></i><b>8.3.4</b> Extracting named elements with <code>$</code></a></li>
-<li class="chapter" data-level="8.3.5" data-path="lists.html"><a href="lists.html#single-vs.double-brackets-vs.dollar"><i class="fa fa-check"></i><b>8.3.5</b> Single vs. Double Brackets vs. Dollar</a></li>
+<li class="chapter" data-level="8.3.5" data-path="lists.html"><a href="lists.html#single-vs.-double-brackets-vs.-dollar"><i class="fa fa-check"></i><b>8.3.5</b> Single vs. Double Brackets vs. Dollar</a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="lists.html"><a href="lists.html#modifying-lists"><i class="fa fa-check"></i><b>8.4</b> Modifying Lists</a></li>
 <li class="chapter" data-level="8.5" data-path="lists.html"><a href="lists.html#the-lapply-function"><i class="fa fa-check"></i><b>8.5</b> The <code>lapply()</code> Function</a></li>
@@ -259,7 +285,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="dplyr.html"><a href="dplyr.html#grouped-operations"><i class="fa fa-check"></i><b>10.4</b> Grouped Operations</a></li>
 <li class="chapter" data-level="10.5" data-path="dplyr.html"><a href="dplyr.html#joins"><i class="fa fa-check"></i><b>10.5</b> Joins</a></li>
-<li class="chapter" data-level="10.6" data-path="dplyr.html"><a href="dplyr.html#non-standard-evaluation-vs.standard-evaluation"><i class="fa fa-check"></i><b>10.6</b> Non-Standard Evaluation vs. Standard Evaluation</a><ul>
+<li class="chapter" data-level="10.6" data-path="dplyr.html"><a href="dplyr.html#non-standard-evaluation-vs.-standard-evaluation"><i class="fa fa-check"></i><b>10.6</b> Non-Standard Evaluation vs. Standard Evaluation</a><ul>
 <li class="chapter" data-level="10.6.1" data-path="dplyr.html"><a href="dplyr.html#explicit-standard-evaluation"><i class="fa fa-check"></i><b>10.6.1</b> Explicit Standard Evaluation</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#resources-9"><i class="fa fa-check"></i>Resources</a></li>
@@ -315,7 +341,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#resources-12"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="git-branches.html"><a href="git-branches.html"><i class="fa fa-check"></i><b>14</b> Git Branches</a><ul>
-<li class="chapter" data-level="14.1" data-path="git-branches.html"><a href="git-branches.html#git-branches"><i class="fa fa-check"></i><b>14.1</b> Git Branches</a></li>
+<li class="chapter" data-level="14.1" data-path="git-branches.html"><a href="git-branches.html#git-branches-1"><i class="fa fa-check"></i><b>14.1</b> Git Branches</a></li>
 <li class="chapter" data-level="14.2" data-path="git-branches.html"><a href="git-branches.html#merging"><i class="fa fa-check"></i><b>14.2</b> Merging</a><ul>
 <li class="chapter" data-level="14.2.1" data-path="git-branches.html"><a href="git-branches.html#merge-conflicts"><i class="fa fa-check"></i><b>14.2.1</b> Merge Conflicts</a></li>
 </ul></li>
@@ -435,7 +461,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><strong>mutate</strong> a data set by adding more features (columns)</li>
 <li><strong>arrange</strong> the observations (rows) in a particular order</li>
 <li><strong>summarize</strong> the data in terms of aspects such as the mean, median, or maximum</li>
-<li><strong>join</strong> multiple data sets together into a single data frame <!-- - find **distinct** observations (rows) in the data set --></li>
+<li><strong>join</strong> multiple data sets together into a single data frame
+<!-- - find **distinct** observations (rows) in the data set --></li>
 </ul>
 <p>You can use these words when describing the <em>algorithm</em> or process for interrogating data, and then use <code>dplyr</code> to write code that will closely follow your “plain language” description because it uses functions and procedures that share the same language. Indeed, many real-world questions about a dataset come down to isolating specific rows/columns of the data set as the “elements of interest”, and then performing a simple comparison or computation (mean, count, max, etc.). While it is possible to perform this computation with basic R functions—the <code>dplyr</code> library makes it much easier to write and read such code.</p>
 </div>
@@ -443,8 +470,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">10.2</span> Using <code>dplyr</code> Functions</h2>
 <p>The <code>dplyr</code> package provides functions that mirror the above verbs. Using this package’s functions will allow you to quickly and effectively write code to ask questions of your data sets.</p>
 <p>Since <code>dplyr</code> is an external package, you will need to install it (once per machine) and load it to make the functions available:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>)  <span class="co"># once per machine</span>
-<span class="kw">library</span>(<span class="st">&quot;dplyr&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>)  <span class="co"># once per machine</span>
+<span class="kw">library</span>(<span class="st">&quot;dplyr&quot;</span>)</code></pre>
 <p>After loading the library, you can call any of the functions just as if they were the built-in functions you’ve come to know and love.</p>
 <p>For each <code>dplyr</code> function discussed here, the <strong>first argument</strong> to the function is a data frame to manipulate, with the rest of the arguments providing more details about the manipulation.</p>
 <p class="alert alert-warning">
@@ -456,23 +483,23 @@ The images in this section come from the <a href="http://bit.ly/rday-nyc-strata1
 <div id="select" class="section level3">
 <h3><span class="header-section-number">10.2.1</span> Select</h3>
 <p>The <strong><code>select()</code></strong> operation allows you to choose and extract <strong>columns</strong> of interest from your data frame.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Select `storm` and `pressure` columns from `storms` data frame</span>
-storm_info &lt;-<span class="st"> </span><span class="kw">select</span>(storms, storm, pressure)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Select `storm` and `pressure` columns from `storms` data frame</span>
+storm_info &lt;-<span class="st"> </span><span class="kw">select</span>(storms, storm, pressure)</code></pre>
 <div class="figure">
 <img src="img/dplyr/select.png" title="Diagram of the select() function" alt="Diagram of the select() function (by Nathan Stephens)." />
 <p class="caption">Diagram of the <code>select()</code> function (by Nathan Stephens).</p>
 </div>
 <p>The <code>select()</code> function takes in the data frame to select from, followed by the names of the columns you wish to select (quotation marks are optional!)</p>
 <p>This function is equivalent to simply extracting the columns:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Extract columns by name</span>
-storm_info &lt;-<span class="st"> </span>storms[, <span class="kw">c</span>(<span class="st">&quot;storm&quot;</span>, <span class="st">&quot;pressure&quot;</span>)]  <span class="co"># Note the comma!</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Extract columns by name</span>
+storm_info &lt;-<span class="st"> </span>storms[, <span class="kw">c</span>(<span class="st">&quot;storm&quot;</span>, <span class="st">&quot;pressure&quot;</span>)]  <span class="co"># Note the comma!</span></code></pre>
 <p>But easier to read and write!</p>
 </div>
 <div id="filter" class="section level3">
 <h3><span class="header-section-number">10.2.2</span> Filter</h3>
 <p>The <strong><code>filter()</code></strong> operation allows you to choose and extract <strong>rows</strong> of interest from your data frame (contrasted with <code>select()</code> which extracts <em>columns</em>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Select rows whose `wind` column is greater than or equal to 50</span>
-some_storms &lt;-<span class="st"> </span><span class="kw">filter</span>(storms, wind <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Select rows whose `wind` column is greater than or equal to 50</span>
+some_storms &lt;-<span class="st"> </span><span class="kw">filter</span>(storms, wind <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50</span>)</code></pre>
 <div class="figure">
 <img src="img/dplyr/filter.png" title="Diagram of the filter() function" alt="Diagram of the filter() function (by Nathan Stephens)." />
 <p class="caption">Diagram of the <code>filter()</code> function (by Nathan Stephens).</p>
@@ -482,15 +509,15 @@ some_storms &lt;-<span class="st"> </span><span class="kw">filter</span>(storms,
 <li>R will extract the rows that match <strong>all</strong> conditions. Thus you are specifying that you want to filter down a data frame to contain only the rows that meet Condition 1 <strong>and</strong> Condition 2.</li>
 </ul>
 <p>This function is equivalent to simply extracting the rows:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Extract rows by condition</span>
-some_storms &lt;-<span class="st"> </span>storms[storms<span class="op">$</span>wind <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50</span>, ]  <span class="co"># Note the comma!</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Extract rows by condition</span>
+some_storms &lt;-<span class="st"> </span>storms[storms<span class="op">$</span>wind <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50</span>, ]  <span class="co"># Note the comma!</span></code></pre>
 <p>As the number of conditions increases, it is <strong>far easier</strong> to read and write <code>filter()</code> functions, rather than squeeze your conditions into brackets.</p>
 </div>
 <div id="mutate" class="section level3">
 <h3><span class="header-section-number">10.2.3</span> Mutate</h3>
 <p>The <strong><code>mutate()</code></strong> operation allows you to create additional <strong>columns</strong> for your data frame.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Add `ratio` column that is ratio between pressure and wind</span>
-storms &lt;-<span class="st"> </span><span class="kw">mutate</span>(storms, <span class="dt">ratio =</span> pressure<span class="op">/</span>wind)  <span class="co"># Replace existing `storms` frame with mutated one!</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Add `ratio` column that is ratio between pressure and wind</span>
+storms &lt;-<span class="st"> </span><span class="kw">mutate</span>(storms, <span class="dt">ratio =</span> pressure<span class="op">/</span>wind)  <span class="co"># Replace existing `storms` frame with mutated one!</span></code></pre>
 <div class="figure">
 <img src="img/dplyr/mutate.png" title="Diagram of the mutate() function" alt="Diagram of the mutate() function (by Nathan Stephens)." />
 <p class="caption">Diagram of the <code>mutate()</code> function (by Nathan Stephens).</p>
@@ -500,19 +527,19 @@ storms &lt;-<span class="st"> </span><span class="kw">mutate</span>(storms, <spa
 <li>Despite the name, the <code>mutate()</code> function doesn’t actually change the data frame; instead it returns a <em>new</em> data frame that has the extra columns added. You will often want to replace the old data frame variable with this new value.</li>
 </ul>
 <p>In cases where you are creating multiple columns (and therefore writing really long code instructions), you should break the single statement into multiple lines for readability. Because you haven’t closed the parentheses on the function arguments, R will not treat each line as a separate statement.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Generic mutate command</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Generic mutate command</span>
 more_columns &lt;-<span class="st"> </span><span class="kw">mutate</span>(
   my_data_frame,
   <span class="dt">new_column_1 =</span> old_column <span class="op">*</span><span class="st"> </span><span class="dv">2</span>,
   <span class="dt">new_column_2 =</span> old_column <span class="op">*</span><span class="st"> </span><span class="dv">3</span>,
   <span class="dt">new_column_3 =</span> old_column <span class="op">*</span><span class="st"> </span><span class="dv">4</span>
-)</code></pre></div>
+)</code></pre>
 </div>
 <div id="arrange" class="section level3">
 <h3><span class="header-section-number">10.2.4</span> Arrange</h3>
 <p>The <strong><code>arrange()</code></strong> operation allows you to <strong>sort the rows</strong> of your data frame by some feature (column value).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Arrange storms by INCREASING order of the `wind` column</span>
-sorted_storms &lt;-<span class="st"> </span><span class="kw">arrange</span>(storms, wind)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Arrange storms by INCREASING order of the `wind` column</span>
+sorted_storms &lt;-<span class="st"> </span><span class="kw">arrange</span>(storms, wind)</code></pre>
 <div class="figure">
 <img src="img/dplyr/arrange.png" title="Diagram of the arrange() function" alt="Diagram of the arrange() function (by Nathan Stephens)." />
 <p class="caption">Diagram of the <code>arrange()</code> function (by Nathan Stephens).</p>
@@ -526,28 +553,28 @@ sorted_storms &lt;-<span class="st"> </span><span class="kw">arrange</span>(stor
 <div id="summarize" class="section level3">
 <h3><span class="header-section-number">10.2.5</span> Summarize</h3>
 <p>The <strong><code>summarize()</code></strong> function (equivalently <code>summarise()</code> for those using the British spelling) will generate a <em>new</em> data frame that contains a “summary” of a <strong>column</strong>, computing a single value from the multiple elements in that column.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Compute the median value of the `amount` column</span>
-summary &lt;-<span class="st"> </span><span class="kw">summarize</span>(pollution, <span class="dt">median =</span> <span class="kw">median</span>(amount))</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Compute the median value of the `amount` column</span>
+summary &lt;-<span class="st"> </span><span class="kw">summarize</span>(pollution, <span class="dt">median =</span> <span class="kw">median</span>(amount))</code></pre>
 <div class="figure">
 <img src="img/dplyr/summarize.png" title="Diagram of the summarize() function" alt="Diagram of the summarize() function (by Nathan Stephens)." />
 <p class="caption">Diagram of the <code>summarize()</code> function (by Nathan Stephens).</p>
 </div>
 <p>The <code>summarize()</code> function takes in the data frame to mutate, followed by the values that will be included in the resulting summary table. You can use multiple arguments to include multiple summaries in the same statement:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Compute statistics for the `amount` column</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Compute statistics for the `amount` column</span>
 summaries &lt;-<span class="st"> </span><span class="kw">summarize</span>(
   pollution,
   <span class="dt">median =</span> <span class="kw">median</span>(amount), <span class="co"># median value</span>
   <span class="dt">mean =</span> <span class="kw">mean</span>(amount), <span class="co"># &quot;average&quot; value</span>
   <span class="dt">sum =</span> <span class="kw">sum</span>(amount), <span class="co"># total value</span>
   <span class="dt">count =</span> <span class="kw">n</span>() <span class="co"># number of values (neat trick!)</span>
-)</code></pre></div>
+)</code></pre>
 <p>Note that the <code>summarize()</code> function is particularly useful for grouped operations (see <a href="dplyr.html#grouped-operations">below</a>), as you can produce summaries of different groups of data.</p>
 </div>
 <div id="distinct" class="section level3">
 <h3><span class="header-section-number">10.2.6</span> Distinct</h3>
 <p>The <strong><code>distinct()</code></strong> operation allows you to extract distinct values (rows) from your data frame—that is, you’ll get one row for each different value in the dataframe (or set of selected <strong>columns</strong>). This is a useful tool to confirm that you don’t have <strong>duplicate observations</strong>, which often occurs in messy datasets.</p>
 <p>For example (no diagram available):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a quick data frame</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a quick data frame</span>
 x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>)  <span class="co"># duplicate x values</span>
 y &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">8</span>                        <span class="co"># unique y values</span>
 my_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x, y)
@@ -561,7 +588,7 @@ distinct_rows &lt;-<span class="st"> </span><span class="kw">distinct</span>(my_
                                     <span class="co"># 4 4</span>
 
 <span class="co"># Select distinct rows, judging by the `x` and `y`columns</span>
-distinct_rows &lt;-<span class="st"> </span><span class="kw">distinct</span>(my_df, x, y)  <span class="co"># returns whole table, since no duplicate rows</span></code></pre></div>
+distinct_rows &lt;-<span class="st"> </span><span class="kw">distinct</span>(my_df, x, y)  <span class="co"># returns whole table, since no duplicate rows</span></code></pre>
 <p>While this is a simple way to get a unique set of rows, <strong>be careful</strong> not to lazily remove rows of your data which may be important.</p>
 </div>
 </div>
@@ -579,7 +606,7 @@ distinct_rows &lt;-<span class="st"> </span><span class="kw">distinct</span>(my_
 <li><em>Select</em> the car name of the car</li>
 </ol>
 <p>You could then implement each step as follows:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Preparation: add a column that is the car name</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Preparation: add a column that is the car name</span>
 mtcars_named &lt;-<span class="st"> </span><span class="kw">mutate</span>(mtcars, <span class="dt">car_name =</span> <span class="kw">row.names</span>(mtcars))
 
 <span class="co"># 1. Filter down to only four cylinder cars</span>
@@ -589,10 +616,10 @@ four_cyl &lt;-<span class="st"> </span><span class="kw">filter</span>(mtcars_nam
 best_four_cyl &lt;-<span class="st"> </span><span class="kw">filter</span>(four_cyl, mpg <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(mpg))
 
 <span class="co"># 3. Select the car name of the car</span>
-best_car_name &lt;-<span class="st"> </span><span class="kw">select</span>(best_four_cyl, car_name)</code></pre></div>
+best_car_name &lt;-<span class="st"> </span><span class="kw">select</span>(best_four_cyl, car_name)</code></pre>
 <p>While this works fine, it clutters the work environment with variables you won’t need to use again, and which can potentially step on one another’s toes. It can help with readability (the results of each step is explicit), but those extra variables make it harder to modify and change the algorithm later (you have to change them in two places).</p>
 <p>An alternative to saving each step as a distinct, named variable would be to utilize <strong>anonymous variables</strong> and write the desired statements <strong>nested</strong> within other functions. For example, you could write the algorithm above as follows:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Preparation: add a column that is the car name</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Preparation: add a column that is the car name</span>
 mtcars_named &lt;-<span class="st"> </span><span class="kw">mutate</span>(mtcars, <span class="dt">car_name =</span> <span class="kw">row.names</span>(mtcars))
 
 <span class="co"># Write a nested operation to return the best car name</span>
@@ -605,27 +632,27 @@ best_car_name &lt;-<span class="st"> </span><span class="kw">select</span>( <spa
     mpg <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(mpg) <span class="co"># other arguments for the Step 2 filter</span>
   ),
   car_name <span class="co"># other arguments for the Step 3 select</span>
-)</code></pre></div>
+)</code></pre>
 <p>This version uses <em>anonymous variables</em>—result values which are not assigned to names (so are anonymous), but instead are immediately used as the arguments to another function. You’ve used these frequently with the <code>print()</code> function and with filters (those vectors of <code>TRUE</code> and <code>FALSE</code> values)—and even the <code>max(mpg)</code> in the Step 2 filter is an anonymous variable!</p>
 <p>This <em>nested</em> version performs the same results as the <em>temporary variable</em> version without creating the extra variables, but even with only 3 steps it can get quite complicated to read—in a large part because you have to think about it “inside out”, with the stuff in the middle evaluating first. This will obviously become undecipherable for more involved operations.</p>
 <div id="the-pipe-operator" class="section level3">
 <h3><span class="header-section-number">10.3.1</span> The Pipe Operator</h3>
 <p>Luckily, <code>dplyr</code> provides a cleaner and more effective way of achieving the same task (that is, using the result of one function as an argument to the next). The <strong>pipe operator</strong> (<strong><code>%&gt;%</code></strong>) indicates that the result from the first function operand should be passed in as <strong>the first argument</strong> to the next function operand!</p>
 <p>As a simple example:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># nested version: evaluate c(), then max(), then print()</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># nested version: evaluate c(), then max(), then print()</span>
 <span class="kw">print</span>(<span class="kw">max</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>)))
 
 <span class="co"># pipe version</span>
 <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st">   </span><span class="co"># do first function</span>
 <span class="st">  </span><span class="kw">max</span>() <span class="op">%&gt;%</span><span class="st">   </span><span class="co"># which becomes the _first_ argument to the next function</span>
-<span class="st">  </span><span class="kw">print</span>()  <span class="co"># which becomes the _first_ argument to the next function</span></code></pre></div>
+<span class="st">  </span><span class="kw">print</span>()  <span class="co"># which becomes the _first_ argument to the next function</span></code></pre>
 <p>Or as another version of the above data wrangling:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Preparation: add a column that is the car name</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Preparation: add a column that is the car name</span>
 mtcars_named &lt;-<span class="st"> </span><span class="kw">mutate</span>(mtcars, <span class="dt">car_name =</span> <span class="kw">row.names</span>(mtcars))
 
 best_car_name &lt;-<span class="st"> </span><span class="kw">filter</span>(mtcars_named, cyl <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Step 1</span>
 <span class="st">  </span><span class="kw">filter</span>(mpg <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(mpg)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Step 2</span>
-<span class="st">  </span><span class="kw">select</span>(car_name) <span class="co"># Step 3</span></code></pre></div>
+<span class="st">  </span><span class="kw">select</span>(car_name) <span class="co"># Step 3</span></code></pre>
 <ul>
 <li>Yes, the <code>%&gt;%</code> operator is awkward to type and takes some getting use to (especially compared to the command-line’s use of <code>|</code> to pipe). However, you can ease the typing by using the <a href="https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts">RStudio keyboard shortcut</a> <code>cmd + shift + m</code>.</li>
 </ul>
@@ -636,13 +663,13 @@ best_car_name &lt;-<span class="st"> </span><span class="kw">filter</span>(mtcar
 <h2><span class="header-section-number">10.4</span> Grouped Operations</h2>
 <p><code>dplyr</code> functions are powerful, but they are truly awesome when you can apply them to <strong>groups of rows</strong> within a data set. For example, the above use of <code>summarize()</code> isn’t particularly useful since it just gives a single summary for a given column (which you could have done anyway). However, a <strong>grouped</strong> operation would allow you to compute the same summary measure (<code>mean</code>, <code>median</code>, <code>sum</code>, etc.) automatically for multiple groups of rows, enabling you to ask more nuanced questions about your data set.</p>
 <p>The <strong><code>group_by()</code></strong> operation allows you to break a data frame down into <em>groups</em> of rows, which can then have the other verbs (e.g., <code>summarize</code>, <code>filter</code>, etc). applied to each one.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get summary statistics by city</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get summary statistics by city</span>
 city_summary &lt;-<span class="st"> </span><span class="kw">group_by</span>(pollution, city) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarize</span>( <span class="co"># first argument (the data frame) is received from the pipe</span>
     <span class="dt">mean =</span> <span class="kw">mean</span>(amount),
     <span class="dt">sum =</span> <span class="kw">sum</span>(amount),
     <span class="dt">n =</span> <span class="kw">n</span>()
-  )</code></pre></div>
+  )</code></pre>
 <div class="figure">
 <img src="img/dplyr/group_by.png" title="Diagram of the group_by() function" alt="Diagram of the group_by() function (by Nathan Stephens)." />
 <p class="caption">Diagram of the <code>group_by()</code> function (by Nathan Stephens).</p>
@@ -652,10 +679,10 @@ city_summary &lt;-<span class="st"> </span><span class="kw">group_by</span>(poll
 <p>What are the differences in mean miles per gallon for cars with different numbers of gears (3, 4, or 5)?</p>
 </blockquote>
 <p>This simple question requires computing the mean for different subsets of the data. Rather than explicitly breaking your data into different groups (a.k.a. <em>bins</em> or <em>chunks</em>) and running the same operations on each, you can use the <code>group_by()</code> function to accomplish this in a single command:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Group cars by gear number, then compute the mean and median mpg</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Group cars by gear number, then compute the mean and median mpg</span>
 gear_summary &lt;-<span class="st"> </span><span class="kw">group_by</span>(mtcars, gear) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># group by gear</span>
 <span class="st">                 </span><span class="kw">summarize</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(mpg))  <span class="co"># calculate mean</span>
-<span class="co"># Computing the difference between scores is done elsewhere (or by hand!)</span></code></pre></div>
+<span class="co"># Computing the difference between scores is done elsewhere (or by hand!)</span></code></pre>
 <p>Thus grouping can allow you to quickly and easily compare different subsets of your data!</p>
 <!-- For an introduction to and practice working with grouped operations, see [exercise-5](exercise-5). -->
 </div>
@@ -667,14 +694,14 @@ gear_summary &lt;-<span class="st"> </span><span class="kw">group_by</span>(mtca
 </ul>
 <p>But at some point, you’ll want to access information from both data sets (e.g., you need to figure out a student’s schedule), and thus need a way to combine the data frames. This process is called a <strong>join</strong> (because you are “joining” the data frames together). When you perform a join, you identify <strong>columns</strong> which are present in both tables. Those column values are then used as <strong>identifiers</strong> to determine which rows in each table correspond to one another, and thus will be combined into a row in the resulting joined table.</p>
 <p>The <strong><code>left_join()</code></strong> operation is one example of a join. This operation looks for matching columns between the two data frames, and then returns a new data frame that is the first (“left”) operand with extra columns from the second operand added on.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Combine (join) songs and artists data frames</span>
-<span class="kw">left_join</span>(songs, artists)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Combine (join) songs and artists data frames</span>
+<span class="kw">left_join</span>(songs, artists)</code></pre>
 <div class="figure">
 <img src="img/dplyr/left_join.png" title="Diagram of the left_join() function" alt="Diagram of the left_join() function (by Nathan Stephens)." />
 <p class="caption">Diagram of the <code>left_join()</code> function (by Nathan Stephens).</p>
 </div>
 <p>To understand how this works, consider a specific example where you have a table of student_ids and the students’ contact information. You also have a separate table of student_ids and the students’ majors (your institution very well may store this information in separate tables for privacy or organizational reasons).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Table of contact information</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Table of contact information</span>
 student_contact &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
   <span class="dt">student_id =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="co"># id numbers</span>
   <span class="dt">email =</span> <span class="kw">c</span>(<span class="st">&quot;id1@school.edu&quot;</span>, <span class="st">&quot;id2@school.edu&quot;</span>, <span class="st">&quot;id3@school.edu&quot;</span>, <span class="st">&quot;id4@school.edu&quot;</span>)
@@ -684,32 +711,32 @@ student_contact &lt;-<span class="st"> </span><span class="kw">data.frame</span>
 student_majors &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
   <span class="dt">student_id =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="co"># id numbers</span>
   <span class="dt">major =</span> <span class="kw">c</span>(<span class="st">&quot;sociology&quot;</span>, <span class="st">&quot;math&quot;</span>, <span class="st">&quot;biology&quot;</span>)
-)</code></pre></div>
+)</code></pre>
 <p>Notice that both tables have a <code>student_id</code> column, allowing you to “match” the rows from the <code>student_contact</code> table to the <code>student_majors</code> table and merge them together:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Join tables by the student_id column</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Join tables by the student_id column</span>
 merged_student_info &lt;-<span class="st"> </span><span class="kw">left_join</span>(student_contact, student_majors)
                         <span class="co">#    student_id          email     major</span>
                         <span class="co"># 1          1 id1@school.edu sociology</span>
                         <span class="co"># 2          2 id2@school.edu      math</span>
                         <span class="co"># 3          3 id3@school.edu   biology</span>
-                        <span class="co"># 4          4  id4@school.edu      &lt;NA&gt;</span></code></pre></div>
+                        <span class="co"># 4          4  id4@school.edu      &lt;NA&gt;</span></code></pre>
 <p>When you perform this <strong>left join</strong>, R goes through each row in the table on the “left” (the first argument), looking at the shared column(s) (<code>student_id</code>). For each row, it looks for a corresponding value in <code>student_majors$student_id</code>, and if it finds one then it adds any data from columns that are in <code>student_majors</code> but <em>not</em> in <code>student_contact</code> (e.g., <code>major</code>) to new columns in the resulting table, with values from whatever the matching row was. Thus student #1 is given a <code>major</code> of “sociology”, student #2 is given a <code>major</code> of “math”, and student #4 is given a <code>major</code> of <code>NA</code> (because that student had no corresponding row in <code>student_majors</code>!)</p>
 <ul>
 <li>In short, a <strong>left join</strong> returns all of the rows from the <em>first</em> table, with all of the columns from <em>both</em> tables.</li>
 </ul>
 <p>R will join tables by any and all shared columns. However, if the names of your columns don’t match specifically, you can also specify a <code>by</code> argument indicating which columns should be used for the matching:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Use the named `by` argument to specify (a vector of) columns to match on</span>
-<span class="kw">left_join</span>(student_contact, student_majors, <span class="dt">by=</span><span class="st">&quot;student_id&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Use the named `by` argument to specify (a vector of) columns to match on</span>
+<span class="kw">left_join</span>(student_contact, student_majors, <span class="dt">by=</span><span class="st">&quot;student_id&quot;</span>)</code></pre>
 <ul>
 <li>With the <code>by</code> argument, column name <em>is</em> a string (in quotes) because you’re specifying a vector of column names (the string literal is a vector length 1).</li>
 </ul>
 <p>Notice that because of how a left join is defined, <strong>the argument order matters!</strong> The resulting table only has rows for elements in the <em>left</em> (first) table; any unmatched elements in the second table are lost. If you switch the order of the operands, you would only have information for students with majors:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Join tables by the student_id column</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Join tables by the student_id column</span>
 merged_student_info &lt;-<span class="st"> </span><span class="kw">left_join</span>(student_majors, student_contact)  <span class="co"># switched order!</span>
                         <span class="co">#   student_id     major          email</span>
                         <span class="co"># 1          1 sociology id1@school.edu</span>
                         <span class="co"># 2          2      math id2@school.edu</span>
-                        <span class="co"># 3          3   biology id3@school.edu</span></code></pre></div>
+                        <span class="co"># 3          3   biology id3@school.edu</span></code></pre>
 <p>You don’t get any information for student #4, because they didn’t have a record in the left-hand table!</p>
 <p>Because of this behavior, <code>dplyr</code> (and relational database systems in general) provide a number of different kinds of joins, each of which influences <em>which</em> rows are included in the final table. Note that in any case, <em>all</em> columns from <em>both</em> tables will be included, with rows taking on any values from their matches in the second table.</p>
 <ul>
@@ -722,11 +749,11 @@ merged_student_info &lt;-<span class="st"> </span><span class="kw">left_join</sp
 <p>Note that these are all <em>mutating joins</em>, which add columns from one table to another. <code>dplyr</code> also provides <em>filtering joins</em> which exclude rows based on whether they have a matching observation in another table, and <em>set operations</em> which combine observations as if they were set elements. See <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/two-table.html">the documentation</a> for more detail on these options, but in this course we’ll be primarily focusing on the mutating joins described above.</p>
 <!-- For an introduction to and practice working with joins, see [exercise-6](exercise-6). -->
 </div>
-<div id="non-standard-evaluation-vs.standard-evaluation" class="section level2">
+<div id="non-standard-evaluation-vs.-standard-evaluation" class="section level2">
 <h2><span class="header-section-number">10.6</span> Non-Standard Evaluation vs. Standard Evaluation</h2>
 <p>One of the features that makes <code>dplyr</code> such a clean and attractive way to write code is that inside of each function, you’ve been able to write column variable names <strong>without quotes</strong>. This is called <strong>non-standard evaluation (NSE)</strong> (it is <em>not</em> the <em>standard</em> way that code is <em>evaluated</em>, or interpreted), and is useful primarily because of how it reduces typing (along with some other benefits when working with databases). In particular, <code>dplyr</code> will <a href="http://dplyr.tidyverse.org/articles/programming.html">“quote”</a> expressions for you, converting those variables (symbols) into values that can be used to refer to column names.</p>
 <p>Most of the time this won’t cause you any problems—you can either use NSE to refer to column names without quotes, or provide the quotes yourself. You can even use variables to store the name of a column of interest!</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Normal, non-standard evaluation version</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Normal, non-standard evaluation version</span>
 mpg &lt;-<span class="st"> </span><span class="kw">select</span>(mtcars, mpg)
 
 <span class="co"># &quot;Standard-evaluation&quot; version (same result)</span>
@@ -734,22 +761,22 @@ mpg &lt;-<span class="st"> </span><span class="kw">select</span>(mtcars, <span c
 
 <span class="co"># Make the column name a variable</span>
 which_col &lt;-<span class="st"> &quot;mpg&quot;</span>
-my_column &lt;-<span class="st"> </span><span class="kw">select</span>(mtcars, which_col)</code></pre></div>
+my_column &lt;-<span class="st"> </span><span class="kw">select</span>(mtcars, which_col)</code></pre>
 <p>However, this NSE can sometimes trip you up when using more complex functions such as <code>summarize()</code> or <code>group_by()</code>, or when you want to create your own functions that use NSE.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">which_col &lt;-<span class="st"> &quot;mpg&quot;</span>
+<pre class="sourceCode r"><code class="sourceCode r">which_col &lt;-<span class="st"> &quot;mpg&quot;</span>
 <span class="kw">summarize</span>(mtcars, <span class="dt">avg =</span> <span class="kw">mean</span>(which_col))  <span class="co"># In mean.default(which_col) :</span>
-                            <span class="co"># argument is not numeric or logical: returning NA</span></code></pre></div>
+                            <span class="co"># argument is not numeric or logical: returning NA</span></code></pre>
 <p>In this case, the <code>summarize()</code> function is trying to “quote” what we typed in (the <code>which_col</code> variable name&amp;dmash;not it’s <code>mpg</code> value), and then hitting a problem because there is no column of that name (it can’t resolve that column name to a column index).</p>
 <p>To fix this problem, there are two parts: first, you need to explicitly tell R that the <em>value</em> of <code>which_col</code> (<code>mpg</code>) is actually the value that needs to be automatically “quoted”—that is, that <code>mpg</code> is really a variable! Variable names in R are referred to as <a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Symbol-objects"><strong>symbols</strong></a>—a symbol refers to the variable label itself. You can explicitly change a value into a symbol by using the <a href="https://www.rdocumentation.org/packages/rlang/versions/0.1.6/topics/sym"><code>rlang::sym()</code></a> function (the <code>sym()</code> function found in the <code>rlang</code> library; the <code>::</code> indicates that the function belongs to a library).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">which_col_sym &lt;-<span class="st"> </span>rlang<span class="op">::</span><span class="kw">sym</span>(which_col)  <span class="co"># convert to a symbol</span>
-<span class="kw">print</span>(which_col_sym)  <span class="co"># =&gt; mpg (but not in quotes, because it&#39;s not a string!)</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">which_col_sym &lt;-<span class="st"> </span>rlang<span class="op">::</span><span class="kw">sym</span>(which_col)  <span class="co"># convert to a symbol</span>
+<span class="kw">print</span>(which_col_sym)  <span class="co"># =&gt; mpg (but not in quotes, because it&#39;s not a string!)</span></code></pre>
 <p>Second, you will need to tell the <code>summarize()</code> function that it should <em>not</em> quote this symbol (because you’ve already converted it into a variable)—what is called <strong>unquoting</strong>. In <code>dplyr</code>, you “unquote” a parameter to a method by including two exclamation points in front of it:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarize</span>(mtcars, <span class="dt">avg =</span> <span class="kw">mean</span>(<span class="op">!!</span>which_col_sym))  <span class="co"># arranges by the specified column</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarize</span>(mtcars, <span class="dt">avg =</span> <span class="kw">mean</span>(<span class="op">!!</span>which_col_sym))  <span class="co"># arranges by the specified column</span></code></pre>
 <p>There are many more details involved in this “quoting/unquoting” process, which are described in <a href="http://dplyr.tidyverse.org/articles/programming.html">this tutorial</a> (though that is currently <a href="http://rpubs.com/lionel-/programming-draft">being updated with better examples</a>).</p>
 <div id="explicit-standard-evaluation" class="section level3">
 <h3><span class="header-section-number">10.6.1</span> Explicit Standard Evaluation</h3>
 <p>Alternatively, older versions of <code>dplyr</code> supplied functions that <em>explicitly</em> performed <strong>standard evaluation (SE)</strong>—that is, they provide no quoting and expected you to do that work yourself. While now considered deprecated, they can still be useful if you are having problems with the new quoting system. These functions have the exact same names as the normal verb functions, except are followed by an underscore (<strong><code>_</code></strong>):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Normal, non-standard evaluation version</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Normal, non-standard evaluation version</span>
 mpg &lt;-<span class="st"> </span><span class="kw">select</span>(mtcars, mpg)
 
 <span class="co"># Standard-evaluation version (same result)</span>
@@ -765,7 +792,7 @@ mean_mpg &lt;-<span class="st"> </span><span class="kw">summarize_</span>(mtcars
 which_column &lt;-<span class="st"> &#39;mpg&#39;</span>
 
 <span class="co"># Use standard evaluation to execute function:</span>
-my_column &lt;-<span class="st"> </span><span class="kw">arrange_</span>(mtcars, which_column)</code></pre></div>
+my_column &lt;-<span class="st"> </span><span class="kw">arrange_</span>(mtcars, which_column)</code></pre>
 <p class="alert alert-warning">
 Yes, it does feel a bit off that the “normal” way of using <code>dplyr</code> is the “non-standard” way. Remember that using SE is the “different” approach
 </p>

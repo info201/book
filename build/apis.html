@@ -25,7 +25,7 @@
 <meta name="author" content="Michael Freeman and Joel Ross">
 
 
-<meta name="date" content="2019-05-05">
+<meta name="date" content="2019-05-16">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -61,41 +61,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -167,7 +193,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.3.2" data-path="git-basics.html"><a href="git-basics.html#committing"><i class="fa fa-check"></i><b>4.3.2</b> Committing</a></li>
 <li class="chapter" data-level="4.3.3" data-path="git-basics.html"><a href="git-basics.html#commit-history"><i class="fa fa-check"></i><b>4.3.3</b> Commit History</a></li>
 <li class="chapter" data-level="4.3.4" data-path="git-basics.html"><a href="git-basics.html#reviewing-the-process"><i class="fa fa-check"></i><b>4.3.4</b> Reviewing the Process</a></li>
-<li class="chapter" data-level="4.3.5" data-path="git-basics.html"><a href="git-basics.html#the-.gitignore-file"><i class="fa fa-check"></i><b>4.3.5</b> The <code>.gitignore</code> File</a></li>
+<li class="chapter" data-level="4.3.5" data-path="git-basics.html"><a href="git-basics.html#gitignore"><i class="fa fa-check"></i><b>4.3.5</b> The <code>.gitignore</code> File</a></li>
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="git-basics.html"><a href="git-basics.html#github-and-remotes"><i class="fa fa-check"></i><b>4.4</b> GitHub and Remotes</a><ul>
 <li class="chapter" data-level="4.4.1" data-path="git-basics.html"><a href="git-basics.html#forking-and-cloning"><i class="fa fa-check"></i><b>4.4.1</b> Forking and Cloning</a></li>
@@ -226,7 +252,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.3.2" data-path="lists.html"><a href="lists.html#indexing-by-name"><i class="fa fa-check"></i><b>8.3.2</b> Indexing by Name</a></li>
 <li class="chapter" data-level="8.3.3" data-path="lists.html"><a href="lists.html#indexing-by-logical-vector"><i class="fa fa-check"></i><b>8.3.3</b> Indexing by Logical Vector</a></li>
 <li class="chapter" data-level="8.3.4" data-path="lists.html"><a href="lists.html#lists-dollar-shortcut"><i class="fa fa-check"></i><b>8.3.4</b> Extracting named elements with <code>$</code></a></li>
-<li class="chapter" data-level="8.3.5" data-path="lists.html"><a href="lists.html#single-vs.double-brackets-vs.dollar"><i class="fa fa-check"></i><b>8.3.5</b> Single vs. Double Brackets vs. Dollar</a></li>
+<li class="chapter" data-level="8.3.5" data-path="lists.html"><a href="lists.html#single-vs.-double-brackets-vs.-dollar"><i class="fa fa-check"></i><b>8.3.5</b> Single vs. Double Brackets vs. Dollar</a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="lists.html"><a href="lists.html#modifying-lists"><i class="fa fa-check"></i><b>8.4</b> Modifying Lists</a></li>
 <li class="chapter" data-level="8.5" data-path="lists.html"><a href="lists.html#the-lapply-function"><i class="fa fa-check"></i><b>8.5</b> The <code>lapply()</code> Function</a></li>
@@ -259,7 +285,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="dplyr.html"><a href="dplyr.html#grouped-operations"><i class="fa fa-check"></i><b>10.4</b> Grouped Operations</a></li>
 <li class="chapter" data-level="10.5" data-path="dplyr.html"><a href="dplyr.html#joins"><i class="fa fa-check"></i><b>10.5</b> Joins</a></li>
-<li class="chapter" data-level="10.6" data-path="dplyr.html"><a href="dplyr.html#non-standard-evaluation-vs.standard-evaluation"><i class="fa fa-check"></i><b>10.6</b> Non-Standard Evaluation vs. Standard Evaluation</a><ul>
+<li class="chapter" data-level="10.6" data-path="dplyr.html"><a href="dplyr.html#non-standard-evaluation-vs.-standard-evaluation"><i class="fa fa-check"></i><b>10.6</b> Non-Standard Evaluation vs. Standard Evaluation</a><ul>
 <li class="chapter" data-level="10.6.1" data-path="dplyr.html"><a href="dplyr.html#explicit-standard-evaluation"><i class="fa fa-check"></i><b>10.6.1</b> Explicit Standard Evaluation</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#resources-9"><i class="fa fa-check"></i>Resources</a></li>
@@ -315,7 +341,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#resources-12"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="git-branches.html"><a href="git-branches.html"><i class="fa fa-check"></i><b>14</b> Git Branches</a><ul>
-<li class="chapter" data-level="14.1" data-path="git-branches.html"><a href="git-branches.html#git-branches"><i class="fa fa-check"></i><b>14.1</b> Git Branches</a></li>
+<li class="chapter" data-level="14.1" data-path="git-branches.html"><a href="git-branches.html#git-branches-1"><i class="fa fa-check"></i><b>14.1</b> Git Branches</a></li>
 <li class="chapter" data-level="14.2" data-path="git-branches.html"><a href="git-branches.html#merging"><i class="fa fa-check"></i><b>14.2</b> Merging</a><ul>
 <li class="chapter" data-level="14.2.1" data-path="git-branches.html"><a href="git-branches.html#merge-conflicts"><i class="fa fa-check"></i><b>14.2.1</b> Merge Conflicts</a></li>
 </ul></li>
@@ -462,7 +488,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><p>An <strong>Endpoint</strong>, or which resource on that domain you want to access. Each API will have <em>many</em> different endpoints.</p>
 <p>For example, GitHub includes endpoints such as:</p>
 <ul>
-<li><code>/users/{user}</code> to get information about a specific <code>:user:</code> <code>id</code> (the <code>{}</code> indicate a “variable”, in that you can put any username in there in place of the string <code>&quot;{user}&quot;</code>). Check out this <a href="https://api.github.com/users/mkfreeman">example</a> in your browser.</li>
+<li><code>/users/{user}</code> to get information about a specific <code>:user:</code> <code>id</code> (the <code>{}</code> indicate a “variable”, in that you can put any username in there in place of the string <code>"{user}"</code>). Check out this <a href="https://api.github.com/users/mkfreeman">example</a> in your browser.</li>
 <li><code>/orgs/{organization}/repos</code> to get the repositories that are on an organization page. See an <a href="https://api.github.com/orgs/info201a-au17/repos">example</a>.</li>
 </ul></li>
 </ul>
@@ -478,16 +504,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Many web services require you to register with them in order to send them requests. This allows them to limit access to the data, as well as to keep track of who is asking for what data (usually so that if someone starts “spamming” the service, they can be blocked).</p>
 <p>To facilitate this tracking, many services provide <strong>Access Tokens</strong> (also called <strong>API Keys</strong>). These are unique strings of letters and numbers that identify a particular developer (like a secret password that only works for you). Web services will require you to include your <em>access token</em> as a query parameter in the request; the exact name of the parameter varies, but it often looks like <code>access_token</code> or <code>api_key</code>. When exploring a web service, keep an eye out for whether they require such tokens.</p>
 <p><em>Access tokens</em> act a lot like passwords; you will want to keep them secret and not share them with others. This means that you <strong>should not include them in your committed files</strong>, so that the passwords don’t get pushed to GitHub and shared with the world. The best way to get around this in R is to create a separate script file in your repo (e.g., <code>api-keys.R</code>) which includes exactly one line: assigning the key to a variable:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># in `api-keys.R`</span>
-api_key &lt;-<span class="st"> &quot;123456789abcdefg&quot;</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># in `api-keys.R`</span>
+api_key &lt;-<span class="st"> &quot;123456789abcdefg&quot;</span></code></pre>
 <p>You can then include this file_name_ in a <strong><code>.gitignore</code></strong> file in your repo; that will keep it from even possibly being committed with your code!</p>
 <p>In order to access this variable in your “main” script, you can use the <code>source()</code> function to load and run your <code>api-keys.R</code> script. This will execute the line of code that assigns the <code>api_key</code> variable, making it available in your environment for your use:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># in `my-script.R`</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># in `my-script.R`</span>
 
 <span class="co"># (make sure working directory is set)</span>
 
 <span class="kw">source</span>(<span class="st">&#39;api-keys.R&#39;</span>)  <span class="co"># load the script</span>
-<span class="kw">print</span>(api_key)  <span class="co"># key is now available!</span></code></pre></div>
+<span class="kw">print</span>(api_key)  <span class="co"># key is now available!</span></code></pre>
 <p>Anyone else who runs the script will simply need to provide an <code>api_key</code> variable to access the API using their key, keeping everyone’s account separate!</p>
 <p class="alert alert-warning">
 Watch out for APIs that mention using <a href="https://en.wikipedia.org/wiki/OAuth">OAuth</a> when explaining API keys. OAuth is a system for performing <strong>authentification</strong>—that is, letting someone log into a website from your application (like what a “Log in with Facebook” button does). OAuth systems require more than one access key, and these keys <strong><em>must</em></strong> be kept secret and usually require you to run a web server to utilize them correctly (which requires lots of extra setup, see <a href="https://cran.r-project.org/web/packages/httr/httr.pdf">the full <code>httr</code> docs</a> for details). So for this course, we encourage you to avoid anything that needs OAuth
@@ -521,15 +547,15 @@ Watch out for APIs that mention using <a href="https://en.wikipedia.org/wiki/OAu
 </ul>
 <p>(Note that the data you’ll get back is structured in JSON format. See <a href="apis.html#json">below</a> for details).</p>
 <p>In <code>R</code> you can send GET requests using the <a href="https://cran.r-project.org/web/packages/httr/vignettes/quickstart.html"><code>httr</code></a> library. Like <code>dplyr</code>, you will need to install and load it to use it:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;httr&quot;</span>)  <span class="co"># once per machine</span>
-<span class="kw">library</span>(<span class="st">&quot;httr&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;httr&quot;</span>)  <span class="co"># once per machine</span>
+<span class="kw">library</span>(<span class="st">&quot;httr&quot;</span>)</code></pre>
 <p>This library provides a number of functions that reflect HTTP verbs. For example, the <strong><code>GET()</code></strong> function will send an HTTP GET Request to the URI specified as an argument:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get search results for artist</span>
-response &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;https://api.github.com/search/repositories?q=d3&amp;sort=forks&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get search results for artist</span>
+response &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;https://api.github.com/search/repositories?q=d3&amp;sort=forks&quot;</span>)</code></pre>
 <p>While it is possible to include <em>query parameters</em> in the URI string, <code>httr</code> also allows you to include them as a <em>list</em>, making it easy to set and change variables (instead of needing to do a complex <code>paste0()</code> operation to produce the correct string):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Equivalent to the above, but easier to read and change</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Equivalent to the above, but easier to read and change</span>
 query_params &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">q =</span> <span class="st">&quot;d3&quot;</span>, <span class="dt">sort =</span> <span class="st">&quot;forks&quot;</span>)
-response &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;https://api.github.com&quot;</span>, <span class="dt">query =</span> query_params)</code></pre></div>
+response &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;https://api.github.com&quot;</span>, <span class="dt">query =</span> query_params)</code></pre>
 <p>If you try printing out the <code>response</code> variable, you’ll see information about the response:</p>
 <pre><code>Response [https://api.github.com/?q=d3&amp;sort=forks]
   Date: 2017-10-22 19:05
@@ -538,9 +564,9 @@ response &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="
   Size: 2.16 kB</code></pre>
 <p>This is called the <strong>response header</strong>. Each <strong>response</strong> has two parts: the <strong>header</strong>, and the <strong>body</strong>. You can think of the response as a envelope: the <em>header</em> contains meta-data like the address and postage date, while the <em>body</em> contains the actual contents of the letter (the data).</p>
 <p>Since you’re almost always interested in working with the <em>body</em>, you will need to extract that data from the response (e.g., open up the envelope and pull out the letter). You can do this with the <code>content()</code> method:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># extract content from response, as a text string (not a list!)</span>
-body &lt;-<span class="st"> </span><span class="kw">content</span>(response, <span class="st">&quot;text&quot;</span>)</code></pre></div>
-<p>Note the second argument <code>&quot;text&quot;</code>; this is needed to keep <code>httr</code> from doing it’s own processing on the body data, since we’ll be using other methods to handle that; keep reading for details!</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># extract content from response, as a text string (not a list!)</span>
+body &lt;-<span class="st"> </span><span class="kw">content</span>(response, <span class="st">&quot;text&quot;</span>)</code></pre>
+<p>Note the second argument <code>"text"</code>; this is needed to keep <code>httr</code> from doing it’s own processing on the body data, since we’ll be using other methods to handle that; keep reading for details!</p>
 <p class="alert alert-info">
 <em>Pro-tip</em>: The URI shown when you print out the <code>response</code> is a good way to check exactly what URI you were sending the request to: copy that into your browser to make sure it goes where you expected!
 </p>
@@ -549,7 +575,7 @@ body &lt;-<span class="st"> </span><span class="kw">content</span>(response, <sp
 <h2><span class="header-section-number">11.4</span> JSON Data</h2>
 <p>Most APIs will return data in <strong>JavaScript Object Notation (JSON)</strong> format. Like CSV, this is a format for writing down structured data—but while <code>.csv</code> files organize data into rows and columns (like a data frame), JSON allows you to organize elements into <strong>key-value pairs</strong> similar to an R <em>list</em>! This allows the data to have much more complex structure, which is useful for web services (but can be challenging for us).</p>
 <p>In JSON, lists of key-value pairs (called <em>objects</em>) are put inside braces (<strong><code>{ }</code></strong>), with the key and value separated by a colon (<strong><code>:</code></strong>) and each pair separated by a comma (<strong><code>,</code></strong>). Key-value pairs are often written on separate lines for readability, but this isn’t required. Note that keys need to be character strings (so in quotes), while values can either be character strings, numbers, booleans (written in lower-case as <code>true</code> and <code>false</code>), or even other lists! For example:</p>
-<div class="sourceCode"><pre class="sourceCode json"><code class="sourceCode json"><span class="fu">{</span>
+<pre class="sourceCode json"><code class="sourceCode json"><span class="fu">{</span>
   <span class="dt">&quot;first_name&quot;</span><span class="fu">:</span> <span class="st">&quot;Ada&quot;</span><span class="fu">,</span>
   <span class="dt">&quot;job&quot;</span><span class="fu">:</span> <span class="st">&quot;Programmer&quot;</span><span class="fu">,</span>
   <span class="dt">&quot;salary&quot;</span><span class="fu">:</span> <span class="dv">78000</span><span class="fu">,</span>
@@ -558,19 +584,19 @@ body &lt;-<span class="st"> </span><span class="kw">content</span>(response, <sp
     <span class="dt">&quot;music&quot;</span><span class="fu">:</span> <span class="st">&quot;jazz&quot;</span><span class="fu">,</span>
     <span class="dt">&quot;food&quot;</span><span class="fu">:</span> <span class="st">&quot;pizza&quot;</span><span class="fu">,</span>
   <span class="fu">}</span>
-<span class="fu">}</span></code></pre></div>
+<span class="fu">}</span></code></pre>
 <p>(In JavaScript the period <code>.</code> has special meaning, so it is not used in key names; hence the underscores <code>_</code>). The above is equivalent to the <code>R</code> list:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list</span>(
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list</span>(
   <span class="dt">first_name =</span> <span class="st">&quot;Ada&quot;</span>, <span class="dt">job =</span> <span class="st">&quot;Programmer&quot;</span>, <span class="dt">salary =</span> <span class="dv">78000</span>, <span class="dt">in_union =</span> <span class="ot">TRUE</span>,
   <span class="dt">favorites =</span> <span class="kw">list</span>(<span class="dt">music =</span> <span class="st">&quot;jazz&quot;</span>, <span class="dt">food =</span> <span class="st">&quot;pizza&quot;</span>) <span class="co"># nested list in the list!</span>
-)</code></pre></div>
+)</code></pre>
 <p>Additionally, JSON supports what are called <em>arrays</em> of data. These are like lists without keys (and so are only accessed by index). Key-less arrays are written in square brackets (<strong><code>[ ]</code></strong>), with values separated by commas. For example:</p>
-<div class="sourceCode"><pre class="sourceCode json"><code class="sourceCode json"><span class="ot">[</span><span class="st">&quot;Aardvark&quot;</span><span class="ot">,</span> <span class="st">&quot;Baboon&quot;</span><span class="ot">,</span> <span class="st">&quot;Camel&quot;</span><span class="ot">]</span></code></pre></div>
+<pre class="sourceCode json"><code class="sourceCode json"><span class="ot">[</span><span class="st">&quot;Aardvark&quot;</span><span class="ot">,</span> <span class="st">&quot;Baboon&quot;</span><span class="ot">,</span> <span class="st">&quot;Camel&quot;</span><span class="ot">]</span></code></pre>
 <p>which is equvalent to the <code>R</code> list:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list</span>(<span class="st">&quot;Aardvark&quot;</span>, <span class="st">&quot;Baboon&quot;</span>, <span class="st">&quot;Camel&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list</span>(<span class="st">&quot;Aardvark&quot;</span>, <span class="st">&quot;Baboon&quot;</span>, <span class="st">&quot;Camel&quot;</span>)</code></pre>
 <p>(Like <em>objects</em> , array elements may or may not be written on separate lines).</p>
 <p>Just as R allows you to have nested lists of lists, and those lists may or may not have keys, JSON can have any form of nested <em>objects</em> and <em>arrays</em>. This can be arrays (unkeyed lists) within objects (keyed lists), such as a more complex set of data about Ada:</p>
-<div class="sourceCode"><pre class="sourceCode json"><code class="sourceCode json"><span class="fu">{</span>
+<pre class="sourceCode json"><code class="sourceCode json"><span class="fu">{</span>
   <span class="dt">&quot;first_name&quot;</span><span class="fu">:</span> <span class="st">&quot;Ada&quot;</span><span class="fu">,</span>
   <span class="dt">&quot;job&quot;</span><span class="fu">:</span> <span class="st">&quot;Programmer&quot;</span><span class="fu">,</span>
   <span class="dt">&quot;pets&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;rover&quot;</span><span class="ot">,</span> <span class="st">&quot;fluffy&quot;</span><span class="ot">,</span> <span class="st">&quot;mittens&quot;</span><span class="ot">]</span><span class="fu">,</span>
@@ -579,25 +605,25 @@ body &lt;-<span class="st"> </span><span class="kw">content</span>(response, <sp
     <span class="dt">&quot;food&quot;</span><span class="fu">:</span> <span class="st">&quot;pizza&quot;</span><span class="fu">,</span>
     <span class="dt">&quot;numbers&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="dv">12</span><span class="ot">,</span> <span class="dv">42</span><span class="ot">]</span>
   <span class="fu">}</span>
-<span class="fu">}</span></code></pre></div>
+<span class="fu">}</span></code></pre>
 <p>JSON can also be structured as <em>arrays</em> of <em>objects</em> (unkeyed lists of keyed lists), such as a list of data about Seahawks games:</p>
-<div class="sourceCode"><pre class="sourceCode json"><code class="sourceCode json"><span class="ot">[</span>
+<pre class="sourceCode json"><code class="sourceCode json"><span class="ot">[</span>
   <span class="fu">{</span> <span class="dt">&quot;opponent&quot;</span><span class="fu">:</span> <span class="st">&quot;Dolphins&quot;</span><span class="fu">,</span> <span class="dt">&quot;sea_score&quot;</span><span class="fu">:</span> <span class="dv">12</span><span class="fu">,</span> <span class="dt">&quot;opp_score&quot;</span><span class="fu">:</span> <span class="dv">10</span> <span class="fu">}</span><span class="ot">,</span>
   <span class="fu">{</span> <span class="dt">&quot;opponent&quot;</span><span class="fu">:</span> <span class="st">&quot;Rams&quot;</span><span class="fu">,</span> <span class="dt">&quot;sea_score&quot;</span><span class="fu">:</span> <span class="dv">3</span><span class="fu">,</span> <span class="dt">&quot;opp_score&quot;</span><span class="fu">:</span> <span class="dv">9</span> <span class="fu">}</span><span class="ot">,</span>
   <span class="fu">{</span> <span class="dt">&quot;opponent&quot;</span><span class="fu">:</span> <span class="st">&quot;49ers&quot;</span><span class="fu">,</span> <span class="dt">&quot;sea_score&quot;</span><span class="fu">:</span> <span class="dv">37</span><span class="fu">,</span> <span class="dt">&quot;opp_score&quot;</span><span class="fu">:</span> <span class="dv">18</span> <span class="fu">}</span><span class="ot">,</span>
   <span class="fu">{</span> <span class="dt">&quot;opponent&quot;</span><span class="fu">:</span> <span class="st">&quot;Jets&quot;</span><span class="fu">,</span> <span class="dt">&quot;sea_score&quot;</span><span class="fu">:</span> <span class="dv">27</span><span class="fu">,</span> <span class="dt">&quot;opp_score&quot;</span><span class="fu">:</span> <span class="dv">17</span> <span class="fu">}</span><span class="ot">,</span>
   <span class="fu">{</span> <span class="dt">&quot;opponent&quot;</span><span class="fu">:</span> <span class="st">&quot;Falcons&quot;</span><span class="fu">,</span> <span class="dt">&quot;sea_score&quot;</span><span class="fu">:</span> <span class="dv">26</span><span class="fu">,</span> <span class="dt">&quot;opp_score&quot;</span><span class="fu">:</span> <span class="dv">24</span> <span class="fu">}</span>
-<span class="ot">]</span></code></pre></div>
+<span class="ot">]</span></code></pre>
 <p>The latter format is incredibly common in web API data: as long as each <em>object</em> in the <em>array</em> has the same set of keys, then you can easily consider this as a data table where each <em>object</em> (keyed list) represents an <strong>observation</strong> (row), and each key represents a <strong>feature</strong> (column) of that observation.</p>
 <div id="parsing-json" class="section level3">
 <h3><span class="header-section-number">11.4.1</span> Parsing JSON</h3>
 <p>When working with a web API, the usual goal is to take the JSON data contained in the <em>response</em> and convert it into an <code>R</code> data structure you can use, such as <em>list</em> or <em>data frame</em>. While the <code>httr</code> package is able to parse the JSON body of a response into a <em>list</em>, it doesn’t do a very clean job of it (particularly for complex data structures).</p>
 <p>A more effective solution is to use <em>another</em> library called <a href="https://cran.r-project.org/web/packages/jsonlite/jsonlite.pdf"><code>jsonlite</code></a>. This library provides helpful methods to convert JSON data into R data, and does a much more effective job of converting content into data frames that you can use.</p>
 <p>As always, you will need to install and load this library:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;jsonlite&quot;</span>)  <span class="co"># once per machine</span>
-<span class="kw">library</span>(<span class="st">&quot;jsonlite&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;jsonlite&quot;</span>)  <span class="co"># once per machine</span>
+<span class="kw">library</span>(<span class="st">&quot;jsonlite&quot;</span>)</code></pre>
 <p><code>jsonlite</code> provides a function called <strong><code>fromJSON()</code></strong> that allows you to convert a JSON string into a list—or even a data frame if the columns have the right lengths!</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># send request for albums by David Bowie</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># send request for albums by David Bowie</span>
 <span class="op">&lt;</span><span class="er">&lt;&lt;&lt;&lt;&lt;&lt;</span><span class="st"> </span>HEAD
 query.params &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">q =</span> <span class="st">&quot;d3&quot;</span>, <span class="dt">sort =</span> <span class="st">&quot;forks&quot;</span>)
 response &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;https://api.github.com/search/repositories&quot;</span>, <span class="dt">query =</span> query.params)
@@ -606,7 +632,7 @@ query_params &lt;-<span class="st"> </span><span class="kw">list</span>(<span cl
 response &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;https://api.github.com&quot;</span>, <span class="dt">query =</span> query_params)
 <span class="op">&gt;</span><span class="er">&gt;&gt;&gt;&gt;&gt;&gt;</span><span class="st"> </span>112475b2d49fb2adbcb635aef504ee74c89a9a15
 body &lt;-<span class="st"> </span><span class="kw">content</span>(response, <span class="st">&quot;text&quot;</span>)  <span class="co"># extract the body JSON</span>
-parsed_data &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(body)  <span class="co"># convert the JSON string to a list</span></code></pre></div>
+parsed_data &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(body)  <span class="co"># convert the JSON string to a list</span></code></pre>
 <p>The <code>parsed_data</code> will contain a <em>list</em> built out of the JSON. Depending on the complexity of the JSON, this may already be a data frame you can <code>View()</code>… but more likely you’ll need to <em>explore</em> the list more to locate the “main” data you are interested in. Good strategies for this include:</p>
 <ul>
 <li>You can <code>print()</code> the data, but that is often hard to read (it requires a lot of scrolling).</li>
@@ -614,18 +640,18 @@ parsed_data &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(body)
 <li>The <code>names()</code> method will let you see a list of the what keys the list has, which is good for delving into the data.</li>
 </ul>
 <p>As an example continuing the above code:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.data.frame</span>(parsed_data)  <span class="co"># FALSE; not a data frame you can work with</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.data.frame</span>(parsed_data)  <span class="co"># FALSE; not a data frame you can work with</span>
 <span class="kw">names</span>(parsed_data)  <span class="co"># &quot;href&quot; &quot;items&quot; &quot;limit&quot; &quot;next&quot; &quot;offset&quot; &quot;previous&quot; &quot;total&quot;</span>
   <span class="co"># looking at the JSON data itself (e.g., in the browser), `items` is the</span>
   <span class="co"># key that contains the value we want</span>
 
 items &lt;-<span class="st"> </span>parsed_data<span class="op">$</span>items  <span class="co"># extract that element from the list</span>
-<span class="kw">is.data.frame</span>(items)  <span class="co"># TRUE; you can work with that!</span></code></pre></div>
+<span class="kw">is.data.frame</span>(items)  <span class="co"># TRUE; you can work with that!</span></code></pre>
 </div>
 <div id="flattening-data" class="section level3">
 <h3><span class="header-section-number">11.4.2</span> Flattening Data</h3>
 <p>Because JSON supports—and in fact encourages—nested lists (lists within lists), parsing a JSON string is likely to produce a data frame whose columns <em>are themselves data frames</em>. As an example:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># A somewhat contrived example</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># A somewhat contrived example</span>
 people &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">names =</span> <span class="kw">c</span>(<span class="st">&quot;Spencer&quot;</span>, <span class="st">&quot;Jessica&quot;</span>, <span class="st">&quot;Keagan&quot;</span>)) <span class="co"># a data frame with one column</span>
 
 favorites &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="co"># a data frame with two columns</span>
@@ -644,10 +670,10 @@ people<span class="op">$</span>favorites &lt;-<span class="st"> </span>favorites
 
 <span class="co"># but doesn&#39;t actually work like you expect!</span>
 people<span class="op">$</span>favorites.food <span class="co"># NULL</span>
-people<span class="op">$</span>favorites<span class="op">$</span>food <span class="co"># [1] Pizza Pasta salad</span></code></pre></div>
+people<span class="op">$</span>favorites<span class="op">$</span>food <span class="co"># [1] Pizza Pasta salad</span></code></pre>
 <p>Nested data frames make it hard to work with the data using previously established techniques. Luckily, the <code>jsonlite</code> package provides a helpful function for addressing this called <strong><code>flatten()</code></strong>. This function takes the columns of each <em>nested</em> data frame and converts them into appropriately named columns in the “outer” data frame:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">people &lt;-<span class="st"> </span><span class="kw">flatten</span>(people)
-people<span class="op">$</span>favorites.food  <span class="co"># this just got created! Woo!</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">people &lt;-<span class="st"> </span><span class="kw">flatten</span>(people)
+people<span class="op">$</span>favorites.food  <span class="co"># this just got created! Woo!</span></code></pre>
 <p>Note that <code>flatten()</code> only works on values that are <em>already data frames</em>; thus you may need to find the appropriate element inside of the list (that is, the item which is the data frame you want to flatten).</p>
 <p>In practice, you will almost always want to flatten the data returned from a web API. Thus your “algorithm” for downloading web data is as follows:</p>
 <ol style="list-style-type: decimal">
@@ -660,7 +686,8 @@ people<span class="op">$</span>favorites.food  <span class="co"># this just got 
 <li>Profit!</li>
 </ol>
 <p class="alert alert-info">
-<em>Pro-tip</em>: JSON data can be quite messy when viewed in your web-browser. Installing a browser extension such as <a href="https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc" target="_blank">JSONView</a> will format JSON responses in a more readable way, and even enable you to interactively explore the data structure.
+<em>Pro-tip</em>: JSON data can be quite messy when viewed in your web-browser. Installing a browser extension such as
+<a href="https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc" target="_blank">JSONView</a> will format JSON responses in a more readable way, and even enable you to interactively explore the data structure.
 </p>
 </div>
 </div>
