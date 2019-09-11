@@ -4,10 +4,10 @@ Sooner-or-later you are in a situation where you have to work on a
 **distant networked computer**.  There are many reasons for this,
 either your laptop is to weak for certain tasks, or certain
 data is not allowed to be taken out from where it is, or you are
-expected to use the same computer as your teammates.  The server may
+expected to use the same computer as your teammates.  Or maybe you want to set up a website and your laptop, obviously, travels around with you instead of staying in one place with reliable internet connection all the time.  The server you use may
 be a standalone box located in a rack in your employer's server room,
 or it may be a virtual machine in a cloud like Amazon EC2.  You may
-also want to set up your own server.
+also want to set up your own server, or your own virtual machine.
 
 
 ## Server Setup
@@ -16,14 +16,14 @@ There are many ways one can set up a distant machine.  It may be
 Windows or linux (or any of the other unixes).  It may or may not have
 graphical user interface (GUI) installed or otherwise accessible (many
 unix programs can display nice windows on your laptop while still
-running on the server).  It may or may not have RStudio made
-available over web browser.  Here we discuss the most barebone setup
-with no access to GUI and no web access to RStudio.
+running on the server).  It may or may not have RStudio 
+available over web browser.  Here we discuss a barebone option
+with no access to GUI and no web access to RStudio.  We assume this server is already set up for you and do not discuss installation here.
 
 This is a fairly common setup, for instance when dealing with
 sensitive data, in organizations where computer skills and
-sysadmin's time is limited, or when you rent your own tiny but cheap
-server. 
+sysadmin's time is limited, or when you rent your own cheap but limited
+server (graphical user interface takes a lot of memory). 
 
 
 ## Connecting to the Remote Server
@@ -33,16 +33,18 @@ that you will enter commands on your laptop, but those command are
 actually run on the server.
 
 The most common way to connect to remote server is via _ssh_.  ssh
-stands for "secure shell" and means that both all network
-communication is encrypted.  You connect to the server
+stands for "secure shell" and means that all
+communication between you and the remote computer is encrypted.  You connect to the server
 as 
-```bash
+```sh
 ssh myserver.somewhere.com
 ```
-The remote server asks for your password and opens remote shell
-connection.  Note: when entering your password, it usually does not
-print anything in response, not even asterisks.  It feels as if your
-keyboard is not working.  It will offer you a similar bash shell environment as you are using
+_ssh_ is nowadays pretty much the industry standard for such connections, it comes pre-installed on macs and it is included with _gitbash_ too.
+
+When you ssh to the remote server, it asks for your password and opens remote shell
+connection.  If this is your first time to connect from this particular laptop, you may also be asked to accept it's fingerprint.  This is an additional security measure to ensure that you are actually talking to the computer you think you are talking to.
+
+The remote machine  will offer you a similar bash shell environment as you are using
 on your computer but most likely you see a different prompt, one that
 contains the server's name.  You may also see some login
 messages.   Now all the commands you are issuing are
@@ -51,17 +53,28 @@ directory on the server, which in general is not the same as on the
 local machine, and `ls` shows the files on the server, not on your
 laptop.  Now you can use `mkdir` to create the project folder on the
 server. 
+<p class="alert">
+Note: when entering your password, it usually does not
+print anything in response, not even asterisks.  It feels as if your
+keyboard is not working.  But it is working, and when you finish and press enter, you will be logged in.
+</p>
 
 By default, ssh attempts to login with your local username.  If your
 username on the server differs from that on your laptop, you want to add it to the ssh command:
-```bash
+```sh
 ssh username@myserver.somewhere.com
 ```
+
+![Local and remote shell window](img/ssh-to-remote-server/ssh-windows.png)
+
+<p class="caption">
+The screenshot above shows two command line windows, the upper one connecting remotely on _info201_, and the lower one running locally at a computer called _is-otoometd5060_.  In the upper one, you can see the login command `ssh otoomet@info201.ischool.uw.edu` and various start-up messages.  The `pwd` command shows the current working directory being _/home/otoomet_, and `ls` shows there are for objects there.  Below, we are on the local computer _is-otoometd5060_.  Current working directory has the same name, but on the local computer it contains rather more entries.
+</p>
 
 Finally, when done, you want to get out.  The polite way to close the
 connection is with
 command
-```bash
+```sh
 exit
 ```
 that waits until all open connections are safely closed.  But usually you
@@ -70,15 +83,13 @@ can as well just close the terminal.
 
 ## Copying Files
 
-Before you can run your R scripts on the server, you have to get
-these copied over.  There are several possibilities.
+Before you can run your R scripts, or build a website on the server, you have to get your code and data copied over.  There are several possibilities.
 
 ### scp
 
-The most straightforward approach is `scp`, **s**ecure **c**o**p**y.  It works in many
-ways in the same way as `cp` for the local files, just `scp` can copy
+The most straightforward approach is `scp`, **s**ecure **c**o**p**y.  It comes pre-installed on mac and gitbash and it works in a similar fashion as `cp` for the local files, just `scp` can copy
 files between your machine and a remote computer.  Under the hood it uses ssh
-connection, just like `ssh` command itself.  It syntax is rather
+connection, just like `ssh` command itself, so the bad guys out there cannot easily see what you are doing.  It syntax is rather
 similar to that of `cp`:
 ```bash
 scp user1@host1:file1 user2@host2:file2
@@ -101,6 +112,11 @@ Note that exactly as with `cp`, you may omit the destination file name
 if the destination is a directory: it simply copies the file into that
 directory while preserving its name.
 
+![copying a local file to the remote machine](img/ssh-to-remote-server/scp-local-remote.png)
+<p class="caption">
+`scp` in action.  The upper shell window, running locally, depicts _scp_ in action, copying file _startServer.R_ from directory _api_ to the remote server into _api_ directory (while retaining the same name).  The lower window shows the remote machine: first, `ls` command shows we have an _api_ folder in our home directory, and second `ls -l api` shows the content of the _api_ directory in long form.  _startServer.R_ is copied over there.
+</p>
+
 After running your script, you may want to copy your results back to
 your laptop.  For instance, if you need to get the file
 `figure.png` out of the server, you can do
@@ -109,6 +125,10 @@ scp myusername@server.ischool.edu:scripts/figure.png Desktop/info201/
 ```
 As above, this copies a file from the given directory, and drops it
 into the `info201` folder on your Desktop.
+
+<p class="alert alert-warning">
+Always issue `scp` command locally on your laptop.  This is because your laptop can access the server but usually not the way around.  In order to be connected via _ssh_ (and _scp_), a computer must have public ip-address, and ssh server up and running.  It is unlikely you have configured your laptop in this way.
+</p>
 
 
 ### rsync
@@ -183,10 +203,9 @@ more information if you are interested.
 
 When your code has been transferred to the server, your next task is to
 run it.  But before you can do it, you may want to install the
-packages you need.  For instance, you may want to install the whole
-"tidyverse" bundle.  This must be done from R console using
+packages you need.  For instance, you may want to install the _ggplot2_ and _dplyr_.  This must be done from R console using
 `install.packages()`.  You start R interactively by the command 
-```bash
+```sh
 R
 ```
 It opens an R session, not unlike what you see inside of RStudio, just
@@ -197,7 +216,7 @@ The first time you do it, R complains about
 non-writeable system-wide library and proposes to install and create
 your personal libary.  You should answer "yes" to these prompts.  As
 Linux systems typically compile the packages during installations, installation is slow and you see many messages (including warnings) in the
-process.  But it works, given that the necessary system libraries are available.
+process.  But it works, given that the necessary system libraries are available.  You may alo open another terminal and ssh to the server from there while the packages are compiling in the other window.
 
 Now you can finally run your R code.  I strongly recommend to do it
 from the directory where you intend to run the project before starting
@@ -214,7 +233,12 @@ re-run it again.  Note that you don't have to exit from the R session when
 copying the files between your laptop and the server.  Edit it, copy it over
 from your laptop (using `scp` or
 other tools), and just re-source the file from
-within the R session.
+within the R session.  If you need an open R session on the server, you may want to have several terminals connected to the server at the same time: in one, you have the R session, in another you may want to copy/move/edit files, and it may also be handy to have a window with `htop` too see how your running code is doing (see below).
+
+![multiple terminal connections](img/ssh-to-remote-server/multiple-connections.png)
+<p class="caption">
+Three terminals connecting to a remote server at the same time.  The top one has been used for file management, the middle one shows tha active processes by user _otoomet_, and the bottom one has open R session for package installations.  Multiple open connections is often a convenient way to switch frequently between different tasks.
+</p>
 
 Opening a separate R session may be useful for installing packages.
 For running your scripts, I recommend you to run it entirely from
@@ -246,8 +270,9 @@ plot(1:10, rnorm(10))
 dev.off()
     # saves the image to disk and closes the file.
 ```
-Afterwards you will have to copy the image file to your laptop for
-inspection, or addition in your final project report.
+Afterwards you will have to copy the image file _figure1.pdf_ to your laptop for future use.  Note that the file will be saved in the current working directory (unless you specify another folder) for the R session.  This is normally the folder where you execute the `Rscript` command.
+
+Besides of pdf graphics, R can also output jpg, png, svg and other formats.  Check out the corresponding devices `jpeg`, `png`, `svg` and so forth.  Additionally, _ggplot_ has it's own dedicated way of saving plots using `ggsave` although the base R graphics devices, such as `pdf` will work too.
 
 
 
@@ -335,7 +360,7 @@ many related goodies.)
 
 Without further configuration, every time you open a ssh connection,
 you have to type your password.  Instead of re-entering it
-over and over again (this may not be particularly secure), you can configure
+over and over again&mdash;this may not be particularly secure and it is definitely not convenient&mdash;you can configure
 your ssh keys and copy it to the server.  Next time, you will be
 automatically authenticated with the key and you don't have to type
 the password any more.  Note: this is the same ssh key that is used by GitHub if
@@ -362,6 +387,54 @@ Host info201
 The `Host` keyword is followed by the abbreviated name of the server,
 the following lines contain your username and the publicly visible
 hostname for the server.  Seek out more information if you are interested.
+
+
+### More about command line: pipes and shell patterns
+
+_bash_ is a powerful programming language.  It is not particularly well suited to peform calculations or produce graphs, but it is excellent in glueing together other programs and their output.
+
+One very powerful construct are _pipes_.  These are in many ways similar to _magrittr_ pipes in R, or perhaps we should say the other way around as shell pipes were introduced in 1973, a quarter of century before R was created.  Pipes connect output of one command into input of another command.  For instance, let's take commands `ls -s` and `head`.  The former lists the files (in long form) and the latter prints out a few first lines of a text file.  But `head` is not just for printing files, it can print the first few lines of whatever you feed it.  Look, for instance, the following command (actually a compound command):
+```sh
+ls -l | head
+```
+`ls -l` creates the file listing (in long form).  But instead of printing it on screen, it will now send it over pipe `|` to the `head` utility.  That one will extract the first lines and print only those.
+
+![example with `ls` and shell pipes](img/ssh-to-remote-server/shell-pipe.png)
+<p class="caption">
+Example of `ls -l` command that prints a number of files (above).  Below, the same command is piped through `head -3` that retains only the three first lines (and prints those).  Note that the first line is not a file, but a total size of files in this directory (in kilobytes).
+</p>
+
+Pipes are not limited to two commands only.  You can pipe as many commands together as you with.  For instance, you may want to see a few first lines in a large compressed csv file that contain the word _Zilong_.  We use the following commands:
+
+* **bzcat** prints bzip-compressed data (you normally invoke it like `bzcat file.txt`).  But it just prints and does not do anything else with the output.
+* **grep** searches for a pattern in text.  This can be used as `grep pattern file`, for instance grep `salary business-report.txt`.  Note that _pattern_ is a regular expression (rather similar as in R `gsub` and `grep` functions), so `grep` can search for a wide range of patterns.  However, it cannot open compressed files, and neither can it limit the output to just a few lines.
+* **head** prints first few lines of text.  You can print out the first _n_ lines of a file as `head -n file.txt`, but again--this does not work with compressed files.
+
+We pipe the commands together as
+```sh
+bzcat data.csv.bz2 | grep Zilong | head
+```
+and achieve the result we want.  So pipes are an excellent way to join  small commands, each of which is good at only a single task, into complex compound tasks.
+
+Another handy (albeit much less powerful) tool in shell is the shell patterns.  These are a little bit like regular expressions for file names, just much simpler.  There are two special characters in file names:
+
+* **\*** means any number of any characters.  For instance, `a.*` means all files like `a.`, `a.c`, `a.txt`, `a.txt.old`, `a...` and so on.  It is just any number of any characters, including none at all, and "any" also means dots.  However, the pattern does not cover `ba.c`.
+* **?** means a single character, so `a.?` can stand for `a.c` and `a.R` but not for `a.txt`.
+
+Shell patterns are useful for file manipulations where you have quicly sort though some sort of fine name patterns.  These are handled by shell and not by individual commands, so they may not work if you are not at shell prompt but running another program, such as R or a text editor.
+
+For instance, let's list all _jpg_ files in the current directory:
+```sh
+ls *.jpg
+```
+This lists all files of patten `*.jpg`, i.e. everything that has _.jpg_ at it's end.
+Now let us copy all _png_ files from server to the current directory:
+```sh
+scp user@server.com:*.png .
+```
+This copies all files in the form `*.png` from the server here, i.e. all files that end with _.png_.
+
+
 
 
 ### Running RScript in ssh Session

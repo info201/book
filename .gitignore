@@ -10,6 +10,9 @@ node_modules
 *.fdb
 *.fdb_latexmk
 
+# build stuff
+build/img/*
+
 # eBook build output
 #*.epub
 #*.mobi
