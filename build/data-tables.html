@@ -490,12 +490,12 @@ we can create and play with a data table as</p>
 <div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb283-1" data-line-number="1"><span class="kw">library</span>(data.table)</a>
 <a class="sourceLine" id="cb283-2" data-line-number="2">dt &lt;-<span class="st"> </span><span class="kw">data.table</span>(<span class="dt">id=</span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">x=</span><span class="kw">rnorm</span>(<span class="dv">5</span>), <span class="dt">y=</span><span class="kw">runif</span>(<span class="dv">5</span>))</a>
 <a class="sourceLine" id="cb283-3" data-line-number="3">dt</a></code></pre></div>
-<pre><code>##    id           x          y
-## 1:  1  1.21260796 0.30707988
-## 2:  2  1.13351768 0.54892173
-## 3:  3  0.05835779 0.97728797
-## 4:  4 -0.83048351 0.09711748
-## 5:  5  1.24050228 0.97376908</code></pre>
+<pre><code>##    id          x         y
+## 1:  1 -0.1828555 0.1920360
+## 2:  2  1.1177346 0.5193581
+## 3:  3 -0.7888406 0.5400888
+## 4:  4  3.0512524 0.1914970
+## 5:  5  0.4701752 0.6984287</code></pre>
 <p>The result looks almost identical to a similar data frame (the only
 difference are the colons after the row numbers). Behind the scenes
 these objects are almost identical too–both objects are lists of
@@ -503,26 +503,26 @@ vectors. This structural similarity allows to use data tables
 as drop-in replacements for dataframes, at least in some
 circumstances. For instance, we can extract variables with <code>$</code>:</p>
 <div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb285-1" data-line-number="1">dt<span class="op">$</span>x</a></code></pre></div>
-<pre><code>## [1]  1.21260796  1.13351768  0.05835779 -0.83048351  1.24050228</code></pre>
+<pre><code>## [1] -0.1828555  1.1177346 -0.7888406  3.0512524  0.4701752</code></pre>
 <p>or rows with row indices:</p>
 <div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb287-1" data-line-number="1">dt[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>),]</a></code></pre></div>
-<pre><code>##    id          x          y
-## 1:  2  1.1335177 0.54892173
-## 2:  4 -0.8304835 0.09711748</code></pre>
+<pre><code>##    id        x         y
+## 1:  2 1.117735 0.5193581
+## 2:  4 3.051252 0.1914970</code></pre>
 <p>However, data tables use unquoted variables names (like <em>dplyr</em>) by
 default:</p>
 <div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb289-1" data-line-number="1">dt[,x]</a></code></pre></div>
-<pre><code>## [1]  1.21260796  1.13351768  0.05835779 -0.83048351  1.24050228</code></pre>
+<pre><code>## [1] -0.1828555  1.1177346 -0.7888406  3.0512524  0.4701752</code></pre>
 <p>In case we need to store the variable name into another variable, with
 have to use the additional argument <code>with</code>:</p>
 <div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb291-1" data-line-number="1">var &lt;-<span class="st"> &quot;x&quot;</span></a>
 <a class="sourceLine" id="cb291-2" data-line-number="2">dt[, var, with=<span class="ot">FALSE</span>]</a></code></pre></div>
-<pre><code>##              x
-## 1:  1.21260796
-## 2:  1.13351768
-## 3:  0.05835779
-## 4: -0.83048351
-## 5:  1.24050228</code></pre>
+<pre><code>##             x
+## 1: -0.1828555
+## 2:  1.1177346
+## 3: -0.7888406
+## 4:  3.0512524
+## 5:  0.4701752</code></pre>
 <p>Note also that instead of getting a vector, now we get a data.table
 with a single column “x” in the first. This behavior is the main culprit that when
 replacing data frames with data tables one may need to change quite a
@@ -549,12 +549,12 @@ table into a data frame with <code>setDF</code> (and the other way around with <
 frame:</p>
 <div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb294-1" data-line-number="1"><span class="kw">setDF</span>(dt)</a>
 <a class="sourceLine" id="cb294-2" data-line-number="2">dt</a></code></pre></div>
-<pre><code>##   id           x          y
-## 1  1  1.21260796 0.30707988
-## 2  2  1.13351768 0.54892173
-## 3  3  0.05835779 0.97728797
-## 4  4 -0.83048351 0.09711748
-## 5  5  1.24050228 0.97376908</code></pre>
+<pre><code>##   id          x         y
+## 1  1 -0.1828555 0.1920360
+## 2  2  1.1177346 0.5193581
+## 3  3 -0.7888406 0.5400888
+## 4  4  3.0512524 0.1914970
+## 5  5  0.4701752 0.6984287</code></pre>
 <p>Do you see that the colons after row names are gone? This means <code>dt</code>
 now is a data frame.</p>
 <p>Note that this function behaves very differently from what we have

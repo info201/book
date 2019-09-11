@@ -688,9 +688,9 @@ advance:</p>
 <a class="sourceLine" id="cb266-14" data-line-number="14">microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<span class="kw">baad</span>(), <span class="kw">soso</span>(), <span class="kw">good</span>())</a></code></pre></div>
 <pre><code>## Unit: microseconds
 ##    expr     min       lq       mean   median       uq      max neval
-##  baad() 821.685 838.7755 1122.71264 847.8610 887.6300 3852.243   100
-##  soso()  41.813  42.3535   59.48295  42.8215  43.5895 1667.323   100
-##  good()   2.286   2.5040    8.58826   2.7860   3.3335  527.254   100</code></pre>
+##  baad() 821.889 844.3780 1120.78483 851.4110 870.8365 3869.460   100
+##  soso()  40.749  42.3250   61.80686  42.8965  43.9525 1813.747   100
+##  good()   2.243   2.4665    7.89018   2.6730   3.1985  466.033   100</code></pre>
 <p>When comparing the median values, we can see that the middle example
 is 10x slower than the vectorized example, and the first version is
 almost 300x slower!</p>
@@ -704,10 +704,10 @@ functions just use a loop. We can demonstrate this by adding one more function t
 <a class="sourceLine" id="cb268-4" data-line-number="4">microbenchmark<span class="op">::</span><span class="kw">microbenchmark</span>(<span class="kw">baad</span>(), <span class="kw">soso</span>(), <span class="kw">soso2</span>(), <span class="kw">good</span>())</a></code></pre></div>
 <pre><code>## Unit: microseconds
 ##     expr     min       lq       mean   median       uq      max neval
-##   baad() 826.513 853.4420 1042.36207 862.2515 886.9500 3461.595   100
-##   soso()  42.080  42.7215   43.94043  43.2605  43.7600   76.073   100
-##  soso2() 218.663 221.1045  234.44072 223.7340 227.8225 1019.391   100
-##   good()   2.332   2.5800    2.90401   2.7740   3.0630    8.418   100</code></pre>
+##   baad() 832.645 858.4900 1042.44281 866.2005 877.9180 3497.082   100
+##   soso()  41.884  42.5910   43.33588  43.2000  43.6640   51.518   100
+##  soso2() 218.347 220.3875  232.48158 222.7510 226.0030 1034.508   100
+##   good()   2.325   2.5825    2.84671   2.7800   2.9775    4.188   100</code></pre>
 <p>As it turns out, <code>sapply</code> is much slower than plain for-loop.
 Lapply-family is not a substitute for true vectorization. However,
 one may argue that <code>soso2</code> function is easier to understand than
