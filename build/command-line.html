@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 The Command Line | Technical Foundations of Informatics</title>
-  <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics." />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 The Command Line | Technical Foundations of Informatics" />
   <meta property="og:type" content="book" />
@@ -22,18 +21,18 @@
   <meta name="twitter:description" content="The course reader for INFO 201: Technical Foundations of Informatics." />
   <meta name="twitter:image" content="https://info201.github.io/img/cover-img.png" />
 
-<meta name="author" content="Michael Freeman and Joel Ross">
+<meta name="author" content="Michael Freeman and Joel Ross" />
 
 
-<meta name="date" content="2019-04-12">
+<meta name="date" content="2019-09-11" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
-  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-<link rel="prev" href="setup-machine.html">
-<link rel="next" href="markdown.html">
+  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
+<link rel="prev" href="setup-machine.html"/>
+<link rel="next" href="markdown.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -61,41 +60,66 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -311,7 +335,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#resources-12"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="git-branches.html"><a href="git-branches.html"><i class="fa fa-check"></i><b>14</b> Git Branches</a><ul>
-<li class="chapter" data-level="14.1" data-path="git-branches.html"><a href="git-branches.html#git-branches"><i class="fa fa-check"></i><b>14.1</b> Git Branches</a></li>
+<li class="chapter" data-level="14.1" data-path="git-branches.html"><a href="git-branches.html#git-branches-1"><i class="fa fa-check"></i><b>14.1</b> Git Branches</a></li>
 <li class="chapter" data-level="14.2" data-path="git-branches.html"><a href="git-branches.html#merging"><i class="fa fa-check"></i><b>14.2</b> Merging</a><ul>
 <li class="chapter" data-level="14.2.1" data-path="git-branches.html"><a href="git-branches.html#merge-conflicts"><i class="fa fa-check"></i><b>14.2.1</b> Merge Conflicts</a></li>
 </ul></li>
@@ -446,7 +470,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="navigating-the-command-line" class="section level2">
 <h2><span class="header-section-number">2.2</span> Navigating the Command Line</h2>
 <p>Although the command-prompt gives you the name of the folder you’re in, you might like more detail about where that folder is. Time to send your first command! At the prompt, type:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">pwd</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="bu">pwd</span></a></code></pre></div>
 <p>This stands for <strong>p</strong>rint <strong>w</strong>orking <strong>d</strong>irectory (shell commands are highly abbreviated to make them faster to type), and will tell the computer to print the folder you are currently “in”.</p>
 <p class="alert alert-info">
 <em>Fun fact:</em> technically, this command usually starts a tiny program (app) that does exactly one thing: prints the working directory. When you run a command, you’re actually executing a tiny program! And when you run programs (tiny or large) on the command-line, it looks like you’re typing in commands.
@@ -471,7 +495,7 @@ This includes clicking to move the cursor to an earlier part of the command you 
 <strong>Protip:</strong> The up and down arrow keys will let you cycle though your previous commands so you don’t need to re-type them!
 </p>
 <p>Since you can’t click on a folder, you’ll need to use another command:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">cd</span> folder_name</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="bu">cd</span> folder_name</a></code></pre></div>
 <p>The first word is the <strong>command</strong>, or what you want the computer to do. In this case, you’re issuing the command that means <strong>c</strong>hange <strong>d</strong>irectory.</p>
 <p>The second word is an example of an <strong>argument</strong>, which is a programming term that means “more details about what to do”. In this case, you’re providing a <em>required</em> argument of what folder you want to change to! (You’ll of course need to replace <code>folder_name</code> with the name of the folder).</p>
 <ul>
@@ -485,7 +509,7 @@ This includes clicking to move the cursor to an earlier part of the command you 
 <div id="listing-files" class="section level3">
 <h3><span class="header-section-number">2.2.2</span> Listing Files</h3>
 <p>In a graphical system, once you’ve double-clicked on a folder, Finder will show you the contents of that folder. The command-line doesn’t do this automatically; instead you need another command:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">ls</span> [folder_name]</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="fu">ls</span> [folder_name]</a></code></pre></div>
 <p>This command says to <strong>l</strong>i<strong>s</strong>t the folder contents. Note that the <em>argument</em> here is written in brackets (<code>[]</code>) to indicate that it is <em>optional</em>. If you just issue the <strong><code>ls</code></strong> command without an argument, it will list the contents of the current folder. If you include the optional argument (leaving off the brackets), you can “peek” at the contents of a folder you are not currently in.</p>
 <div class="alert alert-danger">
 <p>
@@ -509,10 +533,10 @@ Just because you don’t see any results from your command/typing, doesn’t mea
 You should <strong>always</strong> use relative paths, particularly when programming! Because you’ll almost always be managing multiples files in a project, you should refer to the files <em>relatively</em> within your project. That way, you program can easily work across computers. For example, if your code refers to <code>/Users/your-user-name/project-name/data</code>, it can only run on the <code>your-user-name</code> account. However, if you use a <em>relative path</em> within your code (i.e., <code>project-name/data</code>), the program will run on multiple computers (crucial for collaborative projects).
 </p>
 <p>You can refer to the “current folder” by using a single dot <strong><code>.</code></strong>. So the command</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">ls</span> .</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="fu">ls</span> .</a></code></pre></div>
 <p>means “list the contents of the current folder” (the same thing you get if you leave off the argument).</p>
 <p>If you want to go <em>up</em> a directory, you use <em>two</em> dots: <strong><code>..</code></strong> to refer to the <strong>parent</strong> folder (that is, the one that contains this one). So the command</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">ls</span> ..</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="fu">ls</span> ..</a></code></pre></div>
 <p>means “list the contents of the folder that contains the current folder”.</p>
 <p>Note that <strong><code>.</code></strong> and <strong><code>..</code></strong> act just like folder names, so you can include them anywhere in paths: <code>../../my_folder</code> says to go up two directories, and then into <code>my_folder</code>.</p>
 <p class="alert alert-info">
@@ -527,10 +551,7 @@ You should <strong>always</strong> use relative paths, particularly when program
 </div>
 <div id="file-commands" class="section level2">
 <h2><span class="header-section-number">2.3</span> File Commands</h2>
-<div class="figure">
-<img src="img/command-line/matrix-cli.jpg" title="Matrix command-line meme" />
-
-</div>
+<p><img src="img/command-line/matrix-cli.jpg" title="Matrix command-line meme" /></p>
 <p>Once you’re comfortable navigating folders in the command-line, you can start to use it to do all the same things you would do with Finder or File Explorer, simply by using the correct command. Here is an short list of commands to get you started using the command prompt, though there are <a href="http://www.lagmonster.org/docs/unix/intro-137.html">many more</a>:</p>
 <table>
 <thead>
@@ -579,7 +600,7 @@ You should <strong>always</strong> use relative paths, particularly when program
 <div id="learning-new-commands" class="section level3">
 <h3><span class="header-section-number">2.3.1</span> Learning New Commands</h3>
 <p>How can you figure out what kind of arguments these commands take? You can look it up! This information is available online, but many command shells (though <em>not</em> Git Bash, unfortunately) also include their own manual you can use to look up commands!</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">man</span> mkdir</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="fu">man</span> mkdir</a></code></pre></div>
 <p>Will show the <strong>man</strong>ual for the <strong><code>mkdir</code></strong> program/command.</p>
 <p class="alert alert-info">
 Because manuals are often long, they are opened up in a command-line viewer called <a href="https://en.wikipedia.org/wiki/Less_(Unix)"><code>less</code></a>. You can “scroll” up and down by using the arrow keys. Hit the <code>q</code> key to <strong>q</strong>uit and return to the command-prompt.
@@ -605,7 +626,7 @@ Because manuals are often long, they are opened up in a command-line viewer call
 <h2><span class="header-section-number">2.4</span> Dealing With Errors</h2>
 <p>Note that the syntax of these commands (how you write them out) is very important. Computers aren’t good at figuring out what you meant if you aren’t really specific; forgetting a space may result in an entirely different action.</p>
 <p>Try another command: <strong><code>echo</code></strong> lets you “echo” (print out) some text. Try echoing <code>&quot;Hello World&quot;</code> (which is the traditional first computer program):</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">echo</span> <span class="st">&quot;Hello world&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="bu">echo</span> <span class="st">&quot;Hello world&quot;</span></a></code></pre></div>
 <p>What happens if you forget the closing quote? You keep hitting “enter” but you just get that <code>&gt;</code> over and over again! What’s going on?</p>
 <ul>
 <li>Because you didn’t “close” the quote, the shell thinks you are still typing the message you want to echo! When you hit “enter” it adds a <em>line break</em> instead of ending the command, and the <code>&gt;</code> marks that you’re still going. If you finally close the quote, you’ll see your multi-line message printed!</li>
@@ -619,11 +640,11 @@ Because manuals are often long, they are opened up in a command-line viewer call
 </p>
 </div>
 <p>Throughout this book, we’ll discuss a variety of approaches to handling errors in computer programs. While it’s tempting to disregard dense error messages, many programs do provide <strong>error messages</strong> that explain what went wrong. If you enter an unrecognized command, the terminal will inform you of your mistake:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">lx</span>
-<span class="op">&gt;</span> <span class="ex">-bash</span>: lx: command not found</code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="ex">lx</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="op">&gt;</span> <span class="ex">-bash</span>: lx: command not found</a></code></pre></div>
 <p>However, forgetting arguments yields different results. In some cases, there will be a default behavior (see what happens if you enter <code>cd</code> without any arguments). If more information is <em>required</em> to run a command, your terminal will provide you with a brief summary of the command’s usage:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">mkdir</span>
-<span class="op">&gt;</span> <span class="ex">usage</span>: mkdir [-pv] [-m mode] directory ...</code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="fu">mkdir</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="op">&gt;</span> <span class="ex">usage</span>: mkdir [-pv] [-m mode] directory ...</a></code></pre></div>
 <p>Take the time to read the error message and think about what the problem might be before you try again.</p>
 </div>
 <div id="resources-1" class="section level2 unnumbered">

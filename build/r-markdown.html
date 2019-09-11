@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 12 R Markdown | Technical Foundations of Informatics</title>
-  <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics." />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 12 R Markdown | Technical Foundations of Informatics" />
   <meta property="og:type" content="book" />
@@ -22,18 +21,18 @@
   <meta name="twitter:description" content="The course reader for INFO 201: Technical Foundations of Informatics." />
   <meta name="twitter:image" content="https://info201.github.io/img/cover-img.png" />
 
-<meta name="author" content="Michael Freeman and Joel Ross">
+<meta name="author" content="Michael Freeman and Joel Ross" />
 
 
-<meta name="date" content="2019-04-12">
+<meta name="date" content="2019-09-11" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
-  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-<link rel="prev" href="apis.html">
-<link rel="next" href="ggplot2.html">
+  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
+<link rel="prev" href="apis.html"/>
+<link rel="next" href="ggplot2.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -61,41 +60,66 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -311,7 +335,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#resources-12"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="git-branches.html"><a href="git-branches.html"><i class="fa fa-check"></i><b>14</b> Git Branches</a><ul>
-<li class="chapter" data-level="14.1" data-path="git-branches.html"><a href="git-branches.html#git-branches"><i class="fa fa-check"></i><b>14.1</b> Git Branches</a></li>
+<li class="chapter" data-level="14.1" data-path="git-branches.html"><a href="git-branches.html#git-branches-1"><i class="fa fa-check"></i><b>14.1</b> Git Branches</a></li>
 <li class="chapter" data-level="14.2" data-path="git-branches.html"><a href="git-branches.html#merging"><i class="fa fa-check"></i><b>14.2</b> Merging</a><ul>
 <li class="chapter" data-level="14.2.1" data-path="git-branches.html"><a href="git-branches.html#merge-conflicts"><i class="fa fa-check"></i><b>14.2.1</b> Merge Conflicts</a></li>
 </ul></li>
@@ -443,12 +467,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="rmd-content" class="section level3">
 <h3><span class="header-section-number">12.1.2</span> <code>.Rmd</code> Content</h3>
 <p>At the top of the file is some text that has the format:</p>
-<div class="sourceCode"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="ot">---</span>
-<span class="fu">title:</span><span class="at"> </span><span class="st">&quot;Example&quot;</span>
-<span class="fu">author:</span><span class="at"> </span><span class="st">&quot;YOUR NAME HERE&quot;</span>
-<span class="fu">date:</span><span class="at"> </span><span class="st">&quot;1/30/2017&quot;</span>
-<span class="fu">output:</span><span class="at"> html_document</span>
-<span class="ot">---</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode yaml"><code class="sourceCode yaml"><a class="sourceLine" id="cb159-1" data-line-number="1"><span class="ot">---</span></a>
+<a class="sourceLine" id="cb159-2" data-line-number="2"><span class="fu">title:</span><span class="at"> </span><span class="st">&quot;Example&quot;</span></a>
+<a class="sourceLine" id="cb159-3" data-line-number="3"><span class="fu">author:</span><span class="at"> </span><span class="st">&quot;YOUR NAME HERE&quot;</span></a>
+<a class="sourceLine" id="cb159-4" data-line-number="4"><span class="fu">date:</span><span class="at"> </span><span class="st">&quot;1/30/2017&quot;</span></a>
+<a class="sourceLine" id="cb159-5" data-line-number="5"><span class="fu">output:</span><span class="at"> html_document</span></a>
+<a class="sourceLine" id="cb159-6" data-line-number="6"><span class="ot">---</span></a></code></pre></div>
 <p>This is the document “header” information, which tells R Markdown details about the file and how the file should be processed. For example, the <code>title</code>, <code>author</code>, and <code>date</code> will automatically be added to the top of your document. You can include additional information as well, such as <a href="http://rmarkdown.rstudio.com/html_document_format.html">whether there should be a table of contents</a> or even <a href="http://rmarkdown.rstudio.com/developer_parameterized_reports.html">variable defaults</a>.</p>
 <ul>
 <li>The header is written in <a href="https://en.wikipedia.org/wiki/YAML">YAML</a> format, which is yet another way of formatting structured data similar to <code>.csv</code> or JSON (in fact, YAML is a superset of JSON and can represent the same data structure, just using indentation and dashes instead of braces and commas).</li>
@@ -523,7 +547,7 @@ Back to writing _markdown_ out here.</code></pre>
 <p>As with code blocks, you’ll follow the Markdown convention of using single backticks (<strong><code>`</code></strong>), but put the letter <strong><code>r</code></strong> immediately after the first backtick. For example:</p>
 <!-- RMarkdown doesn't provide built-in escaping. See https://stackoverflow.com/q/20409172 for
      details on the workaround. -->
-<div class="sourceCode"><pre class="sourceCode markdown"><code class="sourceCode markdown">To calculate 3 + 4 inside some text, we can use <span class="bn">`r 3 + 4`</span> right in the _middle_.</code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode markdown"><code class="sourceCode markdown"><a class="sourceLine" id="cb162-1" data-line-number="1">To calculate 3 + 4 inside some text, we can use <span class="bn">`r 3 + 4`</span> right in the _middle_.</a></code></pre></div>
 <p>When you knit the text above, the <code>`r 3 + 4`</code> would be replaced with the number <code>7</code>.</p>
 <p class="alert alert-info">
 Note you can also reference values computed in the code blocks preceding your inline code; it is <strong>best practice</strong> to do your calculations in a code block (with <code>echo=FALSE</code>), save the result in a variable, and then simply inline that variable with e.g., <code>`r my.variable`</code>.

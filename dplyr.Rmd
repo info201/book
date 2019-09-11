@@ -459,4 +459,3 @@ The non-standard evaluation offered by `dplyr` can make it quick and easy to wor
 - [DPLYR Join Cheatsheet (Jenny Bryan)](http://stat545.com/bit001_dplyr-cheatsheet.html)
 - [Non-standard evaluation](https://cran.r-project.org/web/packages/dplyr/vignettes/nse.html)
 - [Data Manipulation with DPLYR (R-bloggers)](https://www.r-bloggers.com/data-manipulation-with-dplyr/)
-- [Data Manipulation in R (DataCamp)](https://www.datacamp.com/courses/dplyr-data-manipulation-r-tutorial)

@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>A Plotly | Technical Foundations of Informatics</title>
-  <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics.">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="The course reader for INFO 201: Technical Foundations of Informatics." />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
   <meta property="og:title" content="A Plotly | Technical Foundations of Informatics" />
   <meta property="og:type" content="book" />
@@ -22,18 +21,18 @@
   <meta name="twitter:description" content="The course reader for INFO 201: Technical Foundations of Informatics." />
   <meta name="twitter:image" content="https://info201.github.io/img/cover-img.png" />
 
-<meta name="author" content="Michael Freeman and Joel Ross">
+<meta name="author" content="Michael Freeman and Joel Ross" />
 
 
-<meta name="date" content="2019-04-12">
+<meta name="date" content="2019-09-11" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
-  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-<link rel="prev" href="shiny.html">
-<link rel="next" href="control-structures.html">
+  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
+<link rel="prev" href="shiny.html"/>
+<link rel="next" href="control-structures.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -61,41 +60,66 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -311,7 +335,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#resources-12"><i class="fa fa-check"></i>Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="git-branches.html"><a href="git-branches.html"><i class="fa fa-check"></i><b>14</b> Git Branches</a><ul>
-<li class="chapter" data-level="14.1" data-path="git-branches.html"><a href="git-branches.html#git-branches"><i class="fa fa-check"></i><b>14.1</b> Git Branches</a></li>
+<li class="chapter" data-level="14.1" data-path="git-branches.html"><a href="git-branches.html#git-branches-1"><i class="fa fa-check"></i><b>14.1</b> Git Branches</a></li>
 <li class="chapter" data-level="14.2" data-path="git-branches.html"><a href="git-branches.html#merging"><i class="fa fa-check"></i><b>14.2</b> Merging</a><ul>
 <li class="chapter" data-level="14.2.1" data-path="git-branches.html"><a href="git-branches.html#merge-conflicts"><i class="fa fa-check"></i><b>14.2.1</b> Merge Conflicts</a></li>
 </ul></li>
@@ -424,11 +448,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="getting-started" class="section level2">
 <h2><span class="header-section-number">A.1</span> Getting Started</h2>
 <p>The Plotly API is an R package that you’ll use to build interactive graphics. Like other open-source that we’ve used in this course, we’ll load this API as a R package as follows:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># Install package</span>
-<span class="ex">install.packages</span>(<span class="st">&quot;plotly&quot;</span>)
-
-<span class="co"># Load library</span>
-<span class="ex">library</span>(plotly)</code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb227-1" data-line-number="1"><span class="co"># Install package</span></a>
+<a class="sourceLine" id="cb227-2" data-line-number="2"><span class="ex">install.packages</span>(<span class="st">&quot;plotly&quot;</span>)</a>
+<a class="sourceLine" id="cb227-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb227-4" data-line-number="4"><span class="co"># Load library</span></a>
+<a class="sourceLine" id="cb227-5" data-line-number="5"><span class="ex">library</span>(plotly)</a></code></pre></div>
 <p>Then, the <code>plot_ly</code> object will be accessible to you to build graphics on your page.</p>
 <div class="alert alert-danger">
 <p>
@@ -439,48 +463,48 @@ Note: sometimes RStudio fails to show your plotly graph in a website preview whe
 <div id="basic-charts" class="section level2">
 <h2><span class="header-section-number">A.2</span> Basic Charts</h2>
 <p>One of the best ways to start building charts with Plotly is to take a look at a <a href="https://plot.ly/r/#basic-charts">basic example</a> of your choice, and explore the syntax. In general, to build a Plotly object (graph) you’ll pass a <strong>dataframe</strong> into the <code>plot_ly</code> function, then <strong>adjust the parameters</strong> to specify what you want to visualize. For example, here is the basic example of a scatterplot from the documentation:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># Make a scatterplot of the iris data</span>
-<span class="ex">plot_ly</span>(data = iris, x = ~Sepal.Length, y = ~Petal.Length, mode = <span class="st">&quot;markers&quot;</span>, type = <span class="st">&quot;scatter&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb228-1" data-line-number="1"><span class="co"># Make a scatterplot of the iris data</span></a>
+<a class="sourceLine" id="cb228-2" data-line-number="2"><span class="ex">plot_ly</span>(data = iris, x = ~Sepal.Length, y = ~Petal.Length, mode = <span class="st">&quot;markers&quot;</span>, type = <span class="st">&quot;scatter&quot;</span>)</a></code></pre></div>
 <p>The approach seems pretty straightforward – in fact, if you exclude <code>type = &quot;scatter&quot;</code> and <code>mode = &quot;markers&quot;</code>, Plotly will make an educated guess about what type of plot you want (and in this case, it will in fact create a scatterplot!). The only syntax that looks a bit strange is the tilde character (<code>~</code>). In R, the tilde designates a variable as a <strong>formula</strong>, which was a design choice of the developers of the API.</p>
 </div>
 <div id="layout" class="section level2">
 <h2><span class="header-section-number">A.3</span> Layout</h2>
 <p>While the <code>plot_ly</code> function controls the data that is being visualized, additional chart options such as <em>titles and axes</em> are controlled by the <code>layout</code> function. The <code>layout</code> function accepts as a parameter <strong>a plotly object</strong>, and <em>manipulates that object</em>. Again, I think a great place to start is an example in the <a href="https://plot.ly/r/line-and-scatter/">documentation</a>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># From documentation</span>
-
-<span class="co"># Create a plotly object `p`</span>
-p &lt;-<span class="st"> </span><span class="kw">plot_ly</span>(<span class="dt">data =</span> iris, <span class="dt">x =</span> <span class="op">~</span>Sepal.Length, <span class="dt">y =</span> <span class="op">~</span>Petal.Length, <span class="dt">type =</span> <span class="st">&quot;scatter&quot;</span>, <span class="dt">mode =</span> <span class="st">&quot;markers&quot;</span>,
-        <span class="dt">marker =</span> <span class="kw">list</span>(<span class="dt">size =</span> <span class="dv">10</span>,
-                       <span class="dt">color =</span> <span class="st">&#39;rgba(255, 182, 193, .9)&#39;</span>,
-                       <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">color =</span> <span class="st">&#39;rgba(152, 0, 0, .8)&#39;</span>,
-                                   <span class="dt">width =</span> <span class="dv">2</span>))) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="co"># Use pipe function to pass the plotly object into the `layout` function                           </span>
-<span class="st">  </span><span class="kw">layout</span>(<span class="dt">title =</span> <span class="st">&#39;Styled Scatter&#39;</span>,
-         <span class="dt">yaxis =</span> <span class="kw">list</span>(<span class="dt">zeroline =</span> <span class="ot">FALSE</span>),
-         <span class="dt">xaxis =</span> <span class="kw">list</span>(<span class="dt">zeroline =</span> <span class="ot">FALSE</span>))
-
-<span class="co"># Show chart</span>
-p</code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb229-1" data-line-number="1"><span class="co"># From documentation</span></a>
+<a class="sourceLine" id="cb229-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb229-3" data-line-number="3"><span class="co"># Create a plotly object `p`</span></a>
+<a class="sourceLine" id="cb229-4" data-line-number="4">p &lt;-<span class="st"> </span><span class="kw">plot_ly</span>(<span class="dt">data =</span> iris, <span class="dt">x =</span> <span class="op">~</span>Sepal.Length, <span class="dt">y =</span> <span class="op">~</span>Petal.Length, <span class="dt">type =</span> <span class="st">&quot;scatter&quot;</span>, <span class="dt">mode =</span> <span class="st">&quot;markers&quot;</span>,</a>
+<a class="sourceLine" id="cb229-5" data-line-number="5">        <span class="dt">marker =</span> <span class="kw">list</span>(<span class="dt">size =</span> <span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb229-6" data-line-number="6">                       <span class="dt">color =</span> <span class="st">&#39;rgba(255, 182, 193, .9)&#39;</span>,</a>
+<a class="sourceLine" id="cb229-7" data-line-number="7">                       <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">color =</span> <span class="st">&#39;rgba(152, 0, 0, .8)&#39;</span>,</a>
+<a class="sourceLine" id="cb229-8" data-line-number="8">                                   <span class="dt">width =</span> <span class="dv">2</span>))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb229-9" data-line-number="9"><span class="st">  </span><span class="co"># Use pipe function to pass the plotly object into the `layout` function                           </span></a>
+<a class="sourceLine" id="cb229-10" data-line-number="10"><span class="st">  </span><span class="kw">layout</span>(<span class="dt">title =</span> <span class="st">&#39;Styled Scatter&#39;</span>,</a>
+<a class="sourceLine" id="cb229-11" data-line-number="11">         <span class="dt">yaxis =</span> <span class="kw">list</span>(<span class="dt">zeroline =</span> <span class="ot">FALSE</span>),</a>
+<a class="sourceLine" id="cb229-12" data-line-number="12">         <span class="dt">xaxis =</span> <span class="kw">list</span>(<span class="dt">zeroline =</span> <span class="ot">FALSE</span>))</a>
+<a class="sourceLine" id="cb229-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb229-14" data-line-number="14"><span class="co"># Show chart</span></a>
+<a class="sourceLine" id="cb229-15" data-line-number="15">p</a></code></pre></div>
 <p>This example uses the pipe operator (<code>%&gt;%</code>) to pass the plotly object <em>into</em> the <code>layout</code> function as the first argument. We can then infer the structure of the other parameters, which you can read about more in the <a href="https://plot.ly/r/reference/#Layout_and_layout_style_objects">API Documentation</a>:</p>
 </div>
 <div id="hovers" class="section level2">
 <h2><span class="header-section-number">A.4</span> Hovers</h2>
 <p>By default, plotly will provide information on each element when you hover over it (which is <strong>awesome</strong>). To manipulate the information in a hover, you can modify the <code>text</code> attribute in the <code>plot_ly</code> function, and you can <strong>use your data</strong> to populate the information on hover:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># From documentation</span>
-
-<span class="co"># Create data</span>
-d &lt;-<span class="st"> </span>diamonds[<span class="kw">sample</span>(<span class="kw">nrow</span>(diamonds), <span class="dv">1000</span>), ]
-
-<span class="co"># Create plot, specifying hover text</span>
-p &lt;-<span class="st"> </span><span class="kw">plot_ly</span>(
-  d, <span class="dt">x =</span> <span class="op">~</span>carat, <span class="dt">y =</span> <span class="op">~</span>price, <span class="dt">mode =</span> <span class="st">&quot;markers&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;scatter&quot;</span>,
-  <span class="co"># Hover text:</span>
-  <span class="dt">text =</span> <span class="op">~</span><span class="kw">paste0</span>(<span class="st">&quot;Price:$&quot;</span>, price, <span class="st">&#39;&lt;br&gt;Cut: &#39;</span>, cut),
-  <span class="dt">color =</span> <span class="op">~</span>carat, <span class="dt">size =</span> <span class="op">~</span>carat
-)
-
-<span class="co"># Show chart</span>
-p</code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb230-1" data-line-number="1"><span class="co"># From documentation</span></a>
+<a class="sourceLine" id="cb230-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb230-3" data-line-number="3"><span class="co"># Create data</span></a>
+<a class="sourceLine" id="cb230-4" data-line-number="4">d &lt;-<span class="st"> </span>diamonds[<span class="kw">sample</span>(<span class="kw">nrow</span>(diamonds), <span class="dv">1000</span>), ]</a>
+<a class="sourceLine" id="cb230-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb230-6" data-line-number="6"><span class="co"># Create plot, specifying hover text</span></a>
+<a class="sourceLine" id="cb230-7" data-line-number="7">p &lt;-<span class="st"> </span><span class="kw">plot_ly</span>(</a>
+<a class="sourceLine" id="cb230-8" data-line-number="8">  d, <span class="dt">x =</span> <span class="op">~</span>carat, <span class="dt">y =</span> <span class="op">~</span>price, <span class="dt">mode =</span> <span class="st">&quot;markers&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;scatter&quot;</span>,</a>
+<a class="sourceLine" id="cb230-9" data-line-number="9">  <span class="co"># Hover text:</span></a>
+<a class="sourceLine" id="cb230-10" data-line-number="10">  <span class="dt">text =</span> <span class="op">~</span><span class="kw">paste0</span>(<span class="st">&quot;Price:$&quot;</span>, price, <span class="st">&#39;&lt;br&gt;Cut: &#39;</span>, cut),</a>
+<a class="sourceLine" id="cb230-11" data-line-number="11">  <span class="dt">color =</span> <span class="op">~</span>carat, <span class="dt">size =</span> <span class="op">~</span>carat</a>
+<a class="sourceLine" id="cb230-12" data-line-number="12">)</a>
+<a class="sourceLine" id="cb230-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb230-14" data-line-number="14"><span class="co"># Show chart</span></a>
+<a class="sourceLine" id="cb230-15" data-line-number="15">p</a></code></pre></div>
 <p>Note, plotly allows you to specify HTML syntax in the text formula. In this case, it uses a line break <code>&lt;br&gt;</code> to improve the layout.</p>
 </div>
 <div id="resources-16" class="section level2 unnumbered">
