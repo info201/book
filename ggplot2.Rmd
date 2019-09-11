@@ -33,7 +33,10 @@ All together, this grammar enables you to discuss what plots look like using a s
 
 
 ## Basic Plotting with `ggplot2`
-The [**`ggplot2`**](http://ggplot2.tidyverse.org/) library provides a set of _declarative functions_ that mirror the above grammar, enabling you to efficaciously specify what you want a plot to look like (e.g., what data, geometric objects, aesthetics, scales, etc. you want it to have).
+
+### _ggplot2_ library
+
+The [**`ggplot2`**](http://ggplot2.tidyverse.org/) library provides a set of _declarative functions_ that mirror the above grammar, enabling you to easily specify what you want a plot to look like (e.g., what data, geometric objects, aesthetics, scales, etc. you want it to have).
 
 `ggplot2` is yet another external package (like `dplyr` and `httr` and `jsonlite`), so you will need to install and load it in order to use it:
 
@@ -41,10 +44,28 @@ The [**`ggplot2`**](http://ggplot2.tidyverse.org/) library provides a set of _de
 install.packages("ggplot2")  # once per machine
 library("ggplot2")
 ```
-
 This will make all of the plotting functions you'll need available.
 
-- Note that the library also comes with a number of built-in data sets. This chapter will use the provided `mpg` data set as an example, which is a data frame containing information about fuel economy for different cars.
+<p class="alert">_ggplot2_ is called _ggplot**2**_ because once upon a time there was just a library _ggplot_.  However, the developer noticed that it used an inefficient set of functions.  In order for not to break the API, the authors introduced a successor package _ggplot2_.  However, the central function in this package is still called `ggplot()`, not `ggplot2()`!
+</p>
+
+
+### _mpg_ data
+
+_ggplot2_ library comes with a number of built-in data sets.  One of the most popular of these is `mpg`, a data frame about fuel economy for different cars.  It is a sufficiently small but versatile dataset to demonstrate various aspects of plotting.  _mpg_ has `r nrow(mpg)` rows and `r ncol(mpg)` columns.  Below is a sample of it:
+```{r mpgDemo}
+mpg[sample(nrow(mpg), 3),]
+```
+The most important variables for our purpose are following:
+
+* **class**, car class, such as SUV, compact, minivan
+* **displ**, engine size (liters)
+* **cyl**, number of cylinders
+* **hwy**, mileage on highway, miles per gallon
+* **manufacturer**, producer of the car, e.g. Volkswagen, Toyota
+
+
+### Our first ggplot
 
 In order to create a plot, you call the `ggplot()` function, specifying the **data** that you wish to plot. You then add new _layers_ that are **geometric objects** which will show up on the plot:
 
@@ -71,9 +92,11 @@ Thus, basic simple plots can be created simply by specifying a data set, a `geom
 
 
 ### Aesthetic Mappings
-The **aesthetic mappings** take properties of the data and use them to influence **visual channels**, such as _position_, _color_, _size_, or _shape_. These are the representations that you want to _drive with your data properties_, rather than set for all markers. Each visual channel can therefore encode an aspect of the data and be used to express underlying patterns.
 
-The data-driven aesthetics for a plot are specified in the [`aes()`](http://ggplot2.tidyverse.org/reference/index.html#section-aesthetics) function call for that `geom` layer. For example, you can add a mapping from the `class` of the cars to the _color_ channel:
+The **aesthetic mapping** is a central concept of every data visualization.  This means setting up the correspondence between **aesthetics**, the visual properties (visual channels) of the plot, such as _position_, _color_, _size_, or _shape_, and certain properties of the data, typically numeric values of certain variables.
+Aesthetics are the representations that you want to _drive with your data properties_, rather than fix in code for all markers. Each visual channel can therefore encode an aspect of the data and be used to express underlying patterns.
+
+The aesthetics mapping is specified in the [`aes()`](http://ggplot2.tidyverse.org/reference/index.html#section-aesthetics) function call in the `geom` layer.  Above we used mapping `aes(x=displ, y=hwy)`.  This means to map variable `displ` in the `mpg` data (engine size) to the horizontal position (_x_-coordinate) on the plot, and variable `hwy` (highway mileage) to the vertical position (_y_ coordinate).  We did not specify any other visual properties, such as color, point size or point shape, so by default the `geom_point` layer produced a set of equal size black dots, positioned according to the date.  Let's now color the points according to the class of the car.  This amounts to taking an additional aesthetic, _color_, and mapping it to the variable `class` in data as `color=class`.  As we want this to happen in the same layer, we must add this to the `aes()` function as an additional named argument:
 
 ```{r aes_color}
 # color the data by car type
@@ -83,7 +106,15 @@ ggplot(data = mpg) +
 
 (`ggplot2` will even create a legend for you!)
 
-Note that using the `aes()` function will cause the visual channel to be based on the data specified in the argument. For example, using `aes(color = "blue")` won't cause the geometry's color to be "blue", but will instead cause the visual channel to be mapped from the _vector_ `c("blue")`&mdash;as if you only had a single type of engine that happened to be called "blue". If you wish to apply an aesthetic property to an entire geometry, you can ___set___ that property as an argument to the `geom` method, outside of the `aes()` call:
+Note that using the `aes()` function will cause the visual channel to be based on the data specified in the argument. For example, using `aes(color = "blue")` won't cause the geometry's color to be "blue", but will instead cause the visual channel to be mapped from the _vector_ `c("blue")`&mdash;as if you only had a single type of engine that happened to be called "blue":
+
+```{r wrong_blue}
+ggplot(data = mpg) +                         # note where parentheses are closed
+  geom_point(mapping = aes(x = displ, y = hwy, color = "blue"))
+```
+
+This looks confusing (note the weird legend!) and is most likely not what you want.
+If you wish to specify a given aesthetic, you should ___set___ that property as an argument to the `geom` method, outside of the `aes()` call:
 
 ```{r color_blue}
 ggplot(data = mpg) +                         # note where parentheses are closed
@@ -333,6 +364,42 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +  # same mapping for all 
 _R for Data Science_ (linked in the resources below) recommends using the [`ggrepel`](https://github.com/slowkow/ggrepel) package to help position labels.
 
 
+## Plotting in Scripts
+
+From the first encounter with _ggplot_ one typically gets the impression that it is the _ggplot_ function that creates the plot.  This **is not true!**.  A call to _ggplot_ just creates a _ggplot_-object, a data structure that contains data and all other necessary details for creating the plot.  But the image itself is not created.  It is created instead by the _print_-method.  If you type an expression on R console, R evaluates and prints this expression.  This is why we can use it as a manual calculator for simple math, such as `2 + 2`.  The same is true for _ggplot_: it returns a _ggplot_-object, and given you don't store it into a variable, it is printed, and the print method of _ggplot_-object actually makes the image.  This is why we can immediately see the images when we work with _ggplot_ on console.
+
+Things may be different, however, if we do this in a script.  When you execute a script, the returned non-stored expressions are not printed.  For instance, the script
+```{r ggplotNoPlot, eval=FALSE}
+diamonds %>%
+   sample_n(1000) %>%
+ggplot() +
+   geom_point(aes(carat, price))  # note: not printed
+```
+will not produce any output when sourced as a single script (and not run line-by-line).  You have to print the returned objects explicitly, for instance as
+```{r ggplotPrintPlot, eval=FALSE}
+data <- diamonds %>%
+   sample_n(1000)
+p <- ggplot(data) +
+   geom_point(aes(carat, price))  # store here
+print(p)  # print here
+```
+
+In scripts we often want the code not to produce image on screen, but store it in a file instead.  This can be achieved in a variety of ways, for instance through redirecting graphical output to a pdf device with the command `pdf()`:
+
+```{r ggplotPdf, eval=FALSE}
+data <- diamonds %>%
+   sample_n(1000)
+p <- ggplot(data) +
+   geom_point(aes(carat, price))  # store here
+pdf(file="diamonds.pdf", width=10, height=8)
+                           # redirect to a pdf file
+print(p)  # print here
+dev.off()  # remember to close the file
+```
+After redirecting the output, all plots will be written to the pdf file (as separate pages if you create more than one plot).  Note you have to close the file with `def.off()`, otherwise it will be broken.  There are other output options besides pdf, you may want to check `jpeg` and `png` image outputs.  Finally, _ggplot_ also has a dedicated way to save individual plots to file using `ggsave`.
+
+
+
 ## Other Visualization Libraries
 `ggplot2` is easily the most popular library for producing data visualizations in R. That said, `ggplot2` is used to produce **static** visualizations: unchanging "pictures" of plots. Static plots are great for for **explanatory visualizations**: visualizations that are used to communicate some information&mdash;or more commonly, an _argument_ about that information. All of the above visualizations have been ways to explain and demonstrate an argument about the data (e.g., the relationship between car engines and fuel efficiency).
 
@@ -344,7 +411,7 @@ While `ggplot2` does not directly support interactive visualizations, there are 
 
 - [**Bokeh**](http://hafen.github.io/rbokeh/index.html) is an open-source library for developing interactive visualizations. It automatically provides a number of "standard" interactions (pop-up labels, drag to pan, select to zoom, etc) automatically. It is similar to `ggplot2`, in that you create a figure and then and then add _layers_ representing different geometries (points, lines etc). It has detailed and readable documentation, and is also available to other programming languages (such as Python).
 
-- [**Plotly**](https://plot.ly/r/) is another libary similar to _Bokeh_, in that it automatically provided standard interactions. It is also possible to take a `ggplot2` plot and [wrap](https://plot.ly/ggplot2/) it in Plotly in order to make it interactive. Plotly has many examples to learn from, though a less effective set of documentation than other libraries.
+- [**Plotly**](https://plot.ly/r/) is another library similar to _Bokeh_, in that it automatically provided standard interactions. It is also possible to take a `ggplot2` plot and [wrap](https://plot.ly/ggplot2/) it in Plotly in order to make it interactive. Plotly has many examples to learn from, though a less effective set of documentation than other libraries.
 
 - [**`rCharts`**](http://rdatascience.io/rCharts/) provides a way to utilize a number of _JavaScript_ interactive visualization libraries. JavaScript is the programming language used to create interactive websites (HTML files), and so is highly specialized for creating interactive experiences.
 

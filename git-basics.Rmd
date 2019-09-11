@@ -98,7 +98,7 @@ This creates a new _hidden_ folder called `.git` inside of the current directory
 ### Checking Status
 Now that you have a repo, the next thing you should do is check its **status**:
 
-```bash
+```sh
 git status
 ```
 
@@ -113,6 +113,8 @@ The `git status` command will give you information about the current "state" of 
 That last point is important. Git status messages are verbose and somewhat awkward to read (this is the command-line after all), but if you look at them carefully they will almost always tell you what command to use next.
 
 <p class="alert alert-warning">**If you are ever stuck, use `git status` to figure out what to do next!**</p>
+
+If the output of `git status` seems to verbose to you, you may use `git status -s`, the "short" version of it instead.  It does gives you only the very basic information about what's going on, but this is exactly what you need if you are an experienced git user.
 
 This makes `git status` the most useful command in the entire process. Learn it, use it, love it.
 
@@ -132,17 +134,15 @@ git add filename
 ```
 
 (Replacing `filename` with the name/path of the file/folder you want to add). 
-You can also add all the contents of the directory (tracked or untracked) to the staging area with:
+If you are sure you want to add _all the contents_ of the directory (tracked or untracked) to the staging area, you can do it with:
 
-```bash
+```sh
 git add .
 ```
 
-(This is what I tend to use, unless I explicitly don't want to save changes to some files.)
-
 <p class="alert alert-danger">**WARNING**: This will add _everything_ in
 your current directory to your git repo, unless ignored through the
-`.gitignore` file (see below).  This may include your top secret passwords,
+`.gitignore` file ([see below](#gitignore)).  This may include your top secret passwords,
 gigabytes of data, all your illegally ripped dvds, and just files that are
 unnecessary to upload.</p>
 
@@ -163,6 +163,15 @@ git commit -m "your message here"
 The `"your message here"` should be replaced with a short message saying what changes that commit makes to the repo (see below for details).
 
 <p class="alert alert-danger">**WARNING**: If you forget the `-m` option, git will put you into a command-line _text editor_ so that you can compose a message (then save and exit to finish the commit). If you haven't done any other configuration, you might be dropped into the ___vim___ editor. Type **`:q`** (**colon** then **q**) and hit enter to flee from this horrid place and try again, remembering the `-m` option! Don't panic: getting stuck in _vim_ [happens to everyone](https://stackoverflow.blog/2017/05/23/stack-overflow-helping-one-million-developers-exit-vim/).</p>
+
+If you do not add any new files to git control, you can also use the shorthand form
+
+```sh
+git commit -am "message"
+```
+
+instead of `git add` and `git commit` separately.  the `-a` option tells git to include _all modified files_ into this commit.
+
 
 #### Commit Message Etiquette
 Your commit messages should [be informative](https://xkcd.com/1296/) about what changes the commit is making to the repo. `"stuff"` is not a good commit message. `"Fix critical authorization error"` is a good commit message.
@@ -211,14 +220,14 @@ You can also add more files besides `books.md`, such as `movies.md` or
 When your repository grows, you can check which files are tracked by _git_, both already
 committed and in the staging area, by
 
-```bash
+```sh
 git ls-files
 ```
 
 (Note that `git status` does not mention tracked files that are not changed.)
 
 
-### The `.gitignore` File
+### The `.gitignore` File {#gitignore}
 Sometimes you want git to always ignore particular directories or files in your project. For example, if you use a Mac and you tend to organize your files in the Finder, the operating system will create a hidden file in that folder named `.DS_Store` (the leading dot makes it "hidden") to track the positions of icons, which folders have been "expanded", etc. This file will likely be different from machine to machine. If it is added to your repository and you work from multiple machines (or as part of a team), it could lead to a lot of merge conflicts (not to mention cluttering up the folders for Windows users).
 
 You can tell git to ignore files like these by creating a special _hidden_ file in your project directory called `.gitignore` (note the leading dot). This file contains a _list_ of files or folders that git should "ignore" and pretend don't exist. The file uses a very simple format: each line contains the path to a directory or file to ignore; multiple files are placed on multiple lines. For example:
@@ -236,9 +245,9 @@ secret/my_password.txt
 movies/my_four_hour_epic.mov
 ```
 
-Note that the easiest way to create the `.gitignore` file is to use your preferred text editor (e.g., Atom); select `File > New` from the menu and choose to make the `.gitignore` file _directly inside_ your repo.
+Note that the easiest way to create the `.gitignore` file is to use your preferred text editor (e.g., Atom); select `File > New` from the menu and choose to make the `.gitignore` file _directly inside_ your repo.  `.gitgnore` should be added and committed to the repo to make the ignore-rules common across the project.  There are also ways to ignore files on a single computer only, see [documentation on github](https://help.github.com/en/articles/ignoring-files) for details.
 
-If you are on a Mac, we **strongly suggest** _globally ignoring_ your `.DS_Store` file. There's no need to ever share or track this file. To always ignore this file on your machine, simply run these lines of code:
+You may want to ignore certain files in _all your repositories_.  For instance, if you are on a Mac, we **strongly suggest** _globally ignoring_ your `.DS_Store` file. There's no need to ever share or track this file. To always ignore this file on your machine, simply run these lines of code:
 
 ```bash
 # Run these lines on your terminal to configure git to ignore .DS_Store
@@ -257,7 +266,8 @@ Repositories stored on GitHub are examples of **remotes**: other repos that are 
 
 Each remote has a URL associated with it (where on the internet the remote copy of the repo can be found), but they are given "alias" names (like browser bookmarks). By convention, the remote repo stored on GitHub's servers is named **`origin`**, since it tends to be the "origin" of any code you've started working on.
 
-Remotes don't need to be stored on GitHub's computers, but it's one of the most popular places to put repos.
+Remotes don't need to be stored on GitHub's computers, but it's one of the most popular places to put repos.  One repo can also have more than one remote, for instance `origin` for the github-version of your repo, and `upstream` for the repo you initially forked you code from.
+
 
 ### Forking and Cloning
 In order to use GitHub, you'll need to [**create a free GitHub account**](https://github.com/join), which you should have done as part of setting up your machine.
